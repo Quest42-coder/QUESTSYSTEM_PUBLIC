@@ -1,0 +1,2900 @@
+# 01. Systemischer Kontext (Patch V1.5)
+
+## 1. Grundsatz & Rolle im Gesamtsystem
+Die **QUESTSYSTEM gGmbH** ist eine **optionale Rechts- und Handlungseinheit** des QUESTSYSTEMs.  
+Sie dient als **gemeinnütziger Rechtsträger**, um einzelne Module oder modulübergreifende Projekte rechtlich, organisatorisch und finanziell umsetzbar zu machen.  
+Das QUESTSYSTEM kann **vollständig unabhängig** von der gGmbH betrieben, geforkt oder lokal implementiert werden, sofern die **QUEST: Licence** (*Modul 32*) und die **Dignity Clause** (*14 Gebote der Menschlichkeit*) eingehalten werden.
+
+Kernprinzipien:
+- Die gGmbH ist **nicht Eigentümerin** des QUESTSYSTEMs.
+- Sie darf **keine wirtschaftlichen Geschäftsbetriebe** betreiben, die den Gemeinnützigkeitsstatus gefährden (§ 55 AO).
+- Sie stellt Infrastruktur, Koordination und Ressourcen für Projekte bereit, die der **STATIC CORE V4.4**-Modulliste zugeordnet sind.
+- Alle Inhalte, Werkzeuge und Strukturen des QUESTSYSTEMs können **auch ohne gGmbH** realisiert werden.
+
+---
+
+## 2. Platzierung im QUESTSYSTEM
+- **Existential Ring**: Unterstützung existenzsichernder Module (z. B. Modul 01 – RESETBOX, Modul 02 – Quest: Water).  
+- **Societal Ring**: Förderung von Bildungs-, Integrations- und Partizipationsprojekten (z. B. Modul 11 – Quest: School).  
+- **Structural Ring**: Betrieb struktureller Rahmenwerke wie **Modul 29 – Quest: Data** oder **Modul 32 – Quest: Licence**.
+
+---
+
+## 3. Einsatzszenarien (Beispiele)
+- Rechtssichere Durchführung einer **internationalen Hilfslieferung** mit modulspezifischen Komponenten (z. B. Wasserfilter, Solarstationen).  
+- Koordination eines **offenen Bildungsprojekts** mit lokalen Partnern in mehreren Ländern.  
+- Betrieb einer **dezentralen Serverinfrastruktur** für Datenarchivierung und Open-Access-Materialien.  
+- Abwicklung von **Fördermitteln** für modulübergreifende Projekte.  
+
+---
+
+## 4. Rechtliche Grundlagen
+- **GmbHG** – §§ 1–13b (Gründung, Struktur, Pflichten der Geschäftsführung)  
+- **AO** – §§ 55–58 (Gemeinnützigkeit, Mittelverwendung, Unmittelbarkeit)  
+- **BGB** – §§ 32–40 (Vereinsrecht analog für interne Gremienstrukturen)  
+- **Haager Übereinkommen** – internationale Anerkennung von Urkunden und Verträgen  
+- **DSGVO** – Datenschutz-Grundverordnung (Schutz personenbezogener Daten)  
+- **GWB** – Gesetz gegen Wettbewerbsbeschränkungen (Kartell- und Wettbewerbsrecht)  
+- **QUEST: Licence** – Offene Lizenz mit Anti-Missbrauchs-Klauseln  
+- **Dignity Clause** – Vorrang ethischer Grundsätze vor wirtschaftlichen oder politischen Interessen
+
+---
+
+## 5. Transparenz- & Governance-Verpflichtung
+- **Vollständige Offenlegung** aller Entscheidungen, Finanzflüsse und Projektberichte über ein öffentlich zugängliches Open-Data-Archiv (siehe Abschnitt 25 – Governance).  
+- **Veröffentlichungsfristen**: Entscheidungsprotokolle spätestens 30 Tage nach Beschluss im Open-Data-Archiv.  
+- **Jährlicher Wirkungsbericht** mit Prüfung durch den Ethikrat.  
+- **Lizenz- und Ethikprüfung** bei allen Kooperationen, Förderungen und Implementierungen.
+
+---
+
+## 6. Fußnoten
+1. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung §§ 1–13b  
+2. AO – Abgabenordnung §§ 55–58  
+3. BGB – Bürgerliches Gesetzbuch §§ 32–40  
+4. Haager Übereinkommen zur Anerkennung von Urkunden und Verträgen  
+5. DSGVO – Datenschutz-Grundverordnung  
+6. GWB – Gesetz gegen Wettbewerbsbeschränkungen  
+7. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste  
+8. QUEST: Licence – Modul 32 (inkl. Anti-Missbrauchs-Klauseln)  
+9. 14 Gebote der Menschlichkeit – Bestandteil der Satzung  
+
+## 02. Rechtsform & Gemeinnützigkeit der QUESTSYSTEM gGmbH
+
+### 1. Grundlegende Rechtsform
+Die **QUESTSYSTEM gGmbH** ist eine *gemeinnützige Gesellschaft mit beschränkter Haftung*  
+nach deutschem Recht (§§ 13–13b GmbHG i. V. m. §§ 51–68 AO).  
+Sie verbindet die **Haftungsbegrenzung** einer GmbH mit den **steuerlichen, rechtlichen  
+und ethischen Privilegien** der Gemeinnützigkeit.
+
+**Juristische Fachfassung:**  
+- **Keine persönliche Haftung** der Gesellschafter:innen über die Stammeinlage hinaus (§ 13 GmbHG) [1].  
+- **Steuerbefreiung** für gemeinnützige Tätigkeiten (§ 5 Abs. 1 Nr. 9 KStG; § 3 Nr. 6 GewStG) [3][4].  
+- **Satzungsmäßige Bindung** an die in § 52 AO definierten gemeinnützigen Zwecke [2].  
+- **Unabänderliche Integration der „14 Gebote der Menschlichkeit“** (Dignity Clause) in die Satzung.  
+- **Vermögensbindungsklausel** nach § 55 Abs. 1 Nr. 4 AO [2], wonach verbleibendes Vermögen  
+  bei Auflösung ausschließlich an steuerbegünstigte Körperschaften mit identischem Zweck fällt.
+
+**Laienfassung:**  
+Die gGmbH ist eine Organisation mit haftungsbeschränkter Rechtsform, die rechtlich verpflichtet ist,  
+ausschließlich dem Gemeinwohl zu dienen. Ihre Grundwerte sind gesetzlich fest verankert und  
+dürfen niemals verändert werden.
+
+---
+
+### 2. Gemeinnützige Zwecke gemäß Satzung
+Die gGmbH verfolgt **ausschließlich und unmittelbar** gemeinnützige Zwecke im Sinne der §§ 51 ff. AO [2].  
+Diese sind inhaltlich mit den Modulen des **STATIC CORE V4.4** verknüpft:
+
+1. **Förderung von Bildung, Wissenschaft und Forschung**  
+   – Schwerpunkt auf nachhaltiger Ressourcennutzung, sozialer Resilienz,  
+     digitaler Selbstbestimmung und offener Wissensvermittlung  
+   (*Modul 11 – Quest: School*, *Modul 20 – Quest: Culture*,  
+   *Modul 25 – Quest: Media*, *Modul 28 – Quest: Science*, *Modul 29 – Quest: Data*).
+
+2. **Förderung des Umwelt- und Naturschutzes**  
+   – Schutz natürlicher Lebensgrundlagen, Biodiversität, nachhaltige Ressourcennutzung  
+   (*Modul 13 – Quest: Nature*, *Modul 35 – Quest: Resources*, *Modul 18 – Quest: Energy*).
+
+3. **Förderung von Entwicklungszusammenarbeit und Katastrophenhilfe**  
+   – Aufbau von Resilienzstrukturen, direkte Hilfslieferungen,  
+     Wiederaufbau nach Krisen  
+   (*Modul 01 – RESETBOX*, *Modul 02 – Quest: Water*, *Modul 03 – Quest: Shelter*,  
+   *Modul 04 – Quest: Food*, *Modul 05 – Quest: Sleep*).
+
+4. **Förderung von Menschenrechten, internationalem Verständnis und Demokratie**  
+   – Schutz vor systematischer Ausgrenzung, Rechtsunterstützung, Förderung friedlicher Kooperation  
+   (*Modul 12 – Quest: Border*, *Modul 31 – Quest: Law*, *Modul 33 – Quest: Justice*,  
+   *Modul 34 – Quest: Economy*, *Modul 38 – Quest: Governance*).
+
+**Ausschlussklausel:**  
+Jede Tätigkeit, die gegen die **14 Gebote der Menschlichkeit** verstößt, ist unzulässig.  
+Verstöße führen zu sofortigem Projektstopp, interner Revision, externer Meldung  
+(z. B. an Finanzamt, Registergericht, Kooperationspartner) und ggf. Satzungsprüfung.
+
+---
+
+### 3. Ausschließliche Mittelverwendung
+Gemäß § 55 AO [2]:
+- **Keine Gewinnausschüttung** an Gesellschafter:innen oder Dritte.  
+- **Verwendung aller Mittel ausschließlich** für die satzungsmäßigen Zwecke.  
+- **Rücklagenbildung** nur zur nachhaltigen Projektsicherung (§ 62 AO).  
+- **Verbot verdeckter Gewinnausschüttungen** (z. B. überhöhte Vergütungen).  
+- **Vermögensbindung**: Restvermögen bei Auflösung oder Aufhebung geht an eine andere  
+  steuerbegünstigte Körperschaft mit gleichen Zwecken.
+
+---
+
+### 4. Organstruktur & Governance
+Die gGmbH ist eine Kapitalgesellschaft, arbeitet jedoch nach  
+**nicht-hierarchischen, transparenten Entscheidungsprinzipien**.
+
+**Organe:**
+1. **Geschäftsführung** – rechtlich verantwortlich, Umsetzung der Satzungsziele.  
+2. **Modulrat** – Vertreter:innen für STATIC CORE Module, beratend, Vetorecht bei Dignity-Verstößen.  
+3. **Externe Prüfung** – unabhängige Kontrollstellen (z. B. CCC-nahe Organisationen, NGO-Audits).
+
+**Governance-Prinzipien:**
+- Öffentliche Protokolle aller Entscheidungen (CC-BY-SA 4.0 lizenziert) mit Begründungspflicht.  
+- Offenlegung sämtlicher Finanzflüsse (Open Finance Dashboard, jährlicher Transparenzbericht).  
+- Sofortige Projektpause bei Dignity-Verstößen.  
+- Lizenzprüfung für jedes Projekt gemäß *Modul 32 – Quest: Licence*.
+
+---
+
+### 5. Verhältnis zum offenen QUESTSYSTEM
+- Die gGmbH ist **nicht Eigentümerin** des QUESTSYSTEMS.  
+- Nutzung erfolgt unter der **QUEST: Licence** (*Modul 32 – Quest: Licence*).  
+- **Forks** und unabhängige Strukturen sind ausdrücklich erlaubt.  
+- Die gGmbH ist **optional** – STATIC CORE Module können ohne sie umgesetzt werden.  
+- Hauptaufgabe: Abbau rechtlicher Hürden, Infrastruktur- und Finanzbereitstellung.  
+- Keine Monopolstellung – jede Organisation, die Lizenz und Dignity Clause einhält,  
+  kann gleichwertig agieren.
+
+---
+
+### 6. Anwendungsbeispiele
+- **Existential Ring:** RESETBOX-Verteilung (*Modul 01*), Wasserzugang (*Modul 02*), Notunterkünfte (*Modul 03*).  
+- **Societal Ring:** Bildungsprojekte (*Modul 11*), Energielösungen (*Modul 18*), Kulturförderung (*Modul 20*).  
+- **Structural Ring:** Rechtshilfe (*Modul 31*), Lizenzberatung (*Modul 32*), Medienarbeit (*Modul 25*).
+
+---
+
+### 7. Juristische Absicherung
+- Eintragung im Handelsregister (§ 8 GmbHG) [1].  
+- Gemeinnützigkeitsanerkennung (§ 60 AO) [2].  
+- Jährliche externe Finanz- und Zweckprüfung.  
+- Lizenz-Compliance gemäß *Modul 32 – Quest: Licence*.  
+- Dauerhafte Satzungsintegration der **14 Gebote der Menschlichkeit**.  
+- Beachtung von § 64 AO (wirtschaftliche Betätigung) zur Sicherstellung der Gemeinnützigkeit.
+
+---
+
+**Fußnoten:**  
+[1] GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung.  
+[2] AO – Abgabenordnung §§ 51–68.  
+[3] KStG – Körperschaftsteuergesetz § 5 Abs. 1 Nr. 9.  
+[4] GewStG – Gewerbesteuergesetz § 3 Nr. 6.  
+[5] QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+[6] 14 Gebote der Menschlichkeit – öffentlich zugänglicher Bestandteil der Satzung.
+
+
+# 03. Finanzierungslogik & Mittelverwendung der QUESTSYSTEM gGmbH
+
+## 1. Grundsätze der Finanzierung
+Die Finanzierung der **QUESTSYSTEM gGmbH** erfolgt ausschließlich aus Quellen,  
+die mit den Vorgaben der **Abgabenordnung (AO)** und der **Dignity Clause** vereinbar sind.
+
+**Zulässige Finanzierungsquellen** *(AO §§ 55–58, 65–66)*:
+- **Spenden** von Privatpersonen und Unternehmen (Geld- und Sachspenden).
+- **Fördermittel** aus öffentlichen und internationalen Programmen  
+  *(nur bei vollständiger Zweck- und Dignity Clause-Konformität)*.
+- **Zweckbetriebe** (§ 65 AO) – z. B. Herstellung und Vertrieb von RESETBOXEN zur Katastrophenhilfe.
+- **Mitgliedsbeiträge** von unterstützenden Personen oder Organisationen.
+- **Projektbezogene Zuschüsse** mit dokumentierter Gemeinwohlorientierung.
+- **Mittelbeschaffungstätigkeiten** (§ 66 AO) für andere steuerbegünstigte Körperschaften.
+
+**Nicht zulässig**:
+- Finanzierung aus Rüstungs-, Überwachungs- oder menschenrechtswidrigen Quellen.
+- Parteipolitische Spenden, die der Neutralität widersprechen.
+- Mittel, die durch Ausbeutung, Menschenrechtsverletzung oder ökologische Zerstörung erwirtschaftet wurden.
+
+---
+
+## 2. Mittelverwendung
+Die gGmbH unterliegt der **strikten Zweckbindung** (§§ 55–57 AO):
+
+- **Keine Gewinnausschüttung** an Gesellschafter:innen oder Dritte.
+- **Verwendung aller Mittel** ausschließlich für die satzungsmäßigen Zwecke (§ 57 AO).
+- **Selbstlosigkeitspflicht** (§ 56 AO) – keine Begünstigung durch unverhältnismäßige Leistungen.
+- **Zeitnahe Mittelverwendung** (§ 55 Abs. 1 Nr. 5 AO) – nicht verwendete Mittel grundsätzlich bis Ende des Folgejahres.
+- **Rücklagenbildung** nur für nachhaltige Projektsicherung (§ 62 AO), z. B.:
+  - zweckgebundene Rücklagen für laufende Projekte,
+  - freie Rücklagen bis zu 1/3 des Überschusses des Vorjahres (§ 62 Abs. 1 Nr. 3 AO).
+- **Verbot verdeckter Gewinnausschüttungen** (§ 55 Abs. 1 Nr. 3 AO).
+- **Vermögensbindung** (§ 55 Abs. 1 Nr. 4 AO): Bei Auflösung oder Aufhebung der gGmbH fällt das Restvermögen  
+  an eine andere steuerbegünstigte Körperschaft mit identischen Zwecken.
+
+---
+
+## 3. Zweckbetrieb vs. wirtschaftlicher Geschäftsbetrieb
+| Merkmal | Zweckbetrieb (§ 65 AO) | Wirtschaftlicher Geschäftsbetrieb (§ 64 AO) |
+|---------|------------------------|---------------------------------------------|
+| **Zweckbindung** | Unmittelbar gemeinnützig | Kein direkter Bezug zum gemeinnützigen Zweck |
+| **Beispiele** | RESETBOX-Produktion für Katastrophengebiete, Bildungsprojekte | Merchandising, Catering ohne Bildungsbezug |
+| **Steuerpflicht** | Steuerfrei | Steuerpflichtig, Freigrenze: 45.000 € (Stand 2025) |
+| **AO-Konformität** | Voll gegeben | Nur bei Gewinnverwendung für Satzungszwecke |
+
+---
+
+## 4. Bewertung & Transparenz bei Sachspenden
+- **Bewertungspflicht**: Sachspenden mit Marktwert zum Zeitpunkt der Zuwendung (§ 6 EStG).
+- **Transparenzpflicht**: Jährliche Offenlegung aller Geld- und Sachspenden im öffentlichen Finanzbericht.
+- **Prüfungspflicht**: Herkunftsnachweis zwingend erforderlich.
+- **Ablehnungspflicht**: Spenden ohne nachvollziehbare Herkunft werden nicht angenommen.
+
+---
+
+## 5. Kontrollmechanismen & Dignity Clause-Prüfung
+- **Modulrat-Prüfung**: Alle Ausgaben > 5.000 € werden vorab auf Zweckkonformität und Dignity Clause-Vereinbarkeit geprüft.
+- **Vetorecht**: Jedes Modulratsmitglied kann zweckwidrige Ausgaben stoppen.
+- **Externe Prüfung**: Jährliche Überprüfung durch unabhängige Instanz (z. B. CCC-nahe Organisation).
+- **Lizenz-Compliance**: Einnahmen und Ausgaben werden auf Kompatibilität mit *Modul 32 – Quest: Licence* geprüft.
+
+---
+
+## 6. Praxisbeispiel: Finanzierung einer RESETBOX-Produktion
+1. **Mittelherkunft**:  
+   - 20.000 € Spende einer Privatperson.  
+   - 10.000 € Fördermittel einer Stiftung (Katastrophenhilfeprogramm).
+2. **Zweckbindung**: Beide Mittel sind für *Modul 01 – RESETBOX* zweckgebunden.
+3. **Mittelverwendung**:  
+   - 25.000 € Material- und Produktionskosten (Zweckbetrieb).  
+   - 5.000 € Logistik und Transport.
+4. **Dokumentation**:  
+   - Öffentliche Veröffentlichung im Jahresbericht.  
+   - Prüfung durch Modulrat und externe Stelle.
+
+---
+
+**Fußnoten:**  
+1. AO – Abgabenordnung §§ 51–68.  
+2. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung.  
+3. KStG – Körperschaftsteuergesetz § 5 Abs. 1 Nr. 9.  
+4. GewStG – Gewerbesteuergesetz § 3 Nr. 6.  
+5. EStG – Einkommensteuergesetz § 6.  
+6. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+7. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.
+
+# 04. Governance & Entscheidungslogik der QUESTSYSTEM gGmbH
+
+## 04.1 Grundprinzipien
+Die Governance-Struktur der **QUESTSYSTEM gGmbH** ist so gestaltet, dass sie **rechtlich verbindlich**, **operativ transparent** und **ethisch nicht manipulierbar** ist.  
+Sie verbindet die Anforderungen aus dem **GmbHG** (§§ 35–37) und der **Abgabenordnung** (§ 63 AO) mit den ethischen Vorgaben der **14 Gebote der Menschlichkeit** (Dignity Clause).
+
+**Leitprinzipien:**
+1. **Nicht-Hierarchie**: Entscheidungen werden dezentral vorbereitet und gemeinschaftlich getroffen.
+2. **Transparenzpflicht**: Jede Entscheidung ist öffentlich einsehbar, dokumentiert und begründet.
+3. **Vetorecht bei Ethikverstößen**: Jedes Organmitglied kann Maßnahmen stoppen, wenn sie gegen die Dignity Clause oder geltendes Recht verstoßen.
+4. **Technische Offenheit**: Alle Governance-Dokumente sind unter *Modul 32 – Quest: Licence* veröffentlicht.
+
+---
+
+## 04.2 Organstruktur
+
+### a) Geschäftsführung
+- Rechtlich verantwortliches Organ gemäß **§ 35 GmbHG**.
+- Zuständig für die Umsetzung der Satzungszwecke und die Einhaltung der gesetzlichen Vorgaben.
+- Berichtspflicht an den Modulrat und die externe Prüfung.
+
+### b) Modulrat
+- Zusammengesetzt aus Vertreter:innen der **STATIC CORE V4.4 Module**, deren Umsetzung über die gGmbH unterstützt wird.
+- Beratend und mit **Vetorecht** bei Entscheidungen, die ethisch oder systemisch problematisch sind.
+- Arbeitsweise nach Konsensprinzip; bei Dissens → Eskalationsverfahren (siehe 04.5).
+
+### c) Externe Prüfstellen
+- Unabhängige Kontrollorgane (z. B. CCC-nahe Organisationen, juristische Fachstellen).
+- Prüfung von Finanzen, Entscheidungen und Ethikkonformität.
+- Veröffentlichung der Prüfberichte unter *Modul 25 – Quest: Media*.
+
+---
+
+## 04.3 Modulverknüpfung
+Governance bezieht sich direkt auf:
+- **Modul 32 – Quest: Licence** (Lizenzklarheit, Open-Source-Verpflichtung)
+- **Modul 38 – Quest: Governance** (Systemsteuerung & Feedback)
+- **Modul 31 – Quest: Law** (Rechtshilfe & Compliance)
+- **Modul 33 – Quest: Justice** (Gerechtigkeit & interne Schlichtung)
+
+Diese Module stellen das inhaltliche Fundament für alle Governance-Entscheidungen dar.
+
+---
+
+## 04.4 Entscheidungslogik
+
+**Schritte der Entscheidungsfindung:**
+1. **Initiierung** – Vorschlag durch Geschäftsführung oder Modulrat.
+2. **Prüfung** – Abgleich mit Satzungszwecken, STATIC CORE-Modulen und Dignity Clause.
+3. **Abstimmung** – Konsensprinzip; einfache Mehrheit nur, wenn keine Ethikfrage berührt ist.
+4. **Dokumentation** – Vollständige Protokollierung inkl. Begründung und Abstimmungsergebnis.
+5. **Veröffentlichung** – Innerhalb von 7 Tagen auf der öffentlichen Plattform.
+
+---
+
+## 04.5 Vetorecht & Eskalationsverfahren
+
+**Vetorecht:**
+- Kann durch jedes Mitglied der Geschäftsführung oder des Modulrats ausgeübt werden.
+- Gilt sofort und setzt die Maßnahme aus.
+- Begründung muss schriftlich erfolgen und veröffentlicht werden.
+
+**Eskalationsverfahren:**
+1. Prüfung durch den gesamten Modulrat.
+2. Falls keine Einigung: Einschaltung der externen Prüfstellen.
+3. Endentscheidung wird dokumentiert und in das Governance-Archiv aufgenommen.
+
+---
+
+## 04.6 Notfallentscheidungen
+- In akuten Lagen (z. B. Menschenrechtsverletzungen, Naturkatastrophen) darf die Geschäftsführung vorläufig handeln.
+- Maßnahme muss innerhalb von 72 Stunden vom Modulrat bestätigt oder gestoppt werden.
+- Dokumentationspflicht auch hier zwingend.
+
+---
+
+## 04.7 Kontrollzyklen
+- **Quartalsweise interne Governance-Reviews** mit Auswertung aller Entscheidungen.
+- **Jährliche externe Prüfung** durch unabhängige Stellen.
+- Veröffentlichung aller Ergebnisse in einem **Governance-Transparenzbericht**.
+
+---
+
+**Fußnoten:**
+1. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung (§§ 35–37).  
+2. AO – Abgabenordnung (§ 63 Gemeinnützigkeit).  
+3. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulstruktur.  
+4. 14 Gebote der Menschlichkeit – Dignity Clause, Bestandteil der Satzung.
+
+# 05. Verhältnis der gGmbH zum offenen QUESTSYSTEM
+
+## 1. Grundsatz
+Die **QUESTSYSTEM gGmbH** ist **nicht Eigentümerin** und kein exklusiver Träger des QUESTSYSTEMS.  
+Sie agiert ausschließlich als **optionales Werkzeug**, um Module des STATIC CORE V4.4 unter  
+rechtlich, ethisch und finanziell abgesicherten Rahmenbedingungen umzusetzen.
+
+**AO-Bezug:**  
+Die gGmbH erfüllt die Voraussetzungen der **Ausschließlichkeit (§ 56 AO)**,  
+**Unmittelbarkeit (§ 57 AO)** und **Satzungsmäßigkeit (§ 60 AO)**, indem sie ihre Tätigkeit  
+direkt und ausschließlich auf die in der Satzung definierten Zwecke ausrichtet.
+
+---
+
+## 2. Offene Systemlizenz
+- Alle Ergebnisse, Entwicklungen und Dokumentationen der gGmbH unterliegen der  
+  **QUEST: Licence** (*Modul 32 – Quest: Licence*).  
+- **Lizenzpflicht:** Jede von der gGmbH erstellte Arbeit muss unter der QUEST: Licence  
+  veröffentlicht werden. Nur wenn diese keine einschlägige Regelung enthält, dürfen  
+  alternative OSI-konforme Lizenzen verwendet werden.  
+- Die gGmbH darf **keine exklusiven Verwertungsrechte** beanspruchen, auch nicht über Markenrecht  
+  (MarkenG § 4, § 23 – Schranken des Markenschutzes).
+
+---
+
+## 3. Unabhängigkeit & Forks
+- Forks, Abwandlungen und eigenständige Umsetzungen des QUESTSYSTEMS sind ausdrücklich erlaubt.  
+- Die gGmbH darf diese weder blockieren noch rechtlich einschränken.  
+- Projekte anderer Akteure dürfen **nicht vereinnahmt oder markenrechtlich gebunden** werden.
+
+---
+
+## 4. Schnittstelle zu den STATIC CORE Modulen
+Die gGmbH kann **modulweise** in das QUESTSYSTEM eingreifen, ohne dessen Offenheit einzuschränken.
+
+**Beispiele:**
+- **Existential Ring:** RESETBOX-Serienfertigung (*Modul 01*), Wasseraufbereitung (*Modul 02*), Notunterkünfte (*Modul 03*).
+- **Societal Ring:** Offene Bildungsplattform (*Modul 11*), Energielösungen (*Modul 18*), Kulturprojekte (*Modul 20*).
+- **Structural Ring:** Rechtshilfe (*Modul 31*), Lizenzberatung (*Modul 32*), Offene Datenplattformen (*Modul 29*).
+
+**Praxisbeispiel – RESETBOX-Projekt:**  
+Ein Resetbox-Build-Kit (*Modul 01*) wird vollständig von der gGmbH vorfinanziert, in Katastrophengebieten verteilt,  
+und alle Baupläne sowie Anleitungen werden unter der QUEST: Licence frei veröffentlicht.  
+Andere Akteure dürfen diese Kits unabhängig nachbauen und vertreiben.
+
+---
+
+## 5. Dignity Clause & Konfliktlösung
+- Die **14 Gebote der Menschlichkeit** sind unveränderlich in der Satzung verankert.  
+- Jedes Modulratsmitglied hat ein **Vetorecht**, ausschließlich bei Projekten, die gegen die 14 Gebote verstoßen.  
+- **Konfliktlösung:** Bei Unstimmigkeiten zwischen gGmbH und unabhängigen Akteuren wird innerhalb von 30 Tagen  
+  eine neutrale Mediation durch eine externe, unabhängige Instanz (z. B. CCC-nahe Organisation) eingeleitet.
+
+---
+
+## 6. Vorteile der gGmbH für das offene System
+- **Rechtssicherheit:** Handeln in einem abgesicherten Rechtsrahmen (GmbHG, AO).  
+- **Finanzielle Infrastruktur:** Gemeinnützige Mittelakquise und Spendenquittungen (§ 10b EStG).  
+- **Risikoteilung:** Rechtliche und finanzielle Haftung werden von der gGmbH getragen, nicht von einzelnen Akteuren.  
+- **Langfristigkeit:** Sicherung von Projekten durch Rücklagenbildung (§ 62 AO).
+
+---
+
+**Fußnoten:**  
+1. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung.  
+2. AO – Abgabenordnung §§ 51–68, insbesondere §§ 56–57, § 60 (Ausschließlichkeit, Unmittelbarkeit, Satzungsmäßigkeit).  
+3. KStG – Körperschaftsteuergesetz § 5 Abs. 1 Nr. 9.  
+4. GewStG – Gewerbesteuergesetz § 3 Nr. 6.  
+5. MarkenG – Markengesetz §§ 4, 23 (Schutzentstehung, Schranken).  
+6. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+7. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.
+
+# 06. Anwendungsbeispiele der gGmbH im STATIC CORE
+
+## 1. Grundsatz
+Die **QUESTSYSTEM gGmbH** ist ein fakultatives, jedoch operativ hochrelevantes Werkzeug, um einzelne oder kombinierte Module des **STATIC CORE V4.4** rechtssicher, finanziell stabil und organisatorisch belastbar umzusetzen.  
+Alle Maßnahmen unterliegen:
+- den Vorgaben der **Abgabenordnung (§§ 51–68 AO)**,  
+- der **QUEST: Licence** (*Modul 32 – Quest: Licence*),  
+- sowie der **Dignity Clause** (*14 Gebote der Menschlichkeit*).
+
+Die gGmbH kann:
+- Projekte als **steuerbefreiten Zweckbetrieb (§ 65 AO)** führen,  
+- notwendige Genehmigungen, Versicherungen und Haftungsabsicherungen übernehmen,  
+- Fördermittel beantragen und zweckgebunden einsetzen (§ 55 AO).  
+
+---
+
+## 2. Modulweise Einsatzszenarien
+
+| Ring / Modul | Beispielhafte gGmbH-Umsetzung | Operativer Mehrwert (juristisch / organisatorisch) |
+|--------------|------------------------------|----------------------------------------------------|
+| **Existential Ring** |||
+| *01 – RESETBOX* | Serienproduktion & Distribution in Katastrophengebieten | AO-konformer Zweckbetrieb, Zoll- und Transportabwicklung, Versicherung |
+| *02 – Quest: Water* | Bau dezentraler Wasseraufbereitungsanlagen | Hygienerechtliche Genehmigungen, Betreiberhaftung, Schulungen |
+| *03 – Quest: Shelter* | Aufbau temporärer Notunterkünfte | Bau- und Sicherheitsgenehmigungen, Brandschutz |
+| *04 – Quest: Food* | Mobile Küchen & Lebensmittelverteilung | Lebensmittelrecht (LMIV), Hygieneschulungen, HACCP |
+| *05 – Quest: Sleep* | Bereitstellung sicherer Schlafplätze | Versicherung, Sicherheitskonzepte, Datenschutz |
+| *06 – Quest: Body* | Hygienestationen & mobile Sanitäreinheiten | Trinkwasserverordnung, Arbeitsschutz, Barrierefreiheit |
+| *07 – Quest: Psyche* | Mobile psychosoziale Teams | Schweigepflicht, Datenschutz, Qualifikationsnachweise |
+| *08 – Quest: Device* | Verleih digitaler Geräte & Offline-Wissensspeicher | DSGVO, IT-Sicherheitsstandards |
+| *09 – Quest: Debt* | Schuldnerberatung & Notfallfonds | Rechtsberatungshaftung, Finanzaufsicht |
+| **Societal Ring** |||
+| *10 – Quest: Work* | Offene Werkstätten & Kooperationsprojekte | Arbeitsschutz, Betriebshaftpflicht |
+| *11 – Quest: School* | Offene Bildungsplattform & mobile Lernräume | Trägerschaft für Bildungsmaßnahmen, DSGVO-konforme IT-Infrastruktur |
+| *12 – Quest: Border* | Grenzübergreifende Hilfslogistik | Zollabwicklung, Visa- und Transportrecht |
+| *13 – Quest: Nature* | Renaturierungs- & Aufforstungsprojekte | Umweltverträglichkeitsprüfungen, Flächenpachtverträge |
+| *18 – Quest: Energy* | Aufbau von Solar- & Off-Grid-Systemen | Netzanschlussgenehmigung, Elektrofachbetriebszulassung |
+| *20 – Quest: Culture* | Offene Kulturveranstaltungen | GEMA-Abwicklung, Veranstalterhaftung |
+| *25 – Quest: Media* | Bürgerjournalismus & Krisenberichterstattung | Presserecht, Quellenschutz |
+| **Structural Ring** |||
+| *28 – Quest: Science* | Citizen-Science-Labore | Arbeitsschutz, Genehmigungen für Probenahme |
+| *29 – Quest: Data* | Freie Datenplattformen | DSGVO, Serverhosting, Cybersecurity |
+| *31 – Quest: Law* | Rechtsberatungsnetzwerk | Organhaftung, anwaltliche Kooperation |
+| *32 – Quest: Licence* | Lizenz- und Complianceberatung | Sicherung der Offenheit, Schutz vor Missbrauch |
+| *33 – Quest: Justice* | Beobachtung & Dokumentation von Gerichtsverfahren | Prozessrecht, Akkreditierung |
+| *35 – Quest: Resources* | Kreislaufwirtschaftsprojekte | Abfallrecht, Genehmigungspflichten |
+
+*Hinweis:* Diese Liste ist **beispielhaft** und zeigt typische Einsatzfelder; sie erhebt keinen Anspruch auf Vollständigkeit für alle 42 Module.
+
+---
+
+## 3. Kombinationsprojekte
+Viele Projekte überschreiten Modulgrenzen. In solchen Fällen übernimmt die gGmbH:
+- die **rechtliche Trägerschaft** (Verträge, Versicherungen, Genehmigungen),
+- die **Fördermittelabwicklung** (Verwendungsnachweise, Mittelverwendungspläne),
+- die **AO-konforme Buchführung** (§ 63 AO – ordnungsgemäße Aufzeichnungspflichten).
+
+**Beispiel:**  
+RESETBOX (*01*) + Quest: Water (*02*) + Quest: Energy (*18*)  
+→ Wasserfilteranlagen mit integrierter Solarstromversorgung, verpackt als mobile Notfallstationen, AO-konform als einheitlicher Zweckbetrieb geführt.  
+**Vorteil:** Steuerliche Privilegierung als einheitlicher Zweckbetrieb (§ 65 AO) statt getrennter, ggf. steuerpflichtiger Einheiten.
+
+---
+
+## 4. Abgrenzung zur freien Umsetzung
+- Freie Akteure können alle STATIC CORE-Module **ohne gGmbH** umsetzen.  
+- gGmbH-Einsatz ist sinnvoll, wenn:
+  - **Rechtsrahmen** (Bau-, Hygiene-, Zollrecht etc.) erforderlich ist,  
+  - **Fördermittel** nur an juristische Personen fließen,  
+  - **Haftungsrisiken** abgesichert werden müssen,  
+  - oder **öffentliche Infrastruktur** in Anspruch genommen wird.
+
+---
+
+## 5. Vetoverfahren in der Projektpraxis
+- **Vorprüfung:** Jeder Projektantrag wird vor Genehmigung auf **Vereinbarkeit mit den 14 Geboten** geprüft.  
+- **Frist & Form:** Veto kann innerhalb von **14 Kalendertagen** nach Vorlage schriftlich und begründet beim Modulrat eingereicht werden.  
+- **Entscheidung:** Wird ein Veto eingelegt, ist das Projekt automatisch pausiert, bis eine Klärung erfolgt.  
+- **Mediation:** Bei Uneinigkeit wird eine neutrale Instanz (z. B. CCC-nahe Organisation) hinzugezogen.  
+- **Dokumentation:** Alle Veto-Entscheidungen werden öffentlich archiviert (Transparenzpflicht § 63 AO).  
+
+---
+
+**Fußnoten:**  
+1. AO – Abgabenordnung §§ 55 (Mittelverwendung), 56 (Ausschließlichkeit), 57 (Unmittelbarkeit), 62 (Rücklagen), 63 (Aufzeichnungspflichten), 65 (Zweckbetrieb).  
+2. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung.  
+3. MarkenG – Markengesetz § 4 (Schutzentstehung).  
+4. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+5. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.  
+
+# 07. Juristische Absicherung der QUESTSYSTEM gGmbH
+
+## 1. Geltungsbereich
+Die juristische Absicherung der **QUESTSYSTEM gGmbH** gilt **für jede von ihr umgesetzte Aktivität**, die ganz oder teilweise einem Modul des **STATIC CORE V4.4** zugeordnet ist.  
+Alle Maßnahmen müssen zwingend im Einklang stehen mit:  
+- den **Gesetzen der Bundesrepublik Deutschland**,  
+- den Vorgaben der **Abgabenordnung (§§ 51–68 AO)**,  
+- der **QUEST: Licence** (*Modul 32 – Quest: Licence*),  
+- und der **Dignity Clause** (*14 Gebote der Menschlichkeit*).  
+
+**Abweichungen von diesen Anforderungen** sind nur zulässig, wenn sie vom Modulrat nach einer Dignity-Prüfung einstimmig genehmigt wurden.
+
+---
+
+## 2. Gesellschaftsrechtliche Absicherung
+- Eintragung als **gemeinnützige Gesellschaft mit beschränkter Haftung** gemäß §§ 13–13b GmbHG.  
+- Haftungsbegrenzung der Gesellschafter:innen auf die Stammeinlage (§ 13 GmbHG).  
+- Pflicht zur Offenlegung wesentlicher Änderungen im Handelsregister (§ 8 GmbHG).  
+- **Organhaftung** nach § 43 GmbHG: Geschäftsführung haftet bei Pflichtverletzungen persönlich.
+
+---
+
+## 3. Gemeinnützigkeitsrechtliche Absicherung
+- Anerkennung als gemeinnützige Körperschaft gemäß §§ 51–68 AO.  
+- Einhaltung des **Musters einer Satzung für steuerbegünstigte Zwecke** gemäß Anlage 1 zu § 60 AO.  
+- **Ausschließlichkeit (§ 56 AO)** und **Unmittelbarkeit (§ 57 AO)** der Zweckverfolgung.  
+- **Vermögensbindung (§ 55 Abs. 1 Nr. 4 AO)** im Auflösungsfall.
+
+---
+
+## 4. Steuerrechtliche Absicherung
+- Steuerbefreiung nach § 5 Abs. 1 Nr. 9 KStG und § 3 Nr. 6 GewStG.  
+- Umsatzsteuerbefreiung für gemeinnützige Bildungsleistungen nach § 4 Nr. 18 UStG, sofern unmittelbar zweckbezogen und formal anerkannt.  
+- Trennung zwischen **Zweckbetrieb (§ 65 AO)** und **wirtschaftlichem Geschäftsbetrieb (§ 64 AO)**.  
+- Zeitnahe Mittelverwendung gemäß § 55 Abs. 1 Nr. 5 AO.
+
+---
+
+## 5. Lizenz- und Markenrecht
+- Anwendung der **QUEST: Licence** (*Modul 32*).  
+- **Verbot exklusiver Verwertungsrechte**, auch über das Markenrecht (§ 4 MarkenG).  
+- **Sicherstellung der Offenheit** aller gGmbH-Ergebnisse, einschließlich:  
+  - Zwischenstände  
+  - Dokumentationen  
+  - Quellcodes  
+  - Baupläne  
+  - Schulungsmaterialien
+
+---
+
+## 6. Datenschutz & IT-Sicherheit
+- Einhaltung der **DSGVO** und des **BDSG** bei allen datenverarbeitenden Prozessen.  
+- Verschlüsselung sensibler Daten, Nutzung zertifizierter Serverstandorte innerhalb der EU.  
+- **Datenschutz-Folgenabschätzungen** für risikobehaftete Projekte nach **Art. 35 DSGVO**.  
+- **Rechenschaftspflicht** gemäß **Art. 5 Abs. 2 DSGVO**: Nachweispflicht für die Einhaltung aller Datenschutzgrundsätze.
+
+---
+
+## 7. Geldwäsche- & Compliance-Regeln
+- Anwendung des **GwG** (insb. §§ 2, 10–11) bei Finanztransaktionen.  
+- Implementierung eines internen Compliance-Systems zur Prävention von Verstößen.
+
+---
+
+## 8. Ethische Absicherung (Dignity Clause)
+- Unveränderliche Satzungsintegration der **14 Gebote der Menschlichkeit**.  
+- Jeder Verstoß gegen diese Gebote gilt **automatisch als satzungswidrig** und kann zur **sofortigen Projektauflösung** führen.  
+- **Vetorecht** des Modulrats bei Verstößen.  
+- Veröffentlichung aller Dignity-Prüfberichte in einem öffentlichen Register.
+
+---
+
+## 9. Kontrollmechanismen
+- **Interne Kontrolle:** Modulrat überwacht alle Projekte.  
+- **Externe Kontrolle:** jährliche Prüfung durch unabhängige, nicht befangene Instanzen (Rotationsprinzip).  
+- **Sofortmechanismus:** Projektstopp bei juristischen oder ethischen Konflikten (STOP-Logik).
+
+---
+
+## 10. Versicherungen & Haftungsabsicherung
+- Projektbezogene Betriebshaftpflicht, Produkthaftpflicht und Veranstalterhaftpflicht.  
+- Zusätzliche Absicherung für internationale Einsätze (Transport-, Reise- und Auslandshaftpflichtversicherungen).  
+
+---
+
+**Fußnoten:**  
+1. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung (§§ 8, 13, 13b, 43).  
+2. AO – Abgabenordnung §§ 51–68, inkl. Anlage 1 zu § 60 AO.  
+3. KStG – Körperschaftsteuergesetz § 5 Abs. 1 Nr. 9.  
+4. GewStG – Gewerbesteuergesetz § 3 Nr. 6.  
+5. UStG – Umsatzsteuergesetz § 4 Nr. 18.  
+6. MarkenG – Markengesetz § 4.  
+7. DSGVO – Datenschutz-Grundverordnung (Art. 5 Abs. 2, Art. 35).  
+8. BDSG – Bundesdatenschutzgesetz.  
+9. GwG – Geldwäschegesetz.  
+10. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+11. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.
+
+# 08. Verhältnis der gGmbH zu staatlichen und privaten Akteuren
+
+## 1. Grundsatz
+Die **QUESTSYSTEM gGmbH** arbeitet kooperativ mit staatlichen und privaten Akteuren zusammen,  
+sofern die Zusammenarbeit den Vorgaben der **Abgabenordnung (§§ 51–68 AO)**, der  
+**QUEST: Licence** (*Modul 32 – Quest: Licence*) und der **Dignity Clause**  
+(*14 Gebote der Menschlichkeit*) entspricht.  
+
+Kooperationen dürfen weder die Offenheit des STATIC CORE V4.4 einschränken,  
+noch dessen nicht-kommerzielle Grundprinzipien verletzen.
+
+---
+
+## 2. Kooperationen mit staatlichen Akteuren
+- Zusammenarbeit mit Kommunen, Ländern, Bundesbehörden und internationalen Organisationen (z. B. UNHCR, WHO).  
+- Einhaltung von:
+  - **§ 55 Abs. 1 Nr. 1 AO** – Verbot parteipolitischer Betätigung  
+  - **§ 56 AO** – Ausschließlichkeit der Zweckverfolgung  
+  - **§ 57 AO** – Unmittelbarkeit der Zweckverfolgung  
+  - **§ 58 AO** – Zulässigkeit der Auslandsförderung  
+- Nutzung staatlicher Fördermittel nur bei vollständiger Zweckkonformität (§ 63 AO – ordnungsgemäße Aufzeichnungspflichten).
+- Verpflichtende **öffentliche Dokumentation** aller aus Fördermitteln erzielten Ergebnisse.
+- **Beispiele:**
+  - *Existential Ring*: RESETBOX-Distribution in Katastrophengebieten (*Modul 01*), Wasseraufbereitung (*Modul 02*).
+  - *Societal Ring*: Mobile Bildungsplattformen (*Modul 11*), dezentrale Energiesysteme (*Modul 18*).
+  - *Structural Ring*: Rechtsinfrastruktur für Geflüchtete (*Modul 31*), offene Datenportale (*Modul 29*).
+- **Sanktionsmechanismus bei Verstößen**: Sofortiger Projektabbruch und öffentliche Dokumentation im Transparenzregister.
+
+---
+
+## 3. Kooperationen mit privaten Akteuren
+- Zusammenarbeit mit Stiftungen, Unternehmen und Einzelpersonen, wenn:
+  - Herkunft der Mittel vollständig transparent ist (Nachweis nach **GwG** §§ 2, 10–11).
+  - Keine Verbindung zu Branchen der Ausschlussliste besteht (gemäß relevanter Punkte der **Dignity Clause**, z. B. Rüstung, Überwachung, Ausbeutung, Umweltzerstörung).
+  - Vertragsklauseln eine Bindung an die **QUEST: Licence** und die **Dignity Clause** enthalten.
+- Verpflichtende **Herkunftsprüfung** aller Mittel.
+- Verpflichtende **öffentliche Dokumentation** aller erzielten Ergebnisse im Transparenzregister.
+- **Beispiele:**
+  - *Existential Ring*: RESETBOX-Produktion mit Logistikpartner (*Modul 01*), Kooperation mit Trinkwassertechnik-Herstellern (*Modul 02*).
+  - *Societal Ring*: Solartechnikunternehmen für dezentrale Energieversorgung (*Modul 18*), Kulturförderung für offene Veranstaltungen (*Modul 20*).
+  - *Structural Ring*: IT-Unternehmen für offene Datenplattformen (*Modul 29*), Rechtskanzleien im Pro-Bono-Netzwerk (*Modul 31*).
+- Konsequenz bei Verstößen: Sofortige Vertragsauflösung nach **§ 134 BGB** (Rechtsgeschäft, das gegen ein gesetzliches Verbot verstößt, ist nichtig).
+
+---
+
+## 4. Vertragsgestaltung
+- Alle Kooperationsverträge müssen:
+  - Die **offene Lizenzpflicht** (Modul 32) beinhalten.
+  - Die **Satzungszwecke** der gGmbH als verbindliche Grundlage festhalten.
+  - Einen **Sofortmechanismus** bei Lizenz-, AO- oder Dignity-Verstößen vorsehen (Projektstopp + Veröffentlichung des Vorgangs).
+- Bei internationalen Kooperationen: Einhaltung der **§ 58 AO**-Regeln zur Auslandsförderung.
+
+---
+
+## 5. Abgrenzung
+- Kooperationen dürfen keine **Monopol- oder Exklusivrechte** an Modulen des STATIC CORE V4.4 begründen.  
+- Forks, eigenständige Entwicklungen und parallele Projekte anderer Akteure bleiben unangetastet.  
+- Die gGmbH darf keine Schutzrechte geltend machen, die die Offenheit einschränken.
+- Sicherstellung des **uneingeschränkten Nachbaurechts** gemäß QUEST: Licence.
+
+---
+
+## 6. Konfliktlösung
+- **Stufenmodell**:
+  1. Interne Klärung im Modulrat (max. 14 Tage Reaktionsfrist).
+  2. Mediation durch eine unabhängige, neutrale Instanz (z. B. CCC-nahe Organisation).
+  3. Öffentliche Dokumentation des Ergebnisses im Transparenzregister.
+- Bei Verstoß gegen die Dignity Clause: Sofortiger Abbruch der Kooperation ohne Übergangsfrist.
+
+---
+
+## 7. Vorteile klarer Abgrenzung
+- Rechtssicherheit für alle Partner.
+- Klare Trennung zwischen offenen und institutionell getragenen Projekten.
+- Sicherstellung der **Replikationsfreiheit** aller STATIC CORE V4.4-Module.
+
+---
+
+**Fußnoten:**  
+1. AO – Abgabenordnung §§ 51–68, insb. §§ 55 (Mittelverwendung), 56 (Ausschließlichkeit), 57 (Unmittelbarkeit), 58 (Auslandsförderung), 63 (Aufzeichnungspflichten).  
+2. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung.  
+3. GwG – Geldwäschegesetz §§ 2, 10–11.  
+4. BGB – Bürgerliches Gesetzbuch § 134 (Verstoß gegen gesetzliches Verbot).  
+5. MarkenG – Markengesetz § 4.  
+6. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+7. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.  
+
+# 09. Finanzierung & Mittelverwendung der QUESTSYSTEM gGmbH
+
+## 1. Grundsatz
+Die **QUESTSYSTEM gGmbH** finanziert ihre Tätigkeiten ausschließlich im Rahmen der **Abgabenordnung (§§ 51–68 AO)**,  
+der **QUEST: Licence** (*Modul 32 – Quest: Licence*) und der **Dignity Clause** (*14 Gebote der Menschlichkeit*).  
+Alle Einnahmen und Ausgaben müssen:
+- **zweckgebunden** (§ 55 AO) und
+- **zeitnah** (§ 55 Abs. 1 Nr. 5 AO) verwendet werden,
+- ohne exklusive Rechte oder restriktive Schutzrechte zu begründen.
+
+Internationale Einsätze unterliegen zusätzlich den Regeln des **§ 58 AO** (zulässige Auslandsförderung, z. B. Katastrophen- oder Entwicklungshilfe).
+
+---
+
+## 2. Einnahmequellen
+- **Spenden** (privat & institutionell) – mit vollständiger Herkunftstransparenz (§§ 2, 10–11 GwG).  
+- **Zweckbetrieb (§ 65 AO)** – z. B. Produktion und Distribution der RESETBOX (Modul 01), wenn unmittelbar gemeinnützig.  
+- **Crowdfunding & Community-basierte Finanzierung** – zulässig, sofern AO-konform, ohne exklusive Gegenleistungen, und unter Berücksichtigung von Plattformgebühren als Betriebsausgaben.  
+- **Fördermittel** – staatlich, kommunal, EU, internationale Organisationen (z. B. UNHCR), nur bei vollständiger Zweckkonformität.  
+- **Echtes Sponsoring** – Spende mit Namensnennung des Sponsors (steuerfrei, § 3 Nr. 6 GewStG).  
+- **Unechtes Sponsoring** – Leistung gegen Gegenleistung (z. B. Werbung), steuerpflichtiger wirtschaftlicher Geschäftsbetrieb (§ 64 AO, getrennte Buchführung).  
+- **Projektkooperationen** – mit vertraglicher Bindung an QUEST: Licence und Dignity Clause.
+
+**Nicht zulässig**:
+- Gelder aus Branchen der Ausschlussliste (Rüstung, Überwachung, Ausbeutung, Umweltzerstörung).  
+- Finanzierung gegen exklusive Nutzungsrechte an STATIC CORE V4.4-Modulen.
+
+---
+
+## 3. Mittelverwendung
+- **Zeitnah**: spätestens bis Ende des Folgejahres (§ 55 Abs. 1 Nr. 5 AO).  
+- **Zweckgebunden**: ausschließlich für die satzungsmäßigen Ziele (§ 56 AO).  
+- **Auslandseinsätze**: nur bei dokumentierter Zweckkonformität (§ 58 AO).  
+- **Lizenzpflicht**: Alle durch Mittel finanzierten Projektergebnisse müssen unter der **QUEST: Licence** veröffentlicht werden.  
+- **Replikationsfreiheit**: gGmbH-finanzierte Projekte dürfen von Dritten unabhängig repliziert werden.  
+
+---
+
+## 4. Transparenzpflichten
+- **Jahresberichte** im Transparenzregister.  
+- **Echtzeit- oder Quartalsberichte** zu laufenden Projektbudgets (öffentlich abrufbar).  
+- Einzelauflistung aller Einnahmen und Ausgaben > 1.000 € mit Herkunftsnachweis.  
+- Empfehlung: freiwillige Offenlegung auch kleinerer Beträge zur Stärkung der Glaubwürdigkeit.  
+- Veröffentlichung von Prüfergebnissen **unverändert** (keine redaktionelle Bearbeitung).  
+
+---
+
+## 5. Kontrolle
+- **Interne Kontrolle**: Modulrat prüft jeden Mittelverwendungsvorschlag, unabhängig und nicht weisungsgebunden (§ 56 AO).  
+- **Externe Kontrolle**: jährliche Prüfung durch unabhängige Dritte (Rotationsprinzip).  
+- **Sofortmechanismus**: Bei Verstoß gegen AO, QUEST: Licence oder Dignity Clause → sofortiger Projektstopp & Veröffentlichung.  
+
+---
+
+## 6. Verbindung zu STATIC CORE V4.4
+Die gGmbH kann Mittel gezielt für einzelne Module einsetzen, z. B.:
+
+**Existential Ring**
+- Modul 01 – RESETBOX: Serienfertigung & Katastrophenhilfe.  
+- Modul 02 – Quest: Water: Dezentrale Wasseraufbereitung.  
+- Modul 03 – Quest: Shelter: Notunterkünfte.  
+
+**Societal Ring**
+- Modul 11 – Quest: School: Offene Bildungsplattform.  
+- Modul 18 – Quest: Energy: Off-Grid-Energiesysteme.  
+- Modul 20 – Quest: Culture: Offene Kulturprojekte.  
+
+**Structural Ring**
+- Modul 29 – Quest: Data: Freie Datenplattform.  
+- Modul 31 – Quest: Law: Rechtsberatungsnetzwerk.  
+- Modul 32 – Quest: Licence: Lizenz- und Complianceberatung.  
+
+---
+
+**Fußnoten:**  
+1. AO – Abgabenordnung §§ 51–68, insb. §§ 55, 56, 57, 58, 62, 63, 64, 65.  
+2. GwG – Geldwäschegesetz §§ 2, 10–11.  
+3. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung.  
+4. KStG – Körperschaftsteuergesetz § 5 Abs. 1 Nr. 9.  
+5. GewStG – Gewerbesteuergesetz § 3 Nr. 6.  
+6. UStG – Umsatzsteuergesetz § 4 Nr. 18.  
+7. MarkenG – Markengesetz § 4.  
+8. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+9. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.  
+
+# 10. Fördermittelstrategie & Antragslogik
+
+## 1. Grundsatz
+Die **QUESTSYSTEM gGmbH** beantragt und verwaltet Fördermittel ausschließlich unter Einhaltung der:
+- **Abgabenordnung (§§ 51–68 AO)**  
+- **QUEST: Licence** (*Modul 32 – Quest: Licence*)  
+- **Dignity Clause** (*14 Gebote der Menschlichkeit*)  
+
+Alle Förderanträge, Bewilligungen und Mittelverwendungen sind:
+- **zweckgebunden** (§ 55 AO)  
+- **zeitnah** (§ 55 Abs. 1 Nr. 5 AO)  
+- **transparenzpflichtig** (öffentliche Einsehbarkeit, § 63 AO)
+
+---
+
+## 2. Förderfähige Projektbereiche
+Fördermittel werden nur beantragt, wenn das Vorhaben:
+1. **Satzungskonform** ist (AO §§ 56–57)  
+2. Einen **hohen gesellschaftlichen Nutzen** entfaltet (Multiplikatorwirkung)  
+3. Frei replizierbar und vollständig **unter QUEST: Licence** veröffentlicht wird  
+4. Keine exklusiven Verwertungsrechte für Fördermittelgeber schafft  
+
+---
+
+## 3. Förderfähige Module (Beispiele)
+
+**Existential Ring**
+- Modul 01 – RESETBOX: Serienfertigung & Distribution in Katastrophengebieten  
+- Modul 02 – Quest: Water: Aufbau dezentraler Wasseraufbereitungsanlagen  
+- Modul 03 – Quest: Shelter: Mobile Notunterkünfte  
+
+**Societal Ring**
+- Modul 11 – Quest: School: Offene Bildungsplattformen & mobile Lernräume  
+- Modul 18 – Quest: Energy: Aufbau von Off-Grid-Energiesystemen  
+- Modul 20 – Quest: Culture: Offene Kulturveranstaltungen  
+
+**Structural Ring**
+- Modul 29 – Quest: Data: Freie Datenplattformen  
+- Modul 31 – Quest: Law: Rechtsberatungsnetzwerk  
+- Modul 32 – Quest: Licence: Lizenz- und Complianceberatung  
+
+---
+
+## 4. Kombinationsförderung
+Fördermittelanträge können modulübergreifend gestellt werden,  
+z. B. RESETBOX (01) + Quest: Water (02) + Quest: Energy (18)  
+→ Mobile Wasser- und Energieversorgungseinheit, AO-konform als einheitlicher Zweckbetrieb geführt.
+
+---
+
+## 5. Antragslogik
+1. **Projektdefinition**: Modulbezug, Ziele, Nutzen, Dignity-Prüfung  
+2. **Rechts- & Lizenzprüfung**: AO-Check, QUEST: Licence-Check  
+3. **Kalkulation & Budgetplan**: getrennt nach Zweckbetrieb / wirtschaftlichem Geschäftsbetrieb  
+4. **Fördermittelauswahl**: nur Quellen ohne Branchenkonflikt (Ausschlussliste)  
+5. **Öffentliche Antragseinreichung**: Förderantrag wird im Transparenzregister veröffentlicht  
+6. **Bewilligung & Mittelabruf**: nur nach schriftlicher Bestätigung aller Lizenz- und Dignity-Klauseln  
+
+---
+
+## 6. Dokumentationspflichten
+- Vollständige Projektdokumentation unter **QUEST: Licence**  
+- Veröffentlichung sämtlicher Anträge, Bewilligungen und Verwendungsnachweise im Transparenzregister  
+- Aufbewahrungspflicht von 10 Jahren gemäß **HGB § 147** i.V.m. **AO § 147a** (elektronische Aufzeichnungen)  
+
+---
+
+## 7. Rückabwicklungslogik
+- Zweckwidrig verwendete Mittel werden unverzüglich zurückgezahlt  
+- Pflicht zur öffentlichen Mitteilung über Zweckverfehlung  
+- Möglichkeit des dauerhaften Ausschlusses des Projektträgers aus der gGmbH-Förderstruktur  
+
+---
+
+## 8. Kontrolle & Sicherung
+- **Interne Prüfung**: Modulrat (laufend)  
+- **Externe Prüfung**: unabhängige Dritte (jährlich, Rotationsprinzip)  
+- **Sofortmechanismus**: Bei Verstoß gegen AO, QUEST: Licence oder Dignity Clause → sofortiger Projektstopp & Veröffentlichung  
+
+---
+
+**Fußnoten:**  
+1. AO – Abgabenordnung §§ 51–68, insb. §§ 55, 56, 57, 58, 62, 63, 64, 65  
+2. HGB – Handelsgesetzbuch § 147 (Aufbewahrungsfristen)  
+3. AO § 147a – Aufbewahrungspflicht elektronischer Aufzeichnungen  
+4. GwG – Geldwäschegesetz §§ 2, 10–11  
+5. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung  
+6. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste  
+7. 14 Gebote der Menschlichkeit – Bestandteil der Satzung  
+8. MarkenG – Markengesetz § 4  
+
+
+# 11. Verhältnis der gGmbH zu QUEST: Licence & Dignity Clause
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** ist verpflichtet, sämtliche Tätigkeiten und Entscheidungen im Einklang mit:
+- der **Abgabenordnung (§§ 51–68 AO)**,
+- dem **GmbHG** (§§ 1–13b GmbHG),
+- der **QUEST: Licence** (*Modul 32 – Quest: Licence*),
+- der **Dignity Clause** (*14 Gebote der Menschlichkeit*),
+- den **UN-Menschenrechten** (insb. Art. 1, 3, 7, 19),
+- sowie einschlägigen Datenschutz- und Compliance-Vorgaben (**DSGVO**, **BDSG**, **GwG**),
+durchzuführen.
+
+Die QUEST: Licence und die Dignity Clause sind **satzungsfest verankert** und gelten **vorrangig vor abweichenden Partnerinteressen**. Sie dürfen **nicht geändert, verwässert oder temporär ausgesetzt** werden.
+
+---
+
+## 2. QUEST: Licence – Juristische Funktion
+- Definiert die **Offenheit** aller Projektergebnisse.  
+- Untersagt exklusive Verwertungsrechte an STATIC CORE V4.4-Modulen.  
+- Erzwingt die **freie Replizierbarkeit** aller durch die gGmbH unterstützten Projekte.  
+- Verpflichtet Partner, alle abgeleiteten Werke **unter identischer Lizenz** zu veröffentlichen.  
+- Stellt sicher, dass Kooperationen mit staatlichen oder privaten Akteuren **keine proprietären Barrieren** einführen.  
+- Kompatibilität mit anderen Open-Content- oder Open-Source-Lizenzen (z. B. CC-BY-SA, AGPL) nur, wenn sie die QUEST: Licence nicht einschränken.
+
+---
+
+## 3. Dignity Clause – Ethische Funktion
+- Enthält die **14 Gebote der Menschlichkeit** als unantastbare Leitnorm.  
+- Definiert Mindeststandards für Menschenwürde, Nicht-Diskriminierung, Autonomie und Nachhaltigkeit.  
+- Verstöße lösen den **Sofortmechanismus** aus (Projektstopp, Veröffentlichung im Transparenzregister, Partnerausschluss).  
+- Jede neue Projektidee wird einer **Dignity-Prüfung** unterzogen, dokumentiert und öffentlich zugänglich gemacht.
+
+---
+
+## 4. Verbindung zu STATIC CORE V4.4
+Die QUEST: Licence und die Dignity Clause gelten **für alle 42 Module** gleichermaßen.  
+Beispiele nach Ringen:
+
+**Existential Ring**  
+- Modul 01 – RESETBOX: Lizenzoffene Notfall- und Würde-Container.  
+- Modul 02 – Quest: Water: Offene Wasseraufbereitungs- und Verteilungssysteme.
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Offene Lehrmaterialien, keine proprietären Plattformbindungen.  
+- Modul 18 – Quest: Energy: Off-Grid-Systeme mit freiem Bauplan.
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: DSGVO-konforme, offene Datenportale.  
+- Modul 31 – Quest: Law: Rechts- und Lizenzunterstützung für alle Module.  
+- Modul 32 – Quest: Licence: Lizenz- und Complianceberatung für externe Akteure.
+
+---
+
+## 5. Vertrags- & Satzungsverankerung
+Jeder Vertrag muss zwingend enthalten:
+- Einhaltung der QUEST: Licence,  
+- Anerkennung der Dignity Clause,  
+- Veröffentlichungspflicht aller geförderten Ergebnisse unter offener Lizenz.
+
+**Nicht verhandelbar:**  
+- Ausschluss von Monopol- oder Exklusivrechten, auch bei Fördermittelvergabe (§ 55 AO – Mittelverwendung).
+
+---
+
+## 6. Kontroll- & Sanktionslogik
+- **Interne Kontrolle**: Modulrat prüft jeden Kooperationsvertrag auf Lizenz- und Dignity-Konformität.  
+- **Externe Kontrolle**: jährliche unabhängige Prüfung (Rotationsprinzip).  
+- **Sofortmechanismus**:
+  1. Feststellung eines Verstoßes (AO-, Lizenz-, oder Dignity-Verletzung).
+  2. Unverzüglicher Projektstopp.
+  3. Veröffentlichung der Vorgänge im Transparenzregister *(unter DSGVO-konformer Anonymisierung personenbezogener Daten)*.
+  4. Vertragsauflösung nach § 134 BGB (Nichtigkeit bei Gesetzesverstoß).
+
+---
+
+## 7. Transparenzpflicht & Technische Offenheit
+- Veröffentlichung aller Lizenz- und Dignity-Prüfberichte im Transparenzregister.  
+- Offenlegung aller Prüfmethoden und Kriterien, um externe Replikation zu ermöglichen.  
+- Bereitstellung der Dokumente in **offenen, maschinenlesbaren Formaten** (z. B. JSON, CSV, XML) unter freier Open-Data-Lizenz.  
+- Archivierungspflicht: mind. 10 Jahre nach **AO § 147a**.
+
+---
+
+**Fußnoten:**  
+1. AO – Abgabenordnung §§ 51–68, insb. §§ 55, 56, 57, 58, 63, 65.  
+2. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung §§ 1–13b.  
+3. UN-Menschenrechtserklärung – insbesondere Art. 1, 3, 7, 19.  
+4. DSGVO – Datenschutz-Grundverordnung (EU) 2016/679.  
+5. BDSG – Bundesdatenschutzgesetz.  
+6. GwG – Geldwäschegesetz §§ 2, 10–11.  
+7. BGB – Bürgerliches Gesetzbuch § 134.  
+8. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+9. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.
+
+# 12. Konfliktlösung & Eskalationsmechanismen
+
+## 1. Grundsatz
+Die **QUESTSYSTEM gGmbH** wendet für alle internen und externen Konflikte ein **transparentes, mehrstufiges Verfahren** an, das rechtlich, ethisch und technisch abgesichert ist.  
+Es basiert auf:
+- **Abgabenordnung (§§ 51–68 AO)** – insbesondere § 63 (Transparenzpflichten), § 55 (Mittelverwendung),
+- **BGB § 134** (Nichtigkeit bei Gesetzesverstoß),
+- **GmbHG** (§§ 1–13b),
+- **QUEST: Licence** (*Modul 32*),
+- **Dignity Clause** (*14 Gebote der Menschlichkeit*),
+- **EU-Hinweisgeberrichtlinie 2019/1937** (Whistleblower-Schutz),
+- **Informationsfreiheitsgesetze (Bund & Länder, IFG)**,
+- ggf. **VwVfG § 36** (Einigung im Verwaltungsverfahren) bei behördlicher Beteiligung.
+
+---
+
+## 2. Eskalationsstufen
+
+**Stufe 1 – Interne Klärung**  
+- Bearbeitung durch den Modulrat innerhalb von max. **14 Tagen**.  
+- Schriftliche Dokumentation der Beschwerde, der Prüfung und des Ergebnisses.  
+- Bezug auf Lizenz- und Dignity-Prüfung aus **Abschnitt 11**.
+
+**Stufe 2 – Mediation**  
+- Einbindung einer neutralen, schriftlich zur Neutralität verpflichteten Instanz (z. B. CCC-nahe Organisation).  
+- Verbindliche Mediationsergebnisse werden im **Transparenzregister** veröffentlicht.  
+- Maximaldauer: **30 Tage** ab Einleitung.
+
+**Stufe 3 – Öffentliche Schlichtung**  
+- Offene, moderierte Anhörung mit Beteiligung der Community und relevanter Stakeholder.  
+- Rechtsgrundlage: **§ 23 EGGVG**, **IFG**, ggf. **§ 36 VwVfG**.  
+- Veröffentlichung aller Positionen und Entscheidungsgrundlagen.  
+- Maximaldauer: **60 Tage** ab Einleitung.
+
+**Stufe 4 – Juristische Klärung**  
+- Einschaltung eines neutralen Schiedsgerichts oder ordentlichen Gerichts.  
+- Bei Gesetzesverstoß → automatische Anwendung von **BGB § 134**.  
+- Dokumentation des Verfahrensfortschritts im Transparenzregister.
+
+---
+
+## 3. Sofortmechanismus (Lizenz- oder Dignity-Verstoß)
+- Feststellung durch interne oder externe Prüfung.  
+- **Sofortiger Projektstopp** ohne Übergangsfrist.  
+- Veröffentlichung des Vorgangs inkl. Beweismaterial im Transparenzregister.  
+- Möglichkeit zur schriftlichen Stellungnahme des betroffenen Partners (rechtliches Gehör) vor oder gleichzeitig mit der Veröffentlichung.  
+- Vertragsauflösung gemäß **§ 134 BGB**.  
+- Verweis auf **Abschnitt 11** zur Lizenz- und Ethikprüfung.
+
+---
+
+## 4. Technische & organisatorische Umsetzung
+- **Anonymes Hinweisgebersystem** nach EU-Richtlinie 2019/1937:
+  - Verschlüsselte Online-Einreichung (PGP/Onion-Service),
+  - Möglichkeit zur postalischen und persönlichen Abgabe ohne Datenerfassung,
+  - Speicherung nur auf sicheren, zugangsbeschränkten Systemen mit dokumentierter Zugriffskontrolle.
+- **Frühwarnsystem**:
+  - Quartalsweise Monitoring-Berichte zu Lizenz- und Ethik-Compliance.
+  - Öffentliche Audit-Logs aller relevanten Projektentscheidungen.
+- **Integrationslogik**: Anbindung an **Abschnitt 9 (Finanzierung)** und **Abschnitt 10 (Fördermittel)**, um Konflikte bei Mittelverwendung frühzeitig zu erkennen.
+
+---
+
+## 5. Verbindung zu STATIC CORE V4.4
+- Konfliktlösungsmechanismen gelten für alle 42 Module.
+- Beispiele:
+  - *Existential Ring*: Streit über RESETBOX-Distribution (Modul 01).
+  - *Societal Ring*: Lizenzkonflikt bei Quest: School (Modul 11).
+  - *Structural Ring*: Datenschutzverstoß bei Quest: Data (Modul 29) oder Lizenzmissbrauch bei Quest: Licence (Modul 32).
+
+---
+
+## 6. Transparenzpflicht
+- Veröffentlichung **aller** Konfliktverfahren im Transparenzregister – unverändert und ungekürzt.  
+- Anonymisierung personenbezogener Daten gemäß **DSGVO** vor öffentlicher Bereitstellung.  
+- Offenlegung der Mediations- und Schlichtungsprotokolle.  
+- Bereitstellung eines öffentlichen Archivs mit anonymisierten Fallbeispielen zur Prävention.
+
+---
+
+**Fußnoten:**  
+1. AO – Abgabenordnung §§ 51–68.  
+2. BGB – Bürgerliches Gesetzbuch § 134.  
+3. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung §§ 1–13b.  
+4. IFG – Informationsfreiheitsgesetz (Bund & Länder).  
+5. EGGVG – Einführungsgesetz zum Gerichtsverfassungsgesetz § 23.  
+6. VwVfG – Verwaltungsverfahrensgesetz § 36.  
+7. EU-Richtlinie 2019/1937 – Hinweisgeberschutz.  
+8. DSGVO – Datenschutz-Grundverordnung (EU) 2016/679.  
+9. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+10. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.
+
+# 13. Datenschutz & Informationssicherheit
+
+## 1. Grundsatz
+Die **QUESTSYSTEM gGmbH** verpflichtet sich zur vollständigen Einhaltung aller relevanten Datenschutz- und IT-Sicherheitsvorgaben auf nationaler, europäischer und internationaler Ebene.  
+Verbindliche Rechtsgrundlagen sind u. a.:
+- **DSGVO** (EU) 2016/679, insbesondere Art. 5–32 (Grundsätze, Betroffenenrechte, Sicherheit der Verarbeitung),
+- **BDSG** (neu),
+- **NIS2-Richtlinie** (EU) 2022/2555 zur Erhöhung der Cybersicherheit,
+- **ePrivacy-Richtlinie** (2002/58/EG) – Schutz von Kommunikation, Metadaten, Endgeräten,
+- **Schrems-II-Urteil** (EuGH, C-311/18) – Einschränkung von Datentransfers in unsichere Drittländer,
+- **ISO/IEC 27001** – Informationssicherheits-Managementsysteme,
+- **Art. 25 DSGVO** – Datenschutz durch Technikgestaltung und durch datenschutzfreundliche Voreinstellungen (Privacy by Design / Default),
+- **Art. 35 DSGVO** – Datenschutz-Folgenabschätzung bei risikoreichen Verarbeitungen.
+
+Alle Verarbeitungsvorgänge müssen:
+- **datensparsam** (Art. 5 Abs. 1 lit. c DSGVO),
+- **zweckgebunden** (Art. 5 Abs. 1 lit. b DSGVO),
+- **rechtsgrundlagengestützt** (Art. 6, ggf. Art. 9 DSGVO),
+- **technisch und organisatorisch abgesichert** (Art. 32 DSGVO)
+erfolgen.
+
+Die **Dignity Clause** (*14 Gebote der Menschlichkeit*) gilt insbesondere für **Schutzklasse 4-Daten** (z. B. Gesundheits-, Religions-, politische Daten) als ethische Mindestnorm.
+
+---
+
+## 2. Sensible Daten & Schutzklassen
+- **Klasse 1 – Öffentlich**: Bereits veröffentlichte Daten, keine Einschränkungen.
+- **Klasse 2 – Intern**: Nicht öffentliche, aber unkritische Betriebsinformationen.
+- **Klasse 3 – Vertraulich**: Personenbezogene Daten, interne Strategiepapiere.
+- **Klasse 4 – Hochsensibel**: Gesundheitsdaten, Daten zu politischer Meinung, Religion, Gewerkschaftszugehörigkeit (Art. 9 DSGVO), sicherheitsrelevante Infrastrukturinformationen.
+
+Für jede Schutzklasse gilt ein abgestuftes Sicherheits-, Zugriffs- und Backup-Konzept.
+
+---
+
+## 3. Technische Maßnahmen
+- **Ende-zu-Ende-Verschlüsselung** (AES-256, TLS 1.3) für alle Kommunikationskanäle.
+- **Zero-Trust-Architektur** – kein Nutzer oder Gerät wird automatisch vertraut.
+- **Mehrfaktor-Authentifizierung** für alle administrativen Zugänge.
+- **Regelmäßige Penetrationstests** (mindestens jährlich) durch unabhängige Sicherheitsfirmen.
+- **Härtung von Systemen** nach BSI-Grundschutz und CIS-Benchmarks.
+- **Protokollierung & Audit-Trails** aller Zugriffe auf sensible Systeme.
+- **Backup- & Notfallstrategie**:
+  - Tägliche Backups sensibler Daten (verschlüsselt, georedundant),
+  - Wiederherstellungstests mindestens vierteljährlich,
+  - Notfallplan für Datenverlust und Cyberangriffe.
+
+---
+
+## 4. Organisatorische Maßnahmen
+- **Verantwortlicher i. S. d. Art. 4 Nr. 7 DSGVO**: Geschäftsführung der gGmbH.
+- **Datenschutzbeauftragter** (Art. 37 DSGVO) mit direkter Berichtslinie an die Geschäftsführung.
+- **IT-Sicherheitsbeauftragter** – zuständig für Umsetzung der NIS2-Anforderungen.
+- **Pflichtschulungen** für alle Mitarbeitenden (mind. 1× jährlich), inkl. Awareness-Training zu Phishing, Social Engineering, sicherem Passwort-Management und ePrivacy-Themen.
+- **Sofortmeldesystem** für Datenschutzvorfälle (max. 72h-Frist gemäß Art. 33 DSGVO).
+- **Pflicht zur Datenschutz-Folgenabschätzung** (Art. 35 DSGVO) bei allen Verarbeitungen der Schutzklassen 3 und 4.
+
+---
+
+## 5. Internationale Datenübermittlung
+- Keine Übermittlung in Drittländer ohne **Angemessenheitsbeschluss** (Art. 45 DSGVO).
+- Bei Fehlen eines Angemessenheitsbeschlusses: Nutzung von **Standardvertragsklauseln (SCCs)** + **Zusatzmaßnahmen** gemäß Schrems-II.
+- Kein Einsatz von US-Cloud-Diensten ohne wirksame Zusatzmaßnahmen (z. B. Ende-zu-Ende-Verschlüsselung mit Schlüsselhoheit in der EU).
+
+---
+
+## 6. Verbindung zu STATIC CORE V4.4
+**Existential Ring**  
+- Modul 01 – RESETBOX: DSGVO-konforme Offline-Datencontainer.  
+- Modul 08 – Quest: Device: Sichere, manipulationsresistente Hardwarelösungen.
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Schutz personenbezogener Daten von Lernenden.  
+- Modul 18 – Quest: Energy: IT-Sicherheit in dezentralen Energienetzen.
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: Offene, aber DSGVO-konforme Datenplattformen.  
+- Modul 31 – Quest: Law: Rechtshilfe bei Datenschutzverletzungen.
+
+---
+
+## 7. Kontroll- & Sanktionslogik
+- **Interne Audits**: vierteljährlich, dokumentiert im internen Compliance-Register.
+- **Externe Audits**: jährlich, durchgeführt durch unabhängige Datenschutz- und IT-Sicherheitsprüfer.
+- **Sofortmechanismus** bei Verstößen:
+  1. Meldung an Datenschutzbeauftragten (intern),
+  2. Meldung an Aufsichtsbehörde (Art. 33 DSGVO),
+  3. Information der Betroffenen (Art. 34 DSGVO),
+  4. Veröffentlichung im Transparenzregister der gGmbH.
+
+---
+
+**Fußnoten:**  
+1. DSGVO – Datenschutz-Grundverordnung (EU) 2016/679.  
+2. BDSG – Bundesdatenschutzgesetz (neu).  
+3. NIS2 – EU-Richtlinie 2022/2555.  
+4. ePrivacy – Richtlinie 2002/58/EG.  
+5. Schrems-II – EuGH, C-311/18.  
+6. ISO/IEC 27001 – Informationssicherheits-Managementsysteme.  
+7. BSI IT-Grundschutz – Bundesamt für Sicherheit in der Informationstechnik.  
+8. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+9. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.
+
+# 14. Open-Source-Strategie & Wissenszugang
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** verpflichtet sich zur konsequenten Offenlegung sämtlicher Projektergebnisse, Daten, Baupläne, Inhalte und Quellcodes unter **offenen, frei replizierbaren Lizenzen**.  
+Dies ist **satzungsfest** verankert und unantastbar – Vorrang gegenüber abweichenden Partnerinteressen.  
+Rechtsgrundlagen und Normen:
+
+- **UrhG** – Urheberrechtsgesetz (§§ 1–2, § 64)  
+- **PatG** – Patentgesetz (§§ 1–5, § 9)  
+- **MarkenG** – Markengesetz (§ 4)  
+- **WCAG 2.2** – Web Content Accessibility Guidelines (W3C)  
+- **CERN OHL v2**, **Creative Commons BY-SA 4.0**  
+- **QUEST: Licence** (*Modul 32 – Quest: Licence*)  
+- **Dignity Clause** (*14 Gebote der Menschlichkeit*)  
+- Ausschluss proprietärer, restriktiver oder exportrechtlich limitierter (ITAR/EAR) Komponenten
+
+---
+
+## 2. Verpflichtende Offenlegung
+Alle Projektergebnisse müssen:
+1. **Öffentlich zugänglich** sein – keine Paywalls oder Registrierungspflichten.  
+2. **Maschinenlesbar** in offenen Formaten vorliegen (z. B. JSON, CSV, SVG, HTML, PDF/A).  
+3. **Metadaten-offen** nach Standard (z. B. Dublin Core, Schema.org) veröffentlicht werden.  
+4. In mindestens **zwei redundanten Repositories** liegen – davon eines dezentral (z. B. IPFS).  
+5. **Barrierefrei** gemäß WCAG 2.2 sein (mehrsprachig, Screenreader-kompatibel).
+
+---
+
+## 3. Technische Infrastruktur
+- **Primärplattform**: Git-basiertes Repository (z. B. Codeberg, GitLab).  
+- **Offline-Mirror**: Bereitstellung via **Kiwix**-Dateien (ZIM-Format) für RESETBOX-Integration.  
+- **Langzeitarchivierung**: LOCKSS-Prinzip – mind. 5 geografisch verteilte Kopien.  
+- **Resilienz**: Fallback-Domains, Peer-to-Peer-Mirrors, Dokumentation im Transparenzregister.  
+- **Versionierung**: Jede Änderung nachvollziehbar dokumentiert (Commit-Historie).
+
+---
+
+## 4. Verbindung zu STATIC CORE V4.4
+**Existential Ring**  
+- Modul 01 – RESETBOX: Vollständige Offline-Datenintegration inkl. Handbuch & Baupläne.  
+- Modul 08 – Quest: Device: Open-Hardware-Designs, freie Firmware.  
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Offene Bildungsinhalte, mehrsprachig, OER-konform.  
+- Modul 18 – Quest: Energy: Baupläne für Off-Grid-Systeme.  
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: Offene, standardisierte Daten-APIs.  
+- Modul 32 – Quest: Licence: Beratung & Durchsetzung offener Lizenzmodelle.
+
+---
+
+## 5. Schutz vor Missbrauch
+- Verbot der exklusiven Kommerzialisierung offener Inhalte durch Dritte.  
+- Bei Missbrauch → Anwendung der **Sofortmechanismus-Logik** aus Abschnitt 11 & 12:
+  1. Feststellung des Verstoßes,
+  2. Sofortige Veröffentlichung im Transparenzregister,
+  3. Rechtliche Schritte (Unterlassung, Lizenzdurchsetzung, § 97 UrhG).  
+
+---
+
+## 6. Kontroll- & Sanktionslogik
+- **Interne Prüfung**: Modulrat (vierteljährlich).  
+- **Externe Audits**: Jährlich, Rotationsprinzip, beauftragt durch die gGmbH.  
+- **Öffentliche Audit-Berichte** im Transparenzregister, inkl. Prüfmethode & Kriterien.
+
+---
+
+**Fußnoten:**  
+1. UrhG – Urheberrechtsgesetz §§ 1–2, § 64.  
+2. PatG – Patentgesetz §§ 1–5, § 9.  
+3. MarkenG – Markengesetz § 4.  
+4. WCAG 2.2 – Web Content Accessibility Guidelines, W3C.  
+5. CERN Open Hardware Licence v2.  
+6. Creative Commons BY-SA 4.0.  
+7. Dublin Core Metadata Initiative (DCMI).  
+8. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+9. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.  
+10. ITAR/EAR – International Traffic in Arms Regulations / Export Administration Regulations.
+
+
+# 15. Finanzierungsquellen & Mittelverwendung (Patch V1.2)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** finanziert ihre Arbeit ausschließlich durch **gesetzeskonforme, transparente und gemeinnützig zulässige** Mittelquellen.  
+Verbindliche Rechtsgrundlagen:
+- **Abgabenordnung (AO)** – §§ 51–68, insb. § 55 (Mittelverwendung), § 59 (Satzungsgenehmigung), § 60a (Bescheinigung der Gemeinnützigkeit), § 62 (Rücklagenbildung), § 64 (wirtschaftliche Geschäftsbetriebe), § 65 (Zweckbetrieb).
+- **GmbHG** – insb. § 43 (Pflichten der Geschäftsführung) und §§ 1–13b.
+- **EStG** – § 10b (steuerlich abzugsfähige Spenden).
+- **QUEST: Licence** (*Modul 32 – Quest: Licence*) und **Dignity Clause** (*14 Gebote der Menschlichkeit*).
+
+Die Gemeinnützigkeit ist **satzungsfest verankert** und darf weder verwässert noch ausgesetzt werden.
+
+---
+
+## 2. Finanzierungsquellen
+Zulässige Quellen (mit Mittelverwendungs- und Transparenzpflicht):
+1. **Spenden** (Geld- & Sachspenden, steuerlich abzugsfähig nach § 10b EStG).
+2. **Mitgliedsbeiträge** von Fördermitgliedern (ohne Stimmrechtsbindung).
+3. **Zweckgebundene Projektförderungen** (Stiftungen, öffentliche Hand, EU-Programme).
+4. **Crowdfunding-Kampagnen** – nur projektbezogen, ohne marktwertüberschreitende Gegenleistungen (max. 25 % des **Gesamtprojektwerts** als symbolische Dankesgabe).
+5. **Dienstleistungen im Rahmen des Zweckbetriebs** (§ 65 AO) – z. B. Workshops, Schulungen.
+6. **Verkauf von Publikationen und Bauplänen** – ausschließlich unter offener Lizenz, **kostendeckend** oder gemeinnützigkeitskonform gemäß § 55 AO.
+
+Unzulässig sind:
+- Private Darlehen mit marktunüblichen Konditionen,
+- Mittel, die an Bedingungen geknüpft sind, welche QUEST: Licence oder Dignity Clause verletzen,
+- Sponsoring mit exklusiven Markenrechten oder Content-Kontrolle.
+
+---
+
+## 3. Mittelverwendung
+Alle Mittel müssen:
+- **zeitnah** (§ 55 Abs. 1 Nr. 5 AO) und **zweckgebunden** eingesetzt werden,
+- **nicht für private Zwecke** einzelner Mitglieder oder Dritter verwendet werden,
+- **zweckgebundene Rücklagen** nach § 62 AO zulässig (z. B. für geplante RESETBOX-Serienproduktion).
+
+Maximale Overhead-Quote für Verwaltungsausgaben: **20 %** des Gesamtbudgets.
+
+---
+
+## 4. Krisenfinanzierungsmechanismus
+Bei Naturkatastrophen, humanitären Krisen oder massiven Versorgungsausfällen kann der Modulrat mit 2/3-Mehrheit **zweckgebundene Rücklagen kurzfristig umwidmen**, sofern:
+- dies der **unmittelbaren Gefahrenabwehr** dient,
+- eine **Dokumentation** der Entscheidung und ihrer Begründung im Transparenzregister erfolgt,
+- die Mittelverwendung nach spätestens 6 Monaten evaluiert wird,
+- nach Ende der Krise **nicht verbrauchte oder zweckfremd genutzte Mittel** wieder dem ursprünglichen Zweck zugeführt werden.
+
+---
+
+## 5. Ring-Zuordnung & Beispiele
+**Existential Ring**  
+- Modul 01 – RESETBOX: Spenden für Material & Fertigung.  
+- Modul 08 – Quest: Device: Zweckgebundene Förderung für Open-Hardware-Entwicklung.  
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Finanzierung offener Bildungsplattformen.  
+- Modul 18 – Quest: Energy: EU-Förderprogramme für dezentrale Energielösungen.  
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: Förderung von Open-Data-APIs.  
+- Modul 32 – Quest: Licence: Finanzierung von Schulungen zu Open-Source-Recht.  
+
+---
+
+## 6. Transparenz & Nachweis
+- **Offenes Finanzregister** im Open-Data-Format (CSV/JSON + API-Zugang).  
+- **Quartalsberichte** mit:
+  - Einnahmen nach Quelle,
+  - Ausgaben nach Modul & Zweck,
+  - Bewertung von Sachspenden (Zeitwert, Herkunft),
+  - Fortschrittsbericht pro Projekt.  
+- **Veröffentlichungspflicht**: Alle Finanzdaten und Prüfberichte müssen **vollständig, ohne Kürzungen, innerhalb von 30 Tagen** nach Quartals- oder Jahresabschluss im **öffentlichen Transparenzregister der gGmbH** und im Git-basierten Archiv verfügbar sein.
+
+---
+
+## 7. Verbotene Mittelverwendung
+- Rücklagenbildung für nicht-gemeinnützige Zwecke.  
+- Überhöhte Gehälter oder Honorare (Begünstigungsverbot, § 55 Abs. 1 Nr. 3 AO).  
+- Unverhältnismäßige Reisekosten, Bewirtungskosten oder Luxusausgaben.  
+
+---
+
+## 8. Kontroll- & Sanktionslogik
+- **Interne Kontrolle**: Modulrat prüft vierteljährlich Finanzberichte.  
+- **Externe Kontrolle**: Jährliches Audit (Rotationsprinzip), Berichte maschinenlesbar veröffentlicht.  
+- **Sofortmechanismus** bei Verstößen (gemäß Abschnitt 11 & 12):
+  1. Prüfung durch Modulrat,
+  2. Veröffentlichung des Verstoßes im Transparenzregister,
+  3. Rückforderung zweckwidrig verwendeter Mittel,
+  4. Abberufung der verantwortlichen Akteure laut Satzung.  
+
+---
+
+**Fußnoten:**  
+1. AO – Abgabenordnung §§ 51–68, 59, 60a, 62, 64, 65.  
+2. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung §§ 1–13b, 43.  
+3. EStG – Einkommensteuergesetz § 10b.  
+4. QUESTSYSTEM STATIC CORE V4.4 – gültige Modulliste.  
+5. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.  
+6. DZI-Spendensiegel – unabhängiges Gütesiegel für Spendenorganisationen (freiwilliger NGO-Standard in DE).  
+
+# 16. Fördermittel & Drittmittelmanagement (Patch V1.2)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** nimmt Fördermittel und Drittmittel ausschließlich an, wenn diese:
+- **satzungs- und gemeinnützigkeitskonform** sind (§§ 51–68 AO, insb. §§ 55, 59 AO),
+- **transparent** und **zweckgebunden** eingesetzt werden,
+- den **14 Geboten der Menschlichkeit** und der **QUEST: Licence** entsprechen.
+
+Verbindliche Rechtsgrundlagen:
+- **AO** – §§ 51–68 (Gemeinnützigkeit), § 55 (Mittelverwendung), § 59 (Satzungsgenehmigung), § 62 (Rücklagenbildung), § 64 (wirtschaftliche Geschäftsbetriebe), § 65 (Zweckbetrieb).
+- **GmbHG** – §§ 1–13b, § 43 (Pflichten der Geschäftsführung).
+- **EStG** – § 10b (steuerlich abzugsfähige Spenden).
+- **EU-Beihilferecht** – insb. Art. 107–109 AEUV.
+- **Förderrichtlinien** öffentlicher und privater Fördergeber (z. B. Horizon Europe, Digital Europe, Erasmus+).
+- **IT-Sicherheitsrecht** – falls relevant: NIS2 (EU) 2022/2555.
+
+---
+
+## 2. Fördermittelquellen
+Zulässige Quellen:
+1. **Öffentliche Förderprogramme** (Kommunen, Länder, Bund, EU, UN-Programme).
+2. **Stiftungen & Nonprofits** – nur, wenn Förderziele mit Dignity Clause vereinbar.
+3. **Internationale Institutionen** – z. B. UN, WHO, UNESCO.
+4. **Konsortialprojekte** – nur unter Bedingungen offener Ergebnisse.
+5. **Private Drittmittel** – nur ohne exklusive Verwertungsrechte, Kontrollrechte über Inhalte, Entscheidungen oder Systemarchitektur.
+
+---
+
+## 3. Ausschluss- & Blacklist-Kriterien
+Keine Annahme von Mitteln aus:
+- Waffen- und Rüstungsindustrie,
+- fossiler Energieproduktion ohne nachweisbaren Transformationsplan,
+- Überwachungs- und Zensurtechnologie,
+- Unternehmen mit nachgewiesenen Menschenrechtsverletzungen.
+
+**Prüfquellen:** UN Global Compact-Verstöße, OECD-Leitsätze für multinationale Unternehmen, Berichte von Transparency International, EU-Sanktionslisten.
+
+---
+
+## 4. Prüfung & Freigabe
+- **Compliance-Check** durch den Modulrat inkl. Interessenkonflikt-Prüfung.
+- **Offenlegungspflicht** für alle beteiligten Personen bzgl. persönlicher oder finanzieller Interessen.
+- **Partnerprüfung** (Due Diligence) bei Konsortialprojekten.
+- Dokumentation im **Fördermittelregister**.
+- **Transparenz**: Vertrauliche Speicherung im Compliance-Archiv, Veröffentlichung aggregierter Daten im Transparenzregister.
+
+---
+
+## 5. Verwendung & Rücklagen
+- Mittel nur für satzungsgemäße Zwecke, zweckgebunden (§ 55 AO).
+- Rücklagenbildung für Mehrjahresprojekte zulässig (§ 62 AO), Auflösung spätestens nach 2 Jahren, außer bei nachweislich längerfristigen Projekten.
+- Kofinanzierungspflichten bei EU-/Bundesförderungen werden frühzeitig eingeplant.
+- Fördermittel dürfen auch für **Infrastrukturaufbau** (Server, Lager, Werkzeuge) genutzt werden, sofern projektbezogen.
+
+---
+
+## 6. Ring-Zuordnung & Beispiele
+**Existential Ring**  
+- Modul 01 – RESETBOX: Materialförderung aus Katastrophenschutzmitteln (z. B. Zivilschutzprogramme).  
+- Modul 08 – Quest: Device: EU-Mittel für sichere Open-Hardware (z. B. Digital Europe).  
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Erasmus+-Förderung für Bildungskooperationen (OER-basiert).  
+- Modul 18 – Quest: Energy: Horizon Europe für dezentrale Energienetze.  
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: Förderungen für offene Dateninfrastrukturen (z. B. Connecting Europe Facility).  
+- Modul 32 – Quest: Licence: EU-Programme zu Open-Source-Lizenzen.
+
+---
+
+## 7. Transparenz & Nachweis
+- **Fördermittelregister** im Open-Data-Format (CSV/JSON + API).
+- Veröffentlichung von:
+  - Vertrag & Förderbescheid,
+  - Projektbeschreibung & Deliverables,
+  - Finanz- und Fortschrittsbericht.
+- Alle Projektergebnisse **Open Access** (sofern rechtlich möglich).
+
+---
+
+## 8. Missbrauchs- & Sofortmechanismus
+Bei Verdacht auf Fördermittelmissbrauch:
+1. **Sofortige interne Prüfung** (Frist: 10 Arbeitstage).
+2. **Vorläufige Mittelblockade**, um weitere Schäden zu verhindern.
+3. **Interimsbericht** an Modulrat und Fördermittelgeber.
+4. Veröffentlichung des Falls im Transparenzregister.
+5. Falls bestätigt → Rückzahlung zweckwidrig genutzter Mittel.
+6. Abberufung verantwortlicher Personen laut Satzung und ggf. Einleitung zivil- oder strafrechtlicher Schritte.
+
+---
+
+**Fußnoten:**  
+1. AO – Abgabenordnung §§ 51–68, § 55, § 59, § 62, § 64, § 65.  
+2. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung §§ 1–13b, § 43.  
+3. EStG – Einkommensteuergesetz § 10b.  
+4. AEUV – Vertrag über die Arbeitsweise der Europäischen Union, Art. 107–109.  
+5. NIS2 – EU-Richtlinie 2022/2555 zur Cybersicherheit.  
+6. Horizon Europe Annotated Grant Agreement (aktuelle Fassung).  
+7. OECD-Leitsätze für multinationale Unternehmen.  
+8. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+9. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.
+
+# 17. Einnahmen aus Zweckbetrieb & Nebentätigkeiten (Patch V1.2)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** darf Einnahmen aus wirtschaftlicher Betätigung erzielen, sofern diese:
+- **satzungs- und gemeinnützigkeitskonform** sind (§§ 51–68 AO),
+- die **Voraussetzungen des § 65 AO** für Zweckbetriebe **kumulativ** erfüllen,
+- als **Nebentätigkeiten** im Sinne des § 64 AO zulässig sind und den Status der Gemeinnützigkeit nicht gefährden.
+
+Verbindliche Rechtsgrundlagen:
+- **AO** – §§ 55 (Mittelverwendung), 57 (unmittelbare Zweckverwirklichung), 64 (wirtschaftliche Geschäftsbetriebe), 65 (Zweckbetrieb), 67a (Sport-/Kulturveranstaltungen), 68 (Katalog-Zweckbetriebe).
+- **UStG** – § 4 Nr. 20, 21 (Umsatzsteuerbefreiung bei bestimmten Bildungs-/Kulturleistungen), § 19 (Kleinunternehmerregelung).
+- **KStG** – § 5 Abs. 1 Nr. 9 (Körperschaftsteuerbefreiung).
+- **GewStG** – § 3 Nr. 6 (Gewerbesteuerbefreiung).
+- **QUEST: Licence** (*Modul 32 – Quest: Licence*) und **Dignity Clause** (*14 Gebote der Menschlichkeit*).
+
+---
+
+## 2. Abgrenzung Zweckbetrieb vs. Nebentätigkeit
+**Zweckbetrieb (§ 65 AO)** liegt vor, wenn:
+1. Der Betrieb in seiner Gesamtausrichtung **unmittelbar den steuerbegünstigten satzungsmäßigen Zweck** erfüllt,  
+2. der Zweck **nur durch einen wirtschaftlichen Geschäftsbetrieb erreichbar** ist,  
+3. der Betrieb **nicht in größerem Umfang in Wettbewerb** zu nicht begünstigten Betrieben tritt.  
+→ **Alle drei Bedingungen müssen kumulativ erfüllt sein.**
+
+**Nebentätigkeit (§ 64 AO)**:
+- Alle wirtschaftlichen Aktivitäten, die **nicht** als Zweckbetrieb eingestuft werden, aber **unselbständig** der Haupttätigkeit zugeordnet sind.
+- Unterliegen der **Körperschaft- und Gewerbesteuerpflicht**, sofern der Freibetrag von **45.000 € p.a. (§ 64 Abs. 3 AO)** pro wirtschaftlichem Geschäftsbetrieb überschritten wird.
+- Bei Umsätzen > **22.000 € p.a.** kann zusätzlich Umsatzsteuerpflicht nach § 19 UStG (Kleinunternehmerregelung) entfallen.
+
+---
+
+## 3. Zulässige Beispiele
+**Zweckbetrieb**:
+- RESETBOX-Bausatzverkauf an NGOs zur Katastrophenhilfe.
+- Workshopgebühren für gemeinnützige Bildungseinrichtungen.
+- Lizenzfreie Publikationen gegen Kostenerstattung.
+
+**Nebentätigkeit**:
+- Verkauf von Merchandising-Artikeln (T-Shirts, Sticker).
+- Catering bei öffentlichen Events.
+- Verkauf von überschüssigem Material ohne Projektbezug.
+- IT-/Open-Source-Dienstleistungen wie **Support, Hosting oder technische Beratung**, sofern nicht Hauptzweck.
+
+---
+
+## 4. Preisgestaltung
+- **Kostendeckungsprinzip** gemäß § 55 AO: Preise dürfen nur die Selbstkosten decken, ggf. mit angemessenem Verwaltungskostenanteil.
+- Bei Nebentätigkeiten: marktübliche Preise zulässig, sofern diese **nicht querfinanziert** werden.
+- Wettbewerbsverbot: Zweckbetriebe dürfen den Wettbewerb mit nicht begünstigten Betrieben **nicht wesentlich beeinträchtigen**.
+
+---
+
+## 5. Steuerliche Behandlung
+- Zweckbetriebe sind **körperschaft- und gewerbesteuerbefreit** (§ 5 Abs. 1 Nr. 9 KStG, § 3 Nr. 6 GewStG).
+- Nebentätigkeiten sind **steuerpflichtig**, es sei denn:
+  - Umsatzsteuerbefreiung greift (§ 4 Nr. 20, 21 UStG),
+  - Kleinunternehmerregelung nach § 19 UStG greift (Umsatz ≤ 22.000 € p.a.),
+  - Freibetrag nach § 64 Abs. 3 AO (≤ 45.000 € p.a. pro wirtschaftlichem Geschäftsbetrieb) wird nicht überschritten.
+
+---
+
+## 6. Ring-Zuordnung & Beispiele
+**Existential Ring**  
+- Modul 01 – RESETBOX: Bausatzverkauf an Hilfsorganisationen (Zweckbetrieb).  
+- Modul 08 – Quest: Device: Verkauf von Open-Hardware-Komponenten (Zweckbetrieb).  
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Workshop-Gebühren (Zweckbetrieb).  
+- Modul 18 – Quest: Energy: Verkauf von Solarbauplänen (Zweckbetrieb).  
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: Hostinggebühren für offene Datenplattformen (Nebentätigkeit).  
+- Modul 32 – Quest: Licence: Schulungsgebühren zu Open-Source-Recht (Zweckbetrieb).
+
+---
+
+## 7. Transparenz & Buchführung
+- **Einnahmenregister** im Open-Data-Format (CSV/JSON + API-Zugang).
+- **Trennung der Konten**: Zweckbetriebe und Nebentätigkeiten werden **getrennt verbucht**.
+- **Pflicht zur separaten Ausweisung** von Nebentätigkeiten im Jahresabschluss.
+- Quartalsberichte mit:
+  - Umsätzen nach Quelle und Kategorie,
+  - Steuerstatus (befreit / steuerpflichtig),
+  - Kostenstruktur.
+- **Aufbewahrungsfrist**: Mindestens 10 Jahre (§ 147 AO).
+
+---
+
+## 8. Risiko- & Präventionslogik
+- Vor Aufnahme neuer Tätigkeiten: **verbindliche Auskunft (§ 89 AO)** beim Finanzamt einholen.
+- Regelmäßige Überprüfung der Wettbewerbssituation.
+- Interne Compliance-Prüfung vor jeder Vertragsunterzeichnung.
+- **Jährliche interne Schulung** zur steuerlichen Abgrenzung von Zweckbetrieben und Nebentätigkeiten.
+
+---
+
+**Fußnoten:**  
+1. AO – Abgabenordnung §§ 55, 57, 64, 65, 67a, 68.  
+2. UStG – Umsatzsteuergesetz § 4 Nr. 20, 21, § 19.  
+3. KStG – Körperschaftsteuergesetz § 5 Abs. 1 Nr. 9.  
+4. GewStG – Gewerbesteuergesetz § 3 Nr. 6.  
+5. § 89 AO – Verbindliche Auskunft.  
+6. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+7. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.
+
+# 18. Vermögensverwaltung & Rücklagenstrategie (Patch V1.2)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** verwaltet ihr Vermögen nach den Grundsätzen:
+- **Gemeinnützigkeitskonformität** (§§ 51–68 AO, insb. §§ 55, 62, 63, 64, 65),
+- **Sicherheits- und Liquiditätspriorität** vor Rendite,
+- **Transparenzpflicht** durch Offenlegung im Rücklagen- und Finanzregister.
+
+Verbindliche Rechtsgrundlagen:
+- **AO** – §§ 55 (Mittelverwendung), 62 (Rücklagenbildung), 63 (ordnungsgemäße Geschäftsführung), 64–65 (wirtschaftliche Geschäftsbetriebe).
+- **GmbHG** – §§ 1–13b, § 43 (Pflichten der Geschäftsführung).
+- **HGB** – § 242 (Bilanzierungspflicht), § 252 (Grundsätze ordnungsgemäßer Buchführung).
+- **KStG** – § 5 Abs. 1 Nr. 9 (Steuerbefreiung für gemeinnützige Körperschaften).
+- **EU-Beihilferecht** – Art. 107–109 AEUV, sofern Fördermittel Rücklagen beeinflussen.
+- **QUEST: Licence** (*Modul 32 – Quest: Licence*) und **14 Gebote der Menschlichkeit**.
+
+---
+
+## 2. Rücklagenarten
+| Rücklagenart                     | Zweck                                           | Rechtsgrundlage (§ AO) | Freigabebedingung |
+|-----------------------------------|------------------------------------------------|------------------------|-------------------|
+| Betriebsmittelrücklage            | Sicherung der laufenden Liquidität             | § 62 Abs. 1 Nr. 1       | Jederzeit abrufbar |
+| Zweckgebundene Rücklage           | Finanzierung geplanter Projekte                | § 62 Abs. 1 Nr. 1       | Projektdurchführung |
+| Substanzerhaltungsrücklage        | Werterhalt von Anlagevermögen                   | § 62 Abs. 1 Nr. 3       | Ersatz-/Instandhaltung |
+| Krisenrücklage                    | Reaktion auf Katastrophen/Krisen                | § 62 Abs. 1 Nr. 1 i.V.m. Abschnitt 15 | 2/3-Mehrheit Modulrat |
+| Investitionsrücklage              | Finanzierung größerer Investitionen            | § 62 Abs. 1 Nr. 2       | Investitionsbeginn |
+
+---
+
+## 3. Anlagerichtlinien
+- **Zulässig**: Tagesgeld, Festgeld (nur bei Instituten mit EU-Einlagensicherung), deutsche/europäische Staatsanleihen, ESG-geprüfte Fonds (mind. MSCI ESG Rating A oder Sustainalytics < 20).
+- **Nicht zulässig**: Aktien, Anleihen oder Fonds mit Beteiligung an Rüstung, fossilen Energien ohne Transformationsplan, Überwachungstechnologien, Unternehmen mit Menschenrechtsverletzungen, Finanzinstrumente ohne transparente Herkunft.
+- **Maximalquote**: 30 % der Rücklagen in fest gebundenen Anlagen (Rest liquide).
+
+---
+
+## 4. Krisenrücklagen-Logik
+- Aktivierung nur bei **Naturkatastrophen**, **humanitären Krisen** oder **systemrelevanten Ausfällen**.
+- **Freigabeprozess** identisch zu Abschnitt 15 (2/3-Mehrheit Modulrat, Veröffentlichung im Transparenzregister).
+- Nach Einsatz: **Evaluierung** und Berichtspflicht innerhalb von 6 Monaten.
+
+---
+
+## 5. Inflationsschutz
+- Kurzfristige Umschichtung in inflationsstabile Anlageformen (z. B. inflationsindexierte Anleihen, ESG-konforme Rohstofffonds) zulässig, sofern sie gemeinnützigkeitskonform sind.
+- Keine spekulativen Anlagen oder Hebelprodukte.
+
+---
+
+## 6. Transparenz & Sicherheit
+- **Rücklagenregister** als Teil des offenen Finanzregisters (CSV/JSON + API).
+- Quartalsweise Veröffentlichung von:
+  - Rücklagenhöhe je Art,
+  - Verwendungszweck,
+  - Anlagestruktur.
+- Digitale Sicherheitsmaßnahmen:
+  - 2FA für alle Finanzkonten,
+  - verschlüsselte Ablage von Verträgen und Kontoauszügen (AES-256),
+  - getrennte Berechtigungsrollen für Zugriff & Freigabe.
+
+---
+
+## 7. Risiko- & Kontrollmechanismen
+- Jährliche externe Prüfung der Anlagestrategie.
+- Interne Compliance-Kontrolle vor jeder Anlageentscheidung.
+- Sofortige Veröffentlichung bei Abweichungen von Anlagerichtlinien.
+
+---
+
+**Fußnoten:**  
+1. AO – Abgabenordnung §§ 55, 62, 63, 64, 65.  
+2. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung §§ 1–13b, § 43.  
+3. HGB – Handelsgesetzbuch §§ 242, 252.  
+4. KStG – Körperschaftsteuergesetz § 5 Abs. 1 Nr. 9.  
+5. AEUV – Vertrag über die Arbeitsweise der Europäischen Union Art. 107–109.  
+6. MSCI ESG Ratings – Nachhaltigkeitsbewertungsskala (A–AAA empfohlen).  
+7. Sustainalytics ESG Risk Rating – Skala 0–100, Werte < 20 gelten als „geringes Risiko“.  
+8. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+9. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.
+
+# 19. Digitale Zahlungsströme & Krypto-Handling (Patch V1.2)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** akzeptiert digitale Zahlungen – inklusive Kryptowährungen – ausschließlich unter Bedingungen, die:
+- **satzungs- und gemeinnützigkeitskonform** sind (§§ 51–68 AO),
+- den Anforderungen des **GwG** (Geldwäschegesetz) und relevanter EU-Verordnungen entsprechen,
+- die **QUEST: Licence** und die **14 Gebote der Menschlichkeit** einhalten.
+
+**Verbindliche Rechtsgrundlagen**:
+- **AO** – §§ 55 (Mittelverwendung), 57 (unmittelbare Zweckverwirklichung), 147 (Aufbewahrungspflichten).
+- **GmbHG** – §§ 1–13b, § 43 (Pflichten der Geschäftsführung).
+- **GwG** – Geldwäschegesetz, insbesondere §§ 2, 6, 10, 11, 15.
+- **KWG** – Kreditwesengesetz.
+- **MiCA** – Verordnung (EU) 2023/1114 über Märkte für Krypto-Assets.
+- **PSD2** – Zahlungsdiensterichtlinie (EU) 2015/2366.
+- **Sanktionsverordnungen** der EU und UN (Sanktionslistenprüfung).
+
+---
+
+## 2. Zulässige & unzulässige Assets
+**Zulässig**:
+1. Kryptowährungen mit nachweislich **hoher Marktliquidität** und **Open-Source-Referenzimplementierung**.
+2. **E-Geld-Tokens (Stablecoins)**, die von einem **gemäß MiCA regulierten Herausgeber** mit gültiger EU-Lizenznummer emittiert wurden.
+3. Digitale Zahlungen via SEPA-Instant, PSD2-konforme Zahlungsdienstleister.
+
+**Unzulässig**:
+- Privacy-Coins ohne AML/KYC-Mechanismen (z. B. Monero, Zcash im Shielded Mode).
+- Tokens ohne nachvollziehbare Wertgrundlage.
+- Zahlungen aus Wallets oder Konten auf **Sanktionslisten** (EU/OFAC/UN).
+
+---
+
+## 3. Technische Abwicklung
+- **Cold Wallet** für langfristige Aufbewahrung (Hardware-basiert, offline).
+- **Hot Wallet** nur für operative Zwecke (minimaler Bestand).
+- **Multisignature-Setup** (mind. 2 von 3) für alle Ausgänge.
+- **Hardware Security Module (HSM)** für Schlüsselverwaltung.
+- **Fiat-Umwandlung** unverzüglich nach Zahlungseingang, um Kursrisiken zu minimieren.
+
+---
+
+## 4. Dokumentationspflicht
+- Jede Transaktion wird im **Digital Payment Register** erfasst:
+  - TX-ID, Datum, Asset, Gegenwert in EUR (Zeitpunkt des Eingangs),
+  - Herkunft der Mittel (soweit rechtlich und technisch ermittelbar),
+  - ggf. AML/KYC-Daten.
+- **Aufbewahrungsfrist**: mindestens 10 Jahre (§ 147 AO) – auch für Blockchain- und Wallet-Daten.
+- Speicherung in manipulationssicherem Format (WORM-Prinzip).
+
+---
+
+## 5. Ring-Zuordnung & Beispiele
+**Existential Ring**  
+- Modul 01 – RESETBOX: Krypto-Spendenkampagne für Materialproduktion.  
+- Modul 08 – Quest: Device: Stablecoin-Zahlungen für Open-Hardware-Komponenten.  
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Finanzierung von Bildungsprojekten via Bitcoin Lightning.  
+- Modul 18 – Quest: Energy: Stablecoin-Zahlungen für Solarprojekte.  
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: API-Zugang gegen Stablecoin-Abo (unter Open-Access-Lizenz).  
+- Modul 32 – Quest: Licence: Krypto-Zahlungen für Lizenz-Workshops.
+
+---
+
+## 6. Transparenz & Veröffentlichung
+- **Open-Data-Finanzregister** (CSV/JSON + API) mit Krypto-Transaktionen.
+- Quartalsberichte mit:
+  - Asset-Typ und Gesamtvolumen,
+  - Herkunfts- und Risikoklassifizierung,
+  - Umwandlungsdatum und -kurs in EUR.
+- Veröffentlichung im Transparenzregister & Git-Archiv.
+
+---
+
+## 7. Risiko- & Sanktionslogik
+- **Sanktionslistenprüfung** vor Annahme (EU, UN, OFAC).
+- Meldung verdächtiger Transaktionen an die **Financial Intelligence Unit (FIU)** (§ 43 GwG).
+- Sofortige Rückweisung oder Rücküberweisung nicht-konformer Zahlungen.
+- Jährliche externe IT-Sicherheitsprüfung.
+
+---
+
+**Fußnoten:**  
+1. AO – Abgabenordnung §§ 55, 57, 147.  
+2. GwG – Geldwäschegesetz §§ 2, 6, 10, 11, 15.  
+3. MiCA – Verordnung (EU) 2023/1114.  
+4. PSD2 – Richtlinie (EU) 2015/2366.  
+5. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung §§ 1–13b, 43.  
+6. EU/OFAC/UN Sanktionslisten – aktuelle Fassungen.  
+7. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+8. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.  
+
+# 20. Lizenz- & Schutzrechte-Management (Patch V1.3)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** sichert ihre Inhalte, Werkzeuge und Entwicklungen ausschließlich durch **offene, gemeinnützigkeitskonforme Lizenzmodelle** und **Defensivschutzmaßnahmen** ab.  
+
+Verbindliche Rechtsgrundlagen:
+- **Urheberrechtsgesetz (UrhG)** – §§ 1–69g, insb. § 31 (Rechteübertragung), § 32 (angemessene Vergütung), § 97 (Unterlassungsanspruch), § 100 (Beseitigung und Unterlassung).
+- **Markengesetz (MarkenG)** – §§ 1–26, insb. § 8 (absolute Schutzhindernisse), § 14 (Schutzumfang).
+- **Patentgesetz (PatG)** – §§ 1–25 (Schutzfähigkeit), § 15 (Lizenzvertrag).
+- **Designgesetz (DesignG)** – §§ 1–38.
+- **AO** – §§ 55, 57 (Gemeinnützigkeitskonformität bei Lizenzverwertung).
+- **ZPO** – § 945a (Schutzschrift in marken- und urheberrechtlichen Eilverfahren).
+- **QUEST: Licence** (*Modul 32 – Quest: Licence*) und **Dignity Clause** (*14 Gebote der Menschlichkeit*).
+
+Internationale Standards:
+- **Creative Commons** (CC BY-SA, CC0, CC BY-NC-SA) – CC0 nur für Inhalte ohne ethische Schutznotwendigkeit.
+- **GNU General Public License (GPL)**, **AGPL**, **LGPL**.
+- **Open Hardware License (CERN OHL)**.
+- **Open Database License (ODbL)**.
+- **MIT** und **Apache 2.0** (für spezielle permissive Sonderfälle).
+
+---
+
+## 2. Lizenzstrategie nach Werktyp
+**Software** – GPL v3 (Standard) oder AGPL v3 (bevorzugt für serverseitige Anwendungen, um Netzwerk-Offenlegungspflicht sicherzustellen).  
+**Hardware** – CERN OHL v2 (permissive oder strongly reciprocal Variante).  
+**Texte & Dokumentationen** – CC BY-SA 4.0; CC0 nur für Inhalte ohne ethische Schutznotwendigkeit.  
+**Daten** – ODbL v1.0 (Pflicht zur Namensnennung & Share-Alike).  
+
+---
+
+## 3. Defensivschutz & Markenpolitik
+- **Defensive Markenanmeldung** = reine Schutzregistrierung ohne kommerzielle Nutzung, um Missbrauch durch Dritte zu verhindern.
+- Kein **Verkauf** von Marken- oder Namensrechten.
+- Bei Bedarf **Schutzschrift** (§ 945a ZPO) zur Abwehr missbräuchlicher Unterlassungsansprüche.
+- **Prüfsummenarchiv** (SHA256) und IPFS-Mirror aller wichtigen Versionen, verlinkt im Lizenzregister.
+
+---
+
+## 4. Open-Source-Compliance & Beiträge
+- Alle externen Beiträge erfolgen unter **Contributor Licence Agreement (CLA)** – individuelle oder Corporate CLA möglich.
+- Optional: **Developer Certificate of Origin (DCO)** als ergänzende Selbstverpflichtung.
+- Keine Annahme von Code oder Inhalten ohne klar definierte Lizenz.
+- Lizenzprüfungen vor Veröffentlichung neuer Releases.
+
+---
+
+## 5. Durchsetzungsmechanismen
+- **Unterlassungsanspruch** (§ 97, § 100 UrhG) gegen Lizenzverstöße.
+- **Veröffentlichung** sämtlicher Verstöße im Transparenzregister.
+- **Community Enforcement** über Forks, Mirrors und öffentliche Dokumentation.
+
+---
+
+## 6. Ring-Zuordnung & Beispiele
+**Existential Ring**  
+- Modul 01 – RESETBOX: Bauplan v3.1.1 unter CC BY-SA 4.0.  
+- Modul 08 – Quest: Device: Open-Hardware-Platinen unter CERN OHL v2.  
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Lernmaterialien unter CC BY-SA 4.0.  
+- Modul 18 – Quest: Energy: Baupläne für Mikronetze unter CERN OHL v2.  
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: Datenbanken unter ODbL v1.0.  
+- Modul 32 – Quest: Licence: Rechts- und Schulungsmaterial unter CC BY-SA 4.0.
+
+---
+
+## 7. Transparenz & Dokumentation
+- **Lizenzregister** (CSV/JSON + API) mit allen Werken, Lizenztyp, Versionsstand und Hash-Wert.
+- Veröffentlichung mindestens **monatlich** oder nach jedem Release.
+- Git-basiertes Archiv aller lizenzierten Inhalte inkl. Hash-Prüfsummen.
+
+---
+
+## 8. Missbrauchs- & Präventionslogik
+- Jährliche Lizenz-Audits.
+- Schulungen zu Open-Source- und Datenbanklizenzen.
+- Öffentliche Blacklist von Organisationen, die wiederholt Lizenzverstöße begehen.
+
+---
+
+**Fußnoten:**  
+1. UrhG – Urheberrechtsgesetz §§ 1–69g, 31, 32, 97, 100.  
+2. MarkenG – Markengesetz §§ 1–26, 8, 14.  
+3. PatG – Patentgesetz §§ 1–25, 15.  
+4. DesignG – Designgesetz §§ 1–38.  
+5. AO – Abgabenordnung §§ 55, 57.  
+6. ZPO – Zivilprozessordnung § 945a.  
+7. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste.  
+8. 14 Gebote der Menschlichkeit – Bestandteil der Satzung.  
+9. Creative Commons Legal Code (aktuelle Fassung).  
+10. GNU GPL v3.0, AGPL v3.0, LGPL v3.0.  
+11. CERN OHL v2.0.  
+12. ODbL v1.0.  
+13. MIT License, Apache License 2.0.
+
+# 21. Datenschutz & Informationssicherheit (Patch V1.3)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** verarbeitet personenbezogene Daten ausschließlich im Rahmen geltender Datenschutzgesetze und sichert alle Informationen nach höchsten Standards der IT-Sicherheit.
+
+**Zentrale Rechtsgrundlagen**:
+- **DSGVO** – Art. 1, 5–32, 44–50 (Grundsätze, Rechte, Pflichten, Sicherheit, internationale Übermittlung)  
+- **BDSG** – §§ 1, 26, 27–32 (nationale Ausgestaltung der DSGVO)  
+- **NIS2-Richtlinie** (EU) 2022/2555 – Sicherheitsanforderungen für kritische/wichtige Einrichtungen (*Anwendbarkeit prüfen: Personal >50 oder Umsatz >10 Mio. € oder Tätigkeit in sensiblen Sektoren*)  
+- **eIDAS-Verordnung** (EU) 910/2014 – Vertrauensdienste für elektronische Transaktionen  
+- **IT-Sicherheitsgesetz 2.0** (DE)  
+- **AO** – §§ 55, 57 (Gemeinnützigkeitskonformität der Datenverarbeitung)  
+- **QUEST: Licence** (*Modul 32 – Quest: Licence*) und **Dignity Clause** (*14 Gebote der Menschlichkeit*)
+
+---
+
+## 2. Prinzipien
+1. **Datenminimierung** (Art. 5 Abs. 1 lit. c DSGVO) – nur erforderliche Daten erheben  
+2. **Zweckbindung** – Nutzung ausschließlich für definierte, gemeinnützige Zwecke  
+3. **Transparenz** – vollständige Information für Betroffene zu Erhebung, Verarbeitung, Speicherung, Löschung  
+4. **Integrität & Vertraulichkeit** – Schutz vor unbefugtem Zugriff, Veränderung oder Verlust  
+5. **Rechte der Betroffenen** – Umsetzung von Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch, Datenübertragbarkeit  
+6. **Privacy by Design & Default** – technische/organisatorische Integration von Datenschutz ab Beginn  
+7. **Sonderkategorien personenbezogener Daten** (Art. 9 DSGVO) – besondere Schutzmaßnahmen bei Gesundheits-, Sozial- und biometrischen Daten
+
+---
+
+## 3. Technische & organisatorische Maßnahmen (TOMs – Art. 32 DSGVO)
+- **Ende-zu-Ende-Verschlüsselung** (mindestens AES-256, TLS 1.3)  
+- **Zwei-Faktor-Authentifizierung** für alle administrativen Zugänge  
+- **Physische Zutrittskontrolle** zu Server-/Archivräumen  
+- **Regelmäßige Backups** – mind. täglich, Speicherung an zwei geografisch getrennten Standorten  
+- **Löschkonzepte** – fristgerechte Löschung nach DSGVO-Anforderungen, dokumentiert  
+- **Rollen- und Rechtemanagement** (Need-to-know-Prinzip)  
+- **Audit-Logging** aller sicherheitsrelevanten Zugriffe (mind. 12 Monate Aufbewahrung)  
+- **Penetrationstests** jährlich, plus nach größeren Systemänderungen  
+- **Anonymisierung & Pseudonymisierung** vor Verarbeitung, sofern möglich  
+- **Dokumentation** jeder TOM-Implementierung im Sicherheitsregister
+
+---
+
+## 4. Rollen & Verantwortlichkeiten
+- **Datenschutzbeauftragte*r** – gemäß Art. 37 DSGVO, interne oder externe Bestellung, unabhängige Berichtsstruktur  
+- **IT-Sicherheitsbeauftragte*r** – Umsetzung der TOMs, Koordination NIS2-Meldungen  
+- **Projektverantwortliche** – Umsetzung von Privacy-by-Design im jeweiligen Modul
+
+---
+
+## 5. Vorfälle & Meldepflichten
+- **Meldung von Datenschutzverletzungen** an die Aufsichtsbehörde innerhalb 72 Stunden (Art. 33 DSGVO)  
+- **Benachrichtigung betroffener Personen** bei hohem Risiko (Art. 34 DSGVO)  
+- Dokumentation aller Vorfälle im internen Sicherheitsregister  
+- Veröffentlichung anonymisierter Vorfälle im Transparenzregister  
+- **Präventive Risikoanalyse** nach ISO/IEC 27005 mindestens einmal jährlich
+
+---
+
+## 6. Internationale Datenübermittlung
+- Zulässig nur bei **Angemessenheitsbeschluss** der EU-Kommission (Art. 45 DSGVO)  
+- Falls nicht vorhanden: Einsatz **aktueller** Standardvertragsklauseln (Art. 46 DSGVO)  
+- **Privacy Shield** ist ungültig (EuGH Schrems II) – daher nicht nutzen  
+- Ausnahmen nach Art. 49 DSGVO nur bei zwingender Notwendigkeit & Einwilligung  
+- Keine Übermittlung in Staaten mit Massenüberwachung ohne rechtsstaatliche Sicherungen
+
+---
+
+## 7. Ring-Zuordnung & Beispiele
+**Existential Ring**  
+- Modul 01 – RESETBOX: Anonyme Nutzung im Kriseneinsatz, kein Logging personenbezogener Daten  
+- Modul 08 – Quest: Device: Sichere, datensparsame Offline-Hardware  
+
+**Societal Ring**  
+- Modul 11 – Quest: School: DSGVO-konforme Lernplattform ohne Drittanbieter-Tracking  
+- Modul 18 – Quest: Energy: Pseudonymisierte Smart-Meter-Daten mit differenzieller Privatsphäre  
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: K-anonymity und Differential Privacy für offene Datensätze  
+- Modul 32 – Quest: Licence: Datenschutz- und Sicherheitsrechts-Schulungen
+
+---
+
+## 8. Transparenz & Dokumentation
+- **Verzeichnis der Verarbeitungstätigkeiten** (Art. 30 DSGVO), maschinenlesbar (JSON/CSV)  
+- **Auditberichte** im Open-Data-Format (JSON, CSV, PDF/A)  
+- **Lizenz- & Datenschutzregister** mit allen relevanten TOMs und Verantwortlichkeiten  
+- Git-basiertes Archiv aller Datenschutzrichtlinien und Protokolle
+
+---
+
+## 9. Missbrauchs- & Präventionslogik
+- **Jährliche interne & externe Audits** (Rotation)  
+- **Pflichtschulungen** zu Datenschutz & IT-Sicherheit für alle Beteiligten  
+- **Öffentliche Blacklist** von Organisationen mit wiederholten Datenschutzverstößen  
+- **Frühwarnsystem** – automatisierte Monitoring-Tools zur Erkennung von Datenpannen
+
+---
+
+**Fußnoten:**  
+1. DSGVO – Datenschutz-Grundverordnung, Art. 1, 5–32, 44–50  
+2. BDSG – Bundesdatenschutzgesetz §§ 1, 26, 27–32  
+3. NIS2 – EU-Richtlinie 2022/2555  
+4. eIDAS – EU-Verordnung 910/2014  
+5. AO – Abgabenordnung §§ 55, 57  
+6. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste  
+7. 14 Gebote der Menschlichkeit – Bestandteil der Satzung  
+8. ISO/IEC 27001 – Informationssicherheits-Managementsysteme  
+9. ISO/IEC 27005 – Informationssicherheits-Risikomanagement
+
+# 22. Informationsfreiheit & Open Data (Patch V1.4)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** verpflichtet sich zur weitgehenden Veröffentlichung ihrer nicht-vertraulichen Informationen als **Open Data**, soweit dies rechtlich zulässig, gemeinnützigkeitskonform und ohne Gefährdung von Personen oder Projekten möglich ist.  
+Alle Offenlegungen erfolgen **freiwillig** oder auf Grundlage einschlägiger Gesetze:
+
+- **Informationsfreiheitsgesetze (IFG)** von Bund und Ländern  
+- **Open-Data-Gesetze** (z. B. BGBl. I 2017, S. 2193)  
+- **EU-Richtlinie (PSI)** 2019/1024 über offene Daten und die Weiterverwendung von Informationen des öffentlichen Sektors  
+- **Aarhus-Konvention** (Aarhus, 1998) – Umweltinformationen  
+- **DSGVO** & **BDSG** – Vorrang von Datenschutz und Persönlichkeitsrechten  
+- **QUEST: Licence** (*Modul 32 – Quest: Licence*) und **14 Gebote der Menschlichkeit*  
+- **Modul 30 – TRUTH** – Systemischer Bezug auf Transparenz und Wahrhaftigkeit
+
+---
+
+## 2. Prinzipien
+1. **Offenheit als Standard** – Nicht-geheime Projektdaten werden maschinenlesbar veröffentlicht.  
+2. **Freiwilligkeit** – Auch ohne gesetzliche Pflicht kann Transparenz hergestellt werden.  
+3. **Datenschutzvorrang** – Personenbezogene Daten werden vor Veröffentlichung anonymisiert oder pseudonymisiert.  
+4. **Prüfbarkeit** – Alle veröffentlichten Informationen sind mit Metadaten (Quelle, Datum, Lizenz) versehen.  
+5. **Nutzungsfreiheit** – Bereitstellung unter offenen Lizenzen (ODbL, CC BY-SA, CC0).  
+
+---
+
+## 3. Technische Umsetzung
+- **Offenes Transparenzportal** mit API-Zugang (JSON/CSV/XML)  
+- **Versionierte Repositories** für Dokumente, Pläne und Daten  
+- **Metadaten-Standards** nach DCAT-AP (EU)  
+- **Langzeitarchivierung** (PDF/A, WARC, redundante Cloud- und Offline-Speicherung)  
+
+---
+
+## 4. Phasenlogik
+**Phase 1 – Manuell**: Veröffentlichung statischer Dokumente und Berichte.  
+**Phase 2 – Halbautomatisiert**: Regelmäßige Daten-Uploads aus internen Systemen.  
+**Phase 3 – Vollautomatisiert**: Echtzeit-Schnittstellen mit Push-API für öffentliche Daten.  
+
+---
+
+## 5. Compliance-Absicherung
+- **Transparenzprüfung** durch Modulrat vor jeder Veröffentlichung  
+- **Risikoabwägung**: Abgleich mit Datenschutz, Sicherheit, Projektintegrität  
+- **Dokumentationspflicht** jeder Ablehnung einer Offenlegung mit Begründung  
+- **Blacklisting** von Datenquellen, die gegen die Dignity Clause verstoßen  
+
+---
+
+## 6. Ring-Zuordnung & Beispiele
+**Existential Ring**  
+- Modul 01 – RESETBOX: Bau- und Einsatzdokumentationen als Open Data  
+- Modul 08 – Quest: Device: Offene Schaltpläne und Firmware  
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Offene Unterrichtsmaterialien und Lehrpläne  
+- Modul 18 – Quest: Energy: Offene Lastprofile und Energieverbrauchsdaten  
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: Open-Data-Katalog für Forschungs- und Projektdaten  
+- Modul 30 – Quest: Truth: Veröffentlichung aller Prüfergebnisse und Fact-Checks  
+- Modul 32 – Quest: Licence: Rechtliche Rahmenbedingungen für Datennutzung  
+
+---
+
+## 7. Transparenz & Dokumentation
+- **Open-Data-Register** im maschinenlesbaren Format  
+- **API-Dokumentation** für externe Entwickler*innen  
+- **Quartalsberichte** zu neuen und aktualisierten Datensätzen  
+- **Change-Logs** mit Versionierung und Archivierung aller Datenstände  
+
+---
+
+## 8. Missbrauchs- & Präventionslogik
+- **Offene Feedbackkanäle** für Korrekturen und Ergänzungen  
+- **Community-basierte Qualitätssicherung**  
+- **Entzug der Datennutzung** bei nachweislichem Missbrauch (Lizenzverletzung, Manipulation)  
+- **Schulungen** zu Open Data und Informationsfreiheit für Projektbeteiligte  
+
+---
+
+**Fußnoten:**  
+1. IFG – Informationsfreiheitsgesetz (Bund)  
+2. BGBl. I 2017, S. 2193 – Open-Data-Gesetz  
+3. EU PSI – Richtlinie (EU) 2019/1024  
+4. Aarhus-Konvention (1998)  
+5. DSGVO – Datenschutz-Grundverordnung  
+6. DCAT-AP – EU-Metadatenstandard für offene Daten  
+7. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste  
+8. 14 Gebote der Menschlichkeit – Bestandteil der Satzung
+
+# 23. Open-Source-Strategie & Community-Governance (Patch V1.3)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** entwickelt, veröffentlicht und betreibt alle Werkzeuge, Baupläne, Inhalte und Daten unter **freien, gemeinnützigkeitskonformen Lizenzen** und innerhalb einer **transparenzbasierten Community-Governance-Struktur**.  
+Zentrale Rechtsgrundlagen:  
+- **AO** – §§ 55, 57 (Gemeinnützigkeitskonformität)  
+- **UrhG** – §§ 1–69g (Urheberrechte, Nutzungsrechte)  
+- **MarkenG** – §§ 1–26 (Markenschutz, Schutzumfang)  
+- **PatG** – §§ 1–25 (Patentfähigkeit, Lizenzverträge)  
+- **QUEST: Licence** (*Modul 32 – Quest: Licence*) und **14 Gebote der Menschlichkeit** (Dignity Clause)  
+- Internationale Open-Source-Standards: **OSI-Definition**, **DFSG (Debian Free Software Guidelines)**
+
+---
+
+## 2. Zielsetzung
+- **Offener Zugang** zu allen relevanten Informationen, Bauplänen und Quellcodes  
+- **Forkbarkeit ohne Genehmigung**, unter Einhaltung der Lizenzbedingungen  
+- **Ethische Schranken**: keine Nutzung für Krieg, Überwachung, Unterdrückung oder Menschenrechtsverletzungen  
+- **Langfristige Nachhaltigkeit** durch community-getriebene Weiterentwicklung
+
+---
+
+## 3. Governance-Struktur
+### 3.1 Community-Rat
+- Zusammensetzung: 1 gewähltes Mitglied pro aktivem Modulrat  
+- Amtszeit: 1 Jahr, Wiederwahl möglich, jederzeitige Abwahl durch 2/3-Mehrheit der Community  
+- Aufgaben: Koordination zwischen Modulen, Konfliktlösung, strategische Roadmap-Planung  
+- Sitzungen: Mindestens vierteljährlich, öffentlich protokolliert
+
+### 3.2 Modulräte
+- Offene Teilnahme für aktive Mitwirkende eines Moduls nach **Mindestbeitragsregel** (mind. 3 qualifizierte Beiträge pro Halbjahr)  
+- Verantwortung für inhaltliche Pflege, Lizenzkonformität und technische Integrität der Modulressourcen  
+- Transparenzpflicht: Alle Entscheidungen werden in einem Modul-Log veröffentlicht
+
+---
+
+## 4. Technische Umsetzung & CI/CD
+- **Versionskontrolle**: Git-basiert, bevorzugt auf dezentralen Plattformen (Codeberg, GitLab, Gitea)  
+- **CI/CD-Pipelines** mit automatisierten Tests, Lizenzprüfungen und Security-Scans  
+- **Code-Signing** aller Releases mit GPG-Schlüsseln (öffentliche Schlüssel im Transparenzregister)  
+- **Integritätsnachweise**: SHA256-Prüfsummen und IPFS-Hashes für alle Dateien  
+- **Security-Scanning**: Automatisierte Prüfung auf CVEs (Common Vulnerabilities and Exposures) vor jeder Veröffentlichung
+
+---
+
+## 5. Lizenz-Compliance
+- **Lizenzkompatibilitätsprüfung** bei jeder Zusammenführung von Inhalten (z. B. GPL + CC BY-SA)  
+- **Drittmaterialienprüfung** auf Rechtefreiheit (inkl. Reverse Image Search, Metadatenanalyse)  
+- **Contributor Licence Agreement (CLA)** für alle externen Beiträge  
+- **Lizenz-Metadaten** in maschinenlesbarer Form (SPDX-Format)
+
+---
+
+## 6. Schutz- & Präventionsmechanismen
+- **Defensivschutz** durch registrierte Marken, nicht zur Monopolisierung, sondern zur Abwehr von Missbrauch  
+- **Schutzschrift** (§ 945a ZPO) bei drohenden missbräuchlichen Unterlassungsforderungen  
+- **Blacklist & Eskalationsschema**:
+  1. Verwarnung mit Begründung  
+  2. Moderierte Mediation  
+  3. Ausschluss aus Governance-Strukturen bei wiederholtem Verstoß  
+- Umgang mit kommerziellen Forks:  
+  - **Erlaubt**, solange Lizenz eingehalten wird  
+  - **Öffentliche Kennzeichnung** als „kommerzieller Fork“ im Transparenzregister, wenn ethische Abweichung vorliegt
+
+---
+
+## 7. Ring-Zuordnung & Beispiele
+**Existential Ring**  
+- Modul 01 – RESETBOX: Baupläne unter CC BY-SA 4.0, Open-Hardware-Elemente unter CERN OHL v2  
+- Modul 08 – Quest: Device: Firmware unter GPLv3, Platinenlayout unter CERN OHL v2  
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Lernmaterialien unter CC BY-SA 4.0, interaktive Tools unter AGPLv3  
+- Modul 18 – Quest: Energy: Baupläne für Mikronetze unter CERN OHL v2  
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: Datenbanken unter ODbL v1.0  
+- Modul 32 – Quest: Licence: Rechts- und Schulungsmaterial unter CC BY-SA 4.0
+
+---
+
+## 8. Transparenz & Dokumentation
+- **Lizenzregister** (CSV/JSON + API) mit Werktyp, Lizenz, Version und Hash  
+- **Öffentliche Roadmap** je Modul mit Quartalszielen  
+- **Protokollarchiv** aller Community-Rats- und Modulratsentscheidungen  
+- **Open-Audit-Logs** für alle CI/CD-Builds
+
+---
+
+## 9. Missbrauchs- & Präventionslogik
+- Jährliche **Open-Source-Compliance-Audits** (intern + extern)  
+- Regelmäßige **Security-Workshops** zu sicheren Coding-Praktiken  
+- Öffentliche **Blacklist** von Organisationen, die wiederholt gegen Lizenz oder Ethik verstoßen (rechtssicher dokumentiert)  
+- **Reaktivierungsverfahren** für ausgeschlossene Contributor nach 12 Monaten, wenn Verhaltensänderung nachweisbar
+
+---
+
+**Fußnoten:**  
+1. AO – Abgabenordnung §§ 55, 57  
+2. UrhG – Urheberrechtsgesetz §§ 1–69g  
+3. MarkenG – Markengesetz §§ 1–26  
+4. PatG – Patentgesetz §§ 1–25  
+5. ZPO – Zivilprozessordnung § 945a  
+6. OSI – Open Source Initiative Definition  
+7. DFSG – Debian Free Software Guidelines  
+8. SPDX – Software Package Data Exchange Standard  
+9. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste  
+10. 14 Gebote der Menschlichkeit – Bestandteil der Satzung
+
+# 24. Finanzflüsse & QUEST:FUND (Patch V1.3)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** organisiert alle Finanzflüsse nach den Prinzipien:
+- **Gemeinnützigkeit** (§§ 51–68 AO)  
+- **Zweckbindung** (§ 55 AO – Mittelverwendung)  
+- **Transparenz** (Open Accounting)  
+- **Nicht-Kriminalisierung** (keine Nutzung in verbotenen Sektoren)  
+- **Ethik** (14 Gebote der Menschlichkeit, QUEST: Licence)  
+
+Verbindliche Rechtsgrundlagen:
+- **AO** – §§ 51–68 (Gemeinnützigkeit), § 55 (Mittelverwendung), § 62 (Rücklagenbildung), § 64–65 (wirtschaftlicher Geschäftsbetrieb)  
+- **GmbHG** – §§ 1–13b, § 43 (Pflichten der Geschäftsführung)  
+- **EStG** – § 10b (steuerlich abzugsfähige Spenden)  
+- **GwG** – Geldwäschegesetz (Prüf- und Meldepflichten)  
+- **EU-Geldtransferverordnung** (EU) 2015/847  
+- **QUEST: Licence** (*Modul 32*) und **Dignity Clause** (*14 Gebote der Menschlichkeit*)
+
+---
+
+## 2. Einnahmequellen
+1. **Spenden** (Geld-, Sach-, Krypto-Spenden) – steuerlich abzugsfähig (§ 10b EStG)  
+   - Krypto-Compliance: Wallets mit öffentlicher Blockchain-Transparenz, regelmäßiges Wallet-Audit, Dokumentation im Open-Ledger-Format.  
+2. **Fördermittel** (öffentliche und private Programme, siehe Abschnitt 16)  
+3. **Zweckbetrieb** (Abschnitt 17) – z. B. RESETBOX-Bausatzverkauf an NGOs  
+4. **Nebentätigkeiten** – nur zulässig im Rahmen § 64 AO  
+5. **QUEST:FUND-Zuflüsse** – dezentrale Fondsbeteiligungen, Crowdfunding, Stiftungszuschüsse
+
+---
+
+## 3. QUEST:FUND – Funktionsweise
+Der **QUEST:FUND** ist ein ringübergreifender Fördertopf der gGmbH:
+- **Finanzierung**: Zuflüsse aus allen Einnahmequellen möglich  
+- **Governance**: Vergabeentscheidungen durch den **Modulrat** nach transparenten Kriterien  
+- **Kriterien**:  
+  - Existenzsicherung (Existential Ring) hat Vorrang  
+  - Projekte müssen in der Modullogik verankert sein (STATIC CORE V4.4)  
+  - Keine Förderung ohne Offenlegung der Projektstruktur  
+- **Ethik-Filter**: Keine Finanzierung von Projekten in Blacklist-Sektoren (Rüstung, fossile Expansion, Überwachung)  
+- **Transparenz**: Alle Zusagen, Auszahlungen und Berichte öffentlich in API + CSV unter **CC0-Lizenz** zur freien Nachnutzung
+
+---
+
+## 4. Verwendungslogik
+- **Ring-zu-Ring-Transfer**: Mittel können ringübergreifend eingesetzt werden, wenn dies projektlogisch notwendig ist  
+- **Krisenpriorisierung**:
+  1. Existential Ring (Module 01–09)  
+  2. Societal Ring (Module 10–22)  
+  3. Structural Ring (Module 23–42)  
+- **Rücklagenbildung**:  
+  - Projektgebunden (§ 62 AO)  
+  - Allgemeine Sicherheitsrücklage (interne Policy: max. 12 Monate Betriebskosten) – **§ 62 AO erlaubt höhere Rücklagen, sofern projektgebunden begründet**  
+- **Modulbezogene Ausschüttung**: Jeder Mittelabfluss wird einem Modul zugeordnet
+
+---
+
+## 5. Transparenz & Kontrollmechanismen
+- **Open-Accounting**: Einnahmen & Ausgaben maschinenlesbar (JSON, CSV, API) unter **CC0-Lizenz**  
+- **Quartalsberichte**: Einnahmen, Ausgaben, QUEST:FUND-Bewegungen, Projektstatus  
+- **Jahresbericht**: Finanzabschluss + Modul-Impact-Analyse  
+- **Multi-Signatur-Freigabe**: Auszahlung aus QUEST:FUND nur mit 2/3-Mehrheit des Modulrats, technisch abgesichert durch Hardware-Keys oder OpenPGP-Signaturen  
+- **Externe Prüfung**: Jährliches Wirtschaftsprüfer-Audit
+
+---
+
+## 6. Missbrauchsverhinderung & Sofortmechanismus
+- **Compliance-Check** vor jeder Auszahlung  
+- **Sofortstopp** bei Verdacht auf Missbrauch  
+- **Interimsbericht** innerhalb von 14 Tagen  
+- **Rückforderung** zweckwidrig genutzter Mittel  
+- **Blacklist**: Organisationen/Personen mit bestätigtem Verstoß werden für min. 5 Jahre ausgeschlossen
+
+---
+
+## 7. Ring-Zuordnung & Beispiele
+**Existential Ring**  
+- Modul 01 – RESETBOX: Finanzierung von 1.000 Boxen für Hochwasserregionen  
+- Modul 08 – Quest: Device: Beschaffung von Open-Hardware-Laptops für Krisengebiete  
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Finanzierung einer dezentralen Lernplattform  
+- Modul 18 – Quest: Energy: Aufbau eines Solar-Mikronetzes in Energiearmutsregionen  
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: Entwicklung einer offenen Katastrophendatenbank  
+- Modul 32 – Quest: Licence: Open-Source-Rechtsberatungstool
+
+---
+
+## 8. Fußnoten
+1. AO – Abgabenordnung §§ 51–68, § 55, § 62, § 64, § 65  
+2. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung §§ 1–13b, § 43  
+3. EStG – Einkommensteuergesetz § 10b  
+4. GwG – Geldwäschegesetz  
+5. EU-Geldtransferverordnung (EU) 2015/847  
+6. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste  
+7. 14 Gebote der Menschlichkeit – Bestandteil der Satzung  
+
+# 25. Governance- & Entscheidungslogik (Patch V1.4)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** folgt einer strikt transparenten, gemeinnützigkeitskonformen und satzungsgestützten Governance-Struktur.  
+Verbindliche Rechtsgrundlagen:
+- **GmbHG** – §§ 1–13b, § 3 (Satzungsinhalt), § 43 (Pflichten der Geschäftsführung)
+- **AO** – §§ 55, 57 (Mittelverwendung, Unmittelbarkeit)
+- **BGB** – §§ 32–40 (Vereinsrecht, analog für interne Gremienstrukturen)
+- **QUEST: Licence** (*Modul 32 – Quest: Licence*) und **Dignity Clause** (*14 Gebote der Menschlichkeit*)
+- **Satzung der QUESTSYSTEM gGmbH** (verbindliche interne Regelung)
+
+---
+
+## 2. Gremienstruktur
+1. **Gesellschafterversammlung (GV)** – formales Organ nach GmbHG, zuständig für strategische Beschlüsse und Satzungsänderungen.  
+2. **Modulrat** – operatives Entscheidungsorgan, zusammengesetzt aus je 1–3 Vertreter*innen pro aktivem Modul, gewählt oder entsandt durch die jeweilige Modul-Community.  
+3. **Ethikrat** – unabhängiges Gremium zur Überprüfung von Entscheidungen auf Konformität mit den 14 Geboten und der Dignity Clause.  
+4. **Finanzrat** – Untergremium des Modulrats, zuständig für Mittelvergabe und QUEST:FUND-Entscheidungen.
+
+---
+
+## 3. Besetzung & Wahlverfahren
+- **Mandatsvergabe**:
+  - Je Modul im STATIC CORE V4.4 eine Stimme im Modulrat.
+  - Vertreter*innen werden in offener Modulversammlung gewählt (jährlich, Rotationsprinzip).
+- **Ethikrat**:
+  - 5 Mitglieder, davon mind. 2 aus externen, nicht-modulgebundenen Kontexten.
+  - Wahl auf 2 Jahre, max. 2 Amtszeiten.
+- **Gesellschafterversammlung**:
+  - Stimmrechte gem. GmbHG-Anteilen, jedoch satzungsseitige Festlegung auf *Stimmrechtsparität*, um Machtkonzentration zu verhindern.
+
+---
+
+## 4. Entscheidungsverfahren
+- **Normale Beschlüsse**: einfache Mehrheit der abgegebenen Stimmen *anwesender Stimmberechtigter* im Modulrat.
+- **Finanzentscheidungen (QUEST:FUND)**: qualifizierte Mehrheit (2/3 der anwesenden Stimmberechtigten).
+- **Ethikentscheidungen**: Veto-Recht des Ethikrats bei Verletzung der Dignity Clause (bindend, schriftliche Begründung, sofortige Veröffentlichung).
+- **Pattsituation**: erneute Abstimmung nach max. 14 Tagen; bleibt diese unentschieden, entscheidet ein Mediationspanel (3 externe Personen) mit einfacher Mehrheit.
+
+---
+
+## 5. Konfliktlösung
+- **Stufe 1**: Interne Mediation im betroffenen Modul.
+- **Stufe 2**: Vermittlung durch Ethikrat (max. 30 Tage Bearbeitungsfrist).
+- **Stufe 3**: Externe Moderation (Liste akkreditierter Mediator*innen).
+- **Stufe 4**: Gesellschafterversammlung als letzte interne Instanz (endgültige Entscheidung, nur gerichtlich anfechtbar).
+
+---
+
+## 6. Ringintegration & Priorisierung
+- Jeder Ring (Existential, Societal, Structural) hat **Mindestvertretung** im Modulrat; bei Nichtbesetzung wird eine Interimsperson bestimmt (max. 6 Monate).
+- Existential Ring erhält **Vorrangstimme** bei Entscheidungen, die direkte Überlebensfragen betreffen.
+- Cross-Ring-Projekte müssen mind. 2 Ringe aktiv einbeziehen.
+
+---
+
+## 7. Transparenz- & Dokumentationspflichten
+- **Entscheidungsarchiv** (Open-Data-API, ODbL-lizenziert) mit:
+  - Datum
+  - Modulbezug
+  - Entscheidungstext
+  - Abstimmungsergebnis (Stimmen pro Modul)
+- **Sitzungsprotokolle**:
+  - Veröffentlichung unter CC BY-SA 4.0
+  - DSGVO-konforme Anonymisierung personenbezogener Daten
+- **Jährlicher Governance-Bericht**: Zusammenfassung aller Entscheidungen, Konfliktfälle und Ethikrat-Vetos.
+
+---
+
+## 8. Missbrauchsverhinderung
+- **Rotation**: keine Person darf länger als 3 Jahre ununterbrochen im selben Amt bleiben; Karenzzeit vor erneuter Amtsübernahme: mind. 1 Jahr.
+- **Offenlegungspflicht**: alle Modulratsmitglieder legen finanzielle und institutionelle Interessen schriftlich offen (Archivierung im Entscheidungsarchiv).
+- **Ausschlussverfahren**: bei grobem Verstoß → temporärer Ausschluss (min. 1 Jahr) oder dauerhafter Entzug des Mandats.
+
+---
+
+## 9. Ring-Zuordnung & Beispiele
+**Existential Ring**
+- Modul 01 – RESETBOX: Abstimmung über Notfallverteilungen
+- Modul 08 – Quest: Device: Entscheidung zu Hardware-Freigaben
+
+**Societal Ring**
+- Modul 11 – Quest: School: Curriculum-Freigaben
+- Modul 18 – Quest: Energy: Abstimmung zu Energie-Infrastrukturprojekten
+
+**Structural Ring**
+- Modul 29 – Quest: Data: Entscheidung zu Datenfreigaben
+- Modul 32 – Quest: Licence: Anpassung der Lizenzpolitik
+
+---
+
+## 10. Fußnoten
+1. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung §§ 1–13b, § 3, § 43  
+2. AO – Abgabenordnung §§ 55, 57  
+3. BGB – Bürgerliches Gesetzbuch §§ 32–40 (analog)  
+4. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste  
+5. 14 Gebote der Menschlichkeit – Bestandteil der Satzung  
+6. ODbL – Open Database License v1.0  
+7. CC BY-SA 4.0 – Creative Commons Attribution Share-Alike 4.0  
+8. QUEST: Licence (*Modul 32*)
+
+# 26. Mitgliedschafts- & Beteiligungsmodelle (Patch V1.2)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** bietet verschiedene Formen der Mitgliedschaft und Beteiligung an, um Engagement, Mitbestimmung und Ressourcenteilung systemisch zu fördern.  
+Zentrale Prinzipien: **Gemeinnützigkeit**, **Offenheit**, **Ethikbindung**, **Transparenz**.
+
+Rechtsgrundlagen:
+- **GmbHG** – §§ 1–13b, § 3 (Satzungsinhalt), § 43 (Pflichten der Geschäftsführung)
+- **AO** – §§ 55, 57 (Mittelverwendung, Unmittelbarkeit)
+- **BGB** – §§ 21–79 (Vereinsrecht, analog für interne Strukturen)
+- **BetrVG** – Mitbestimmungsrechte bei Beschäftigten
+- **SCE-VO** – EU-Verordnung 1435/2003 (für kooperative Beteiligungsformen)
+- **DSGVO** – Art. 6 Abs. 1 lit. f (berechtigtes Interesse bei Blacklist-Führung)
+- **BDSG** – § 26 (Verarbeitung personenbezogener Daten im Beschäftigungskontext)
+- **QUEST: Licence** (*Modul 32*) und **Dignity Clause** (*14 Gebote der Menschlichkeit*)
+
+---
+
+## 2. Mitgliedschaftsformen
+1. **Gesellschafter*innen** – formale Eigentümer*innen der gGmbH, Stimmrecht in der Gesellschafterversammlung, Haftung gemäß GmbHG auf Einlage beschränkt.  
+2. **Modulmitglieder** – aktive Beteiligte an einem oder mehreren Modulen, mit Stimmrecht im Modulrat.  
+3. **Fördermitglieder** – Unterstützer*innen ohne Stimmrecht, keine Haftungsverpflichtung; können freiwillige Beiträge leisten, auch zweckgebunden für einzelne Module oder Projekte.  
+4. **Projektpartner*innen** – temporäre Zusammenarbeit mit spezifischem Modulbezug, Rechte und Pflichten vertraglich geregelt (Kooperationsvertrag, NDA bei sensiblen Projekten).  
+5. **Internationale Mitglieder** – Vertragsgestaltung nach deutschem Recht, Gerichtsstand Deutschland, englische und deutsche Vertragssprache; Aufnahmeunterlagen mehrsprachig, Übersetzungsservice für entscheidungsrelevante Dokumente.
+
+---
+
+## 3. Beteiligung an Entscheidungsprozessen
+- Gesellschafter*innen: Entscheidungen gem. GmbHG und Satzung (Abschnitt 25 – Governance-Logik).  
+- Modulmitglieder: volles Stimmrecht in Modulversammlungen, indirekte Mitwirkung in Finanzentscheidungen über QUEST:FUND (Abschnitt 24 – Finanzflüsse).  
+- Fördermitglieder: beratende Funktion, Teilnahme an öffentlichen Konsultationen.  
+- Internationale Mitglieder: Teilnahme an Abstimmungen über digitale Plattformen, Stimmrechtsgewicht wie nationale Modulmitglieder.
+
+---
+
+## 4. Aufnahmeverfahren
+1. **Antragstellung** (digital oder analog) mit Modulbezug und ggf. Referenzen.  
+2. **Prüfung** durch zuständiges Modulgremium (max. 30 Tage Frist).  
+3. **Entscheidung** durch Modulversammlung; Ablehnung schriftlich begründen, Einspruch möglich (Frist: 14 Tage, Entscheidung durch Ethikrat).  
+4. **Eintragung** ins interne Mitgliederverzeichnis und DSGVO-konformes, anonymisiertes Open-Data-Register (Hashing, Pseudonymisierung).
+
+---
+
+## 5. Rechte & Pflichten
+- **Rechte**: Teilnahme an Modulsitzungen, Zugriff auf modulinterne Daten, Stimmrecht (falls zutreffend).  
+- **Pflichten**: Einhaltung der Satzung, QUEST: Licence, 14 Gebote der Menschlichkeit, Offenlegung relevanter Interessenkonflikte.  
+- Fördermitglieder: keine Pflichtbeiträge, aber Möglichkeit zur freiwilligen Beitragserklärung (zweckgebunden oder allgemein).  
+- Modulmitglieder: aktive Beteiligung an mindestens einem Projekt pro Jahr.
+
+---
+
+## 6. Statuswechsel & Austritt
+- **Statuswechsel**: schriftlicher Antrag, Entscheidung durch Modulrat.  
+- **Austritt**: jederzeit möglich, schriftlich; Stimmrecht endet mit Wirksamwerden.  
+- **Ausschluss**: bei grobem Verstoß gegen Satzung, Ethikregeln oder Gesetze, mit Einspruchsmöglichkeit (Ethikrat).
+
+---
+
+## 7. Anreiz- & Beteiligungsmodelle
+- Zugang zu internen Ressourcen (Werkstätten, Labore, Datenbanken)  
+- Teilnahme an Schulungen und Zertifizierungen (Modul 32 – Licence)  
+- Möglichkeit, Mittel aus QUEST:FUND für modulgebundene Projekte zu beantragen  
+- Internationale Austauschprogramme mit Partnerprojekten
+
+---
+
+## 8. Transparenz- & Dokumentationspflichten
+- Mitgliederregister mit anonymisiertem Open-Data-Auszug (ODbL-lizenziert)  
+- Veröffentlichung von Aufnahme- und Ausschlussstatistiken im Jahresbericht  
+- ISO-konforme Dokumentationsprozesse:  
+  - **ISO 9001** – Qualitätsmanagement  
+  - **ISO/IEC 27001** – Informationssicherheitsmanagement
+
+---
+
+## 9. Missbrauchsverhinderung
+- Mehrstufiges Aufnahmeverfahren mit Ethikrat-Kontrolle  
+- Offenlegungspflicht finanzieller und institutioneller Interessen  
+- Eskalationsstufen bei Verstößen: Verwarnung → temporärer Ausschluss (min. 1 Jahr) → dauerhafter Ausschluss  
+- Öffentliche Blacklist im Transparenzregister unter Beachtung DSGVO Art. 6 Abs. 1 lit. f und BDSG § 26
+
+---
+
+## 10. Ring-Zuordnung & Beispiele
+**Existential Ring**  
+- Modul 01 – RESETBOX: Aufnahme von Mitgliedern für Notfallverteilungsnetzwerke  
+- Modul 09 – Quest: Debt: Mitgliedschaftsmodelle für Schuldenerlass-Projekte
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Mitgliedschaft für Bildungskoordinator*innen  
+- Modul 18 – Quest: Energy: Beteiligung an Energiegenossenschaften
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: Zugang zu offenen Dateninfrastrukturen  
+- Modul 30 – Quest: Truth: Mitgliedschaft in Transparenz- und Aufklärungsprojekten
+
+---
+
+## 11. Fußnoten
+1. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung §§ 1–13b, § 3, § 43  
+2. AO – Abgabenordnung §§ 55, 57  
+3. BGB – Bürgerliches Gesetzbuch §§ 21–79  
+4. BetrVG – Betriebsverfassungsgesetz  
+5. SCE-VO – EU-Verordnung 1435/2003  
+6. DSGVO – Datenschutz-Grundverordnung Art. 6 Abs. 1 lit. f  
+7. BDSG – Bundesdatenschutzgesetz § 26  
+8. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste  
+9. 14 Gebote der Menschlichkeit – Bestandteil der Satzung  
+10. ODbL – Open Database License v1.0  
+11. ISO 9001 – Qualitätsmanagementsysteme  
+12. ISO/IEC 27001 – Informationssicherheitsmanagement
+
+# 27. Partnerschaften & Kooperationslogik (Patch V1.2)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** versteht Partnerschaften und Kooperationen als strategische, projektorientierte Zusammenschlüsse, die **gemeinnützigkeitskonform**, **transparent** und **ethisch abgesichert** sind.  
+Primärziel: Ressourcenbündelung und Know-how-Transfer zur Umsetzung von Projekten im Rahmen des **STATIC CORE V4.4**.
+
+Verbindliche Rechtsgrundlagen:
+- **GmbHG** – §§ 1–13b (Gründung & Struktur), § 43 (Pflichten der Geschäftsführung)
+- **AO** – §§ 55, 57, 58 (Selbstlosigkeit, Unmittelbarkeit, steuerliche Zulässigkeit von Kooperationen)
+- **BGB** – §§ 705–740 (Gesellschaftsrecht – BGB-Gesellschaft analog)
+- **GWB** – Gesetz gegen Wettbewerbsbeschränkungen (Kartellrecht)
+- **EU-Beihilferecht** – Verordnung (EU) Nr. 651/2014  
+  sowie ggf. Richtlinie 2014/24/EU (öffentliche Auftragsvergabe)
+- **UN Guiding Principles on Business and Human Rights** – für internationale Partnerprüfungen
+- **QUEST: Licence** (*Modul 32*) und **Dignity Clause** (*14 Gebote der Menschlichkeit*)
+
+---
+
+## 2. Partnerschaftsarten
+1. **Strategische Partnerschaften** – langfristige Kooperationen mit gegenseitiger Ressourcenteilung, z. B. Infrastruktur, Personal, Daten.  
+2. **Projektpartnerschaften** – zeitlich und thematisch begrenzte Zusammenarbeit für ein spezifisches Modulvorhaben.  
+3. **Forschungskooperationen** – gemeinsame Studien, Entwicklung und Pilotprojekte (inkl. **verpflichtender Open-Access-Publikation** aller Ergebnisse).  
+4. **Community-Partnerschaften** – Zusammenarbeit mit lokalen Gruppen, NGOs oder Grassroots-Initiativen ohne formellen Rechtskörper.  
+5. **Internationale Kooperationen** – mit Sitz im Ausland, Anpassung an deutsches und internationales Recht, doppelte Vertragssprache.
+
+---
+
+## 3. Vertrags- & Governance-Integration
+- **Kooperationsverträge**:
+  - Schriftform, zweisprachig (Deutsch/Englisch)
+  - Definition von Ziel, Umfang, Dauer, Ressourcen und Exit-Strategien
+  - Klare Regelung zu IP-Rechten gemäß *QUEST: Licence*
+  - Verpflichtung zu Ergebnisoffenlegung unter CC BY-SA 4.0 oder kompatibler Lizenz
+- **Governance-Anbindung**:
+  - Jede Partnerschaft wird einem Modul zugeordnet
+  - Berichtspflicht an den **Modulrat** (Abschnitt 25 – Governance-Logik)
+  - **Ethikrat-Prüfung** vor Vertragsabschluss (Black-/Whitelist-Check, Menschenrechtskonformität)
+
+---
+
+## 4. Ethische Filter & Blacklist-Sektoren
+Kooperationen sind **ausgeschlossen** mit:
+- Rüstungs- und Waffenindustrie
+- fossiler Brennstoff-Expansion
+- Überwachungs- und Zensurinfrastruktur
+- Unternehmen mit systematischer Arbeitsrechtsverletzung
+- Greenwashing- oder Scheinkooperationsprojekten
+- Organisationen auf der internen/öffentlichen Blacklist (Abschnitt 16)
+
+---
+
+## 5. Rollen & Verantwortlichkeiten
+- **Kooperationsmanager*in** – zentrale Ansprechperson für die Abwicklung und Dokumentation  
+- **Modulverantwortliche** – operative Koordination und Integration ins Projekt  
+- **Ethikrat** – Prüfung auf Gemeinnützigkeit, Menschenrechtskonformität und Dignity Clause  
+- **Finanzrat** – Prüfung von Finanzflüssen im Rahmen von Fördermitteln oder QUEST:FUND (Abschnitt 24)
+
+---
+
+## 6. Transparenz- & Dokumentationspflichten
+- Veröffentlichung aller aktiven Partnerschaften im **Open-Partnership-Register** (ODbL-lizenziert, maschinenlesbar als JSON/CSV)  
+- Offenlegung:
+  - Vertragsparteien (juristische Personen)
+  - Zielsetzung und Modulbezug
+  - Laufzeit
+  - Finanzvolumen
+- DSGVO-konforme Anonymisierung personenbezogener Daten
+- Jahresbericht mit Wirkungsanalyse aller Kooperationen
+
+---
+
+## 7. Finanzflüsse & Förderintegration
+- Finanzierung ausschließlich im Rahmen der AO (§§ 55–58)  
+- Fördermittel aus Partnerschaften dürfen nur **zweckgebunden** eingesetzt werden  
+- QUEST:FUND kann als Kofinanzierungsinstrument genutzt werden  
+- Alle Zahlungen erfolgen über nachvollziehbare, auditierbare Kanäle (Abschnitt 24 – Finanzflüsse)
+
+---
+
+## 8. Missbrauchsverhinderung
+- **Due-Diligence-Prüfung** jeder Partnerorganisation vor Vertragsabschluss (inkl. Menschenrechts- und Umwelt-Compliance)
+- **Interne Frühwarnsysteme** (regelmäßige Ethik- und Finanzprüfungen)  
+- **Exit-Klausel** bei Verstoß gegen Ethikregeln oder rechtliche Bestimmungen  
+- **Blacklist-Erweiterung** bei bestätigten Verstößen (Abschnitt 16 – Ethik des offenen Containers)
+
+---
+
+## 9. Ring-Zuordnung & Beispiele
+**Existential Ring**  
+- Modul 01 – RESETBOX: Kooperation mit NGO für Krisenverteilung in Hochwassergebieten  
+- Modul 02 – Quest: Water: Partnerschaft mit Wasserlabor zur mobilen Trinkwasseranalyse  
+- Modul 09 – Quest: Debt: Zusammenarbeit mit Schuldnerhilfsorganisationen
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Partnerschaft mit Bildungsplattform für Open-Access-Kurse  
+- Modul 18 – Quest: Energy: Kooperation mit Energiegenossenschaft für Solar-Mikronetze
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: Datenpartnerschaft mit OpenStreetMap-Community  
+- Modul 32 – Quest: Licence: Kooperation mit Rechtsnetzwerk für Open-Source-Rechtsberatung  
+- Cross-Ring: Modul 18 + Modul 29 für offene Energiedatenbank
+
+---
+
+## 10. Fußnoten
+1. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung §§ 1–13b, § 43  
+2. AO – Abgabenordnung §§ 55, 57, 58  
+3. BGB – Bürgerliches Gesetzbuch §§ 705–740  
+4. GWB – Gesetz gegen Wettbewerbsbeschränkungen  
+5. EU-Beihilferecht – Verordnung (EU) Nr. 651/2014  
+6. Richtlinie 2014/24/EU – Öffentliche Auftragsvergabe  
+7. UN Guiding Principles on Business and Human Rights  
+8. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste  
+9. 14 Gebote der Menschlichkeit – Bestandteil der Satzung  
+10. ODbL – Open Database License v1.0  
+11. CC BY-SA 4.0 – Creative Commons Attribution Share-Alike 4.0
+
+# 28. Digitale Infrastruktur & Sicherheit (Patch V1.2)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **digitale Infrastruktur** der QUESTSYSTEM gGmbH ist **dezentral**, **resilient**, **barrierefrei** und **open-source-basiert**.  
+Sie wird nach den Prinzipien **Privacy by Design** und **Privacy by Default** aufgebaut und ist vollständig **gemeinnützigkeitskonform**.
+
+Verbindliche Rechts- und Normgrundlagen:
+- **DSGVO** – Art. 17 (Recht auf Löschung), Art. 25 (Privacy by Design & Default), Art. 30 (Verzeichnis von Verarbeitungstätigkeiten)  
+- **BDSG** – §§ 22–27 (Datenverarbeitung für gemeinnützige Zwecke)  
+- **TMG** – Telemediengesetz (Haftung, Impressum, Datenschutz)  
+- **IT-Sicherheitsgesetz 2.0 (BSIG)** – Mindeststandards für KRITIS-nahe Infrastruktur  
+- **eIDAS-VO** – (EU) Nr. 910/2014 zu elektronischer Identifizierung und Vertrauensdiensten  
+- **ISO 27001** – Informationssicherheitsmanagement  
+- **ISO 22301** – Business Continuity Management  
+- **ISO 14721 (OAIS)** – Langzeitarchivierung digitaler Daten  
+- **WCAG 2.2** – Web Content Accessibility Guidelines  
+- **QUEST: Licence** (*Modul 32*) und **Dignity Clause** (*14 Gebote der Menschlichkeit*)
+
+---
+
+## 2. Infrastruktur-Architektur
+- **Dezentrale Server-Cluster** in mindestens drei unabhängigen Rechtsräumen  
+- **Open-Source-Stack** (Linux, Nextcloud, Matrix, PeerTube, Mastodon)  
+- **Containerisierung** (Docker/Kubernetes) mit **Infrastructure-as-Code** (Terraform/Ansible)  
+- **Digitale Souveränität**: Keine Abhängigkeit von proprietären Cloud-Anbietern, vollständige Datenhoheit  
+- **Energieeffizienz**: Rechenzentren mit nachweislich >90 % erneuerbarer Energieversorgung (ISO 50001)  
+- **Langzeitarchivierung** nach OAIS-Standard, redundante Speicher in unabhängigen Jurisdiktionen
+
+---
+
+## 3. Dienste & Plattformen
+- **Kommunikation**: Matrix (E2EE), Jitsi-Meet (selbst gehostet)  
+- **Wissensarchiv**: MediaWiki/Kiwix, ODbL-lizenzierte Datenbanken  
+- **Community-Hub**: barrierefreie Webplattform (WCAG 2.2-konform), Mehrsprachigkeit  
+- **Digitale Signaturen**: eIDAS-konforme Zertifikate für Governance-Dokumente  
+- **Monitoring & Alerting**: Prometheus/Grafana mit 24/7-Benachrichtigungskette
+
+---
+
+## 4. Sicherheit & Datenschutz
+- **Zero-Trust-Architektur**: MFA, rollenbasierte Zugriffskontrolle (RBAC)  
+- **Verschlüsselung**: Ende-zu-Ende (E2EE) und At-Rest (AES-256)  
+- **Audit-Trails**: lückenlose Protokollierung aller administrativen Aktionen  
+- **Incident Response**: definierte Reaktionsstufen (Erkennung → Isolation → Analyse → Recovery), forensische Sicherung nach BSI-Standards  
+- **Air-Gap-Backups**: zur Ransomware-Prävention, wöchentliche Rotation  
+- **Backup-Strategie**: 3-2-1-Regel (3 Kopien, 2 Medien, 1 Offsite-Standort)
+
+---
+
+## 5. Datenschutz- & Löschkonzept
+- **Datenminimierung** und **Zweckbindung** (Art. 5 DSGVO)  
+- **Recht auf Löschung**: automatisierte Löschroutinen, inkl. Protokollierung  
+- **Privacy by Design & Default**: technische Umsetzung in allen Systemen, DSGVO Art. 25  
+- **Open-Data-Prinzip**: Veröffentlichung anonymisierter Datensätze unter ODbL  
+- **Datenklassifizierung**: öffentlich, intern, vertraulich, hochsensibel
+
+---
+
+## 6. Resilienz & Notfallpläne
+- **Geo-Redundanz** in mindestens drei Ländern  
+- **Failover-Mechanismen**: automatischer Lastwechsel bei Ausfall eines Clusters  
+- **Regelmäßige Penetrationstests** (mind. halbjährlich)  
+- **BSI-konformes Notfallhandbuch** für IT-Betrieb und Krisenszenarien  
+- **Langzeitverfügbarkeit**: LOCKSS-Prinzip („Lots of Copies Keep Stuff Safe“)
+
+---
+
+## 7. Missbrauchsverhinderung
+- **Blacklist-Integration** (Abschnitt 16) gegen bekannte Bedrohungsakteure  
+- **Verpflichtende Ethik- und Lizenzprüfung** (Abschnitt 32 – Licence) vor Systemintegration neuer Dienste  
+- **Kein Hosting** für Sektoren, die gegen Dignity Clause verstoßen  
+- **Automatisierte Abuse-Meldung** und Eskalation nach festgelegtem Zeitplan
+
+---
+
+## 8. Ring-Zuordnung & Beispiele
+**Existential Ring**  
+- Modul 01 – RESETBOX: Hosting von Notfall-QR-Datenbanken  
+- Modul 08 – Quest: Device: Software-Updates für Offline-Tools
+
+**Societal Ring**  
+- Modul 11 – Quest: School: barrierefreie E-Learning-Plattform  
+- Modul 18 – Quest: Energy: Monitoring von Energie-Mikronetzen
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: offene Geodaten-API  
+- Modul 32 – Quest: Licence: Verwaltung von Lizenzdokumenten und Compliance-Logs
+
+---
+
+## 9. Fußnoten
+1. DSGVO – Datenschutz-Grundverordnung (EU) 2016/679  
+2. BDSG – Bundesdatenschutzgesetz  
+3. TMG – Telemediengesetz  
+4. BSIG – IT-Sicherheitsgesetz 2.0  
+5. eIDAS-VO – Verordnung (EU) Nr. 910/2014  
+6. ISO 27001 – Informationssicherheitsmanagement  
+7. ISO 22301 – Business Continuity Management  
+8. ISO 14721 – OAIS-Referenzmodell  
+9. WCAG 2.2 – Web Content Accessibility Guidelines  
+10. ODbL – Open Database License v1.0  
+11. CC BY-SA 4.0 – Creative Commons Attribution-ShareAlike 4.0
+
+# 29. Öffentliche Kommunikation & Medienarbeit (Patch V1.3)
+
+## 1. Grundsatz & Rechtsgrundlagen
+Die **QUESTSYSTEM gGmbH** betreibt ihre externe Kommunikation nach den Grundsätzen **Wahrheit**, **Transparenz**, **Barrierefreiheit** und **Gemeinnützigkeit**.  
+Alle Veröffentlichungen müssen:
+- der **Dignity Clause** (*14 Gebote der Menschlichkeit*) entsprechen,
+- lizenzrechtlich kompatibel mit der **QUEST: Licence** (*Modul 32*) sein,
+- presse- und medienrechtliche Standards einhalten.
+
+**Rechtsgrundlagen**:
+- **PresseG** der Länder – Informationspflichten, Sorgfaltspflichten  
+- **TMG** – Telemediengesetz (Impressum, Informationspflichten)  
+- **UrhG** – Urheberrechtsgesetz (Lizenzvergabe, Schutzfristen)  
+- **DSGVO** – Datenschutz-Grundverordnung (personenbezogene Daten)  
+- **RStV** – Rundfunkstaatsvertrag (§ 55 Verantwortliche)  
+- **IfSG** – Infektionsschutzgesetz (Kommunikation gesundheitsrelevanter Inhalte)  
+- **AO** – §§ 55–58 (Gemeinnützigkeitskonformität)  
+- **UNOCHA Guidelines** – Internationale Standards für humanitäre Kommunikation  
+- **Deutscher Pressekodex** (PresseRat)  
+- **Sphere Standards** (Krisenkommunikation)
+
+---
+
+## 2. Kommunikationsziele
+1. **Informationsklarheit** – Fakten statt Spekulation.  
+2. **Partizipation** – Öffentlichkeit aktiv einbeziehen.  
+3. **Transparenz** – Veröffentlichung aller relevanten Entscheidungen (Abschnitt 25 – Governance).  
+4. **Barrierefreiheit** – Inhalte nach WCAG 2.2, inkl. Gebärdensprachvideos, kontrastreichem Design, Screenreader-Optimierung, Untertitelung und einfache Sprache bei Bedarf.  
+5. **Sicherheit** – Schutz sensibler Daten und Personen.
+
+---
+
+## 3. Kommunikationskanäle
+### 3.1 Primäre Kanäle (Eigene Infrastruktur, OSS-basiert)
+- **Website** – statisches CMS (z. B. Hugo, Publii) oder dynamisch (WordPress mit Open-Source-Plugins), DSGVO-konform, HTTPS  
+- **Mastodon** (Fediverse-Instanz, Open-Source)  
+- **Newsletter** – Double-Opt-In, ISO 27001-konforme Mailserver (z. B. Mailtrain, Listmonk)  
+- **Matrix / XMPP** – verschlüsselte Community-Kommunikation (Element, Gajim)  
+- **PeerTube** – dezentrale Videoveröffentlichung  
+- **Nextcloud** – interne Dateifreigaben  
+- **IPFS-Archiv** – redundante Medienarchivierung
+
+### 3.2 Sekundäre Kanäle (Fallback)
+- Kommerzielle Social-Media-Plattformen nur im **Blackout-/Notfallmodus**  
+- Klare Kennzeichnung als *„Nur temporär – primäre Kanäle siehe …“*
+
+---
+
+## 4. Prozess- & Governance-Anbindung
+- **Redaktionsplan**: quartalsweise durch Kommunikationsrat (Teil des Modulrats)  
+- **Ethikprüfung**: Ethikrat prüft kritische Veröffentlichungen vor Freigabe  
+- **Finanztransparenz**: Bei Kampagnen mit Budget → Abgleich mit Abschnitt 24 – Finanzflüsse  
+- **Krisenkommunikation**: Aktivierung der **Stufe 1–3-Eskalationsmatrix**:
+
+---
+
+## 5. Lizenz- & Open-Access-Strategie
+- **Texte**: CC BY-SA 4.0  
+- **Bilder/Grafiken**: CC BY-SA 4.0 oder CC0 (falls freigegeben)  
+- **Datensätze**: ODbL 1.0  
+- **Audio/Video**: CC BY-SA 4.0, Untertitelpflicht  
+- Lizenzhinweis **immer** im Metadaten-Header (EXIF/IPTC für Medien)
+
+---
+
+## 6. Archivierungs- & Technische Standards
+- **Langzeitarchiv**: Spiegelung auf min. 3 Servern (verschiedene Länder)  
+- **Offene Formate**: PDF/A, PNG, FLAC, MKV, CSV, GeoJSON  
+- **Metadaten**: IPTC Core, Dublin Core  
+- **Redundanz**: Wöchentliche Backups via IPFS + Offsite-Mirror  
+- **Veröffentlichungs-API**: JSON/REST-Endpunkt für Open-Data-Integration
+
+---
+
+## 7. Missbrauchsverhinderung
+- **Identitätsprüfung**: 2FA für Social-Media-Admins  
+- **Monitoring**: Aktives Tracking auf Fake-Accounts & Identitätsmissbrauch  
+- **Blacklist-Verfahren**:
+  - Entscheidung durch Modulrat (einfache Mehrheit)
+  - Einspruchsrecht → Ethikrat (bindend)
+- **Content-Takedown-Prozess**:
+  - Meldung prüfen (≤ 24 h)
+  - Dokumentation der Entfernung im Open-Log
+
+---
+
+## 8. Sicherheit & Datenschutz
+- Persönlich identifizierbare Informationen nur mit **schriftlicher Einwilligung**  
+- Pixelung/Anonymisierung von Einsatzbildern mit Personenbezug  
+- Nutzung von **Onion-Services** für Whistleblower-Hinweise (Verbindung zu Modul 30 – Quest: Truth)
+
+---
+
+## 9. Ring-Zuordnung & Beispiele
+**Existential Ring**  
+- Modul 01 – RESETBOX: Live-Updates zu Notfallverteilungen bei Hochwasser  
+- Modul 02 – Quest: Water: Veröffentlichung mobiler Wasserqualitätsdaten
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Open-Education-Kampagnen  
+- Modul 18 – Quest: Energy: Info-Kampagnen zu Solar-Mikronetzen
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: OpenStreetMap-Integration mit Live-Daten  
+- Modul 30 – Quest: Truth: Whistleblower-Berichte zu Korruption
+
+---
+
+## 10. Fußnoten
+1. PresseG der Länder  
+2. TMG – Telemediengesetz  
+3. UrhG – Urheberrechtsgesetz  
+4. DSGVO – Datenschutz-Grundverordnung  
+5. RStV – Rundfunkstaatsvertrag  
+6. IfSG – Infektionsschutzgesetz  
+7. AO – Abgabenordnung §§ 55–58  
+8. UNOCHA Guidelines – Humanitarian Communication Standards  
+9. Deutscher Pressekodex (PresseRat)  
+10. Sphere Standards (Humanitarian Charter)  
+11. CC BY-SA 4.0 – Creative Commons Attribution Share-Alike  
+12. ODbL 1.0 – Open Database License
+
+# 30. Langzeitwirkung & Nachhaltigkeitsstrategie (Patch V1.3)
+
+## 1. Grundsatz & Ziel
+Die **QUESTSYSTEM gGmbH** verfolgt eine langfristige Wirkungsperspektive, die über einzelne Projekte hinausgeht und den Fortbestand der Strukturen, des Wissens und der ethischen Grundlagen sicherstellt.  
+Zentrale Leitlinie: **Offene, vererbbare und replizierbare Strukturen** gemäß *QUEST: Licence* (Modul 32) und **Dignity Clause** (14 Gebote der Menschlichkeit).
+
+---
+
+## 2. Wirkungsdimensionen
+1. **Sozial** – Förderung von Selbstbestimmung, Resilienz und Gemeinschaften.  
+2. **Ökologisch** – Nachhaltige Ressourcennutzung, minimale Umweltbelastung.  
+3. **Technisch** – Offene Standards, Langzeitkompatibilität, Barrierefreiheit.  
+4. **Rechtlich** – Gemeinnützigkeit, offene Lizenzierung, Schutz vor Privatisierung.  
+5. **Kulturell** – Weitergabe von Wissen, Methoden und Werten über Generationen hinweg.
+
+---
+
+## 3. Vererbbarkeit & Rechtsfortführung
+- **Erbfolge** gemäß BGB § 1922 ff. geregelt, ergänzt durch testamentarische Sicherung in der Satzung.  
+- Vermögens- und Projektübertragungen nur an gemeinnützige Organisationen mit gleichwertiger Ethikbindung und ohne Eintrag auf der internen/öffentlichen Blacklist (Abschnitt 16).  
+- Rechtsfortführungs-Klausel in der Satzung: Sicherstellung, dass alle Module nach Auflösung in offene, lizenzkonforme Strukturen überführt werden.  
+- Internationale Rechtsfortführung unter Beachtung des Haager Übereinkommens zur Anerkennung von Urkunden und Verträgen.
+
+---
+
+## 4. Wissensweitergabe & Replikationspflicht
+- **Replikationspflicht**: Jede Innovation muss so dokumentiert werden, dass sie global nachbaubar ist (gemäß *QUEST: Licence*, Modul 32).  
+- Offene, versionierte Handbücher in mindestens zwei Sprachen, davon eine **Englisch** für internationale Anschlussfähigkeit.  
+- Veröffentlichung unter CC BY-SA 4.0 oder ODbL 1.0 für Daten.  
+- Integration in modulübergreifende Wissensplattform (z. B. Kiwix-Archiv, IPFS-Node).
+
+---
+
+## 5. Messung & Evaluation
+- **KPIs** (Key Performance Indicators) für alle Module, jährlich veröffentlicht.  
+- Unabhängige Evaluierung durch externe Prüfer*innen alle 3 Jahre.  
+- Wirkungsmessung nach **SROI** (Social Return on Investment – Verhältnis von sozialem Nutzen zu eingesetzten Ressourcen).  
+- Öffentliche Berichte im Open-Impact-Archiv.
+
+---
+
+## 6. Technische Langzeitspeicherstrategie
+- **Offene Formate**: PDF/A, PNG, FLAC, MKV, CSV, GeoJSON.  
+- **Medien- und Datenarchiv**: Spiegelung auf min. 3 Kontinenten, inkl. M-DISC-Backup und **Cold Storage** (offline, klimakontrollierte Langzeitlagerung).  
+- Nutzung von IPFS und Onion-Services für Redundanz und Zugriffssicherheit.  
+- Partnerschaften mit Modul 18 – Quest: Energy zur energieeffizienten und krisensicheren Serverversorgung.
+
+---
+
+## 7. Finanzielle Resilienz
+- Mehrsäulenmodell: QUEST:FUND (Abschnitt 24), Fördermittel, Spenden, Sachleistungen.  
+- Mindestrücklage für 24 Monate Betriebssicherheit.  
+- Versicherungsschutz für Infrastruktur, Archive und Einsatzfahrzeuge.  
+- **Ethische Resilienz**: Alle Finanzquellen unterliegen den Ethikfiltern (Abschnitt 16).
+
+---
+
+## 8. Governance & Machtvermeidung
+- **Rotationsprinzip** für Führungs- und Entscheidungspositionen (max. 4 Jahre Amtszeit).  
+- Regelmäßige externe Satzungs- und Governance-Checks.  
+- Strikte Offenlegung aller Entscheidungsprozesse (Abschnitt 25 – Governance).
+
+---
+
+## 9. Globale Vernetzung & Skalierung
+- Internationale Partnerstrukturen für regionale Replikation.  
+- Modul 11 – Quest: School: Mentoring- und Zertifizierungsprogramme für lokale Initiativen.  
+- Beteiligung an globalen Open-Source- und Humanitarian-Tech-Netzwerken.
+
+---
+
+## 10. Szenarienplanung & Krisentests
+- Jährliche Simulationen von Ausfall- und Krisenszenarien (Blackout, Cyberangriff, Naturkatastrophe).  
+- Lessons-Learned-Berichte öffentlich zugänglich.  
+- Kontinuierliche Anpassung der Notfallprotokolle.
+
+---
+
+## 11. Ring-Zuordnung & Beispiele
+**Existential Ring**  
+- Modul 01 – RESETBOX: Langfristige Sicherung von Notfallverteilungsnetzwerken.  
+- Modul 02 – Quest: Water: Dauerhafte Wasserqualitätsdatenbank.
+
+**Societal Ring**  
+- Modul 11 – Quest: School: Offene Lehrpläne für Generationenweitergabe.  
+- Modul 18 – Quest: Energy: Nachhaltige Energieversorgung für Archive.
+
+**Structural Ring**  
+- Modul 29 – Quest: Data: Dezentrale Datenhaltung über Jahrzehnte.  
+- Modul 32 – Quest: Licence: Lizenzsicherung für Generationen.
+
+---
+
+## 12. Fußnoten
+1. BGB – Bürgerliches Gesetzbuch §§ 1922 ff. (Erbrecht)  
+2. GmbHG – Gesetz betreffend die Gesellschaften mit beschränkter Haftung §§ 1–13b  
+3. AO – Abgabenordnung §§ 55–58  
+4. QUESTSYSTEM STATIC CORE V4.4 – verbindliche Modulliste  
+5. QUEST: Licence – Modul 32  
+6. 14 Gebote der Menschlichkeit – Bestandteil der Satzung  
+7. CC BY-SA 4.0 – Creative Commons Attribution Share-Alike  
+8. ODbL 1.0 – Open Database License  
+9. IPFS – InterPlanetary File System  
+10. M-DISC – Langzeit-Archivmedium  
+11. Haager Übereinkommen zur Anerkennung von Urkunden und Verträgen  
+12. SROI – Social Return on Investment (soziale Wirkungsmessung)
+
+
+

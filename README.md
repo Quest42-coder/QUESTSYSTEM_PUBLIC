@@ -369,8 +369,6 @@ Die gGmbH prüft Produzenten, dokumentiert Entscheidungen und unterstützt lokal
 
 ## 25. Finanzierung & QUEST:FUND
 
-## 25. Finanzierung & QUEST:FUND
-
 Finanzierung ist ein zentrales Element, um **Handlungsfähigkeit** und **Würde**
 in Krisen zu sichern. Im QUESTSYSTEM geschieht das durch den **QUEST:FUND** –
 einen Solidarfonds, der auf Gemeinnützigkeit, Transparenz und Dignity Clause basiert.
@@ -386,11 +384,11 @@ einen Solidarfonds, der auf Gemeinnützigkeit, Transparenz und Dignity Clause ba
 Der QUEST:FUND kann u. a. genutzt werden für:
 - **Privatschulden tilgen**, wenn diese die Existenz bedrohen  
 - **Privatschulden übernehmen**, die nicht existenzbedrohend sind, aber Würde und Selbstbestimmung zerstören  
-  - z. B. Opfer von Betrug oder Manipulation  
+  - z. B. Opfer von Betrug oder Manipulation[^5][^6]  
   - Fehleinschätzungen (Ratenkäufe, kleine Kredite), die psychisch lähmen  
 - **Kredite übernehmen**, z. B. nach Trennung, Todesfall oder Krankheit  
 - **Brückenfinanzierung** für Wohnraum, wenn Miete oder Nebenkosten nicht gezahlt werden können  
-- **Tierarztkosten** oder notwendige Pflegeausgaben übernehmen  
+- **Tierarztkosten** oder notwendige Pflegeausgaben übernehmen[^9]  
 - **Bildung** finanzieren: Schulmaterial, Zugang zu Wissen, digitale Geräte  
 - **Rechtskosten** in Würdeverfahren oder Schutzprozessen abdecken  
 - **Krisenhilfe**: spontane Unterstützung bei Blackouts, Naturkatastrophen, Fluchtbewegungen  
@@ -416,6 +414,19 @@ Die **QUESTSYSTEM gGmbH** verwaltet den Fonds operativ:
 - **25 FINANCE** – ökonomische Basis, Commons-Logik  
 - **15 CARE** & **14 HEALTH** – direkte Unterstützung für Pflege & Gesundheit  
 
+### Juristische Fundierung
+Der QUEST:FUND stützt sich auf anerkannte nationale und internationale Rechtsgrundlagen:  
+- **Art. 1 Abs. 1 GG** – Menschenwürde ist unantastbar[^1]  
+- **Art. 20 GG** – Sozialstaatsprinzip[^2]  
+- **EU-Grundrechtecharta, Art. 34** – Soziale Sicherheit und Unterstützung[^3]  
+- **EU-Insolvenzrichtlinie 2019/1023** – Recht auf zweite Chance (Restschuldbefreiung)[^4]  
+- **UN-Sozialpakt (ICESCR), Art. 11** – Recht auf angemessenen Lebensstandard[^7]  
+- **UNCTAD Principles (2012)** – Schuldenerlass bei Untragbarkeit[^8]  
+- **§ 263 StGB** – Betrug: Opfer haben Anspruch auf Ausgleich[^5]  
+- **EU-Richtlinie 2012/29/EU** – Opferrechte bei Straftaten[^6]  
+- **Tierschutzgesetz § 1** – Würde und Wohlergehen von Tieren sind zu achten[^9]  
+- **WHO Universal Health Coverage** – Gesundheitsversorgung ohne finanzielle Notlagen[^10]  
+
 ### Negativszenario ohne QUEST:FUND
 - Überschuldung von Einzelpersonen und Familien  
 - Verlust von Wohnung, Bildung, Gesundheitsversorgung  
@@ -424,6 +435,17 @@ Die **QUESTSYSTEM gGmbH** verwaltet den Fonds operativ:
 - Menschen verharren dauerhaft in Schuldspiralen, auch wenn die Beträge klein sind
 
 ---
+
+[^1]: Grundgesetz für die Bundesrepublik Deutschland, Art. 1 Abs. 1: https://www.gesetze-im-internet.de/gg/art_1.html  
+[^2]: Grundgesetz für die Bundesrepublik Deutschland, Art. 20: https://www.gesetze-im-internet.de/gg/art_20.html  
+[^3]: Charta der Grundrechte der Europäischen Union, Art. 34: https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:12012P/TXT  
+[^4]: EU-Richtlinie 2019/1023 über Restrukturierung und Insolvenz: https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32019L1023  
+[^5]: Strafgesetzbuch (StGB), § 263 Betrug: https://www.gesetze-im-internet.de/stgb/__263.html  
+[^6]: EU-Richtlinie 2012/29/EU (Opferrechte): https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32012L0029  
+[^7]: Internationaler Pakt über wirtschaftliche, soziale und kulturelle Rechte (ICESCR), Art. 11: https://www.ohchr.org/en/instruments-mechanisms/instruments/international-covenant-economic-social-and-cultural-rights  
+[^8]: UNCTAD Principles on Promoting Responsible Sovereign Lending and Borrowing, 2012: https://unctad.org/system/files/official-document/gdsddf2012misc1_en.pdf  
+[^9]: Tierschutzgesetz (TierSchG), § 1: https://www.gesetze-im-internet.de/tierschg/__1.html  
+[^10]: WHO Universal Health Coverage Framework: https://www.who.int/health-topics/universal-health-coverage  
 
 ## 26. Wartung & Aktualisierung
 

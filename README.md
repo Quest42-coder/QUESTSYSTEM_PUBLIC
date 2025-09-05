@@ -369,7 +369,59 @@ Die gGmbH prüft Produzenten, dokumentiert Entscheidungen und unterstützt lokal
 
 ## 25. Finanzierung & QUEST:FUND
 
-[→ hier die vollständige Version aus der letzten Nachricht einsetzen]  
+## 25. Finanzierung & QUEST:FUND
+
+Finanzierung ist ein zentrales Element, um **Handlungsfähigkeit** und **Würde**
+in Krisen zu sichern. Im QUESTSYSTEM geschieht das durch den **QUEST:FUND** –
+einen Solidarfonds, der auf Gemeinnützigkeit, Transparenz und Dignity Clause basiert.
+
+### Ziele des QUEST:FUND
+- Entlastung in existenziellen Notlagen  
+- Absicherung bei Systemversagen (staatlich / privat)  
+- Vermeidung von Abhängigkeit und Schuldknechtschaft  
+- Unterstützung für Menschen, Tiere und Gemeinschaften  
+- Wiederherstellung von **Würde und Handlungsfreiheit**, auch jenseits akuter Existenzbedrohung
+
+### Anwendungsbereiche
+Der QUEST:FUND kann u. a. genutzt werden für:
+- **Privatschulden tilgen**, wenn diese die Existenz bedrohen  
+- **Privatschulden übernehmen**, die nicht existenzbedrohend sind, aber Würde und Selbstbestimmung zerstören  
+  - z. B. Opfer von Betrug oder Manipulation  
+  - Fehleinschätzungen (Ratenkäufe, kleine Kredite), die psychisch lähmen  
+- **Kredite übernehmen**, z. B. nach Trennung, Todesfall oder Krankheit  
+- **Brückenfinanzierung** für Wohnraum, wenn Miete oder Nebenkosten nicht gezahlt werden können  
+- **Tierarztkosten** oder notwendige Pflegeausgaben übernehmen  
+- **Bildung** finanzieren: Schulmaterial, Zugang zu Wissen, digitale Geräte  
+- **Rechtskosten** in Würdeverfahren oder Schutzprozessen abdecken  
+- **Krisenhilfe**: spontane Unterstützung bei Blackouts, Naturkatastrophen, Fluchtbewegungen  
+- **Kulturelle und kreative Projekte** sichern, die direkt auf Würde und Überleben zielen  
+
+### Prinzipien
+- **Gemeingut**: Keine Rückzahlungspflicht, außer wenn explizit als solidarisches Darlehen vereinbart  
+- **Transparenz**: Jede Ausgabe wird dokumentiert und veröffentlicht (RESET:LOG)  
+- **Würde**: Keine Nutzung für Profit, Machtmissbrauch oder Kontrolle  
+- **Flexibilität**: Entscheidungen können lokal, dezentral und schnell getroffen werden  
+- **Fairness**: Keine Tilgung von Luxus- oder Konsumschulden, nur wenn ein Würde- oder Befreiungsaspekt klar erkennbar ist  
+
+### Umsetzung durch die gGmbH
+Die **QUESTSYSTEM gGmbH** verwaltet den Fonds operativ:
+- Spenden und Zuschüsse annehmen (privat & institutionell)  
+- Mittel nach Dignity Clause freigeben  
+- Kooperationen mit NGOs, Gemeinden und Initiativen schließen  
+- Infrastruktur bereitstellen (z. B. mobile RESETBOX-Verteilung, Wohncontainer, Rechtsberatung)  
+
+### Verbindung zu anderen Modulen
+- **09 DEBT** – Entschuldung, Existenzsicherung  
+- **10 WORK** – faire Arbeit, keine Zwangsverhältnisse  
+- **25 FINANCE** – ökonomische Basis, Commons-Logik  
+- **15 CARE** & **14 HEALTH** – direkte Unterstützung für Pflege & Gesundheit  
+
+### Negativszenario ohne QUEST:FUND
+- Überschuldung von Einzelpersonen und Familien  
+- Verlust von Wohnung, Bildung, Gesundheitsversorgung  
+- Zwangsarbeit, Abhängigkeit von Kredithaien oder unseriösen Institutionen  
+- Verhinderung von Teilhabe und Autonomie  
+- Menschen verharren dauerhaft in Schuldspiralen, auch wenn die Beträge klein sind
 
 ---
 

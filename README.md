@@ -1,6 +1,12 @@
-# QUESTSYSTEM – README (STATIC CORE V5.0 LOCKED)
+# QUESTSYSTEM – README (STATIC CORE V5.0 LOCKED) 
 
 ---
+
+## Lizenz
+Dieses Projekt steht unter **CC BY-SA 4.0 + Dignity Clause**.  
+Nutzung ist nur erlaubt, wenn die **Würde aller Beteiligten** respektiert wird.  
+Details: [`LICENSE_DIGNITY_FULL_FINAL.md`](LICENSE_DIGNITY_FULL_FINAL.md)  
+
 
 ## Einleitung
 

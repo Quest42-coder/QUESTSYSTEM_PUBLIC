@@ -1,0 +1,120 @@
+# QUESTSYSTEM – Einstieg / Startseite
+
+Willkommen im **QUESTSYSTEM_PUBLIC** Repository.  
+Dies ist die öffentliche Dokumentations- und Übergabeplattform des QUESTSYSTEMs –  
+ein offenes, gemeinnütziges, modulares Kunst- und Krisenhilfesystem mit 42 Modulen.
+
+---
+
+## Einführung
+Das QUESTSYSTEM ist aus der Erfahrung entstanden, dass Menschen in Krisen oft auf sich allein gestellt sind.  
+Klassische Hilfssysteme erreichen nicht jede Situation – sei es bei Naturkatastrophen, politischen Krisen oder dem Ausfall zentraler Infrastruktur.  
+
+Um in solchen Momenten **Würde und Handlungsspielraum** zu sichern, wurde das QUESTSYSTEM entwickelt:  
+ein offenes, gemeinnütziges und künstlerisches Baukastensystem, das praktische Hilfsmittel mit  
+ethischen Leitlinien und kultureller Reflexion verbindet.  
+
+Im Zentrum steht die **RESETBOX** – ein tragbarer Container, der nicht nur Werkzeuge und Informationen bündelt,  
+sondern auch ein Symbol dafür ist, dass niemand alleine bleiben muss.  
+
+---
+
+## Kurz gesagt
+Das QUESTSYSTEM ist ein **offenes Baukastensystem** für Krisenhilfe, Bildung und Kultur.  
+Im Zentrum steht die **RESETBOX** – ein Notfall- und Würde-Kit, das Menschen in schwierigen Situationen unterstützt.  
+Alle Inhalte sind frei nutzbar, nachbaubar und können lokal angepasst werden.  
+
+Drei Beispiele für RESETBOX-Varianten:  
+
+- **RESETBOX: BLACKOUT** – für den Fall eines Stromausfalls  
+  - Taschenlampen, Kerzen, Powerbanks, Solarladegerät  
+  - Kurbel-/Solar-Radio, Notfall-Handy, analoge Karten  
+  - Trinkwasserflaschen, Wasserfilter, haltbare Snacks  
+  - Erste-Hilfe-Set, Medikamente, Rettungsdecken  
+  - Ausweiskopien, Notizblock, Multitool  
+
+- **RESETBOX: CARE** – für medizinische/pflegerische Notlagen  
+  - Erweiterte Erste-Hilfe-Materialien  
+  - Blutdruckmessgerät, Fieberthermometer  
+  - Notfallmedikamente (z. B. Asthma-Spray, Insulin-Kühloption)  
+  - Patientenrechte-Infoblatt, Notfallkontakte  
+  - Hygieneartikel, Handschuhe, Desinfektionsmittel  
+
+- **RESETBOX: PSYCHE** – für psychische Stabilität in Krisen  
+  - **Stress- und Reizkontrolle:** Massagebälle, Knetbälle, Noise-Cancelling-Kopfhörer, Augenmaske  
+  - **ADHS-Selbsthilfe:** Timer/Sanduhr, Strukturkarten, Schreib- und Malmaterialien  
+  - **Panikhilfen:** Atemkarten, Kühlpads, kleine Decke/Stofftier, Notrufnummern  
+  - **Symbolische Stabilisierung:** Buch, Gedicht, Bild oder persönlicher Gegenstand  
+
+So wird das QUESTSYSTEM zu einem **flexiblen Werkzeug**, das praktische Hilfe mit künstlerischer Reflexion verbindet.  
+
+---
+
+## Grundidee
+- Ein offenes Commons: 42 Module, die grundlegende Felder menschlicher Würde, Resilienz und Handlung abdecken.  
+- Im Zentrum: die [RESETBOX](./MODULES/01_RESETBOX/README.md) – ein physisches & symbolisches Notfall- und Würde-Kit.  
+- Rechtsform: optional über eine gGmbH abbildbar, aber auch völlig dezentral nutzbar.  
+- Ethik: abgesichert durch die [Dignity Clause](./Dignity_Clause.md) und die QUEST: Licence.  
+
+---
+
+## Für wen ist das?
+- **Zivilgesellschaft & NGOs**: Werkzeuge für Krisenhilfe, Bildung, Resilienz.  
+- **Communities & Kommunen**: lokal anpassbare Strukturen, RESETBOX-Varianten.  
+- **Künstler:innen & Kulturschaffende**: offene Plattform, künstlerische Spur, Artefakte.  
+- **Technik & CCC-Umfeld**: forkbare Open-Source-Architektur.  
+- **Privatpersonen**: Anleitung, Materialien und RESETBOX als unmittelbare Hilfsstruktur.  
+
+---
+
+## Einstiegspunkte
+
+1. [README.md](./README.md) – **Systembeschreibung**  
+   Vollständige Darstellung des Systems, der 42 Module (STATIC CORE V5.0 LOCKED) und der Ring-Struktur.  
+
+2. [README_GGMBH.md](./README_GGMBH.md) – **Operative Hülle**  
+   Rolle einer möglichen QUESTSYSTEM gGmbH: Rechtsträger, Finanzierung, Infrastruktur, Kooperationen.  
+
+3. [README_Economic_Viability.md](./README_Economic_Viability.md) – **Wirtschaftlichkeit & Prognose**  
+   Kalkulationen, Szenarien, Fix- und Personalkosten.  
+
+4. [MODULES/01_RESETBOX/README.md](./MODULES/01_RESETBOX/README.md) – **RESETBOX (Modul 01)**  
+   Das Herzstück des Systems. Physisch (Eurobox), symbolisch (Commons) und ethisch (Würde-Kit).  
+
+---
+
+## Weitere zentrale Dokumente
+- [Dignity_Clause.md](./Dignity_Clause.md) – Ethische Basis, 14 Gebote der Menschlichkeit  
+- [LICENSE_DIGNITY_FULL_FINAL.md](./LICENSE_DIGNITY_FULL_FINAL.md) – Lizenz (CC BY-SA + Dignity Clause)  
+- [MODULES/](./MODULES) – Modulsammlung inkl. RESETBOX (01) und weiteren Kerntexten  
+- [quests_ring_diagram_names_colored.png](./quests_ring_diagram_names_colored.png) – Visualisierung der 42 Module  
+
+---
+
+## Roadmap (Stand September 2025)
+- Ethik & Lizenz: finalisiert  
+- Systembeschreibung (STATIC CORE V5.0 LOCKED): abgeschlossen  
+- Wirtschaftlichkeit README: erstellt (inkl. Quellen & Prognosen)  
+- Modul 01 RESETBOX: abgeschlossen  
+- Module 02–09: ausgearbeitet in Entwurfsform, Endfassungen in Arbeit  
+- Module 10–42: folgen schrittweise (jeweils nach 30-Abschnitt-Template)  
+- gGmbH-README: strukturiert, in inhaltlicher Ausarbeitung  
+- Community-Beiträge, Forks & Übersetzungen ausdrücklich erwünscht  
+
+---
+
+## Mitmachen
+Das QUESTSYSTEM ist Open Source.  
+Jede:r kann:
+- Module übersetzen, erweitern oder lokal anpassen  
+- RESETBOX-Varianten dokumentieren  
+- Issues eröffnen und Pull Requests einreichen  
+
+Community-Kontakt: über GitHub Issues oder Repository Discussions.  
+Eine `CONTRIBUTING.md` folgt in Kürze.  
+
+---
+
+## Ziel
+Das QUESTSYSTEM soll weltweit nutzbar sein –  
+als Commons, als Werkzeugkasten und als künstlerisches Projekt.  

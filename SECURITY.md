@@ -13,7 +13,7 @@ Bitte veröffentliche Details erst, nachdem wir eine Lösung koordinieren konnte
 Das schützt Nutzer:innen und verhindert Missbrauch.
 
 ## Wie melden?
-- Per E-Mail: **kontakt@questsystem.org**  
+- Per E-Mail: **questsystem@proton.me*  
 - Betreff: `[SECURITY] + kurzer Titel`  
 - Beschreibe das Problem so klar wie möglich.  
 - Warte mit öffentlicher Veröffentlichung, bis wir reagieren konnten.

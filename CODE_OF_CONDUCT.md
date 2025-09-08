@@ -21,7 +21,7 @@ Alle Beteiligten verpflichten sich zu **Respekt, Würde und Transparenz**.
 ## Meldung
 Verstöße können gemeldet werden:
 - per **Issue** (Label: `CoC`)  
-- oder per Mail: **kontakt@questsystem.org**
+- oder per Mail: **questsystem@proton.me**
 
 ## Konsequenz
 Bei bestätigten Verstößen behalten sich Maintainer und gGmbH vor,

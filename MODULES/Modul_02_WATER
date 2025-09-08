@@ -1472,6 +1472,92 @@ Das Modul WATER ist für vielfältige reale Situationen konzipiert, in denen sic
 - Berichte von NGOs und Studien zu Wasserprojekten in Krisengebieten.  
 - WHO- und UN-Water-Guidelines als Grundlage.
 
+## 24. Produktions- & Replikationsethik
+
+Wasseraufbereitung und -speicherung dürfen nicht zur Quelle neuer Abhängigkeiten werden.  
+Das Modul WATER setzt deshalb auf **offene, replizierbare Technologien**: Filterkerzen, Solardestillation,  
+Keramik- oder Membranfilter, deren Baupläne frei verfügbar sind.  
+
+- **Keine Patentfesseln:** Verfahren sind gemeinfrei oder Open Source.  
+- **Lokale Produktion:** Materialien sollen vor Ort hergestellt oder repariert werden können.  
+- **Sicherheitsgarantie:** Jede Replikation muss sicherstellen, dass keine gesundheitsschädlichen Stoffe eingesetzt werden.  
+
+---
+
+## 25. Finanzierung & Gemeingüterprinzip
+
+Wasser ist ein **universelles Gemeingut** (Art. 25 UN-Menschenrechtserklärung).  
+Die gGmbH kann Wasserprojekte fördern, darf jedoch keine kommerziellen Monopole aufbauen.  
+
+- **Spenden & QUEST:FUND:** Mittel dienen der Entwicklung und Verteilung von Infrastruktur.  
+- **Öffentliche Förderung:** Kooperation mit Programmen möglich, sofern Transparenz gewahrt bleibt.  
+- **Gemeinnützigkeit:** Überschüsse fließen in Wartung, Verteilung und Replikation.  
+
+---
+
+## 26. Wartung & Aktualisierung
+
+Die Funktionalität hängt von konsequenter **Wartung** ab:  
+- Filterwechsel nach festen Intervallen (Herstellerempfehlungen, WHO-Standards).  
+- Reinigung von Behältern und Systemspülung.  
+- Standardisierte **Wartungspläne**: Checklisten, QR-Codes, Offline-Handbücher.  
+- Digitale Updates: Bauanleitungen, Warnmeldungen und Filterstandards im Kiwix-Archiv.  
+
+---
+
+## 27. Monitoring & Wirkungsmessung
+
+Wirksamkeit braucht **kontinuierliches Monitoring**:  
+- Messung der Wasserqualität nach **WHO Guidelines for Drinking Water Quality**.  
+- Dokumentation von Filterstandzeiten und Ausfällen.  
+- RESET:LOG-Karten für Communities, um Probleme selbst einzutragen.  
+- Wirkungsmessung: Zahl der Menschen mit gesichertem Zugang zu sauberem Wasser.  
+
+---
+
+## 28. Skalierung & regionale Anpassung
+
+Lösungen müssen auf verschiedenen Ebenen tragfähig sein:  
+- **Lokal:** Regenwassernutzung in tropischen Regionen, Grundwasserpumpen in Trockengebieten.  
+- **Regional:** Anpassung an **Wasserrechte und Hygieneverordnungen** (z. B. EU-Wasserrahmenrichtlinie, afrikanische Wassercharta).  
+- **Global:** Offener Austausch von Best Practices über Plattformen, Übersetzungen in lokale Sprachen.  
+
+---
+
+## 29. Symbolik & kulturelle Einbettung
+
+Wasser ist Symbol für **Leben, Reinigung und Erneuerung**.  
+Das Modul nutzt Zeichen, die kulturübergreifend verständlich sind:  
+- **Blaue Farbmarkierung**, Tropfen-Piktogramme, neutrale Icons.  
+- Keine religiös vereinnahmten Symbole.  
+- Wasser als verbindendes Element in Ritualen, Kunst und Gemeinschaft.  
+
+---
+
+## 30. Langzeitwirkung & Weitergabe-Logik
+
+Das Wissen um Wasser darf nicht verloren gehen.  
+- **Generationenübergabe:** RESETBOXen und WATER-Kits enthalten Anleitungen, auch analog lesbar.  
+- **Offene Archive:** Baupläne, Filtermethoden und Quellen werden redundant gesichert (Kiwix, Print, QR).  
+- **Nachhaltigkeit:** Ziel ist, dass Communities über Generationen **eigenständig** Wasserzugang sichern –  
+  unabhängig von staatlicher oder kommerzieller Kontrolle.  
+
+### Modulverknüpfungen
+- [04 – FOOD](../modules/04_FOOD.md): Ernährungssicherung  
+- [06 – BODY](../modules/06_BODY.md): Hygiene & Pflege  
+- [13 – NATURE](../modules/13_NATURE.md): Ökologische Ressourcen  
+- [20 – ENERGY](../modules/20_ENERGY.md): Pumpen & Aufbereitungssysteme  
+
+---
+
+**Quellen**  
+1. United Nations (1948). *Universal Declaration of Human Rights*, Art. 25.  
+2. WHO (2017). *Guidelines for Drinking-water Quality*, 4th Edition.  
+3. UN-Water (2023). *Water and Sanitation Progress Report*.  
+4. European Union (2000). *Water Framework Directive (2000/60/EC)*.  
+5. African Ministers’ Council on Water (2008). *Africa Water Vision 2025*.  
+
+
 # Modul 02 – WATER (Zusammenfassung)
 
 Das Modul WATER stellt ein umfassendes Konzept für sicheren, gerechten und nachhaltigen Zugang zu Trinkwasser in vielfältigen Krisen- und Alltagssituationen dar. Es verbindet technische, soziale, rechtliche und ethische Komponenten, um Menschen zur Selbstermächtigung und solidarischem Handeln zu befähigen.

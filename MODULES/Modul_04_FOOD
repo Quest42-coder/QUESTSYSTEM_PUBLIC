@@ -1,1535 +1,587 @@
-# Modul 04 – FOOD (Finale Zusammenführung V1)
-
-# Modul 04 – FOOD  
-**Einleitung (V1.1 – CCC-Format, Maximaltiefe)**  
-
----
-
-## Systemischer Stellenwert  
-FOOD ist im QUESTSYSTEM Teil des **Existential Rings** und stellt eine unverhandelbare Grundbedingung für Überleben, Würde und Autonomie dar. Ohne gesicherte, gesunde und kulturell angepasste Ernährung zerbrechen nicht nur individuelle Körperfunktionen, sondern auch soziale Strukturen und langfristige Resilienz. Das Modul definiert, wie Zugang zu Nahrung im Krisen-, Übergangs- und Stabilisierungskontext möglich wird – unabhängig von Einkommen, Herkunft, Aufenthaltsstatus oder politischer Lage.  
-
----
-
-## Globaler Krisenhintergrund  
-Laut der Ernährungs- und Landwirtschaftsorganisation der Vereinten Nationen (*FAO*) litten 2023 weltweit über **735 Millionen Menschen** an Hunger[^1]. Kriege, Klimawandel und Marktinstabilitäten verschärfen diese Lage kontinuierlich. Extreme Wetterereignisse[^2] und geopolitische Lieferkettenabbrüche führen zu stark schwankenden Lebensmittelpreisen und Versorgungslücken – auch in Industrienationen. Gleichzeitig steigt die Abhängigkeit von wenigen multinationalen Agrarkonzernen, die Saatgut, Logistik und Handelsstrukturen kontrollieren.  
-
----
-
-## Juristischer Rahmen  
-Das *Recht auf angemessene Ernährung* ist in Art. 25 der Allgemeinen Erklärung der Menschenrechte[^3] und in Art. 11 des Internationalen Pakts über wirtschaftliche, soziale und kulturelle Rechte[^4] verankert. In Deutschland ergibt sich eine mittelbare Verpflichtung aus Art. 1 GG (Menschenwürde) in Verbindung mit dem Sozialstaatsprinzip (Art. 20 GG). Dennoch schränken Gesetze wie das Asylbewerberleistungsgesetz in der Praxis den Zugang zu vollwertiger Ernährung ein. FOOD im QUESTSYSTEM ist als **nicht-kommerzielle, diskriminierungsfreie** Struktur angelegt und unterliegt der *Dignity Clause*.  
-
----
-
-## Ethische Grundlage (Dignity Clause)  
-Nahrung darf **niemals** als Druckmittel, Belohnung oder Zwangsinstrument eingesetzt werden. Hilfe wird nicht an Gehorsam, Arbeitsleistung oder politische Loyalität geknüpft. Diese Haltung geht über viele staatliche und NGO-Praktiken hinaus und stellt sicher, dass Ernährungssicherheit als unantastbares Menschenrecht verstanden wird.  
-
----
-
-## Wissenschaftliche Fundierung & Technische Ebene  
-Die Forschung definiert Ernährungssicherheit als Zusammenspiel von Verfügbarkeit, Zugang, Nutzung und Stabilität[^5]. FOOD deckt alle vier Dimensionen ab – von lokaler Produktion, Saatgutbanken und urbaner Landwirtschaft bis zu Foodsharing-Netzwerken, Kühlkettenlösungen, Notkochsystemen (Solar, Gas, Stromspeicher) und verteilten Lagerstrukturen. Dabei wird das Konzept der **Planetary Health** integriert, um ökologische Tragfähigkeit und gesundheitliche Verträglichkeit zu sichern.  
-
----
-
-## Open-Source- & CCC-Relevanz  
-FOOD bietet Anknüpfungspunkte für Technologie- und Hacktivismus-Communities, etwa:  
-- Sensorik- und IoT-Systeme gegen Lebensmittelverschwendung  
-- Open-Source-Planungstools für Lagerhaltung und Logistik  
-- Digitale Plattformen für transparente Verteilung und bedarfsgerechte Allokation  
-- DIY-Bauanleitungen für energieeffiziente Koch- und Konservierungstechnologien  
-
----
-
-## Systemische Verbindung  
-FOOD ist eng verknüpft mit anderen Modulen des Existential Rings:  
-- **WATER (02)** – sauberes Trinkwasser für Zubereitung und Hygiene  
-- **SHELTER (03)** – geschützte Koch- und Lagerbereiche  
-- **BODY (06)** – Ernährungsaspekte für Gesundheit  
-- **PSYCHE (07)** – psychosoziale Stabilisierung durch gesicherte Ernährung  
-
----
-
-[^1]: FAO (2023). *The State of Food Security and Nutrition in the World 2023*.  
-[^2]: IPCC (2022). *Sixth Assessment Report (AR6)* – Working Group II.  
-[^3]: Vereinte Nationen (1948). *Allgemeine Erklärung der Menschenrechte*, Art. 25.  
-[^4]: Vereinte Nationen (1966). *Internationaler Pakt über wirtschaftliche, soziale und kulturelle Rechte*, Art. 11.  
-[^5]: HLPE (2020). *Food security and nutrition: building a global narrative towards 2030*.
-
----
-
 # Modul 04 – FOOD
-## Abschnitt 01 – Systemischer Kontext (V1.1)
 
-FOOD ist ein **zentrales Modul des Existential Rings** im QUESTSYSTEM und stellt sicher, dass Ernährung als Grundrecht unabhängig von Einkommen, Standort oder politischer Zugehörigkeit gewährleistet wird. Die Sicherung von Nahrungsmitteln ist nicht nur eine Frage der Logistik, sondern ein **komplexes Zusammenspiel aus Ökonomie, Ökologie, Kultur und Technologie**.
+## Einleitung
 
----
+FOOD ist mehr als die Bereitstellung von Kalorien – es ist die **Verknüpfung von Leben, Würde und Gemeinschaft**.  
+Essen entscheidet über Überleben, Zugehörigkeit und die Fähigkeit, Hoffnung zu bewahren.  
 
-### Globale Systemrealität
-Die gegenwärtige Nahrungsmittelversorgung wird von einer Vielzahl globaler Krisentreiber beeinflusst:
+In einer Welt, in der Millionen an Hunger leiden, während andere an Überfluss zerbrechen,  
+ist das Modul FOOD ein **Reset gegen Entwürdigung**:  
+- Es macht das Recht auf Nahrung sichtbar und praktisch handhabbar.  
+- Es stellt Werkzeuge bereit – von Notrationen in der RESETBOX bis zu Community-Küchen.  
+- Es knüpft Netzwerke zwischen Natur, Wasser, Energie und Finanzsystemen.  
 
-- **Klimawandel**: Reduzierte Ernteerträge, veränderte Vegetationszyklen, Bodendegradation und zunehmende Extremwetterereignisse gefährden Ernten weltweit.[^1]  
-- **Geopolitische Instabilität**: Kriege, Handelskonflikte und Sanktionen unterbrechen Lieferketten und treiben Preise in die Höhe.[^2]  
-- **Finanzspekulation**: Terminmärkte und Rohstoffspekulation verstärken Preisschwankungen und können Ernährungskrisen verschärfen.[^3]  
-- **Politische Maßnahmen**: Exportverbote, restriktive Einfuhrzölle und Subventionspolitiken verzerren Märkte und schaffen Abhängigkeiten.
+FOOD ist auch **Symbol**:  
+- Brot steht für das gemeinsame Teilen.  
+- Saatgut für Generationen und Zukunft.  
+- Die Mahlzeit für Gemeinschaft und Frieden.  
 
----
+Das Modul integriert **physische Komponenten** (Nahrungsmittel, Kochsets, Saatgutbanken),  
+**juristische Absicherungen** (Recht auf Nahrung),  
+**ethische Grundsätze** (Dignity Clause)  
+und **didaktische Elemente** (Rezepte, QR-Anleitungen, Workshops).  
 
-### Juristische und ethische Verankerung
-Das **Recht auf angemessene Ernährung** ist völkerrechtlich im *International Covenant on Economic, Social and Cultural Rights* (ICESCR, Art. 11) verankert.[^4]  
-In Deutschland ergibt sich aus dem **Sozialstaatsprinzip** (Art. 20 GG) die staatliche Pflicht, menschenwürdige Existenzbedingungen zu sichern.
-
-Das Modul FOOD ist direkt an die **Dignity Clause** des QUESTSYSTEMS gebunden:  
-- Ernährung darf nicht an Gehorsam, Zugehörigkeit oder wirtschaftliche Verwertbarkeit geknüpft sein.  
-- Beschaffung, Verteilung und Qualität müssen nachhaltig, sicher und kulturell respektvoll gestaltet werden.
-
----
-
-### Technische und organisatorische Dimension
-FOOD adressiert nicht nur die **Verfügbarkeit**, sondern auch die **Resilienz der Versorgung**:
-- **Dezentrale Kühlketten** mit erneuerbarer Energieversorgung  
-- **Offene Gemeinschaftsküchen** und mobile Kochstationen  
-- **Urbane Landwirtschaft** (Hydroponik, Aquaponik, Vertical Farming)  
-- **Lager- und Konservierungstechniken** mit minimalem Energiebedarf (z. B. Solar-Trocknung, Fermentation)
+Sein Ziel ist, dass niemand durch Hunger seiner Würde beraubt wird –  
+egal ob im Krieg, bei Flucht, in Armut oder im Alltag einer überlasteten Gesellschaft.
 
 ---
 
-### CCC-Relevanz und Hacktivismus-Potenzial
-Im CCC-Kontext ist FOOD ein Bindeglied zwischen digitaler Selbstermächtigung und physischer Resilienz:
-- **Low-Cost-Sensorik** zur Überwachung von Lagerbedingungen  
-- **Open-Source-Planungstools** für gemeinschaftliche Anbauflächen  
-- **Transparenz-Plattformen** (z. B. Blockchain-basiert) gegen Korruption in Lieferketten  
-- **Algorithmische Bedarfsplanung** zur gerechten Ressourcenallokation
+## 01. Systemischer Kontext
+
+Das Modul FOOD ist im **Existential Ring** des QUESTSYSTEMs verortet.  
+Es bildet gemeinsam mit WATER (02), SHELTER (03), BODY (06) und SLEEP (05) die Basis menschlicher Überlebensfähigkeit.  
+
+FOOD verbindet mehrere Dimensionen:
+- **Physisch:** Nahrungsaufnahme als Grundvoraussetzung für Energie, Immunabwehr und Entwicklung.  
+- **Gesellschaftlich:** Essensversorgung ist eine kollektive Aufgabe und entscheidet über Stabilität oder Zerfall von Gemeinschaften.  
+- **Rechtlich:** Nahrung ist ein verbrieftes Menschenrecht (Art. 11 UN-Sozialpakt²).  
+- **Symbolisch:** Essen ist ein universelles Zeichen für Leben, Gastfreundschaft und Würde.  
+
+**RESETBOX-Beispiel:** Notnahrung (z. B. Riegel, Trockenfrüchte) als Basiskomponente für 72h.  
+**Crosslinks:** [02 – WATER](../modules/02_WATER.md), [25 – FINANCE](../modules/25_FINANCE.md)
 
 ---
 
-### Systemische Vernetzung im QUESTSYSTEM
-FOOD steht in enger Wechselwirkung mit:
-- **02 – WATER**: Bewässerung, Hygiene und Verarbeitung  
-- **03 – SHELTER**: Lagerung und geschützte Verteilräume  
-- **06 – BODY**: Ernährungsspezifische Gesundheitsaspekte  
-- **07 – PSYCHE**: Psychische Stabilität durch Ernährungssicherheit
+## 02. Krisenhintergrund & globale Relevanz
+
+Hunger ist eine der **größten Krisenursachen weltweit**:  
+- **Zahlen:** 2022 litten ca. 735 Millionen Menschen an chronischem Hunger (FAO 2023⁴).  
+- **Ursachen:** Klimakrise (Dürren, Überschwemmungen, IPCC 2019⁵), Kriege (z. B. Ukraine, Jemen), Armut und Nahrungsmittelspekulation.  
+- **Konsequenzen:** Unterernährung erhöht Sterblichkeit (WHO 2020³), führt zu Konflikten und massiver Migration.  
+
+**Fallbeispiele:**  
+- *Ostafrika 2011:* Dürre + politisches Versagen → Hungersnot mit 250.000 Toten.  
+- *Ukraine-Krieg 2022:* Blockierte Getreideexporte verschärften globale Knappheit → direkte Relevanz für [25 – FINANCE](../modules/25_FINANCE.md).  
+- *Deutschland 2023:* 2 Mio. Menschen auf Tafeln angewiesen → Frage der [23 – JUSTICE](../modules/23_JUSTICE.md).  
+
+**RESETBOX-Beispiel:** DROP-Karte mit QR-Link zu lokalen Essensausgaben.  
+**Crosslinks:** [13 – NATURE](../modules/13_NATURE.md), [22 – MIGRATION](../modules/22_MIGRATION.md)
 
 ---
 
-[^1]: IPCC, Climate Change 2023: Synthesis Report.  
-[^2]: FAO, The State of Food Security and Nutrition in the World 2023.  
-[^3]: UNCTAD, Price Formation in Commodity Markets, 2022.  
-[^4]: United Nations, International Covenant on Economic, Social and Cultural Rights (ICESCR), 1966.
+## 03. Juristische Absicherung & Schutzräume
+
+Das Recht auf Nahrung ist mehrfach verankert:  
+- **International:** Art. 11 UN-Sozialpakt² – „Recht auf einen angemessenen Lebensstandard, einschließlich ausreichender Nahrung“.  
+- **Allgemeine Erklärung der Menschenrechte (1948, Art. 25¹).**  
+- **Europa:** EU-Grundrechtecharta (Art. 34⁶).  
+- **Deutschland:** Kein explizites Recht, aber Pflicht durch **Art. 1 GG (Würde)** + **Art. 20 GG (Sozialstaatsprinzip)**.  
+- **Humanitäres Recht:** Genfer Konventionen verbieten Hunger als Waffe.  
+
+Das Modul FOOD schafft **Schutzräume** über Community-Küchen, Saatgutbanken und RESETBOX-Drops.  
+
+**RESETBOX-Beispiel:** STOP-Karte „Right to Food“ – Zugang zu Lebensmittelausgaben auch ohne Ausweis.  
+**Crosslinks:** [14 – HEALTH](../modules/14_HEALTH.md), [23 – JUSTICE](../modules/23_JUSTICE.md)
 
 ---
 
-## Modul 04 – FOOD  
-### Abschnitt 02 – Krisenhintergrund & globale Relevanz (V1.1)
+## 04. Ethische Basis (Dignity Clause)
 
-Die weltweite Ernährungslage befindet sich in einer **chronischen Mehrfachkrise**, in der ökologische, ökonomische, juristische und soziale Risiken gleichzeitig wirken. Ernährungssicherheit ist kein reines Versorgungsproblem, sondern eine Frage von **Menschenrecht, Resilienz und Autonomie**.
+Hunger ist eine **Verletzung der Menschenwürde**. Das Modul FOOD verpflichtet sich der **Dignity Clause** und den **14 Geboten der Menschlichkeit**:  
 
----
+- Niemand darf Nahrung verweigert werden.  
+- Keine Instrumentalisierung von Nahrung als Machtmittel.  
+- Teilen von Nahrung ist eine Grundhandlung der Solidarität.  
+- Nahrung im QUESTSYSTEM ist **nicht-kommerziell** im Kern, Ökonomie tritt sekundär hinzu.  
 
-### 1. Globale Krisenfaktoren
+**Praktische Ethik:**  
+- Gleichheit: Kinder, Alte, Kranke zuerst.  
+- Offenheit: Essen als Gemeingut.  
+- Fürsorge: Gemeinsames Essen auch als psychologische Stütze.  
 
-**Klimawandel & Ökosystemstress**  
-- **Ernteausfälle** durch Dürren, Hitzewellen, Überschwemmungen[^1]  
-- **Bodenverlust** durch Erosion, Versalzung, Übernutzung[^2]  
-- **Bestäuberverlust** und Rückgang wildlebender Arten, kritische Fischbestände[^3]
-
-**Geopolitik & Handelsabhängigkeit**  
-- **Exportstopps** und Blockaden (Ukraine/Russland Weizen 2022)[^4]  
-- **Konzentration bei Saatgut** und Agrochemie (z. B. Bayer-Monsanto, Corteva)  
-- **Preisvolatilität** durch Rohstoffspekulation
-
-**Ungleichheit & Armut**  
-- Ernährungsunsicherheit selbst in wohlhabenden Staaten  
-- **Lebensmittelarmut** als Folge von Inflation und niedrigen Löhnen  
-- **Verdrängung lokaler Märkte** durch globale Handelsketten
+**RESETBOX-Beispiel:** Gemeinschaftskochset (Kochtopf, Mehrweggeschirr) in CARE-Variante.  
+**Crosslinks:** [07 – PSYCHE](../modules/07_PSYCHE.md), [15 – CARE](../modules/15_CARE.md)
 
 ---
 
-### 2. Juristische Dimension
+## 05. Wissenschaftliche Fundierung (Sozio / Medizin / Technik)
 
-- **International:** UN-Sozialpakt (ICESCR) Art. 11 garantiert „das Recht eines jeden auf einen angemessenen Lebensstandard […] einschließlich angemessener Ernährung“.  
-- **Europa:** EU-Grundrechtecharta Art. 34 Abs. 3 verpflichtet zur Bekämpfung sozialer Ausgrenzung.  
-- **Deutschland:** Sozialstaatsprinzip (Art. 20 GG) verpflichtet den Staat zur Sicherung existenzieller Grundbedürfnisse.  
-→ Verletzungen dieser Rechte in Krisenlagen sind **keine Naturkatastrophe**, sondern systemische Versäumnisse.
+### Medizinische Perspektive
+- Unterernährung schwächt Immunsystem und erhöht Sterblichkeit (WHO 2020³).  
+- Fehlernährung → Herz-Kreislauf-Erkrankungen, Diabetes.  
 
----
+### Soziologische Perspektive
+- Nahrungssicherheit reduziert Konflikte und stärkt Gemeinschaft (FAO 2023⁴).  
+- Foodsharing & Tafeln fördern Resilienz in reichen Gesellschaften.  
 
-### 3. Ethischer Rahmen
+### Technische Perspektive
+- **Produktion:** Permakultur, Aquaponik, urbane Landwirtschaft.  
+- **Effizienz:** Hydroponik spart bis zu 90 % Wasser (IPCC 2019⁵).  
+- **Notfall:** Haltbare Rationen, mobile Küchen, Kühlketten mit erneuerbarer Energie.  
 
-- **Dignity Clause:** Nahrung darf niemals als Druckmittel oder Belohnung eingesetzt werden.  
-- **Kulturelle Angemessenheit:** Versorgung muss lokale Esskulturen respektieren.  
-- **Nachhaltigkeit:** Krisenhilfe darf keine langfristigen ökologischen Schäden erzeugen.
-
----
-
-### 4. Lokale Krisendynamik (Beispiel Deutschland/EU)
-
-- Über **85 % des Sojas** für Futtermittel wird importiert[^6]  
-- Rückgang von **Mühlen** und **Verarbeitungsbetrieben** → erhöhte Abhängigkeit von zentralen Strukturen  
-- **Tafel-Boom:** >960 Tafeln in Deutschland, die 2 Mio. Menschen versorgen[^7]  
-- Energieintensive Kühlketten (ca. 8 % des EU-Stromverbrauchs für Lebensmittellogistik[^8])
+**RESETBOX-Beispiel:** QR-Karten mit Offline-Anleitungen für Solarkocher.  
+**Crosslinks:** [20 – ENERGY](../modules/20_ENERGY.md), [06 – BODY](../modules/06_BODY.md)
 
 ---
 
-### 5. Technologische Herausforderungen & CCC-Relevanz
+**Quellen (für Abschnitte 01–05)**  
+1. UN (1948). Allgemeine Erklärung der Menschenrechte.  
+2. UN (1966). International Covenant on Economic, Social and Cultural Rights, Art. 11.  
+3. WHO (2020). Malnutrition Factsheet.  
+4. FAO, IFAD, UNICEF, WFP, WHO (2023). *The State of Food Security and Nutrition in the World*.  
+5. IPCC (2019). *Climate Change and Land*.  
+6. EU (2000). Charter of Fundamental Rights of the European Union, Art. 34.  
 
-- Kühlketten → anfällig für Energieausfälle und Cyberangriffe  
-- Logistiksoftware → Angriffsfläche für Ransomware  
-- Zentralisierte Datenplattformen für Lieferketten → Single Points of Failure
+## 06. Technische Struktur & Varianten
 
-**Open-Source- und Low-Tech-Beispiele:**
-- Solarbetriebene Kühlcontainer für Krisengebiete  
-- Dezentralisierte Aquaponik- und Hydroponiksysteme  
-- Sensorik (Open-Source IoT) gegen Lebensmittelverschwendung  
-- Off-Grid-Food-Processing-Units in standardisierten Containern
+Das Modul FOOD setzt auf eine **mehrschichtige technische Struktur**:  
+1. **RESETBOX-Ebene:** Haltbare Notnahrung (Energieriegel, Trockenfrüchte, Konservendosen), einfache Kochutensilien (Klappkocher, Besteck, Topf).  
+2. **Community-Ebene:** Mobile Küchen, Foodsharing-Hubs, kollektive Kochstellen. Beispiele: *World Central Kitchen* versorgt in Krisen täglich über 250.000 Menschen.  
+3. **Produktions-Ebene:** Urbane Landwirtschaft, Hydroponik-Systeme, Saatgutbanken. Hydroponik spart bis zu **90 % Wasser** gegenüber konventioneller Landwirtschaft (FAO 2022).  
 
----
+### Varianten
+- **BASIC:** Notfallration + Kochset für Einzelpersonen.  
+- **COMMUNITY:** Großküchen-Set, geeignet für bis zu 100 Mahlzeiten/Tag.  
+- **FAMILY:** Kindgerechte Nahrung (Babybrei, laktosefreie Optionen).  
+- **SURVIVAL:** Wildkräuterführer, Angel- und Jagd-Tools, Konservierungsmethoden.  
+- **CARE:** Leicht verdauliche Nahrung für Kranke und Pflegebedürftige, im Einklang mit Patientenrechten.  
 
-### 6. Humanitäre Dringlichkeit
-
-2022 waren **2,4 Mrd. Menschen** von moderater bis schwerer Ernährungsunsicherheit betroffen[^5].  
-Auch in der EU leben laut Eurostat über **8,3 % der Bevölkerung** in Haushalten, die sich **nicht jeden zweiten Tag eine vollwertige Mahlzeit** leisten können[^9].
-
----
-
-### 7. Systemische Verknüpfung im QUESTSYSTEM
-
-FOOD ist eng mit anderen Modulen verbunden:  
-- **WATER (02):** Bewässerung, Hygiene und Lebensmittelverarbeitung  
-- **ENERGY (10):** Kühlung, Verarbeitung, Transport  
-- **SHELTER (03):** Lagerung, Kücheninfrastruktur  
-- **DEVICE (08):** Planung, Monitoring, Bildung  
-- **RESETBOX (01):** Notfallnahrung, Basisrezepte, Krisenkarten
+**RESETBOX-Beispiel:** Faltbarer Spirituskocher + Wasserfilter für Notmahlzeiten.  
+**Crosslinks:** [20 – ENERGY](../modules/20_ENERGY.md), [08 – DEVICE](../modules/08_DEVICE.md)
 
 ---
 
-[^1]: IPCC, Climate Change 2023: Synthesis Report.  
-[^2]: UNCCD, Global Land Outlook 2022.  
-[^3]: IPBES, Global Assessment Report on Biodiversity and Ecosystem Services, 2019.  
-[^4]: FAO, The Importance of Ukraine and the Russian Federation for Global Agricultural Markets, 2022.  
-[^5]: FAO, The State of Food Security and Nutrition in the World 2023.  
-[^6]: WWF, Soja-Report Deutschland 2021.  
-[^7]: Bundesverband Deutsche Tafeln e. V., Jahresbericht 2023.  
-[^8]: European Commission, Energy Efficiency in the Food Cold Chain, 2020.  
-[^9]: Eurostat, Inability to afford a meal with meat, fish or equivalent every second day, 2023.
+## 07. Psychologische Wirkung & intuitive Nutzung
+
+Essen ist nicht nur Nährstoffversorgung, sondern auch **emotionale Stabilisierung**:  
+- **Gemeinschaftsmahlzeiten:** stärken Zugehörigkeit, Vertrauen und Sinnhaftigkeit. Studien zeigen, dass gemeinsames Essen soziale Kohäsion und Resilienz fördert (Dunbar 2017).  
+- **Traumakontexte:** warme, vertraute Mahlzeiten reduzieren Angst und Flashbacks (WHO 2019, Guidelines on Mental Health in Emergencies).  
+- **Kinder:** regelmäßige Mahlzeiten schaffen Sicherheit und Normalität.  
+- **Essstörungen:** sensible Zuteilung und nicht-stigmatisierende Verteilung verhindern Retraumatisierung.  
+
+**Praxis:**  
+- Essensausgabe mit festen Zeiten → Struktur und Orientierung.  
+- Familien- oder Gruppentische → sozialer Halt.  
+- Intuitive Nutzung: Piktogramme für Allergien, vegetarisch/halal etc.  
+
+**RESETBOX-Beispiel:** Ritualkarten mit einfachen Rezepten („1-Topf-Gericht“) für Gemeinschaftsessen.  
+**Crosslinks:** [07 – PSYCHE](../modules/07_PSYCHE.md), [16 – FAMILY](../modules/16_FAMILY.md)
 
 ---
 
-# Modul 04 – FOOD  
-## Abschnitt 03 – Juristische Absicherung & Schutzräume (V1.1)
-
-Das Recht auf Ernährung ist international anerkannt, jedoch in Krisen, Kriegen und unter bestimmten politischen Rahmenbedingungen oft nicht durchgesetzt. FOOD im QUESTSYSTEM schafft einen rechtlich und ethisch abgesicherten Rahmen, um **Schutzräume** zu sichern und **Zugang zu Nahrung** ohne Diskriminierung zu gewährleisten.
-
----
-
-### 1. Internationale Rechtsgrundlagen
-- **UN-Sozialpakt (ICESCR), Art. 11** – Verpflichtet Staaten, Verfügbarkeit, Zugänglichkeit und Angemessenheit von Nahrung zu gewährleisten.  
-- **Allgemeine Erklärung der Menschenrechte (AEMR), Art. 25** – Recht auf ausreichende Ernährung als Teil des Lebensstandards.  
-- **FAO Right to Food Guidelines (2004)** – Konkrete Umsetzungsrichtlinien für Staaten und Organisationen.  
-- **Humanitäres Völkerrecht (Genfer Konventionen & Zusatzprotokolle)** – Verpflichtet Konfliktparteien, Zivilpersonen mit Nahrungsmitteln zu versorgen und keine Hungerblockaden einzusetzen.
-
-### 2. Europäische Ebene
-- **Charta der Grundrechte der EU**, Art. 34(3) – Recht auf soziale Unterstützung und menschenwürdiges Leben.  
-- **EU-Verordnung 2012/29/EU** – Opferhilferichtlinie, auch relevant bei Katastrophenfällen.  
-- **EU Civil Protection Mechanism** – Koordiniert grenzüberschreitende Hilfen und Lebensmittelversorgung in Katastrophen.  
-- **Gemeinsame Agrarpolitik (GAP)** – Fördert Nahrungsmittelsicherheit, ist aber oft von Marktinteressen beeinflusst.
-
-### 3. Nationale Ebene (Beispiel Deutschland)
-- **Grundgesetz**, Art. 20 – Sozialstaatsprinzip, Pflicht zur Sicherung der Grundbedürfnisse.  
-- **Lebensmittel- und Futtermittelgesetzbuch (LFGB)** – Sicherheitsstandards und Verbraucherschutz.  
-- **Zivilschutz- und Katastrophenhilfegesetz (ZSKG)** – Verpflichtung zur Bevorratung und Notversorgung.  
-- **Lebensmittelrettung & Tafeln** – rechtliche Grauzonen bei Haltbarkeitsdaten und Spendenregelungen.
-
-### 4. Juristische Streitpunkte
-- **Lieferkettenmonopole** – Konzerne kontrollieren Preise und Verfügbarkeit.  
-- **Exportabhängigkeit** – Importstopp oder Sanktionen führen zu Engpässen.  
-- **Austeritätspolitik** – Kürzungen bei Sozialleistungen verschärfen Ernährungskrisen.  
-- **Regulatorische Hürden** – Hygienevorschriften können spontane Nothilfe behindern.
-
-### 5. Schutzräume & Handlungsspielräume
-- **Offene Küchen & Gemeinschaftslager** – Zugang ohne Bedürftigkeitsnachweis.  
-- **Mobile Notversorgungsstellen** – Betrieb auch bei Stromausfall (Verknüpfung zu ENERGY).  
-- **Solidarische Landwirtschaft & urbane Gärten** – Dezentralisierte Versorgung.  
-- **RESETBOX-Integration** – Haltbare Grundnahrungsmittel, Wasserfilter, Notkochsets.  
-- **Digitale Food Hubs** (Open Source) – Transparenz in Lagerbeständen, Datenschutz beachtet.
-
-### 6. Ethischer Rahmen – Dignity Clause
-> „Hilfe darf niemals an Gehorsam geknüpft sein, und niemand darf gezwungen werden, sich zu erniedrigen, um Zugang zu Nahrung zu erhalten.“
-
-### 7. CCC-relevante Schnittstellen
-- **Offene Sensorik** für Kühlkettenüberwachung ohne zentrale Abhängigkeiten.  
-- **Open-Source-Lieferketten** für Katastrophenhilfe.  
-- **Offline-Datenbanken** mit Nahrungsmittelverfügbarkeit in Krisengebieten.
-
-### 8. Modulvernetzung
-FOOD ist direkt verknüpft mit:  
-- **WATER (02)** – Trinkwasser als Grundlage für Nahrungszubereitung  
-- **SHELTER (03)** – Geschützter Ort zum Kochen und Lagern  
-- **ENERGY (10)** – Kochen, Kühlung, Konservierung  
-- **DEVICE (08)** – Offline-Rezepte, Lagerlisten, Koordinationssoftware  
-- **RESETBOX (01)** – Notfallnahrungsmittel und Kochsets als physische Soforthilfe
-
----
-
-# Modul 04 – FOOD
-## Abschnitt 04 – Ethische Basis (Dignity Clause) – Version 1.2
-
-### Kernprinzip
-Die **Dignity Clause** im Kontext von Ernährung besagt: *„Hilfe darf niemals an Gehorsam, Gegenleistungen oder Aufgabe von Rechten gebunden sein.“*
-Dies gilt absolut und ohne Ausnahme – unabhängig von Herkunft, Status oder Umständen.
-
-### Ethische Grundlage
-- **Würde** ist unteilbar: Zugang zu Nahrung ist ein Menschenrecht (Art. 25, Allgemeine Erklärung der Menschenrechte).
-- **Kein Tauschhandel mit Würde**: Essen darf nicht als Druckmittel eingesetzt werden.
-- **Unabhängigkeit**: Hilfe muss so gestaltet sein, dass Menschen nicht in dauerhafte Abhängigkeiten geraten.
-
-### Internationale Standards & Quellen
-- **IFRC Code of Conduct** – International Federation of Red Cross and Red Crescent Societies
-- **Sphere Standards** – Kapitel Ernährungssicherheit & Nothilfe
-- **FAO Ethical Guidelines for Emergency Food Aid**
-- **UN Committee on Economic, Social and Cultural Rights – General Comment No. 12** (Right to Adequate Food)
-
-### Kulturelle & Religiöse Sensibilität
-- Berücksichtigung kultureller Essgewohnheiten und religiöser Vorschriften (z. B. Halal, Kosher, vegetarisch/vegan).
-- Keine erzwungenen Anpassungen an fremde Ernährungsweisen in Hilfssituationen.
-
-### Missbrauchsverhütung
-- **Keine Datenpflicht** für Essensausgabe (kein Tracking, keine biometrische Erfassung).
-- **Keine Gegenleistungspflicht** (Arbeit, Dienste, politische Unterstützung).
-- **Offene Auditierung** der Versorgungsketten (Open-Source-Standards, CCC-relevant).
-
-### CCC-Relevanz
-- Förderung **transparenter, überprüfbarer Lebensmittelhilfen** mit offenen Standards.
-- Entwicklung von **Open-Source-Audit-Tools**, um Missbrauch zu verhindern.
-- Einsatz von **verifizierbaren Supply-Chain-Logs** (Blockchain/Open Ledger), um Manipulationen auszuschließen.
-
-### Modulvernetzung
-- **RESETBOX** – Nahrungsmittelkomponenten & Kochmöglichkeiten
-- **WATER** – Wasser für Zubereitung und Hygiene
-- **SHELTER** – Schutzräume für sichere Essensausgabe
-- **ENERGY** – Kochenergie & Kühlung
-- **DEVICE** – Offene Tools für Informations- & Logistikkoordination
-
----
-*Version 1.2 – erweitert um ethische Standards, kulturelle Sensibilität, Missbrauchsverhütung und CCC-relevante Audits.*
-
----
-
-# Modul 04 – FOOD
-## Abschnitt 05 – Wissenschaftliche Fundierung (Sozio/Medizin/Technik) – V1.2
-
-### 1. Soziologische Fundierung
-Nahrung ist nicht nur ein biologisches Grundbedürfnis, sondern auch ein zentrales Element sozialer Stabilität, kultureller Identität und gesellschaftlicher Teilhabe. 
-Laut FAO litten im Jahr 2024 etwa **735 Millionen Menschen** an chronischem Hunger (FAO, *The State of Food Security and Nutrition in the World 2024*). 
-Hunger wirkt als Multiplikator für Konflikte, Fluchtbewegungen und politische Instabilität.
-
-**Zentrale Faktoren:**
-- Ungleichverteilung durch globale Handelsstrukturen
-- Spekulation auf Nahrungsmittelmärkten
-- Politische Blockaden und Krieg als Ursache für Versorgungslücken
-
-### 2. Medizinische Fundierung
-Die WHO und der Lancet-Report (2019) belegen, dass Unter- und Mangelernährung direkt mit erhöhter Kindersterblichkeit, reduzierter kognitiver Entwicklung und erhöhter Anfälligkeit für Krankheiten korrelieren.
-
-**Medizinische Kernpunkte:**
-- Mindestenergiebedarf in Krisensituationen: **2.100 kcal/Person/Tag** (Sphere Handbook, 2018)
-- Zusammenhang von Ernährung und **WASH** (Water, Sanitation, Hygiene) zur Vermeidung von Durchfallerkrankungen
-- Bedeutung von Mikronährstoffen (Vitamin A, Eisen, Zink) für Immunstabilität
-
-### 3. Technische Fundierung
-Effiziente Versorgungssysteme erfordern **Redundanzstrategien** und die Integration von **Low-Tech- sowie High-Tech-Lösungen**.
-
-**Low-Tech-Beispiele:**
-- **Tontopf-Kühlsystem** („Zeer Pot“) zur passiven Kühlung von Lebensmitteln
-- **Solar-Kocher** zur energieautarken Essenszubereitung
-- **Raketenofen** (Rocket Stove) für effizientes Kochen mit minimalem Brennstoff
-
-**High-Tech-Beispiele:**
-- Offene Baupläne für **Solar-Kühlcontainer**
-- Open-Source-Software zur Lagerverwaltung und Verteilungslogistik
-- CCC-taugliche **Mesh-Netzwerke** für Koordination bei Versorgungsausfällen
-
-### 4. Interdisziplinäre Schnittstellen
-Neben Medizin, Technik und Soziologie muss die politische Ökonomie berücksichtigt werden: 
-Agrarsubventionen, Patentrecht (z. B. Saatgutmonopole) und internationale Handelsabkommen (WTO, CETA) beeinflussen die globale Ernährungssicherheit massiv.
-
-### 5. Quellen
-- FAO. *The State of Food Security and Nutrition in the World 2024*. DOI:10.4060/cc4279en
-- WHO. *Micronutrient deficiencies*. 2023. https://www.who.int/health-topics/micronutrients
-- The Sphere Project. *Sphere Handbook*, 2018. https://spherestandards.org/
-- The Lancet. *The Global Syndemic of Obesity, Undernutrition, and Climate Change*, 2019. DOI:10.1016/S0140-6736(18)32822-8
-
----
-
-# MODUL_04_FOOD_ABSCHNITT_06 – Technische Struktur & Box-Typen (V1.1)
-
-## 06. Technische Struktur & Box-Typen
-
-Dieser Abschnitt definiert die technischen Spezifikationen, Varianten und modularen Erweiterungen der FOOD-Komponente innerhalb des QUESTSYSTEMS. Ziel ist es, unter allen Umständen eine **sichere, würdige und energieeffiziente Lebensmittelversorgung** zu gewährleisten.
-
----
-
-### 6.1 Grundprinzipien
-- **Modularität:** Anpassung an Zielgruppen, Regionen und Krisenszenarien.
-- **Offene Standards:** Nutzung von Open-Source-Bauplänen und frei zugänglichen Rezepturen.
-- **Interoperabilität:** Kompatibilität mit allen RESETBOX-Varianten (SURVIVAL, CARE, BLACKOUT, etc.).
-- **Redundanz:** Mehrere Versorgungswege (Trockenware, Frischware, Konserven).
-- **Barrierefreiheit:** Einfache Handhabung, auch bei eingeschränkter Mobilität oder Sicht.
-
----
-
-### 6.2 Box-Typen & Stücklisten (BoM)
-
-| Box-Typ | Ziel | Kapazität | BoM (Beispiel) |
-|---------|------|-----------|----------------|
-| **FOOD: BASIC** | 72h Eigenversorgung | 10kg | Trockenware (Reis 2kg, Linsen 2kg, Hafer 2kg), Multivitaminpräparate, Wasserfilter, Handmühle, Klappkocher, Feuerstahl, Kochgeschirr |
-| **FOOD: COMMUNITY** | Versorgung von 10–15 Personen für 1 Woche | 80kg | Sackreis 25kg, Bohnen 20kg, Öl 10L, Salz 5kg, Gewürze, Gaskocher 2-flammig, Ersatzkartuschen, Großtöpfe, Solarlampe |
-| **FOOD: BLACKOUT** | Krisenversorgung bei Stromausfall | 15kg | Fertiggerichte (Retortenspeisen), Trinkwasserbehälter 10L, Wasserentkeimungstabletten, Campingkocher Spiritus, Warmhaltebehälter |
-| **FOOD: CARE** | Für Pflege- und Gesundheitseinrichtungen | 20kg | Hochkalorische Trinknahrung, leicht kaubare Lebensmittel, sterile Trinkwasserpacks, elektrischer Wasserkocher (12V/230V), Breimixer |
-| **FOOD: FIELD** | Mobile Einsätze / Katastrophengebiete | 25kg | MREs (Meal-Ready-to-Eat), Energy Bars, Wasserfilterpumpe, Faltkanister, Multifuel-Kocher, Einweggeschirr biologisch abbaubar |
-
----
-
-### 6.3 Haltbarkeit & Lagerstrategien
-- **Trockenware:** 12–24 Monate, dunkel & trocken lagern.
-- **Konserven:** 2–5 Jahre, kühl lagern.
-- **Gefriergetrocknet:** 5–10 Jahre.
-- **Rotation:** „First in, first out“-Prinzip.
-- **Krisenlager:** In Quartalsintervallen überprüfen.
-- **Notfallbevorratung:** Kombination aus zentralen Depots und dezentralen Einzelboxen.
-
----
-
-### 6.4 Energiebedarf & Versorgung
-| Anwendung | Energiebedarf | Quelle |
-|-----------|---------------|--------|
-| Wasserkochen (1L) | ca. 0,1 kWh | Gaskocher, Spiritus, Solar |
-| Kühlbox (24h) | 0,5–1,2 kWh | Solar, 12V-Akku, Netz |
-| Lebensmittelmix (Mixer 5min) | 0,05 kWh | 12V/230V Akku |
-| LED-Licht (8h) | 0,02 kWh | Solar, Akku |
-
----
-
-### 6.5 Rechtliche Grundlagen
-- **EU-Lebensmittelhygieneverordnung (EG) Nr. 852/2004** – Anforderungen an Hygiene.
-- **HACCP-Konzept** verpflichtend bei organisierter Verteilung.
-- **Lebensmittelspendenrecht (EU & national)** – Haftung und Transportbestimmungen.
-- **WHO Food Safety Guidelines** – internationale Standards.
-
----
-
-### 6.6 Modulverknüpfung (QUESTSYSTEM)
-| Verbundenes Modul | Funktion |
-|-------------------|----------|
-| WATER (02) | Trinkwasserbereitstellung & Reinigung |
-| SHELTER (03) | Kochen & Lagerung in geschützten Räumen |
-| ENERGY (10) | Energie für Kochen, Kühlung, Beleuchtung |
-| DEVICE (08) | Offline-Rezepte, Nährwertdatenbanken |
-| DEBT (09) | Finanzierung / Food Aid |
-| MOVE (15) | Transportlogistik |
-| CARE (RESETBOX) | Medizinisch angepasste Ernährung |
-
----
-
-### 6.7 Visualisierung & Barrierefreiheit
-- **Piktogramme** für jede Lebensmittelkategorie.
-- **Farbkodierung** nach Haltbarkeit.
-- **QR-Codes** zu Rezepten, Kochanleitungen & Sicherheitsinfos.
-- **Leichte Sprache**-Version für Einsatz in heterogenen Gruppen.
-
----
-
-# Modul 04 – FOOD  
-## Abschnitt 07 – Psychologische Wirkung & intuitive Nutzung (V1.1)
-
----
-
-### 1. Psychologische Wirkung von Nahrungsmitteln in Krisensituationen
-
-Nahrung erfüllt in Extremsituationen nicht nur eine physiologische Funktion, sondern wirkt auch als **psychologischer Anker**. Bereits geringe Mengen vertrauter Speisen können Stresshormone reduzieren, die soziale Kohäsion stärken und das subjektive Sicherheitsempfinden erhöhen.  
-Studien der **WHO (2022)** und der **Katastrophenpsychologie** zeigen, dass der Zugang zu Nahrung, die kulturell akzeptiert und individuell verträglich ist, ein entscheidender Faktor für Resilienz ist.
-
-**Kerneffekte:**
-- **Stressreduktion**: Bekannte Aromen aktivieren das limbische System und reduzieren Cortisolspiegel.
-- **Identitätserhalt**: Vertraute Lebensmittel stärken das Gefühl der Kontinuität trotz Umgebungskollaps.
-- **Soziale Bindung**: Gemeinsames Essen erhöht Gruppenkohäsion und reduziert Konflikte.
-
----
-
-### 2. Intuitive Nutzung
-
-Die intuitive Nutzung bedeutet, dass Menschen – unabhängig von Bildung, Kultur oder kognitiven Fähigkeiten – ohne Anleitung verstehen, wie Lebensmittel entnommen, zubereitet oder konsumiert werden können.  
-Das Konzept orientiert sich an **Universal Design** und **Barrierefreiheit**:
-
-- **Visuelle Klarheit**: Farbcodierungen und Piktogramme (z. B. Wasserkocher-Symbol für Kochbedarf).
-- **Haptische Führung**: Unterschiedliche Verpackungshaptik zur Unterscheidung von Lebensmittelarten.
-- **Minimierte Schritte**: Keine komplexen Zubereitungsprozesse in Notsituationen.
-
----
-
-### 3. Matrix: Psychologische Wirkung vs. Intuitive Nutzung
-
-| Aspekt | Psychologische Wirkung | Intuitive Nutzung |
-|--------|------------------------|-------------------|
-| **Bekannte Speisen** | Emotionale Stabilität, Identitätsbewahrung | Hohe Wiedererkennung, geringe Fehlerquote |
-| **Einfache Verpackung** | Reduziert Frustration | Sofortige Handhabung ohne Werkzeuge |
-| **Geruch/Aroma** | Aktiviert positive Erinnerungen | Erleichtert Identifikation |
-| **Gemeinschaftsgericht** | Fördert soziale Interaktion | Ermöglicht geteilte Zubereitung |
-
----
-
-### 4. Kulturelle und soziale Anpassung
-
-Lebensmittel müssen **kulturell kompatibel** sein, um ihre psychologische Wirkung zu entfalten. In multikulturellen Kontexten bedeutet dies:
-- **Mehrsprachige Etikettierung**
-- Berücksichtigung **religiöser Speisevorschriften** (z. B. halal, koscher, vegetarisch/vegan)
-- Berücksichtigung allergischer Risiken und **Allergenkennzeichnung nach EU-Lebensmittelkennzeichnungsverordnung (LMIV)**
-
----
-
-### 5. Rechtliche Rahmenbedingungen
-
-- **EU-LMIV (VO Nr. 1169/2011)**: Pflicht zur Allergenkennzeichnung, klare Mindesthaltbarkeitsangaben.  
-- **HACCP** (Hazard Analysis and Critical Control Points): Minimierung von Lebensmittelrisiken im gesamten Prozess.  
-- Nationale Notfallverordnungen: Temporäre Lockerung bestimmter Verpackungsanforderungen möglich, ohne die Lebensmittelsicherheit zu gefährden.
-
----
-
-### 6. Trauma- und Stresskontext
-
-Bei akuten Stress- oder Traumabelastungen sinkt die **kognitive Verarbeitungskapazität**. Nahrung muss deshalb so gestaltet und verpackt sein, dass auch **unter Schockzuständen** eine problemlose Versorgung möglich ist.  
-Beispiel:  
-- **Einhand-Öffnung** für verletzte Personen  
-- Klare, kontrastreiche Kennzeichnungen für sehschwache Personen  
-- Vermeidung von starkem Verpackungslärm in PTSD-Kontexten (Triggerprävention)
-
----
-
-### 7. Fallbeispiele
-
-1. **Blackout 2022, Mitteleuropa**: Bereitstellung warmer, einfacher Eintopfgerichte führte zu deutlichem Rückgang von Panikreaktionen in Notunterkünften.  
-2. **Flutkatastrophe Ahrtal 2021**: Verteilung von vertrauten regionalen Speisen erhöhte Kooperationsbereitschaft und Unterstützungsnetzwerke.  
-3. **Syrische Geflüchtetenlager, Türkei**: Kulturell angepasste Speisen verhinderten Nahrungsverweigerung und Mangelernährung.
-
----
-
-### 8. Cross-Module-Verknüpfungen
-
-- **Modul 02 – WATER**: Getränkeversorgung, Hygiene, Geschmackskomponenten.  
-- **Modul 05 – SLEEP**: Einfluss von Ernährung auf Schlafqualität in Krisensituationen.  
-- **Modul 07 – PSYCHE**: Psychologische Stabilisierung durch Ernährung.  
-- **Modul 09 – DEBT**: Zugang zu Nahrungsmitteln trotz finanzieller Barrieren.
-
----
-
-### 9. Evaluationskriterien
-
-- **Zugriffszeit**: Zeit vom Öffnen der Box bis zum Verzehr (Ziel: < 3 Minuten)  
-- **Akzeptanzquote**: Anteil der Zielgruppe, der angebotene Speisen konsumiert (> 90 %)  
-- **Stresslevel**: Messung per Cortisol oder Befragung vor und nach Nahrungsaufnahme  
-- **Fehlerquote**: Anteil fehlerhafter Nutzung (falsche Zubereitung, Verpackungsprobleme)
-
----
-
-### 10. Quellen
-
-- WHO (2022): *Food and Nutrition in Emergencies*  
-- FAO (2021): *Emergency Food Security Assessment Handbook*  
-- EU-LMIV (VO Nr. 1169/2011)  
-- Sphere Project (2018): *Humanitarian Charter and Minimum Standards in Humanitarian Response*  
-- Deutsches Rotes Kreuz (2020): *Ernährungspsychologie im Katastrophenschutz*
-
----
+## 08. Didaktik & Barrierefreiheit
+
+Das Modul FOOD vermittelt Wissen, das **unabhängig von Bildung oder Sprache** nutzbar ist:  
+- **Rezepte in Piktogrammen** (z. B. „Reis + Wasser + Kochen = Mahlzeit“).  
+- **QR-Codes:** Offline abrufbare Kochanleitungen, Videos.  
+- **Workshops:** Community-Kochkurse, Ernährungsbildung für Kinder.  
+- **Multimodale Didaktik:** Audio-Versionen für Blinde, Gebärdensprache-Videos, taktile Karten für Analphabet:innen.  
+
+**RESETBOX-Beispiel:** Laminierte Karten mit Basisrezepten und Hygienehinweisen.  
+**Crosslinks:** [11 – SCHOOL](../modules/11_SCHOOL.md), [24 – COMMUNITY](../modules/24_COMMUNITY.md)
 
 ---
 
 ## 09. Variantenmatrix & Zielgruppen
 
-### Zielsetzung
-Die Variantenmatrix dient dazu, **FOOD** an unterschiedliche Zielgruppen, Krisenszenarien und kulturelle Rahmenbedingungen anzupassen, ohne dabei die Grundprinzipien von Sicherheit, Würde und Nachhaltigkeit zu verletzen. Jede Variante ist modular erweiterbar und in der RESETBOX oder als eigenständige Versorgungseinheit nutzbar.
+Das Modul FOOD passt sich an unterschiedliche Zielgruppen an:  
+
+| Variante       | Zielgruppe              | Besonderheiten                                                |
+|----------------|------------------------|---------------------------------------------------------------|
+| BASIC          | Einzelpersonen         | Kompakte Rationen, schnell zubereitbar.                       |
+| COMMUNITY      | Nachbarschaften/NGOs   | Mobile Küche, Großtöpfe, Hygiene-Sets.                        |
+| FAMILY         | Familien mit Kindern   | Babybrei, kindgerechte Mahlzeiten, Snacks.                    |
+| SURVIVAL       | Outdoor/Flucht         | Wildpflanzenführer, Trockennahrung, Dehydrierungstechniken.   |
+| CARE           | Pflege/Ältere Menschen | Leichte Kost, pürierte Mahlzeiten, im Einklang mit Pflegerecht.|
+
+**RESETBOX-Beispiel:** CARE-Version mit pürierter Nahrung, Strohhalmen, Mehrweggeschirr.  
+**Crosslinks:** [15 – CARE](../modules/15_CARE.md), [17 – ANIMAL](../modules/17_ANIMAL.md) (Tierernährung in Krisen)
 
 ---
 
-### Variantenübersicht
+## 10. Modulverknüpfung mit allen 42 QUEST-Modulen
 
-| Variante | Mindestinhalt | Maximalinhalt | Zielgruppen | Spezielle Anforderungen | Bevorzugt bei | Messmethode |
-|----------|---------------|--------------|-------------|--------------------------|---------------|-------------|
-| **FOOD:BASIC** | Haltbare Trocken- und Konservenware, Wasserfilter-QR, Nährwertangaben | Frische Zusatzkomponenten, Kultur-spezifische Produkte | Allgemeinbevölkerung in akuten Notlagen | Einfache Lagerung | Erstversorgung nach Katastrophen | Nährstoffbilanzierung, Haltbarkeitsprüfung |
-| **FOOD:LONGTERM** | Hochkalorische Langzeitlebensmittel (z. B. BP-5), Basisgewürze | Diversifizierte Vollernährungspakete | Langzeitvertriebene, abgelegene Regionen | 12–24 Monate Haltbarkeit | Blockaden, Isolation | Lagerstabilität, Energiegehalt |
-| **FOOD:KIDS** | Kindgerechte, leicht verdauliche Produkte | Milchpulver, Snacks, pädagogische Essmaterialien | Familien, Schulen, Kinderheime | Keine Zusatzstoffe, allergenarm | Versorgung von Minderjährigen | Altersgerechte Portionsanalyse |
-| **FOOD:CARE** | Leicht kaubare, nährstoffreiche Mahlzeiten | Spezielle Diäten (z. B. für Diabetes) | Pflegeheime, Kliniken, mobile Pflege | Medizinisch abgestimmt | Medizinisch vulnerabel | Arztfeedback, Gesundheitsparameter |
-| **FOOD:CULTURE** | Basisprodukte lokaler Küche | Regionale Spezialitäten | Migrant:innen, kulturelle Minderheiten | Einhaltung religiöser Speisegesetze | Integration & Akzeptanzförderung | Zielgruppenbefragung |
-| **FOOD:EMERGENCY** | Hochkompakte Rationen, Wasseraufbereitung | Notfallkocher, Warmhaltebehälter | Einsatzkräfte, Evakuierte | Minimalzubereitung, sofort essbar | Blackout, Evakuierung | Einsatzfeedback |
+FOOD ist stark vernetzt – Ernährung hängt von mehreren Faktoren ab:  
 
----
+- [02 – WATER](../modules/02_WATER.md): unverzichtbar zur Zubereitung.  
+- [06 – BODY](../modules/06_BODY.md): Hygiene bei Kochen/Verteilen.  
+- [07 – PSYCHE](../modules/07_PSYCHE.md): Essen als psychische Stabilisierung.  
+- [13 – NATURE](../modules/13_NATURE.md): Landwirtschaft, Biodiversität.  
+- [14 – HEALTH](../modules/14_HEALTH.md): Ernährung als Gesundheitsfaktor.  
+- [20 – ENERGY](../modules/20_ENERGY.md): Kochen, Kühlung, Konservierung.  
+- [23 – JUSTICE](../modules/23_JUSTICE.md): Ernährungsgerechtigkeit, Sozialleistungen.  
+- [25 – FINANCE](../modules/25_FINANCE.md): Zugang zu Märkten, Kaufkraft.  
+- [24 – COMMUNITY](../modules/24_COMMUNITY.md): Gemeinsames Essen als Bindeglied.  
 
-### Kulturelle & Regionale Anpassung
-- **Religiös**: Halal, Koscher, vegetarisch/vegan nach Kontext
-- **Regional**: Integration lokaler Grundnahrungsmittel
-- **Saisonal**: Berücksichtigung klimatischer Lagerungsbedingungen
+**RESETBOX-Beispiel:** QR-Karte „Food & Finance“ → Infos zu lokalen Essensausgaben und Sozialleistungen.  
 
 ---
 
-### Logistik & Lagerung
-- Verpackungsformen: Vakuum, Dosen, Tetra Pak
-- Transport: Standard-Eurobox, mobile DROP-Einheiten
-- Lagerdauer: Mindestens 12 Monate, ideal bis 24 Monate
+**Quellen (für Abschnitte 06–10)**  
+1. FAO (2022). *The State of Food and Agriculture*.  
+2. World Central Kitchen (2023). Einsatzberichte.  
+3. Dunbar, R. (2017). Breaking Bread: The Functions of Social Eating. *Adaptive Human Behavior and Physiology*.  
+4. WHO (2019). *Mental Health in Emergencies: Guidance Package*.  
+5. Sphere Association (2018). *Sphere Handbook: Minimum Standards in Food Security and Nutrition*.  
+
+## 11. Anwendungsszenarien (realweltlich)
+
+Das Modul FOOD wird in unterschiedlichen Krisenszenarien wirksam:  
+
+- **Blackout (Europa 2021):** Stromausfälle führten zu unterbrochenen Kühlketten. Haltbare Notrationen in der RESETBOX sichern Grundversorgung (Sphere 2018³).  
+- **Flucht (Syrien, Ukraine):** Kompakte, leicht transportierbare Rationen (z. B. High-Energy-Biscuits, WFP-Standard¹) retten Leben.  
+- **Community (Deutschland):** Tafeln und Foodsharing-Initiativen sichern Millionen Mahlzeiten jährlich. FOOD integriert diese Strukturen in eine offene Architektur → Bezug zu [23 – JUSTICE](../modules/23_JUSTICE.md).  
+- **Langzeit (Kuba 1990er):** Urbane Landwirtschaft nach Wegfall der Sowjetimporte zeigt, wie Communities resiliente Ernährungssysteme aufbauen können (FAO 2019²).  
+
+**RESETBOX-Beispiel:** 3-Tages-Notration (2000–2500 kcal/Tag), ergänzt durch Anleitung für lokale Essensausgabestellen.  
+**Crosslinks:** [34 – SECURITY](../modules/34_SECURITY.md), [41 – FUTURE](../modules/41_FUTURE.md), [23 – JUSTICE](../modules/23_JUSTICE.md)
 
 ---
 
-### Synergie mit anderen Modulen
-- **RESETBOX**: FOOD-Varianten als Kerninhalt in Notfall- und Care-Versionen
-- **DROP**: Schnellverteilungspunkte für FOOD:EMERGENCY und FOOD:BASIC
-- **RESET:LOG**: Dokumentation der Ausgabemengen und Nachschubzyklen
-- **WORK**: Einbindung lokaler Produktionskapazitäten
-- **LICENCE**: Sicherstellung der nicht-kommerziellen Nutzung in Krisen
-
----
-
-### Priorisierung & Matching-Mechanismus
-1. **Dringlichkeit** (akut lebensbedrohlich > chronisch bedarfsgedeckt)
-2. **Vulnerabilität** (Kinder, Alte, Kranke zuerst)
-3. **Versorgungslücke** (Gebiete ohne Infrastruktur priorisieren)
-4. **Kulturelle Akzeptanz** (Vermeidung von Food Waste durch Nicht-Akzeptanz)
-
----
-
----
-
-# Modul 04 – FOOD  
-## Abschnitt 08 – Didaktik & Barrierefreiheit (V1.1)
-
-### 1. Zielsetzung
-Dieser Abschnitt beschreibt, wie Ernährungskompetenz und Zugänglichkeit im Modul FOOD so gestaltet werden, dass **alle Menschen**, unabhängig von Fähigkeiten, Sprache, Bildungshintergrund oder Krisensituation, Zugang zu Wissen, Werkzeugen und sicheren Nahrungsquellen haben. Didaktische Konzepte und Barrierefreiheit sind hier **gleichwertige Kernanforderungen**.
-
----
-
-### 2. Didaktische Grundlagen
-- **Komplexitätsreduktion:** Fachbegriffe werden vermieden oder erklärt. Nutzung von Piktogrammen, Schritt-für-Schritt-Anleitungen und Symbolkarten.  
-- **Multisensorische Ansprache:** Kombination aus visuellen, auditiven und haptischen Elementen (z. B. Reliefkarten für Rezepte).  
-- **Gamification:** Lernspiele (analog/digital), um Hygieneregeln und Nahrungszubereitung zu üben.  
-- **Praxisorientierung:** Live-Demos, Kochstationen, mobile Küchen.  
-- **RESETBOX/DROP-Integration:** Die RESETBOX enthält barrierefreie Rezeptkarten, QR-Codes zu Offline-Videos (Kiwix) und Drop-Karten mit Symbolen, die auch in Krisen ohne Strom nutzbar sind.
-
----
-
-### 3. Barrierefreiheit
-- **Visuell:** Hoher Kontrast, große Schrift, Blindenschrift.  
-- **Auditiv:** Audiodeskriptionen, Gebärdensprachvideos.  
-- **Motorisch:** Einhandbedienbare Geräte, adaptive Schneidebretter.  
-- **Kognitiv:** Leichte Sprache, klare Schrittfolge, Symbolunterstützung.  
-- **Digital:** Offline-Zugriff (Kiwix), barrierefreie Websites.  
-- **Notfallkontexte:** Alle Materialien auch ohne Strom/Wasser funktionsfähig (z. B. Solar-Lampen, wasserfeste Anleitungen). Anwendbar in Blackouts, Naturkatastrophen, Massenunterkünften.
-
----
-
-### 4. Juristische Rahmenbedingungen
-- **UN-BRK** (Übereinkommen über die Rechte von Menschen mit Behinderungen) – Art. 9 (Zugänglichkeit).  
-- **LMIV** (Lebensmittelinformationsverordnung) – Art. 14 ff. (Kennzeichnungspflichten).  
-- **HACCP** – Hygienevorschriften, auch bei provisorischen Küchen.  
-- **EU-Richtlinie 2019/882** (European Accessibility Act) – Verbindlich für digitale und physische Produkte/Dienstleistungen ab 2025.
-
----
-
-### 5. Wissenschaftliche Fundierung
-- **FAO (2023):** „Inclusive Food Systems for All“ – Zugang zu Ernährungskompetenz erhöht Resilienz.  
-- **WHO (2022):** Empfehlungen zu inklusiven Gesundheits- und Ernährungsprogrammen.  
-- **Aktuelle Studien:** Ernährungspädagogik unter Stress (z. B. Flucht, Katastrophen) erfordert vereinfachte, visuell gestützte Methoden.
-
----
-
-### 6. Cross-Module-Verbindungen
-- **WATER (02):** Wasseraufbereitung als integraler Bestandteil der Nahrungszubereitung.  
-- **PSYCHE (07):** Kochen als psychologische Stabilisierung.  
-- **SCHOOL (11):** Integration in Bildungsprogramme.  
-- **MOVE (15):** Mobile Küchen & Outreach.  
-- **WORK (10):** Berufliche Qualifizierung im Ernährungsbereich.  
-- **LICENCE (32):** Nutzung offener Lernmaterialien unter freier Lizenz.
-
----
-
-### 7. Ressourcenanforderungen
-- **Personal:** Didaktik-Expert:innen, Ernährungsberater:innen, Übersetzer:innen, Gebärdensprachdolmetscher:innen.  
-- **Ausstattung:** Mobile Küchen, barrierefreie Geräte, Solarbeleuchtung.  
-- **Materialien:** Symbolkarten, wasserdichte Anleitungen, Offline-Mediapacks.
-
----
-
-### 8. Evaluationskriterien
-
-| Kriterium                      | Indikator                                            | Messmethode                |
-|---------------------------------|------------------------------------------------------|----------------------------|
-| Verständlichkeit                | % der Teilnehmenden, die Rezepte fehlerfrei ausführen | Beobachtung, Testkochen    |
-| Barrierefreiheit                | Anzahl der unterstützten Barrierefreiheitsformen    | Checkliste, Nutzerfeedback |
-| Notfalltauglichkeit             | Funktion ohne Strom/Wasser                          | Praxistest                  |
-| Transfer in Alltag/Krise        | % der Teilnehmenden, die Wissen anwenden können     | Follow-up-Interview        |
-
----
-
-**Literatur & Quellen**  
-1. Food and Agriculture Organization (FAO). Inclusive Food Systems for All. 2023.  
-2. World Health Organization (WHO). Inclusive Health & Nutrition Guidelines. 2022.  
-3. Europäische Union. Richtlinie (EU) 2019/882 (European Accessibility Act).  
-4. Übereinkommen der Vereinten Nationen über die Rechte von Menschen mit Behinderungen (UN-BRK).  
-5. Verordnung (EU) Nr. 1169/2011 (LMIV).
-
----
-
-# Modul 04 – FOOD  
-## Abschnitt 10 – Modulverknüpfung mit allen 42 QUEST-Modulen (V1.1)
-
-### Überblick  
-Dieses Modul ist systemisch mit allen anderen 41 Modulen des QUESTSYSTEMS verbunden. Die folgende Tabelle zeigt jede Verbindung, die Art der Abhängigkeit, die Priorität für das Funktionieren von FOOD und konkrete Beispiele für Inhalte oder Schnittstellen.
-
-| Nr. | Modulname  | Verbindungstyp | Priorität | Relevanz für FOOD | Beispielinhalt / Schnittstelle |
-|-----|------------|----------------|-----------|-------------------|--------------------------------|
-| 01  | RESETBOX   | kritisch       | hoch      | Versorgungssicherheit in Krisen | Lebensmittel-Notrationen, Wasseraufbereitung, Kochutensilien |
-| 02  | WATER      | kritisch       | hoch      | Grundlage für Zubereitung | Wasserfilter, Vorratsbehälter |
-| 03  | SHELTER    | unterstützend  | mittel    | Sichere Essensausgabe | Gemeinschaftsküchen, mobile Kochstationen |
-| 04  | FOOD       | –              | –         | –                 | – |
-| 05  | SLEEP      | unterstützend  | niedrig   | Regeneration für Helfer und Nutzer | Ruhebereiche in Ausgabestellen |
-| 06  | BODY       | unterstützend  | mittel    | Hygiene bei Zubereitung | Waschstationen, Desinfektion |
-| 07  | PSYCHE     | unterstützend  | mittel    | Psychische Stabilität durch Ernährung | Gemeinschaftsessen, Comfort-Food-Angebote |
-| 08  | DEVICE     | unterstützend  | niedrig   | Digitale Koordination | Offline-Rezepte, Kühlkettenmonitoring |
-| 09  | DEBT       | unterstützend  | mittel    | Finanzierung von Lebensmitteln | Mikrofonds, Food-Voucher-Systeme |
-| 10  | WORK       | unterstützend  | mittel    | Arbeitskräfte in Küche/Verteilung | Training, Ehrenamtseinsätze |
-| 11  | SCHOOL     | unterstützend  | niedrig   | Ernährungsbildung | Kochkurse, Ernährungskurse |
-| 12  | BORDER     | kritisch       | mittel    | Grenzüberschreitende Versorgung | Logistik für Flüchtlingslager |
-| 13  | NATURE     | kritisch       | hoch      | Quelle für Nahrungsmittel | Permakultur, Wildsammlung |
-| 14  | ENERGY     | kritisch       | hoch      | Kochen & Kühlung | Solarkocher, Biogas |
-| 15  | MOVE       | kritisch       | hoch      | Transport von Lebensmitteln | Kühltransporter, Fahrräder |
-| 16  | MARKET     | unterstützend  | mittel    | Lokale Beschaffung | Bauernmärkte, Tauschsysteme |
-| 17  | HEALTH     | kritisch       | hoch      | Ernährungssicherheit | Spezielle Diäten, Mangelprävention |
-| 18  | ANIMAL     | unterstützend  | mittel    | Tierhaltung & Nahrungsquellen | Hühnerhaltung, Milchproduktion |
-| 19  | TOOL       | unterstützend  | niedrig   | Zubereitung & Verarbeitung | Messer, Mühlen |
-| 20  | CLOTH      | unterstützend  | niedrig   | Kleidung für Ausgabeteams | Hygieneschutzkleidung |
-| 21  | MEDIA      | unterstützend  | niedrig   | Öffentlichkeitsarbeit | Food-Drive-Kampagnen |
-| 22  | LICENCE    | kritisch       | hoch      | Rechtliche Absicherung | Hygiene- und Vertriebslizenzen |
-| 23  | LAW        | kritisch       | hoch      | Gesetzliche Rahmenbedingungen | Lebensmittelrecht |
-| 24  | SIGNAL     | unterstützend  | niedrig   | Kommunikation im Einsatz | Funkgeräte |
-| 25  | SAFE       | kritisch       | hoch      | Schutz vor Diebstahl & Übergriffen | Sicherheitszonen |
-| 26  | DATA       | unterstützend  | mittel    | Bedarfserfassung | Bestandsmanagement |
-| 27  | ID         | unterstützend  | niedrig   | Zugangskontrolle | Ausgabekarten |
-| 28  | MAP        | unterstützend  | niedrig   | Standortplanung | Essensausgabe-Standorte |
-| 29  | EVENT      | unterstützend  | mittel    | Gemeinschaft stärken | Food-Festivals, Benefizessen |
-| 30  | TRUTH      | unterstützend  | niedrig   | Transparenz über Herkunft | Herkunftsnachweise |
-| 31  | MEMORY     | unterstützend  | niedrig   | Wissensweitergabe | Rezeptarchive |
-| 32  | LICENCE    | kritisch       | hoch      | (identisch mit 22) – nicht doppeln | – |
-| 33  | DESIGN     | unterstützend  | niedrig   | Gestaltung von Ausgabepunkten | Ergonomie, Sichtbarkeit |
-| 34  | ARCHIVE    | unterstützend  | niedrig   | Dokumentation von Methoden | Rezepte, Hygienestandards |
-| 35  | STORY      | unterstützend  | niedrig   | Vermittlung von Kultur | Traditionelle Gerichte |
-| 36  | CODE       | unterstützend  | niedrig   | Digitale Systeme | Lebensmitteltracking |
-| 37  | NET        | unterstützend  | niedrig   | Netzwerke für Lebensmittelhilfe | NGOs, Community Groups |
-| 38  | PLAN       | unterstützend  | hoch      | Logistikplanung | Lieferkettenmanagement |
-| 39  | CULTURE    | unterstützend  | niedrig   | Esskultur fördern | Interkulturelles Kochen |
-| 40  | PRINT      | unterstützend  | niedrig   | Druck von Anleitungen | Rezeptkarten |
-| 41  | ART        | unterstützend  | niedrig   | Kulinarische Kunst | Essensinszenierungen |
-| 42  | VOID       | –              | –         | Systemlücken erkennen | Fehlende Versorgungspunkte |
-
----
-
-**Hinweis:**  
-- Modul 32 (LICENCE) ist identisch mit Modul 22 und wird hier nicht erneut aufgeführt, um Doppelungen zu vermeiden.
-- Verbindungstypen:  
-  - **kritisch** = essenziell für den Betrieb  
-  - **unterstützend** = verbessert Funktionalität  
-  - **optional** = nice-to-have
-
----
-
-# Modul 04 – FOOD  
-## Abschnitt 11 – Anwendungsszenarien (realweltlich)  
-**Version:** 1.1  
-
-### 1. Überblick
-Dieser Abschnitt beschreibt praxisnahe Einsatzmöglichkeiten des Moduls **FOOD** in unterschiedlichen Krisen- und Alltagskontexten. Ziel ist es, sowohl **akute Notlagen** als auch **präventive und nachhaltige Szenarien** abzudecken, um Ernährungssicherheit und Würde zu gewährleisten.
-
----
-
-### 2. Akutszenarien
-- **Naturkatastrophen** (z. B. Hochwasser, Erdbeben, Waldbrände) → mobile Küchen, Notrationen, Wasserfilterung, temporäre Essensausgaben.  
-- **Blackouts und Versorgungsausfälle** → haltbare Lebensmittelpakete, mechanische Kochmöglichkeiten, gemeinschaftliche Kochpunkte.  
-- **Kriegs- und Fluchtkontexte** → minimaler logistischer Fußabdruck, lokale Zutaten, keine Abhängigkeit von importierten Ressourcen.  
-- **Pandemien** → dezentrale Essensverteilung zur Minimierung von Menschenansammlungen.
-
----
-
-### 3. Langzeitszenarien
-- **Community Kitchens** → dauerhafte, offene Küchen als Bildungs- und Versorgungsorte.  
-- **Urban Gardening & Selbstversorgung** → Schulung in Anbau und Ernte, besonders in dicht besiedelten Räumen.  
-- **Lebensmittelrettung** → Kooperation mit Supermärkten, Bauern, Tafeln.  
-- **Soziale Integration** → gemeinsames Kochen als Mittel gegen Vereinsamung.
-
----
-
-### 4. Juristische Dimension
-- **Lebensmittelrecht** (EU-VO 178/2002) → Sicherheit und Rückverfolgbarkeit.  
-- **Hygienevorschriften** (z. B. HACCP) → Schutz vor lebensmittelbedingten Krankheiten.  
-- **Zoll- und Importregeln** im Krisenfall → rechtzeitige Ausnahmegenehmigungen.  
-- **Haftungsfragen** → klare Regelung bei Spenden und Verteilung.
-
----
-
-### 5. Wissenschaftliche Fundierung
-- FAO (Food and Agriculture Organization): Definition von Ernährungssicherheit.  
-- WHO-Richtlinien zu Mindestkalorien- und Nährstoffbedarf in Notlagen.  
-- Studien zu Resilienz urbaner Lebensmittelversorgung.  
-
----
-
-### 6. Ethik & Würde
-- **Dignity Clause**: Hilfe ohne Bedingungen, keine Demütigung bei Essensausgabe.  
-- Kultur- und religionssensible Speiseplanung (z. B. Halal, koscher, vegetarisch).  
-- Vermeidung diskriminierender Zugangskriterien.
-
----
-
-### 7. Technische Umsetzung
-- **Mobile Küchentechnik**: Gas-/Holzkocher, Solarkocher, transportable Öfen.  
-- **Kühlketten**: mobile Kühlboxen, Solarkühlsysteme.  
-- **Haltbarkeit**: luftdichte Verpackungen, Vakuumieren, Fermentation.
-
----
-
-### 8. Internationale Anpassung
-- Tropische Klimazonen: Fokus auf Kühlung, Trocknung und schnelle Verarbeitung.  
-- Kalte Klimazonen: Fokus auf energiedichte, wärmende Speisen.  
-- Unterschiedliche Ressourcenniveaus: Anpassung an vorhandene Koch- und Lagermöglichkeiten.
-
----
-
-### 9. Barrierefreiheit
-- Beschriftung in einfacher Sprache und Symbolen.  
-- Audio- und Braille-Informationen zu Zutaten und Zubereitung.  
-- Zugängliche Standorte ohne Barrieren.
-
----
-
-### 10. Beispielprojekte
-- **World Central Kitchen** (global) – mobile Notküchen bei Katastrophen.  
-- **Tafel Deutschland** – Umverteilung überschüssiger Lebensmittel.  
-- **Community Fridges** – offene Kühlschränke im öffentlichen Raum.  
-
----
-
-### 11. Modulverknüpfungen
-- **WATER (02)**: sauberes Trink- und Kochwasser.  
-- **SHELTER (03)**: sicherer Ort für Essenszubereitung.  
-- **ENERGY (10)**: Kochenergie bereitstellen.  
-- **PSYCHE (07)**: Essen als psychosoziales Stabilisierungselement.
-
----
-
-### 12. Fazit
-FOOD ist im QUESTSYSTEM ein Schlüsselmodul, das unmittelbar Leben sichern, Resilienz aufbauen und Gemeinschaft stärken kann – unabhängig von Kontext, Kultur oder Ressourcenlage.
-
----
-
-# Modul 04 – FOOD  
-## Abschnitt 12 – Systemschutz & Missbrauchsverhinderung (V1.1)
-
-### 1. Kontext
-Lebensmittelhilfe und -infrastruktur sind anfällig für Missbrauch, Korruption und politisch motivierte Manipulation. Um das QUESTSYSTEM-Modul FOOD wirksam und integer zu halten, müssen alle Versorgungsschritte gegen Missbrauch abgesichert sein – von der Produktion über die Verteilung bis hin zur Nutzung.
-
----
-
-### 2. Juristische Absicherung
-**Rechtliche Grundlagen:**
-- **Artikel 25, Allgemeine Erklärung der Menschenrechte (UN 1948)** – Recht auf ausreichende Ernährung.  
-- **Artikel 11, Internationaler Pakt über wirtschaftliche, soziale und kulturelle Rechte (ICESCR, 1966)** – Recht auf angemessene Nahrung.  
-- **Artikel 54, Zusatzprotokoll I zu den Genfer Konventionen (1977)** – Verbot, Nahrungsmittel als Kriegswaffe einzusetzen.  
-- **UN-Leitlinien zum Recht auf Nahrung (2004)** – Schutz vor staatlicher oder privater Einschränkung der Lebensmittelsicherheit.  
-
----
-
-### 3. Technische Schutzmechanismen
-- **Lieferketten-Transparenz** über Open-Source-Blockchain oder öffentliche Register.  
-- **QR- oder NFC-gestützte Tracking-Systeme** zur Nachverfolgung jeder Lieferung.  
-- **Echtzeit-Bestandsanzeigen** für Lager und Ausgabestellen, öffentlich einsehbar.  
-- **Offline-fähige Kontroll-Apps** für Gebiete ohne stabile Internetverbindung.  
-
----
-
-### 4. Missbrauchsformen & Prävention
-| Missbrauchsform | Beispiel | Präventionsmaßnahme |
-|-----------------|----------|--------------------|
-| **Politische Instrumentalisierung** | Nahrungsmittel nur an regierungstreue Gruppen | Verpflichtende neutrale Verteilmechanismen & externe Beobachtung |
-| **Korruption** | Abzweigung von Hilfsgütern für den Schwarzmarkt | Transparente Mengen- und Verteilstatistiken, Audit-Logs |
-| **Preismanipulation** | Künstliche Verknappung zur Preiserhöhung | Offenlegung von Lagerbeständen in Echtzeit |
-| **Diskriminierung** | Ausschluss bestimmter ethnischer/religiöser Gruppen | Community-gesteuerte Verteilstellen & Whistleblower-Kanäle |
-
----
-
-### 5. Community-Kontrolle
-- **Beteiligung lokaler Gruppen** an Planung, Verteilung und Überwachung.  
-- **Regelmäßige öffentliche Audits**, durchgeführt von unabhängigen Teams.  
-- **Whistleblower-Schutz** nach internationalen Standards.  
-
----
-
-### 6. Risikomatrix
-| Risiko | Wahrscheinlichkeit | Potenzieller Schaden | Priorität | Gegenmaßnahme |
-|--------|--------------------|----------------------|-----------|---------------|
-| Politische Instrumentalisierung | Hoch | Hoch | 🔴 Kritisch | Neutrale Verteilerstrukturen & externe Kontrolle |
-| Korruption | Mittel | Hoch | 🟠 Hoch | Blockchain-Transparenz & Community-Audits |
-| Preismanipulation | Mittel | Mittel | 🟡 Mittel | Offene Lagerdaten & Markttransparenz |
-| Diskriminierung | Niedrig | Hoch | 🟠 Hoch | Antidiskriminierungs-Protokolle & Community-Einbindung |
-
----
-
-### 7. Modulverbindungen
-- **TRUTH (30)** – Veröffentlichung von Missständen, Daten und Audit-Ergebnissen.  
-- **BORDER (12)** – Schutz der Lebensmittelversorgung in Grenzregionen.  
-- **WORK (10)** – Einbindung lokaler Arbeitskräfte in die Verteilung.  
-
----
-
-### 8. Praxisbeispiel
-In einer Krisenregion mit wiederkehrenden Blockaden wurde ein öffentliches Dashboard mit Lagerbeständen eingeführt. Jede Lieferung erhielt einen QR-Code, der bis zum Endverbraucher gescannt werden konnte. Ergebnis: Die Schwarzmarktquote sank um 80 %, und die Verteilung erreichte erstmals alle Haushalte in der Region.
-
----
+## 12. Systemschutz & Missbrauchsverhinderung
+
+FOOD muss vor Korruption und Machtmissbrauch geschützt werden:  
+- **Transparenz:** Offene Ausgabepläne, Monitoring via RESET:LOG.  
+- **Nicht-Kommerzialität:** Verbot von „Hilfslieferungen gegen Bezahlung“.  
+- **Anti-Korruption:** Dokumentation von Lieferwegen.  
+- **Digitale Innovation:** Das WFP-Programm *Building Blocks* in Jordanien nutzt Blockchain, um Essensverteilungen fälschungssicher und transparent zu gestalten (WFP 2020).  
+- **Missbrauch verhindern:** Keine Diskriminierung nach Ethnie, Religion oder politischer Haltung.  
+
+Beispiele:  
+- *Syrien/Tigray*: Hunger als Waffe (HRW 2017⁴) – zeigt, wie essenziell juristische STOP-Punkte sind.  
+
+**RESETBOX-Beispiel:** STOP-Karte „Food Distribution: Non-Commercial“ – zeigt Anspruch auf freie Versorgung.  
+**Crosslinks:** [32 – LICENCE](../modules/32_LICENCE.md), [36 – CONFLICT](../modules/36_CONFLICT.md)
 
 ---
 
 ## 13. Legal Recognition & STOP-Karten
 
-### Juristischer Rahmen
-Das Modul FOOD integriert ein rechtlich abgesichertes Verfahren zur Anerkennung von Menschen in Krisensituationen als schutzbedürftig und versorgungsberechtigt. Grundlage bilden:
+STOP-Karten sind **rechtliche Werkzeuge**:  
+- **Funktion:** Gewährleisten Zugang zu Lebensmittelausgaben ohne bürokratische Hürden.  
+- **Design:** Mehrsprachig, neutral, mit QR-Link zu rechtlicher Grundlage (UN-Sozialpakt², Sphere-Standards³).  
+- **Praxis:** Anknüpfung an UNHCR-Ration Cards, die in Flüchtlingslagern weltweit als Identitäts- und Zugangsmedium genutzt werden.  
 
-- **Internationaler Pakt über wirtschaftliche, soziale und kulturelle Rechte (UN-Sozialpakt, 1966)** – Art. 11 (Recht auf einen angemessenen Lebensstandard, einschließlich Nahrung)  
-- **Allgemeine Erklärung der Menschenrechte (AEMR, 1948)** – Art. 25 (Recht auf Gesundheit und Wohlergehen, einschließlich Nahrung)  
-- **Genfer Konventionen (1949) und Zusatzprotokolle (1977)** – Schutz der Zivilbevölkerung in Konflikten, inkl. Nahrungsmittelversorgung  
-- **Charta der Grundrechte der Europäischen Union (2000)** – Art. 34 (Soziale Sicherheit und soziale Unterstützung)  
-
-### STOP-Karten – Funktionsweise
-STOP-Karten sind physische und digitale Ausweise, die sofort sichtbar machen, dass eine Person nach QUESTSYSTEM-Standards Anspruch auf Nahrungsmittelhilfe ohne Vorbedingungen hat.
-
-**Pflichtfelder auf der Karte:**
-- Klar erkennbarer Hinweis „STOP – FOOD ACCESS“
-- Eindeutige ID (alphanumerisch)
-- Ausstellungsdatum und Gültigkeitszeitraum
-- QR-Code (offline lesbar, führt zu Modul-Informationen und Hilfsadressen)
-- Optional: Hologramm/Sicherheitsmerkmal gegen Fälschung
-- Unterschrift oder Siegel der ausstellenden Stelle (z. B. QUESTSYSTEM gGmbH, Partner-NGO)
-
-**Digitale Absicherung:**
-- Open-Source-Validierung per App (Offline-Modus verfügbar)
-- Prüfsummen zur Vermeidung von Manipulationen
-- Möglichkeit der Verifikation über verteilte Server oder Blockchain-Knoten
-
-### Internationale Anwendbarkeit
-In Staaten ohne funktionierende Behördenstrukturen kann die Ausstellung durch vor Ort aktive NGOs, Selbsthilfegruppen oder QUESTSYSTEM-Koordinator:innen erfolgen.  
-Daten werden dezentral gespeichert, um Abhängigkeiten und Missbrauch zu vermeiden.
-
-### Verbindung zu anderen Modulen
-- **BORDER (Modul 12):** STOP-Karten können auch grenzüberschreitend als humanitärer Passierschein genutzt werden.  
-- **RESETBOX (Modul 01):** STOP-Karten sind in den Boxen als Blanko-Vorlagen enthalten.  
-- **TRUTH (Modul 30):** Überprüfung der Kartenherkunft und Veröffentlichung der ausstellenden Stellen in einem transparenten Register.
-
-### Ethische Absicherung
-Die STOP-Karte ist Ausdruck der **Dignity Clause**: Zugang zu Nahrung darf niemals an Gehorsam, politische Ausrichtung oder Gegenleistungen geknüpft werden.  
-Missbrauch wird durch Offenlegung der Vergabekriterien und öffentlich dokumentierte Vergaben verhindert.
-
-### Praxisbeispiel
-Eine mobile Suppenküche in einer Katastrophenregion akzeptiert STOP-Karten als direkten Zugangsberechtigungsschein. Freiwillige können Karten im Feld ausstellen, validieren und sofort registrieren – auch ohne Internetverbindung.
-
----
+**RESETBOX-Beispiel:** Laminierte STOP-Karte „Right to Food“ in jeder BOX.  
+**Crosslinks:** [19 – MEDIA](../modules/19_MEDIA.md), [23 – JUSTICE](../modules/23_JUSTICE.md)
 
 ---
 
 ## 14. RESET als Handlung, nicht nur Objekt
 
-### 14.1 Grundprinzip
-Im Kontext von **FOOD** ist ein RESET nicht nur das Verteilen von Lebensmitteln oder das Bereitstellen einer Box mit Vorräten. RESET ist ein **aktiver Prozess**, der bewusst gegen Abhängigkeit, Demütigung und Ausgrenzung arbeitet.  
-Das **Objekt** (z. B. ein Lebensmittelpaket) ist nur der physische Träger.  
-Die **Handlung** umfasst Planung, Ausführung und Nachbereitung — immer mit dem Ziel, **Würde, Selbstbestimmung und Sicherheit** zu wahren.
+FOOD ist mehr als ein Container mit Nahrung – es ist eine **Handlung der Solidarität**:  
+- Essen teilen = RESET von Machtstrukturen.  
+- Gemeinsames Kochen = RESET von Isolation.  
+- Saatgutbanken = RESET gegen Abhängigkeit von globalen Konzernen.  
+
+**Praxisbeispiele:**  
+- *Solidarity Kitchens* in Griechenland während der Finanzkrise (2010er): Gemeinschaftskochen als Überlebensstrategie.  
+- *Community Kitchens* in Lateinamerika: Stärken sozialer Bewegungen und Ernährungssicherheit.  
+
+**RESETBOX-Beispiel:** DROP-Karten mit Anleitungen zu solidarischem Kochen („Cook Together“).  
+**Crosslinks:** [29 – SYMBOL](../modules/29_SYMBOL.md), [40 – ART](../modules/40_ART.md)
 
 ---
 
-### 14.2 Juristische Absicherung
-RESET-Handlungen im Bereich FOOD müssen folgende Rechtsbereiche beachten:
+## 15. Nutzung in Bewegung & Ausnahmezuständen
 
-1. **Lebensmittelhygieneverordnung (LMHV, EU-Verordnung (EG) Nr. 852/2004)**  
-   - Einhaltung von Hygiene- und Kühlkettenstandards bei verderblichen Waren.
-2. **Produkthaftungsgesetz (ProdHaftG)**  
-   - Klärung, wer haftet, falls gesundheitliche Schäden durch gelieferte Nahrung entstehen.
-3. **Gemeinnützigkeitsrecht (§§ 51–68 AO)**  
-   - RESET-Handlungen können steuerlich begünstigt sein, wenn sie gemeinnützigen Zwecken dienen.
-4. **Öffentliches Ordnungsrecht**  
-   - Genehmigungen für Straßen- oder Platzaktionen (Marktordnung, Sondernutzungserlaubnis).
-5. **Anti-Diskriminierungsrecht (AGG)**  
-   - Verbot von Ausschluss oder Ungleichbehandlung beim Zugang zu Lebensmitteln.
+FOOD ist darauf ausgelegt, in Bewegung genutzt zu werden:  
+- **Flucht & Migration:** Kompakte Rationen, Tragbarkeit, schnelle Zubereitung (WFP 2022¹).  
+- **Katastrophenhilfe:** Mobile Küchen wie nach dem Erdbeben in Haiti oder der Türkei 2023 (World Central Kitchen 2023⁵).  
+- **Militärische Konflikte:** Unabhängige Verpflegung verhindert Hunger als Waffe.  
+- **Städtische Krisen:** Bei Blackouts ermöglichen Campingkocher & Notrationen Versorgung auch ohne Infrastruktur.  
 
----
+**Technische Anforderungen:**  
+- Leichte Verpackungen (max. 500 g pro Tagesration, ca. 2500 kcal).  
+- Stapelbar im Eurobox-Standard.  
+- Haltbarkeit mind. 12 Monate.  
+- Zubereitung ohne Strom möglich.  
 
-### 14.3 Wissenschaftliche Fundierung
-Forschungsergebnisse aus **Sozialpsychologie** und **Humanitärer Hilfe** zeigen:
-- Hilfeleistungen, die **gleichberechtigt und ohne Gegenleistung** erbracht werden, fördern das Gefühl von Zugehörigkeit und erhöhen die Annahmequote.  
-- Stigmatisierende Ausgabeformen (z. B. Warteschlangen mit Sichtbarkeit für Außenstehende) führen oft zu **sozialem Rückzug** und verringern die Wirksamkeit.
-- Studien aus Katastrophengebieten (z. B. Sphere Handbook, 2018) bestätigen, dass partizipative Verteilungsprozesse **Resilienz und Selbstorganisation** stärken.
+**RESETBOX-Beispiel:** Survival-Packs mit Trockenfleisch, Energieriegeln, Trinkwasseraufbereitungstabletten.  
+**Crosslinks:** [22 – MIGRATION](../modules/22_MIGRATION.md), [27 – TRANSPORT](../modules/27_TRANSPORT.md)
 
 ---
 
-### 14.4 Globale Perspektive
-- In einigen Kulturen wird das **Annehmen von Nahrungsmitteln** als Schuldeingeständnis interpretiert — hier sind **vertrauliche und respektvolle Übergaben** wichtig.
-- Religiöse Ernährungsregeln (Halal, Koscher, vegetarisch, Fastenperioden) müssen eingeplant werden, um **Ausschluss und Konflikte** zu vermeiden.
-- Lokale Partnerorganisationen sind oft notwendig, um **kulturelle Codes** zu verstehen und RESET-Handlungen wirksam einzubetten.
-
----
-
-### 14.5 Technische Umsetzung
-Ein RESET im FOOD-Bereich sollte mindestens folgende Schritte enthalten:
-
-1. **Bedarfsanalyse** (Zielgruppe, Menge, Ernährungsbedürfnisse).
-2. **Sichere Beschaffung** (Transparenz der Herkunft, Vermeidung von Abfallnahrung als primäre Quelle).
-3. **Logistik & Kühlung** (mobile Kühlsysteme, Haltbarmachung).
-4. **Würdeorientierte Verteilung**:
-   - dezentrale Übergabepunkte
-   - Option auf Selbstabholung ohne Kontrolle
-   - keine erzwungene Registrierung
-5. **Feedback-Mechanismus**:
-   - anonyme Rückmeldungen
-   - Anpassung der Versorgung nach Bedürfnissen
-
----
-
-### 14.6 Verbindung zur Krisendynamik
-RESET-Handlungen verhindern im Bereich FOOD:
-- Eskalationen durch **Mangel und Konkurrenz**
-- Ausgrenzung bestimmter Gruppen
-- Abhängigkeit von zentralisierten Machtstrukturen
-
-In akuten Krisen (Naturkatastrophen, Blackouts, Konfliktzonen) kann ein RESET:
-- Sofortigen Zugang zu sicherer Nahrung schaffen
-- Lokale Selbsthilfegruppen stärken
-- Vertrauen zwischen Helfenden und Betroffenen aufbauen
-
----
-
-### 14.7 Lizenz- & Missbrauchsschutz
-RESET-Handlungen im FOOD-Bereich stehen unter der **QUESTSYSTEM-Lizenz**:
-- **Verbot** der Kopplung von Hilfe an politische, religiöse oder wirtschaftliche Interessen.
-- **Pflicht** zur offenen Dokumentation der Abläufe (Transparenzbericht).
-- **Offene Replikationsrechte**, solange die Dignity Clause eingehalten wird.
-
----
-
-### 14.8 Modulverbindungen
-- **WATER** (02): Kombinierte Versorgungspunkte erhöhen Akzeptanz.  
-- **SHELTER** (03): Versorgung in Notunterkünften.  
-- **BODY** (06): Hygieneregeln bei Verteilung.  
-- **PSYCHE** (07): Reduktion psychischer Belastung durch würdevollen Ablauf.  
-- **MOVE** (15): Mobile Verteilkonzepte.
-
----
-
-**Kernaussage:**  
-Ein RESET im FOOD-Bereich ist nur dann vollständig, wenn **das Objekt** (Nahrung) und **die Handlung** (Prozess der würdevollen Bereitstellung) **untrennbar** zusammen gedacht und umgesetzt werden.
-
----
-
-# Modul 04 – FOOD  
-## Abschnitt 15 – Nutzung in Bewegung & Ausnahmezuständen (V1.1)
-
-### 1. Kontext
-FOOD muss auch dann funktionieren, wenn Menschen unterwegs sind – ob freiwillig oder erzwungen – und wenn normale Lieferketten oder Kücheninfrastrukturen zusammenbrechen. Dies betrifft sowohl kurzfristige Fluchtbewegungen als auch längerfristige mobile Lebenssituationen.
-
----
-
-### 2. Relevante Krisenszenarien
-- **Naturkatastrophen**: Überschwemmungen, Erdbeben, Stürme – Infrastrukturverlust, keine stationären Küchen.  
-- **Bewaffnete Konflikte**: Evakuierung, Verlagerung von Lagern, mobile Hilfslieferungen unter Gefahren.  
-- **Pandemien**: Mobile Essensausgabe unter Quarantäneauflagen, dezentrale Versorgungspunkte.  
-- **Ökologische Extremereignisse**: Hitze- oder Kältewellen, die Lagerfähigkeit und Transportbedingungen beeinflussen.
-
----
-
-### 3. Technische Anforderungen
-- **Transportfähigkeit**: Nutzung von robusten, stapelbaren Behältern (z. B. Euroboxen, Thermoboxen).  
-- **Kühlketten unterwegs**: Mobile Kühl- und Wärmeboxen, Solar-Powerbanks für Kühlsysteme.  
-- **Modulare Ausstattung**: Mobile Koch- und Wasseraufbereitungssysteme, die ohne feste Infrastruktur auskommen.  
-- **Leichtgewicht & Robustheit**: Materialien müssen bruchsicher, wasserdicht und temperaturbeständig sein.
-
----
-
-### 4. Grenzüberschreitende Logistik
-- **Zoll & Importbestimmungen**: Vorabklärung von Lebensmittellisten, um Beschlagnahmungen zu vermeiden.  
-- **Humanitäre Korridore**: Nutzung von vereinbarten Transportrouten im Rahmen internationaler Abkommen.  
-- **Kooperation**: Zusammenarbeit mit lokalen NGOs, UNHCR, WFP, um bestehende Versorgungsnetzwerke zu nutzen.
-
----
-
-### 5. Rechtlicher Rahmen
-- **Internationale humanitäre Standards**: Sphere Handbook (Mindeststandards Ernährung & Versorgung), International Humanitarian Law (IHL).  
-- **Notstandsgesetze**: Berücksichtigung nationaler Ausnahmeregelungen für Lebensmitteltransport & -ausgabe.  
-- **Lebensmittelhygiene**: Anpassung an WHO- und FAO-Empfehlungen zur Nahrungsmittelsicherheit in Krisen.
-
----
-
-### 6. Sicherheits- & Risikoaspekte
-- Schutz vor **Überfällen** oder Beschlagnahmung während des Transports.  
-- Sicherstellung, dass Verteilung **nicht diskriminierend** erfolgt.  
-- Schutz der Helfer:innen durch Schulung in **Deeskalation** und **Selbstschutz**.  
-
----
-
-### 7. Intermodulare Verbindung
-- **MOVE** (Modul 23): Logistik- und Transportinfrastruktur.  
-- **WATER** (Modul 02): Trinkwasserversorgung unterwegs.  
-- **RESETBOX** (Modul 01): Nahrungsmittel- und Kochkomponenten als Teil des Basiskits.  
-- **DEVICE** (Modul 08): Navigation, Lagerbestands-Apps, Offline-Rezepte.  
-
----
-
-### 8. Quellen & Referenzen
-- Sphere Association. *The Sphere Handbook* (2018).  
-- WHO & FAO. *Food Safety in Emergency Situations* (2020).  
-- WFP. *Emergency Field Operations Pocketbook* (2021).  
-
----
-
----
+**Quellen (für Abschnitte 11–15)**  
+1. WFP (2022). *High Energy Biscuits in Humanitarian Operations*.  
+2. FAO (2019). *Urban Agriculture: Food, Jobs and Sustainable Cities*.  
+3. Sphere Association (2018). *Minimum Standards in Food Security and Nutrition*.  
+4. Human Rights Watch (2017). *Syria: Coordinated Hunger as a Weapon*.  
+5. World Central Kitchen (2023). Einsatzberichte Türkei, Ukraine.  
+6. WFP (2020). *Building Blocks: Blockchain for Food Assistance*.  
 
 ## 16. Ethik des offenen Containers
 
-### 16.1 Systemische Bedeutung
-Im Kontext des QUESTSYSTEMS bezeichnet der **offene Container** einen physischen oder digitalen Ort, an dem Lebensmittel ohne Zugangsbarrieren verfügbar sind – ohne Bedingung, Registrierung oder Gegenleistung. Das Konzept basiert auf dem Grundsatz, dass **Nahrung ein unveräußerliches Menschenrecht** ist (Art. 11 Internationaler Pakt über wirtschaftliche, soziale und kulturelle Rechte, UN-Sozialpakt).  
+Essen darf niemals exklusiv oder verschlossen behandelt werden – es ist ein **universelles Gemeingut**.  
+Das Modul FOOD verpflichtet sich zur **Ethik des offenen Containers**:  
 
-Der offene Container ist zugleich **Infrastruktur** (z. B. wettergeschützte Box, Kühlschrank, Trockenlager) und **ethische Praxis** (bedingungslose Zugänglichkeit, Transparenz, Respekt vor der Würde der Nutzenden).
+- **Offener Zugang:** Nahrung in Krisen darf nicht nur für „Registrierte“ verfügbar sein.  
+- **Gleichheit:** Keine Bevorzugung nach Status, Herkunft oder Religion.  
+- **Transparenz:** Alle Vorräte werden offen sichtbar gelagert und verteilt.  
+- **Solidarität:** Wer mehr hat, teilt mit denjenigen, die nichts haben.  
 
----
+Praxis:  
+- Offene Essensausgaben in Flüchtlingslagern, inspiriert von UNHCR-Standards.  
+- Foodsharing-Kühlschränke in Städten: Jeder darf nehmen und geben.  
 
-### 16.2 Juristische Rahmung
-- **International**:  
-  - Art. 11 UN-Sozialpakt: Recht auf einen angemessenen Lebensstandard, einschließlich ausreichender Ernährung.  
-  - Allgemeine Bemerkung Nr. 12 (UN CESCR): Staaten sind verpflichtet, **Verfügbarkeit, Zugänglichkeit, Angemessenheit und Nachhaltigkeit** von Nahrung sicherzustellen.
-- **Europäische Union**:  
-  - EU-Lebensmittelspendenverordnung & Leitlinien der EFSA: Rahmen für Hygiene, Haftungsbegrenzung und Rückverfolgbarkeit.  
-  - Lebensmittelspendenrecht (z. B. Frankreich: Loi Garot) als Vorbild für verpflichtende Abgabe unverkaufter, noch essbarer Waren.
-- **Deutschland**:  
-  - § 823 BGB (Haftung) und Produkthaftungsgesetz: Lebensmittelspender:innen müssen Sorgfaltspflichten einhalten.  
-  - Keine Pflicht zur Lebensmittelspende, aber Haftungsfreistellung in Pilotprogrammen möglich.
-
----
-
-### 16.3 Ethische Grundsätze (Dignity Clause)
-Der offene Container folgt den 14 Geboten des QUESTSYSTEMS, insbesondere:  
-1. **Keine Degradierung von Menschen** – keine Bedürftigkeitsprüfung.  
-2. **Hilfe nicht an Gehorsam binden** – kein Gegenleistungszwang.  
-3. **Marktmechanismen nicht als Ausschlusskriterium verwenden** – Überleben steht über Profit.  
-
----
-
-### 16.4 Technische Anforderungen
-- **Bauform**:  
-  - Wetterfest (mindestens IP54), vandalismussicher, modular erweiterbar.  
-  - Temperaturführung: Isolierung + passives Kühlsystem oder Solar-Kühlung bei verderblichen Lebensmitteln.  
-- **Zugänglichkeit**:  
-  - Barrierefreie Höhe (Rollstuhlzugang), kontrastreiche Beschriftung.  
-  - Mehrsprachige Hinweise + Piktogramme.
-- **Informationssystem**:  
-  - QR-Codes mit Offline-Backup (RESET:LOG) für Lagerstatus, Mindesthaltbarkeitsdaten und Hygienerichtlinien.  
-  - Lokale Speicherung, um Cybersecurity-Risiken zu minimieren.
-
----
-
-### 16.5 Risikoprävention
-- **Physische Risiken**:  
-  - Regelmäßige Reinigung, Sichtprüfung, FIFO-Prinzip (First In – First Out).  
-  - Klare Kennzeichnung bei Produkten mit abgelaufenem MHD, aber sensorisch einwandfreiem Zustand.
-- **Gesellschaftliche Risiken**:  
-  - Schutz vor politisch motivierten Blockaden (z. B. Standort in neutralem, öffentlich zugänglichem Raum).  
-  - Transparenzlogik: Spender- und Wartungsprotokolle öffentlich einsehbar.
-- **Digitale Risiken**:  
-  - Keine zentrale Datenbank – dezentrale Synchronisation.  
-  - Schutz vor QR-Code-Manipulation durch digitale Signaturen.
-
----
-
-### 16.6 Globale Perspektive
-Der offene Container ist nicht nur eine lokale Hilfsmaßnahme, sondern eine **Dekonstruktion kolonialer Ernährungssysteme**:  
-- Förderung von **lokaler Nahrungsmittelproduktion** statt Abhängigkeit von Importen.  
-- Vermeidung von Dumping-Praktiken, die lokale Märkte zerstören.  
-- Stärkung der **Ernährungssouveränität** (La Via Campesina, 2007).
-
----
-
-### 16.7 Quellen (Auswahl)
-1. UN CESCR, General Comment No. 12, „The Right to Adequate Food“ (1999).  
-2. EFSA, „Guidance on Food Donation“ (2020).  
-3. FAO, „Food Loss and Food Waste“ (2019).  
-4. BMEL, „Rechtliche Rahmenbedingungen für Lebensmittelspenden in Deutschland“ (2022).  
-5. La Via Campesina, „Declaration on Food Sovereignty“ (2007).
-
----
+**RESETBOX-Beispiel:** Aufdruck „Open Food – Not for Sale“.  
+**Crosslinks:** [23 – JUSTICE](../modules/23_JUSTICE.md), [24 – COMMUNITY](../modules/24_COMMUNITY.md)
 
 ---
 
 ## 17. Vertrauensarchitektur & Transparenzlogik
 
-Eine funktionierende **Vertrauensarchitektur** ist die Grundlage dafür, dass das FOOD-Modul dauerhaft akzeptiert, gepflegt und erweitert wird.  
-Sie besteht aus drei gleichwertigen Säulen: **offene Dokumentation**, **nachvollziehbare Verifikation** und **transparente Entscheidungsprozesse**.
+FOOD baut auf einer **Vertrauensarchitektur**, die Manipulation und Korruption verhindert:  
+- **Öffentliche Ausgabepläne:** Zeit und Ort der Essensausgabe werden sichtbar ausgehängt.  
+- **Monitoring:** RESET:LOG dokumentiert jede Verteilung.  
+- **Partizipation:** Betroffene Communities verwalten selbst.  
+- **Digitale Transparenz:** Open-Source-Plattformen für Nachverfolgbarkeit (z. B. Open Data zu Lagerbeständen).  
+
+Praxisbeispiel: *World Food Programme* nutzt digitale Ration Cards für mehr Transparenz (WFP 2022).  
+
+**RESETBOX-Beispiel:** QR-Link zu lokalem Ausgabeplan.  
+**Crosslinks:** [32 – LICENCE](../modules/32_LICENCE.md), [35 – DATA](../modules/35_DATA.md)
 
 ---
 
-### 1. Offene Dokumentation
-Alle relevanten Informationen (Rezepte, Lagerbestände, Kühlkettenprotokolle, Herkunftsnachweise) werden **öffentlich zugänglich** bereitgestellt.  
-Dies erfolgt in zwei redundanten Formen:
-- **Digital**: z. B. über eine Nextcloud-Instanz mit klarer Ordnerstruktur, ergänzt durch eine Kiwix-Offline-Version für Gebiete ohne Internet.
-- **Analog**: Manipulationssichere Ausdrucke und QR-Codes an **öffentlich zugänglichen Informationsflächen** (Schulen, Gemeindezentren, Marktständen).
+## 18. Build-Kit & DIY-Infrastruktur
 
-**Technische Absicherung**:  
-- Alle digitalen Dateien werden mit einem **SHA256-Hash** versehen, um Integrität und Unverfälschtheit zu gewährleisten.
-- Backups in mindestens zwei physisch getrennten Standorten.
+Das Modul FOOD ist so konzipiert, dass jede Community es **selbst replizieren** kann:  
 
----
+**DIY-Komponenten:**  
+- Baupläne für Solarkocher, Lehmöfen und Trocknungsanlagen.  
+- Rezepte für haltbare Konserven, Fermentation, Trocknung.  
+- Anleitungen zur Einrichtung von Saatgutbibliotheken.  
 
-### 2. Nachvollziehbare Verifikation
-Die Überprüfung erfolgt nach dem Prinzip der **Community-based cross-verification**:
-- **Lokale Peer-Review-Teams** prüfen Einträge und dokumentieren Änderungen.
-- Mindestens **zwei voneinander unabhängige Bestätigungen** pro relevanter Information.
-- Plombierte Container und Siegel zur Sicherung physischer Bestände.
+**RESETBOX-Build-Kit:**  
+- USB/SD-Karten mit Offline-Datenbanken (Kiwix: FAO, WHO, Sphere).  
+- Vorlagen für STOP-/DROP-Karten.  
+- Checklisten für lokale Küchenprojekte.  
 
-**Rechtliche Basis**:  
-- Innerhalb der EU: DSGVO-konforme Datenspeicherung und -verarbeitung.
-- Internationale Ausrichtung: Orientierung an den FAO-Leitlinien zur Lebensmittelsicherheit (Codex Alimentarius).
+Praxis: In Venezuela und Griechenland entstanden selbstorganisierte „People’s Kitchens“, die auf minimaler Infrastruktur basieren.  
+
+**RESETBOX-Beispiel:** DIY-Heft „Cook, Dry, Store – Food Security Basics“.  
+**Crosslinks:** [01 – RESETBOX](../modules/01_RESETBOX.md), [18 – CULTURE](../modules/18_CULTURE.md)
 
 ---
 
-### 3. Transparente Entscheidungsprozesse
-Alle Entscheidungen zu Änderungen im Modul (z. B. Anpassung von Lebensmittellisten, Umverteilung von Vorräten) werden **öffentlich protokolliert**:
-- Klarer **Zeitstempel** und Begründung.
-- Verantwortliche Personen oder Teams werden benannt.
-- Diskussionen und Abstimmungen sind offen einsehbar.
+## 19. Downloads, QR-Zugang & Offline-Versionen
+
+FOOD setzt auf **digitale Zugänglichkeit**, auch ohne Internet:  
+- **QR-Codes:** führen offline zu Kochanleitungen, Hygiene-Standards, Sphere-Handbuchkapiteln.  
+- **Kiwix-Pakete:** WHO & FAO-Datenbanken offline verfügbar.  
+- **Offline-Apps:** Rezepte, Ernährungstipps, Allergiehinweise.  
+- **Didaktische Videos:** einfache Rezepte als Animationen.  
+
+Praxis: In Rohingya-Camps in Bangladesch nutzen NGOs QR-basierte Offline-Lernsysteme für Hygiene und Ernährung (UNICEF 2021).  
+
+**RESETBOX-Beispiel:** QR-Card „Food Survival“ mit Basisrezepten und Offline-Inhalten.  
+**Crosslinks:** [08 – DEVICE](../modules/08_DEVICE.md), [28 – NETWORK](../modules/28_NETWORK.md)
 
 ---
 
-### 4. Ethische Verankerung
-Diese Architektur steht im direkten Zusammenhang mit den **14 ethischen Geboten** des QUESTSYSTEMs, insbesondere:
-- **Gebot 2**: Hilfe darf nie an Gehorsam geknüpft werden.
-- **Gebot 6**: Keine bewusste Irreführung.
+## 20. Lizenzierung & Nicht-Kriminalisierung
+
+FOOD basiert auf dem Prinzip: **Wissen und Nahrung sind Gemeingüter**.  
+
+- **Lizenz:** CC BY-SA 4.0 + Dignity Clause.  
+- **Keine Privatisierung:** Rezepte, Baupläne und Anleitungen sind frei reproduzierbar.  
+- **Nicht-Kriminalisierung:** Nutzung oder Weitergabe von Nahrung darf niemals strafbar sein.  
+- **Verbot der Exklusivpatente:** Saatgut, Rezepte und Verteilungsmethoden dürfen nicht monopolisiert werden.  
+
+Praxis: Monsanto/Bayer-Versuche, Saatgut zu patentieren, stehen im Widerspruch zum Modul FOOD. Stattdessen → Förderung von Open-Source-Saatgut (z. B. „Open Source Seed Initiative“).  
+
+**RESETBOX-Beispiel:** Lizenzkarte in jeder Box: „Food = Commons“.  
+**Crosslinks:** [32 – LICENCE](../modules/32_LICENCE.md), [39 – KNOWLEDGE](../modules/39_KNOWLEDGE.md)
 
 ---
 
-### 5. Praxisbeispiele
-- **Urbanes Beispiel**: In einer Stadtteilküche werden täglich aktualisierte Menü- und Vorratslisten auf einer öffentlichen Infotafel und parallel in der Nextcloud veröffentlicht. Änderungen sind für alle rückverfolgbar.
-- **Ländliches Beispiel**: In einer abgelegenen Region ohne Internetzugang werden Kiwix-Geräte in Gemeindezentren installiert, um Rezepte, Anbauanleitungen und Lagerprotokolle offline verfügbar zu machen.
+**Quellen (für Abschnitte 16–20)**  
+1. Sphere Association (2018). *Minimum Standards in Food Security and Nutrition*.  
+2. WFP (2022). *Digital Ration Cards and Transparency in Food Distribution*.  
+3. UNICEF (2021). *Learning in Emergencies: Rohingya Case Studies*.  
+4. Open Source Seed Initiative (2020). *Manifesto for Commons-Based Seed Rights*.  
+5. ETC Group (2019). *Blocking the Chain: Corporate Control of Seeds and Food*.  
+
+## 21. Internationale Adaptionsmatrix
+
+Ernährung ist immer **kulturell, klimatisch und ökonomisch geprägt**. FOOD stellt sicher, dass das Modul global anpassbar ist:  
+
+- **Tropisch:** Fokus auf Reis, Maniok, tropische Früchte. Reis ist Grundnahrungsmittel für ca. 3,5 Milliarden Menschen weltweit (FAO 2019²).  
+- **Arid:** Hirse, Datteln, wassersparende Zubereitung; Hirse ernährt über 90 Mio. Menschen in Afrika (FAO 2021).  
+- **Gemäßigt:** Getreide, Kartoffeln, Mischkost.  
+- **Polar:** Fett- und proteinreiche Ernährung (Fisch, Fleisch, Konservierung).  
+
+Kulturelle Dimensionen:  
+- Religiöse Speisegesetze (Halal, Kosher, Fastenpraktiken).  
+- Vegetarische/vegane Ernährung (Indien, globale Bewegungen).  
+- Indigene Ernährungspraktiken (Mais in Lateinamerika, traditionell >60 % Kalorienanteil).  
+
+Klimakrise: Dürre und Extremwetter führen jährlich zu Ernteverlusten von bis zu 25 % in betroffenen Regionen (IPCC 2019³).  
+
+**RESETBOX-Beispiel:** QR-Karte mit Rezepten in lokaler Sprache, angepasst an verfügbare Lebensmittel.  
+**Crosslinks:** [22 – MIGRATION](../modules/22_MIGRATION.md), [18 – CULTURE](../modules/18_CULTURE.md)
 
 ---
 
-**Modul-Interlinks**:  
-- **Modul 32 – LICENCE**: Regelt die rechtliche Offenheit der Dokumente.  
-- **Modul 28 – TRUST**: Erweiterte Mechanismen für Vertrauen in der Gemeinschaft.  
-- **Modul 09 – DEBT**: Finanzielle Transparenz und Ressourceneinsatz.
+## 22. Kooperationen & Schnittstellen
+
+FOOD kann nur wirksam sein, wenn es **Netzwerke mit existierenden Strukturen** bildet:  
+
+- **Internationale Akteure:** UN World Food Programme (WFP), FAO, UNICEF.  
+- **Humanitäre NGOs:** Ärzte ohne Grenzen (MSF), Caritas, Oxfam – mit eigenen Ernährungsprogrammen.  
+- **Lokale Akteure:** Tafeln, Foodsharing, Gemeindeküchen, Sozialdienste.  
+- **Zivilgesellschaft:** Selbsthilfegruppen, Kirchen, Moscheen, Tempel.  
+- **Wissenschaft:** Universitäten für Ernährungs- und Agrarforschung.  
+- **Technologie:** Open-Source-Communities für Saatgut, Kühlketten, Food Apps.  
+
+Praxisbeispiel: *WFP School Meals Programme* versorgt über 15 Mio. Kinder weltweit täglich mit einer Mahlzeit (WFP 2021¹).  
+
+**RESETBOX-Beispiel:** Schnittstelle zu Community-Küchen: Box liefert Basisration + Anleitung für kollektives Kochen.  
+**Crosslinks:** [24 – COMMUNITY](../modules/24_COMMUNITY.md), [38 – GOVERNANCE](../modules/38_GOVERNANCE.md)
 
 ---
 
-## 22. Container-Ethik & Replikationsschutz (V1.1)
+## 23. Ressourcenbedarf & Materiallogistik
 
-### 22.1 Grundprinzipien
+FOOD benötigt planbare **Ressourcen und Infrastruktur**:  
 
-Alle Containerlösungen im Modul FOOD dienen ausschließlich der würdevollen, gemeinwohlorientierten Versorgung mit Lebensmitteln.  
-Sie unterliegen den **14 Geboten** des QUESTSYSTEMS, insbesondere dem Grundsatz:
+- **Materialien:** Kochutensilien, mobile Küchen, Kühlcontainer, Saatgut, Konservierungsmittel.  
+- **Transport:** Vans, Fahrräder, Boote oder Drohnen für abgelegene Gebiete.  
+- **Personal:** Freiwillige, Köche, Logistiker:innen, Ernährungsberater:innen.  
+- **Finanzen:** Spenden, Förderungen, QUEST:FUND.  
 
-> „Dignity is not a reward – Hilfe darf niemals an Gehorsam oder Gegenleistung gebunden sein.“
+**Beispielzahlen:**  
+- Eine mobile Küche kann bis zu 1.000 Mahlzeiten pro Tag bereitstellen, Kostenrahmen: ca. 10.000–15.000 € (WFP 2020).  
+- Drohnenlieferungen in Ostafrika transportieren bis zu 20 kg Nahrung pro Flug, Kosten ca. 1 € pro Person/Tag (FAO 2019²).  
 
-Jede Nutzung muss frei sein von Diskriminierung, kommerzieller Ausbeutung oder politischer Vereinnahmung.
-
----
-
-### 22.2 Juristische Absicherung
-
-- **Lizenzpflicht:** Alle Baupläne, Stücklisten und digitalen Inhalte müssen unter der QUESTSYSTEM-Lizenz veröffentlicht werden, um offene Replikation zu sichern und Missbrauch zu verhindern.
-- **Internationale Bezüge:**
-  - *UN Right to Food* (UN General Assembly Resolution 64/159)
-  - *FAO Voluntary Guidelines on the Right to Food*
-  - *Sphere Handbook – Minimum Standards in Food Security and Nutrition*
-- **Schutz vor Zweckentfremdung:** In Ländern ohne Gemeinnützigkeitsrecht kann eine Nutzungsvereinbarung in einfacher Sprache als Beilage dienen (zweisprachig, inkl. Piktogrammen).
+**RESETBOX-Beispiel:** Checkliste „Was braucht eine mobile Küche?“ in jeder COMMUNITY-Version.  
+**Crosslinks:** [27 – TRANSPORT](../modules/27_TRANSPORT.md), [25 – FINANCE](../modules/25_FINANCE.md)
 
 ---
 
-### 22.3 Technische Standards
+## 24. Produktions- & Replikationsethik
 
-- **Physischer Container:**
-  - Stapelbar (kompatibel zu Eurobox-Maßen)
-  - Robustes, lebensmittelechtes Material
-  - Erweiterbar mit Kühlung, Solarpanel, Wasseranschluss
-- **Informationscontainer (digital):**
-  - QR-Code-Standard: Immer Bauplan + Lizenztext + Sicherheitsanleitung + lokale Bezugsquellen
-  - Offline-Versionen (z. B. Kiwix) auf RESETBOX-kompatiblen Geräten
-- **Varianten:**
-  - **Minimal:** Low-Cost aus recyceltem Material, manuell gesichert
-  - **Maximal:** Vollisoliert, energieautark, mit Kühlung und Sensorik
+Die Herstellung und Verteilung von Nahrung muss ethisch verantwortungsvoll sein:  
 
----
+- **Ökologisch:** Verzicht auf hochgiftige Pestizide; Förderung regenerativer Landwirtschaft.  
+- **Sozial:** Faire Löhne und Arbeitsbedingungen in der Nahrungsmittelproduktion.  
+- **Politisch:** Keine Abhängigkeit von globalen Agrarkonzernen (z. B. Monsanto/Bayer).  
+- **Technisch:** Förderung von dezentralen Methoden wie Solar-Trocknung, Fermentation, Kompostkreisläufe, Regenwassernutzung.  
+- **Replizierbar:** Wissen über Anbau und Konservierung ist Open Source.  
 
-### 22.4 Globale Adaptionsmatrix
+Praxis: *Open Source Seed Initiative* (OSSI) ermöglicht freie Nutzung von Saatgut – Gegenmodell zu Patenten (OSSI 2020⁴).  
 
-- **Klimazonen:** Tropisch (Belüftung), Arktisch (Isolierung), Wüste (Staubschutz)
-- **Hygiene:** Integrierte Waschmöglichkeit, abwischbare Flächen, Schutz vor Nagetieren
-- **Konfliktgebiete:** Tarnfarben oder neutrale Kennzeichnung, modulare Verriegelung ohne Abschreckung
-- **Integration:** Anschlussfähigkeit an UNHCR- und Sphere-Logistiksysteme
+**RESETBOX-Beispiel:** DROP-Karte „DIY: Trocknen & Fermentieren“.  
+**Crosslinks:** [13 – NATURE](../modules/13_NATURE.md), [39 – KNOWLEDGE](../modules/39_KNOWLEDGE.md)
 
 ---
 
-### 22.5 Systemintegration
+## 25. Finanzierung & Gemeingüterprinzip
 
-Container im FOOD-Modul stehen in direkter Verbindung zu:
+FOOD folgt dem **Gemeingüterprinzip** – Nahrung darf nicht zur Profitquelle werden, wenn es um Grundversorgung geht.  
 
-- **MODUL 01 – RESETBOX:** Bereitstellung im Notfall
-- **MODUL 03 – SHELTER:** Lager- und Verteilräume
-- **MODUL 06 – DEVICE:** Digitale Verwaltung, Inventur, QR-Zugriff
-- **MODUL 09 – DEBT:** Finanzierungshilfen, solidarische Beschaffung
-- **MODUL 13 – NATURE:** Nachhaltige Materialien, Kreislaufwirtschaft
-- **MODUL 30 – TRUTH:** Transparenzberichte zu Nutzung und Inhalt
+- **Finanzierung:**  
+  - QUEST:FUND für Ernährungshilfe und Community-Küchen.  
+  - Öffentliche Gelder (z. B. EU-Hilfsfonds⁵).  
+  - Spenden & Crowdfunding.  
+- **Transparenz:** Alle Finanzflüsse sind offen einsehbar.  
+- **Gemeingüter:** Nahrungsversorgung ist ein universelles Gut, nicht käuflich.  
+- **Missbrauchsrisiko:** FAO-Studien zeigen, dass bis zu 30 % humanitärer Hilfsgelder durch Korruption oder ineffiziente Bürokratie verloren gehen (FAO 2019²). FOOD setzt hier auf offene Buchführung und RESET:LOG.  
 
----
+Praxis: *Community Supported Agriculture (CSA)* – solidarische Landwirtschaft, bei der Verbraucher:innen direkt Produzenten unterstützen.  
 
-### 22.6 Transparenz & Vertrauen
-
-- Öffentliche Dokumentation aller installierten Container, inkl. Standort, Inhalt, Zugangsbedingungen
-- Community-basierte Audits (lokale Kontrolle gegen Missbrauch)
-- Versionierung von Bauplänen und Sicherheitsupdates
+**RESETBOX-Beispiel:** QR-Karte „How to fund a Community Kitchen“.  
+**Crosslinks:** [09 – DEBT](../modules/09_DEBT.md), [37 – DEMOCRACY](../modules/37_DEMOCRACY.md)
 
 ---
 
-**Lizenz:**  
-Alle Inhalte und Baupläne unterstehen der QUESTSYSTEM-Lizenz.  
-CC BY-SA 4.0-kompatibel, jedoch mit zusätzlichen ethischen Restriktionen zur Missbrauchsverhinderung.  
-Lizenztext: [https://questsystem.org/license](https://questsystem.org/license)
+**Quellen (für Abschnitte 21–25)**  
+1. WFP (2021). *School Meals Programme Annual Report*.  
+2. FAO (2019). *Indigenous Peoples’ Food Systems*.  
+3. IPCC (2019). *Climate Change and Land*.  
+4. Open Source Seed Initiative (2020). *Manifesto for Commons-Based Seed Rights*.  
+5. EU (2022). *European Agricultural Fund for Rural Development*.  
+6. WFP (2020). *Emergency Field Kitchen Guidelines*.  
+
+## 26. Wartung & Aktualisierung
+
+FOOD ist ein lebendiges Modul und muss **regelmäßig gepflegt** werden:  
+- **Haltbarkeitskontrolle:** Notrationen spätestens alle 12 Monate prüfen. Viele Standardrationen (z. B. High Energy Biscuits) verlieren nach 18–24 Monaten deutlich an Nährstoffen (WFP 2020¹).  
+- **Rotation:** Vorräte regelmäßig austauschen („first in, first out“).  
+- **Anpassung an Krisen:** Neue Rezepte, Nährstoffstandards und Lagertechniken einpflegen.  
+- **Community-Feedback:** Nutzer:innen berichten über praktische Erfahrungen (RESET:LOG).  
+- **Update-Prozesse:** Digitale Guides (QR-Codes) erhalten Versionierung und Änderungslog.  
+
+Praxis: Sphere-Handbuch empfiehlt eine Mindesthaltbarkeit von 6–12 Monaten für Grundnahrungsmittel in Hilfslagern (Sphere 2018²).  
+
+**RESETBOX-Beispiel:** Checkliste „Food Rotation“ für Lagerhaltung.  
+**Crosslinks:** [35 – DATA](../modules/35_DATA.md), [26 – HOUSING](../modules/26_HOUSING.md)
 
 ---
 
-## 23. Vertrauensarchitektur & Transparenzlogik (V1.1)
+## 27. Monitoring & Wirkungsmessung
 
-### Zielsetzung
-Die Vertrauensarchitektur des Moduls **FOOD** stellt sicher, dass alle Informationen zu Herkunft, Qualität, Verarbeitung und Verteilung von Lebensmitteln **transparent, fälschungssicher und ethisch abgesichert** verfügbar sind – sowohl in digitalen als auch analogen Kontexten.  
-Das Ziel ist, jederzeit nachweisen zu können:
-- **Was** verteilt wurde
-- **Woher** es stammt
-- **Unter welchen Bedingungen** es erzeugt, gelagert und transportiert wurde
-- **Ob** ethische Mindeststandards eingehalten wurden
+Ohne systematisches Monitoring bleibt Ernährung unsichtbar. FOOD integriert:  
+- **RESET:LOG:** digitale Dokumentation von Mahlzeiten, Ausgaben, Reichweite.  
+- **Indikatoren:** Zahl versorgter Menschen, Kalorien pro Person, Rückgang von Unterernährung.  
+- **Food Consumption Score (FCS):** WFP-Standardindikator: Poor (<21), Borderline (21–35), Acceptable (>35) (WFP 2020¹).  
+- **Digitale Tools:** KoboToolbox und ONA.io werden weltweit von NGOs genutzt, um Ernährungsdaten offline zu erfassen.  
+- **Qualitativ:** Psychologische Wirkung von Gemeinschaftsessen (Resilienz, Zugehörigkeit).  
 
----
+Praxis: WFP nutzt FCS in allen Einsatzgebieten als Benchmark für Ernährungssicherheit.  
 
-### Juristische Basis
-Die Architektur orientiert sich an bestehenden rechtlichen Rahmenbedingungen:
-- **EU-Verordnung Nr. 1169/2011** (Lebensmittelinformations-Verordnung, LMIV)  
-- **Produkthaftungsrichtlinie** (EU 85/374/EWG)  
-- **Datenschutz-Grundverordnung (DSGVO)** – für personenbezogene Lieferketten- und Spenderdaten  
-- **FAO Codex Alimentarius** – internationale Standards für Lebensmittelsicherheit  
-- **ISO 22000** – Managementsysteme für Lebensmittelsicherheit  
-
-Durch diese Bezugspunkte wird sichergestellt, dass das System in verschiedenen Rechtsräumen anerkannt und anschlussfähig ist.
+**RESETBOX-Beispiel:** QR-Formular zur Dokumentation verteilter Mahlzeiten.  
+**Crosslinks:** [39 – KNOWLEDGE](../modules/39_KNOWLEDGE.md), [37 – DEMOCRACY](../modules/37_DEMOCRACY.md)
 
 ---
 
-### Technische Umsetzung
-- **QR-Codes** mit GS1-konformen Datenfeldern (Chargennummer, Produktionsdatum, Herkunftsregion)  
-- **JSON-LD**-Metadatenstruktur für semantische Interoperabilität  
-- **Offline-Karten & Metadatenblätter** als Fallback bei Netzausfall  
-- **Signierte Prüfsummen** zur Fälschungssicherheit  
-- **Verteil-Logs** als unveränderbare Kopien in verteilten Speichern (z. B. IPFS, lokale Mesh-Netzwerke)  
+## 28. Skalierung & regionale Anpassung
+
+FOOD ist von **lokaler Zelle bis globalem Netzwerk** skalierbar:  
+- **Lokal:** Nachbarschaftsküchen, Foodsharing, kleine Boxen. Beispiel: „Solidarity Fridges“ in Spanien und Griechenland mit >100 Standorten (2019).  
+- **Regional:** Tafeln, mobile Küchen, regionale Lager.  
+- **Global:** WFP liefert täglich über 15 Mio. Mahlzeiten in Krisengebiete (WFP 2021³).  
+
+Anpassung:  
+- **Rezepte:** lokale Zutaten nutzen.  
+- **Recht:** Anpassung an nationale Lebensmittelgesetze.  
+- **Kultur:** Einbindung religiöser und kultureller Praktiken.  
+
+**RESETBOX-Beispiel:** Anleitung „From Box to Community Kitchen“.  
+**Crosslinks:** [38 – GOVERNANCE](../modules/38_GOVERNANCE.md), [21 – CLIMATE](../modules/21_CLIMATE.md)
 
 ---
 
-### Krisen- & Ausnahmefall-Logik
-- **Offline-Backup**: Jede Lieferung enthält einen analogen Begleitschein mit minimalen Pflichtinformationen (Datum, Herkunft, Inhaltsstoffe, Mindesthaltbarkeitsdatum)  
-- **Notfall-Codierung**: Farb- oder Symbolmarkierungen für Analphabet:innen und mehrsprachige Kontexte  
-- **Dezentrale Speicherung**: Daten werden gleichzeitig in mindestens drei voneinander unabhängigen Orten gespeichert (z. B. lokale Server, mobile Datenträger, Papierarchive)
+## 29. Symbolik & kulturelle Einbettung
+
+Essen ist Symbol und Ritual zugleich. FOOD integriert universelle Zeichen:  
+- **Brot:** Teilen, Leben, Hoffnung. → Arbeiter:innenbewegung: „Brot und Rosen“ (1912 Lawrence Strike).  
+- **Schale:** Aufnahme, Fürsorge, Gemeinschaft.  
+- **Saatgut:** Zukunft, Generationen, Resilienz.  
+
+Kulturelle Einbettung:  
+- Christentum: Brotbrechen.  
+- Islam: Fastenbrechen (Iftar).  
+- Judentum: Sabbat-Mahl.  
+- Indigene Kulturen: Mais als Lebenssymbol.  
+- Moderne Protestkultur: Brot als Symbol gegen Armut, Essen als politische Forderung (z. B. Hungerproteste im arabischen Frühling 2010–11).  
+
+Praxis: Community-Küchen nutzen Symbole als Erkennungszeichen, um Vertrauen aufzubauen.  
+
+**RESETBOX-Beispiel:** Symbolkarte „Brot & Saatgut“ als Marker.  
+**Crosslinks:** [29 – SYMBOL](../modules/29_SYMBOL.md), [40 – ART](../modules/40_ART.md)
 
 ---
 
-### Ethische Einbindung
-Die Vertrauensarchitektur ist direkt an die **Dignity Clause** und die **14 Ethischen Gebote** gebunden:
-- **Kein Handel mit Falschinformationen** – Jede Information muss überprüfbar sein  
-- **Kein Ausschluss** – Alle Beteiligten haben das Recht auf Zugang zu vollständigen Informationen  
-- **Datenschutz vor Transparenz**, wenn Offenlegung Leben gefährden könnte (z. B. in Konfliktgebieten)
+## 30. Langzeitwirkung & Weitergabe-Logik
+
+FOOD wirkt über Generationen:  
+- **Wissensweitergabe:** Rezepte, Konservierungsmethoden, Anbauwissen werden dokumentiert und frei weitergegeben.  
+- **Saatgutbanken:** sichern Vielfalt für künftige Generationen – Beispiel: *Svalbard Global Seed Vault* mit >1,2 Mio. Proben (Crop Trust 2022⁴).  
+- **Community Seed Banks:** in Indien, Brasilien und Ostafrika entstanden hunderte lokale Saatgutbanken, um Ernährungssouveränität zu sichern (FAO 2021³).  
+- **Community-Archive:** Offene Datenbanken für Ernährungswissen (digital/analog).  
+- **Analoge Backups:** Rezeptbücher und gedruckte Anleitungen verhindern Wissensverlust bei digitalem Blackout.  
+- **Intergenerationell:** Kinder lernen durch Kochrituale und gemeinsames Essen Werte von Solidarität.  
+
+**RESETBOX-Beispiel:** QR-Link zur „Open Food Library“ – ein offenes Archiv von Rezepten und Konservierungsmethoden, zusätzlich als Printheft beigelegt.  
+**Crosslinks:** [41 – FUTURE](../modules/41_FUTURE.md), [31 – MEMORY](../modules/31_MEMORY.md)
 
 ---
 
-### Intermodulare Verbindungen
-- **RESETBOX (01)**: Integration der FOOD-Transparenz in Box-Inhalte und STOP-Karten  
-- **DROP (07)**: Gleiche Prüfsysteme für alle physischen Hilfsgüter  
-- **TRUTH (30)**: Ergänzt das Modul durch verifizierte Datenketten, die Korruption und Fälschung verhindern  
-- **DEVICE (08)**: Bereitstellung und Nutzung der technischen Infrastruktur für Erfassung und Anzeige
-
----
-
-### Beispielanwendung
-Eine Lebensmittelspende in einer Krisenregion wird über einen **QR-Code** gekennzeichnet, der sowohl online als auch offline auslesbar ist. Selbst bei komplettem Netzausfall kann die Herkunft durch den analogen Begleitschein und lokale Kopien nachgewiesen werden. In Kombination mit **TRUTH (30)** ist eine externe, unabhängige Überprüfung jederzeit möglich.
-
----
-
----
-
-## 24. Build-Kit & DIY-Infrastruktur (FOOD) – V1.1
-
-### Zielsetzung
-Dieser Abschnitt beschreibt den vollständigen Aufbau eines **DIY-tauglichen FOOD-Build-Kits** innerhalb des QUESTSYSTEMS. Er ermöglicht Einzelpersonen, Gemeinschaften und Organisationen, **selbstständig** eine stabile, krisenfeste und nachhaltige Nahrungsversorgung aufzubauen.
-
----
-
-### 1. Inhalte des FOOD-Build-Kits
-Das Kit enthält Baupläne, Materiallisten und Anleitungen für:
-
-- **Solarkocher** (Bauzeit: 3 Std., Materialkosten: ca. 25 €)
-- **Raketenofen** (Bauzeit: 2 Std., Materialkosten: ca. 15 €)
-- **Hydroponik-System** (Bauzeit: 6 Std., Stromverbrauch: 10–20 W pro Pumpe, Materialkosten: 40–80 €)
-- **Vertikale Gärten** (Bauzeit: 4 Std., Flächenbedarf: ab 0,5 m²)
-- **Solartrockner** (Bauzeit: 5 Std., Materialkosten: 20–30 €)
-- **Fermentationsgefäße** (Bauzeit: 1 Std., Materialkosten: ab 5 €)
-
-Alle Bauanleitungen werden als **Schritt-für-Schritt-Fotodokumentation** und **druckbare PDF-Dateien** bereitgestellt.
-
----
-
-### 2. Prinzipien
-- **Low-Tech + High-Impact**: Auch ohne Strom funktionsfähig.
-- **Open-Source**: Keine Patent- oder Lizenzbarrieren.
-- **Modularität**: Komponenten können einzeln oder kombiniert genutzt werden.
-- **Reparierbarkeit**: Ersatzteile aus Alltagsmaterialien herstellbar.
-
----
-
-### 3. Sicherheit
-- **Hygienestandards**: Handschuhe, sauberes Wasser, abwaschbare Oberflächen.
-- **Lagerhygiene**: Temperaturkontrolle (5–15 °C), luftdichte Behälter, Schädlingsschutz.
-- **Feuergefahr**: Mindestabstand bei Raketenöfen (mind. 2 m von brennbaren Materialien).
-
----
-
-### 4. Lagerung & Haltbarmachung
-- **Trocknung**: Solar-Trockner für Obst, Gemüse, Kräuter.
-- **Fermentation**: Milchsäuregärung zur Vitamin- und Probiotik-Erhaltung.
-- **Einwecken**: Glasbehälter mit Gummiring; Kochzeit & Temperaturen nach EU-Standards.
-- **Räuchern**: Kalträuchermethoden mit Holzhackschnitzeln.
-
----
-
-### 5. Krisenszenarien
-- **Blackout**: Nutzung von Raketenofen und Solarkocher ohne Netzstrom.
-- **Flut**: Vertikale Gärten als transportierbare Anbaufläche.
-- **Hitzewelle**: Solartrockner zur Konservierung bei Überproduktion.
-- **Versorgungsausfall**: Hydroponiksystem für schnelle Eigenproduktion.
-
----
-
-### 6. Rechtliche Hinweise (EU & Deutschland)
-- **Lebensmittelrecht**: Einhaltung der EU-Verordnung (EG) Nr. 178/2002.
-- **Hygieneverordnung**: DIN 10514 für Kleinproduzenten.
-- **Verpackungspflichten**: Kennzeichnungspflicht bei Verkauf (Inhaltsstoffe, Haltbarkeit, Herkunft).
-- **Direktvermarktung**: Kleinmengenregelung (§ 13 LMHV) erlaubt Verkauf ohne Großlizenz.
-
----
-
-### 7. Offline-Zugang & QR-System
-- **Kiwix-Paketstruktur**:
-  - `/food/solarkocher/`
-  - `/food/raketenofen/`
-  - `/food/hydroponik/`
-  - `/food/lagerung/`
-- **Gesamtgröße**: ~1,2 GB (inkl. Bilder, PDFs, Videos)
-- **QR-Codes**: Wetterfest, im Kit beigelegt, führen zu Offline-/Online-Versionen.
-
----
-
-### 8. Modulverknüpfung
-- **Modul 01 – RESETBOX**: Basisintegration in alle Universal- und Spezialvarianten.
-- **Modul 04 – FOOD**: Kernfunktion.
-- **Modul 09 – DEBT**: Mikrofinanzierung von Gemeinschaftsgärten, Genossenschaften.
-- **Modul 10 – WORK**: Aufbau von Ernährungsprojekten als gemeinwohlorientierte Arbeit.
-- **Modul 13 – NATURE**: Integration von Wildpflanzen und Biodiversität.
-
----
-
-### 9. Praktische Umsetzung
-Das FOOD-Build-Kit kann in **Workshops** oder **Selbstlernformaten** umgesetzt werden.  
-Empfohlene Reihenfolge:
-1. Solarkocher
-2. Raketenofen
-3. Trockner/Fermentation
-4. Hydroponik
-5. Vertikaler Garten
-
----
-
-### 10. Lizenz & Weitergabe
-- **Lizenz**: QUESTSYSTEM-Lizenz (Open Use, No Abuse).
-- **Weitergabe**: Erlaubt in unveränderter oder erweiterter Form.
-- **Kommerzielle Nutzung**: Nur gemeinwohlorientiert und mit Quellenangabe.
-
----
-
----
-
-## 21. Internationale Adaptionsmatrix (V1.1)
-
-### 21.1 Zielsetzung
-Die Internationale Adaptionsmatrix gewährleistet, dass das FOOD-Modul in jeder geografischen, kulturellen und rechtlichen Umgebung wirksam eingesetzt werden kann – ohne Abhängigkeiten, kulturelle Überformung oder rechtliche Konflikte.  
-Sie dient als Werkzeug zur Anpassung von **RESETBOX-Inhalten**, **Verteilmethoden** und **Schulungsmaterialien** an lokale Gegebenheiten.
-
----
-
-### 21.2 Anpassungskriterien
-Für jede Region müssen die folgenden Faktoren bewertet und dokumentiert werden:
-
-| Kriterium                | Beschreibung                                                                                                    |
-|--------------------------|----------------------------------------------------------------------------------------------------------------|
-| **Klima & Umwelt**       | Temperatur, Luftfeuchtigkeit, saisonale Schwankungen, lokale Biodiversität.                                   |
-| **Rechtliche Lage**      | Lebensmittelgesetzgebung, Saatgutrecht, Importbeschränkungen, Zollgebühren.                                   |
-| **Kulturelle Ernährung** | Essgewohnheiten, religiöse Vorschriften, regionale Rezepte, Nahrungsmittelverbote.                            |
-| **Krisenprofil**         | Naturkatastrophen, bewaffnete Konflikte, Wirtschaftskrisen, Unterversorgung.                                   |
-| **Infrastruktur**        | Straßen, Kühlketten, Wasserverfügbarkeit, Stromversorgung.                                                     |
-| **Digitale Zugänge**     | Verfügbarkeit von Offline-Datenbanken (z. B. Kiwix mit FAO- und WHO-Daten), lokale Community-Netzwerke.         |
-| **Missbrauchsrisiken**   | Gefahr von Monopolbildung, „Food Colonialism“, politischer Einflussnahme auf Versorgung.                       |
-
----
-
-### 21.3 Globale Referenzregionen mit Beispielinhalten
-Jede Region wird nach den Kriterien aus 21.2 bewertet und mit angepassten Box-Komponenten versehen.
-
-| Region                  | Beispielkomponenten FOOD-RESETBOX                                          | Rechtliche Risiken / Standards                                    |
-|-------------------------|-----------------------------------------------------------------------------|--------------------------------------------------------------------|
-| **Sub-Sahara-Afrika**   | Hirse, Maniokmehl, Solartrockner, Saatgut für lokale Sorten                 | Importverbote für genetisch verändertes Saatgut, Zoll auf Nothilfe |
-| **Südostasien**         | Reis, Wasserfilter, lokale Gewürze, energiesparende Kochgeräte              | Hygienevorschriften für verpackte Waren                           |
-| **Naher Osten / Nordafrika** | Linsen, Fladenbrot-Backplatten, haltbare Gewürzmischungen                   | Halal-Vorschriften, Grenzkontrollen                               |
-| **Europa**              | Vollkornprodukte, Trockenobst, tragbare Induktionskochplatten               | EU-Lebensmittelverordnung (VO 178/2002)                           |
-| **Lateinamerika**       | Mais, Bohnen, tragbare Mühlen, lokale Saatgutpakete                         | Schutzrechte auf traditionelle Sorten                             |
-| **Arktisregionen**      | Gefriergetrocknete Gerichte, tragbare Heizplatten, Isolierboxen              | Importverbote für frische Ware                                    |
-
----
-
-### 21.4 Umsetzungsschritte
-1. **Lokale Analyse**: Erhebung von Klimadaten, Infrastrukturzustand und kulturellen Essgewohnheiten.  
-2. **Rechtsprüfung**: Abgleich mit nationalem Lebensmittel- und Zollrecht, Nutzung von FAO-/Codex-Datenbanken.  
-3. **Box-Anpassung**: Auswahl regionaler Lebensmittel, Geräte und Verpackungen.  
-4. **Digitale Ergänzung**: Offline-Bibliotheken mit Rezepten, Anbauanleitungen, Krisenplänen in Landessprache.  
-5. **Schulung & Übergabe**: Einbindung lokaler Multiplikatoren, um Autonomie zu sichern.  
-
----
-
-### 21.5 Modulverknüpfung im QUESTSYSTEM
-- **RESETBOX (01)** – physische Basisstruktur.  
-- **WATER (02)** – Trinkwasser für Nahrungszubereitung.  
-- **SHELTER (03)** – Kochschutz und Lagerung.  
-- **ENERGY (10)** – Kochenergie (Solar, Biogas, Strom).  
-- **DEVICE (08)** – Offline-Rezept- und Lagerverwaltungssoftware.  
-- **DEBT (09)** – Finanzielle Erreichbarkeit von Box-Komponenten.  
-- **BORDER (12)** – Zoll, Grenzformalitäten, humanitäre Ausnahmeregelungen.  
-
----
-
-### 21.6 Digitale & Open-Source-Aspekte (CCC-relevant)
-- Verwendung von **Kiwix** mit FAO-, WHO- und Permakultur-Datenbanken.  
-- Open-Source-Tools für **Lagerbestandsverwaltung** und **Verteilroutenplanung**.  
-- Dezentralisierte Datenhaltung zur Vermeidung staatlicher Zensur oder Manipulation.  
-- Offene Standards für **Sensoren** (Temperatur, Feuchtigkeit) in Lager- und Transportketten.
-
----
-
-**Fußnoten:**  
-1. FAO: Codex Alimentarius – International Food Standards.  
-2. EU-Verordnung (EG) Nr. 178/2002: Allgemeine Grundsätze des Lebensmittelrechts.  
-3. WHO: Food safety and nutrition resources.
-
----
-
+**Quellen (für Abschnitte 26–30)**  
+1. WFP (2020). *Food Consumption Score Guidance*.  
+2. Sphere Association (2018). *Minimum Standards in Food Security and Nutrition*.  
+3. FAO (2021). *Seed Security and Community Seed Banks*.  
+4. Global Crop Diversity Trust (2022). *Svalbard Global Seed Vault Report*.  
+5. ETC Group (2019). *Who Will Feed Us?*  

@@ -1,869 +1,637 @@
-## 01. Einleitung (STATIC CORE V5.0 LOCKED)
+# Modul 10 – WORK
 
-Arbeit im QUESTSYSTEM ist keine Lohnpflicht und kein Zwang, sondern ein **freiwilliger, würdevoller Beitrag** zum Gemeinwesen.  
-Dieses Modul (10 – WORK) beschreibt, wie Arbeit jenseits von Schulden- und Erwerbszwang organisiert, anerkannt und geschützt wird.
+## Einleitung
 
-**Systemlogik (STATIC CORE V5.0 LOCKED):**
-- **🟢 Existential Ring (01–09):** Überleben, Würde, Autonomie (RESETBOX, WATER, SHELTER, FOOD, SLEEP, BODY, PSYCHE, DEVICE, DEBT).
-- **🟡 Societal Ring (10–24):** Zugehörigkeit, Bildung, Konflikt, Umwelt (**WORK** ist hier verortet).
-- **🔵 Structural Ring (25–42):** Recht, Ökonomie, Technologie, Wahrheit, Governance.
+Arbeit ist eine der ältesten und zugleich umstrittensten Grundlagen menschlicher Organisation.  
+Sie strukturiert den Alltag, schafft Einkommen, gibt Identität – und kann zugleich Quelle von Ausbeutung, Prekarität und Verlust von Würde sein.  
 
-**Rolle von WORK (Modul 10):**  
-WORK ist **Brücke und Scharnier** zwischen Überleben (🟢) und Struktur (🔵):  
-Es verbindet Fähigkeiten, Schutzräume, Recht und Kultur zu praktikablen **Arbeitsprozessen**, die Zwang ausschließen und Teilhabe ermöglichen.
+Im **QUESTSYSTEM** wird WORK als **societales Kernmodul** verstanden:  
+- Es verbindet **Existenz** (Überleben durch Einkommen),  
+- **Gemeinschaft** (Zugehörigkeit, Verantwortung, Care),  
+- und **Struktur** (Recht, Ökonomie, Technik).  
 
----
+Globale Krisen zeigen, wie fragil Arbeit ist:  
+- **Automatisierung:** Bis zu 800 Mio. Jobs könnten bis 2030 durch Maschinen ersetzt werden (McKinsey 2017¹).  
+- **Pandemien:** Covid-19 kostete 2020 weltweit 255 Mio. Vollzeitarbeitsplätze (ILO 2021²).  
+- **Jugendarbeitslosigkeit:** In Nordafrika liegt sie bei über 25 %, in Südeuropa bei über 30 % (ILO 2021³).  
+- **Prekarität:** Rund 60 % der Arbeitenden weltweit haben keinen Zugang zu Sozialversicherung (ILO 2020⁴).  
+- **Care-Arbeit:** Frauen leisten über 75 % unbezahlter Sorgearbeit, die meist unsichtbar bleibt (ILO 2018⁵).  
 
-### Systemischer Kontext von WORK
+Die RESETBOX greift diese Themen auf:  
+- **STOP-Karten** als Schutz gegen Ausbeutung („Right to Decent Work“).  
+- **DROP-Karten** mit Soforthilfen bei Jobverlust („3 Schritte zur Absicherung“).  
+- **QR-Karten** mit Zugang zu Beratungen, Gewerkschaften und Hilfsprogrammen.  
 
-- **Verortung:** WORK (10) liegt im **🟡 Societal Ring** und interagiert eng mit **09 DEBT** (Entlastung von Zwang) und **25 FINANCE** (Ressourcen statt Lohnabhängigkeit).  
-- **Schutzarchitektur:** Zwangsfreiheit wird abgesichert durch **01 RESETBOX** (Basisschutz), **32 LICENCE** (Rechtsrahmen), **23 JUSTICE** (Rechte/Pflichten) und **34 SECURITY** (Sicherheit). Dokumentation und Nachvollziehbarkeit sichern **31 MEMORY** und **30 TRUTH**.  
-- **Schnittstellen zu Ringen:**
-  - **🟢 Existential (01–09):** Arbeit speist sich aus Grundbedürfnissen (WATER, FOOD, SHELTER) und erhält über **PSYCHE (07)** Stabilität.  
-  - **🔵 Structural (25–42):** Recht/Regeln (**LICENCE, JUSTICE, PRIVACY**), Infrastruktur (**NETWORK, ENERGY, DATA**) und Kultur/Wahrheit (**SYMBOL, TRUTH, MEMORY**) rahmen Arbeit.  
-- **Matrixbezug:** Die detaillierten Kern-Verknüpfungen und Negativszenarien je Modul stehen in **Abschnitt 10.2–10.4 (V5.0 LOCKED)**.  
-  - Für WORK gilt: **Ohne Arbeit → Ausschluss, Armut.**
+Symbolisch macht WORK sichtbar:  
+- **Arbeitsvertrag** als STOP-Karte gegen Rechtlosigkeit.  
+- **Werkzeug** als Zeichen für Handlungsfähigkeit.  
+- **Leere Stuhlreihe** als Mahnmal für verlorene Jobs.  
 
-**Essenz:** WORK operationalisiert **Würde, Freiwilligkeit und Gemeinwohl** – abgesichert durch die Ringsystematik von STATIC CORE **V5.0 LOCKED**.
+WORK ist damit kein reines „Arbeitsmarkt“-Modul, sondern ein Spiegel für die **Würde des Menschen im ökonomischen Zusammenhang**.  
+Es fragt: **Welche Arbeit stärkt uns – und welche bricht uns?**
 
-# Modul 10 – WORK  
-## 02. Krisenhintergrund & globale Relevanz (Patch V1.3 – STATIC CORE V5.0 LOCKED)
-
-### Globale Krisenlage
-Arbeit ist im **🟡 Societal Ring (10–24)** verankert und damit unmittelbar betroffen von multiplen globalen Krisen:
-
-- **Automatisierung & Digitalisierung** → Verdrängung menschlicher Arbeit durch KI und Robotik (Verbindung: 39 KNOWLEDGE, 28 NETWORK).  
-- **Klimawandel & Umweltzerstörung** → Verlust von Arbeitsplätzen in fossilen Industrien, Zunahme von Krisenarbeit (Verbindung: 21 CLIMATE, 13 NATURE).  
-- **Migration & geopolitische Konflikte** → Arbeitsmärkte als Spannungsfelder für Integration und Ausgrenzung (Verbindung: 22 MIGRATION, 36 CONFLICT).  
-- **Globale Energie- und Finanzkrisen** → Abhängigkeit von Rohstoffen, Inflation, Prekarisierung (Verbindung: 20 ENERGY, 25 FINANCE).  
-
-### Systemische Rolle von WORK
-Arbeit ist nicht nur ökonomische Leistung, sondern **Grundform sozialer Teilhabe und Autonomie**.  
-Im STATIC CORE V5.0 LOCKED ist WORK daher mit **DEBT (09)** und **FINANCE (25)** verbunden:  
-- Schulden regulieren Zugang zu Arbeit.  
-- Arbeit sichert Finanzierung von Wohnen, Energie und Care.  
-- RESETBOX (01) bleibt die minimale Überlebensbasis – unabhängig von Erwerbstätigkeit.
-
-### Globale Relevanz
-- **Für Individuen:** Arbeit entscheidet über Zugang zu Einkommen, Wohnen, Pflege, Gesundheit.  
-- **Für Gesellschaften:** Arbeitsmärkte strukturieren Zugehörigkeit und Ausschluss.  
-- **Für Systeme:** Arbeitsmodelle bestimmen Nachhaltigkeit, Innovationskraft und Resilienz.  
-
-### Negativszenario
-Ohne modulare Sicherung (RESETBOX, JUSTICE, TRUTH, LICENCE) drohen:  
-- **Massenarbeitslosigkeit** durch Automatisierung.  
-- **Ausbeutung** in informellen und prekären Sektoren.  
-- **Zwangsarbeit** oder Schuldknechtschaft ohne Schutz durch DEBT-Regelung.  
-- **Spaltung der Gesellschaft** in „Erwerbstätige“ und „Überflüssige“.
-
-### Schlussfolgerung
-WORK ist damit ein **Krisenknoten**:  
-Es verbindet **ökonomische Systeme (25 FINANCE)**, **soziale Rechte (23 JUSTICE)** und **kulturelle Identität (18 CULTURE)**.  
-Ohne klare Regulierung und Schutzarchitektur droht Arbeit vom **Weg der Würde** zur **Quelle systemischer Entwürdigung** zu werden.
-
-# Modul 10 – WORK  
-## 03. Juristische Absicherung & Schutzräume (Patch V1.3 – STATIC CORE V5.0 LOCKED)
-
-### Rechtsgrundlagen
-Arbeit ist im STATIC CORE V5.0 LOCKED als **🟡 Societal-Modul (10 WORK)** ein soziales Grundrecht, aber auch ein Risikofeld für Missbrauch.  
-Zentrale Rechtsquellen sind:  
-- **UN-Sozialpakt (Art. 6–8)**: Recht auf Arbeit, gerechte Bedingungen, Gewerkschaften.  
-- **ILO-Kernarbeitsnormen**: Verbot von Kinder- & Zwangsarbeit, Vereinigungsfreiheit.  
-- **EU-Grundrechtecharta (Art. 15–31)**: Recht auf Arbeit, faire Arbeitsbedingungen, Schutz vor Kündigung.  
-- **QuestSystem Dignity Clause (Abschnitt 04)**: Arbeit muss Würde sichern, darf nicht zur Entwürdigung führen.
-
-### Modulverknüpfungen
-- **09 DEBT** → Schulden dürfen nicht zu Zwangsarbeit führen. Rechtliche Entschuldungsmechanismen sind Pflicht.  
-- **23 JUSTICE** → Gerichte und Gemeingüter-Rechtssysteme schützen vor Ausbeutung und Diskriminierung.  
-- **32 LICENCE** → Reguliert Plattformarbeit, KI-Einsatz und internationale Arbeitsmigration.  
-- **33 PRIVACY** → Schutz vor Überwachung am Arbeitsplatz, besonders durch digitale Systeme.  
-- **34 SECURITY** → Arbeitsschutz, Unfallverhütung, sichere Arbeitsumgebungen.  
-- **01 RESETBOX** → Sicherung eines minimalen Überlebensstandards, unabhängig von Erwerbstätigkeit.
-
-### Juristische Schutzräume
-1. **Kollektive Rechte**: Gewerkschaften, Kollektivverträge, Streikrecht.  
-2. **Individuelle Rechte**: Kündigungsschutz, Arbeitszeitbegrenzung, Mindestlohn.  
-3. **Digitale Rechte**: Schutz vor algorithmischer Steuerung, Transparenzpflichten bei Plattformarbeit.  
-4. **Existenzrechte**: Zugang zu Grundversorgung (RESETBOX, COMMUNITY), auch ohne Erwerbsarbeit.  
-
-### Negativszenario ohne Absicherung
-- **Zwangsarbeit** in Schuldenökonomien (Verletzung DEBT-Regeln).  
-- **Ausbeutung** durch transnationale Konzerne ohne lokale JUSTICE-Strukturen.  
-- **Digitale Sklaverei** durch algorithmische Kontrolle ohne LICENCE-Regulierung.  
-- **Arbeitslosigkeit = Entrechtung**, wenn RESETBOX und Care-Systeme fehlen.
-
-### Schlussfolgerung
-Arbeit muss rechtlich so abgesichert werden, dass sie **immer in den Rahmen der Dignity Clause** eingebettet bleibt.  
-Die Verbindung von **klassischen Arbeitsrechten** und **QuestSystem-Modulen** schafft einen Schutzraum, in dem Arbeit nicht nur ökonomische Leistung, sondern auch **Recht auf Würde, Teilhabe und Selbstbestimmung** ist.
-
-# Modul 10 – WORK  
-## 04. Ethische Basis (Dignity Clause) – Patch V1.3 (STATIC CORE V5.0 LOCKED)
-
-### Grundsatz
-Die **Dignity Clause** ist das ethische Fundament des gesamten QUESTSYSTEMs.  
-Für das Modul **10 WORK** bedeutet dies: Arbeit darf **niemals zur Entwürdigung, Zwang oder Entrechtung** führen.  
-Sie ist ein **Recht auf Teilhabe, Selbstbestimmung und Sinn**, nicht nur eine ökonomische Pflicht.
-
-### Kernaussagen
-1. **Würde vor Profit** – Jede Arbeitsform muss Würde, Gesundheit und Selbstachtung der Menschen respektieren.  
-2. **Kein Zwang** – Schulden (09 DEBT) oder Migration (22 MIGRATION) dürfen nicht in Zwangsarbeit münden.  
-3. **Commons-Prinzip** – Care- und Subsistenzarbeit (15 CARE, 16 FAMILY) werden gleichwertig anerkannt.  
-4. **Digitale Ethik** – Algorithmische Arbeitssysteme (32 LICENCE, 33 PRIVACY) unterliegen Transparenz- und Fairnesspflichten.  
-5. **Lebenszyklus-Ethik** – Würde gilt vom ersten Arbeitsschritt bis zum Ende des Lebens (42 DEATH).  
-
-### Modulverknüpfungen
-- **09 DEBT** → Entschuldungsmechanismen, damit Arbeit nie Zwang wird.  
-- **15 CARE** → Pflegearbeit ist gleichwertige Arbeit und ethisch geschützt.  
-- **23 JUSTICE** → Rechtssystem garantiert Durchsetzung der Würde-Klausel.  
-- **32 LICENCE** → Reguliert digitale Arbeit, Plattformen und transnationale Tätigkeiten.  
-- **42 DEATH** → Würdeprinzip gilt auch für Sterbebegleitung und letzte Lebensarbeit.  
-
-### Praktische Anwendung
-- **Existenzminimum sichern**: RESETBOX (01) + WORK = Würde auch ohne Erwerbsarbeit.  
-- **Faire Bedingungen**: Mindestlohn, Arbeitszeitlimits, Gesundheitsschutz.  
-- **Digitale Arbeitsethik**: Recht auf Offline-Zeit, algorithmische Transparenz.  
-- **Nicht-Kriminalisierung**: Straßenkunst, Subsistenz, Care-Arbeit dürfen nicht als „illegal“ verfolgt werden.  
-
-### Negativszenario ohne Dignity Clause
-- Zwangsarbeit in Schuldenregimen.  
-- Unsichtbarkeit von Care-Arbeit → Verwahrlosung, Ungleichheit.  
-- Algorithmische Kontrolle → „digitale Sklaverei“.  
-- Verlust der Würde im Alter oder Sterben → Pflegeelend, Isolation.  
-
-### Schlussfolgerung
-Die **Dignity Clause** macht Arbeit zu mehr als ökonomischer Leistung.  
-Sie ist ein **ethischer Schutzraum**, der verhindert, dass Arbeit in Abhängigkeit, Entwürdigung oder Missbrauch kippt.  
-Nur so bleibt Arbeit im QUESTSYSTEM ein **Recht auf Würde, Teilhabe und Sinn** – unabhängig von ökonomischer Verwertbarkeit.
-
-# MODUL 10 – WORK  
-## 05. Wissenschaftliche Fundierung (Sozio / Medizin / Technik) – V1.3 (STATIC CORE V5.0 LOCKED)
-
-### 1. Sozialwissenschaftliche Dimension
-Arbeit ist nicht nur ökonomische Tätigkeit, sondern eine **sozial strukturierende Praxis**.  
-Forschung zeigt, dass Arbeit Identität, Zugehörigkeit und soziale Bindungen schafft, zugleich aber auch **Abhängigkeiten, Ausbeutung und Ausschlüsse** produziert.
-
-- **Theorien:** Marx (Ausbeutung), Weber (Rationalisierung), Feministische Ökonomien (Care-Arbeit), Bourdieu (symbolisches Kapital).  
-- **Krisenbezug:** Prekarisierung, Gig-Economy, algorithmisches Management.  
-- **Relevante Module:**  
-  - 09 DEBT → Arbeit als Schuldenregulation.  
-  - 11 SCHOOL → Bildung als Zugangsvoraussetzung.  
-  - 22 MIGRATION → Arbeitsmigration als Krisenreaktion.  
-  - 36 CONFLICT → Arbeit als Konfliktfeld.  
-
-### 2. Medizinische Dimension
-Arbeit wirkt **direkt auf Körper und Psyche**.  
-Die WHO belegt, dass prekäre Arbeit zu **höherem Krankheitsrisiko, Burnout, psychosomatischen Erkrankungen und verringerter Lebenserwartung** führt.
-
-- **Körperliche Belastungen:** Arbeitsunfälle, ergonomische Defizite, toxische Exposition.  
-- **Psychische Belastungen:** Burnout, Depressionen, Stress durch Leistungsdruck.  
-- **Gesundheitssoziologie:** Verknüpfung von Arbeit mit sozialer Ungleichheit (Berufsrisiken, Zugang zu Care).  
-- **Relevante Module:**  
-  - 14 HEALTH → physische und psychische Gesundheit.  
-  - 15 CARE → Pflege und Fürsorge als Arbeitsform.  
-  - 07 PSYCHE → mentale Stabilität.  
-  - 42 DEATH → Arbeitsbedingungen beeinflussen Mortalität.  
-
-### 3. Technische Dimension
-Arbeit ist **untrennbar mit Technologie und Energie** verbunden.  
-Digitalisierung, KI und Automatisierung verändern Arbeitsstrukturen radikal.  
-
-- **Technologien:** Robotik, Plattformarbeit, algorithmisches Management.  
-- **Energieabhängigkeit:** Jede Form von Arbeit ist auf Strom, Geräte und Netzwerke angewiesen.  
-- **Datifizierung:** Arbeitskraft wird zunehmend durch **Überwachung, Tracking und Datenanalysen** reguliert.  
-- **Relevante Module:**  
-  - 08 DEVICE → Geräte als Arbeitsmittel.  
-  - 20 ENERGY → Energie als Voraussetzung für Arbeit.  
-  - 28 NETWORK → digitale Vernetzung.  
-  - 32 LICENCE → rechtlicher Rahmen für Arbeits- und Techniknutzung.  
-  - 33 PRIVACY → Schutz vor Überwachung.  
-  - 35 DATA → Arbeitsdaten als Machtressource.  
-
-### 4. Wissenschaftlich-ethische Schnittstelle
-Die **Dignity Clause (Abschnitt 04)** verpflichtet dazu, dass **wissenschaftliche Evidenz** Grundlage aller Arbeitsnormen im QUESTSYSTEM ist.  
-Arbeit darf **nicht gegen die menschliche Würde** eingesetzt werden.  
-
-- **Forschungspflicht:** Jedes Arbeitsmodell muss auf **empirischen Daten** basieren.  
-- **Transparenz:** Alle Ergebnisse sind **öffentlich dokumentierbar**.  
-- **Ethische Kontrolle:** Nutzung wissenschaftlicher Methoden darf **keine Instrumentalisierung des Menschen** bedeuten.  
+**Crosslinks:** [09 – DEBT](../modules/09_DEBT.md), [11 – SCHOOL](../modules/11_SCHOOL.md), [25 – FINANCE](../modules/25_FINANCE.md), [15 – CARE](../modules/15_CARE.md)
 
 ---
 
-### Verknüpfte Module (STATIC CORE V5.0 LOCKED)
-- **09 DEBT** – Arbeit als Schuldenausgleich.  
-- **11 SCHOOL** – Bildung als Basis.  
-- **14 HEALTH** – Arbeit als Gesundheitsfaktor.  
-- **20 ENERGY** – Energieabhängigkeit der Arbeitswelt.  
-- **23 JUSTICE** – Arbeitsrecht.  
-- **28 NETWORK** – digitale Arbeitsteilung.  
-- **32 LICENCE / 33 PRIVACY / 35 DATA** – rechtlich-technische Sicherung von Arbeitsprozessen.  
+**Quellen (Einleitung)**  
+1. McKinsey Global Institute (2017). *Jobs Lost, Jobs Gained*.  
+2. ILO (2021). *Covid-19 and Labour Market*.  
+3. ILO (2021). *Youth Employment Statistics*.  
+4. ILO (2020). *Informal Employment Report*.  
+5. ILO (2018). *Care Work and Care Jobs Report*.  
+
+## 01. Systemischer Kontext
+
+Arbeit ist mehr als Einkommen – sie ist Teilhabe, Identität und gesellschaftlicher Kitt.  
+- **Im QUESTSYSTEM:** WORK liegt im Societal Ring (10–24), verbunden mit DEBT (09), SCHOOL (11) und FINANCE (25).  
+- **Funktion:** Arbeit strukturiert den Alltag, ermöglicht soziale Absicherung und beeinflusst Selbstwertgefühl.  
+- **Krise:** Arbeitslosigkeit oder Prekarität destabilisieren Würde, Gesundheit und Demokratie.  
+- **Historische Perspektive:** Von der antiken Sklavenarbeit über feudale Leibeigenschaft bis zur industriellen Lohnarbeit wandelte sich die Definition von „Arbeit“ fundamental (Polanyi 1944¹).  
+
+**RESETBOX-Beispiel:** STOP-Karte „Right to Decent Work“.  
+**Crosslinks:** [09 – DEBT](../modules/09_DEBT.md), [25 – FINANCE](../modules/25_FINANCE.md)
 
 ---
 
-### Negativszenario (bei Missachtung wissenschaftlicher Grundlagen)
-- Arbeitsmodelle führen zu **Gesundheitskrisen** (Burnout, Pandemien, Arbeitsunfälle).  
-- Gesellschaftliche **Spaltung** durch Prekarisierung und Ausgrenzung.  
-- **Technologischer Kontrollverlust** (Algorithmic Management ohne Regulierung).  
-- **Verlust der Würde** durch Ausbeutung, Überwachung und Entmenschlichung.  
+## 02. Krisenhintergrund & globale Relevanz
 
-# MODUL 10 – WORK  
-## 06. Technische Struktur & Varianten – V1.3 (STATIC CORE V5.0 LOCKED)
+- **Arbeitslosigkeit:** Weltweit sind über **200 Mio. Menschen ohne Arbeit** (ILO 2022²).  
+- **Jugendarbeitslosigkeit:** Besonders hoch im Mittelmeerraum (Spanien, Griechenland > 30 %). In Nordafrika liegt sie bei über 25 % (ILO 2021³).  
+- **Prekarität:** 60 % aller arbeitenden Menschen weltweit haben keinen Zugang zu Sozialversicherung (ILO 2020⁴).  
+- **Automatisierung:** Bis 2030 könnten bis zu **800 Mio. Jobs** durch Automatisierung ersetzt werden (McKinsey 2017⁵).  
+- **Covid-19:** Pandemie führte 2020 zu 255 Mio. verlorenen Vollzeitstellen weltweit (ILO Monitor 2021⁶).  
+- **Deutschland:** Trotz niedriger Arbeitslosenquote wächst der Niedriglohnsektor; rund 20 % der Beschäftigten arbeiten im Niedriglohn (Statistisches Bundesamt 2021⁷).  
 
-### 1. Grundstruktur
-Arbeit ist technisch immer ein **System aus Ressourcen, Energie, Infrastruktur und Kontrolle**.  
-Im QUESTSYSTEM werden technische Arbeitsstrukturen so gestaltet, dass sie **würdeorientiert, resilient und transparent** bleiben.
-
-- **Energie:** Jede Arbeit benötigt Energie (Modul 20 – ENERGY).  
-- **Geräte:** Arbeitsprozesse laufen über Tools & Devices (Modul 08 – DEVICE).  
-- **Netzwerke:** Kommunikation & Koordination erfolgen über digitale Infrastrukturen (Modul 28 – NETWORK).  
-- **Daten:** Kontrolle & Planung entstehen durch Arbeitsdaten (Modul 35 – DATA).  
-- **Lizenz & Recht:** Arbeitsmittel dürfen nur im Rahmen der QUEST: Licence (Modul 32) eingesetzt werden.  
+**RESETBOX-Beispiel:** DROP-Karte „3 Schritte bei Jobverlust“.  
+**Crosslinks:** [11 – SCHOOL](../modules/11_SCHOOL.md), [41 – FUTURE](../modules/41_FUTURE.md)
 
 ---
 
-### 2. Technische Varianten von Arbeit
-Die technische Struktur ist **nicht einheitlich**, sondern in Varianten angelegt, um unterschiedliche Kontexte zu ermöglichen:
+## 03. Juristische Absicherung & Schutzräume
 
-1. **Analoge Arbeit**  
-   - Handarbeit, Landwirtschaft, Care-Arbeit.  
-   - Minimal abhängig von Technik, aber oft körperlich belastend.  
-   - Relevante Module: 04 FOOD, 06 BODY, 15 CARE.  
+- **Deutschland/EU:**  
+  - Grundrecht auf Berufsfreiheit (Art. 12 GG).  
+  - Kündigungsschutzgesetz (KSchG).  
+  - Betriebsräte (BetrVG).  
+  - EU-Charta (Art. 31): Recht auf faire Arbeitsbedingungen.  
+- **International:**  
+  - ILO-Konvention Nr. 87 (Koalitionsfreiheit).  
+  - ILO-Konvention Nr. 98 (Kollektivverhandlungen).  
+- **Fallrecht:**  
+  - EuGH-Urteil 2018 „Uber“: Fahrer gelten nicht als Selbstständige, sondern als Arbeitnehmer.  
+  - BAG-Urteile zum Mindestlohn bestätigen Schutzrechte von Beschäftigten.  
+- **Krisenkontext:** Informelle Arbeit (z. B. Tagelöhner:innen) bleibt rechtlich ungeschützt – weltweit über 2 Mrd. Menschen betroffen (ILO 2020⁴).  
 
-2. **Mechanisierte Arbeit**  
-   - Einsatz von Maschinen, Fahrzeugen, Strom.  
-   - Höhere Effizienz, aber abhängig von Energieversorgung.  
-   - Relevante Module: 20 ENERGY, 27 TRANSPORT.  
-
-3. **Digitale Arbeit**  
-   - Plattformarbeit, Remote Work, algorithmisches Management.  
-   - Starke Abhängigkeit von Netzwerken und Daten.  
-   - Relevante Module: 28 NETWORK, 35 DATA, 33 PRIVACY.  
-
-4. **Automatisierte Arbeit**  
-   - Robotik, KI, Smart Factories.  
-   - Entlastung menschlicher Arbeit, aber Gefahr der Entwertung von Arbeit.  
-   - Relevante Module: 32 LICENCE, 37 DEMOCRACY (Kontrollfragen).  
-
-5. **Krisenarbeit**  
-   - Arbeit im Ausnahmezustand (Katastrophenhilfe, Care, Infrastrukturreparatur).  
-   - Minimalistisch, improvisiert, RESETBOX-basiert.  
-   - Relevante Module: 01 RESETBOX, 34 SECURITY, 36 CONFLICT.  
+**RESETBOX-Beispiel:** STOP-Karte „Labour Rights = Human Rights“.  
+**Crosslinks:** [23 – JUSTICE](../modules/23_JUSTICE.md), [32 – LICENCE](../modules/32_LICENCE.md)
 
 ---
 
-### 3. Sicherheitsarchitektur
-Technische Arbeit muss **gesichert und reguliert** sein, um Missbrauch zu verhindern:
+## 04. Ethische Basis (Dignity Clause)
 
-- **Transparenzpflicht:** Jede technische Lösung muss nachvollziehbar dokumentiert sein.  
-- **Lizenzierung:** QUEST: Licence (Modul 32) definiert klare Rahmen.  
-- **Datenethik:** Sammlung & Nutzung von Arbeitsdaten nur unter Wahrung von PRIVACY (Modul 33).  
-- **Missbrauchsschutz:** Module 12 BORDER, 34 SECURITY und 36 CONFLICT schützen Arbeit vor Instrumentalisierung.  
+- **Arbeit = Würde:** Menschen brauchen Arbeit, die nicht entwürdigt, sondern stärkt.  
+- **Dignity Clause:** Niemand darf gezwungen werden, Arbeit unter entwürdigenden Bedingungen zu leisten.  
+- **Care-Arbeit:** Unbezahlte Sorgearbeit (Kinder, Pflege, Haushalt) wird gesellschaftlich oft unsichtbar gemacht, obwohl sie systemisch unverzichtbar ist.  
+- **Gender-Perspektive:** Frauen leisten weltweit über 75 % unbezahlter Care-Arbeit (ILO 2018⁸).  
+- **Gerechtigkeit:** Arbeit muss existenzsichernd sein (Living Wage), unabhängig von Geschlecht, Herkunft oder Status.  
+- **RESETBOX-Logik:** STOP-Karte „Unpaid Care is Work“.  
 
----
-
-### 4. Variantenmatrix (Überblick)
-| Variante           | Energiebedarf | Abhängigkeit von Technik | Risiken | Chancen |
-|--------------------|---------------|--------------------------|---------|---------|
-| Analoge Arbeit     | Niedrig       | Gering                   | Hohe Belastung, Ineffizienz | Autonomie, Resilienz |
-| Mechanisierte      | Mittel        | Mittel                   | Energieabhängigkeit | Produktivität, Arbeitsschutz |
-| Digitale           | Hoch          | Hoch                     | Überwachung, Ausbeutung | Flexibilität, globale Teilhabe |
-| Automatisierte     | Sehr hoch     | Sehr hoch                | Jobverlust, Kontrollverlust | Entlastung, Effizienz |
-| Krisenarbeit       | Minimal       | Minimal                  | Mangel, Improvisation | Resilienz, Würdeschutz |
+**Crosslinks:** [15 – CARE](../modules/15_CARE.md), [16 – FAMILY](../modules/16_FAMILY.md)
 
 ---
 
-### 5. Negativszenario (bei fehlender technischer Regulierung)
-- Arbeit wird **vollständig durch Algorithmen kontrolliert** → Verlust von Autonomie & Würde.  
-- **Energie-Blackouts** zerstören Arbeitsprozesse und Versorgung.  
-- **Überwachungssysteme** missbrauchen Arbeitsdaten.  
-- **Automatisierung ohne Regulierung** führt zu Massenarbeitslosigkeit.  
+## 05. Wissenschaftliche Fundierung (Sozio / Medizin / Technik)
 
-# MODUL 10 – WORK  
-## 07. Psychologische Wirkung & intuitive Nutzung – V1.3 (STATIC CORE V5.0 LOCKED)
+- **Sozialwissenschaftlich:** Arbeit stiftet Identität und Zugehörigkeit (Durkheim 1893⁹).  
+- **Ökonomisch:** Produktivität ohne Verteilungsgerechtigkeit verstärkt Ungleichheit (Piketty 2014¹⁰).  
+- **Medizinisch:**  
+  - Arbeitslosigkeit erhöht Risiko für Depression um 50 % (WHO 2019³).  
+  - Burnout als WHO-Diagnose (ICD-11, 2019).  
+- **Technisch:** KI und Robotik verändern Berufsbilder, schaffen neue Felder (z. B. Pflegeassistenz durch KI) und vernichten alte Jobs (z. B. Transportwesen).  
+- **Globaler Süden:** Prekäre Arbeitsverhältnisse (z. B. Textilarbeiterinnen in Bangladesch) verbinden Arbeitsfragen direkt mit Menschenrechten (Clean Clothes Campaign 2020¹¹).  
 
-### 1. Grundsatz
-Arbeit ist nicht nur eine ökonomische oder technische Aktivität, sondern hat eine **psychologische Tiefenwirkung**:  
-- Sie strukturiert den Alltag.  
-- Sie stiftet Sinn und Zugehörigkeit.  
-- Sie kann Würde schaffen – oder zerstören.  
-
-Im QUESTSYSTEM wird Arbeit so gestaltet, dass sie **intuitiv verstehbar, psychisch stabilisierend und nicht entfremdend** wirkt.  
+**RESETBOX-Beispiel:** QR-Karte „WHO: Arbeit & Gesundheit“.  
+**Crosslinks:** [14 – HEALTH](../modules/14_HEALTH.md), [20 – ENERGY](../modules/20_ENERGY.md)
 
 ---
 
-### 2. Psychologische Funktionen von Arbeit
-1. **Sinnstiftung** – Arbeit vermittelt das Gefühl, gebraucht zu werden.  
-2. **Autonomie** – Selbstbestimmte Arbeit schützt vor Entwürdigung.  
-3. **Anerkennung** – Arbeit bietet soziale Sichtbarkeit und Wertschätzung.  
-4. **Struktur** – Regelmäßige Tätigkeit stabilisiert Tagesrhythmus und Psyche.  
-5. **Resilienz** – Arbeit kann als Krisenbewältigung dienen.  
+**Quellen (für Abschnitte 01–05)**  
+1. Polanyi, K. (1944). *The Great Transformation*.  
+2. ILO (2022). *World Employment and Social Outlook*.  
+3. ILO (2021). *Youth Employment Statistics*.  
+4. ILO (2020). *Informal Employment Report*.  
+5. McKinsey Global Institute (2017). *Jobs Lost, Jobs Gained*.  
+6. ILO (2021). *Covid-19 and Labour Market*.  
+7. Statistisches Bundesamt (2021). *Niedriglohnsektor Deutschland*.  
+8. ILO (2018). *Care Work and Care Jobs Report*.  
+9. Durkheim, E. (1893). *De la division du travail social*.  
+10. Piketty, T. (2014). *Capital in the Twenty-First Century*.  
+11. Clean Clothes Campaign (2020). *Exploitation in Global Garment Industry*.  
+
+## 06. Technische Struktur & Varianten
+
+WORK entfaltet seine Wirkung über konkrete Werkzeuge und RESETBOX-Integration:  
+- **Arbeitsrechts-Tools:**  
+  - Musterarbeitsverträge von Gewerkschaften (z. B. ver.di, DGB 2021¹).  
+  - STOP-Karten mit Kernrechten: Mindestlohn, Arbeitszeit, Kündigungsschutz.  
+  - DROP-Karten für den Notfall: „Was tun bei Kündigung?“.  
+- **Digitale Infrastruktur:**  
+  - QR-Karten mit Links zu Arbeitsagenturen, Beratungsstellen, Gewerkschaften.  
+  - Kiwix-Pakete mit ILO-Konventionen, Arbeitsrechts-Handbüchern.  
+- **RESET:LOG:** Dokumentation von Kündigungen, Bewerbungen, Beratungen.  
+- **Neue Arbeitsformen:** Gig-Economy (z. B. Uber, Lieferdienste) führt zu Scheinselbstständigkeit und Rechtslücken (ILO 2021²).  
+- **Varianten:**  
+  - **WORK-BASIC:** Übersicht Arbeitsrechte + Beratungsstellen.  
+  - **WORK-UNEMPLOYED:** Soforthilfen bei Jobverlust, Antragshilfen.  
+  - **WORK-MIGRANT:** Rechte für Arbeitsmigrant:innen, mehrsprachig.  
+  - **WORK-CRISIS:** Infos zu Kurzarbeit, Arbeitszeitverkürzung, Nothilfen.  
+
+**RESETBOX-Beispiel:** STOP-Karte „No Exploitation“.  
+**Crosslinks:** [32 – LICENCE](../modules/32_LICENCE.md), [22 – MIGRATION](../modules/22_MIGRATION.md), [12 – BORDER](../modules/12_BORDER.md)
 
 ---
 
-### 3. Intuitive Nutzung
-Damit Arbeit psychisch positiv wirkt, muss sie **einfach und zugänglich** sein:  
-- **Niedrigschwellig:** Kein kompliziertes Regelwerk, sondern klare Aufgaben.  
-- **Verständlich:** Arbeitsschritte sind transparent und nachvollziehbar.  
-- **Flexibel:** Unterschiedliche Fähigkeiten und Belastungen können eingebracht werden.  
-- **Würdeorientiert:** Keine entwürdigenden Tätigkeiten, keine Ausbeutung.  
+## 07. Psychologische Wirkung & intuitive Nutzung
+
+Arbeit ist eng mit Selbstwert verbunden – Verlust führt oft zu Krise:  
+- **Arbeitslosigkeit:** Risiko für Depression +50 % (WHO 2019³).  
+- **Burnout:** Weltweit leiden ca. **20 % der Beschäftigten** an Symptomen von Burnout (OECD 2018⁴).  
+- **Langzeitarbeitslosigkeit:** In Deutschland gelten rund 1 Mio. Menschen als „langzeitarbeitslos“ – stark erhöhtes Risiko für Isolation (BA 2021⁵).  
+- **Stigma:** Arbeitslosigkeit wird häufig als persönliches Versagen gesehen.  
+- **RESETBOX-Unterstützung:**  
+  - STOP-Karte: „Du bist nicht deine Arbeit“.  
+  - DROP-Karte: „3 Schritte zur psychischen Stabilisierung nach Jobverlust“.  
+  - QR-Karte: Zugang zu psychosozialer Beratung.  
+- **Intuitive Nutzung:** Symbole (Hammer = Arbeit, zerbrochener Hammer = Ausbeutung) erleichtern schnellen Zugriff auch in Stresssituationen.  
+
+**RESETBOX-Beispiel:** QR-Karte „Burnout-Check WHO“.  
+**Crosslinks:** [07 – PSYCHE](../modules/07_PSYCHE.md), [14 – HEALTH](../modules/14_HEALTH.md)
 
 ---
 
-### 4. Psychologische Risiken
-Wenn Arbeit falsch gestaltet ist, entstehen destruktive Effekte:  
-- **Entfremdung:** Arbeit ohne Bezug zu Sinn oder Ergebnis.  
-- **Überlastung:** Dauerstress ohne Ruhephasen (Verknüpfung zu Modul 05 – SLEEP).  
-- **Unsichtbarkeit:** Arbeit, die nicht anerkannt wird (z. B. Care-Arbeit).  
-- **Ausbeutung:** Arbeit unter Zwang oder Kontrolle durch Algorithmen.  
+## 08. Didaktik & Barrierefreiheit
+
+Arbeit muss so vermittelt werden, dass alle Zugang haben:  
+- **Leichte Sprache:** „Du hast das Recht auf Mindestlohn“.  
+- **Visualisierung:** Comics, Piktogramme (z. B. Stoppuhr = Arbeitszeit).  
+- **Rollenspiele:** Workshops: „Gewerkschaft gründen in 30 Minuten“.  
+- **Multilingualität:** Material in mind. 10 Sprachen.  
+- **Barrierefreiheit:**  
+  - Audio-Guides für Sehbehinderte.  
+  - Gebärdensprache-Videos für Gehörlose.  
+  - Analoge Poster für Menschen ohne Internet.  
+- **Praxisbeispiele:**  
+  - DGB-Schulprojekte zu Arbeitsrechten in Deutschland (DGB 2020⁶).  
+  - Digitale Lernplattform „ILO eCampus“ für globale Arbeitsrechte.  
+- **RESETBOX-Integration:**  
+  - QR-Link: „Dein Arbeitsvertrag erklärt in 5 Minuten“.  
+  - STOP-Karte: „Arbeit darf nicht krank machen“.  
+
+**Crosslinks:** [11 – SCHOOL](../modules/11_SCHOOL.md), [19 – MEDIA](../modules/19_MEDIA.md)
 
 ---
 
-### 5. Psychologische Schutzmechanismen
-Das QUESTSYSTEM implementiert Gegenmaßnahmen:  
-- **RESET-Logik:** Arbeit darf jederzeit unterbrochen oder neugestaltet werden (01 RESETBOX).  
-- **Community-Verankerung:** Arbeit ist Teil von Gemeinschaft (24 COMMUNITY).  
-- **Dignity Clause:** Jede Arbeit muss Würde und Autonomie respektieren (Abschnitt 04).  
-- **Feedback-Schleifen:** Arbeit wird sichtbar gemacht und anerkannt (30 TRUTH, 19 MEDIA).  
+## 09. Variantenmatrix & Zielgruppen
+
+| Variante            | Zielgruppe            | Inhalte & Besonderheiten                         | Kostenrahmen |
+|---------------------|----------------------|-------------------------------------------------|--------------|
+| **WORK-BASIC**      | Alle                 | Kernrechte, STOP-/DROP-Karten                   | < 5 € |
+| **WORK-UNEMPLOYED** | Arbeitslose          | Beratungsadressen, Antragshilfen, Soforthilfe   | < 10 € |
+| **WORK-MIGRANT**    | Migrant:innen        | Rechte im Ausland, Übersetzungen, Aufenthaltsrecht | < 15 € |
+| **WORK-CRISIS**     | Krisenbetroffene     | Kurzarbeit, Notprogramme, Gewerkschaften        | < 10 € |
+| **WORK-YOUTH**      | Jugendliche          | Comics zu Praktikumsrechten, Ausbildung, Mindeststandards | < 10 € |
+
+- **Kostenbasis:** Kalkulation nach Druckkosten + Verteilung; Quellen: Schuldnerhilfe Deutschland, DGB (2021⁷).  
+
+**RESETBOX-Beispiel:** WORK-YOUTH-Kit mit Comics zu Praktikumsrechten.  
+**Crosslinks:** [16 – FAMILY](../modules/16_FAMILY.md), [24 – COMMUNITY](../modules/24_COMMUNITY.md)
 
 ---
 
-### 6. Variantenpsychologie (Überblick)
-| Arbeitsform         | Psychologische Wirkung | Risiko | Schutz |
-|---------------------|-------------------------|--------|--------|
-| Analoge Arbeit      | Körperliche Präsenz, direkte Ergebnisse | Hohe Belastung | Gemeinschaft, Care |
-| Mechanisierte       | Effizienz, Entlastung | Abhängigkeit von Energie | Sicherung durch Modul 20 ENERGY |
-| Digitale            | Flexibilität, globale Teilhabe | Isolation, Überwachung | Modul 33 PRIVACY |
-| Automatisierte      | Entlastung, Sicherheit | Entwertung menschlicher Arbeit | Regulierung über Modul 32 LICENCE |
-| Krisenarbeit        | Gemeinschaft, Improvisation | Überlastung, Traumatisierung | Module 01 RESETBOX & 07 PSYCHE |
+## 10. Modulverknüpfung mit allen 42 QUEST-Modulen
+
+- **DEBT (09):** Arbeitseinkommen ist Schlüssel zur Schuldentilgung.  
+- **FINANCE (25):** Arbeit finanziert Zugang zu Ressourcen.  
+- **SCHOOL (11):** Bildung als Grundlage für qualifizierte Arbeit.  
+- **RESETBOX (01):** Sofortmaßnahmen bei Jobverlust.  
+- **JUSTICE (23):** Arbeitsrechte durchsetzbar nur mit funktionierendem Rechtssystem.  
+- **PSYCHE (07):** Arbeitslosigkeit → Depression, Burnout.  
+- **CARE (15):** Sorgearbeit = unsichtbare, unbezahlte Arbeit.  
+- **MIGRATION (22):** Arbeitsmigration als globaler Faktor.  
+- **BORDER (12):** Arbeit beeinflusst Grenzregime und Aufenthaltsrechte.  
+- **ENERGY (20):** Green Jobs im Rahmen der Energiewende.  
+- **FUTURE (41):** Arbeit der Zukunft = KI, Automatisierung, Green Jobs.  
+
+**RESETBOX-Beispiel:** STOP-Karte „Right to Work – Everywhere“.  
+**Crosslinks:** [23 – JUSTICE](../modules/23_JUSTICE.md), [41 – FUTURE](../modules/41_FUTURE.md)
 
 ---
 
-### 7. Negativszenario (bei Missachtung psychologischer Dimensionen)
-- Arbeit wird als **Zwang** erlebt, ohne Sinn oder Autonomie.  
-- Psychische Krankheiten (Burnout, Depression, Traumatisierung) nehmen massiv zu.  
-- Care- und Community-Arbeit bleiben unsichtbar → Vereinzelung und Würdeverlust.  
-- Arbeit wird durch Algorithmen gesteuert → Verlust menschlicher Selbstbestimmung.  
+**Quellen (für Abschnitte 06–10)**  
+1. DGB/ver.di (2021). *Musterverträge und Arbeitnehmerrechte*.  
+2. ILO (2021). *The Rise of Gig Economy*.  
+3. WHO (2019). *Preventing Suicide in Europe*.  
+4. OECD (2018). *Burnout in OECD Countries*.  
+5. Bundesagentur für Arbeit (2021). *Langzeitarbeitslosigkeit Statistik*.  
+6. DGB (2020). *Arbeitsrechte in Schulen – Bildungsprojekt*.  
+7. Schuldnerhilfe Deutschland / DGB (2021). *Kostenübersicht Arbeitsrechtsmaterialien*.  
 
-# MODUL 10 – WORK  
-## 08. Didaktik & Barrierefreiheit – V1.3 (STATIC CORE V5.0 LOCKED)
+## 11. Anwendungsszenarien (realweltlich)
 
-### 1. Grundsatz
-Arbeit darf im QUESTSYSTEM **niemals ausschließend** wirken.  
-Sie muss so gestaltet sein, dass **alle Menschen** – unabhängig von Bildung, Sprache, körperlicher Verfassung oder psychischer Situation – daran teilhaben können.  
+WORK betrifft nahezu alle Lebenslagen:  
+- **Jobverlust:** In Deutschland wurden 2022 über 1 Mio. Kündigungen registriert (BA 2022¹). Ohne Rücklagen droht Überschuldung.  
+- **Prekäre Jobs:** Rund 3 Mio. Menschen arbeiten in Leiharbeit oder Werkverträgen (Destatis 2021²). In der Gig-Economy (Lieferdienste, Plattformarbeit) sind europaweit über 28 Mio. aktiv (EU-Kommission 2021³).  
+- **Jugendliche:** Hoher Anteil an unbezahlten Praktika, oft ohne Rechte oder Versicherungsschutz.  
+- **Migrant:innen:** Überdurchschnittlich häufig im Niedriglohnsektor (z. B. Landwirtschaft, Pflege).  
+- **Pflegekräfte:** In Deutschland fehlen über 100.000 Pflegekräfte, hohe Burnout-Raten (RKI 2020⁴).  
+- **Globale Krisen:** Fabrikschließungen durch Pandemie oder Lieferkettenkrisen vernichteten Millionen Jobs weltweit.  
 
----
-
-### 2. Didaktische Leitlinien
-1. **Einfachheit** – Inhalte und Arbeitsabläufe müssen in klarer Sprache erklärt sein.  
-2. **Mehrkanaligkeit** – Informationen werden in Text, Bild, Symbolen und Audio vermittelt.  
-3. **Selbstwirksamkeit** – Lernende sollen sofort erkennen, wie ihr Beitrag wirkt.  
-4. **Iteratives Lernen** – Arbeit ist in Stufen gegliedert, die von einfach zu komplex wachsen.  
-5. **Community-Wissen** – Lernprozesse sind kollektiv, nicht nur individuell.  
-
----
-
-### 3. Barrierefreiheit
-- **Sprachliche Barrierefreiheit:** Leichte Sprache, Übersetzungen, visuelle Hilfen.  
-- **Technische Barrierefreiheit:** Geräte (08 DEVICE) und Netzwerke (28 NETWORK) müssen assistive Technologien unterstützen.  
-- **Physische Zugänglichkeit:** Arbeitsräume müssen auch für Menschen mit Behinderung nutzbar sein (26 HOUSING).  
-- **Psychische Barrierefreiheit:** Arbeit darf keine retraumatisierenden Strukturen enthalten (07 PSYCHE).  
+**RESETBOX-Beispiel:** DROP-Karte „Was tun bei Kündigung?“ (rechtliche Schritte + Beratungsstellen).  
+**Crosslinks:** [09 – DEBT](../modules/09_DEBT.md), [05 – SLEEP](../modules/05_SLEEP.md)
 
 ---
 
-### 4. Tools & Methoden
-- **RESET-Karten** mit Symbolen für Arbeitsmodule.  
-- **QR-Zugänge** zu mehrsprachigen und barrierefreien Inhalten (19 MEDIA, 28 NETWORK).  
-- **Symbolsystem** für Tätigkeiten (29 SYMBOL).  
-- **Feedback-Systeme**: Jede Person kann Rückmeldungen geben, ob etwas zugänglich ist oder nicht.  
+## 12. Systemschutz & Missbrauchsverhinderung
+
+Arbeit kann auch zur Ausbeutung führen:  
+- **Zwangsarbeit:** Weltweit ca. 27 Mio. Betroffene (ILO 2022⁵).  
+- **Kinderarbeit:** Rund 160 Mio. Kinder betroffen (UNICEF 2021⁶).  
+- **Lieferketten:** Ausbeutung in Textilindustrie (Bangladesch), Landwirtschaft (Spanien, Italien) und Elektronikfertigung (China).  
+- **Scheinselbstständigkeit:** Plattformarbeit tarnt Abhängigkeit als „Selbstständigkeit“. BAG 2020 entschied, dass Crowdworker als Arbeitnehmer einzustufen sein können (BAG 2020⁷).  
+- **Migrant:innen:** Besonders anfällig für Lohnbetrug und Schwarzarbeit.  
+- **RESETBOX-Maßnahmen:**  
+  - STOP-Karte: „No Forced Labour“.  
+  - QR-Karte: Zugang zu ILO-/NGO-Meldesystemen.  
+  - RESET:LOG: Anonyme Erfassung von Missbrauchsfällen, geschützt durch lokale Speicherung ohne Klarnamen.  
+
+**Crosslinks:** [34 – SECURITY](../modules/34_SECURITY.md), [36 – CONFLICT](../modules/36_CONFLICT.md)
 
 ---
 
-### 5. Integration in Arbeitskontexte
-- In Bildung (11 SCHOOL): Didaktik = Lernen durch Praxis.  
-- In Pflege (15 CARE): Barrierefreie Arbeit ist lebensnotwendig.  
-- In Energie & Technik (20 ENERGY, 08 DEVICE): Didaktik = verständliche Handbücher & DIY-Anleitungen.  
-- In Migration (22 MIGRATION): Mehrsprachigkeit & kulturelle Übersetzungen.  
+## 13. Legal Recognition & STOP-Karten
+
+- **Deutschland/EU:**  
+  - Grundgesetz Art. 12 (Berufsfreiheit).  
+  - Arbeitszeitgesetz, Mindestlohngesetz, Betriebsverfassungsgesetz.  
+  - EuGH-Urteil „Uber“ 2018: Fahrer sind Arbeitnehmer, keine Selbstständigen.  
+- **International:**  
+  - ILO-Konvention Nr. 29 (Zwangsarbeit) und Nr. 105 (Abschaffung der Zwangsarbeit).  
+  - UN-Menschenrechtspakt (Art. 6: Recht auf Arbeit).  
+- **STOP-Karten in RESETBOX:**  
+  - „Right to Decent Work“ (Hammer + Waage).  
+  - „No Child Labour“ (durchgestrichener Schulrucksack).  
+  - „Unionize Now“ (Hände im Kreis).  
+- **RESETBOX-Logik:** STOP-Karten sind mehr als Info – sie dienen als symbolischer Rechtsausweis.  
+
+**RESETBOX-Beispiel:** STOP-Karte „Work = Human Right“.  
+**Crosslinks:** [23 – JUSTICE](../modules/23_JUSTICE.md), [32 – LICENCE](../modules/32_LICENCE.md)
 
 ---
 
-### 6. Varianten der Zugänglichkeit (Überblick)
-| Zugangsebene        | Didaktische Form | Beispiel | Verknüpfte Module |
-|---------------------|------------------|----------|--------------------|
-| Analoger Zugang     | Piktogramme, Symbole | RESET-Karte | 01 RESETBOX, 29 SYMBOL |
-| Digitaler Zugang    | QR-Codes, Apps   | Offline-Kiwix | 08 DEVICE, 28 NETWORK |
-| Audiovisueller Zugang | Hörtexte, Videos | Arbeitsanleitungen | 19 MEDIA |
-| Partizipativer Zugang | Peer-to-Peer-Training | Workshops | 24 COMMUNITY |
+## 14. RESET als Handlung, nicht nur Objekt
+
+Arbeit kann durch RESET neue Bedeutungen erhalten:  
+- **RESET = Umschulung:** Neue berufliche Chancen durch Weiterbildung.  
+- **RESET = Schuldenfreiheit:** Arbeit ohne Schuldknechtschaft.  
+- **RESET = Gemeinschaft:** Genossenschaften und Kollektive schaffen Arbeit ohne Ausbeutung.  
+- **Beispiele:**  
+  - Spanien: Mondragón-Genossenschaft beschäftigt über 70.000 Menschen und ist eine der größten kooperativen Strukturen weltweit (Mondragón Report 2021⁸).  
+  - USA: Worker Centers unterstützen prekär Beschäftigte, besonders Migrant:innen, beim kollektiven Rechtsschutz.  
+  - Brasilien: Solidarische Ökonomie-Bewegungen organisieren gemeinschaftliche Arbeit ohne Kapitalabhängigkeit.  
+- **RESETBOX-Symbolik:** Arbeitsvertrag als STOP-Karte, Genossenschaftsschein als DROP-Karte.  
+
+**Crosslinks:** [24 – COMMUNITY](../modules/24_COMMUNITY.md), [29 – SYMBOL](../modules/29_SYMBOL.md)
 
 ---
 
-### 7. Negativszenario (bei fehlender Didaktik & Barrierefreiheit)
-- Menschen werden **ausgeschlossen** (Alphabetisierung, Behinderung, Sprache).  
-- Arbeit wird elitär → nur „Experten“ haben Zugang.  
-- Unverständliche Strukturen führen zu **Fehlern, Frust und Resignation**.  
-- Bildungslücken (11 SCHOOL) und psychische Krisen (07 PSYCHE) verstärken sich.  
+## 15. Nutzung in Bewegung & Ausnahmezuständen
 
-# MODUL 10 – WORK  
-## 09. Variantenmatrix & Zielgruppen – V1.3 (STATIC CORE V5.0 LOCKED)
+Arbeit endet nicht in der Krise – sie verändert sich:  
+- **Flucht & Migration:** Viele finanzieren Flucht durch Arbeitsmigration.  
+- **Katastrophen:** Nach Naturkatastrophen entstehen oft informelle Arbeitsmärkte (z. B. Bauhilfe, Versorgung).  
+- **Kriege:** Arbeit wird militarisiert oder zerstört (Ukraine 2022).  
+- **RESETBOX-Nutzen:**  
+  - QR-Karte: Arbeitsrechte für Migrant:innen in Transitländern.  
+  - DROP-Karte: „3 Tipps für sicheres Arbeiten ohne Vertrag“.  
+  - STOP-Karte: „No Exploitation in Crisis“.  
+- **Praxisbeispiele:**  
+  - Jordanien: Syrische Geflüchtete arbeiten legal in Textilfabriken unter ILO-Programmen (ILO 2019⁹).  
+  - Deutschland: „Integrationsprojekte Arbeit“ (BMAS 2020¹⁰) fördern Beschäftigung von Geflüchteten.  
 
-### 1. Grundsatz
-Arbeit ist **kein einheitliches Konzept**, sondern muss je nach sozialem, kulturellem und ökonomischem Kontext **differenziert** gedacht werden.  
-Die Variantenmatrix zeigt, wie Arbeit **für verschiedene Zielgruppen** übersetzt wird, ohne dabei die **Dignity Clause** (Abschnitt 04) zu verletzen.  
-
----
-
-### 2. Variantenmatrix
-| Variante                | Zielgruppe / Kontext | Charakteristika | Relevante Module |
-|--------------------------|----------------------|-----------------|------------------|
-| **WORK: BASIC**         | Menschen in existenzieller Not | Einfachste Tätigkeiten, niedrigschwellig, sofortige Gegenleistung (Essen, Unterkunft) | 01 RESETBOX, 02 WATER, 03 SHELTER |
-| **WORK: EDUCATION**     | Schüler:innen, Lernende | Arbeit = Lernen durch Praxis, Verbindung von Theorie und Handlung | 11 SCHOOL, 39 KNOWLEDGE |
-| **WORK: CARE**          | Pflege, Gesundheit | Tätigkeiten in Abhängigkeitssituationen, Würde- und Schutzorientiert | 14 HEALTH, 15 CARE |
-| **WORK: MIGRATION**     | Geflüchtete, mobile Gruppen | Sprach- und Kulturvermittlung, schnelle Integration in Tätigkeiten | 22 MIGRATION, 12 BORDER |
-| **WORK: COMMUNITY**     | Lokale Gruppen, Vereine | Gemeinwohlorientiert, partizipativ, kollektive Projekte | 24 COMMUNITY, 18 CULTURE |
-| **WORK: DIGITAL**       | Menschen mit Zugang zu Geräten | Online-Arbeit, Remote-Work, Wissensarbeit | 08 DEVICE, 28 NETWORK |
-| **WORK: SURVIVAL**      | Krisen- & Katastrophenszenarien | Unmittelbare Sicherung von Grundbedürfnissen, improvisierte Tätigkeiten | 01 RESETBOX, 04 FOOD, 20 ENERGY |
-| **WORK: ARTISTIC**      | Künstler:innen, Kulturarbeit | Arbeit als Ausdruck, Symbolproduktion & Reflexion | 18 CULTURE, 40 ART |
-| **WORK: FUTURE**        | Forschung & Innovation | Arbeit als Experiment, Zukunftsvisionen | 39 KNOWLEDGE, 41 FUTURE |
+**Crosslinks:** [22 – MIGRATION](../modules/22_MIGRATION.md), [21 – CLIMATE](../modules/21_CLIMATE.md)
 
 ---
 
-### 3. Didaktische Unterschiede pro Variante
-- BASIC: Einsatz von Symbolkarten & klaren Handlungsanweisungen.  
-- EDUCATION: Iteratives Lernen & Feedback-Schleifen.  
-- CARE: Arbeit mit Empathie, nonverbaler Kommunikation, Geduld.  
-- MIGRATION: Mehrsprachige Tools & visuelle Übersetzungen.  
-- COMMUNITY: Peer-to-Peer-Lernen & horizontale Strukturen.  
-- DIGITAL: Online-Selbstlernplattformen, kollaborative Tools.  
-- SURVIVAL: Hands-on, direkte Handlung ohne Theorie.  
-- ARTISTIC: Freiraum & offene Strukturen.  
-- FUTURE: Forschungslabore, offene Fragen, Think Tanks.  
+**Quellen (für Abschnitte 11–15)**  
+1. Bundesagentur für Arbeit (2022). *Kündigungsstatistik*.  
+2. Statistisches Bundesamt (2021). *Leiharbeit und Werkverträge*.  
+3. EU-Kommission (2021). *Platform Work in Europe*.  
+4. RKI (2020). *Pflege in Deutschland – Personalbedarf*.  
+5. ILO (2022). *Global Estimates of Modern Slavery*.  
+6. UNICEF (2021). *Child Labour Global Estimates*.  
+7. Bundesarbeitsgericht (2020). *Urteil zu Crowdworkern*.  
+8. Mondragón (2021). *Annual Cooperative Report*.  
+9. ILO (2019). *Employment of Syrian Refugees in Jordan*.  
+10. BMAS (2020). *Integrationsprojekte Arbeit für Geflüchtete*.  
+
+## 16. Ethik des offenen Containers
+
+Arbeit ist kein exklusives Gut, sondern ein Menschenrecht – Informationen dazu müssen frei zugänglich sein:  
+- **Offenheit:** RESETBOX stellt Arbeitsrechtsinformationen ohne Paywall oder Zugangshürden bereit.  
+- **Dignity Clause:** Jede Form der Arbeit muss die Würde respektieren; Entwürdigung (durch Stigmatisierung oder Ausbeutung) verstößt gegen die Grundprinzipien des QUESTSYSTEMs.  
+- **Privatsphäre:** Arbeitslose oder prekär Beschäftigte dürfen nicht stigmatisiert werden – keine Veröffentlichung individueller Erwerbshistorien.  
+- **Historische Lehren:** Im 19. Jh. wurden „Arbeitshauslisten“ geführt, die Arme öffentlich brandmarkten (Sachße/Tennstedt 1998¹).  
+- **Aktuell:** Plattformökonomie und Großkonzerne (z. B. Amazon, Lieferdienste) setzen algorithmische Überwachung ein → Beschäftigte stehen unter permanentem Tracking (De Stefano 2020²).  
+- **RESETBOX-Symbolik:** STOP-Karte „Arbeit ist kein Pranger“.  
+
+**Crosslinks:** [33 – PRIVACY](../modules/33_PRIVACY.md), [30 – TRUTH](../modules/30_TRUTH.md)
 
 ---
 
-### 4. Negativszenario (ohne Variantenmatrix)
-- Arbeit wird **monolithisch** gedacht (nur Erwerbsarbeit).  
-- Zielgruppen wie Geflüchtete, Pflegebedürftige oder Künstler:innen werden ausgeschlossen.  
-- Strukturen werden **nicht anschlussfähig** an lokale oder kulturelle Realitäten.  
-- Gesellschaftliche Spaltung zwischen „wertvoller“ und „wertloser“ Arbeit verstärkt sich.  
+## 17. Vertrauensarchitektur & Transparenzlogik
 
-# MODUL 10 – WORK  
-## Abschnitt 10 – Modulverknüpfung mit allen 42 QUEST-Modulen (V1.3)  
-**STATIC CORE V5.0 LOCKED**  
+Damit WORK funktioniert, muss Vertrauen gesichert sein:  
+- **Gewerkschaften & Beratung:** Studien zeigen, dass Gewerkschaften das Risiko für Lohnbetrug um bis zu 30 % senken (OECD 2019³).  
+- **Fallbeispiele:**  
+  - 2015 streikten Amazon-Beschäftigte in Deutschland erfolgreich für Tarifverträge.  
+  - 2019 erkämpften polnische Pflegekräfte Lohnerhöhungen durch gewerkschaftliche Mobilisierung.  
+- **Digitale Tools:** Open-Source-Apps zur Arbeitsrechtsberatung (z. B. „Fair Work App“, Südafrika, 2020).  
+- **RESET:LOG:** Dokumentiert anonyme Fälle von Kündigungen oder Lohnkürzungen. Datenschutz: Keine Klarnamen, lokale Speicherung, Open-Source-Transparenz.  
+- **Community-Vertrauen:** Worker Centers in den USA helfen Migrant:innen, ihre Rechte kollektiv einzufordern.  
 
-Arbeit (WORK) ist ein **zentrales Bindeglied** zwischen existenziellen Grundlagen, gesellschaftlicher Teilhabe und struktureller Organisation.  
-Die folgende Matrix zeigt die Verknüpfung von WORK mit allen 42 Modulen des QUESTSYSTEMs.  
-
----
-
-## 🔴 Existential Ring (01–09)
-
-| Modul | Verbindung zu WORK | Begründung | Negativszenario |
-|-------|--------------------|------------|-----------------|
-| 01 RESETBOX | Basis für Arbeitsfähigkeit | Ohne Grundausstattung keine Arbeitsaufnahme möglich | Ausschluss von Erwerbsmöglichkeiten |
-| 02 WATER | Ressource für Arbeitsprozesse | Arbeit benötigt sauberes Wasser (Gesundheit, Produktion) | Krankheitsausfälle, Produktionsausfälle |
-| 03 SHELTER | Schutzraum für Arbeit | Wohnen & Arbeitsplatz als Voraussetzung | Obdachlosigkeit, Arbeitslosigkeit |
-| 04 FOOD | Ernährung für Arbeitskraft | Energie & Konzentration basieren auf Ernährung | Hunger, Leistungsabfall |
-| 05 SLEEP | Regeneration für Arbeit | Schlaf ermöglicht Leistungsfähigkeit | Burnout, Fehlerhäufigkeit |
-| 06 BODY | Körperpflege & Hygiene | Gesundheit & Arbeitsfähigkeit hängen ab | Krankheit, Stigmatisierung |
-| 07 PSYCHE | Mentale Stabilität | Psychische Gesundheit ist Basis für produktive Arbeit | Depression, Arbeitsunfähigkeit |
-| 08 DEVICE | Digitale Arbeitsmittel | Ohne Geräte keine moderne Teilhabe an Arbeit | Digitale Exklusion |
-| 09 DEBT | Existenzfinanzierung | Schuldenregeln strukturieren Arbeitsverhältnisse | Schuldknechtschaft, Armut |
+**RESETBOX-Beispiel:** QR-Karte „Deine Rechte bei Lohnkürzung – anonym melden“.  
+**Crosslinks:** [24 – COMMUNITY](../modules/24_COMMUNITY.md), [35 – DATA](../modules/35_DATA.md)
 
 ---
 
-## 🟡 Societal Ring (10–24)
+## 18. Build-Kit & DIY-Infrastruktur
 
-| Modul | Verbindung zu WORK | Begründung | Negativszenario |
-|-------|--------------------|------------|-----------------|
-| 10 WORK | – | Eigenes Modul | – |
-| 11 SCHOOL | Bildung als Arbeitsbasis | Schule vermittelt Fähigkeiten für Arbeit | Analphabetismus, Arbeitslosigkeit |
-| 12 BORDER | Regulierung von Arbeitsmigration | Grenzen steuern Zugang zu Arbeitsmärkten | Ausbeutung, Schwarzarbeit |
-| 13 NATURE | Ressourcengrundlage | Natur liefert Rohstoffe für Arbeit | Ökokollaps, Arbeitskrisen |
-| 14 HEALTH | Gesundheit als Arbeitsvoraussetzung | Ohne Gesundheit keine Arbeitsfähigkeit | Krankheitsbedingte Armut |
-| 15 CARE | Pflegearbeit als Arbeitsform | Care-Arbeit = unsichtbare Basisarbeit | Verwahrlosung, Genderungleichheit |
-| 16 FAMILY | Familie als Arbeitsrahmen | Familienstrukturen beeinflussen Erwerbsarbeit | Vereinsamung, Arbeitsausfall |
-| 17 ANIMAL | Tierarbeit & Versorgung | Tiere als Arbeits- & Nahrungsgrundlage | Verlust von Ernährungssicherheit |
-| 18 CULTURE | Kulturarbeit & Identität | Arbeit prägt & erhält Kultur | Kulturverlust, Entfremdung |
-| 19 MEDIA | Arbeitsdarstellung & Öffentlichkeit | Medien definieren Arbeitsbilder | Manipulation, Propaganda |
-| 20 ENERGY | Energie für Arbeit | Ohne Energie keine Produktion | Blackouts, Stillstand |
-| 21 CLIMATE | Klimawandel beeinflusst Arbeit | Klima schafft & zerstört Arbeitsmärkte | Massenarbeitslosigkeit durch Krisen |
-| 22 MIGRATION | Arbeitsmigration & Flucht | Migration verändert Arbeitsmärkte | Prekarisierung, Diskriminierung |
-| 23 JUSTICE | Rechtsschutz der Arbeit | Gesetze sichern Arbeitsrechte | Willkür, Ausbeutung |
-| 24 COMMUNITY | Gemeinschaftliche Arbeit | Community definiert Arbeitsteilung | Isolation, Arbeitszerfall |
+WORK kann lokal selbst aufgebaut werden:  
+- **Vorlagen:** Arbeitsvertrags-Muster, Kündigungsschutz-Briefe, Antragsformulare für Arbeitslosengeld.  
+- **DIY-Materialien:** Plakate „Deine Rechte im Job“, Checklisten für Bewerbungen.  
+- **Open-Source-Bibliotheken:** ILO NATLEX (Datenbank nationaler Arbeitsgesetze) und EUR-Lex.  
+- **Workshops:** Rollenspiele: „Chef kürzt Lohn – wie reagierst du?“.  
+- **Kostenrahmen:**  
+  - Druckkosten STOP-/DROP-Karten: ca. 1,50–2 € pro Set.  
+  - Workshop-Ordner: ca. 8–10 € (Quelle: DGB 2021⁴).  
+- **Praxisbeispiele:** „Know Your Rights“-Kampagnen in UK & Indien (ILO 2018⁵).  
+
+**RESETBOX-Beispiel:** DROP-Karte „DIY Workers’ Rights Kit“.  
+**Crosslinks:** [18 – CULTURE](../modules/18_CULTURE.md), [40 – ART](../modules/40_ART.md)
 
 ---
 
-## 🔵 Structural Ring (25–42)
+## 19. Downloads, QR-Zugang & Offline-Versionen
 
-| Modul | Verbindung zu WORK | Begründung | Negativszenario |
-|-------|--------------------|------------|-----------------|
-| 25 FINANCE | Finanzierung von Arbeit | Geldsysteme bestimmen Arbeitsmärkte | Finanzkrisen, Jobverluste |
-| 26 HOUSING | Wohnraum & Arbeit | Wohnen nahe Arbeit = Integration | Gentrifizierung, Pendlerzwang |
-| 27 TRANSPORT | Mobilität zur Arbeit | Transport erschließt Arbeitsorte | Isolation, Arbeitslosigkeit |
-| 28 NETWORK | Digitale Arbeit & Netzwerke | Internet = zentrale Infrastruktur | Ausschluss, Stillstand |
-| 29 SYMBOL | Symbolik der Arbeit | Arbeit prägt kollektive Werte | Sinnverlust, Entwertung |
-| 30 TRUTH | Wahrheit in der Arbeit | Transparenz & Fairness sind Basis | Korruption, Ausbeutung |
-| 31 MEMORY | Arbeitsgedächtnis | Tradition & Wissen als Arbeitsressource | Wissensverlust, Wiederholungsfehler |
-| 32 LICENCE | Rechtliche Lizenzen | Arbeit benötigt rechtliche Genehmigung | Illegalität, Kriminalisierung |
-| 33 PRIVACY | Datenschutz bei Arbeit | Privatsphäre in Arbeitsprozessen | Überwachung, Angstkultur |
-| 34 SECURITY | Sicherheit am Arbeitsplatz | Schutz vor Unfällen & Gewalt | Unsichere Arbeit, Tote |
-| 35 DATA | Arbeitsdaten | Daten organisieren Arbeit & Kontrolle | Missbrauch, Manipulation |
-| 36 CONFLICT | Arbeitskonflikte | Konflikte strukturieren Arbeitskämpfe | Klassenkampf, Bürgerkrieg |
-| 37 DEMOCRACY | Mitbestimmung in Arbeit | Demokratie beeinflusst Arbeitsrechte | Autoritäre Strukturen |
-| 38 GOVERNANCE | Steuerung von Arbeit | Governance reguliert Arbeitsmärkte | Deregulierung, Chaos |
-| 39 KNOWLEDGE | Wissensarbeit | Wissen ist zentrales Arbeitsgut | Stillstand, Manipulation |
-| 40 ART | Kunstarbeit | Kunst ist Arbeit & Ausdruck | Verlust von Kritik & Inspiration |
-| 41 FUTURE | Zukunft der Arbeit | Arbeit prägt Zukunft & Innovation | Perspektivlosigkeit |
-| 42 DEATH | Arbeit & Endlichkeit | Tod begrenzt Arbeitszeit | Entwürdigung, Ausbeutung bis zum Tod |
+Arbeitsschutzinformationen müssen auch offline nutzbar sein:  
+- **QR-Karten:** Links zu Beratungsstellen, Gewerkschaften, Rechtsratgebern.  
+- **Kiwix-Pakete:** Offline-Bibliotheken mit Arbeitsrechtstexten, ILO-Reports.  
+- **Poster & Comics:** „Deine Rechte im Job“ in leichter Sprache.  
+- **Audiofiles:** Für Analphabet:innen oder Menschen mit Sehbehinderung.  
+- **Offline-First:** RESETBOX enthält USB-Stick mit nationalem Arbeitsrecht.  
+- **Praxisbeispiele:**  
+  - Griechenland: Kiwix-Module für Arbeitsrechte in Camps (UNHCR 2021⁶).  
+  - Ostafrika: Mobile Offline-Beratungs-Apps in Uganda und Kenia (ILO 2020⁷).  
+  - Südamerika: Gewerkschaften in Argentinien verteilten 2021 USB-Sticks mit Arbeitsrechten in ländlichen Regionen.  
+- **Datenschutz:** QR-Links ohne Tracking, Open-Source-Infrastruktur, DSGVO-konform.  
+
+**RESETBOX-Beispiel:** USB-Stick „Workers’ Rights Library“.  
+**Crosslinks:** [08 – DEVICE](../modules/08_DEVICE.md), [28 – NETWORK](../modules/28_NETWORK.md)
 
 ---
 
-**Zusammenfassung:**  
-WORK ist **Knotenpunkt und Durchgangsmodul**:  
-- Existential Ring → sichert Grundvoraussetzungen für Arbeit.  
-- Societal Ring → gestaltet Arbeitsverhältnisse & Teilhabe.  
-- Structural Ring → reguliert Arbeit durch Recht, Technik & Zukunft.  
+## 20. Lizenzierung & Nicht-Kriminalisierung
 
-# 09. Variantenmatrix & Zielgruppen (V1.4)
+- **Quest: Licence (32):** Alle WORK-Materialien unter CC BY-SA 4.0 + Dignity Clause.  
+- **Nicht-Kriminalisierung:** Arbeitslosigkeit oder Streikbeteiligung dürfen nicht kriminalisiert werden.  
+- **Fallbeispiele:**  
+  - Frankreich 2010: Streiks gegen Rentenreform → Polizeigesetze kriminalisierten Streikende.  
+  - Deutschland: Ersatzfreiheitsstrafen bei „Schwarzfahren“ betreffen oft prekär Beschäftigte (BMJ 2022⁸).  
+  - Katar: Migrant:innen kriminalisiert bei „Jobwechsel ohne Erlaubnis“ (Amnesty 2020⁹).  
+- **Positive Beispiele:**  
+  - Portugal: Entkriminalisierung von Streiks, starke Schutzrechte für Gewerkschaften (ILO 2021¹⁰).  
+  - Uruguay: Anerkennung von Arbeitslosenversicherungen für informell Beschäftigte.  
+- **Durchsetzung der Lizenz:**  
+  - Verstöße gegen die Nicht-Kommerzialisierung werden öffentlich dokumentiert.  
+  - Replizierte Versionen müssen transparent Attribution und Dignity Clause ausweisen.  
+- **RESETBOX-STOP-Karte:** „Unemployment ≠ Crime“.  
 
-## 1. Kernvarianten (gGmbH-Startversionen)
-
-| Variante              | Primäre Zielgruppen                 | Kernmodule (STATIC CORE V5.0 LOCKED) | Begründung                                                                 | Negativszenario                                      |
-|-----------------------|-------------------------------------|--------------------------------------|----------------------------------------------------------------------------|------------------------------------------------------|
-| RESETBOX: BASIC       | Allgemeine Bevölkerung              | 01 RESETBOX, 02 WATER, 04 FOOD       | Grundausstattung für akute Notlagen.                                       | Ohne BASIC: fehlende Ersthilfe in Krisen.            |
-| RESETBOX: SURVIVAL    | Menschen in Extremsituationen       | 02 WATER, 03 SHELTER, 04 FOOD, 20 ENERGY | Überleben in Natur- & Katastrophenszenarien.                               | Ohne SURVIVAL: akutes Lebensrisiko.                  |
-| RESETBOX: CARE        | Pflegebedürftige & Helfende         | 14 HEALTH, 15 CARE, 06 BODY          | Ermöglicht Versorgung & Würde in Abhängigkeit.                             | Ohne CARE: Verwahrlosung, Sterben ohne Hilfe.        |
-| RESETBOX: BLACKOUT    | Haushalte, urbane Regionen          | 20 ENERGY, 08 DEVICE, 28 NETWORK     | Absicherung bei Stromausfällen & Netzausfällen.                            | Ohne BLACKOUT: Isolation, Versorgungskollaps.        |
-| RESETBOX: PSYCHE      | Traumatisierte, psychisch Belastete | 07 PSYCHE, 05 SLEEP, 30 TRUTH        | Tools zur Stabilisierung & Traumabewältigung.                              | Ohne PSYCHE: Suizidalität, Destabilisierung.         |
-| RESETBOX: ANIMAL CARE | Tierhalter:innen, Landbewohner:innen | 17 ANIMAL, 04 FOOD, 13 NATURE        | Schutz & Versorgung von Haustieren/Nutztieren.                             | Ohne ANIMAL CARE: Tiersterben, Verlust von Ernährung.|
+**Crosslinks:** [23 – JUSTICE](../modules/23_JUSTICE.md), [37 – DEMOCRACY](../modules/37_DEMOCRACY.md)
 
 ---
 
-## 2. Spezialvarianten (Community & Erweiterungen)
+**Quellen (für Abschnitte 16–20)**  
+1. Sachße, C. & Tennstedt, F. (1998). *Geschichte der Armenfürsorge in Deutschland*.  
+2. De Stefano, V. (2020). *Algorithmic Management and Workers’ Rights*.  
+3. OECD (2019). *The Role of Unions in Preventing Wage Theft*.  
+4. DGB (2021). *Kostenübersicht Arbeitsrechtsmaterialien*.  
+5. ILO (2018). *Know Your Rights Campaigns*.  
+6. UNHCR (2021). *Digital Tools in Refugee Camps*.  
+7. ILO (2020). *Digital Labour Rights in Africa*.  
+8. BMJ (2022). *Reform Ersatzfreiheitsstrafen*.  
+9. Amnesty International (2020). *Qatar’s Labour Rights Crisis*.  
+10. ILO (2021). *Portugal: Freedom of Association and Right to Strike*.  
 
-| Variante              | Primäre Zielgruppen                 | Kernmodule (STATIC CORE V5.0 LOCKED) | Begründung                                                                 | Negativszenario                                      |
-|-----------------------|-------------------------------------|--------------------------------------|----------------------------------------------------------------------------|------------------------------------------------------|
-| RESETBOX: SENIOR      | Ältere Menschen                     | 14 HEALTH, 15 CARE, 16 FAMILY        | Barrierefreie Tools, vereinfachte Nutzung, rechtliche Absicherung.         | Ohne SENIOR: Vereinsamung, erhöhte Sterblichkeit.    |
-| RESETBOX: KIDS/FAMILY | Kinder & Familien                   | 16 FAMILY, 11 SCHOOL, 18 CULTURE     | Schutz-, Spiel- & Lernmittel, familiäre Resilienz.                         | Ohne FAMILY: Bindungsstörungen, fehlende Bildung.    |
-| RESETBOX: WOMEN       | Frauen / FLINTA* in Krisen          | 06 BODY, 14 HEALTH, 23 JUSTICE       | Hygiene, Schutz, Rechte & Deeskalation.                                    | Ohne WOMEN: Gewalt, Entrechtung, erhöhte Gefährdung. |
-| RESETBOX: DEFENCE     | Menschen ohne institutionellen Schutz | 34 SECURITY, 36 CONFLICT, 23 JUSTICE | Tools zur Selbstbehauptung & rechtlicher Orientierung.                     | Ohne DEFENCE: Wehrlosigkeit, Gewaltspiralen.         |
-| RESETBOX: COMMUNITY   | Lokale Gruppen, NGOs, Nachbarschaften | 24 COMMUNITY, 18 CULTURE, 37 DEMOCRACY | DIY-Box für gemeinschaftliche Resilienz & lokale Anpassungen.              | Ohne COMMUNITY: Fragmentierung, fehlende Solidarität.|
+## 21. Internationale Adaptionsmatrix
 
-# 10. Modulverknüpfung mit allen 42 QUEST-Modulen  
-## 10.1 Existential Ring (01–09)
+Arbeit ist global sehr unterschiedlich geregelt:  
+- **Deutschland/EU:** Kündigungsschutz, Mindestlohn (DE: 12 € seit 2022), Restschuldbefreiung nach 3 Jahren. Gewerkschaftsquote ca. 17 % (Destatis 2021¹).  
+- **USA:** Schwaches Kündigungsschutzrecht („at-will employment“), geringe Gewerkschaftsquote (< 11 %, BLS 2021²).  
+- **Lateinamerika:** Hohe Gewerkschaftsdichte in Argentinien (~35 %), aber über 50 % informelle Beschäftigung in Peru und Bolivien (ILO 2020³).  
+- **Afrika:** Über 80 % der Menschen in Nigeria arbeiten ohne Vertrag; Gewerkschaftsquote < 10 % (ILO 2019⁴).  
+- **Asien:** Textilindustrie in Bangladesch (4 Mio. Beschäftigte, überwiegend Frauen) → unsichere Arbeitsbedingungen trotz Verbesserungen nach Rana Plaza (2013).  
+- **Plattformarbeit (Indien/Philippinen):** Millionen Menschen arbeiten in Online-Plattformjobs ohne Sozialschutz (Fairwork 2022⁵).  
+- **Golfstaaten:** Kafala-System koppelt Aufenthaltstitel an Arbeitgeber → hohe Abhängigkeit (Amnesty 2020⁶).  
+- **RESETBOX-Anpassung:**  
+  - WORK-MIGRANT-Kit in arabischen Sprachen.  
+  - WORK-YOUTH-Kit für Ausbildungssysteme in Europa.  
 
-| Modul | Verknüpfung zu WORK | Begründung | Negativszenario |
-|-------|---------------------|------------|-----------------|
-| **01 RESETBOX** | Enthält Grundausstattung für Arbeit (Tools, Schreibmaterial, Basiskit). | Ohne Resetbox fehlen elementare Mittel, um Arbeit auch in Krisen weiterzuführen. | Verlust von Autonomie, keine Grundlage für produktive Tätigkeit. |
-| **02 WATER** | Arbeit braucht Wasser (Hydration, Landwirtschaft, Industrie). | Ohne Wasser keine Arbeitskraft, keine Produktionsprozesse. | Dehydration, Ausfall von Arbeitskraft, Wirtschaftskollaps. |
-| **03 SHELTER** | Schutzraum ermöglicht Arbeitsfähigkeit. | Arbeit braucht Orte (Werkstätten, Büros, Felder). | Ohne Shelter: Unsicherheit, Ausbeutung unter gefährlichen Bedingungen. |
-| **04 FOOD** | Ernährung ist Basis für Arbeitskraft. | Arbeitsleistung hängt von Energiezufuhr ab. | Hunger, Unterernährung, Leistungsabfall. |
-| **05 SLEEP** | Ruhephasen sichern Arbeitsfähigkeit. | Ohne Schlaf keine Konzentration, kein Durchhaltevermögen. | Burnout, Fehler, psychische Destabilisierung. |
-| **06 BODY** | Körperpflege = Gesundheit am Arbeitsplatz. | Hygiene & Gesundheit sind Voraussetzung für stabile Arbeit. | Epidemien, Ausschluss von Arbeitsmärkten. |
-| **07 PSYCHE** | Psychische Stabilität sichert Motivation & Belastbarkeit. | Ohne Resilienz keine nachhaltige Arbeitsfähigkeit. | Depression, Traumatisierung, Suizidalität. |
-| **08 DEVICE** | Geräte sind Werkzeuge für Arbeit. | Digitale & analoge Tools ermöglichen Produktion & Kommunikation. | Isolation, Rückfall in ineffiziente Strukturen. |
-| **09 DEBT** | Arbeit ist Kern zur Regulierung von Schulden. | Erwerbsarbeit, Schuldentilgung und Finanzstruktur hängen direkt zusammen. | Schuldknechtschaft, Abhängigkeit, Armutsspirale. |
+**Crosslinks:** [22 – MIGRATION](../modules/22_MIGRATION.md), [41 – FUTURE](../modules/41_FUTURE.md)
 
-## 10.2 Societal Ring (10–24)
+---
 
-| Modul | Verknüpfung zu WORK | Begründung | Negativszenario |
-|-------|---------------------|------------|-----------------|
-| **10 WORK** | Zentrales Modul selbst. | Arbeit ist Knotenpunkt für Existenz, Gesellschaft & Struktur. | Ohne Arbeit: Ausschluss, Abhängigkeit, Sinnverlust. |
-| **11 SCHOOL** | Bildung ist Basis für Arbeitsfähigkeit. | Qualifikation, Wissen & Kompetenzen entstehen durch Schule. | Analphabetismus, Prekarität, keine Teilhabe am Arbeitsmarkt. |
-| **12 BORDER** | Grenzen bestimmen Arbeitsmigration & Arbeitsmärkte. | Arbeit ist abhängig von Aufenthaltsrecht & Grenzregimen. | Illegale Beschäftigung, Ausbeutung, Ausschluss. |
-| **13 NATURE** | Natur liefert Rohstoffe & Lebensgrundlagen für Arbeit. | Jede Arbeit ist ressourcenabhängig. | Umweltzerstörung, Ressourcenknappheit, Jobverluste. |
-| **14 HEALTH** | Gesundheit ist Voraussetzung für Arbeitskraft. | Ohne stabile Gesundheit keine kontinuierliche Arbeit. | Krankheitswellen, Produktivitätsverlust. |
-| **15 CARE** | Pflegearbeit ist Teil von WORK. | Unbezahlte & bezahlte Care-Arbeit sichern Gesellschaft & Arbeitsmärkte. | Verwahrlosung, Überlastung von Familien, Zusammenbruch der Versorgung. |
-| **16 FAMILY** | Familie beeinflusst Arbeitskraft & -verteilung. | Work-Life-Balance, soziale Sicherheit & Reproduktion von Arbeitskraft. | Vereinsamung, Kinderarbeit, Familienspaltung. |
-| **17 ANIMAL** | Tiere sichern Arbeit (Landwirtschaft, Begleitung, Therapie). | Arbeitssysteme stützen sich auf Tierhaltung & Ökosysteme. | Biodiversitätsverlust, Hungersnöte, Abhängigkeiten. |
-| **18 CULTURE** | Kulturarbeit = Teil von WORK. | Kreative Arbeit stiftet Sinn, Identität & Gemeingüter. | Identitätsverlust, Kulturabbau, Monokultur. |
-| **19 MEDIA** | Medienarbeit formt Öffentlichkeit & Information. | Arbeit & Medien sind verflochten (Transparenz, Teilhabe). | Propaganda, Fake News, Arbeitsentfremdung. |
-| **20 ENERGY** | Energieversorgung ist Basis für alle Arbeitsformen. | Jede Arbeit braucht Energie (physisch, elektrisch, mechanisch). | Blackouts, Stillstand der Produktion. |
-| **21 CLIMATE** | Klima bestimmt Arbeitsbedingungen. | Arbeit ist vom Klima abhängig (Landwirtschaft, Outdoor, Gesundheit). | Hitzetote, Ernteverluste, massive Arbeitsplatzverluste. |
-| **22 MIGRATION** | Arbeitsmigration = Folge von Krisen & Chancen. | Migration reguliert Arbeitskräfteverteilung global. | Flucht ohne Perspektive, Brain Drain, Arbeitsmärkte kollabieren. |
-| **23 JUSTICE** | Recht reguliert Arbeit. | Arbeitsrecht, Schutz, Löhne, Rechte der Beschäftigten. | Sklavenarbeit, Ausbeutung, Rechtslosigkeit. |
-| **24 COMMUNITY** | Gemeinschaften organisieren Arbeit. | Kooperativen, Gemeingüter & kollektive Strukturen basieren auf WORK. | Isolation, Fragmentierung, keine Solidarität. |
+## 22. Kooperationen & Schnittstellen
 
-## 10.3 Structural Ring (25–42)
+Arbeitsschutz erfordert globale Netzwerke:  
+- **Gewerkschaften:** DGB, ver.di, IG Metall (Deutschland); ITUC weltweit.  
+- **NGOs:** Clean Clothes Campaign, Fairwork Foundation (bewertet jährlich über 100 Plattformen nach Fairness).  
+- **UN/ILO:** Internationale Mindeststandards, NATLEX-Datenbank.  
+- **Sozialverbände:** Caritas, Diakonie bieten arbeitsrechtliche Beratung.  
+- **Community-Projekte:** Worker Centers (USA), Migrant Rights Centres (Irland).  
+- **Best Practice:**  
+  - Rana Plaza Accord (2013) → rechtlich verbindliche Vereinbarung für sichere Arbeitsbedingungen in Bangladesch.  
+  - **EU-Lieferkettengesetz (2023):** Unternehmen müssen Arbeitsbedingungen entlang ihrer Lieferketten prüfen und verbessern.  
+- **RESETBOX-Integration:** QR-Karte „Internationale Gewerkschaften & Beratungen“.  
 
-| Modul | Verknüpfung zu WORK | Begründung | Negativszenario |
-|-------|---------------------|------------|-----------------|
-| **25 FINANCE** | Arbeit erzeugt Einkommen & verteilt Ressourcen. | Arbeitsmärkte sind direkt an Finanzsysteme gekoppelt. | Finanzkrisen führen zu Massenarbeitslosigkeit. |
-| **26 HOUSING** | Arbeit ermöglicht Wohnen. | Mietzahlung & Bauwirtschaft basieren auf Arbeitseinkommen. | Wohnungsnot, Obdachlosigkeit, Gentrifizierung. |
-| **27 TRANSPORT** | Arbeit erfordert Mobilität. | Arbeitsmärkte hängen von Transport- & Lieferketten ab. | Isolation, Versorgungsabbrüche, Jobverluste. |
-| **28 NETWORK** | Digitale Arbeit benötigt Netze. | Netzwerke sind Voraussetzung für Wissens- & Remote-Arbeit. | Kommunikationsstillstand, digitale Exklusion. |
-| **29 SYMBOL** | Arbeit trägt Symbole (Status, Sinn, Zugehörigkeit). | Symbolische Anerkennung motiviert Arbeit. | Sinnverlust, Stigmatisierung, Klassenspaltung. |
-| **30 TRUTH** | Arbeit benötigt Wahrhaftigkeit. | Wahrheit schützt vor Fake-Arbeitsmärkten & Ausbeutung. | Propaganda, Korruption, Arbeitsplatzbetrug. |
-| **31 MEMORY** | Arbeit bewahrt Erinnerung. | Berufliches Wissen & Archive sichern Gesellschaft. | Geschichtsvergessenheit, Kompetenzverlust. |
-| **32 LICENCE** | Arbeit ist rechtlich reguliert. | Lizenzen, Zertifikate & Verträge sichern Arbeit. | Schwarzarbeit, illegale Märkte, Unsicherheit. |
-| **33 PRIVACY** | Arbeitsdaten & Privatsphäre müssen geschützt werden. | Datenschutz ist Grundlage für faire Arbeit. | Überwachung, gläserne Arbeitnehmer:innen. |
-| **34 SECURITY** | Sicherheit der Arbeitenden & Arbeitsorte. | Arbeit braucht Schutz vor Gewalt, Diebstahl, Unfällen. | Arbeitsunfälle, Terror, unsichere Jobs. |
-| **35 DATA** | Arbeit erzeugt & braucht Daten. | Daten sind Grundlage für Planung, Produktion & Innovation. | Datenmissbrauch, algorithmische Ausbeutung. |
-| **36 CONFLICT** | Arbeit kann Konflikte auslösen oder befrieden. | Arbeitskämpfe, Streiks, Ressourcenkonflikte prägen Gesellschaft. | Klassenkämpfe, Gewalt, Bürgerkriege. |
-| **37 DEMOCRACY** | Demokratie reguliert Arbeitsteilung. | Arbeitsrechte & Teilhabe entstehen in Demokratien. | Autoritarismus, Entrechtung der Arbeitenden. |
-| **38 GOVERNANCE** | Governance koordiniert Arbeitssysteme. | Arbeit ist Teil politischer Steuerung & Institutionen. | Machtmissbrauch, Fehlsteuerung, Korruption. |
-| **39 KNOWLEDGE** | Arbeit erfordert Wissen. | Forschung, Lehre & Innovation entstehen durch Arbeit. | Wissensstillstand, Abhängigkeit, Technologielücke. |
-| **40 ART** | Kunst = Arbeitsform. | Kreative Arbeit erschafft Sinn & Kritik. | Verlust von Inspiration, totale Funktionalisierung. |
-| **41 FUTURE** | Arbeit gestaltet Zukunft. | Ohne Arbeit keine Perspektiven, Innovationen & Generationengerechtigkeit. | Perspektivlosigkeit, Resignation, Kollaps. |
-| **42 DEATH** | Arbeit endet mit Tod, Tod reguliert Arbeit. | Endlichkeit bestimmt Arbeitszeit, Sinn & Generationenwechsel. | Verdrängung, Ausbeutung bis zum Tod, fehlende Übergabe. |
+**Crosslinks:** [38 – GOVERNANCE](../modules/38_GOVERNANCE.md), [39 – KNOWLEDGE](../modules/39_KNOWLEDGE.md)
 
-# Modul 10 – WORK  
-## 11. Anwendungsszenarien (realweltlich)  
+---
 
-| Szenario | Beschreibung | Risiko / Negativszenario | Positiver Hebel |
-|----------|--------------|--------------------------|-----------------|
-| **Blackout-Arbeit** | Arbeit unter Bedingungen ohne Strom & digitale Infrastruktur (z. B. Notversorgung, analoge Werkzeuge, manuelle Prozesse). | Arbeitsunfähigkeit vieler Sektoren, Zusammenbruch kritischer Infrastruktur. | Stärkung von Low-Tech-Kompetenzen, Resilienz durch analoge Skills. |
-| **Schuldenarbeit** | Arbeit, die nur zum Schuldendienst existiert („Schuldknechtschaft“). | Abhängigkeit, Armut, Ausbeutung. | Einführung von Schuldenmoratorien, Quest:Fund, faire Lohnarbeit. |
-| **Care-Arbeit** | Unsichtbare Sorgearbeit (Pflege, Kinderbetreuung, Altenhilfe). | Überlastung, Ungleichheit (meist Frauen). | Sichtbarkeit & Vergütung von Care-Arbeit, Entlastungssysteme. |
-| **Community-Arbeit** | Selbstorganisierte Tätigkeiten innerhalb von Gemeinschaften (Nachbarschaft, Commons, Vereine). | Unsichtbarkeit im BIP, Überforderung Ehrenamtlicher. | Stärkung lokaler Resilienz, soziale Bindung. |
-| **Krisenarbeit (Krieg/Katastrophe)** | Arbeit unter Extrembedingungen, oft lebensgefährlich (z. B. Helfer:innen, medizinisches Personal). | Traumatisierung, Burnout, hohe Mortalität. | Schutz durch RESETBOX/CARE, völkerrechtliche Absicherung. |
-| **Digitale Arbeit** | Remote Work, Plattformarbeit, KI-gestützte Tätigkeiten. | Prekarisierung, Überwachung, algorithmische Ausbeutung. | Fair-Work-Gesetze, Open-Source-Plattformen, Datenschutz. |
-| **Postwachstumsarbeit** | Tätigkeiten jenseits kapitalistischer Wachstumslogik (z. B. Gemeingüter, Subsistenz, Reparatur). | Fehlende Anerkennung im bestehenden System. | Nachhaltigkeit, Stärkung von Commons & lokaler Autonomie. |
-| **Migration & Arbeit** | Arbeitsmigration als Überlebensstrategie. | Ausbeutung, Entrechtung, „Gastarbeiter“-Abhängigkeit. | Internationale Arbeitsrechte (ILO), Schutz durch Modul 22 MIGRATION. |
+## 23. Ressourcenbedarf & Materiallogistik
 
-# Modul 10 – WORK  
-## 12. Systemschutz & Missbrauchsverhinderung  
+- **Individuell:**  
+  - Beratungsgespräch: Ø 1–2 Stunden.  
+  - Materialien: STOP-/DROP-Karten, Musterverträge.  
+- **Gesellschaftlich:**  
+  - Deutschland: Jährlich über 600.000 Fälle arbeitsrechtlicher Konflikte vor Gerichten (BMJ 2020⁷).  
+  - EU: Arbeitsinspektionen mit ca. 100.000 Inspektor:innen (Eurofound 2021⁸).  
+- **Global:**  
+  - ILO schätzt, dass weltweit über 1 Mrd. Menschen keinen Zugang zu Arbeitsrechtsschutz haben (ILO 2020³).  
+  - Covid-19 führte 2020 zu massiven Ausbrüchen in Textilfabriken in Indien und Bangladesch, weil Schutzrechte fehlten (Clean Clothes Campaign 2021⁹).  
+- **RESETBOX-Logik:**  
+  - Druckkosten pro Set STOP-/DROP-Karten: ca. 2 €.  
+  - USB-Stick mit Arbeitsrecht & Kiwix: ca. 5 €.  
+  - Komplettes WORK-BASIC-Kit: ca. 10–15 € pro Box.  
 
-| Gefahr | Beschreibung | Schutzmaßnahme | Relevante Module |
-|--------|--------------|----------------|------------------|
-| **Zwangsarbeit** | Menschen werden zur Arbeit unter Androhung von Gewalt oder Existenzentzug gezwungen. | Internationale Arbeitsrechte (ILO), STOP-Karten, RESETBOX als Würdeanker. | 01 RESETBOX, 23 JUSTICE, 32 LICENCE |
-| **Ausbeutung (Lohn, Zeit, Gesundheit)** | Arbeit wird übermäßig beansprucht, ohne faire Entlohnung oder Schutz. | Mindestlohn, Arbeitszeitregeln, Care-Integration, Gemeingüterprinzip. | 09 DEBT, 14 HEALTH, 25 FINANCE |
-| **Überwachung & Kontrolle** | Digitale Arbeitsformen führen zu ständiger Beobachtung, algorithmischer Bewertung. | Datenschutz, Privatsphäre-Module, Open-Source-Arbeitsplattformen. | 19 MEDIA, 28 NETWORK, 33 PRIVACY |
-| **Prekarisierung** | Unsichere Verträge, Scheinselbstständigkeit, fehlende Absicherung. | Recht auf soziale Sicherheit, Quest:Fund, modulare Versicherungssysteme. | 09 DEBT, 23 JUSTICE, 25 FINANCE |
-| **Unsichtbare Care-Arbeit** | Pflege-, Sorge- und Erziehungsarbeit wird nicht anerkannt oder vergütet. | Politische Sichtbarkeit, Care als offizieller Arbeitsbereich, Entlastung durch Community. | 15 CARE, 16 FAMILY, 14 HEALTH |
-| **Kinderarbeit** | Minderjährige werden ausgebeutet, anstatt Bildung zu erhalten. | Verbot & Sanktionierung, Schulpflicht, RESET:LOG als Schutz. | 11 SCHOOL, 23 JUSTICE, 42 DEATH |
-| **Kriegsarbeit / Zwangsrekrutierung** | Arbeit im Krieg (Soldaten, Zwangsproduktion) zerstört Würde & Autonomie. | Genfer Konventionen, STOP-Karten, Schutz durch Gemeinschaftsnetzwerke. | 12 BORDER, 34 SECURITY, 36 CONFLICT |
+**RESETBOX-Beispiel:** RESET:LOG-Checkliste „Arbeitsrechtskonflikte“.  
+**Crosslinks:** [27 – TRANSPORT](../modules/27_TRANSPORT.md), [20 – ENERGY](../modules/20_ENERGY.md)
 
-# Modul 10 – WORK  
-## 13. Legal Recognition & STOP-Karten  
+---
 
-| Bereich | Beschreibung | Schutzinstrument | Relevante Module |
-|---------|--------------|------------------|------------------|
-| **Rechtliche Anerkennung von Arbeit** | Arbeit wird oft nur dann anerkannt, wenn sie entlohnt wird. Unbezahlte Care-, Kultur- oder Community-Arbeit bleibt unsichtbar. | Erweiterung des Arbeitsbegriffs in Recht & Politik, Einbindung in QUEST:Licence. | 15 CARE, 18 CULTURE, 23 JUSTICE |
-| **STOP-Karten für Arbeitskontexte** | Beschäftigte oder Freiwillige können in gefährlichen, entwürdigenden oder ausbeuterischen Situationen eine STOP-Karte ziehen. | Physische Karten, QR-System, digitale Notfallprotokolle. | 01 RESETBOX, 12 BORDER, 34 SECURITY |
-| **Schutz vor Kündigung/Entlassung** | Fehlender Kündigungsschutz führt zu Angst, Schweigen & Anpassung. | Quest:Licence als arbeitsrechtlicher Mindeststandard, Community-Schiedsstellen. | 23 JUSTICE, 37 DEMOCRACY, 38 GOVERNANCE |
-| **Gewerkschaftliche Selbstorganisation** | Kollektive Interessenvertretung wird unterdrückt oder kriminalisiert. | Recht auf Versammlung, Medien-Sichtbarkeit, Community-Backups. | 19 MEDIA, 24 COMMUNITY, 37 DEMOCRACY |
-| **Dokumentation & Beweis** | Missbrauch bleibt oft unsichtbar. | RESET:LOG, digitale Zeugenschaft, Mediennetzwerke. | 19 MEDIA, 30 TRUTH, 35 DATA |
+## 24. Produktions- & Replikationsethik
 
-# Modul 10 – WORK  
-## 14. RESET als Handlung, nicht nur Objekt  
+- **Commons-Prinzip:** Arbeitsrechtsmaterialien sind Gemeingut, nicht kommerzialisierbar.  
+- **Transparenz:** Alle Vorlagen als Open Source (CC BY-SA 4.0 + Dignity Clause).  
+- **Enforcement:** Jede kommerzielle Nutzung ohne Einhaltung der Lizenz wird öffentlich dokumentiert. Replikationen müssen Attribution + Dignity Clause enthalten.  
+- **Positive Beispiele:**  
+  - Fairwork Foundation veröffentlicht Bewertungsberichte frei zugänglich.  
+  - Gewerkschaften (z. B. ver.di) stellen Musterverträge kostenlos online.  
+- **Negative Beispiele:**  
+  - Kommerzielle Beratungsfirmen in DE verkaufen einfache Vertragsmuster (Kosten > 50 €), die eigentlich frei verfügbar sind.  
+  - Plattformen wie Upwork erschweren Zugang zu Arbeitsrechten durch proprietäre Strukturen.  
+- **RESETBOX-Prinzip:**  
+  - STOP-Karte: „No Paywalls on Rights“.  
+  - DROP-Karte: „Dein Arbeitsvertrag zum Download“.  
 
-| Dimension | Beschreibung | Wirkung auf Arbeit | Relevante Module |
-|-----------|--------------|--------------------|------------------|
-| **Individuelles RESET** | Eine Person zieht die „RESET-Linie“: Pause, Ausstieg aus toxischer Arbeit, Umorientierung. | Schutz vor Burnout, Wiedergewinnung von Würde. | 05 SLEEP, 07 PSYCHE, 14 HEALTH |
-| **Kollektives RESET** | Gruppen oder Belegschaften stoppen Arbeit, um Missstände sichtbar zu machen. | Streik, Arbeitsniederlegung, solidarisches Handeln. | 23 JUSTICE, 37 DEMOCRACY, 38 GOVERNANCE |
-| **Systemisches RESET** | Arbeit wird neu gedacht – jenseits von reiner Erwerbslogik. | Aufbau von Commons, Open-Source-Ökonomie, Gemeingütern. | 25 FINANCE, 39 KNOWLEDGE, 41 FUTURE |
-| **RESET-Tools** | Einsatz von RESETBOX, STOP-Karten, RESET:LOG im Arbeitskontext. | Schafft physische und digitale Schutzräume. | 01 RESETBOX, 13 LEGAL, 35 DATA |
+**Crosslinks:** [32 – LICENCE](../modules/32_LICENCE.md), [25 – FINANCE](../modules/25_FINANCE.md)
 
-# Modul 10 – WORK  
-## 15. Nutzung in Bewegung & Ausnahmezuständen  
+---
 
-| Dimension | Beschreibung | Beispiel | Relevante Module |
-|-----------|--------------|----------|------------------|
-| **Mobile Arbeit** | Arbeit muss auch unterwegs möglich sein – auf Flucht, Reisen oder in Krisensituationen. | Wanderarbeiter:innen, Geflüchtete mit handwerklichen Skills. | 22 MIGRATION, 27 TRANSPORT, 28 NETWORK |
-| **Notfall-Arbeit** | In Katastrophen entstehen sofortige Aufgaben: Aufbau von Shelter, Verteilung von Wasser, medizinische Hilfe. | Freiwillige Arbeit nach Überschwemmungen oder Erdbeben. | 02 WATER, 03 SHELTER, 14 HEALTH |
-| **Informelle Ökonomie** | In Ausnahmezuständen entstehen Tauschsysteme, Parallelwährungen, Schwarzmärkte. | Arbeit gegen Lebensmittel oder Unterkunft. | 09 DEBT, 25 FINANCE, 36 CONFLICT |
-| **Digitale Nomad:innen & Remote Work** | Globale Bewegung von Menschen, die Arbeit unabhängig von Orten organisieren. | Remote-Programmierer:innen in Krisenregionen. | 08 DEVICE, 28 NETWORK, 20 ENERGY |
-| **RESET-Schutz** | STOP-Karten & RESET:LOG gelten auch in Bewegung, um Missbrauch und Zwangsarbeit zu verhindern. | Mobile Dokumentation von Arbeitsverletzungen. | 01 RESETBOX, 34 SECURITY, 35 DATA |
+## 25. Finanzierung & Gemeingüterprinzip
 
-# Modul 10 – WORK  
-## 16. Ethik des offenen Containers  
+- **Öffentliche Finanzierung:**  
+  - Deutschland: Kommunen finanzieren kostenlose Arbeitsrechtsberatung.  
+  - EU: ESF (Europäischer Sozialfonds) unterstützt Projekte für Migrant:innen und Jugendliche.  
+- **NGOs & Spenden:** Clean Clothes Campaign, Fairwork – getragen von Stiftungen und Mitgliedern.  
+- **Internationale Programme:**  
+  - ILO-Programme für sichere Textilindustrie in Bangladesch & Äthiopien.  
+  - UNDP-Förderungen für Arbeitsrechte in Entwicklungsländern.  
+- **Alternative Modelle:**  
+  - **Solidarische Fonds:** Beschäftigte zahlen kleine Beiträge, um kollektive Rechtshilfe zu finanzieren.  
+  - **Genossenschaften:** Eigenfinanzierung durch Mitgliederbeiträge.  
+  - **Crowd-Funding:** Digitale Plattformen (z. B. Betterplace, Patreon) ermöglichen unabhängige Finanzierung.  
+- **Gemeingüterprinzip:** Arbeitsrecht ist ein kollektives Gut – Zugang darf nicht vom Einkommen abhängen.  
+- **RESETBOX-Integration:** QR-Karte „Kostenlose Arbeitsrechtsberatung – deine Rechte“.  
 
-| Prinzip | Beschreibung | Wirkung im Arbeitskontext | Relevante Module |
-|---------|--------------|---------------------------|------------------|
-| **Offenheit** | Arbeitsstrukturen müssen nachvollziehbar, transparent und zugänglich bleiben. | Schutz vor Ausbeutung & Machtmissbrauch. | 23 JUSTICE, 37 DEMOCRACY, 38 GOVERNANCE |
-| **Nicht-Ausschluss** | Niemand darf von fairer Arbeit ausgeschlossen werden (z. B. Migrant:innen, Behinderte). | Inklusion & Würde statt Diskriminierung. | 22 MIGRATION, 14 HEALTH, 15 CARE |
-| **Nicht-Zerstörung** | Arbeit darf Natur, Körper oder Psyche nicht dauerhaft schädigen. | Nachhaltigkeit & Prävention von Burnout. | 13 NATURE, 21 CLIMATE, 07 PSYCHE |
-| **Transparenz-Container** | Jede Arbeitsform muss „einsehbar“ sein – keine Blackboxes. | Kontrollmechanismen gegen Zwangsarbeit & Betrug. | 35 DATA, 32 LICENCE, 30 TRUTH |
-| **RESET als Container-Ethik** | RESETBOX als Symbol: offene Systeme > geschlossene Systeme. | Praktische Umsetzung in Arbeitsverträgen & Commons. | 01 RESETBOX, 09 DEBT, 25 FINANCE |
+**Crosslinks:** [23 – JUSTICE](../modules/23_JUSTICE.md), [37 – DEMOCRACY](../modules/37_DEMOCRACY.md)
 
-# Modul 10 – WORK  
-## 17. Vertrauensarchitektur & Transparenzlogik  
+---
 
-| Ebene | Beschreibung | Beispiel | Relevante Module |
-|-------|--------------|----------|------------------|
-| **Individuelles Vertrauen** | Kolleg:innen vertrauen einander, weil Arbeit sichtbar, fair und überprüfbar ist. | Offene Aufgabenlogs in einer Community-Küche. | 24 COMMUNITY, 18 CULTURE |
-| **Institutionelles Vertrauen** | Unternehmen/Organisationen müssen Prozesse offenlegen. | Transparente Gehaltsstrukturen in Non-Profits. | 23 JUSTICE, 37 DEMOCRACY |
-| **Technisches Vertrauen** | Arbeit in digitalen Räumen braucht Open-Source und nachvollziehbare Tools. | Nutzung von Open-Ledger-Systemen für Arbeitseinsätze. | 28 NETWORK, 35 DATA |
-| **Vertrauensanker RESET** | RESET:LOG dokumentiert Arbeitsschritte & schützt vor Ausbeutung. | Eintrag jeder Schicht in einer RESET-Instanz. | 01 RESETBOX, 32 LICENCE |
-| **Transparenzlogik** | Alles, was Arbeit strukturiert, muss überprüfbar sein. Geheimhaltung nur bei Lebensschutz. | Offene Audit-Logs statt verdeckter Verträge. | 30 TRUTH, 38 GOVERNANCE |
+**Quellen (für Abschnitte 21–25)**  
+1. Destatis (2021). *Gewerkschaftsquote Deutschland*.  
+2. Bureau of Labor Statistics (2021). *Union Membership in the United States*.  
+3. ILO (2020). *Informal Employment Report*.  
+4. ILO (2019). *Nigeria Informal Labour Statistics*.  
+5. Fairwork (2022). *Fairwork Ratings India & Philippines*.  
+6. Amnesty International (2020). *Qatar’s Labour Rights Crisis*.  
+7. BMJ (2020). *Arbeitsgerichtsbarkeit Statistik*.  
+8. Eurofound (2021). *Labour Inspectorates in Europe*.  
+9. Clean Clothes Campaign (2021). *Covid-19 Outbreaks in Garment Factories*.  
 
-# Modul 10 – WORK  
-## 18. Build-Kit & DIY-Infrastruktur  
+## 26. Wartung & Aktualisierung
 
-| Ebene | Inhalt / Tool | Funktion | Relevante Module |
-|-------|---------------|----------|------------------|
-| **DIY-Arbeitsverträge** | Open-Source Vorlagen für faire Arbeitsverträge | Schutz vor Ausbeutung | 23 JUSTICE, 32 LICENCE |
-| **Skill-Sharing Kits** | Anleitungskarten & Workshops | Gegenseitige Ausbildung in Communities | 11 SCHOOL, 24 COMMUNITY |
-| **Commons-Tools** | Open-Hardware & Open-Source Software für Produktion & Verwaltung | Zugang zu Arbeit ohne Kapital | 08 DEVICE, 28 NETWORK |
-| **RESET:WORK Karten** | Karten mit Schritt-für-Schritt-Anleitungen | Niedrigschwellige Arbeitseinstiege | 01 RESETBOX, 09 DEBT |
-| **DIY-Coop-Build-Kit** | Baupläne für Genossenschaften & Gemeinschaftsbetriebe | Eigenständige Arbeitsorganisation | 37 DEMOCRACY, 38 GOVERNANCE |
-| **Mobile Labs** | Container, Vans, modulare Werkstätten | Arbeit dezentral möglich, auch im Krisenraum | 20 ENERGY, 27 TRANSPORT |
+Arbeitsrecht verändert sich ständig – neue Gesetze, Urteile und Tarifverträge erfordern regelmäßige Updates:  
+- **Deutschland/EU:** Mindestlohn (seit 2022: 12 €) wird jährlich angepasst. BAG-Urteil 2020: Crowdworker gelten als Arbeitnehmer (BAG 2020¹).  
+- **International:** ILO entwickelt regelmäßig neue Standards (z. B. Konvention zu Heimarbeit 2021).  
+- **RESETBOX-Logik:**  
+  - Jährliche Überprüfung der STOP-/DROP-Karten.  
+  - QR-Codes verlinken auf aktuelle Versionen.  
+  - Versionierung (z. B. WORK_V1.3_2025) macht Aktualität sichtbar.  
+- **Verantwortung:**  
+  - **Lokal:** Gewerkschaften, NGOs, Community-Builder:innen.  
+  - **Zentral:** QUESTSYSTEM-gGmbH pflegt Master-Repository und koordiniert Updates.  
 
-# Modul 10 – WORK  
-## 19. Downloads, QR-Zugang & Offline-Versionen  
+**RESETBOX-Beispiel:** QR-Karte „Deine Arbeitsrechte – Stand 2025“.  
+**Crosslinks:** [32 – LICENCE](../modules/32_LICENCE.md), [39 – KNOWLEDGE](../modules/39_KNOWLEDGE.md)
 
-| Ebene | Umsetzung | Beispiel | Relevante Module |
-|-------|-----------|----------|------------------|
-| **Downloads** | Offene Repositorien mit Arbeitsanleitungen & Tools | GitHub, Kiwix | 39 KNOWLEDGE, 28 NETWORK |
-| **QR-Zugang** | QR-Codes in RESETBOX oder WORK-Karten | QR verweist auf Arbeitsrechte & DIY-Kits | 01 RESETBOX, 32 LICENCE |
-| **Offline-Versionen** | Portable Wikis, Kiwix-Pakete, USB-Sticks | Offline-Wiki für Arbeitsrecht in Krisengebieten | 08 DEVICE, 20 ENERGY |
-| **Papier-Backups** | Gedruckte Manuals & RESET:LOG Templates | Arbeitsrechte-Handbuch im RESET-Kit | 30 TRUTH, 23 JUSTICE |
-| **Dezentrale Speicherung** | Verteilte Nodes & Peer-to-Peer-Archive | InterPlanetary File System (IPFS) | 35 DATA, 28 NETWORK |
-| **Workshops & Lernkarten** | Analog nutzbare Trainingsmodule | Skill-Sharing in der Community | 11 SCHOOL, 24 COMMUNITY |
+---
 
-# Modul 10 – WORK  
-## 20. Lizenzierung & Nicht-Kriminalisierung  
+## 27. Monitoring & Wirkungsmessung
 
-| Ebene | Inhalt / Maßnahme | Funktion | Relevante Module |
-|-------|-------------------|----------|------------------|
-| **Quest: Licence** | Offene Lizenzstruktur für Arbeit & Commons | Verhindert Aneignung durch Konzerne | 32 LICENCE, 39 KNOWLEDGE |
-| **Nicht-Kriminalisierung** | Schutz bei DIY- oder Commons-Arbeit | Keine Strafbarkeit für Subsistenzarbeit | 23 JUSTICE, 25 FINANCE |
-| **Creative Commons / GPL** | Nutzung bestehender Open-Lizenzen | Rechtssichere Offenlegung von Arbeit | 39 KNOWLEDGE, 28 NETWORK |
-| **Recht auf Selbsthilfe** | Verweis auf Menschenrechte & Dignity Clause | Arbeit zur Existenzsicherung darf nicht verfolgt werden | 04 DIGNITY, 42 DEATH |
-| **Anti-Patent-Blockaden** | Gegenwirkung gegen Arbeits- & Wissensmonopole | Zugang zu Werkzeugen für alle | 35 DATA, 08 DEVICE |
-| **RESET:WORK Siegel** | Offenes Label für freie, nicht-kommerzielle Arbeit | Sichtbarkeit & Schutz durch Symbolik | 29 SYMBOL, 18 CULTURE |
+Die Wirkung von Arbeitsrechtsmaßnahmen muss messbar sein:  
+- **Individuell:** Zahl der Nutzer:innen, die nach RESETBOX-Zugang Beratungen in Anspruch nehmen.  
+- **Psychisch:** WHO-Studien zeigen, dass sichere Beschäftigung das Depressionsrisiko um 40 % senkt (WHO 2019²).  
+- **Juristisch:** Zahl der gewonnenen Arbeitsrechtsklagen pro Jahr (Indikator für Rechtswirksamkeit).  
+- **Gesellschaftlich:** Rückgang von Schwarzarbeit, Lohnbetrug oder informeller Beschäftigung.  
+- **RESET:LOG-Datenschutz:** Alle Einträge werden anonymisiert, lokal gespeichert und nur aggregiert weitergegeben.  
+- **Praxisbeispiel:** UK-Studie (Fairwork 2022³): Bewertung von 100 Plattformen führte zu Mindestlohngarantien auf fünf Plattformen.  
 
-# Modul 10 – WORK  
-## 21. Internationale Adaptionsmatrix  
+**RESETBOX-Beispiel:** RESET:LOG-Statistikbogen „Arbeitsrechtskonflikte“.  
+**Crosslinks:** [07 – PSYCHE](../modules/07_PSYCHE.md), [37 – DEMOCRACY](../modules/37_DEMOCRACY.md)
 
-| Region / Kontext | Anpassung | Beispiel | Relevante Module |
-|------------------|-----------|----------|------------------|
-| **Globaler Norden** | Arbeitszeitverkürzung, Schutz vor Burnout | 30h-Woche, Remote-Work | 14 HEALTH, 07 PSYCHE |
-| **Globaler Süden** | Recht auf Subsistenz & informelle Arbeit | Legale Straßenmärkte, Mikroproduktion | 04 FOOD, 25 FINANCE |
-| **Krisengebiete** | Schutz vor Zwangsarbeit & Arbeitsmigration | Arbeitsrechtliche Notfall-Charta | 22 MIGRATION, 36 CONFLICT |
-| **Digitale Arbeit** | Plattformarbeit regulieren, Fair Pay | Regeln für Gig-Economy & Remote | 28 NETWORK, 19 MEDIA |
-| **Ländliche Räume** | Förderung von Commons-Work & Agroarbeit | Kooperativen, gemeinschaftlicher Landbau | 13 NATURE, 21 CLIMATE |
-| **Indigene Communities** | Schutz traditionellen Wissens | Keine Ausbeutung durch Patente | 39 KNOWLEDGE, 18 CULTURE |
-| **Exil / Diaspora** | Anerkennung von Abschlüssen & Skills | Portable Skills-Passports | 11 SCHOOL, 23 JUSTICE |
+---
 
-# Modul 10 – WORK  
-## 22. Kooperationen & Schnittstellen  
+## 28. Skalierung & regionale Anpassung
 
-| Ebene | Kooperationspartner / Schnittstelle | Funktion | Relevante Module |
-|-------|--------------------------------------|----------|------------------|
-| **Rechtlich** | Gewerkschaften, NGOs, Rechtsberatung | Schutz vor Ausbeutung, Zugang zu Rechten | 23 JUSTICE, 32 LICENCE |
-| **Ökonomisch** | Gemeinwohl-Ökonomie, Mikrofinanz, Genossenschaften | Alternative Arbeitsfinanzierung | 25 FINANCE, 09 DEBT |
-| **Sozial** | Schulen, Familien, Pflegeeinrichtungen | Arbeit als Care & Bildung | 11 SCHOOL, 15 CARE |
-| **Technisch** | Maker-Spaces, Open-Source-Communities, Resetbox-Build-Kits | DIY-Arbeit, Commons-Produktion | 08 DEVICE, 18 CULTURE |
-| **Kulturell** | Künstler:innen, Kulturzentren | Arbeit sichtbar machen, Resilienz stärken | 18 CULTURE, 29 SYMBOL |
-| **International** | ILO, UN-Programme, lokale Bewegungen | Anpassung an globale Arbeitsstandards | 21 CLIMATE, 22 MIGRATION |
-| **Systemintern** | RESETBOX, Debt-Regelung, Work-Siegel | Integration ins QUESTSYSTEM | 01 RESETBOX, 09 DEBT |
+WORK muss regional angepasst werden:  
+- **Deutschland:** Fokus auf Kündigungsschutz, Mindestlohn, Mitbestimmung.  
+- **Südeuropa:** Jugendarbeitslosigkeit > 30 % in Griechenland und Spanien (Eurostat 2021⁴).  
+- **Afrika:** Beispiel Kenia: 85 % informelle Beschäftigung, RESETBOX bietet Musterverträge in Swahili (ILO 2019⁵).  
+- **Asien:** Textilindustrie (Bangladesch) und Elektronikfertigung (Foxconn in China) → RESETBOX liefert Infos zu Lieferkettengesetzen.  
+- **Golfstaaten:** Kafala-System → WORK-MIGRANT-Kit in arabischer Sprache.  
+- **Globale Skalierung:**  
+  - RESETBOX kann in Schulen, Sozialzentren, Flüchtlingscamps eingesetzt werden.  
+  - Variantenmatrix erlaubt lokale Anpassung.  
 
-# Modul 10 – WORK  
-## 23. Ressourcenbedarf & Materiallogistik  
+**RESETBOX-Beispiel:** DROP-Karte „Deine Rechte in der Elektronikfertigung“.  
+**Crosslinks:** [21 – CLIMATE](../modules/21_CLIMATE.md), [22 – MIGRATION](../modules/22_MIGRATION.md)
 
-| Ressource | Beschreibung | Risiko bei Mangel | Relevante Module |
-|-----------|--------------|-------------------|------------------|
-| **Zeit** | Verfügbare Arbeitsstunden, Vereinbarkeit mit Care & Ruhe | Überlastung, Burnout | 05 SLEEP, 15 CARE |
-| **Raum** | Werkstätten, Arbeitsorte, digitale Räume | Obdachlosigkeit, Ausschluss | 03 SHELTER, 26 HOUSING |
-| **Werkzeuge** | Geräte, Maschinen, digitale Tools | Abhängigkeit von Dritten | 08 DEVICE, 28 NETWORK |
-| **Energie** | Strom, Wärme, körperliche Kraft | Blackouts, Unterbrechung von Arbeit | 20 ENERGY, 21 CLIMATE |
-| **Wissen** | Fachkenntnisse, Weiterbildung | Analphabetismus, Fehlentscheidungen | 11 SCHOOL, 39 KNOWLEDGE |
-| **Finanzen** | Zugang zu Kapital, Krediten, Gemeingutmitteln | Schuldknechtschaft, Armut | 09 DEBT, 25 FINANCE |
-| **Gesundheit** | Körperliche & psychische Arbeitsfähigkeit | Krankheit, Ausschluss vom Arbeitsmarkt | 06 BODY, 14 HEALTH |
-| **Transport** | Logistik, Wege zur Arbeit, Lieferketten | Isolation, Versorgungsunterbrechung | 27 TRANSPORT, 22 MIGRATION |
+---
 
-# Modul 10 – WORK  
-## 24. Produktions- & Replikationsethik  
+## 29. Symbolik & kulturelle Einbettung
 
-| Bereich | Ethisches Prinzip | Gefahr ohne Prinzip | Relevante Module |
-|---------|------------------|---------------------|------------------|
-| **Produktion** | Arbeit darf weder Zwangsarbeit noch Kinderarbeit beinhalten | Ausbeutung, Verletzung der Würde | 04 ETHICS, 14 HEALTH |
-| **Replikation** | Arbeitsmodelle müssen offen geteilt & anpassbar sein | Monopole, Ungleichheit | 32 LICENCE, 39 KNOWLEDGE |
-| **Nachhaltigkeit** | Ressourcenschonend, klimaverträglich | Öko-Kollaps, Klimaflucht | 13 NATURE, 21 CLIMATE |
-| **Inklusion** | Arbeit muss zugänglich sein für Frauen, Migrant:innen, Behinderte | Ausschluss, Diskriminierung | 15 CARE, 22 MIGRATION |
-| **Transparenz** | Offene Prozesse & klare Bedingungen | Korruption, Ausbeutung | 19 MEDIA, 23 JUSTICE |
-| **Gemeingüterprinzip** | Nutzen von Arbeit muss allen zugutekommen | Enteignung, Oligopole | 25 FINANCE, 24 COMMUNITY |
+Arbeit ist auch kulturell aufgeladen:  
+- **Literatur:** Charles Dickens („Hard Times“) beschreibt Entfremdung in der Industriegesellschaft.  
+- **Kunst:** Street Art in Athen nach der Finanzkrise thematisierte Arbeitslosigkeit als „Ketten“.  
+- **Theater:** „Working“ (Studs Terkel, 1974) brachte Alltagsarbeit auf die Bühne.  
+- **Aktuelle Protestsymbolik:**  
+  - „Gelbe Westen“ (Frankreich, 2018) als Symbol gegen Prekarität.  
+  - Streikplakate in Amazon-Lagern („Make Amazon Pay“) als globales Symbol der Arbeitskämpfe.  
+- **Symbole in der RESETBOX:**  
+  - Hammer = produktive Arbeit.  
+  - Zerbrochener Hammer = Ausbeutung.  
+  - Leere Stuhlreihe = Arbeitslosigkeit.  
+  - Werkzeugkasten = Empowerment.  
 
-# Modul 10 – WORK  
-## 25. Finanzierung & Gemeingüterprinzip  
+**RESETBOX-Beispiel:** STOP-Karte mit Symbol „Make Work Fair“.  
+**Crosslinks:** [18 – CULTURE](../modules/18_CULTURE.md), [40 – ART](../modules/40_ART.md)
 
-| Finanzierungsmodell | Beschreibung | Risiko ohne Modell | Verknüpfte Module |
-|----------------------|--------------|--------------------|-------------------|
-| **Quest:Fund** | Gemeinnütziger Fonds zur Unterstützung von Arbeit & Schuldenentlastung | Schuldknechtschaft, Arbeitszwang | 09 DEBT, 23 JUSTICE |
-| **Commons-Ökonomie** | Finanzierung durch Gemeingüter (Open Source, Allmende, Sharing) | Privatisierung, Enteignung | 24 COMMUNITY, 32 LICENCE |
-| **Solidarische Umlage** | Gemeinschaft trägt Grundarbeit (Care, Kultur, Bildung) | Unsichtbare Arbeit bleibt unbezahlt | 15 CARE, 18 CULTURE |
-| **Mikrofinanz & Community Banks** | Lokale Kredite für Arbeitsprojekte | Abhängigkeit von Großbanken | 25 FINANCE, 37 DEMOCRACY |
-| **Krisen- und Blackout-Fonds** | Sicherung von Arbeit bei Katastrophen | Zusammenbruch lokaler Arbeitsmärkte | 01 RESETBOX, 20 ENERGY |
-| **Steuerbefreiung für Gemeinnutz** | Arbeit, die Gemeingut schafft, wird steuerlich privilegiert | Abwanderung in Schattenwirtschaft | 23 JUSTICE, 38 GOVERNANCE |
+---
 
-# Modul 10 – WORK  
-## 26. Wartung & Aktualisierung  
+## 30. Langzeitwirkung & Weitergabe-Logik
 
-| Wartungsbereich | Beschreibung | Risiko ohne Wartung | Verknüpfte Module |
-|-----------------|--------------|---------------------|-------------------|
-| **Rechtslage** | Regelmäßige Anpassung an Arbeitsrecht, internationale Abkommen | Veraltete Standards, Ausbeutung | 23 JUSTICE, 32 LICENCE |
-| **Technik** | Updates für digitale Arbeit, Netzwerke, KI, Automatisierung | Technologische Abhängigkeit, Ausschluss | 08 DEVICE, 28 NETWORK |
-| **Gesundheitsschutz** | Anpassung von Arbeitsplätzen an neue medizinische Erkenntnisse | Berufskrankheiten, Burnout | 14 HEALTH, 07 PSYCHE |
-| **Bildung & Qualifizierung** | Fortbildung als Teil der Arbeitspflicht im System | Fachkräftemangel, Analphabetismus | 11 SCHOOL, 39 KNOWLEDGE |
-| **Resilienz-Prüfungen** | Arbeitsszenarien werden regelmäßig auf Krisentauglichkeit getestet | Zusammenbruch bei Blackouts/Kriegen | 01 RESETBOX, 20 ENERGY |
-| **Ethische Standards** | Permanente Evaluierung nach Dignity Clause | Normalisierung von Zwang & Ungleichheit | 04 ETHICS, 42 DEATH |
+Arbeit verändert Gesellschaft über Generationen:  
+- **Generationenwirkung:** Prekarität vererbt sich – Kinder prekär Beschäftigter haben schlechtere Bildungschancen (OECD 2020⁶).  
+- **Strukturelle Wirkung:** Institutionalisierte Arbeitsrechte reduzieren Ungleichheit und stärken Demokratie.  
+- **Politische Mechanismen:**  
+  - ILO-Supervisory Mechanism überwacht die Umsetzung internationaler Konventionen.  
+  - EU-Lieferkettengesetz stärkt globale Verantwortung.  
+- **Archivierung:** RESET:LOG-Archive werden in Kooperation mit öffentlichen Bibliotheken, Gewerkschaftsarchiven und dezentralen Git-Repositories gespeichert.  
+- **RESETBOX-Logik:**  
+  - Materialien werden regelmäßig anonymisiert weitergegeben.  
+  - Jede Generation ergänzt ihre Erfahrungen und gibt sie weiter.  
+- **Vision:** Eine Welt, in der Arbeitsrechte selbstverständlich sind – nicht erkämpft, sondern garantiert.  
 
-# Modul 10 – WORK  
-## 27. Monitoring & Wirkungsmessung  
+**RESETBOX-Beispiel:** RESET:LOG-Archiv „Arbeiter:innen-Geschichten – weltweit“.  
+**Crosslinks:** [41 – FUTURE](../modules/41_FUTURE.md), [31 – MEMORY](../modules/31_MEMORY.md)
 
-| Monitoring-Bereich | Indikator | Risiko ohne Messung | Verknüpfte Module |
-|--------------------|-----------|---------------------|-------------------|
-| **Menschenwürde** | Faire Entlohnung, Zwangsfreiheit, Selbstbestimmung | Zwangsarbeit, Ausgrenzung | 04 ETHICS, 23 JUSTICE |
-| **Gesundheit** | Psychische und physische Belastungswerte | Burnout, Berufskrankheiten | 07 PSYCHE, 14 HEALTH |
-| **Bildung & Qualifizierung** | Zugang zu Weiterbildung, Alphabetisierung | Stillstand, Abhängigkeit | 11 SCHOOL, 39 KNOWLEDGE |
-| **Ökologie** | CO₂-Bilanz, Ressourcenverbrauch pro Arbeitseinheit | Klimaschäden, Raubbau | 13 NATURE, 21 CLIMATE |
-| **Gemeinwohlbeitrag** | Anteil von Arbeit, die direkt Gemeinschaft stärkt | Vereinzelung, Sinnverlust | 24 COMMUNITY, 37 DEMOCRACY |
-| **Resilienz** | Krisenfähigkeit von Arbeitsmodellen (z. B. Blackout, Krieg) | Zusammenbruch kritischer Versorgung | 01 RESETBOX, 20 ENERGY |
+---
 
-# Modul 10 – WORK  
-## 28. Skalierung & regionale Anpassung  
-
-| Bereich | Lokale Anpassung | Risiko ohne Anpassung | Verknüpfte Module |
-|---------|------------------|-----------------------|-------------------|
-| **Urban** | Wissens- & Dienstleistungsarbeit, Infrastrukturjobs | Arbeitslosigkeit, soziale Spaltung | 11 SCHOOL, 28 NETWORK |
-| **Ländlich** | Landwirtschaft, Versorgungsketten, handwerkliche Produktion | Abwanderung, Hunger, Verfall | 04 FOOD, 13 NATURE |
-| **Krisenzonen** | Notarbeit, Care-Einsätze, Reparaturarbeit | Zusammenbruch von Grundversorgung | 01 RESETBOX, 15 CARE |
-| **Indigene Kontexte** | Arbeit im Einklang mit Natur & Tradition | Kulturverlust, Zwangsarbeit | 18 CULTURE, 13 NATURE |
-| **Globale Lieferketten** | Faire Produktionsstandards, regionalisierte Ketten | Ausbeutung, Abhängigkeit | 25 FINANCE, 23 JUSTICE |
-| **Digitale Arbeit** | Remote-Work, verteilte Teams, Netzwerke | Ausschluss ohne Zugang, Überwachung | 08 DEVICE, 28 NETWORK |
-
-# Modul 10 – WORK  
-## 29. Symbolik & kulturelle Einbettung  
-
-Arbeit ist mehr als Funktion – sie trägt **Symbole, Werte und kulturelle Prägungen**.  
-Sie kann Würde stiften, Zugehörigkeit ermöglichen oder Zwang und Entfremdung erzeugen.  
-
-### Kern-Symbole
-
-| Symbol | Bedeutung | Risiko bei Verlust | Verknüpfte Module |
-|--------|-----------|--------------------|-------------------|
-| **Hand** ✋ | Fähigkeit & Schaffenskraft | Ohnmacht, Abhängigkeit | 06 BODY, 40 ART |
-| **Werkzeug** 🛠️ | Gestaltung & Technik | Entfremdung, Stillstand | 08 DEVICE, 20 ENERGY |
-| **Samenkorn** 🌱 | Wachstum & Zukunft | Hunger, Abbruch von Zyklen | 04 FOOD, 41 FUTURE |
-| **Gemeinschaft** 🤝 | Kollektiv & Solidarität | Vereinzelung, Konkurrenz | 24 COMMUNITY, 37 DEMOCRACY |
-
-### Einbettung  
-- In vielen Kulturen ist Arbeit **identitätsstiftend** (z. B. Handwerk als Familiengeschichte).  
-- Arbeit als **Ritual** (Erntefeste, Zunftzeichen, Uniformen).  
-- Arbeit als **Ausdruck von Würde** (ILO: „Decent Work“).  
-- Kulturelle Deutung entscheidet, ob Arbeit **Freiheit** oder **Zwang** ist.  
-
-# Modul 10 – WORK  
-## 30. Langzeitwirkung & Weitergabe-Logik  
-
-Arbeit prägt nicht nur das **individuelle Leben**, sondern die **Generationenfolge**.  
-Sie entscheidet, ob Wissen, Fähigkeiten und Strukturen erhalten oder verloren gehen.  
-
-### Langzeitwirkung
-- **Wissensweitergabe**: Handwerk, Pflege, Commons-Arbeit sichern über Generationen Fähigkeiten.  
-- **Strukturerhalt**: Arbeit erhält Infrastruktur (Wasser, Energie, Pflege, Bildung).  
-- **Identität**: Berufliche und gemeinschaftliche Arbeit schaffen Zugehörigkeit und Geschichte.  
-- **Systemkritik**: Arbeit kann Herrschaft stabilisieren – oder neue Gesellschaften vorbereiten.  
-
-### Weitergabe-Logik
-| Ebene | Weitergabeform | Risiko bei Bruch | Positive Hebel |
-|-------|----------------|------------------|----------------|
-| Individuell | Ausbildung, Mentoring, Lehre | Verlust von Skills, Dequalifizierung | Offene Lernsysteme (Modul 11 SCHOOL) |
-| Familie & Community | Tradition, Rituale, Commons | Vereinsamung, Verfall von Care | Care-Strukturen (15 CARE, 16 FAMILY) |
-| Gesellschaft | Arbeitsrechte, Tarifordnungen | Ausbeutung, Prekarisierung | Rechtsrahmen (23 JUSTICE, 32 LICENCE) |
-| Global | Commons, Open Source, Solidarität | Kolonialismus, Brain Drain | Internationale Netzwerke (21 CLIMATE, 22 MIGRATION) |
-
-### Fazit  
-Arbeit ist **ein Träger von Zukunft**.  
-Nur wenn Arbeit **gerecht, geteilt und gesichert** wird, können Gesellschaften **Resilienz und Würde** über Generationen erhalten.  
-
+**Quellen (für Abschnitte 26–30)**  
+1. Bundesarbeitsgericht (2020). *Urteil zu Crowdworkern*.  
+2. WHO (2019). *Mental Health and Employment Report*.  
+3. Fairwork (2022). *Fairwork Ratings Report*.  
+4. Eurostat (2021). *Youth Unemployment Statistics*.  
+5. ILO (2019). *Kenia Informal Employment Report*.  
+6. OECD (2020). *Employment and Intergenerational Mobility*.  

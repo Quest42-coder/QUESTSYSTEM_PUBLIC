@@ -1,0 +1,520 @@
+# Modul 26 – HOUSING
+
+## Einleitung
+
+HOUSING bildet eines der zentralen Strukturmodule im QUESTSYSTEM.  
+Es geht um das **Recht auf Wohnen** als elementare Voraussetzung für Würde, Sicherheit, Gesundheit und gesellschaftliche Teilhabe.  
+
+- **Systemische Rolle:**  
+  HOUSING verbindet den Existential Ring (03 SHELTER, 05 SLEEP) mit dem Structural Ring (25 FINANCE).  
+  Gleichzeitig steht es in enger Beziehung zu **14 HEALTH, 15 CARE und 16 FAMILY**, da Wohnen direkte Auswirkungen auf Gesundheit, Pflege und familiäre Stabilität hat.  
+  Im Structural Ring ist HOUSING mit **37 DEMOCRACY und 38 GOVERNANCE** verknüpft – Wohnraum ist auch eine Macht- und Verteilungsfrage.  
+
+- **Krisenhintergrund:**  
+  Weltweit erleben wir Wohnungsnot, steigende Mieten, Gentrifizierung und Obdachlosigkeit.  
+  Mehr als **1 Milliarde Menschen leben in informellen Siedlungen oder Slums** (UN-Habitat).  
+  In Europa wächst die Krise des bezahlbaren Wohnraums rasant, während globale Fonds Wohnraum zunehmend als Spekulationsobjekt nutzen.  
+  Naturkatastrophen, Kriege und Klimawandel (Sturmfluten, Hitzewellen, Brände) verschärfen die Situation zusätzlich und machen **klimaresiliente Architektur** zur Überlebensfrage.  
+
+- **RESET-Prinzip:**  
+  Wohnen ist kein Luxusgut, sondern ein **Menschenrecht** (Artikel 25, Allgemeine Erklärung der Menschenrechte).  
+  Das Modul versteht HOUSING als **Commons**: Räume für Schutz, Gemeinschaft und Selbstbestimmung.  
+  Modelle wie **Community Land Trusts, Genossenschaften und Co-Housing-Initiativen** zeigen, dass Wohnraum jenseits des Marktes organisiert werden kann.  
+
+- **Gefahren bei Vernachlässigung:**  
+  - Obdachlosigkeit und Marginalisierung.  
+  - Ghettobildung und soziale Spaltung.  
+  - Landgrabbing und Vertreibung durch Großprojekte.  
+  - Verlust von Gemeingut durch globale Immobilienspekulation.  
+
+- **RESETBOX-Bezug:**  
+  Das Modul bringt konkrete Werkzeuge wie Notunterkunftspläne, Mietrechtskarten, Bauanleitungen für DIY-Shelter und Vorlagen für Community-Housing in die RESETBOX ein.  
+  Zusätzlich enthält es **Checklisten für Katastrophenschutz** (z. B. Hochwasser, Blackout) und **Baupläne für modulare Wohncontainer**, die schnell eingesetzt werden können.  
+
+---
+
+## 01. Systemischer Kontext
+
+HOUSING ist ein Strukturmodul im QUESTSYSTEM, das eng mit existentiellen Bedürfnissen (SHELTER 03, SLEEP 05) und strukturellen Ressourcen (FINANCE 25, DEMOCRACY 37, GOVERNANCE 38) verbunden ist.  
+Darüber hinaus ist es direkt verknüpft mit **HEALTH (14)** und **CARE (15)**, da sichere Wohnungen essenziell für Gesundheit, Pflege und Lebensqualität sind.  
+
+Wohnen ist nicht nur ein Dach über dem Kopf, sondern auch **soziale Infrastruktur**, die Familien stabilisiert, Pflege ermöglicht, Gesundheit schützt und Gemeinschaft stärkt.  
+Im digitalen Zeitalter umfasst HOUSING auch **Zugang zu Energie- und Netz-Infrastruktur**, die zunehmend Teil des Wohnraums sind.  
+
+RESET-Prinzip: Wohnen wird als **Commons** gedacht – Räume, die jenseits reiner Marktlogik existieren und Würde sichern.  
+
+---
+
+## 02. Krisenhintergrund & globale Relevanz
+
+Die Wohnkrise ist eine der drängendsten globalen Herausforderungen:  
+
+- **Weltweit:** Über 1 Milliarde Menschen leben in informellen Siedlungen oder Slums (UN-Habitat).  
+- **Europa:** Mieten steigen massiv, bezahlbarer Wohnraum ist knapp, Obdachlosigkeit nimmt zu.  
+- **Binnenflüchtlinge:** Millionen Menschen verlieren durch Landgrabbing, Umweltzerstörung und Klimafolgen ihr Zuhause.  
+- **Kriege & Katastrophen:** Zerstörung von Wohnraum führt zu Massenvertreibungen und humanitären Katastrophen.  
+- **Klimawandel:** Extremwetter (Fluten, Hitze, Stürme) macht Millionen Häuser unbewohnbar.  
+- **Urbanisierung:** Städte wachsen schneller, als Infrastruktur bereitgestellt werden kann.  
+- **Gender-Aspekte:** Frauen und Kinder sind besonders häufig von Wohnungsnot betroffen – sei es durch Gewalt, Flucht oder ökonomische Benachteiligung.  
+
+RESET-Prinzip: HOUSING ist global relevant, weil Wohnen die **Basis jeder Resilienz** darstellt.  
+
+---
+
+## 03. Juristische Absicherung & Schutzräume
+
+Das Recht auf Wohnen ist international anerkannt, wird aber oft unzureichend umgesetzt:  
+
+- **Rechtliche Grundlagen:**  
+  - Artikel 25 AEMR (Recht auf Wohnen, Gesundheit, Nahrung).  
+  - ICESCR, Artikel 11 (Recht auf angemessenen Lebensstandard).  
+  - EU-Grundrechtecharta, Artikel 34.  
+  - UN-Habitat: *General Comment No. 4 – The Right to Adequate Housing*.  
+- **National:** Viele Verfassungen erkennen Wohnen als Grundrecht an, aber ohne einklagbaren Anspruch.  
+- **Lokale Initiativen:** Mietendeckel, Bürgerinitiativen gegen Zwangsräumungen, Bewegungen wie „Deutsche Wohnen & Co enteignen“.  
+- **Probleme:** Spekulation, Privatisierung und fehlende Umsetzung staatlicher Verpflichtungen.  
+- **RESET-Prinzip:** Wohnen darf nicht als Ware betrachtet werden, sondern muss rechtlich als **öffentliches Gut** gesichert sein.  
+
+RESETBOX-Bezug: Mietrechtskarten, Musterklagen, STOP-Karten „Housing = Human Right“.  
+
+---
+
+## 04. Ethische Basis (Dignity Clause)
+
+Wohnen ist **ethisch untrennbar mit Würde** verbunden:  
+
+- **Dignity Clause:** Kein Mensch darf ohne sicheren Ort zum Leben bleiben.  
+- **Verletzungen:** Obdachlosigkeit, Zwangsräumungen, Gentrifizierung, Diskriminierung von Geflüchteten.  
+- **Ethische Logik:**  
+  - Räume sind mehr als Objekte – sie sind soziale Anker.  
+  - Eigentum verpflichtet (GG Art. 14).  
+  - Unterschiedliche Kulturen haben eigene Wohnkonzepte (Mehrgenerationenhäuser, Nomadenzelte, indigene Dorfstrukturen).  
+- **Moderne Bedrohungen:** Tourismus- und Plattformökonomie (z. B. Airbnb) entziehen Wohnraum und verdrängen Einheimische.  
+- **RESET-Prinzip:** Jeder Mensch hat Anspruch auf **Raum, Schutz und Stabilität**, unabhängig von Einkommen oder Status.  
+
+RESETBOX-Bezug: Ethik-Karten „Dignity in Housing“, Workshopmodule zu Wohnen als Menschenrecht.  
+
+---
+
+## 05. Wissenschaftliche Fundierung (Sozio / Medizin / Technik)
+
+Die Bedeutung von Wohnen ist durch Forschung belegt:  
+
+- **Soziologie:** Wohnen beeinflusst Integration, Bildungschancen und soziale Mobilität.  
+- **Medizin:** Schlechter Wohnraum (Schimmel, Kälte, Überbelegung) erhöht Krankheitsrisiken (Atemwegserkrankungen, Depressionen).  
+- **Psychologie:** Ein sicherer Wohnort reduziert Stress und Traumatisierung. WHO-Studien zeigen klare Zusammenhänge zwischen Wohnqualität und mentaler Gesundheit.  
+- **Technik:** Nachhaltiges Bauen, modulare Architektur und klimaangepasstes Design sind zentrale Forschungsfelder.  
+- **Ökonomie:** Bezahlbarer Wohnraum senkt gesellschaftliche Folgekosten (Gesundheit, Sicherheit).  
+- **Ökologie:** Energieeffizientes Bauen und CO₂-reduzierte Baustoffe sind entscheidend für Klimaschutz.  
+
+RESET-Prinzip: Wissenschaft zeigt, dass HOUSING ein **Multifaktor-Determinant** für Würde, Gesundheit und Gerechtigkeit ist.  
+
+RESETBOX-Bezug: Gesundheitsberichte zu Wohnen, Baupläne für modulare Notunterkünfte, Katalog klimaangepasster Architektur.  
+
+---
+
+## 06. Technische Struktur & Varianten
+
+HOUSING umfasst vielfältige technische Ansätze:  
+
+- **Traditionell:** Massivbau, Holzbau, Lehm- und Naturmaterialien, angepasst an lokale Baukulturen und klimatische Bedingungen.  
+- **Modern:** Modulbau, Containerlösungen, 3D-gedruckte Häuser.  
+- **Krisenlösungen:** Zelte, Notunterkünfte, mobile Shelter.  
+- **Nachhaltigkeit:** Passivhaus-Standard, Plusenergiehäuser, CO₂-arme Baustoffe.  
+- **Resiliente Materialien:** Bambus, Recyclingbeton, Strohballen, lokal verfügbare Naturstoffe.  
+- **Varianten:**  
+  - **Urban Housing:** Genossenschaften, Co-Housing.  
+  - **Rural Housing:** Selbstbau, Gemeinschaftsdörfer.  
+  - **Mobile Housing:** Tiny Houses, Vans, Container.  
+  - **Emergency Housing:** Katastrophenschutz, Flüchtlingslager.  
+
+RESETBOX-Bezug: Baupläne für modulare Shelter, DIY-Anleitungen für Tiny Houses, Checklisten für Notunterkünfte.  
+
+---
+
+## 07. Psychologische Wirkung & intuitive Nutzung
+
+Wohnen wirkt direkt auf die Psyche:  
+
+- **Stabilität:** Ein sicherer Wohnort reduziert Stress, Angst und Depressionen.  
+- **Verlust:** Zwangsräumungen, Flucht oder Verlust der Wohnung führen oft zu Traumatisierungen.  
+- **Kinder & Jugendliche:** Eigene Räume fördern Entwicklung, Autonomie und schulische Leistung.  
+- **Intuitive Nutzung:** Räume müssen ohne komplexe Technik nutzbar sein (barrierefrei, inklusiv).  
+- **Kollektives Wohnen:** Gemeinschaftliche Strukturen (WG, Cluster Housing) schaffen soziale Stabilität.  
+- **Privatsphäre:** Rückzugsräume sind entscheidend für psychische Gesundheit.  
+- **RESET-Prinzip:** HOUSING gibt Menschen das Gefühl von **Sicherheit und Identität**.  
+
+RESETBOX-Bezug: Materialien zu Stressreduktion in Notunterkünften, einfache Baupläne für barrierefreie und jugendgerechte Wohnräume.  
+
+---
+
+## 08. Didaktik & Barrierefreiheit
+
+HOUSING muss für alle Menschen verständlich und zugänglich sein:  
+
+- **Didaktik:** Visualisierte Baupläne, leicht verständliche Handbücher.  
+- **Barrierefreiheit:** Rollstuhlgerecht, Seh- und Hörhilfen, taktile Orientierung.  
+- **Sprachliche Vielfalt:** Bau- und Rechtsinformationen in mehreren Sprachen.  
+- **Kulturelle Vielfalt:** Anpassung an regionale Wohntraditionen.  
+- **Digitale Tools:** Apps, Augmented Reality-Baupläne, interaktive Lernmodule.  
+- **Analoge Lösungen:** Gedruckte Poster, Piktogramme, Handbücher für Krisensituationen ohne digitale Infrastruktur.  
+- **RESET-Prinzip:** Wissen über Wohnen muss **barrierefrei weitergegeben** werden können.  
+
+RESETBOX-Bezug: Karten in leichter Sprache, Baupläne mit Symbolen, mehrsprachige Mietrechts-Infos.  
+
+---
+
+## 09. Variantenmatrix & Zielgruppen
+
+HOUSING muss an Zielgruppen angepasst werden:  
+
+- **Obdachlose:** Notunterkünfte, Übergangswohnraum.  
+- **Geflüchtete:** Mobile Shelter, sichere Lagerstrukturen.  
+- **Familien:** Genossenschaftliches Wohnen, Mehrgenerationenhäuser.  
+- **Senior:innen & Pflegebedürftige:** Barrierefreie Wohnungen, betreutes Wohnen.  
+- **Kinder & Jugendliche:** Schutzräume, Wohngruppen, Bildungsnähe.  
+- **Menschen mit Behinderungen:** Barrierefreie Bauformen, Assistenzsysteme, Inklusions-Wohnprojekte.  
+- **Institutionelle Settings:** Wohnraum in Gefängnissen, Pflegeheimen, Kliniken – menschenwürdig und rechtskonform.  
+- **Krisengebiete:** Temporäre Containerdörfer, resilient gegen Klimaextreme.  
+
+RESET-Prinzip: Wohnen wird nicht standardisiert, sondern **zielgruppenspezifisch adaptiert**.  
+
+RESETBOX-Bezug: Checklisten für Notunterkünfte, Variantenpläne für Community Housing, STOP-Karten gegen Diskriminierung.  
+
+---
+
+## 10. Modulverknüpfung mit allen 42 QUEST-Modulen
+
+HOUSING ist systemisch verknüpft:  
+
+- **Existential Ring:** SHELTER (03), SLEEP (05), BODY (06) – Wohnraum als Basisbedürfnis.  
+- **Societal Ring:** HEALTH (14), CARE (15), FAMILY (16), COMMUNITY (24) – Wohnen als sozialer Anker.  
+- **Structural Ring:** FINANCE (25), DEMOCRACY (37), GOVERNANCE (38) – Wohnpolitik als Macht- und Verteilungsfrage.  
+- **Querverbindungen:**  
+  - CLIMATE (21) → klimaangepasste Architektur.  
+  - ENERGY (20) → Versorgung von Wohnraum.  
+  - JUSTICE (23) → Mietrecht und Anti-Diskriminierung.  
+  - PRIVACY (33) → Schutz privater Räume.  
+  - ART (40) → Architektur als kulturelle und ästhetische Dimension.  
+  - SYMBOL (29) → Haus als kulturelles Zeichen für Sicherheit, Zugehörigkeit, Identität.  
+
+RESET-Prinzip: HOUSING ist **ein Knotenpunkt** zwischen Existenz, Gesellschaft und Struktur.  
+
+RESETBOX-Bezug: Matrixkarten, die Verknüpfungen mit anderen Modulen zeigen (z. B. „Housing & Climate“, „Housing & Justice“).  
+
+---
+
+## 11. Anwendungsszenarien (realweltlich)
+
+HOUSING entfaltet seine Wirkung in vielfältigen Szenarien:  
+
+- **Akutkrisen:** Naturkatastrophen, Kriege, Flucht – schnelle Bereitstellung von Notunterkünften.  
+- **Langzeitkrisen:** Mietexplosionen, Gentrifizierung – Aufbau von Community-Land-Trusts, Genossenschaften und öffentlichem Wohnungsbau.  
+- **Klimaanpassung:** Sturmsichere, energieeffiziente und hitzeresiliente Bauweisen.  
+- **Soziale Integration:** Wohngruppen für Jugendliche, Übergangswohnungen für Obdachlose.  
+- **Ruraler Raum:** Selbstbauprojekte, Tiny House-Siedlungen, Dorferneuerung.  
+- **Indigene Wohnformen:** Traditionelle Bauweisen (z. B. Lehmkuppeln, Stelzenhäuser, Nomadenzelte) bieten resiliente Vorbilder.  
+- **RESET-Prinzip:** HOUSING muss **flexibel und kontextsensibel** eingesetzt werden.  
+
+RESETBOX-Bezug: Fallkarten zu Katastrophenunterkünften, Praxisbeispiele zu Genossenschaften und Land Trusts.  
+
+---
+
+## 12. Systemschutz & Missbrauchsverhinderung
+
+Wohnraum ist anfällig für Missbrauch:  
+
+- **Gefahren:**  
+  - Spekulation durch Hedgefonds.  
+  - Zwangsräumungen ohne Sozialplan.  
+  - Diskriminierung bei Vermietung (Gender, Herkunft, Behinderung).  
+  - Ghettobildung durch politische Vernachlässigung.  
+  - Digitale Plattformen (z. B. Airbnb) verknappen Wohnraum und treiben Preise.  
+- **Systemschutz:**  
+  - Transparente Mietregister.  
+  - Gemeinnützige Trägerstrukturen.  
+  - Internationale Initiativen gegen Spekulation (z. B. Housing Rights Campaigns, UN-Habitat-Programme).  
+  - Klare Anti-Diskriminierungsgesetze.  
+- **RESET-Prinzip:** HOUSING muss **gegen Vereinnahmung und Ungleichheit geschützt** werden.  
+
+RESETBOX-Bezug: STOP-Karten gegen Räumungen, Leitfäden zu Mieterschutz, QR-Codes zu Anti-Diskriminierungsgesetzen.  
+
+---
+
+## 13. Legal Recognition & STOP-Karten
+
+Damit HOUSING wirksam ist, braucht es juristische Anerkennung:  
+
+- **International:** UN-Habitat, ICESCR, EU-Recht, Sustainable Development Goal 11 (*Nachhaltige Städte und Gemeinden*).  
+- **National:** Mieterschutzgesetze, Bauordnungen, kommunale Wohnungspolitik.  
+- **Lokal:** Mietrechtsvereine, Rechtshilfe-NGOs und Bürgerinitiativen.  
+- **RESET-Instrument:** STOP-Karten als juristische Notwehr – bei Räumungen, Diskriminierung oder Obdachlosigkeit.  
+- **RESET-Prinzip:** Juristische Werkzeuge müssen **einfach zugänglich und durchsetzbar** sein.  
+
+RESETBOX-Bezug: Muster für STOP-Karten „Housing = Human Right“, Checklisten für Wohnrechtsverfahren.  
+
+---
+
+## 14. RESET als Handlung, nicht nur Objekt
+
+HOUSING ist kein statisches Objekt, sondern ein **Handlungsprozess**:  
+
+- **RESET-Handlung:** Räume können von Communities neu angeeignet, umgebaut oder geteilt werden.  
+- **Commons-Logik:** Wohnen als dynamisches Gemeingut, nicht nur als Besitz.  
+- **Partizipation:** Bauprozesse, die Bewohner:innen aktiv einbeziehen, stärken Gemeinschaft und Nachhaltigkeit.  
+- **Künstlerisch-symbolische Aktionen:** Kunstaktionen (z. B. Häuser bemalen, Räume besetzen) machen Wohnraumkämpfe sichtbar.  
+- **Beispiele:**  
+  - Besetzungen leerstehender Gebäude als sozialer Akt.  
+  - Genossenschaftsgründungen.  
+  - Umbau von Bürogebäuden zu Wohnraum.  
+- **RESET-Prinzip:** Wohnen bedeutet **aktive Gestaltung von Lebensräumen**, nicht passiver Konsum.  
+
+RESETBOX-Bezug: Praxisbeispiele von Hausprojekten, DIY-Toolkits für Umnutzung.  
+
+---
+
+## 15. Nutzung in Bewegung & Ausnahmezuständen
+
+HOUSING muss auch in Ausnahmesituationen funktionieren:  
+
+- **Flucht & Migration:** Mobile Shelter, Containerdörfer, transnationale Unterkünfte.  
+- **Krisen:** Blackout, Krieg, Überschwemmungen → modulare Notunterkünfte mit autarker Energieversorgung.  
+- **Bewegung:** Vans, Tiny Houses, Zeltstädte – Wohnen auf Rädern oder temporär.  
+- **Nomadische Kulturen:** Traditionell mobile Wohnformen (Jurten, Tipis, Karawanenzelte) zeigen jahrhundertealte Resilienzstrategien.  
+- **Psychische Dimension:** Mobiles Wohnen kann auch Belastungen mit sich bringen (Verlust von Heimat, Unsicherheit, ständige Anpassung).  
+- **RESET-Prinzip:** HOUSING muss **mobil, resilient und adaptiv** sein.  
+
+RESETBOX-Bezug: Baupläne für mobile Shelter, Checklisten für Krisenunterkünfte, Anleitungen für autarke Versorgung.  
+
+---
+
+## 16. Ethik des offenen Containers
+
+Wohnen darf nicht exklusiv oder ausgrenzend gedacht werden:  
+
+- **Offene Container-Logik:** Wohnraum muss im Krisenfall geteilt werden können – vom Gästezimmer bis zum Notunterkunftsplatz.  
+- **Ethik:** Niemand darf aus Räumen ausgeschlossen werden, wenn sein Überleben davon abhängt.  
+- **Gefahren:** Privatisierung, Leerstand, „Gated Communities“.  
+- **Politische Bewegungen:** Hausbesetzungen und Vergesellschaftungskampagnen zeigen, wie Leerstand aktiv umgewidmet werden kann.  
+- **Notfallregelungen:** In Katastrophenfällen können leerstehende Immobilien rechtlich beschlagnahmt werden, um Leben zu schützen.  
+- **RESET-Prinzip:** Räume sind **gemeinsame Ressourcen** und nicht bloße Eigentumsobjekte.  
+
+RESETBOX-Bezug: Workshopkarten „Leerstand öffnen“, Mustervereinbarungen für gemeinschaftlich genutzten Raum.  
+
+---
+
+## 17. Vertrauensarchitektur & Transparenzlogik
+
+Wohnen braucht Vertrauen – zwischen Vermieter:innen, Mieter:innen, Nachbarschaften, Communities:  
+
+- **Transparenz:** Klare Mietverträge, offene Register, digitale Zugänge zu Informationen.  
+- **Digitale Tools:** Blockchain-Mietregister, Open-Data-Plattformen, Transparenzportale.  
+- **Architektur:** Wohnbau kann durch offene Gemeinschaftsflächen Vertrauen fördern.  
+- **Nachbarschaftsmediation:** Konflikte können durch Moderation und Dialogprozesse gelöst werden.  
+- **Risiken:** Misstrauen durch Verdrängung, Korruption, Willkür.  
+- **RESET-Prinzip:** Wohnstrukturen müssen **Vertrauen ermöglichen** und Machtmissbrauch verhindern.  
+
+RESETBOX-Bezug: Vorlagen für transparente Mietverträge, Checklisten für gemeinschaftliche Wohnprojekte.  
+
+---
+
+## 18. Build-Kit & DIY-Infrastruktur
+
+HOUSING kann mit DIY-Initiativen gestärkt werden:  
+
+- **Build-Kit-Idee:** Bauanleitungen für modulare Shelter, Tiny Houses, Gemeinschaftsbauten.  
+- **Materialien:** Lokale Rohstoffe, Recyclingmaterialien, Upcycling.  
+- **DIY-Wissen:** Schritt-für-Schritt-Handbücher, offene Baupläne, Wiki-Plattformen.  
+- **Bildungsprogramme:** Werkstätten, Schulen und Community-Projekte können DIY-Housing-Kenntnisse vermitteln.  
+- **Gender-Aspekte:** Bauprojekte müssen inklusiv sein und Frauen gezielt einbeziehen.  
+- **RESET-Prinzip:** Jeder Mensch soll in der Lage sein, **Wohnraum selbst zu schaffen oder zu reparieren**.  
+
+RESETBOX-Bezug: Baupläne für modulare Shelter, QR-Codes zu offenen Architektur-Wikis, Checklisten für Materiallogistik.  
+
+---
+
+## 19. Downloads, QR-Zugang & Offline-Versionen
+
+HOUSING braucht digitale und analoge Verfügbarkeit:  
+
+- **Digitale Zugänge:** QR-Codes mit Bauplänen, Mietrechtsinfos, Videos zu DIY-Bau.  
+- **Offline-Versionen:** Kiwix-Module, USB-Sticks mit Bauhandbüchern, Print-Folder für Krisengebiete.  
+- **Barrierefreiheit:** Inhalte in leichter Sprache, mit Symbolen und Illustrationen.  
+- **Open-Hardware:** Projekte wie OpenStructures liefern frei nutzbare Designpläne für Möbel und Wohnmodule.  
+- **Analoge Lernformen:** Baukästen für Kinder & Jugendliche vermitteln spielerisch Wohnkompetenzen.  
+- **RESET-Prinzip:** Wissen über Wohnen darf **nicht an Netzverfügbarkeit scheitern**.  
+
+RESETBOX-Bezug: QR-Codes in der Box, USB mit Bauhandbüchern, Printposter mit Shelter-Plänen.  
+
+---
+
+## 20. Lizenzierung & Nicht-Kriminalisierung
+
+Wohnen und Bauwissen müssen offen zugänglich sein:  
+
+- **Lizenzierung:** Creative Commons + Dignity Clause sichern, dass Baupläne geteilt werden dürfen.  
+- **Nicht-Kriminalisierung:** Wohnungslose dürfen nicht für ihr Überleben bestraft werden (z. B. Schlafen im öffentlichen Raum).  
+- **Globale Dimension:** Viele Staaten kriminalisieren Armut und Obdachlosigkeit – ein direkter Würdebruch.  
+- **Gute Praxis:** Städte wie Helsinki zeigen, dass Wohnraum bereitgestellt werden kann, anstatt Obdachlosigkeit zu bestrafen.  
+- **Housing-First:** Internationale Bewegung, die Wohnen als erste Maßnahme betrachtet, nicht als letzte.  
+- **RESET-Prinzip:** Zugang zu Wohnraum darf **nicht durch Repression verhindert** werden.  
+
+RESETBOX-Bezug: Lizenzkarten, STOP-Karten gegen Obdachlosen-Kriminalisierung, QR-Links zu offenen Bauplänen.  
+
+---
+
+## 21. Internationale Adaptionsmatrix
+
+HOUSING muss an regionale und kulturelle Kontexte angepasst werden:  
+
+- **Globaler Norden:** Fokus auf bezahlbaren Wohnraum, Regulierung von Spekulation, klimaneutrales Bauen.  
+- **Globaler Süden:** Zugang zu Basisinfrastruktur (Wasser, Strom), Verbesserung von Slums, Katastrophenschutz.  
+- **Urban vs. Rural:** Städte benötigen dichte, mehrgeschossige Bauweisen; ländliche Regionen setzen auf Selbstbau, Gemeinschaftsbauten, kleine Einheiten.  
+- **Nomadische Gesellschaften:** Mobile, anpassbare Wohnformen, die Kultur und Lebensweise respektieren.  
+- **Indigene Kontexte:** Anerkennung traditioneller Bauweisen (z. B. Lehm, Holz, Bambus) als gleichwertige Lösungen.  
+- **Klimazonen:**  
+  - Arktis → isolierte, energieeffiziente Bauten.  
+  - Tropen → luftige, feuchtigkeitsresistente Architektur.  
+  - Wüstenregionen → Verschattung, Kühlung, wasserangepasstes Design.  
+- **RESET-Prinzip:** HOUSING muss **global anwendbar und lokal anpassbar** sein.  
+
+RESETBOX-Bezug: Matrixkarten zu globalen Beispielen, Baupläne für klimaresiliente Architektur, Fallstudien indigener Wohnformen.  
+
+---
+
+## 22. Kooperationen & Schnittstellen
+
+Wohnen kann nur interdisziplinär gesichert werden:  
+
+- **Kooperationen:** NGOs, Kommunen, Genossenschaften, internationale Organisationen.  
+- **Private Akteure:** Bauwirtschaft und Investoren müssen reguliert, aber auch für Gemeinwohl-Projekte eingebunden werden.  
+- **Schnittstellen:** Verbindung zu Gesundheitssystemen, Energieversorgung, Transport, Bildung.  
+- **Pilotprojekte:** Quartiere, die Wohnen, Energieproduktion, Mobilität und Kreislaufwirtschaft integrieren.  
+- **Community-Ebene:** Nachbarschaften, selbstorganisierte Bau- und Pflegeinitiativen.  
+- **RESET-Prinzip:** HOUSING ist ein **Schnittstellenmodul**, das nur durch Kooperation funktioniert.  
+
+RESETBOX-Bezug: Partnerlisten, Schnittstellenkarten, Anleitungen für Kooperationen mit Kommunen.  
+
+---
+
+## 23. Ressourcenbedarf & Materiallogistik
+
+Wohnen braucht Ressourcen, die fair verteilt werden müssen:  
+
+- **Materialien:** Holz, Beton, Stahl, Recyclingstoffe, Naturmaterialien.  
+- **Logistik:** Transportketten, regionale Versorgung, Krisenreserven.  
+- **Krisenfälle:** Nach Erdbeben, Stürmen oder Fluten muss schnelle Materialversorgung gesichert sein.  
+- **Kritische Punkte:** Abhängigkeit von globalen Lieferketten, CO₂-intensive Baustoffe.  
+- **Kreislaufwirtschaft:** Baumaterialien müssen wiederverwendbar und modular einsetzbar sein.  
+- **RESET-Prinzip:** Ressourcennutzung muss **gerecht, nachhaltig und lokal verankert** sein.  
+
+RESETBOX-Bezug: Checklisten für Materialbedarf, QR-Codes zu regionalen Lieferketten, Baupläne für ressourcenschonende Alternativen.  
+
+---
+
+## 24. Produktions- & Replikationsethik
+
+Die Herstellung von Wohnraum darf keine Ausbeutung erzeugen:  
+
+- **Arbeitsbedingungen:** Faire Löhne und Sicherheit im Baugewerbe.  
+- **Ökologie:** Reduzierung von CO₂, Recycling von Baustoffen.  
+- **Korruption:** Bauwesen ist in vielen Ländern von Korruption geprägt – Transparenzmechanismen sind nötig.  
+- **Replikation:** Bauwissen muss frei zugänglich sein und darf nicht monopolisiert werden.  
+- **Digitale Werkzeuge:** CAD-Dateien, 3D-Printing und Open-Source-Architekturpläne erleichtern faire Replikation.  
+- **RESET-Prinzip:** Produktion und Replikation müssen **ethisch, ökologisch und offen** gestaltet sein.  
+
+RESETBOX-Bezug: Leitfäden für faire Bauprozesse, QR-Codes zu Open-Source-Bauprojekten, Beispiele für Recycling-Architektur.  
+
+---
+
+## 25. Finanzierung & Gemeingüterprinzip
+
+Wohnen darf nicht dem Markt allein überlassen werden:  
+
+- **Gemeingüterfinanzierung:** Genossenschaften, Community Land Trusts, kommunale Fonds.  
+- **Staatliche Verantwortung:** Sozialwohnungen, öffentliche Investitionen, Wohnsubventionen.  
+- **Alternativmodelle:** Solidarische Finanzierung, Mikrokredite, Crowdfunding.  
+- **Internationale Institutionen:** UN-Habitat-Fonds, Weltbank-Programme, IWF-Finanzierungen – müssen transparent und menschenrechtskonform sein.  
+- **Gefahren:** Privatisierung, Finanzialisierung von Wohnraum durch globale Fonds.  
+- **RESET-Prinzip:** HOUSING muss **als Gemeingut** finanziert und geschützt werden.  
+
+RESETBOX-Bezug: Vorlagen für solidarische Finanzierungsmodelle, STOP-Karten gegen Spekulation, Fallstudien zu Community-Land-Trusts.  
+
+---
+
+## 26. Wartung & Aktualisierung
+
+Wohnraum ist keine einmalige Errungenschaft, sondern muss gepflegt werden:  
+
+- **Wartung:** Regelmäßige Instandhaltung verhindert Verfall und Gesundheitsrisiken.  
+- **Aktualisierung:** Anpassung an neue Standards (Energieeffizienz, Barrierefreiheit, Brandschutz).  
+- **Digitale Wartungssysteme:** Smart-Housing-Sensorik kann frühzeitig Schäden melden und Energieverbrauch regulieren.  
+- **Recht auf Instandhaltung:** Bewohner:innen müssen rechtlich abgesichert sein (Mietminderung, Klagerecht bei Mängeln).  
+- **Community-Ansatz:** Selbstverwaltete Strukturen (Genossenschaften, Nachbarschaftsinitiativen) übernehmen Verantwortung.  
+- **RESET-Prinzip:** HOUSING muss **lebendig bleiben und sich anpassen**.  
+
+RESETBOX-Bezug: Checklisten für Wohnungswartung, Anleitungen für Energie-Updates, QR-Codes zu Standards.  
+
+---
+
+## 27. Monitoring & Wirkungsmessung
+
+Wohnen muss messbar gemacht werden, um Qualität und Gerechtigkeit zu sichern:  
+
+- **Indikatoren:** Wohnfläche pro Person, Mietbelastung, Energieverbrauch, Zugang zu Wasser und Infrastruktur.  
+- **Internationale Standards:** Orientierung an SDG 11 (*Nachhaltige Städte und Gemeinden*) und UN-Indikatoren.  
+- **Soziale Dimension:** Zufriedenheit, Nachbarschaftsqualität, Sicherheitsempfinden.  
+- **Monitoring:** Kombination aus staatlicher Statistik, NGO-Reports und Community-Mapping.  
+- **Partizipation:** Bewohner:innen werden aktiv in Erhebung und Bewertung eingebunden.  
+- **RESET-Prinzip:** Wirkungsmessung muss **transparente Kontrolle und Verbesserung** ermöglichen.  
+
+RESETBOX-Bezug: Vorlagen für Monitoring-Tools, partizipative Mapping-Apps, Checklisten für Communities.  
+
+---
+
+## 28. Skalierung & regionale Anpassung
+
+HOUSING muss in unterschiedlichen Maßstäben funktionieren:  
+
+- **Mikro-Ebene:** Einzelne Shelter, Tiny Houses, Wohnmodule.  
+- **Meso-Ebene:** Nachbarschaften, Quartiere, Dörfer.  
+- **Makro-Ebene:** Städte, Regionen, transnationale Wohnkonzepte.  
+- **Megastädte:** Spezielle Herausforderungen durch Überbevölkerung, Infrastrukturengpässe, soziale Ungleichheit.  
+- **Ländliche Schrumpfung:** Abwanderung, Leerstand und Alterung erfordern neue Strategien (z. B. Umbau leerstehender Gebäude).  
+- **Anpassung:** Klima, Kultur, Ressourcenlage bestimmen die Wohnlösung.  
+- **RESET-Prinzip:** Skalierung bedeutet **Anpassung, nicht Standardisierung**.  
+
+RESETBOX-Bezug: Matrixkarten zur Skalierung, Baupläne für unterschiedliche Ebenen.  
+
+---
+
+## 29. Symbolik & kulturelle Einbettung
+
+Wohnen ist mehr als Funktion – es ist Symbol für Zugehörigkeit, Heimat, Identität:  
+
+- **Symbole:** Das Haus als Schutz, Gemeinschaft, Familiengeschichte.  
+- **Kulturelle Unterschiede:** Nomadenzelte, Hochhäuser, Dörfer – alle Ausdruck von Lebensformen.  
+- **Religiöse Dimensionen:** Viele Kulturen verankern spirituelle Elemente im Wohnraum (Hausaltar, heilige Räume).  
+- **Ästhetik:** Architektur ist auch Kunstform und Ausdruck gesellschaftlicher Werte.  
+- **Risiken:** Verlust von Identität durch uniforme Massenbauten, Gentrifizierung, Abriss historischer Quartiere.  
+- **RESET-Prinzip:** HOUSING muss **kulturelle Vielfalt und Symbolik respektieren**.  
+
+RESETBOX-Bezug: Workshopkarten zur Symbolik von Wohnen, Fallstudien zu Kultur und Architektur.  
+
+---
+
+## 30. Langzeitwirkung & Weitergabe-Logik
+
+HOUSING ist ein generationenübergreifendes Modul:  
+
+- **Langzeitwirkung:** Gutes Wohnen beeinflusst Bildung, Gesundheit, soziale Stabilität über Jahrzehnte.  
+- **Weitergabe:** Wohnraum wird kulturell und materiell vererbt, Wissen über Bau und Pflege muss dokumentiert werden.  
+- **Digitale Archive:** Baupläne, Wohnrechtsdokumente und Erinnerungen können digital gesichert und über Generationen zugänglich gemacht werden.  
+- **Intergenerationelle Konflikte:** Verteilung von Wohnraum kann Spannungen erzeugen (z. B. Erbschaft, Wohnraummangel in Städten).  
+- **Krisenresilienz:** Nachhaltige Bauweisen sichern Schutz über Generationen hinweg, auch bei politischer Instabilität.  
+- **RESET-Prinzip:** HOUSING muss **dauerhaft wirken und generationenübergreifend weitergegeben** werden.  
+
+RESETBOX-Bezug: Vorlagen für Bau- und Pflegejournale, QR-Codes für Archivierung, STOP-Karten für intergenerationelle Wohnrechte.  
+
+---
+

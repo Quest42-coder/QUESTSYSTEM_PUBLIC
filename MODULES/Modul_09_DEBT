@@ -1,4 +1,10 @@
-# Modul 09 – DEBT
+# Modul 09 – DEBT (Version 1.0 Final)
+**Ring:** Existential  
+**Status:** Final  
+**Kern-Verknüpfungen:** 10 WORK, 25 FINANCE, 01 RESETBOX  
+**Kurzbeschreibung:** Schulden als existenzielles Risiko und struktureller Faktor – zwischen Entlastung, Abhängigkeit und Würdeverlust.  
+**Lizenz:** CC BY-SA 4.0 + Dignity Clause  
+**Besonderheit:** DEBT verbindet ökonomische, soziale und rechtliche Dimensionen und entscheidet über Teilhabe oder Ausschluss.  
 
 ## Einleitung
 
@@ -594,10 +600,34 @@ DEBT ist ein **Langzeit-Modul** mit strukturellen Effekten:
 
 ---
 
-**Quellen (für Abschnitte 26–30)**  
-1. Bundesministerium der Justiz (2021). *Verkürzung der Restschuldbefreiung*.  
-2. Knobloch, J. (2019). *Psychologische Effekte von Schuldnerberatung*.  
-3. WHO (2019). *Preventing Suicide in Europe*.  
-4. Money Advice Service (2020). *Economic Impact of Debt Advice in the UK*.  
-5. ActionAid (2020). *Debt-Free Village Programme Uganda*.  
-6. World Bank (2021). *Debt Service Suspension Initiative (DSSI) Report*.  
+# Quellenanhang – Modul 09 DEBT
+
+## Juristische Grundlagen
+1. [Allgemeine Erklärung der Menschenrechte, Art. 25 (UN, 1948) – Recht auf Lebensstandard und Sicherheit](https://www.un.org/en/about-us/universal-declaration-of-human-rights)  
+2. [Internationaler Pakt über wirtschaftliche, soziale und kulturelle Rechte (ICESCR), Art. 11 – Recht auf einen angemessenen Lebensstandard (1966)](https://www.ohchr.org/en/instruments-mechanisms/instruments/international-covenant-economic-social-and-cultural-rights)  
+3. [Europäische Sozialcharta (1961), Art. 13 – Recht auf soziale und medizinische Hilfe](https://www.coe.int/en/web/european-social-charter/home)  
+4. [UNCITRAL Legislative Guide on Insolvency Law (2005)](https://uncitral.un.org/en/texts/insolvency/legislative-guide)  
+5. [UNCTAD: Sovereign Debt Workouts and Principles (2015)](https://unctad.org/topic/debt-and-finance/debt-and-development-finance)  
+
+## Wissenschaftlich / Medizinisch
+6. [WHO: Social determinants of health – debt and poverty (2020)](https://www.who.int/health-topics/social-determinants-of-health)  
+7. [The Lancet Public Health (2022): Debt, poverty and health outcomes](https://www.thelancet.com/journals/lanpub/article/PIIS2468-2667(22)00127-6/fulltext)  
+8. [OECD (2021): Household debt and financial vulnerability](https://www.oecd.org/finance/household-debt.htm)  
+9. [World Bank (2022): Global Debt Report](https://www.worldbank.org/en/topic/debt)  
+10. [IMF: Debt Relief under the Heavily Indebted Poor Countries (HIPC) Initiative](https://www.imf.org/en/About/Factsheets/Sheets/2016/08/01/16/11/Debt-Relief-Under-the-Heavily-Indebted-Poor-Countries-Initiative)  
+
+## Psychologie / Soziologie
+11. [APA (2014): The mental health burden of debt](https://www.apa.org/monitor/2014/02/debt)  
+12. [StepChange Debt Charity (2019): Debt and psychological distress](https://www.stepchange.org/policy-and-research/debt-research/debt-and-mental-health.aspx)  
+13. [Norris et al. (2008): Debt as factor in community resilience and vulnerability](https://doi.org/10.1146/annurev.clinpsy.4.022007.141254)  
+14. [UNDP (2020): Debt and inequality in developing countries](https://www.undp.org/publications)  
+
+## Philosophie / Ethik
+15. [David Graeber (2011): Debt – The First 5000 Years](https://www.mhpbooks.com/books/debt/)  
+16. [Martha Nussbaum (2011): Creating Capabilities – Economic security as dignity](https://global.oup.com/academic/product/creating-capabilities-9780674050549)  
+17. [Amartya Sen (1999): Development as Freedom – Debt and economic freedom](https://global.oup.com/academic/product/development-as-freedom-9780198297581)  
+
+## Technik / Logistik
+18. [World Bank – Debt Data Portal](https://datatopics.worldbank.org/debt/)  
+19. [Humanitarian Data Exchange (HDX) – Debt and finance datasets](https://data.humdata.org/dataset/global-debt)  
+20. [OECD Statistics – Household and government debt](https://stats.oecd.org/Index.aspx?DataSetCode=HOUSE_DEBT)    

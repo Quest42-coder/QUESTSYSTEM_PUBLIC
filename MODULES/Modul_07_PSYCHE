@@ -1,5 +1,10 @@
-# Modul 07 – PSYCHE  
-*(Mentale Gesundheit, Traumabewältigung, innere Rettung)*
+# Modul 07 – PSYCHE (Version 1.0 Final)
+**Ring:** Existential  
+**Status:** Final  
+**Kern-Verknüpfungen:** 05 SLEEP, 06 BODY, 30 TRUTH  
+**Kurzbeschreibung:** Psychische Gesundheit, Traumabewältigung und innere Stabilität als Kernfaktoren für Würde, Resilienz und Überleben.  
+**Lizenz:** CC BY-SA 4.0 + Dignity Clause  
+**Besonderheit:** Die Psyche ist ein unsichtbarer, aber entscheidender Faktor in Krisen – ihr Schutz ist so wichtig wie Wasser, Nahrung und Shelter.  
 
 ## Einleitung
 
@@ -119,17 +124,7 @@ Die Psyche ist untrennbar mit Würde verbunden.
   - Offline-Tools: Kiwix-Module mit Trauma-Handbüchern (z. B. *Psychological First Aid*).  
 - **RESETBOX-Praxis:** Kombination von analogen Tools (Massageball, Atemkarte) und digitalen Zugängen (QR/USB).  
 
----
-
-**Quellen (für Abschnitte 01–05)**  
-1. WHO (2022). *World Mental Health Report*.  
-2. GBD (2020). *Global Burden of Disease Study*.  
-3. WHO (2019). *Mental Health in Conflict Areas*.  
-4. WHO (2021). *Suicide Worldwide in 2021*.  
-5. Statistisches Bundesamt (2021). *Psychische Gesundheit in Deutschland*.  
-6. Pihkala, P. (2020). *Eco-Anxiety and Environmental Education*.  
-7. OECD (2020). *Socioeconomic Inequalities in Mental Health*.  
-8. WHO (2016). *Investing in Mental Health: Return on Investment*.  
+--- 
 
 ## 06. Technische Struktur & Varianten
 
@@ -225,11 +220,6 @@ PSYCHE verknüpft sich mit:
 
 ---
 
-**Quellen (für Abschnitte 06–10)**  
-1. WHO (2018). *Psychological First Aid – Guide for Field Workers*.  
-2. Najmi, S. et al. (2015). *Grounding Techniques in PTSD Treatment*.  
-3. UNICEF (2021). *State of the World’s Children – Mental Health*.  
-
 ## 11. Anwendungsszenarien (realweltlich)
 
 Die RESETBOX: PSYCHE wird in unterschiedlichen Kontexten eingesetzt:  
@@ -299,12 +289,6 @@ PSYCHE-Tools sind mobil, robust und sofort einsetzbar:
   - **ENERGY (20):** Audioübungen mit Solar-Powerbanks abspielbar.  
 
 ---
-
-**Quellen (für Abschnitte 11–15)**  
-1. WHO (2018). *Psychological First Aid – Guide for Field Workers*.  
-2. UNHCR (2021). *Mental Health & Psychosocial Support in Refugee Camps*.  
-3. BMFSFJ (2019). *Studie Einsamkeit und psychische Gesundheit in Pflegeheimen*.  
-4. Najmi, S. et al. (2015). *Grounding Techniques in PTSD Treatment*.  
 
 ## 16. Ethik des offenen Containers
 
@@ -378,11 +362,6 @@ Um psychische Hilfe überall verfügbar zu machen:
 - **Box-Kennzeichnung:** Jede Karte trägt: „CC BY-SA 4.0 + Dignity Clause – frei & unveräußerlich“.  
 
 ---
-
-**Quellen (für Abschnitte 16–20)**  
-1. WHO (2018). *Psychological First Aid – Guide for Field Workers*.  
-2. CC BY-SA 4.0 Licence Text.  
-3. QUESTSYSTEM (2025). *Dignity Clause & Commandments of Humanity*.  
 
 ## 21. Internationale Adaptionsmatrix
 
@@ -465,16 +444,6 @@ PSYCHE ist ein Gemeingut:
 
 ---
 
-**Quellen (für Abschnitte 21–25)**  
-1. OECD (2020). *Mental Health and Work*.  
-2. UNHCR (2021). *Mental Health & Psychosocial Support for Refugees*.  
-3. WHO (2018). *mhGAP Intervention Guide*.  
-4. PAHO (2020). *Community Mental Health in Latin America*.  
-5. UNICEF (2021). *Youth Mental Health Programmes*.  
-6. Pihkala, P. (2020). *Eco-Anxiety and Environmental Education*.  
-7. Gone, J.P. (2013). *Redressing First Nations Mental Health through Indigenous Healing*.  
-8. Ostrom, E. (1990). *Governing the Commons*.  
-
 ## 26. Wartung & Aktualisierung
 
 PSYCHE-Inhalte müssen regelmäßig gepflegt werden:  
@@ -553,7 +522,35 @@ Die Wirkung von PSYCHE entfaltet sich über Generationen:
 
 ---
 
-**Quellen (für Abschnitte 26–30)**  
-1. UNICEF (2021). *School-Based Mental Health Programmes*.  
-2. WHO (2016). *Investing in Mental Health: Return on Investment*.  
+# Quellenanhang – Modul 07 PSYCHE
+
+## Juristische Grundlagen
+1. [Allgemeine Erklärung der Menschenrechte, Art. 25 (UN, 1948) – Gesundheit als Menschenrecht](https://www.un.org/en/about-us/universal-declaration-of-human-rights)  
+2. [Internationaler Pakt über wirtschaftliche, soziale und kulturelle Rechte (ICESCR), Art. 12 – Höchstmögliche psychische und physische Gesundheit (1966)](https://www.ohchr.org/en/instruments-mechanisms/instruments/international-covenant-economic-social-and-cultural-rights)  
+3. [UN-Resolution 46/119: Principles for the Protection of Persons with Mental Illness (1991)](https://www.un.org/documents/ga/res/46/a46r119.htm)  
+4. [WHO Mental Health Action Plan 2013–2020 (verlängert bis 2030)](https://www.who.int/publications/i/item/9789241506021)  
+
+## Wissenschaftlich / Medizinisch
+5. [WHO: Mental health in emergencies (2019)](https://www.who.int/news-room/fact-sheets/detail/mental-health-in-emergencies)  
+6. [The Lancet Commission (2018): Global Mental Health and Sustainable Development](https://www.thelancet.com/commissions/global-mental-health)  
+7. [NIH: Trauma and Stress Research (2020)](https://www.nimh.nih.gov/health/topics/trauma-and-stress-related-disorders)  
+8. [IPCC AR6 (2022): Climate change, displacement and mental health impacts](https://www.ipcc.ch/report/ar6/wg2/)  
+9. [Sphere Project (2018): Mental Health and Psychosocial Support Standards](https://spherestandards.org/handbook-2018/)  
+
+## Psychologie / Soziologie
+10. [UNICEF (2021): Mental health and psychosocial well-being of children](https://www.unicef.org/mental-health)  
+11. [OCHA (2020): Mental health as a priority in humanitarian crises](https://www.unocha.org/story/mental-health-priority-humanitarian-response)  
+12. [Norris et al. (2008): Community resilience and psychological well-being](https://doi.org/10.1146/annurev.clinpsy.4.022007.141254)  
+13. [APA: Stress in America Report (2022)](https://www.apa.org/news/press/releases/stress)  
+
+## Philosophie / Ethik
+14. [Martha Nussbaum (2011): Creating Capabilities – Emotions and dignity](https://global.oup.com/academic/product/creating-capabilities-9780674050549)  
+15. [Amartya Sen (1999): Development as Freedom – Psychological security as freedom](https://global.oup.com/academic/product/development-as-freedom-9780198297581)  
+16. [Arthur Kleinman (1988): The Illness Narratives – Suffering, Healing, and the Human Condition](https://global.oup.com/academic/product/the-illness-narratives-9780465032044)  
+
+## Technik / Logistik
+17. [IASC Guidelines on Mental Health and Psychosocial Support in Emergency Settings (2007)](https://interagencystandingcommittee.org/iasc-task-force-mental-health-and-psychosocial-support-emergency-settings/iasc-guidelines-mental)  
+18. [Humanitarian Data Exchange (HDX) – Datasets on health and psychosocial support](https://data.humdata.org/group/health)  
+19. [Engineers Without Borders: Low-cost tools for psychosocial spaces](https://www.ewb-usa.org/)  
+20. [WHO mhGAP Humanitarian Intervention Guide (2015)](https://www.who.int/publications/i/item/9789241548922)  
 

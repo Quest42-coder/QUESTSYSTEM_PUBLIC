@@ -631,34 +631,48 @@ DEVICE ist auf Generationen angelegt:
 
 ---
 
-# Quellenanhang – Modul 08 DEVICE
+# Quellenanhang – Modul 08 DEVICE (Masterset V1.0)
 
-## Juristische Grundlagen
-1. [Allgemeine Erklärung der Menschenrechte, Art. 19 – Recht auf Informationsfreiheit (UN, 1948)](https://www.un.org/en/about-us/universal-declaration-of-human-rights)  
-2. [Internationaler Pakt über bürgerliche und politische Rechte (ICCPR), Art. 19 – Recht auf Meinungs- und Informationsfreiheit (1966)](https://www.ohchr.org/en/instruments-mechanisms/instruments/international-covenant-civil-and-political-rights)  
-3. [Europäische Menschenrechtskonvention (EMRK), Art. 10 – Informations- und Kommunikationsfreiheit (1950)](https://www.echr.coe.int/documents/convention_eng.pdf)  
-4. [UNHCR Emergency Handbook: Communication and Connectivity in Humanitarian Contexts (2015)](https://emergency.unhcr.org/entry/32012/communication-and-connectivity)  
+## Juristische Grundlagen  
+1. [Allgemeine Erklärung der Menschenrechte, UN, 1948 – Artikel 19 (Recht auf Meinungsfreiheit und Informationszugang)](https://www.un.org/en/about-us/universal-declaration-of-human-rights)  
+2. [International Covenant on Civil and Political Rights, 1966 – Artikel 19 (Recht auf Information)](https://www.ohchr.org/en/instruments-mechanisms/instruments/international-covenant-civil-and-political-rights)  
+3. [EU-Datenschutz-Grundverordnung (DSGVO), 2016](https://eur-lex.europa.eu/eli/reg/2016/679/oj)  
+4. [Budapest Convention on Cybercrime, Council of Europe, 2001](https://www.coe.int/en/web/conventions/full-list?module=treaty-detail&treatynum=185)  
+5. [UNESCO Recommendation on the Ethics of Artificial Intelligence, 2021](https://unesdoc.unesco.org/ark:/48223/pf0000380455)  
 
-## Wissenschaftlich / Medizinisch
-5. [WHO: Digital health – Key strategy (2020)](https://www.who.int/health-topics/digital-health#tab=tab_1)  
-6. [The Lancet Digital Health (2021): Access to devices and digital inequality](https://www.thelancet.com/journals/landig/article/PIIS2589-7500(21)00100-8/fulltext)  
-7. [World Bank (2020): Digital Dividends Report](https://www.worldbank.org/en/publication/wdr2016)  
-8. [ITU (2022): Measuring digital development – Facts and figures](https://www.itu.int/en/ITU-D/Statistics/Pages/facts/default.aspx)  
-9. [OECD (2019): Bridging the digital divide](https://www.oecd.org/digital/bridging-the-digital-divide.htm)  
+## Wissenschaftlich / Technisch  
+6. [ISO/IEC 27001: Information Security Management Systems](https://www.iso.org/isoiec-27001-information-security.html)  
+7. [IEEE Standards Association – P7000 Series (Ethical AI and Autonomous Systems)](https://standards.ieee.org/initiatives/artificial-intelligence-systems/)  
+8. [World Bank Digital Development Report (2021)](https://www.worldbank.org/en/topic/digitaldevelopment/publication/digital-development-report)  
+9. [IPCC AR6 – Digitalization and Climate Change Impacts (2022)](https://www.ipcc.ch/report/ar6/wg3/)  
+10. [ITU: Measuring Digital Development – Facts and Figures 2022](https://www.itu.int/en/ITU-D/Statistics/Pages/facts/default.aspx)  
+11. [The Lancet Digital Health Journal](https://www.thelancet.com/journals/landig/home)  
 
-## Psychologie / Soziologie
-10. [UNICEF (2020): Digital access and children’s rights](https://www.unicef.org/globalinsight/stories/digital-divide)  
-11. [OCHA (2020): Connectivity as a lifeline in humanitarian crises](https://www.unocha.org/story/connectivity-lifeline-humanitarian-response)  
-12. [Pew Research Center (2019): Smartphone use in emerging economies](https://www.pewresearch.org/global/2019/03/07/smartphone-ownership-is-growing-rapidly-around-the-world-but-not-always-equally/)  
-13. [Norris et al. (2008): Information access as resilience factor](https://doi.org/10.1146/annurev.clinpsy.4.022007.141254)  
+## Psychologie / Soziologie  
+12. [Turkle, S. (2011): Alone Together – Why We Expect More from Technology](https://www.basicbooks.com/titles/sherry-turkle/alone-together/9780465093656/)  
+13. [Castells, M. (1996): The Rise of the Network Society](https://www.wiley.com/en-us/The+Rise+of+the+Network+Society%2C+With+a+New+Preface+2010-p-9781405196864)  
+14. [UNDP: Digital Inclusion and Human Development (2022)](https://hdr.undp.org/)  
+15. [Boyd, D. (2014): It’s Complicated – The Social Lives of Networked Teens](https://yalebooks.yale.edu/book/9780300166316/its-complicated/)  
 
-## Philosophie / Ethik
-14. [Martha Nussbaum (2011): Creating Capabilities – Knowledge and information access](https://global.oup.com/academic/product/creating-capabilities-9780674050549)  
-15. [Amartya Sen (1999): Development as Freedom – Communication as freedom dimension](https://global.oup.com/academic/product/development-as-freedom-9780198297581)  
-16. [Shoshana Zuboff (2019): The Age of Surveillance Capitalism](https://profilebooks.com/work/the-age-of-surveillance-capitalism/)  
+## Philosophie / Ethik  
+16. [Byung-Chul Han (2013): Im Schwarm – Ansichten des Digitalen](https://www.suhrkamp.de/buch/byung-chul-han-im-schwarm-t-9783518129273)  
+17. [Luciano Floridi (2014): The Fourth Revolution – How the Infosphere is Reshaping Human Reality](https://global.oup.com/academic/product/the-fourth-revolution-9780199606726)  
+18. [Hans Jonas (1979): Das Prinzip Verantwortung – Technikethik](https://www.suhrkamp.de/buch/hans-jonas-das-prinzip-verantwortung-t-9783518286006)  
+19. [Heidegger, M. (1954): Die Frage nach der Technik](https://www.suhrkamp.de/buch/martin-heidegger-vortraege-und-aufsatze-t-9783518293707)  
 
-## Technik / Logistik
-17. [Sphere Project (2018): Minimum Standards – Communication and information in crises](https://spherestandards.org/handbook-2018/)  
-18. [Humanitarian Data Exchange (HDX): ICT datasets for humanitarian contexts](https://data.humdata.org/group/ict)  
-19. [Kiwix Project – Offline Wikipedia and open knowledge tools](https://www.kiwix.org/en/)  
-20. [OpenStreetMap Foundation – Digital mapping and humanitarian coordination](https://www.openstreetmap.org/about)  
+## Technik / Logistik  
+20. [ISO/IEC 30141: Internet of Things Reference Architecture](https://www.iso.org/standard/65695.html)  
+21. [ISO/IEC 24760: IT Security and Privacy – Identity Management](https://www.iso.org/standard/57914.html)  
+22. [Humanitarian Data Exchange (HDX): Digital Access Datasets](https://data.humdata.org/group/ict)  
+23. [Kiwix Project – Offline Digital Libraries](https://www.kiwix.org/en/)  
+24. [Mozilla Foundation – Internet Health Report (2022)](https://internethealthreport.org/)  
+
+## Ökonomie  
+25. [OECD Digital Economy Outlook 2022](https://www.oecd.org/digital/digital-economy-outlook/)  
+26. [World Bank: Digital Dividends – World Development Report (2016)](https://www.worldbank.org/en/publication/wdr2016)  
+
+## Kulturell / Historisch  
+27. [UNESCO – Memory of the World Programme (Digital Preservation)](https://en.unesco.org/programme/mow)  
+28. [Manovich, L. (2001): The Language of New Media](https://mitpress.mit.edu/9780262632552/the-language-of-new-media/)  
+29. [Benjamin, W. (1936): Das Kunstwerk im Zeitalter seiner technischen Reproduzierbarkeit](https://www.suhrkamp.de/buch/walter-benjamin-das-kunstwerk-im-zeitalter-seiner-technischen-reproduzierbarkeit-t-9783518287898)  
+30. [UNESCO – Digital Heritage (2003)](https://unesdoc.unesco.org/ark:/48223/pf0000133171)  

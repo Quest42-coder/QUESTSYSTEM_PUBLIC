@@ -154,6 +154,199 @@ Quellen- und Lizenzprüfung mindestens alle 24 Monate (nächster Check: 2027).
 
 ---
 
+## 03. RESETBOX
+
+Die [01 RESETBOX](./Modul_01_RESETBOX.md) ist das physische Herzstück des QUESTSYSTEMs.  
+Sie ist kein Produkt, sondern ein Container für Würde und Handlung.  
+Standardisiert als Eurobox (600×400 mm, DIN 15173), stapelbar, transportierbar, robust.  
+Eine Box, die im Ernstfall mehr ist als Plastik:  
+ein Werkzeug, ein Symbol, eine Versicherung gegen Ohnmacht –  
+und zugleich ein Kunstwerk, das Fragen stellt.  
+
+---
+
+### Krisenbeispiele
+
+Wenn alles zusammenbricht – Stromnetz, Versorgung, Sicherheit –  
+bleibt die RESETBOX als erster Anker:  
+
+- **Flutkatastrophe:** [02 WATER](./Modul_02_WATER.md), [03 SHELTER](./Modul_03_SHELTER.md), [14 HEALTH](./Modul_14_HEALTH.md), [06 BODY](./Modul_06_BODY.md) –  
+  Wasserfilter, wasserdichte Dokumententasche, Erste-Hilfe-Set.  
+- **Blackout:** [20 ENERGY](./Modul_20_ENERGY.md), [28 NETWORK](./Modul_28_NETWORK.md), [08 DEVICE](./Modul_08_DEVICE.md), [05 SLEEP](./Modul_05_SLEEP.md) –  
+  Kerzen, Powerbank, Kurbelradio, Schlafsäcke, Offline-Karten via Kiwix.  
+- **Krieg & Flucht:** [12 BORDER](./Modul_12_BORDER.md), [22 MIGRATION](./Modul_22_MIGRATION.md), [36 CONFLICT](./Modul_36_CONFLICT.md), [42 DEATH](./Modul_42_DEATH.md) –  
+  STOP-Karte, Übersetzungshelfer, grundlegende Rechte-Infos.  
+- **Psychische Krise:** [07 PSYCHE](./Modul_07_PSYCH.md), [15 CARE](./Modul_15_CARE.md), [16 FAMILY](./Modul_16_FAMILY.md) –  
+  Notfallnummern, einfache Atemübungen, Stress-Tools.  
+- **Ökonomische Not:** [09 DEBT](./Modul_09_DEBT.md), [25 FINANCE](./Modul_25_FINANCE.md), [10 WORK](./Modul_10_WORK.md), [23 JUSTICE](./Modul_23_JUSTICE.md) –  
+  Infos zu Schuldenschutz, Sozialleistungen, lokale Hilfestrukturen.  
+- **Digitale Unsicherheit:** [30 TRUTH](./Modul_30_TRUTH.md), [19 MEDIA](./Modul_19_MEDIA.md), [33 PRIVACY](./Modul_33_PRIVACY.md) –  
+  Offline-Informationen, Faktenchecks, Tools zum Schutz von Privatsphäre.  
+- **Bildungsausfall:** [11 SCHOOL](./Modul_11_SCHOOL.md), [18 CULTURE](./Modul_18_CULTURE.md), [24 COMMUNITY](./Modul_24_COMMUNITY.md) –  
+  Lernmaterialien, Offline-Wissen, Räume für Jugendliche.  
+
+Globale Beispiele:  
+- In Indien zwingt akute Wasserknappheit Millionen zur Migration ([02 WATER], [22 MIGRATION]).  
+- In Ostafrika verschärfen Dürreperioden Hungerkrisen ([04 FOOD], [21 CLIMATE]).  
+- In Pakistan führten Hitzewellen zu massiven Stromausfällen ([20 ENERGY], [05 SLEEP]).  
+- In Westafrika machte Ebola die Notwendigkeit von Care-Strukturen ([15 CARE]) und verlässlicher Information ([19 MEDIA]) sichtbar.  
+- In Lateinamerika verstärken Überschuldung ([09 DEBT]) und Wohnungsnot ([26 HOUSING]) soziale Unruhen.  
+- In Ozeanien bedrohen steigende Meeresspiegel ganze Communities ([21 CLIMATE], [26 HOUSING], [22 MIGRATION]).  
+
+Die RESETBOX verdichtet damit, was auch die Sphere Standards der WHO festhalten:  
+Wasser, Shelter, Sanitation, Sleep, Information und Community sind die Grundsäulen jedes Überlebens.  
+
+---
+
+### Negativszenario
+
+Ohne RESETBOX bleibt der Mensch in der Ohnmacht hängen.  
+Die ersten Stunden einer Krise entscheiden über Würde und Überleben.  
+Fehlt der Container, beginnt Panik: kein Wasserfilter, keine Kerze, keine Info, kein Plan.  
+Abhängigkeit von Hilfswerken ersetzt Autonomie.  
+Wer keinen Zugang hat, bleibt unsichtbar – ohne Stimme, ohne Handlung ([23 JUSTICE](./Modul_23_JUSTICE.md)).  
+[24 COMMUNITY](./Modul_24_COMMUNITY.md) zerfällt, bevor sie sich organisieren kann.  
+Isolation verstärkt Traumata ([07 PSYCHE]).  
+Kinder verlieren Zugang zu Bildung ([11 SCHOOL]),  
+Jugendliche Orientierung in Kultur und Gemeinschaft ([18 CULTURE]).  
+Ohnmacht kippt in Gewaltspiralen ([36 CONFLICT]).  
+
+So wird die Krise doppelt tödlich: durch Zerstörung und durch Hilflosigkeit.  
+
+---
+
+### Juristische Absicherung
+
+Die RESETBOX verstößt gegen kein Waffengesetz, keine Verbote.  
+Ihr Inhalt ist zivil, humanitär, universell.  
+Rechtliche Grundlage:  
+- **Art. 1 GG** (*„Die Würde des Menschen ist unantastbar.“*)  
+- **UN-Menschenrechte (1948)** – Recht auf Leben, Sicherheit, Bildung.  
+- **Genfer Abkommen (IKRK, 1949)** – Schutz von Zivilist:innen.  
+
+Alle Inhalte sind unter **CC BY-SA 4.0 + Dignity Clause** lizenziert.  
+STOP-Karten schützen vor Missbrauch:  
+*„Dies ist ein humanitäres Objekt. Kein Eigentum, kein Angriffsziel.“*  
+
+---
+
+### Ethischer Rahmen
+
+Die RESETBOX folgt der **Dignity Clause** und den **14 Geboten der Menschlichkeit**.  
+- *„Würde vor Gewinn.“*  
+- *„Kein Mensch darf im System unsichtbar werden.“*  
+- *„Wissen muss geteilt werden.“*  
+
+Sie ist nicht Marktobjekt, sondern Gemeingut.  
+Ob gebaut von Einzelnen, NGOs oder der gGmbH –  
+ihr Wert liegt nicht im Verkauf, sondern in der Weitergabe.  
+
+---
+
+### Wissenschaftlich & technisch
+
+Die RESETBOX folgt erprobten Standards:  
+- **Eurobox-System (DIN 15173):** stapelbar, palettenfähig, industriell verfügbar.  
+- **Sphere Standards (WHO/UN):** Mindestanforderungen für Wasser, Shelter, Sanitation, Sleep, Information.  
+- **Kiwix / Offline-Technologie:** Wikipedia & Lernplattformen ohne Internet.  
+- **RESET:LOG:** Dokumentation & Weitergabe der Box-Inhalte.  
+
+So ist die Box überall replizierbar – in Hamburg, Kampala oder Kiew.  
+
+---
+
+### Psychologische Dimension
+
+Die RESETBOX ist mehr als ein Container:  
+Sie gibt Menschen das Gefühl von Kontrolle zurück.  
+Sie verwandelt Angst in Handlung,  
+Chaos in Struktur,  
+Abhängigkeit in Autonomie.  
+
+Beispiele:  
+- Kinder beruhigen, indem sie kleine Aufgaben übernehmen (Wasserfilter bedienen, Licht anmachen).  
+- Ältere Menschen behalten Orientierung durch STOP-Karten und Notfallinfos.  
+- Familien erleben, dass sie vorbereitet sind, statt ausgeliefert.  
+
+In Studien zur Resilienz zeigt sich:  
+Handlungsfähigkeit in den ersten Stunden senkt Trauma-Risiken drastisch (WHO, APA).  
+Die Box wird so zum psychologischen Werkzeug –  
+gegen Schock, Lähmung, Ohnmacht.  
+
+---
+
+### Varianten
+
+RESETBOX ist modular:  
+- **Survival-Box:** Outdoor & Krisenüberleben ([02 WATER], [04 FOOD], [20 ENERGY]).  
+- **Care-Box:** Pflege- & Gesundheitskontexte ([15 CARE], [14 HEALTH], [16 FAMILY]).  
+- **Blackout-Box:** Energie, Kommunikation, Basisversorgung ([20 ENERGY], [28 NETWORK], [08 DEVICE]).  
+- **Animal Care:** Schutz & Versorgung von Tieren ([17 ANIMAL], [04 FOOD]).  
+- **Psyche:** Tools für mentale Stabilität ([07 PSYCHE], [18 CULTURE]).  
+
+Alle Varianten docken an dieselbe Struktur an –  
+unterschiedliche Inhalte, gleiche Logik.  
+
+---
+
+### Kulturelle & symbolische Dimension
+
+Die RESETBOX ist nicht nur Technik, sondern auch Kultur.  
+Sie ist ein **pädagogisches Medium** ([11 SCHOOL], [18 CULTURE]),  
+ein **Symbol für Würde** ([29 SYMBOL]),  
+und ein **Kunstwerk** ([40 ART]), das Fragen stellt:  
+*Was brauchen wir wirklich, um frei zu leben?*  
+
+---
+
+### Rückbindung
+
+Die RESETBOX ist der **erste Knotenpunkt** des QUESTSYSTEMs.  
+Sie verbindet physische Krisenbewältigung mit gesellschaftlicher Transformation.  
+Quest42 hat die Signatur gesetzt – **The Art of Crossing.**  
+Der 🍄 ist das **living proof** – Widerstand gegen Bullshit,  
+Beweis, dass aus Bruch neues Leben wächst.  
+
+---
+
+### 📚 Quellenanhang – Kapitel 03
+
+**Juristisch:**  
+1. Grundgesetz für die Bundesrepublik Deutschland, Art. 1–2 – [gesetze-im-internet.de](https://www.gesetze-im-internet.de/gg/art_1.html)  
+2. Allgemeine Erklärung der Menschenrechte, UN 1948 – [un.org](https://www.un.org/en/about-us/universal-declaration-of-human-rights)  
+3. Genfer Abkommen I–IV, IKRK 1949 – [icrc.org](https://ihl-databases.icrc.org/en)  
+
+**Wissenschaft / Medizin / Technik:**  
+4. Sphere Standards Handbook (2018) – [spherestandards.org](https://spherestandards.org/handbook/)  
+5. WHO: „Emergency and Disaster Risk Management“ – [who.int](https://www.who.int/health-topics/emergencies)  
+6. Kiwix – Offline Knowledge Project – [kiwix.org](https://www.kiwix.org)  
+
+**Psychologie / Soziologie:**  
+7. WHO: „Mental health and psychosocial support in emergencies“ (2019)  
+8. APA: „Building Resilience“ – [apa.org](https://www.apa.org/topics/resilience)  
+
+**Ethik / Philosophie:**  
+9. 14 Gebote der Menschlichkeit (QuestSystem)  
+10. Martha Nussbaum: „Creating Capabilities“ (2011)  
+
+**Technik / Logistik:**  
+11. DIN 15173 – Eurobox-Standard  
+12. Bundesamt für Bevölkerungsschutz und Katastrophenhilfe (BBK): Notfall-Checklisten – [bbk.bund.de](https://www.bbk.bund.de)  
+
+**Ökonomie:**  
+13. ILO Report „World Employment and Social Outlook 2023“ – [ilo.org](https://www.ilo.org/global/research/global-reports/weso/2023/lang--en/index.htm)  
+14. Weltbank: „Global Economic Prospects 2023“ – [worldbank.org](https://www.worldbank.org/en/publication/global-economic-prospects)  
+
+**Kultur / Historisch:**  
+15. Tricia Rose: „Black Noise: Rap Music and Black Culture in Contemporary America“ (1994)  
+
+---
+
+**Update-Pflicht:**  
+Quellen- und Lizenzprüfung mindestens alle 24 Monate (nächster Check: 2027).  
+
+---
+
 
 
 

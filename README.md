@@ -730,6 +730,1281 @@ Quellen- und Lizenzprüfung mindestens alle 24 Monate (nächster Check: 2027).
 
 ---
 
+## 06. Ethische Basis
+
+Das QUESTSYSTEM ruht auf einer klaren Grundlage:  
+die **Dignity Clause** und die **14 Gebote der Menschlichkeit**.  
+
+### Die Dignity Clause
+*„Die Würde des Menschen ist unantastbar. Kein Teil des QUESTSYSTEMs darf diese Würde verletzen oder relativieren.“*  
+
+---
+
+### Die 14 Gebote der Menschlichkeit
+
+#### 1. Würde vor Gewinn
+Kein Gewinn darf wichtiger sein als die Würde von Menschen.  
+Wasser, Wohnen und Arbeit sind Grundrechte – keine Ware.  
+
+- **Beispiele:** Finanzkrise 2008 → Millionen Zwangsräumungen. / Fair-Trade-Bewegung stärkt Produzenten weltweit.  
+- **Module:** [09 DEBT](./Modul_09_DEBT.md), [10 WORK](./Modul_10_WORK.md), [26 HOUSING](./Modul_26_HOUSING.md), [25 FINANCE](./Modul_25_FINANCE.md).  
+- **Negativszenario:** Wenn Profit alles bestimmt, verlieren Menschen ihre Würde.  
+
+#### 2. Kein Mensch darf unsichtbar werden
+Jeder Mensch hat das Recht, gesehen und gehört zu werden.  
+
+- **Beispiele:** Geflüchtete in Lagern ohne Öffentlichkeit. / Straßenzeitungen machen Obdachlose sichtbar.  
+- **Module:** [01 RESETBOX](./Modul_01_RESETBOX.md), [24 COMMUNITY](./Modul_24_COMMUNITY.md), [34 SECURITY](./Modul_34_SECURITY.md).  
+- **Negativszenario:** Unsichtbarkeit führt zu Ausgrenzung und Gewalt.  
+
+#### 3. Wissen muss geteilt werden
+Bildung ist ein Gemeingut, kein Privileg.  
+
+- **Beispiele:** Wikipedia und Open-Source-Materialien. / Nachbarschaftsschulen in Krisenregionen.  
+- **Module:** [11 SCHOOL](./Modul_11_SCHOOL.md), [39 KNOWLEDGE](./Modul_39_KNOWLEDGE.md), [28 NETWORK](./Modul_28_NETWORK.md).  
+- **Negativszenario:** Wer Wissen kontrolliert, kontrolliert Menschen.  
+
+#### 4. Gesundheit ist kein Privileg
+Jeder Mensch hat Anspruch auf medizinische Versorgung.  
+
+- **Beispiele:** Ungerechte Impfstoffverteilung in COVID-19. / Kuba schickt Ärzt:innen weltweit in Krisengebiete.  
+- **Module:** [14 HEALTH](./Modul_14_HEALTH.md), [15 CARE](./Modul_15_CARE.md), [07 PSYCHE](./Modul_07_PSYCHE.md).  
+- **Negativszenario:** Gesundheit wird zur Ware, Leben zum Risiko.  
+
+#### 5. Natur ist nicht verhandelbar
+Ohne Ökosysteme gibt es kein Überleben.  
+
+- **Beispiele:** Abholzung im Amazonas bedroht Klima. / Urban Gardening schafft neue Grünräume in Städten.  
+- **Module:** [02 WATER](./Modul_02_WATER.md), [13 NATURE](./Modul_13_NATURE.md), [21 CLIMATE](./Modul_21_CLIMATE.md).  
+- **Negativszenario:** Naturzerstörung führt zu Kollaps und Flucht.  
+
+#### 6. Arbeit ist Teilhabe, keine Knechtschaft
+Arbeit soll Sinn und Teilhabe ermöglichen, keine Ausbeutung.  
+
+- **Beispiele:** Zwangsarbeit in Lieferketten. / Genossenschaften schaffen faire Arbeit.  
+- **Module:** [10 WORK](./Modul_10_WORK.md), [25 FINANCE](./Modul_25_FINANCE.md), [37 DEMOCRACY](./Modul_37_DEMOCRACY.md).  
+- **Negativszenario:** Arbeit ohne Würde macht Menschen zu Objekten.  
+
+#### 7. Schulden dürfen nicht entwürdigen
+Finanzielle Lasten dürfen keine Existenzen zerstören.  
+
+- **Beispiele:** Überschuldung durch Mikrokredite. / Schuldenerlasse ermöglichen Neuanfang.  
+- **Module:** [09 DEBT](./Modul_09_DEBT.md), [23 JUSTICE](./Modul_23_JUSTICE.md), [38 GOVERNANCE](./Modul_38_GOVERNANCE.md).  
+- **Negativszenario:** Schuldenketten führen zu Abhängigkeit und Verzweiflung.  
+
+#### 8. Pflege ist Würdearbeit
+Pflege darf nie Ausbeutung bedeuten.  
+
+- **Beispiele:** Pflegekräfte im Burnout. / Hospizbewegung schenkt Sterbenden Würde.  
+- **Module:** [15 CARE](./Modul_15_CARE.md), [14 HEALTH](./Modul_14_HEALTH.md), [16 FAMILY](./Modul_16_FAMILY.md).  
+- **Negativszenario:** Ohne Pflege bricht soziale Würde zusammen.  
+
+#### 9. Kinder sind Zukunft
+Kinder haben Recht auf Bildung, Schutz und Entfaltung.  
+
+- **Beispiele:** Millionen Kinder ohne Schule. / UNICEF-Schulen in Krisengebieten sichern Zukunft.  
+- **Module:** [11 SCHOOL](./Modul_11_SCHOOL.md), [16 FAMILY](./Modul_16_FAMILY.md), [18 CULTURE](./Modul_18_CULTURE.md).  
+- **Negativszenario:** Ohne Bildung wird Zukunft zerstört.  
+
+#### 10. Kultur ist Überleben
+Kultur bewahrt Identität und schafft Sinn.  
+
+- **Beispiele:** Bedrohung indigener Sprachen. / Street-Art bringt Hoffnung in Krisenvierteln.  
+- **Module:** [18 CULTURE](./Modul_18_CULTURE.md), [40 ART](./Modul_40_ART.md), [29 SYMBOL](./Modul_29_SYMBOL.md).  
+- **Negativszenario:** Kulturverlust führt zu Sinnverlust und Fanatismus.  
+
+#### 11. Wahrheit ist Schutz
+Wahrheit schützt Freiheit, Lüge zerstört sie.  
+
+- **Beispiele:** Fake News und Wahlmanipulation. / Investigativer Journalismus deckt Machtmissbrauch auf.  
+- **Module:** [19 MEDIA](./Modul_19_MEDIA.md), [30 TRUTH](./Modul_30_TRUTH.md), [32 LICENCE](./Modul_32_LICENCE.md).  
+- **Negativszenario:** Ohne Wahrheit entsteht Diktatur.  
+
+#### 12. Gemeinschaft vor Isolation
+Gemeinschaft schützt, Isolation schwächt.  
+
+- **Beispiele:** Nachbarschaftshilfe bei Blackouts. / Solidarische Landwirtschaft verbindet Stadt und Land.  
+- **Module:** [24 COMMUNITY](./Modul_24_COMMUNITY.md), [34 SECURITY](./Modul_34_SECURITY.md), [36 CONFLICT](./Modul_36_CONFLICT.md).  
+- **Negativszenario:** Isolation führt zu Einsamkeit und Angst.  
+
+#### 13. Tod ist Teil des Lebens
+Sterben muss mit Würde begleitet werden.  
+
+- **Beispiele:** Recht auf Palliativversorgung. / Hospizkultur als Ausdruck von Mitmenschlichkeit.  
+- **Module:** [42 DEATH](./Modul_42_DEATH.md), [15 CARE](./Modul_15_CARE.md), [31 MEMORY](./Modul_31_MEMORY.md).  
+- **Negativszenario:** Verdrängung des Todes zerstört Würde.  
+
+#### 14. Technik muss dienen, nicht beherrschen
+Technik soll Werkzeuge bereitstellen, keine Menschen kontrollieren.  
+
+- **Beispiele:** Social Credit Systeme in China. / Open-Source-Software ermöglicht Freiheit.  
+- **Module:** [32 LICENCE](./Modul_32_LICENCE.md), [33 PRIVACY](./Modul_33_PRIVACY.md), [35 DATA](./Modul_35_DATA.md), [28 NETWORK](./Modul_28_NETWORK.md).  
+- **Negativszenario:** Technik ohne Ethik wird zum Kontrollinstrument.
+
+---
+
+## 07. Krisenszenarien & Anwendung
+
+Das QUESTSYSTEM ist kein theoretisches Modell, sondern reagiert praktisch auf reale Krisen.  
+Es gibt Orientierung und Strukturen, wo sonst Chaos, Isolation oder Ohnmacht herrschen würden.  
+
+---
+
+### Szenario 1: Naturkatastrophen
+
+Fluten, Erdbeben oder Stürme reißen Menschen aus dem Alltag, zerstören Häuser und Infrastruktur.  
+Das QUESTSYSTEM stellt sicher: sauberes Wasser, Schutz, Strom, medizinische Grundversorgung und Orientierung.  
+
+- **Beispiele:**  
+  - [Ahrtal-Flut 2021 (Deutschland)](https://www.bbk.bund.de/SharedDocs/kurzmeldungen/DE/2022/20220718-flutbericht.html): Tage ohne Strom und Trinkwasser.  
+  - [Erdbeben in Haiti 2010](https://reliefweb.int/report/haiti/haiti-earthquake-situation-report-2010): Über 200.000 Tote, Infrastruktur brach zusammen.  
+  - [Taifun Haiyan 2013 (Philippinen)](https://www.ifrc.org/document/philippines-typhoon-haiyan-operation-update): 14 Mio. Betroffene, Nachbarschaften halfen sich gegenseitig.  
+
+- **Module:** [01 RESETBOX](./Modul_01_RESETBOX.md), [02 WATER](./Modul_02_WATER.md), [03 SHELTER](./Modul_03_SHELTER.md), [05 SLEEP](./Modul_05_SLEEP.md), [20 ENERGY](./Modul_20_ENERGY.md), [14 HEALTH](./Modul_14_HEALTH.md).  
+- **Negativszenario:** Ohne Struktur breiten sich Krankheiten, Panik und Isolation aus – Hilfe kommt zu spät.  
+
+---
+
+### Szenario 2: Blackout & Infrastruktur-Kollaps
+
+Ein großflächiger Stromausfall legt Kommunikation, Transport und Versorgung lahm.  
+Das QUESTSYSTEM liefert Energie, Kommunikation, Datenzugang und Sicherheit – Nachbarschaften bleiben handlungsfähig.  
+
+- **Beispiele:**  
+  - [Italien-Blackout 2003](https://ec.europa.eu/energy/sites/ener/files/documents/blackout_italy_2003.pdf): Über 50 Mio. Menschen betroffen.  
+  - [New York Blackout 1977](https://www.nytimes.com/1977/07/15/archives/city-paralyzed-by-power-failure-looting-and-fires-reported-city.html): Gewalt und Plünderungen in der Stadt.  
+  - [Kuba nach Hurrikan Irma 2017](https://reliefweb.int/report/cuba/cuba-hurricane-irma-situation-report-no-2-14-september-2017): Nachbarschaften bauten Stromnetze provisorisch wieder auf.  
+
+- **Module:** [20 ENERGY](./Modul_20_ENERGY.md), [08 DEVICE](./Modul_08_DEVICE.md), [28 NETWORK](./Modul_28_NETWORK.md), [34 SECURITY](./Modul_34_SECURITY.md), [35 DATA](./Modul_35_DATA.md).  
+- **Negativszenario:** Ohne QUESTSYSTEM versinken Städte in Dunkelheit, Angst und Chaos.  
+
+---
+
+### Szenario 3: Krieg & Vertreibung
+
+Kriege zerstören Lebensgrundlagen, Menschen müssen fliehen oder unter Gewalt überleben.  
+Das QUESTSYSTEM schützt Grenzen, organisiert Migration, sichert Versorgung und stärkt Gemeinschaften.  
+
+- **Beispiele:**  
+  - [Ukraine 2022](https://www.unhcr.org/emergencies/ukraine-emergency): Millionen Geflüchtete in Nachbarländer.  
+  - [Syrienkrieg](https://data.unhcr.org/en/situations/syria): Über 6 Mio. Binnenvertriebene.  
+  - [Uganda: Geflüchteten-Integration](https://www.unhcr.org/innovation/uganda-refugees-give-back/): Geflüchtete erhalten Land und können Landwirtschaft betreiben.  
+
+- **Module:** [12 BORDER](./Modul_12_BORDER.md), [22 MIGRATION](./Modul_22_MIGRATION.md), [36 CONFLICT](./Modul_36_CONFLICT.md), [01 RESETBOX](./Modul_01_RESETBOX.md), [42 DEATH](./Modul_42_DEATH.md), [17 ANIMAL](./Modul_17_ANIMAL.md).  
+- **Negativszenario:** Ohne Struktur herrschen Flucht, Hunger und Gewalt.  
+
+---
+
+### Szenario 4: Gesundheitskrisen
+
+Pandemien und Pflege-Notstände belasten Gesellschaften schwer.  
+Das QUESTSYSTEM sichert Zugang zu Gesundheit, Pflege, psychischer Stabilität und Familienstrukturen.  
+
+- **Beispiele:**  
+  - [COVID-19-Pandemie](https://www.who.int/publications/m/item/weekly-epidemiological-update-on-covid-19---21-december-2022): Weltweite Überlastung der Gesundheitssysteme.  
+  - [Ebola-Epidemie in Westafrika 2014–16](https://www.cdc.gov/vhf/ebola/history/2014-2016-outbreak/index.html): Über 11.000 Tote.  
+  - [Costa Rica Gesundheitssystem](https://www.who.int/publications/i/item/9789241510193): Investition in öffentliche Gesundheitsversorgung statt Privatisierung.  
+
+- **Module:** [14 HEALTH](./Modul_14_HEALTH.md), [15 CARE](./Modul_15_CARE.md), [07 PSYCHE](./Modul_07_PSYCH.md), [16 FAMILY](./Modul_16_FAMILY.md), [06 BODY](./Modul_06_BODY.md).  
+- **Negativszenario:** Ohne Struktur kollabieren Systeme, Krankheit und Isolation breiten sich aus.  
+
+---
+
+### Szenario 5: Soziale Krisen
+
+Armut, Obdachlosigkeit und Überschuldung entziehen Menschen die Grundlage für ein würdevolles Leben.  
+Das QUESTSYSTEM schützt mit Modulen zu Arbeit, Schulden, Wohnen und Gerechtigkeit.  
+
+- **Beispiele:**  
+  - [Obdachlosigkeit in den USA](https://www.huduser.gov/portal/sites/default/files/pdf/2020-AHAR-Part-1.pdf): Über 580.000 Menschen ohne Zuhause.  
+  - [Griechenland-Finanzkrise 2008–2015](https://www.imf.org/en/Countries/GRC): Sozialkürzungen und Massenarbeitslosigkeit.  
+  - [Housing First Modelle](https://housingfirsteurope.eu/): Zeigen, dass stabile Wohnungen Armut wirksam bekämpfen.  
+
+- **Module:** [09 DEBT](./Modul_09_DEBT.md), [10 WORK](./Modul_10_WORK.md), [26 HOUSING](./Modul_26_HOUSING.md), [23 JUSTICE](./Modul_23_JUSTICE.md), [41 FUTURE](./Modul_41_FUTURE.md).  
+- **Negativszenario:** Ohne Struktur werden Menschen unsichtbar, entrechtet und isoliert.  
+
+---
+
+### Szenario 6: Lokale Alltagskrisen
+
+Auch ohne Katastrophen können Isolation, fehlende Kultur oder Verlust von Gemeinschaft das Leben zerstören.  
+Das QUESTSYSTEM stärkt Nachbarschaften, Kultur, Kunst und Erinnerung.  
+
+- **Beispiele:**  
+  - [Einsamkeit in Großbritannien](https://www.gov.uk/government/news/pm-launches-governments-first-loneliness-strategy): Über 3,7 Mio. Menschen fühlen sich chronisch einsam.  
+  - [UNESCO Schutz gefährdeter Kulturgüter](https://en.unesco.org/protecting-cultural-heritage): Syrien, Irak, Mali.  
+  - [Community Arts Projekte](https://www.unesco.org/reports/reshaping-policies-creativity/2022): Kunst schafft Räume für Begegnung und Sinn.  
+
+- **Module:** [24 COMMUNITY](./Modul_24_COMMUNITY.md), [18 CULTURE](./Modul_18_CULTURE.md), [40 ART](./Modul_40_ART.md), [29 SYMBOL](./Modul_29_SYMBOL.md), [31 MEMORY](./Modul_31_MEMORY.md), [19 MEDIA](./Modul_19_MEDIA.md).  
+- **Negativszenario:** Ohne Struktur verlieren Menschen Halt, Identität und Vertrauen.
+
+---
+
+## 08. Anwendung im Alltag
+
+Das QUESTSYSTEM ist nicht nur für Katastrophen gedacht.  
+Es wirkt im Alltag – individuell, gemeinschaftlich, künstlerisch und strukturell.  
+Jede:r kann klein anfangen und Teil eines größeren Netzes werden.  
+
+---
+
+### 1. Individuell beginnen
+- Eine [RESETBOX](./Modul_01_RESETBOX.md) zu Hause gibt Sicherheit bei Stromausfall, Flut oder persönlicher Krise.  
+- Mit STOP-Karte und RESET:LOG behalten Menschen in Stressmomenten Übersicht und Handlungskraft ([07 PSYCHE](./Modul_07_PSYCH.md)).  
+- Kleine Lösungen wie Solarlampen oder Powerbanks ([20 ENERGY](./Modul_20_ENERGY.md)) schaffen Autonomie.  
+- Offline-Wikis und Kommunikations-Tools ([08 DEVICE](./Modul_08_DEVICE.md)) sichern Wissen und Kontakt auch ohne Netz.  
+- Sichere Kommunikation und Privatsphäre schützen Identität und Handlungsspielräume ([33 PRIVACY](./Modul_33_PRIVACY.md)).  
+
+**Beispiel:** Eine Familie packt ihre eigene RESETBOX: Wasserfilter, Taschenlampe, Erste-Hilfe-Set, Schreibheft für Krisen-Notizen.  
+Wenn der Strom ausfällt, haben sie sofort Orientierung und Sicherheit.  
+
+*Quelle:* [IFRC: Household disaster preparedness](https://www.ifrc.org/disaster-preparedness).  
+
+---
+
+### 2. In Gemeinschaft handeln
+- Nachbarschaften können Boxen gemeinsam bauen, tauschen und lagern.  
+- Schulen und Kulturzentren nutzen Workshops ([11 SCHOOL](./Modul_11_SCHOOL.md), [18 CULTURE](./Modul_18_CULTURE.md)).  
+- Gemeinschaften werden so krisenfest – und stärken Vertrauen ([24 COMMUNITY](./Modul_24_COMMUNITY.md)).  
+- Medienprojekte und lokale Radios ([19 MEDIA](./Modul_19_MEDIA.md)) helfen, Informationen breit zu teilen.  
+
+**Beispiel:** Ein Stadtteil organisiert einen „Box-Build-Day“: Jede Familie baut eine kleine RESETBOX, die Gemeinschaft lagert zusätzlich ein Notfallset für alle.  
+So entstehen nicht nur Boxen, sondern auch Vertrauen und Netzwerke.  
+
+*Quellen:*  
+- [OECD: Building Resilient Communities](https://www.oecd.org/governance/strengthening-resilient-communities.htm).  
+- [WHO: The power of community resilience](https://www.who.int/publications/i/item/9789241510193).  
+
+---
+
+### 3. Künstlerische & symbolische Nutzung
+- Dropcards, QR-Codes und Signaturen machen das QUESTSYSTEM sichtbar.  
+- Der 🍄 wird zum Symbol für Resilienz, Wachstum und Widerstand gegen Bullshit ([29 SYMBOL](./Modul_29_SYMBOL.md), [40 ART](./Modul_40_ART.md)).  
+- Erinnerungskultur lebt durch sichtbare Zeichen ([31 MEMORY](./Modul_31_MEMORY.md)).  
+- Offene Lizenzen sichern Nachnutzbarkeit und Transparenz ([32 LICENCE](./Modul_32_LICENCE.md)).  
+
+**Beispiel:** Jugendliche gestalten ein Wandbild mit 🍄 und QR-Code – dahinter steckt die RESETBOX-Bauanleitung.  
+Kunst wird zum Werkzeug der Selbstermächtigung und verbindet Ästhetik mit Funktion.  
+
+*Quelle:* [UNESCO: Art as a tool for resilience](https://en.unesco.org/creativity).  
+
+---
+
+### 4. Unterstützung & gGmbH
+- Spenden an die gGmbH sichern nicht nur Projekte, sondern auch die Lebensgrundlage von QUEST42 und Hund.  
+- QUEST42 ist kein Angestellter, sondern Bürgergeld-Empfänger.  
+- Alles, was QUEST42 nicht benötigt, fließt direkt in die gGmbH: Fahrzeuge, Werkstätten, Lager, RESETBOX-Produktion.  
+- Transparenzberichte werden veröffentlicht: Wer spendet, wofür Gelder eingesetzt werden, wie Überschüsse ins Gemeinwohl fließen.  
+- So wird individuelle Hilfe zu kollektiver Infrastruktur ([25 FINANCE](./Modul_25_FINANCE.md), [38 GOVERNANCE](./Modul_38_GOVERNANCE.md)).  
+
+**Beispiel:** Jemand spendet 20 €. Ein Teil deckt Verpflegung für QUEST42 ab – der Rest finanziert eine Werkstatt, in der Freiwillige RESETBOXen nachbauen.  
+So entsteht aus einer individuellen Geste kollektive Wirkung.  
+
+---
+
+### 5. In Action
+Das QUESTSYSTEM funktioniert nicht von oben – es lebt von Menschen, die es nutzen.  
+Jede RESETBOX, jede Workshop-Gruppe, jedes Symbol trägt zum Netz bei.  
+
+**Kurz gesagt:**  
+*20 € können einem Nachbarn Licht im Blackout sichern.  
+Ein Sticker kann eine ganze Community vernetzen.  
+Dein Handeln macht den Unterschied.*  
+
+*Quelle:* [Harvard: The science of building community resilience](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5398440/).  
+
+---
+
+## 09. Tools & Materialien
+
+Das QUESTSYSTEM ist nicht nur eine Idee – es hat konkrete Werkzeuge, die Menschen im Alltag und in Krisen nutzen können.  
+Diese Tools sind offen, replizierbar und an die Module gekoppelt.  
+Im Unterschied zur [RESETBOX](./Modul_01_RESETBOX.md) als Systemmodul geht es hier um **praktische Werkzeuge**, die sofort einsetzbar oder nachbaubar sind.  
+
+---
+
+### 1. RESET:LOG
+- **Zweck:** Dokumentation von Krisenmomenten, Reflexion, Orientierung.  
+- **Module:** [07 PSYCHE](./Modul_07_PSYCH.md), [30 TRUTH](./Modul_30_TRUTH.md), [31 MEMORY](./Modul_31_MEMORY.md).  
+- **Beispiel:** Nach einer Flut hält eine Person im RESET:LOG fest, wo noch sauberes Wasser verfügbar ist. Diese Infos helfen auch der Nachbarschaft, schneller zu reagieren.  
+- *Quelle:* [APA: Journaling for trauma recovery](https://www.apa.org/monitor/2019/01/journaling-trauma).  
+
+---
+
+### 2. STOP-Karte
+- **Zweck:** Unterbrechung von Stress- oder Panikmustern, sofortige Handlungsorientierung.  
+- **Module:** [07 PSYCHE](./Modul_07_PSYCH.md), [14 HEALTH](./Modul_14_HEALTH.md), [34 SECURITY](./Modul_34_SECURITY.md).  
+- **Beispiel:** Pflegekräfte nutzen die STOP-Karte während stressiger Nachtschichten, um kurz durchzuatmen und klare Entscheidungen zu treffen.  
+- *Quelle:* [NHS: STOP technique for stress reduction](https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/mindfulness/).  
+
+---
+
+### 3. Dropcards & QR-Codes
+- **Zweck:** Verbreitung von Wissen und Anleitungen (RESETBOX-Bauanleitung, Modulübersicht, Downloads).  
+- **Module:** [19 MEDIA](./Modul_19_MEDIA.md), [29 SYMBOL](./Modul_29_SYMBOL.md), [40 ART](./Modul_40_ART.md), [33 PRIVACY](./Modul_33_PRIVACY.md).  
+- **Beispiel:** Street Artists verteilen Dropcards mit 🍄-Symbol in der Stadt. Hinter dem QR-Code steckt eine Anleitung zum Bau einer eigenen RESETBOX – anonym und frei zugänglich.  
+- *Quelle:* [UNESCO: Creativity for resilience](https://en.unesco.org/creativity).  
+
+---
+
+### 4. Build-Kits (RESETBOX DIY)
+- **Zweck:** Menschen können ihre eigene Box bauen – niedrigschwellig und modular.  
+- **Module:** [01 RESETBOX](./Modul_01_RESETBOX.md), [02 WATER](./Modul_02_WATER.md), [20 ENERGY](./Modul_20_ENERGY.md), [34 SECURITY](./Modul_34_SECURITY.md).  
+- **Beispiel:** Eine Schulklasse organisiert einen „Box-Build-Day“: Jede:r baut eine kleine RESETBOX für zuhause. Zusätzlich lagert die Schule ein Set für den Katastrophenschutz.  
+- *Quelle:* [OECD: Building Resilient Communities](https://www.oecd.org/governance/strengthening-resilient-communities.htm).  
+
+---
+
+### 5. Download-Ordner & Offline-Pakete
+- **Zweck:** Sicherer Zugang zu Wissen auch ohne Internet.  
+- **Module:** [08 DEVICE](./Modul_08_DEVICE.md), [35 DATA](./Modul_35_DATA.md), [39 KNOWLEDGE](./Modul_39_KNOWLEDGE.md), [32 LICENCE](./Modul_32_LICENCE.md).  
+- **Beispiel:** Ein Jugendzentrum verteilt USB-Sticks mit einem KIWIX-Offline-Wiki: medizinische Grundlagen, Bauanleitungen, Menschenrechte. So bleibt Wissen verfügbar, selbst wenn das Netz ausfällt.  
+- *Quelle:* [Kiwix: Access to knowledge offline](https://www.kiwix.org/en/).  
+
+---
+
+### 6. Erweiterbare Toolbox
+Alle Tools sind **offen und erweiterbar**.  
+Neue Ideen – von symbolischen Karten bis hin zu Software-Modulen – können jederzeit eingebaut werden.  
+Rechtliche und ethische Absicherung erfolgt über [32 LICENCE](./Modul_32_LICENCE.md).  
+
+**Beispiel:** Eine Community entwickelt eine zusätzliche Karte für Notfall-Signale.  
+Dank offener Lizenz kann sie sofort weltweit geteilt werden.  
+
+*Quelle:* [Creative Commons: Open tools for crisis response](https://creativecommons.org/2020/03/20/open-resources-covid19/).  
+
+---
+
+## 10. Module im Überblick
+
+Das QUESTSYSTEM besteht aus 42 Modulen, geordnet in drei Ringe:  
+- **Existential (01–09):** sichern Grundbedürfnisse wie Wasser, Nahrung, Unterkunft und mentale Stabilität.  
+- **Societal (10–24):** gestalten das Zusammenleben, von Arbeit und Bildung bis zu Kultur, Gesundheit und Klima.  
+- **Structural (25–42):** regeln übergreifende Systeme wie Recht, Finanzen, Daten, Wahrheit und Zukunft.  
+
+Jeder Ring baut auf dem vorherigen auf:  
+Ohne Existential keine Gesellschaft, ohne Gesellschaft keine Strukturen.  
+
+*Hinweis:* Die Tabellen dienen als **Übersicht**. Detailbeschreibungen finden sich in den verlinkten Modulen.  
+
+---
+
+### 10.1 Existential Ring (01–09)
+
+| Nr. | Modul | Kurzbeschreibung | Link |
+|-----|-------|------------------|------|
+| 01 | RESETBOX | Notfallcontainer als physisches und symbolisches Herz des Systems – sichert Würde und Handlungskraft in Krisen. | [Modul 01](./Modul_01_RESETBOX.md) |
+| 02 | WATER | Zugang zu sauberem Wasser für Trinken, Kochen und Hygiene – Grundlage aller Gesundheit. | [Modul 02](./Modul_02_WATER.md) |
+| 03 | SHELTER | Schutzräume gegen Kälte, Hitze oder Gewalt – von Zelt bis Wohnung. | [Modul 03](./Modul_03_SHELTER.md) |
+| 04 | FOOD | Ernährung als Überlebensbasis – lokal, nachhaltig und fair verteilt. | [Modul 04](./Modul_04_FOOD.md) |
+| 05 | SLEEP | Ruhe als Voraussetzung für körperliche Heilung und mentale Stabilität. | [Modul 05](./Modul_05_SLEEP.md) |
+| 06 | BODY | Hygiene und Körperpflege verhindern Krankheiten und sichern Würde. | [Modul 06](./Modul_06_BODY.md) |
+| 07 | PSYCHE | Mentale Gesundheit, Trauma-Bewältigung und Resilienz. | [Modul 07](./Modul_07_PSYCH.md) |
+| 08 | DEVICE | Werkzeuge und Geräte für Kommunikation, Wissen und Orientierung. | [Modul 08](./Modul_08_DEVICE.md) |
+| 09 | DEBT | Regeln für Schulden – Schutz vor Knechtschaft, Sicherung von Existenz. | [Modul 09](./Modul_09_DEBT.md) |
+
+---
+
+### 10.2 Societal Ring (10–24)
+
+| Nr. | Modul | Kurzbeschreibung | Link |
+|-----|-------|------------------|------|
+| 10 | WORK | Arbeit als Teilhabe und Sinn – nicht als Ausbeutung. | [Modul 10](./Modul_10_WORK.md) |
+| 11 | SCHOOL | Bildung als Schlüssel zu Freiheit, Resilienz und Zukunft. | [Modul 11](./Modul_11_SCHOOL.md) |
+| 12 | BORDER | Grenzen als Schutzräume, aber mit klaren ethischen Leitlinien. | [Modul 12](./Modul_12_BORDER.md) |
+| 13 | NATURE | Natur als Ressourcengrundlage und Ökosystem, das geschützt werden muss. | [Modul 13](./Modul_13_NATURE.md) |
+| 14 | HEALTH | Medizinische Versorgung für alle – präventiv und akut. | [Modul 14](./Modul_14_HEALTH.md) |
+| 15 | CARE | Pflegearbeit für Würde in Abhängigkeit, Krankheit und Alter. | [Modul 15](./Modul_15_CARE.md) |
+| 16 | FAMILY | Familie und Bindung als Basis für Sicherheit und Entwicklung. | [Modul 16](./Modul_16_FAMILY.md) |
+| 17 | ANIMAL | Tiere als Mitgeschöpfe und unverzichtbarer Teil der Nahrungsketten. | [Modul 17](./Modul_17_ANIMAL.md) |
+| 18 | CULTURE | Kultur vermittelt Sinn, Identität und Gemeinschaft. | [Modul 18](./Modul_18_CULTURE.md) |
+| 19 | MEDIA | Freie Medien sichern Information und schützen vor Propaganda. | [Modul 19](./Modul_19_MEDIA.md) |
+| 20 | ENERGY | Nachhaltige Energieversorgung als Schlüssel für Leben und Technik. | [Modul 20](./Modul_20_ENERGY.md) |
+| 21 | CLIMATE | Klimaschutz sichert langfristig alle Lebensgrundlagen. | [Modul 21](./Modul_21_CLIMATE.md) |
+| 22 | MIGRATION | Bewegung von Menschen als Recht und Überlebensstrategie. | [Modul 22](./Modul_22_MIGRATION.md) |
+| 23 | JUSTICE | Rechtssysteme für Gleichheit, Schutz und Balance. | [Modul 23](./Modul_23_JUSTICE.md) |
+| 24 | COMMUNITY | Gemeinschaft stärkt Solidarität, Vertrauen und Krisenfestigkeit. | [Modul 24](./Modul_24_COMMUNITY.md) |
+
+---
+
+### 10.3 Structural Ring (25–42)
+
+| Nr. | Modul | Kurzbeschreibung | Link |
+|-----|-------|------------------|------|
+| 25 | FINANCE | Geldflüsse steuern Ressourcen – fair verteilt sichern sie Würde. | [Modul 25](./Modul_25_FINANCE.md) |
+| 26 | HOUSING | Wohnen als Grundrecht – stabil, sicher und bezahlbar. | [Modul 26](./Modul_26_HOUSING.md) |
+| 27 | TRANSPORT | Mobilität verbindet Menschen, Orte und Versorgung. | [Modul 27](./Modul_27_TRANSPORT.md) |
+| 28 | NETWORK | Netzwerke für Kommunikation, Wissen und Teilhabe. | [Modul 28](./Modul_28_NETWORK.md) |
+| 29 | SYMBOL | Symbole geben Orientierung und kollektiven Sinn. | [Modul 29](./Modul_29_SYMBOL.md) |
+| 30 | TRUTH | Wahrheit schützt vor Manipulation und Machtmissbrauch. | [Modul 30](./Modul_30_TRUTH.md) |
+| 31 | MEMORY | Erinnerung bewahrt Wissen und verhindert Wiederholung. | [Modul 31](./Modul_31_MEMORY.md) |
+| 32 | LICENCE | Offene Lizenzen sichern Nutzung und verhindern Missbrauch. | [Modul 32](./Modul_32_LICENCE.md) |
+| 33 | PRIVACY | Privatsphäre schützt Autonomie und Identität. | [Modul 33](./Modul_33_PRIVACY.md) |
+| 34 | SECURITY | Sicherheit schützt vor Gewalt, Terror und Missbrauch. | [Modul 34](./Modul_34_SECURITY.md) |
+| 35 | DATA | Daten fair und transparent nutzen – Chance und Risiko zugleich. | [Modul 35](./Modul_35_DATA.md) |
+| 36 | CONFLICT | Konflikte existieren – fair geregelt verhindern sie Krieg. | [Modul 36](./Modul_36_CONFLICT.md) |
+| 37 | DEMOCRACY | Demokratie garantiert Teilhabe und schützt vor Autoritarismus. | [Modul 37](./Modul_37_DEMOCRACY.md) |
+| 38 | GOVERNANCE | Regeln und Institutionen lenken Macht – transparent und fair. | [Modul 38](./Modul_38_GOVERNANCE.md) |
+| 39 | KNOWLEDGE | Wissen als Gemeingut für Fortschritt und Freiheit. | [Modul 39](./Modul_39_KNOWLEDGE.md) |
+| 40 | ART | Kunst als Kritik, Inspiration und Spiegel der Gesellschaft. | [Modul 40](./Modul_40_ART.md) |
+| 41 | FUTURE | Zukunft bewusst gestalten – Verantwortung über Generationen hinweg. | [Modul 41](./Modul_41_FUTURE.md) |
+| 42 | DEATH | Tod als Teil des Lebens – mit Würde begleitet. | [Modul 42](./Modul_42_DEATH.md) |
+
+---
+
+## 11. Beispiele & Szenarien im Alltag
+
+Kapitel 07 beschreibt globale Krisenszenarien.  
+Kapitel 11 zeigt persönliche Geschichten – wie das QUESTSYSTEM im Alltag und in kleinen Momenten wirkt.  
+Es geht um Nähe, Würde und die Kraft von Symbolen wie dem 🍄, die weitergetragen werden.  
+
+---
+
+### 1. Die Familie im Blackout
+Ein Stromausfall legt eine Stadt lahm.  
+Eine Familie öffnet ihre [RESETBOX](./Modul_01_RESETBOX.md): Wasserfilter, Taschenlampen, Solarpanel.  
+Die Kinder schreiben ins [RESET:LOG](./Modul_07_PSYCH.md), wie sie den Tag erlebt haben – so behalten sie Struktur und Zuversicht.  
+An der Wand klebt eine 🍄-Dropcard, die Nachbar:innen zum gemeinsamen Austausch einlädt.  
+**Module:** [01 RESETBOX], [02 WATER], [20 ENERGY], [07 PSYCHE]  
+*Quelle:* [Bundeszentrale für politische Bildung: Blackout-Szenarien](https://www.bpb.de/kurz-knapp/hintergrund-aktuell/507236/blackout-stromausfall/).  
+
+---
+
+### 2. Die Schule mit Build-Day
+Eine Schule organisiert einen Projekttag: Jede Klasse baut eine RESETBOX.  
+Die Schüler:innen lernen praktisch über [WATER](./Modul_02_WATER.md), [FOOD](./Modul_04_FOOD.md) und [ENERGY](./Modul_20_ENERGY.md).  
+Die Boxen bleiben in der Schule für Notfälle, die Kinder gestalten Sticker mit 🍄, die sie in der Nachbarschaft verteilen.  
+So entsteht nicht nur Wissen, sondern auch ein Symbol für Zusammenhalt.  
+**Module:** [11 SCHOOL], [24 COMMUNITY], [01 RESETBOX], [18 CULTURE], [29 SYMBOL]  
+*Quelle:* [UNESCO: Education for Sustainable Development](https://en.unesco.org/themes/education-sustainable-development).  
+
+---
+
+### 3. Die Nachbarschaft nach der Flut
+Eine Flut trifft einen Stadtteil. Häuser stehen unter Wasser, Menschen sind erschöpft.  
+Die Gemeinschaft öffnet ihre gemeinsam gelagerte RESETBOX: Medikamente, Hygieneartikel, Funkgeräte.  
+Eine Freiwillige nutzt die [STOP-Karte](./Modul_07_PSYCH.md), um ruhig zu bleiben.  
+Das 🍄-Symbol auf den Boxen macht sichtbar: Hilfe ist hier organisiert, offen für alle.  
+**Module:** [24 COMMUNITY], [14 HEALTH], [07 PSYCHE], [06 BODY]  
+*Quelle:* [OECD: Community resilience in disasters](https://www.oecd.org/governance/strengthening-resilient-communities.htm).  
+
+---
+
+### 4. Der Jugendliche mit dem Sticker
+Ein Jugendlicher entwirft einen QR-Sticker mit 🍄 und klebt ihn an eine Bushaltestelle.  
+Menschen scannen den Code und landen auf einer Anleitung zum Bau der RESETBOX.  
+Was als kleines Zeichen beginnt, wird zur Bewegung in der ganzen Stadt: immer mehr 🍄 tauchen auf.  
+So vernetzt Kunst, Symbolik und Wissenstransfer den Alltag.  
+**Module:** [40 ART], [29 SYMBOL], [19 MEDIA], [08 DEVICE]  
+*Quelle:* [UNESCO: Art as a tool for resilience](https://en.unesco.org/creativity).  
+
+---
+
+### 5. Die Geflüchtete an der Grenze
+Eine junge Frau flieht vor Krieg und erreicht eine Grenze.  
+Freiwillige vor Ort übergeben ihr eine RESETBOX mit Wasserfilter, Hygieneartikeln und einem Handbuch in ihrer Sprache.  
+Das 🍄-Symbol macht ihr klar: Hier gilt ein anderes System – offen, respektvoll, würdevoll.  
+Sie wird in ein Netzwerk eingebunden, das Migration nicht kriminalisiert, sondern als Überlebensrecht anerkennt.  
+**Module:** [12 BORDER], [22 MIGRATION], [15 CARE], [01 RESETBOX], [42 DEATH]  
+*Quelle:* [UNHCR: Global Trends – Forced Displacement](https://www.unhcr.org/global-trends-report-2022).  
+
+---
+
+## 12. Systemschutz & Missbrauchsverhinderung
+
+Das QUESTSYSTEM ist offen, frei und für alle nutzbar.  
+Gerade diese Offenheit macht Schutzmechanismen nötig – damit es nicht von Kommerz, Politik oder Extremgruppen vereinnahmt wird.  
+Der Grundsatz lautet: **offen für alle, aber nicht für Missbrauch.**
+
+---
+
+### 1. Warum Schutz nötig ist
+Ein System, das Überleben, Würde und Gemeinschaft sichern soll, darf nicht in das Gegenteil kippen.  
+Gefahren sind z. B.:  
+- **Kommerzialisierung:** Firmen verkaufen RESETBOXen als Luxusprodukt und schließen damit Menschen aus.  
+- **Politische Vereinnahmung:** Parteien oder Staaten nutzen Module für Propaganda oder Machtspiele.  
+- **Extremistische Nutzung:** Gruppen verwenden Boxen oder Symbole, um Gewalt zu legitimieren.  
+- **Überwachung:** Daten aus Tools oder QR-Codes werden missbraucht, um Kontrolle aufzubauen.  
+
+*Quelle:* [Open Source Abuse – OSI Report](https://opensource.org/node/1091)  
+
+---
+
+### 2. Juristische Absicherung
+- **[32 LICENCE](./Modul_32_LICENCE.md):** Alle Inhalte stehen unter CC BY-SA + Dignity Clause.  
+  - Jede:r darf nachbauen, verändern, weitergeben.  
+  - **Kommerzielle Nutzung** ist nur erlaubt, wenn sie *nachweislich* dem Gemeinwohl dient.  
+  - Verstöße führen automatisch zum Ausschluss von Legitimität.  
+- **gGmbH-Struktur:**  
+  - Transparenzberichte über Spenden, Ausgaben und Projekte.  
+  - Keine Eigentumsrechte, keine Profite – Besitz wird in Gemeingüter überführt.  
+
+*Quelle:* [Creative Commons: Preventing misuse](https://creativecommons.org/about/program-areas/arts-culture/arts-culture-resources/preventing-misuse/)  
+
+---
+
+### 3. Technische & organisatorische Schutzmechanismen
+- **[34 SECURITY](./Modul_34_SECURITY.md):**  
+  - Physische Boxen tragen Sicherheits-Siegel (🍄 + STOP-Karte) → sofort erkennbar, ob sie echt sind.  
+- **[33 PRIVACY](./Modul_33_PRIVACY.md):**  
+  - QR-Codes funktionieren offline, ohne Tracking.  
+  - Kommunikation erfolgt über offene, verschlüsselte Protokolle.  
+- **[36 CONFLICT](./Modul_36_CONFLICT.md):**  
+  - Konflikte werden durch transparente Community-Schiedsstellen gelöst.  
+  - Keine geheimen Machtstrukturen, alle Regeln sind offen dokumentiert.  
+- **STOP-Karte:**  
+  - Funktioniert als sofortige „Notbremse“.  
+  - Wenn Menschen Missbrauch sehen, können sie die STOP-Karte nutzen → Signal an die Community: Hier läuft etwas falsch.  
+
+*Quelle:* [EFF: Privacy and Security Principles](https://www.eff.org/issues/privacy)  
+
+---
+
+### 4. Beispiele für Missbrauch & Schutz
+- **Extremismus:** Eine Gruppe will RESETBOXen mit eigenen Symbolen vertreiben. → Lizenz + STOP-Karte entziehen sofort Legitimität, Original bleibt frei und erkennbar.  
+- **Kommerzialisierung:** Ein Unternehmen will RESETBOX-Tools patentieren. → Lizenz verhindert Exklusivrechte, Nutzung bleibt frei.  
+- **Überwachung:** Staatliche Stellen wollen QR-Scans für Tracking nutzen. → PRIVACY-Mechanismen blockieren Datensammlung.  
+- **Politische Instrumentalisierung:** Eine Partei versucht, das 🍄-Symbol als eigenes Logo zu vereinnahmen. → Offene Symbolik + Dokumentation machen den Missbrauch sichtbar.  
+
+---
+
+### 5. Kurz gesagt
+Das QUESTSYSTEM ist **offen für alle, die es würdevoll nutzen**.  
+Es ist aber **nicht offen für Missbrauch** – egal ob durch Profitgier, Machtinteressen oder Gewalt.  
+Die Kombination aus **Lizenz, STOP-Karte, Privacy-Mechanismen und Gemeinschaftsschutz** stellt sicher:  
+- Jede:r darf mitmachen.  
+- Niemand darf das System verdrehen.  
+
+*Quelle:* [Council of Europe: Preventing violent extremism](https://www.coe.int/en/web/deradicalisation/preventing-violent-extremism)  
+
+---
+
+## 13. Legal Recognition & STOP-Karten
+
+Das QUESTSYSTEM braucht sowohl rechtliche Anerkennung als auch ein Symbol, das jede:r versteht.  
+Die Kombination aus **[32 LICENCE](./Modul_32_LICENCE.md)** und **STOP-Karte** macht das System transparent, überprüfbar und gleichzeitig intuitiv nutzbar.  
+
+---
+
+### 1. Rechtliche Anerkennung
+- **gGmbH als Träger:**  
+  - Formale Struktur für Spendenannahme, Infrastruktur und rechtliche Absicherung.  
+  - Gemeinnützigkeit schützt vor Kriminalisierung und macht das QUESTSYSTEM als „legal entity“ sichtbar.  
+- **Lizenz:**  
+  - Inhalte stehen unter CC BY-SA + Dignity Clause.  
+  - Verhindert Kommerzialisierung ohne Gemeinwohlbezug.  
+  - Sicherstellung, dass alle Nachbauten rechtlich gedeckt und geschützt sind.  
+- **Transparenz:**  
+  - Offene Finanzberichte.  
+  - Regelmäßige Offenlegung von Projekten und Mittelverwendung.  
+
+---
+
+### 2. Die STOP-Karte – Bedeutung & Funktion
+- Einfache Karte, die jede:r nutzen kann.  
+- Funktion: „Stopp“ sagen – gegen Missbrauch, Überlastung, Manipulation.  
+- Wirkt auf zwei Ebenen:  
+  - **Individuell:** Unterbricht Stressmuster, schafft Orientierung.  
+  - **Strukturell:** Macht sichtbar, wenn Regeln gebrochen oder Symbole missbraucht werden.  
+- Die STOP-Karte ist damit zugleich ein **psychologisches Hilfsmittel** und ein **symbolischer Schutzmechanismus**.  
+
+---
+
+### 3. Recht & Symbolik zusammen gedacht
+- Juristisch: „Wir handeln nach offenem Recht, nicht im Verborgenen.“  
+- Symbolisch: „Wir setzen klare Grenzen gegen Missbrauch und Machtmissbrauch.“  
+- Module, die hier andocken:  
+  - [29 SYMBOL](./Modul_29_SYMBOL.md): Verständlichkeit und kollektives Zeichen.  
+  - [30 TRUTH](./Modul_30_TRUTH.md): Transparenz und Nachvollziehbarkeit.  
+  - [34 SECURITY](./Modul_34_SECURITY.md): Physischer Schutz und Vertrauen.  
+
+---
+
+### 4. Beispiele
+- **Kriminalisierung verhindern:** Behörden wollen QR-Verteilungen als „illegal“ einstufen → gGmbH-Rechtsrahmen + Lizenz zeigen: Es handelt sich um Gemeinwohl.  
+- **Symbolmissbrauch abwehren:** Eine Gruppe versucht, das 🍄 als Gewaltzeichen zu vereinnahmen → STOP-Karte signalisiert sofort den Bruch, der Missbrauch verliert Legitimität.  
+
+---
+
+### 5. Kurz gesagt
+Das QUESTSYSTEM ist **juristisch anerkannt** und **symbolisch geschützt**.  
+Die STOP-Karte ist das einfachste und stärkste Werkzeug:  
+Ein sichtbares, global verständliches Zeichen, das sagt – **Hier gilt Würde. Hier gilt Stopp.**
+
+---
+
+## 14. RESET als Handlung, nicht nur Objekt
+
+Die [RESETBOX](./Modul_01_RESETBOX.md) ist mehr als ein Container.  
+Sie steht für einen Moment des **Innehaltens, Reflektierens und Neuansetzens**.  
+RESET ist nicht nur ein Werkzeug – es ist eine Haltung und eine Handlung zugleich.  
+RESET bedeutet nicht „löschen“ oder „vergessen“, sondern **bewusst auf Würde, Wahrheit und Zukunft zurücksetzen**.  
+
+---
+
+### 1. RESET als Haltung
+- RESET bedeutet: innehalten, Muster durchbrechen, Raum für Neues schaffen.  
+- RESET ist kein Rückzug, sondern eine aktive Entscheidung für Veränderung.  
+- RESET erinnert an digitale Kulturen (Computer, Smartphones), wo ein Neustart Fehler behebt – hier übertragen auf menschliche Würde und Gesellschaft.  
+- Verknüpfte Module: [07 PSYCHE](./Modul_07_PSYCH.md), [30 TRUTH](./Modul_30_TRUTH.md).  
+
+*Quelle:* [Kabat-Zinn, Mindfulness-Based Stress Reduction](https://www.umassmed.edu/cfm/mindfulness-based-programs/mbsr-courses/)  
+
+---
+
+### 2. RESET als Handlung
+- RESET wird durch konkrete Tools greifbar:  
+  - [RESETBOX](./Modul_01_RESETBOX.md) → physisches Symbol & Überlebenshilfe.  
+  - STOP-Karte → sofortige Unterbrechung in Krisenmomenten.  
+  - RESET:LOG → Reflexion & Dokumentation.  
+- RESET-Momente sind im Alltag nutzbar – bei Stress, in Krisen oder in kollektiven Prozessen.  
+- Verknüpfte Module: [13 NATURE](./Modul_13_NATURE.md), [41 FUTURE](./Modul_41_FUTURE.md).  
+
+**Alltagsbeispiele:**  
+- Eine Schülerin schreibt in ihr RESET:LOG, wie sie mit Mobbing-Erfahrungen umgeht.  
+- Ein Arbeiter-Team führt einen „RESET-Moment“ ein: kurze Pause, STOP-Karte zeigen, dann weiterarbeiten.  
+- Eine Familie nutzt RESET-Workshops, um Routinen im Alltag zu hinterfragen.  
+
+*Quelle:* [APA: The role of journaling in trauma recovery](https://www.apa.org/monitor/2019/01/journaling-trauma)  
+
+---
+
+### 3. RESET in Gesellschaft
+- RESET-Momente öffnen Räume für Transformation.  
+- Nach Krisen wie Pandemien oder Klimakatastrophen bedeutet RESET: nicht zurück ins Alte, sondern Strukturen neu ausrichten.  
+- RESET = **Fehler beheben, ohne das System zu zerstören**.  
+- Gesellschaftlich heißt RESET: Gerechtigkeit wiederherstellen, Natur schützen, Governance erneuern.  
+- Verknüpfte Module: [21 CLIMATE](./Modul_21_CLIMATE.md), [23 JUSTICE](./Modul_23_JUSTICE.md), [38 GOVERNANCE](./Modul_38_GOVERNANCE.md).  
+
+*Quelle:* [IPCC 2023 Report – Climate Adaptation](https://www.ipcc.ch/report/ar6/wg2/)  
+
+---
+
+### 4. Beispiele
+- **Individuell:** Eine Person in Panik schaut auf die STOP-Karte, atmet durch → RESET.  
+- **Gemeinschaftlich:** Eine Stadt baut nach einer Flut ein Quartier neu – diesmal klimaresilient und solidarisch → RESET.  
+- **Didaktisch:** Eine Schule veranstaltet RESET-Workshops → Schüler:innen lernen, Routinen kritisch zu hinterfragen.  
+- **Kulturell:** Künstler:innen entwickeln eine Performance, in der das Publikum STOP-Karten hebt, wenn es „zu viel“ wird → RESET.  
+
+*Quelle:* [UNESCO: Culture for Resilience](https://en.unesco.org/creativity)  
+
+---
+
+### 5. Kurz gesagt
+RESET ist kein Ding, sondern eine Bewegung.  
+Jeder RESET-Moment – ob individuell, gemeinschaftlich oder gesellschaftlich – ist ein Schritt in Richtung **Würde, Wahrheit und Zukunft**.  
+
+---
+
+## 15. Nutzung in Bewegung & Ausnahmezuständen
+
+Bewegung gehört zum Menschsein.  
+Migration, Reisen, Flucht, Suche nach Arbeit oder Sicherheit – Menschen sind selten statisch.  
+Auch Ausnahmezustände wie Krieg, Blackouts oder Naturkatastrophen sind keine seltenen Sonderfälle mehr, sondern Teil unserer Gegenwart.  
+Das QUESTSYSTEM macht **Bewegung handhabbar** und den **Ausnahmezustand überlebbar** – nicht nur in der Krise, sondern auch im Alltag dauerhafter Unsicherheit.  
+
+---
+
+### 1. Bewegung als Grundbedingung
+- Menschen sind mobil, Grenzen überschreiten gehört zur Geschichte.  
+- Heute wird Bewegung oft erzwungen: durch Krieg, Klimawandel, Ungleichheit.  
+- Der Ausnahmezustand ist strukturell erzeugt – Millionen leben dauerhaft in Zwischenräumen (Transit, Flucht, prekäre Arbeit).  
+- Das QUESTSYSTEM akzeptiert Bewegung nicht als Störung, sondern als Normalität.  
+- Verknüpfte Module: [22 MIGRATION](./Modul_22_MIGRATION.md), [12 BORDER](./Modul_12_BORDER.md).  
+
+*Quelle:* [UNHCR Global Trends Report 2023](https://www.unhcr.org/global-trends-report-2023)  
+
+---
+
+### 2. RESETBOX in Bewegung
+- Basis: Eurobox 60 × 40 cm, 20–40 Liter Volumen, Gewicht (gefüllt) ca. 5–15 kg.  
+- Mobilität: tragbar per Hand, in Rucksack integrierbar, auf Fahrradanhänger oder im Camper stapelbar.  
+- Varianten: MINI (10 L), BASIC (20 L), FULL (40 L) → für Fußwege, ÖPNV oder Fahrzeugtransport.  
+- Ziel: Versorgung und Orientierung auch unterwegs sichern.  
+- Verknüpfte Module: [01 RESETBOX](./Modul_01_RESETBOX.md), [20 ENERGY](./Modul_20_ENERGY.md).  
+
+*Quelle:* [Sphere Handbook – Humanitarian Standards for Shelter & Non-Food Items](https://spherestandards.org/handbook/)  
+
+---
+
+### 3. Funktion im Ausnahmezustand
+- **Stromausfall:** Solar-Tools + Wasserfilter halten Grundversorgung stabil.  
+- **Krieg:** STOP-Karte + [32 LICENCE](./Modul_32_LICENCE.md) verhindern Vereinnahmung und sichern Transparenz.  
+- **Pandemie:** Community-RESET schafft Solidarität trotz Isolation.  
+- **Transit:** Boxen bieten ein Minimum an Sicherheit und Würde in prekären Räumen.  
+- Verknüpfte Module: [34 SECURITY](./Modul_34_SECURITY.md), [14 HEALTH](./Modul_14_HEALTH.md), [07 PSYCHE](./Modul_07_PSYCH.md).  
+
+*Quelle:* [WHO – Health emergency response](https://www.who.int/emergencies)  
+
+---
+
+### 4. Philosophische Dimension
+- Bewegung = nicht nur geografisch, sondern auch sozial: Menschen wechseln Rollen, Orte, Identitäten.  
+- Ausnahmezustand zeigt, was wirklich zählt: Würde, Überleben, Gemeinschaft.  
+- RESET bedeutet: auch im Chaos bleibt Orientierung möglich.  
+- Das QUESTSYSTEM schafft Architektur für Resilienz – nicht gegen Ausnahme, sondern *mit* Ausnahme.  
+- Verknüpfte Module: [23 JUSTICE](./Modul_23_JUSTICE.md), [30 TRUTH](./Modul_30_TRUTH.md), [41 FUTURE](./Modul_41_FUTURE.md).  
+
+*Quelle:* [Agamben, „State of Exception“ (2005)](https://press.uchicago.edu/ucp/books/book/chicago/S/bo3534144.html)  
+
+---
+
+### 5. Beispiele
+- **Krise:** Eine Familie flieht mit einer RESETBOX über eine Grenze – sie findet Wasser, Hygiene und Orientierung inmitten von Chaos.  
+- **Protest:** Aktivist:innen nutzen Dropcards mit 🍄 während einer Demonstration, um Wissen zu teilen, ohne sich selbst zu gefährden.  
+- **Alltag:** Studierende lagern eine MINI-RESETBOX im Wohnheim, um bei Blackouts oder Hitzeperioden handlungsfähig zu bleiben.  
+- **Transit:** Ein LKW-Fahrer führt eine BASIC-RESETBOX im Fahrzeug mit, um unterwegs unabhängiger zu sein.  
+- **Nachbarschaft:** Ein Camper mit Solarpanel versorgt im Blackout die Umgebung mit Strom und Internet.  
+
+---
+
+### 6. Kurz gesagt
+Bewegung und Ausnahme sind keine Störungen, sondern Teil des Lebens.  
+Das QUESTSYSTEM macht Menschen **in Bewegung handlungsfähig** und schützt im Ausnahmezustand ihre **Würde und Orientierung**.  
+
+---
+
+## 16. Ethik des offenen Containers
+
+Der Container ist das Herzstück des QUESTSYSTEMs – praktisch und symbolisch zugleich.  
+Er ist **standardisiert** und dadurch global einsetzbar, aber er ist niemals „abgeschlossen“.  
+Die Ethik des offenen Containers bedeutet: **kein Privateigentum, sondern Gemeingut**.  
+
+---
+
+### 1. Warum ein Container?
+- **Praktisch:** Die Eurobox ist normiert (60 × 40 cm), stapelbar, global verfügbar.  
+- **Symbolisch:** Container sind Übergangsobjekte – sie transportieren, sammeln, bewahren und geben weiter.  
+- In der RESETBOX wird der Container selbst zum Symbol: eine „Schale“ für Würde, Wissen und Überleben – nicht für Profit.  
+
+*Quelle:* [Marc Levinson: The Box – How the Shipping Container Made the World Smaller (2006)](https://press.princeton.edu/books/paperback/9780691136400/the-box)  
+
+---
+
+### 2. Offenheit als Prinzip
+- Ein Container im QUESTSYSTEM ist nie „geschlossen“.  
+  - Inhalte können angepasst, erweitert, repliziert werden.  
+  - Baupläne, Inhalte und Methoden sind frei zugänglich.  
+- Ethik: Nutzung und Weitergabe sind frei, solange die **Würde** gewahrt bleibt.  
+- Abgrenzung: Private Aneignung oder Exklusivbesitz widersprechen dem System.  
+- Schutzmechanismus: [32 LICENCE](./Modul_32_LICENCE.md) mit **CC BY-SA + Dignity Clause** verhindert Exklusivrechte.  
+- Verstöße (z. B. Verkauf ohne Gemeinwohlbindung) werden durch Community-Dokumentation und öffentliche Sichtbarkeit neutralisiert.  
+
+*Quelle:* [Elinor Ostrom: Governing the Commons (1990)](https://www.cambridge.org/core/books/governing-the-commons/10.1017/CBO9780511807763)  
+
+---
+
+### 3. Künstlerische Dimension
+- Jede Box ist auch ein **Kunstwerk** – gestaltet von Communities, bemalt, erweitert.  
+- Offenheit bedeutet: kein fertiges Werk, sondern ein Prozess.  
+- 🍄 wird als kollektives Zeichen sichtbar: „Hier gilt Würde und Offenheit.“  
+- In Summe entsteht eine **globale Installation**: unzählige Boxen, die sich ähneln und doch alle einzigartig sind.  
+
+*Quelle:* [Nicolas Bourriaud: Relational Aesthetics (1998)](https://www.lespressesdureel.com/EN/ouvrage.php?id=142)  
+
+---
+
+### 4. Philosophische Dimension
+- Container sind Symbole für **Übergang und Transformation**.  
+- Im QUESTSYSTEM wird der Container neu gedeutet: nicht nur Transport von Waren, sondern von **Wissen, Resilienz und Würde**.  
+- Ein Container ist nie „fertig“ – er lädt zur Teilhabe, Veränderung und Weitergabe ein.  
+- Offenheit ist damit nicht nur rechtlich, sondern existenziell verankert.  
+
+*Quelle:* [Peter Sloterdijk: Sphären I – Blasen (1998)](https://www.suhrkamp.de/buch/peter-sloterdijk-sphaeren-i-blasen-t-9783518122529)  
+
+---
+
+### 5. Praktische Umsetzung
+- Lizenz (CC BY-SA + Dignity Clause) schützt die Offenheit: jede:r darf Container bauen, verändern, weitergeben.  
+- Grenzen sind klar:  
+  - Kein Missbrauch (z. B. militärische Nutzung, extremistische Propaganda).  
+  - Kein Ausschluss (alle dürfen teilnehmen).  
+  - Keine Vereinnahmung (kein „Patent“ auf RESETBOX).  
+- Dokumentation: Jede legitime Box trägt 🍄 + STOP-Karte → sichtbar, dass sie Teil des offenen Systems ist.  
+
+---
+
+### 6. Beispiele
+- **Bildung:** Eine Schule baut eine RESETBOX. Später erweitert eine Nachbarschaft sie um Solarlampen und Funkgeräte.  
+- **Kunst:** In einer Stadt bemalen Künstler:innen RESETBOXen mit 🍄, die so zu sichtbaren Anlaufpunkten in Krisen werden.  
+- **Digital:** Eine NGO erstellt eine digitale RESETBOX mit Kiwix-Inhalten – frei zugänglich weltweit.  
+- **Schutz:** Eine Firma versucht, die Box als Produkt zu verkaufen → Community verweist auf Lizenz, STOP-Karte signalisiert Missbrauch.  
+
+---
+
+### 7. Kurz gesagt
+Der Container ist **kein Besitz**, sondern ein **offenes Gemeingut**.  
+Er ist zugleich **praktisches Werkzeug, philosophisches Symbol und kollektives Kunstwerk** – offen für alle, geschützt durch Ethik und Gemeinschaft.  
+
+---
+
+## 17. Vertrauensarchitektur & Transparenzlogik
+
+Vertrauen ist die Grundlage jeder Nutzung.  
+Das QUESTSYSTEM basiert nicht auf blindem Glauben, sondern auf **offenen, überprüfbaren Strukturen**.  
+Nur durch Transparenz kann Missbrauch verhindert und Vertrauen wachsen.  
+
+---
+
+### 1. Warum Vertrauen zentral ist
+- Ohne Vertrauen bleibt jedes System leer.  
+- Vertrauen entsteht nicht durch Kontrolle, sondern durch Nachvollziehbarkeit.  
+- Das QUESTSYSTEM macht alle Strukturen offen sichtbar, damit jede:r sie prüfen kann.  
+- Verknüpfte Module: [30 TRUTH](./Modul_30_TRUTH.md), [38 GOVERNANCE](./Modul_38_GOVERNANCE.md).  
+
+*Quelle:* [Onora O’Neill: A Question of Trust (2002)](https://www.cambridge.org/core/books/a-question-of-trust/66D040AD1C15AA9A2EBD1D6A4303DA94)  
+
+---
+
+### 2. Transparenzlogik
+- **Alles wird dokumentiert:** Baupläne, Finanzströme, Inhalte, Prozesse.  
+- **Alles ist einsehbar:** keine Geheimabsprachen, keine Hinterzimmerpolitik.  
+- **Alles ist offen lizenziert:** Wissen gehört der Gemeinschaft, nicht Einzelnen.  
+- Transparenz ist Pflicht, kein „Goodwill“.  
+- Verknüpfte Module: [32 LICENCE](./Modul_32_LICENCE.md), [25 FINANCE](./Modul_25_FINANCE.md).  
+
+*Quelle:* [Transparency International – Corruption Perceptions Index](https://www.transparency.org/en/cpi/2023)  
+
+---
+
+### 3. Technische Umsetzung
+- **Open Source:** Quellcode für Software ist frei zugänglich (z. B. GitHub-Repos).  
+- **Open Hardware:** Baupläne für RESETBOX und Tools sind öffentlich verfügbar.  
+- **Open Data:**  
+  - Nutzungszahlen (wie viele Boxen im Einsatz sind).  
+  - Wirkungsmessungen (z. B. in Schulen, Communities).  
+  - Dokumentation von Lizenzverstößen.  
+- **Offene Protokolle:** Kiwix für Offline-Wissen, Peer-to-Peer für Netzwerke, Git für Versionierung.  
+- **Community-Feedback:** Jede:r kann Missbrauch melden – z. B. per QR-Code auf jeder Box.  
+- Verknüpfte Module: [35 DATA](./Modul_35_DATA.md), [28 NETWORK](./Modul_28_NETWORK.md).  
+
+*Quelle:* [Eric S. Raymond: The Cathedral and the Bazaar (1999)](http://www.catb.org/~esr/writings/cathedral-bazaar/)  
+
+---
+
+### 4. Ethische Dimension
+- Transparenz schützt vor Machtmissbrauch und Korruption.  
+- Vertrauen ist ein Gemeingut – es wächst, wenn jede:r nachvollziehen kann, was geschieht.  
+- Wahrheit ([30 TRUTH](./Modul_30_TRUTH.md)) und Erinnerung ([31 MEMORY](./Modul_31_MEMORY.md)) bilden die Basis.  
+- Philosophisch: Transparenz ist kein Selbstzweck, sondern Ausdruck von Verantwortung und Würde.  
+
+*Quelle:* [Jürgen Habermas: Faktizität und Geltung (1992)](https://www.suhrkamp.de/buecher/faktizitaet_und_geltung-juergen_habermas_42430.html)  
+
+---
+
+### 5. Beispiele
+- **Finanzen:** Die gGmbH veröffentlicht alle Einnahmen und Ausgaben in offenen Berichten – für jede Spende einsehbar.  
+- **Baupläne:** Jede RESETBOX trägt QR-Codes, die auf frei verfügbare Konstruktionsanleitungen verweisen.  
+- **Lizenzverstöße:** Wenn jemand Boxen privat verkauft, wird dies in einer öffentlichen Datenbank dokumentiert – sichtbar für alle.  
+- **Alltag:** Eine Nutzerin scannt den QR-Code ihrer Box und prüft selbst, ob sie zur offenen Lizenz gehört – Vertrauen entsteht unmittelbar.  
+
+---
+
+### 6. Kurz gesagt
+Vertrauen ist kein Versprechen, sondern ein System.  
+Das QUESTSYSTEM schafft Vertrauen durch **radikale Transparenz** – technisch, ethisch und gemeinschaftlich.  
+
+*Quelle:* [Open Government Partnership – Principles of Transparency](https://www.opengovpartnership.org/)  
+
+---
+
+## 18. Build-Kit & DIY-Infrastruktur
+
+Das QUESTSYSTEM lebt davon, dass es **nachbaubar und zugänglich** ist.  
+Nicht Abhängigkeit, sondern **Selbstermächtigung** ist das Ziel.  
+Darum kann jede:r die [RESETBOX](./Modul_01_RESETBOX.md) selbst bauen – mit einem Build-Kit, das physisch und digital verfügbar ist.  
+
+---
+
+### 1. Warum DIY?
+- Selbstbau stärkt Autonomie und Verständnis.  
+- DIY verhindert, dass Wissen monopolisiert oder verkauft wird.  
+- Jede Box, die entsteht, ist Beweis: QUESTSYSTEM ist dezentral und unaufhaltbar.  
+- DIY ist mehr als Technik – es ist auch Protest gegen Passivität und Konsum.  
+- Verknüpfte Module: [01 RESETBOX](./Modul_01_RESETBOX.md), [08 DEVICE](./Modul_08_DEVICE.md).  
+
+*Quelle:* [Gauntlett, Making is Connecting (2011)](https://www.politybooks.com/making-is-connecting/)  
+
+---
+
+### 2. Build-Kit – physisch
+- **Basiscontainer:** Eurobox (60 × 40 cm), robust, stapelbar.  
+- **Grundausstattung:** Wasserfilter, Solarlampe, STOP-Karte, RESET:LOG, Basismaterialien.  
+- **Erweiterungen:** angepasst an lokale Bedürfnisse (z. B. Medikamente, Funkgeräte, Kulturmaterialien).  
+- **Open Hardware-Plattformen:** Baupläne auf Wikifactory, Hackaday, GitHub.  
+- **Qualitätssicherung:** Community-Checklisten helfen, Mindeststandards einzuhalten.  
+
+*Quelle:* [Pearce, Open-Source Lab: How to Build Your Own Hardware and Reduce Research Costs (2014)](https://www.elsevier.com/books/open-source-lab/pearce/978-0-12-410462-4)  
+
+---
+
+### 3. Build-Kit – digital
+- **Offline-Wissen:** Kiwix-Pakete mit Inhalten wie:  
+  - Erste Hilfe (WHO, IFRC)  
+  - Recht & Menschenrechte (UN, Amnesty)  
+  - OpenStreetMap offline für Orientierung  
+  - Wikipedia Essentials  
+- **QR-Codes:** führen direkt zu Bauanleitungen, Updates und Community-Erweiterungen.  
+- **Open Source-Repos:** Git-basierte Versionierung von Bauplänen und Inhalten.  
+- **Dezentral:** keine zentrale Kontrolle, sondern Peer-to-Peer-Verteilung.  
+- Verknüpfte Module: [28 NETWORK](./Modul_28_NETWORK.md), [35 DATA](./Modul_35_DATA.md).  
+
+*Quelle:* [Kiwix – Offline Knowledge](https://kiwix.org/en/)  
+
+---
+
+### 4. DIY-Infrastruktur – kulturell
+- **Workshops:** Schulen, Community-Zentren, Festivals → Menschen bauen gemeinsam RESETBOXen.  
+- **Kunstaktionen:** Jede Box wird bemalt oder markiert → keine zwei Boxen sind identisch.  
+- **Stickeraktionen:** 🍄-Symbole mit QR-Codes verbreiten Wissen unsichtbar in Städten und Dörfern.  
+- **DIY als Widerstand:** Bauen heißt, sich nicht nur versorgen, sondern auch sichtbar sagen: „Wir warten nicht – wir handeln.“  
+- Verknüpfte Module: [40 ART](./Modul_40_ART.md), [29 SYMBOL](./Modul_29_SYMBOL.md).  
+
+*Quelle:* [Duncombe & Lambert, Art of Activism (2021)](https://artofactivismbook.com/)  
+
+---
+
+### 5. Beispiele
+- **Jugendzentrum:** organisiert einen „Build Day“ – 10 Boxen entstehen, bemalt und an Familien verteilt.  
+- **NGO:** stellt digitale Build-Kits zum Download bereit → weltweit nachbaubar.  
+- **Aktivist:innen:** nutzen 🍄-Sticker mit QR-Codes in der Stadt, die zu Bauanleitungen führen.  
+- **Familie:** lagert eine RESETBOX im Keller für Blackouts – gebaut mit Anleitung aus einem Workshop.  
+- **Studierende:** bauen MINI-RESETBOXen im Wohnheim → gegenseitige Hilfe bei Stromausfällen.  
+
+---
+
+### 6. Kurz gesagt
+Das Build-Kit macht das QUESTSYSTEM **nachbaubar, überprüfbar und weitergebbar**.  
+DIY-Infrastruktur bedeutet: **Jede:r kann bauen. Jede:r kann weitergeben. Jede:r kann Teil des Ganzen sein.**  
+
+*Quelle:* [Fab Labs – A global DIY infrastructure](https://fabfoundation.org/)  
+
+---
+
+## 19. Downloads, QR-Zugang & Offline-Versionen
+
+Das QUESTSYSTEM muss auch dann funktionieren, wenn Strom oder Internet ausfallen.  
+**Offline-Zugang** ist entscheidend, um Wissen, Baupläne und Orientierung in jeder Lage verfügbar zu machen.  
+Darum gibt es Downloads, QR-Codes und Offline-Versionen, die überall eingesetzt werden können.  
+
+---
+
+### 1. Warum Offline-Zugang entscheidend ist
+- In Blackouts, Kriegen oder bei Netzsperren ist Online-Zugang oft unmöglich.  
+- Offline-Versionen sichern Resilienz und Handlungsfähigkeit.  
+- Das QUESTSYSTEM denkt von Anfang an **offline-first** – Wissen darf nie von Servern oder Firmen abhängen.  
+- Verknüpfte Module: [08 DEVICE](./Modul_08_DEVICE.md), [28 NETWORK](./Modul_28_NETWORK.md).  
+
+*Quelle:* [UNESCO: Offline internet in education and crises](https://unesdoc.unesco.org/ark:/48223/pf0000370300)  
+
+---
+
+### 2. Downloads & Formate
+- **Kiwix-Pakete:**  
+  - Wikipedia Essentials (ca. 40 GB).  
+  - Gesundheitsinformationen (WHO, IFRC).  
+  - Menschenrechte (UN, Amnesty).  
+  - OpenStreetMap (weltweit oder regional, 5–30 GB).  
+- **PDFs:**  
+  - Handbücher, Bauanleitungen, RESET:LOG-Vorlagen, Lizenztexte.  
+  - Druckbar in A4 oder A6 für Dropcards.  
+- **Git-Repositories:**  
+  - Open Source Code, Hardware-Pläne, modulare Updates.  
+- **USB-Sticks & SD-Karten:**  
+  - 32–128 GB, robust, leicht verteilbar.  
+- Verknüpfte Module: [35 DATA](./Modul_35_DATA.md), [39 KNOWLEDGE](./Modul_39_KNOWLEDGE.md).  
+
+*Quelle:* [Kiwix – Offline Knowledge](https://kiwix.org/en/)  
+
+---
+
+### 3. QR-Zugang
+- **QR-Codes auf jeder Box:** verweisen auf Baupläne, Tools, Anleitungen.  
+- **STOP-Karten & Sticker:** enthalten QR-Codes für schnelle Weitergabe.  
+- **Offline-QRs:** QR-Codes können auf lokale Server oder gespeicherte Dateien verweisen (z. B. ein Raspberry Pi mit WLAN-Hotspot + Kiwix).  
+- Vorteil: universell verständlich, braucht keine Sprache.  
+- Verknüpfte Module: [29 SYMBOL](./Modul_29_SYMBOL.md), [40 ART](./Modul_40_ART.md).  
+
+*Quelle:* [GSMA – Mobile tech for humanitarian response](https://www.gsma.com/mobilefordevelopment/resources/mobile-technology-for-humanitarian-response/)  
+
+---
+
+### 4. Offline-Versionen
+- **Gedruckte Handbücher:**  
+  - Formate: A4 (vollständig), A6 (kompakt).  
+  - Mehrsprachig, lokal anpassbar.  
+  - Papierqualität: wasserfest beschichtetes Papier für Krisennutzung.  
+- **Dropcards:**  
+  - Kleine Karten mit 🍄 + QR.  
+  - Wetterfest (Laminat oder Kunststoff), unauffällig transportierbar.  
+- **Mobile Hotspots:**  
+  - Raspberry Pi oder vergleichbare Geräte mit Kiwix-Archiv.  
+  - Zugriff per WLAN ohne Internet.  
+- **Hybrid-System:** digital + analog → Wissen bleibt zugänglich, egal was passiert.  
+
+*Quelle:* [Sphere Handbook – Humanitarian Standards](https://spherestandards.org/handbook/)  
+
+---
+
+### 5. Beispiele
+- **Schule im ländlichen Raum:** nutzt Kiwix, um Unterricht auch ohne Internet fortzuführen.  
+- **Aktivist:innen:** verteilen Dropcards während einer Netzsperre, sodass Wissen nicht blockiert werden kann.  
+- **Familie im Blackout:** liest Bauanleitungen als PDF von einem USB-Stick, gespeist durch ein Solarpanel.  
+- **Krankenhaus im Krisengebiet:** greift über einen Offline-Hotspot auf WHO-Handbücher zu.  
+- **Senior:innen ohne Smartphone:** nutzen gedruckte Handbücher in einfacher Sprache.  
+
+---
+
+### 6. Symbolische Dimension
+- Offline heißt: **Freiheit vom Zugriff anderer**.  
+- Wissen darf nicht von Regierungen, Firmen oder Infrastrukturen abhängen.  
+- Offline-Systeme sind ein sichtbarer Widerstand gegen Kontrolle und Zensur.  
+- Das QUESTSYSTEM macht Wissen zu einem **Gemeingut in analoger und digitaler Form**.  
+
+*Quelle:* [EFF – Keeping the internet free & open](https://www.eff.org/issues/free-speech)  
+
+---
+
+### 7. Kurz gesagt
+Das QUESTSYSTEM ist auch offline nutzbar.  
+Mit **QR-Codes, Downloads und Kiwix** bleibt Wissen unzerstörbar, zugänglich und frei – egal wo, egal wann.  
+
+---
+
+## 20. Lizenzierung & Nicht-Kriminalisierung
+
+Ohne klare Lizenz droht jedes offene System von zwei Seiten vereinnahmt zu werden:  
+durch **Kommerzialisierung** (Privatisierung, Patentierung) oder durch **Kriminalisierung** (Verbot, Unterdrückung).  
+Das QUESTSYSTEM schützt sich dagegen durch eine eindeutige Lizenzlogik.  
+
+---
+
+### 1. Warum Lizenzierung entscheidend ist
+- Lizenzierung macht das QUESTSYSTEM **überprüfbar, legal und offen**.  
+- Sie verhindert, dass Einzelne Exklusivrechte beanspruchen können.  
+- Sie schafft Schutz- und Argumentationsgrundlagen für Nutzer:innen, die Inhalte oder Boxen verbreiten.  
+- Verknüpfte Module: [32 LICENCE](./Modul_32_LICENCE.md), [23 JUSTICE](./Modul_23_JUSTICE.md).  
+
+*Quelle:* [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)  
+
+---
+
+### 2. Lizenzmodell im QUESTSYSTEM
+- **CC BY-SA 4.0** (Creative Commons Attribution-ShareAlike):  
+  - Inhalte dürfen frei genutzt, verändert und weitergegeben werden.  
+  - Pflicht: Nennung der Quelle + Weitergabe unter gleichen Bedingungen.  
+- **Dignity Clause** (Zusatz des QUESTSYSTEMs):  
+  - Nutzung ist nur erlaubt, wenn sie die **Würde des Menschen** achtet.  
+  - Gewalt, Diskriminierung oder Vereinnahmung durch autoritäre Strukturen sind ausgeschlossen.  
+- Damit ist die Lizenz sowohl **juristisch wirksam** als auch **ethisch bindend**.  
+
+*Quelle:* [Ostrom, Governing the Commons (1990)](https://www.cambridge.org/core/books/governing-the-commons/10.1017/CBO9780511807763)  
+
+---
+
+### 3. Nicht-Kriminalisierung
+- Die Lizenz macht klar: QUESTSYSTEM = **Gemeingut**.  
+- Behörden oder Firmen können dennoch versuchen, es einzuschränken – aber:  
+  - Die Lizenz dient als **Rechtsgrundlage**, um Verteilungen, Workshops oder Publikationen zu verteidigen.  
+  - Internationale Anerkennung von Creative Commons stärkt die Legitimität.  
+- Schutzbereiche:  
+  - Bildung (Schulen, Universitäten).  
+  - Katastrophenhilfe (NGOs, gGmbH).  
+  - Kultur (Kunstprojekte, Communitys).  
+- Verknüpfte Module: [37 DEMOCRACY](./Modul_37_DEMOCRACY.md), [38 GOVERNANCE](./Modul_38_GOVERNANCE.md).  
+
+*Quelle:* [Creative Commons Case Studies – Legal Defense](https://creativecommons.org/about/program-areas/case-studies/)  
+
+---
+
+### 4. Praktische Szenarien
+- **Behörden:** Polizei will QR-Verteilungen stoppen → Lizenz beweist: Bildungsgut, legal, kein Propagandamaterial.  
+- **Kommerz:** Firma versucht, RESETBOX als Produkt zu patentieren → Lizenz blockiert, offene Weitergabe gesichert.  
+- **Extremismus:** Gruppe will 🍄 als Gewaltzeichen nutzen → Dignity Clause entzieht Legitimität, Community setzt STOP-Karte.  
+- **Alltag:**  
+  - Lehrer:in gibt RESETBOX-Materialien im Unterricht weiter – rechtlich abgesichert.  
+  - Helfer:innen verteilen Boxen im Katastrophengebiet – nicht kriminalisierbar.  
+
+---
+
+### 5. Ethische Dimension
+- Lizenz ist mehr als Recht – sie ist ein **kultureller Vertrag**:  
+  - Für Offenheit.  
+  - Für Transparenz.  
+  - Für die Unantastbarkeit der Würde.  
+- Sie markiert eine Grenze: alles, was gegen Menschenwürde, Wahrheit und Gerechtigkeit verstößt, verliert automatisch die Legitimität.  
+- Damit wird die Lizenz selbst zum Symbol für Wahrheit und Widerstand.  
+- Verknüpfte Module: [30 TRUTH](./Modul_30_TRUTH.md), [40 ART](./Modul_40_ART.md).  
+
+*Quelle:* [Habermas, Faktizität und Geltung (1992)](https://www.suhrkamp.de/buecher/faktizitaet_und_geltung-juergen_habermas_42430.html)  
+
+---
+
+### 6. Kurz gesagt
+Die Lizenz macht das QUESTSYSTEM **frei, offen und geschützt**.  
+Sie verhindert Missbrauch und Exklusivbesitz und bietet eine **rechtliche Verteidigung gegen Kriminalisierung** – gestützt durch eine ethische Verpflichtung zur Würde.  
+
+---
+
+## 21. Internationale Adaptionsmatrix
+
+Das QUESTSYSTEM ist global gedacht, aber wirkt lokal.  
+Jede Region der Welt hat unterschiedliche Herausforderungen – daher braucht es eine **Adaptionsmatrix**, die globale Prinzipien mit regionalen Realitäten verbindet.  
+
+---
+
+### 1. Warum eine Adaptionsmatrix?
+- Ohne Anpassung bleibt jedes System abstrakt.  
+- Das QUESTSYSTEM wird durch regionale Matrixlogik **konkret und wirksam**.  
+- Unterschiedliche Regionen → unterschiedliche Prioritäten (z. B. Wasser vs. Demokratie).  
+- Verknüpfte Module: [22 MIGRATION](./Modul_22_MIGRATION.md), [23 JUSTICE](./Modul_23_JUSTICE.md).  
+
+*Quelle:* [UNDP – Human Development Report 2023/24](https://hdr.undp.org/)  
+
+---
+
+### 2. Prinzipien der Adaptierbarkeit
+- **Sprache:** Inhalte müssen lokal verständlich sein → Übersetzungen in regionale Sprachen, visuelle Symbole für Analphabet:innen.  
+- **Recht:** Anpassung an lokale Rechtslagen, ohne Kernprinzipien (Würde, Offenheit) aufzugeben.  
+- **Ressourcen:** Nutzung dessen, was vor Ort verfügbar ist (z. B. Bambus statt Plastik).  
+- **Kultur:** Symbole & Methoden müssen kulturell resonieren (🍄 kann lokal erweitert werden).  
+- **Partizipation:** Communities vor Ort definieren Prioritäten und tragen Verantwortung.  
+
+*Quelle:* [Elinor Ostrom – Governing the Commons (1990)](https://www.cambridge.org/core/books/governing-the-commons/10.1017/CBO9780511807763)  
+
+---
+
+### 3. Internationale Matrix (Beispiele)
+
+| Region             | Prioritäre Module | Begründung |
+|--------------------|------------------|------------|
+| **Europa**         | [09 DEBT](./Modul_09_DEBT.md), [25 FINANCE](./Modul_25_FINANCE.md), [37 DEMOCRACY](./Modul_37_DEMOCRACY.md) | Finanz- und Demokratiedefizite im Kontext sozialer Ungleichheit. |
+| **Subsahara-Afrika** | [02 WATER](./Modul_02_WATER.md), [04 FOOD](./Modul_04_FOOD.md), [14 HEALTH](./Modul_14_HEALTH.md) | Zugang zu Grundversorgung (Wasser, Ernährung, Gesundheit). |
+| **Südasien**       | [21 CLIMATE](./Modul_21_CLIMATE.md), [22 MIGRATION](./Modul_22_MIGRATION.md), [13 NATURE](./Modul_13_NATURE.md) | Klimarisiken (Überschwemmungen, Hitzewellen) und Migration. |
+| **Lateinamerika**  | [18 CULTURE](./Modul_18_CULTURE.md), [23 JUSTICE](./Modul_23_JUSTICE.md), [26 HOUSING](./Modul_26_HOUSING.md) | Kultur, soziale Ungleichheit und Wohnraumkrisen. |
+| **Nahost/Nordafrika** | [12 BORDER](./Modul_12_BORDER.md), [36 CONFLICT](./Modul_36_CONFLICT.md), [22 MIGRATION](./Modul_22_MIGRATION.md) | Konflikte, Grenzen und Fluchtbewegungen. |
+| **Nordamerika**    | [20 ENERGY](./Modul_20_ENERGY.md), [35 DATA](./Modul_35_DATA.md), [38 GOVERNANCE](./Modul_38_GOVERNANCE.md) | Energieabhängigkeit, Datensouveränität, Governance-Krisen. |
+| **Pazifikinseln**  | [21 CLIMATE](./Modul_21_CLIMATE.md), [02 WATER](./Modul_02_WATER.md), [41 FUTURE](./Modul_41_FUTURE.md) | Klimawandel, Trinkwassermangel, Bedrohung der Zukunft. |
+
+*Quelle:* [IPCC AR6 – Regional Climate Impacts](https://www.ipcc.ch/report/ar6/wg2/)  
+
+---
+
+### 4. Praxis der Anpassung
+- Boxen & Materialien werden **regional übersetzt, angepasst und erweitert**.  
+- Communities vor Ort definieren Prioritäten.  
+- Internationales Open-Source-Netzwerk sorgt für Austausch von Wissen und Best Practices.  
+- Matrix ist **dynamisch** – sie verändert sich mit Krisen, Migration und politischen Entwicklungen.  
+
+*Quelle:* [IOM – World Migration Report 2024](https://www.iom.int/world-migration-report-2024)  
+
+---
+
+### 5. Beispiele
+- **Bangladesch:** RESETBOX enthält Tools gegen Überschwemmungen, Fokus auf Migration & Klima.  
+- **Brasilien:** Boxen kombinieren Kulturmaterialien mit Modulen zu Housing & Community.  
+- **Deutschland:** Fokus auf Debt, Work, Demokratie & digitale Resilienz.  
+- **Äthiopien:** RESETBOX stärkt Wasserzugang, Gesundheit & Care-Strukturen.  
+- **Palästina:** Fokus auf Grenzerfahrung, Sicherheit & Gemeinschaftsschutz.  
+- **Fidschi:** RESETBOX als Klimaanpassungs-Tool gegen steigenden Meeresspiegel.  
+
+---
+
+### 6. Philosophische Dimension
+- Die Adaptionsmatrix zeigt: **Vielfalt und Einheit sind kein Widerspruch**.  
+- Universelle Ethik (Würde, Wahrheit, Offenheit) trifft auf lokale Realität (Kultur, Natur, Recht).  
+- So wird das QUESTSYSTEM zu einem **globalen, aber nicht hegemonialen Werkzeug**.  
+
+*Quelle:* [Amartya Sen – Development as Freedom (1999)](https://global.oup.com/academic/product/development-as-freedom-9780198297581)  
+
+---
+
+### 7. Kurz gesagt
+Die Adaptionsmatrix macht das QUESTSYSTEM **global anschlussfähig und lokal relevant**.  
+Sie verbindet **universelle Ethik** mit **regionaler Realität** – flexibel, dezentral und partizipativ.  
+
+---
+
+## 22. Kooperationen & Schnittstellen
+
+Das QUESTSYSTEM ist kein isoliertes Projekt, sondern Teil globaler Strukturen.  
+Seine Stärke wächst durch **Kooperationen** und die Fähigkeit, an bestehende Systeme anzudocken – ohne sich vereinnahmen zu lassen.  
+
+---
+
+### 1. Warum Kooperationen entscheidend sind
+- Kooperation erweitert Wirkung und Reichweite.  
+- QUESTSYSTEM kann nicht alles allein leisten, sondern ergänzt bestehende Strukturen.  
+- Kooperationen zeigen: QUESTSYSTEM = Teil einer globalen Commons-Architektur.  
+- Verknüpfte Module: [24 COMMUNITY](./Modul_24_COMMUNITY.md), [38 GOVERNANCE](./Modul_38_GOVERNANCE.md).  
+
+*Quelle:* [Helfrich & Bollier – Commons: Für eine neue Politik jenseits von Markt und Staat (2019)](https://www.oekom.de/buch/commons-9783962380659)  
+
+---
+
+### 2. Prinzipien der Kooperation
+- **Offenheit & Transparenz:** alle Absprachen sind öffentlich dokumentiert.  
+- **Würde als Grenze:** keine Kooperation mit autoritären, diskriminierenden oder gewaltorientierten Akteuren.  
+- **Nicht-Vereinnahmung:** Partner:innen dürfen das System nutzen, aber nicht kontrollieren.  
+- **Partizipation:** Communities vor Ort bestimmen, wie Kooperationen konkret aussehen.  
+- **Rechtliche Grundlage:** Kooperationen mit Organisationen erfolgen über Memoranda of Understanding (MoUs) und die Gemeinnützigkeits-Logik der gGmbH.  
+
+*Quelle:* [BMJV – Gemeinnützigkeitsrecht in Deutschland](https://www.bmj.de/)  
+
+---
+
+### 3. Schnittstellen zu bestehenden Systemen
+- **Katastrophenschutz:** RESETBOX ergänzt staatliche Hilfe, indem sie Commons-basierte Strukturen bereitstellt (z. B. lokale Build-Kits, unabhängige Energieversorgung).  
+- **Bildung:** Integration in Schulen & Universitäten; RESETBOX als Lehrmittel für Resilienz, Technik & Ethik.  
+- **Digitale Commons:** Anbindung an Wikipedia, Kiwix, OpenStreetMap, GitHub – offene Daten & Versionierung.  
+- **Kunst & Kultur:** Kooperation mit Festivals, Museen, Street-Art-Bewegungen → QUESTSYSTEM als lebendiges Kunstwerk.  
+- Verknüpfte Module: [18 CULTURE](./Modul_18_CULTURE.md), [28 NETWORK](./Modul_28_NETWORK.md).  
+
+*Quelle:* [Fab Foundation – Fab Labs als globale DIY-Infrastruktur](https://fabfoundation.org/)  
+
+---
+
+### 4. Praktische Partner (Beispiele)
+- **NGOs:** Ärzte ohne Grenzen, Caritas, Rotes Kreuz → logistische Verbreitung.  
+- **Hackspaces & Maker-Communities:** FabLabs, Hacklabs → Entwicklung neuer Tools & Hardware.  
+- **Städte & Kommunen:** Bürgerhäuser, Bibliotheken, Werkstätten → lokale Verankerung.  
+- **Kunst- & Kulturszene:** Biennalen, lokale Initiativen, Street-Art-Kollektive → Sichtbarkeit & Symbolik.  
+
+*Quelle:* [OECD – The role of NGOs in development cooperation (2019)](https://www.oecd.org/)  
+
+---
+
+### 5. Beispiele für Kooperation
+- **Schule:** nutzt RESETBOX als Lehrmaterial → Kooperation mit Bildungsministerium, Lehrkräften & Schüler:innen.  
+- **Hackspace:** entwickelt neue Tools für die Box → Open Source Schnittstelle, dokumentiert auf GitHub.  
+- **NGO:** integriert RESETBOX in Katastrophenhilfe → Koordination mit lokalen Behörden.  
+- **Kunstfestival:** zeigt RESETBOX als Installation → Schnittstelle von Kunst & Resilienz, 🍄 als kollektives Symbol.  
+- **Alltag:**  
+  - Student:in baut Mini-Box im Hackspace.  
+  - Senior:in erhält QR-Dropcard in Bibliothek.  
+  - Aktivist:in nutzt Box-Inhalte bei einer Demonstration für sichere Kommunikation.  
+
+---
+
+### 6. Philosophische Dimension
+- Kooperationen sind mehr als funktional – sie sind Ausdruck von **Solidarität**.  
+- Sie verbinden lokale Selbsthilfe mit globaler Commons-Logik.  
+- Kooperation wird so zu einer **Kulturtechnik des Überlebens und der Würde**.  
+- QUESTSYSTEM bleibt offen, aber unverfügbar für Vereinnahmung.  
+
+*Quelle:* [Judith Butler – Notes Toward a Performative Theory of Assembly (2015)](https://www.hup.harvard.edu/catalog.php?isbn=9780674983984)  
+
+---
+
+### 7. Kurz gesagt
+Kooperationen machen das QUESTSYSTEM **anschlussfähig**.  
+Schnittstellen verbinden es mit bestehenden Strukturen – **ohne Abhängigkeit, ohne Vereinnahmung, immer auf Augenhöhe**.  
+
+---
+
+
+
+
 
 
 

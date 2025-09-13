@@ -760,114 +760,66 @@ Quellen- und Lizenzprüfung mindestens alle 24 Monate (nächster Check: 2027).
 
 ## 06. Ethische Basis
 
-Das QUESTSYSTEM ruht auf einer klaren Grundlage:  
-die **Dignity Clause** und die **14 Gebote der Menschlichkeit**.  
+## Ethische Grundlagen
 
-### Die Dignity Clause
-*„Die Würde des Menschen ist unantastbar. Kein Teil des QUESTSYSTEMs darf diese Würde verletzen oder relativieren.“*  
+Das QUESTSYSTEM ist durch die **[Dignity Clause](./DIGNITY_CLAUSE.md)** und die **[14 Gebote (V2.1)](./14_GEBOTE_V2.1.md)** geschützt.  
+Sie bilden die verbindliche ethische Verfassung des Projekts und sichern, dass es nicht missbraucht oder vereinnahmt werden kann.  
+
+🍄 Die Gebote sind **Leitsterne, keine Dogmen**:  
+Sie schützen das Fundament (Kern), geben Orientierung (Rahmen) und bleiben durch Diskussion lebendig.  
 
 ---
 
-### Die 14 Gebote der Menschlichkeit
+### Dignity Clause – Kurzfassung
+Die Würde des Menschen ist unantastbar.  
+Jede Nutzung des QUESTSYSTEMS darf nicht zur Verletzung von Würde, zu Diskriminierung, Unterdrückung oder Missbrauch beitragen.  
+Beiträge, Forks und Derivate sind nur dann gültig, wenn sie diesem Grundsatz entsprechen.  
+Missbrauch hebt automatisch jedes Nutzungsrecht auf und entzieht die Erlaubnis zur Verwendung des Namens **„QUESTSYSTEM“**.  
 
-#### 1. Würde vor Gewinn
-Kein Gewinn darf wichtiger sein als die Würde von Menschen.  
-Wasser, Wohnen und Arbeit sind Grundrechte – keine Ware.  
+👉 Volltext siehe [`DIGNITY_CLAUSE.md`](./DIGNITY_CLAUSE.md)  
 
-- **Beispiele:** Finanzkrise 2008 → Millionen Zwangsräumungen. / Fair-Trade-Bewegung stärkt Produzenten weltweit.  
-- **Module:** [09 DEBT](./Modul_09_DEBT.md), [10 WORK](./Modul_10_WORK.md), [26 HOUSING](./Modul_26_HOUSING.md), [25 FINANCE](./Modul_25_FINANCE.md).  
-- **Negativszenario:** Wenn Profit alles bestimmt, verlieren Menschen ihre Würde.  
+---
 
-#### 2. Kein Mensch darf unsichtbar werden
-Jeder Mensch hat das Recht, gesehen und gehört zu werden.  
+### Die 14 Gebote (Fassung V2.1) – Überblick
 
-- **Beispiele:** Geflüchtete in Lagern ohne Öffentlichkeit. / Straßenzeitungen machen Obdachlose sichtbar.  
-- **Module:** [01 RESETBOX](./Modul_01_RESETBOX.md), [24 COMMUNITY](./Modul_24_COMMUNITY.md), [34 SECURITY](./Modul_34_SECURITY.md).  
-- **Negativszenario:** Unsichtbarkeit führt zu Ausgrenzung und Gewalt.  
+**Kern-Gebote (unantastbar):**  
+1. Würde – Die Würde jedes Menschen ist unantastbar.  
+2. Nicht-Gewalt – Gewalt darf nicht legitimiert oder gefördert werden.  
+3. Pluralität – Unterschiedliche Kulturen, Stimmen und Wege sind gleichwertig.  
+4. Wahrheit – Ehrlichkeit und Faktentreue sind Grundlage jeder Kommunikation.  
 
-#### 3. Wissen muss geteilt werden
-Bildung ist ein Gemeingut, kein Privileg.  
+**Rahmen-Gebote (offen für Präzisierung):**  
+5. Freiheit – Freiheit gilt, solange sie nicht die Würde anderer verletzt.  
+6. Transparenz – Handlungen und Strukturen müssen nachvollziehbar sein.  
+7. Gleichheit – Niemand darf diskriminiert oder ausgeschlossen werden.  
+8. Teilhabe – Jede Person hat das Recht auf Mitgestaltung.  
+9. Nachhaltigkeit – Ressourcen sind zu schützen und regenerativ zu nutzen.  
+10. Offenheit – Wissen, Daten und Strukturen sind frei zugänglich.  
+11. Solidarität – Starke schützen Schwache; Hilfe wird geteilt.  
+12. Selbstbestimmung – Menschen entscheiden über ihr Leben und ihre Daten.  
+13. Gemeingut – Zentrale Strukturen gehören allen, nicht Einzelnen.  
+14. Verantwortung – Jede:r trägt Verantwortung für die Folgen des Handelns.  
 
-- **Beispiele:** Wikipedia und Open-Source-Materialien. / Nachbarschaftsschulen in Krisenregionen.  
-- **Module:** [11 SCHOOL](./Modul_11_SCHOOL.md), [39 KNOWLEDGE](./Modul_39_KNOWLEDGE.md), [28 NETWORK](./Modul_28_NETWORK.md).  
-- **Negativszenario:** Wer Wissen kontrolliert, kontrolliert Menschen.  
+👉 Volltext mit Begründungen, Quellen und Review-Logik: [`14_GEBOTE_V2.1.md`](./14_GEBOTE_V2.1.md)  
+👉 Offener Diskussionsraum: [`14_GEBOTE_DISCUSSION.md`](./14_GEBOTE_DISCUSSION.md)  
 
-#### 4. Gesundheit ist kein Privileg
-Jeder Mensch hat Anspruch auf medizinische Versorgung.  
+---
 
-- **Beispiele:** Ungerechte Impfstoffverteilung in COVID-19. / Kuba schickt Ärzt:innen weltweit in Krisengebiete.  
-- **Module:** [14 HEALTH](./Modul_14_HEALTH.md), [15 CARE](./Modul_15_CARE.md), [07 PSYCHE](./Modul_07_PSYCHE.md).  
-- **Negativszenario:** Gesundheit wird zur Ware, Leben zum Risiko.  
+### Durchsetzung & Update-Pflicht
 
-#### 5. Natur ist nicht verhandelbar
-Ohne Ökosysteme gibt es kein Überleben.  
+- **STOP-Karten:** Verstöße gegen die Dignity Clause oder die 14 Gebote werden mit STOP-Karten markiert → betroffene Beiträge sind automatisch ungültig.  
+- **Update-Pflicht:** Letzte Prüfung am **2025-09-13**, nächste verpflichtende Überprüfung spätestens **2027-09-13**.  
 
-- **Beispiele:** Abholzung im Amazonas bedroht Klima. / Urban Gardening schafft neue Grünräume in Städten.  
-- **Module:** [02 WATER](./Modul_02_WATER.md), [13 NATURE](./Modul_13_NATURE.md), [21 CLIMATE](./Modul_21_CLIMATE.md).  
-- **Negativszenario:** Naturzerstörung führt zu Kollaps und Flucht.  
+---
 
-#### 6. Arbeit ist Teilhabe, keine Knechtschaft
-Arbeit soll Sinn und Teilhabe ermöglichen, keine Ausbeutung.  
+### Quellen (Auswahl)
 
-- **Beispiele:** Zwangsarbeit in Lieferketten. / Genossenschaften schaffen faire Arbeit.  
-- **Module:** [10 WORK](./Modul_10_WORK.md), [25 FINANCE](./Modul_25_FINANCE.md), [37 DEMOCRACY](./Modul_37_DEMOCRACY.md).  
-- **Negativszenario:** Arbeit ohne Würde macht Menschen zu Objekten.  
-
-#### 7. Schulden dürfen nicht entwürdigen
-Finanzielle Lasten dürfen keine Existenzen zerstören.  
-
-- **Beispiele:** Überschuldung durch Mikrokredite. / Schuldenerlasse ermöglichen Neuanfang.  
-- **Module:** [09 DEBT](./Modul_09_DEBT.md), [23 JUSTICE](./Modul_23_JUSTICE.md), [38 GOVERNANCE](./Modul_38_GOVERNANCE.md).  
-- **Negativszenario:** Schuldenketten führen zu Abhängigkeit und Verzweiflung.  
-
-#### 8. Pflege ist Würdearbeit
-Pflege darf nie Ausbeutung bedeuten.  
-
-- **Beispiele:** Pflegekräfte im Burnout. / Hospizbewegung schenkt Sterbenden Würde.  
-- **Module:** [15 CARE](./Modul_15_CARE.md), [14 HEALTH](./Modul_14_HEALTH.md), [16 FAMILY](./Modul_16_FAMILY.md).  
-- **Negativszenario:** Ohne Pflege bricht soziale Würde zusammen.  
-
-#### 9. Kinder sind Zukunft
-Kinder haben Recht auf Bildung, Schutz und Entfaltung.  
-
-- **Beispiele:** Millionen Kinder ohne Schule. / UNICEF-Schulen in Krisengebieten sichern Zukunft.  
-- **Module:** [11 SCHOOL](./Modul_11_SCHOOL.md), [16 FAMILY](./Modul_16_FAMILY.md), [18 CULTURE](./Modul_18_CULTURE.md).  
-- **Negativszenario:** Ohne Bildung wird Zukunft zerstört.  
-
-#### 10. Kultur ist Überleben
-Kultur bewahrt Identität und schafft Sinn.  
-
-- **Beispiele:** Bedrohung indigener Sprachen. / Street-Art bringt Hoffnung in Krisenvierteln.  
-- **Module:** [18 CULTURE](./Modul_18_CULTURE.md), [40 ART](./Modul_40_ART.md), [29 SYMBOL](./Modul_29_SYMBOL.md).  
-- **Negativszenario:** Kulturverlust führt zu Sinnverlust und Fanatismus.  
-
-#### 11. Wahrheit ist Schutz
-Wahrheit schützt Freiheit, Lüge zerstört sie.  
-
-- **Beispiele:** Fake News und Wahlmanipulation. / Investigativer Journalismus deckt Machtmissbrauch auf.  
-- **Module:** [19 MEDIA](./Modul_19_MEDIA.md), [30 TRUTH](./Modul_30_TRUTH.md), [32 LICENCE](./Modul_32_LICENCE.md).  
-- **Negativszenario:** Ohne Wahrheit entsteht Diktatur.  
-
-#### 12. Gemeinschaft vor Isolation
-Gemeinschaft schützt, Isolation schwächt.  
-
-- **Beispiele:** Nachbarschaftshilfe bei Blackouts. / Solidarische Landwirtschaft verbindet Stadt und Land.  
-- **Module:** [24 COMMUNITY](./Modul_24_COMMUNITY.md), [34 SECURITY](./Modul_34_SECURITY.md), [36 CONFLICT](./Modul_36_CONFLICT.md).  
-- **Negativszenario:** Isolation führt zu Einsamkeit und Angst.  
-
-#### 13. Tod ist Teil des Lebens
-Sterben muss mit Würde begleitet werden.  
-
-- **Beispiele:** Recht auf Palliativversorgung. / Hospizkultur als Ausdruck von Mitmenschlichkeit.  
-- **Module:** [42 DEATH](./Modul_42_DEATH.md), [15 CARE](./Modul_15_CARE.md), [31 MEMORY](./Modul_31_MEMORY.md).  
-- **Negativszenario:** Verdrängung des Todes zerstört Würde.  
-
-#### 14. Technik muss dienen, nicht beherrschen
-Technik soll Werkzeuge bereitstellen, keine Menschen kontrollieren.  
-
-- **Beispiele:** Social Credit Systeme in China. / Open-Source-Software ermöglicht Freiheit.  
-- **Module:** [32 LICENCE](./Modul_32_LICENCE.md), [33 PRIVACY](./Modul_33_PRIVACY.md), [35 DATA](./Modul_35_DATA.md), [28 NETWORK](./Modul_28_NETWORK.md).  
-- **Negativszenario:** Technik ohne Ethik wird zum Kontrollinstrument.
+- [Grundgesetz Art. 1 – Die Würde des Menschen ist unantastbar](https://www.gesetze-im-internet.de/gg/art_1.html)  
+- [Allgemeine Erklärung der Menschenrechte, UN 1948](https://www.un.org/en/about-us/universal-declaration-of-human-rights)  
+- [Genfer Konventionen, IKRK](https://ihl-databases.icrc.org/en/ihl)  
+- [Arendt – *Vita activa*](https://archive.org/details/ArendtHannahVitaActiva)  
+- [Ostrom – *Governing the Commons*](https://press.princeton.edu/books/paperback/9780521405997/governing-the-commons)  
+- [Benkler – *The Wealth of Networks*](https://yalebooks.yale.edu/book/9780300125771/the-wealth-of-networks/)
 
 ---
 

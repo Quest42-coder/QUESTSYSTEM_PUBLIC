@@ -57,35 +57,34 @@ und ungefragt mit Markern deine Fliesen anmalt.
 
 ---
 
-## Symbolik 🍄
+#### Symbolik 🍄
 
-Der Pilz steht als Symbol für Widerstandskraft und Resilienz.  
+Der Pilz steht als Symbol für **Widerstandskraft und Resilienz**.  
 Er wächst dort, wo Bedingungen zerstört scheinen,  
 und zeigt damit: Brüche sind nicht das Ende,  
-sondern können der Anfang von Erneuerung sein.  
+sondern können der Anfang von Erneuerung sein.
 
 Er verkörpert das Prinzip *each one teach one*:  
 Wissen, Haltung und Fähigkeiten weiterzugeben,  
-damit niemand am Rand zurückbleibt.  
+damit niemand am Rand zurückbleibt.
 
-Seine Energie ist dieselbe wie in Hip-Hop:  
+Seine Energie trägt die Kraft des Hip-Hop:  
 Beats halten den Puls,  
 Worte durchbrechen Mauern,  
 Zeichen bleiben sichtbar,  
-Bewegung bricht Schwerkraft.  
+Bewegung bricht Schwerkraft.
 
 So ist der 🍄 der Beweis,  
 dass das QUESTSYSTEM lebt –  
 nicht durch Besitz,  
-sondern durch Weitergabe.  
+sondern durch Weitergabe.
 
 ---
 
-Und genau daraus entsteht die Frage, die größer ist als jede Antwort:  
+**Der 🍄 ist nicht Besitz, sondern Weitergabe –  
+und daraus wächst die Frage, die größer ist als jede Antwort:**  
 
-Was ist die Aufgabe eines Menschen, der in einer Gesellschaft lebt?
-
-**What’s your Quest?**
+### *What’s your Quest?*
 
 ---
 

@@ -41,6 +41,20 @@ sondern der Hinweis auf den Auftrag:
 *The Art of Crossing.*  
 
 ---
+## Quest42 – Haltung
+
+Quest42 steht für eine Haltung, die nicht angepasst fragt,  
+sondern die Normalität selbst infrage stellt.  
+Es ist der Mensch, der in Räume tritt, die nicht für ihn gedacht waren,  
+der nicht nur um Erlaubnis bittet,  
+sondern Spuren hinterlässt – sichtbar, unauslöschlich, manchmal unbequem.  
+
+---
+
+###Quest42 ist der Mensch, der nach deinem Bad fragt  
+und ungefragt mit Markern deine Fliesen anmalt.###
+
+---
 
 ## Symbolik 🍄
 

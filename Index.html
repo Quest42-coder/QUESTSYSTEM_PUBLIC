@@ -39,29 +39,18 @@
     header a{color:var(--fg); text-decoration:none; opacity:.9}
     header a:hover{text-decoration:underline; opacity:1}
 
-    .stage{
-      position:absolute; inset:0; display:grid; place-items:center;
-      padding:16px;
-    }
+    .stage{ position:absolute; inset:0; display:grid; place-items:center; padding:16px; }
     svg{width:min(1200px, 95vw); height:min(1200px, 95vh)}
     /* Rings */
     .ring-inner{stroke:var(--ring-inner); stroke-width:2.2; fill:none; stroke-opacity:.9}
     .ring-mid{stroke:var(--ring-mid); stroke-width:2.2; fill:none; stroke-opacity:.9}
     .ring-outer{stroke:var(--ring-outer); stroke-width:2.2; fill:none; stroke-opacity:.9}
 
-    /* Nodes */
-    .node{
-      cursor:pointer;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,.35));
-      transition: transform .15s ease, opacity .2s ease;
-    }
-    .node:hover{transform: translateY(-2px) scale(1.03)}
-    .node circle{
-      fill:var(--node-bg); stroke:var(--node-border); stroke-width:1.5;
-    }
-    .node text{
-      font-size:12px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle; pointer-events:none;
-    }
+    /* Nodes (Links in SVG) */
+    svg a.node { cursor:pointer; filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); transition: transform .15s ease, opacity .2s ease; }
+    svg a.node:hover{ transform: translateY(-2px) scale(1.03); }
+    .node circle{ fill:var(--node-bg); stroke:var(--node-border); stroke-width:1.5; }
+    .node text{ font-size:12px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle; pointer-events:none; }
     .inner text{ fill:#5d2029 }    /* rosa Texttönung */
     .mid text{   fill:#6c5b00 }
     .outer text{ fill:#274b7a }
@@ -81,7 +70,7 @@
     }
     .tip.show{opacity:1; transform:translate(-50%, calc(-100% - 10px))}
     .tip small{color:var(--muted)}
-    /* Mobile helper */
+    /* Mobile legend */
     .legend{
       position:fixed; inset:auto 16px 16px 16px; z-index:25;
       display:flex; gap:10px; align-items:center; justify-content:center;
@@ -93,8 +82,6 @@
     .sw.inner{background:var(--ring-inner)}
     .sw.mid{background:var(--ring-mid)}
     .sw.outer{background:var(--ring-outer)}
-
-    /* Keyboard focus ring for a11y */
     .focus-ring{ outline:2px dashed var(--focus); outline-offset:3px}
     @media (max-width:720px){
       header{inset:12px 12px auto 12px}
@@ -126,8 +113,6 @@
         <circle r="70"></circle>
         <text y="0">RESETBOX</text>
       </g>
-
-      <!-- Knoten werden per JS eingefügt -->
     </svg>
   </div>
 
@@ -140,39 +125,40 @@
   <div id="tip" class="tip" role="status" aria-live="polite"></div>
 
   <script>
-    // -------- DATA: Namen + Links (passe hier bequem an) --------
-    // ring: 'inner' | 'mid' | 'outer'
-    // href: Link zur Datei im Repo (oder '#' wenn noch nicht vorhanden)
+    // Basis-URLs
     const GH = "https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC/blob/main";
+    const fallback = "https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC#readme";
+
+    // ---- Module definieren (Labels + Ziel-Links) ----
     const nodes = [
-      // INNER – Existential (rosa)
-      {label:"WATER",  ring:"inner", href:`${GH}/Modul_02_WATER.md`},
-      {label:"SHELTER",ring:"inner", href:`${GH}/Modul_03_SHELTER.md`},
-      {label:"FOOD",   ring:"inner", href:`${GH}/Modul_04_FOOD.md`},
-      {label:"SLEEP",  ring:"inner", href:`${GH}/Modul_05_SLEEP.md`},
-      {label:"BODY",   ring:"inner", href:`${GH}/Modul_06_BODY.md`},
-      {label:"PSYCHE", ring:"inner", href:`${GH}/Modul_07_PSYCHE.md`},
-      {label:"DEVICE", ring:"inner", href:`${GH}/Modul_08_DEVICE.md`},
-      {label:"DEBT",   ring:"inner", href:`${GH}/Modul_09_DEBT.md`},
+      // INNER – Existential
+      {label:"WATER",   ring:"inner", href:`${GH}/Modul_02_WATER.md`},
+      {label:"SHELTER", ring:"inner", href:`${GH}/Modul_03_SHELTER.md`},
+      {label:"FOOD",    ring:"inner", href:`${GH}/Modul_04_FOOD.md`},
+      {label:"SLEEP",   ring:"inner", href:`${GH}/Modul_05_SLEEP.md`},
+      {label:"BODY",    ring:"inner", href:`${GH}/Modul_06_BODY.md`},
+      {label:"PSYCHE",  ring:"inner", href:`${GH}/Modul_07_PSYCHE.md`},
+      {label:"DEVICE",  ring:"inner", href:`${GH}/Modul_08_DEVICE.md`},
+      {label:"DEBT",    ring:"inner", href:`${GH}/Modul_09_DEBT.md`},
 
-      // MID – Societal (gelb)
-      {label:"WORK",    ring:"mid", href:`${GH}/Modul_10_WORK.md`},
-      {label:"SCHOOL",  ring:"mid", href:`${GH}/Modul_11_SCHOOL.md`},
-      {label:"BORDER",  ring:"mid", href:`${GH}/Modul_12_BORDER.md`},
-      {label:"NATURE",  ring:"mid", href:`${GH}/Modul_13_NATURE.md`},
-      {label:"HEALTH",  ring:"mid", href:`${GH}/Modul_14_HEALTH.md`},
-      {label:"CARE",    ring:"mid", href:`${GH}/Modul_15_CARE.md`},
-      {label:"FAMILY",  ring:"mid", href:`${GH}/Modul_16_FAMILY.md`},
-      {label:"ANIMAL",  ring:"mid", href:`${GH}/Modul_17_ANIMAL.md`},
-      {label:"CULTURE", ring:"mid", href:`${GH}/Modul_18_CULTURE.md`},
-      {label:"MEDIA",   ring:"mid", href:`${GH}/Modul_19_MEDIA.md`},
-      {label:"ENERGY",  ring:"mid", href:`${GH}/Modul_20_ENERGY.md`},
-      {label:"CLIMATE", ring:"mid", href:`${GH}/Modul_21_CLIMATE.md`},
-      {label:"MIGRATION",ring:"mid",href:`${GH}/Modul_22_MIGRATION.md`},
-      {label:"JUSTICE", ring:"mid", href:`${GH}/Modul_23_JUSTICE.md`},
-      {label:"COMMUNITY",ring:"mid",href:`${GH}/Modul_24_COMMUNITY.md`},
+      // MID – Societal
+      {label:"WORK",     ring:"mid", href:`${GH}/Modul_10_WORK.md`},
+      {label:"SCHOOL",   ring:"mid", href:`${GH}/Modul_11_SCHOOL.md`},
+      {label:"BORDER",   ring:"mid", href:`${GH}/Modul_12_BORDER.md`},
+      {label:"NATURE",   ring:"mid", href:`${GH}/Modul_13_NATURE.md`},
+      {label:"HEALTH",   ring:"mid", href:`${GH}/Modul_14_HEALTH.md`},
+      {label:"CARE",     ring:"mid", href:`${GH}/Modul_15_CARE.md`},
+      {label:"FAMILY",   ring:"mid", href:`${GH}/Modul_16_FAMILY.md`},
+      {label:"ANIMAL",   ring:"mid", href:`${GH}/Modul_17_ANIMAL.md`},
+      {label:"CULTURE",  ring:"mid", href:`${GH}/Modul_18_CULTURE.md`},
+      {label:"MEDIA",    ring:"mid", href:`${GH}/Modul_19_MEDIA.md`},
+      {label:"ENERGY",   ring:"mid", href:`${GH}/Modul_20_ENERGY.md`},
+      {label:"CLIMATE",  ring:"mid", href:`${GH}/Modul_21_CLIMATE.md`},
+      {label:"MIGRATION",ring:"mid", href:`${GH}/Modul_22_MIGRATION.md`},
+      {label:"JUSTICE",  ring:"mid", href:`${GH}/Modul_23_JUSTICE.md`},
+      {label:"COMMUNITY",ring:"mid", href:`${GH}/Modul_24_COMMUNITY.md`},
 
-      // OUTER – Structural (hellblau)
+      // OUTER – Structural
       {label:"ART",        ring:"outer", href:`${GH}/Modul_40_ART.md`},
       {label:"FUTURE",     ring:"outer", href:`${GH}/Modul_41_FUTURE.md`},
       {label:"DEATH",      ring:"outer", href:`${GH}/Modul_42_DEATH.md`},
@@ -190,10 +176,6 @@
       {label:"KNOWLEDGE",  ring:"outer", href:`${GH}/Modul_39_KNOWLEDGE.md`}
     ];
 
-    // Fallback: wenn eine Zieldatei (noch) nicht existiert, linke auf README-Anker
-    const fallback = "https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC#readme";
-
-    // ------- Helper für Polar-Positionierung -------
     const config = {
       inner:{r:220, class:"inner"},
       mid:{r:380, class:"mid"},
@@ -201,9 +183,9 @@
     };
 
     const svg = document.getElementById('ringmap');
+    const tip = document.getElementById('tip');
 
     function placeNodes() {
-      // Gruppen nach Ring
       const groups = {inner:[], mid:[], outer:[]};
       nodes.forEach(n => groups[n.ring].push(n));
 
@@ -214,57 +196,45 @@
         svg.appendChild(group);
 
         const step = (Math.PI*2) / list.length;
-        const start = (-Math.PI/2); // oben starten
+        const start = (-Math.PI/2);
 
         list.forEach((n, idx) => {
           const angle = start + idx*step;
           const x = Math.cos(angle) * radius;
           const y = Math.sin(angle) * radius;
+          const url = n.href || fallback;
 
-          const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-          g.setAttribute("class","node " + config[ring].class);
-          g.setAttribute("transform", `translate(${x}, ${y})`);
-          g.setAttribute("tabindex","0");
-          g.setAttribute("role","link");
-          g.setAttribute("aria-label", `${n.label} – öffnen`);
-          g.dataset.href = n.href || fallback;
+          // *** NATIVE SVG LINK ***
+          const a = document.createElementNS("http://www.w3.org/2000/svg", "a");
+          a.setAttribute("href", url);
+          a.setAttribute("target", "_blank");
+          a.setAttribute("rel", "noopener");
+          a.setAttribute("tabindex","0");
+          a.setAttribute("role","link");
+          a.setAttribute("aria-label", `${n.label} – öffnen`);
+          a.setAttribute("transform", `translate(${x}, ${y})`);
+          a.classList.add("node", config[ring].class);
 
           const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
           circle.setAttribute("r", 42);
-          g.appendChild(circle);
+          a.appendChild(circle);
 
           const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
           text.textContent = n.label;
-          g.appendChild(text);
+          a.appendChild(text);
 
-          // Mouse
-          g.addEventListener('click', e => {
-            const url = g.dataset.href || fallback;
-            window.open(url, '_blank', 'noopener');
-          });
+          // Tooltip UX
+          a.addEventListener('mouseenter', e => showTip(`${n.label}`, e));
+          a.addEventListener('mousemove', e => moveTip(e));
+          a.addEventListener('mouseleave', hideTip);
+          a.addEventListener('focus', ()=> a.classList.add('focus-ring'));
+          a.addEventListener('blur',  ()=> a.classList.remove('focus-ring'));
 
-          // Tooltip
-          g.addEventListener('mouseenter', e => showTip(`${n.label}`, e));
-          g.addEventListener('mousemove', e => moveTip(e));
-          g.addEventListener('mouseleave', hideTip);
-
-          // Keyboard
-          g.addEventListener('focus', ()=> g.classList.add('focus-ring'));
-          g.addEventListener('blur',  ()=> g.classList.remove('focus-ring'));
-          g.addEventListener('keydown', e=>{
-            if(e.key==='Enter' || e.key===' '){
-              e.preventDefault();
-              window.open(g.dataset.href || fallback, '_blank', 'noopener');
-            }
-          });
-
-          group.appendChild(g);
+          group.appendChild(a);
         });
       });
     }
 
-    // Tooltip impl
-    const tip = document.getElementById('tip');
     function showTip(label, evt){
       tip.innerHTML = `${label} <br><small>Öffnen</small>`;
       moveTip(evt);

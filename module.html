@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QUESTSYSTEM – Modulansicht</title>
+  <meta name="description" content="QUESTSYSTEM Modulansicht – rendert eine Markdown-Datei direkt von GitHub." />
+  <style>
+    :root{
+      --bg:#0b0f16; --fg:#e7eef7; --muted:#9fb0c6; --link:#9ad1ff; --border:#243047; --card:#0f1521;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg); background:var(--bg)}
+    header{
+      position:sticky; top:0; z-index:10; display:flex; gap:12px; align-items:center;
+      padding:12px 16px; background:rgba(8,10,18,.75); border-bottom:1px solid var(--border); backdrop-filter: blur(6px);
+    }
+    header .dot{font-size:18px}
+    header a{color:var(--link); text-decoration:none}
+    header a:hover{text-decoration:underline}
+    .wrap{max-width:1100px; margin:20px auto; padding:0 16px 40px}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px 20px; box-shadow:0 8px 32px rgba(0,0,0,.35)}
+    #title{margin:8px 0 18px 0; font-size:22px; letter-spacing:.2px}
+    #meta{color:var(--muted); font-size:13px; margin-bottom:14px}
+    #content{min-height:40vh}
+    /* Markdown Basisstil */
+    #content h1,#content h2,#content h3{margin-top:1.6em}
+    #content a{color:var(--link)}
+    #content code{background:#0b1220; padding:.15em .35em; border-radius:6px}
+    #content pre{background:#0b1220; padding:12px; border-radius:10px; overflow:auto}
+    #notice{margin-top:18px; font-size:13px; color:var(--muted)}
+    .err{color:#ffc2c2}
+  </style>
+  <!-- Markdown-Renderer + Sanitizer per CDN (funktioniert auf GitHub Pages) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="dot">🍄</div>
+    <strong>QUESTSYSTEM</strong>
+    <span style="opacity:.6">/ Modulansicht</span>
+    <nav style="margin-left:auto; display:flex; gap:12px;">
+      <a href="./index.html">Ring-Übersicht</a>
+      <a id="view-raw" target="_blank" rel="noopener">Raw MD</a>
+      <a id="view-github" target="_blank" rel="noopener">Auf GitHub</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="card">
+      <h1 id="title">Modul wird geladen …</h1>
+      <div id="meta">Quelle: <code id="src"></code></div>
+      <article id="content" aria-live="polite"></article>
+      <div id="notice">
+        Hinweis: Diese Seite rendert die Markdown-Datei live von <code>raw.githubusercontent.com</code>.  
+        Relative Links im Modul werden automatisch auf die GitHub-Ansicht umgebogen.
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Konfiguration
+    const REPO   = "Quest42-coder/QUESTSYSTEM_PUBLIC"; // user/repo
+    const BRANCH = "main";
+
+    // Hilfsfunktionen
+    const params = new URLSearchParams(location.search);
+    const file   = params.get('file'); // z.B. "Modul_02_WATER.md"
+    const rawUrl = (p) => `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${p}`;
+    const ghUrl  = (p) => `https://github.com/${REPO}/blob/${BRANCH}/${p}`;
+
+    // DOM
+    const titleEl = document.getElementById('title');
+    const srcEl   = document.getElementById('src');
+    const content = document.getElementById('content');
+    const aRaw    = document.getElementById('view-raw');
+    const aGH     = document.getElementById('view-github');
+
+    async function load(){
+      if(!file){
+        titleEl.textContent = "Kein Modul angegeben";
+        content.innerHTML = `<p class="err">Es fehlt der Parameter <code>?file=DATEINAME.md</code>.<br>Beispiel: <code>module.html?file=Modul_02_WATER.md</code></p>`;
+        return;
+      }
+      srcEl.textContent = file;
+      aRaw.href = rawUrl(file);
+      aGH.href  = ghUrl(file);
+
+      try{
+        const res = await fetch(rawUrl(file), { cache: 'no-store' });
+        if(!res.ok) throw new Error(`HTTP ${res.status}`);
+        const md = await res.text();
+
+        // Titel aus erster H1, sonst Dateiname
+        const m = md.match(/^#\s+(.+)$/m);
+        titleEl.textContent = m ? m[1].trim() : file.replace(/\.md$/,'').replace(/_/g,' ');
+
+        // Rendern + säubern
+        const html = marked.parse(md, { mangle:false, headerIds:true });
+        const safe = DOMPurify.sanitize(html, { USE_PROFILES: { html: true } });
+        content.innerHTML = safe;
+
+        // relative Links im Modul sauber machen (→ auf GitHub-Blob öffnen)
+        content.querySelectorAll('a[href]').forEach(a=>{
+          const href = a.getAttribute('href');
+          if(!href) return;
+          const isAbs = /^https?:\/\//i.test(href) || href.startsWith('#') || href.startsWith('mailto:');
+          if(isAbs) return;
+          const normalized = href.replace(/^\.\//,'').replace(/^\//,'');
+          a.setAttribute('href', ghUrl(normalized));
+          a.setAttribute('target','_blank');
+          a.setAttribute('rel','noopener');
+        });
+
+      } catch(err){
+        titleEl.textContent = "Fehler beim Laden";
+        const gh = ghUrl(file);
+        content.innerHTML = `<p class="err">Das Modul <code>${file}</code> konnte nicht geladen werden. (${err.message})</p>
+          <p>Prüfe, ob die Datei im Repo existiert: <a href="${gh}" target="_blank" rel="noopener">${gh}</a></p>`;
+      }
+    }
+    // Wenn die Libs geladen sind (defer), dann los:
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', load);
+    } else { load(); }
+  </script>
+</body>
+</html>

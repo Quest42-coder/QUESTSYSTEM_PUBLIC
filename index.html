@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>QUESTSYSTEM – Ring-Homepage</title>
 <style>
-  :root{ --bg:#0e1116; --fg:#e7eef7; --muted:#9fb0c6; --ring-inner:#f3c0c7; --ring-mid:#f0de94; --ring-outer:#bcd5ff; --node-bg:#10151f; --node-border:#2a3344; --focus:#66ccff; --shadow:0 6px 24px rgba(0,0,0,.35) }
+  :root{ --bg:#0e1116; --fg:#e7eef7; --muted:#9fb0c6;
+         --ring-inner:#f3c0c7; --ring-mid:#f0de94; --ring-outer:#bcd5ff;
+         --node-bg:#10151f; --node-border:#2a3344; --focus:#66ccff; --shadow:0 6px 24px rgba(0,0,0,.35) }
   *{box-sizing:border-box} html,body{height:100%}
   body{margin:0; font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg);
        background: radial-gradient(1200px 800px at 50% 40%, #131824 0%, #0c0f16 60%, #090b11 100%);}
@@ -18,15 +20,8 @@
   .ring-mid{stroke:var(--ring-mid); stroke-width:2.2; fill:none; stroke-opacity:.9}
   .ring-outer{stroke:var(--ring-outer); stroke-width:2.2; fill:none; stroke-opacity:.9}
 
-  .node text{
-    font-size:15px;
-    letter-spacing:.3px;
-    text-anchor:middle;
-    dominant-baseline:middle;
-  }
-  @media (min-width: 900px){
-    .node text{ font-size:16px; }
-  }
+  .node text{ font-size:15px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle; }
+  @media (min-width: 900px){ .node text{ font-size:16px; } }
 
   .node circle{ fill:var(--node-bg); stroke:var(--node-border); stroke-width:1.5 }
   .inner text{ fill:#5d2029 } .mid text{ fill:#6c5b00 } .outer text{ fill:#274b7a }
@@ -34,11 +29,25 @@
   .center circle{ fill:transparent; stroke:#59657c; stroke-dasharray:4 6 }
   .center text{ fill:#7f8ea8; font-weight:600; font-size:14px }
 
-  .debug{position:fixed; left:16px; bottom:16px; right:16px; z-index:50; background:#1a2233; border:1px solid #2b3548; color:#ffe0e0; padding:10px 12px; border-radius:10px; font-size:13px; box-shadow:var(--shadow); display:none; white-space:pre-wrap}
-  .listwrap{position:fixed; left:16px; right:16px; bottom:16px; z-index:20; background:rgba(10,13,20,.7); border:1px solid #222a39; border-radius:12px; padding:10px 12px; max-height:32vh; overflow:auto}
+  /* Togglebare Linkliste */
+  .listwrap{ position:fixed; left:16px; right:16px; bottom:16px; z-index:20;
+    background:rgba(10,13,20,.85); border:1px solid #222a39; border-radius:12px;
+    padding:10px 12px; max-height:32vh; overflow:auto;
+    transform: translateY(calc(100% + 20px)); transition: transform .25s ease; }
+  .listwrap.show{ transform: translateY(0); }
   .listwrap a{color:#9ad1ff; text-decoration:none; margin-right:10px}
+  .fab{ position:fixed; right:16px; bottom:16px; z-index:25;
+    background:#142034; border:1px solid #243147; color:#9ad1ff; padding:10px 14px;
+    border-radius:999px; cursor:pointer; user-select:none; box-shadow:var(--shadow); font-size:14px }
 
-  .focus-ring circle { stroke: var(--focus); stroke-width:3 }
+  /* Linienfarben für Verbindungen */
+  .link-layer line{ stroke-opacity:.55; stroke-width:2.5 }
+  .link-inner { stroke:#f3c0c7; }
+  .link-mid   { stroke:#f0de94; }
+  .link-outer { stroke:#bcd5ff; }
+
+  .node.linked circle{ stroke:var(--focus); stroke-width:3 }
+  .node.active circle{ stroke:#9ad1ff; stroke-width:3.5 }
 </style>
 </head>
 <body>
@@ -52,11 +61,12 @@
   </header>
 
   <div class="stage">
-    <svg id="ringmap" viewBox="-600 -600 1200 1200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="Konzentrische Modul-Ringe">
+    <svg id="ringmap" viewBox="-600 -600 1200 1200"
+         xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
       <circle class="ring-inner" r="220"></circle>
       <circle class="ring-mid"   r="380"></circle>
       <circle class="ring-outer" r="540"></circle>
-
       <g id="reset" class="center">
         <circle r="70"></circle>
         <text x="0" y="0" text-anchor="middle" dominant-baseline="middle">RESETBOX</text>
@@ -65,147 +75,152 @@
   </div>
 
   <div id="list" class="listwrap"></div>
-  <div id="dbg" class="debug"></div>
+  <div class="fab" id="toggleList">Module ▴▾</div>
 
 <script>
 (function(){
   const svg = document.getElementById('ringmap');
-  const dbg = document.getElementById('dbg');
   const list = document.getElementById('list');
-
+  const toggleBtn = document.getElementById('toggleList');
   const BASE = (()=>{ const u=new URL(location.href); if(u.pathname.endsWith('index.html')) u.pathname=u.pathname.replace(/index\.html$/,''); if(!u.pathname.endsWith('/')) u.pathname+='/'; return u.origin+u.pathname; })();
-  const V    = 'hitbox1';
+  const V = 'links-color';
   const urlFor = (p) => `${BASE}module.html?file=${encodeURIComponent(p)}&v=${encodeURIComponent(V)}`;
 
   document.getElementById('nav-dignity').href = urlFor('MODULES/DIGNITY_CLAUSE.md');
-  document.getElementById('nav-gebote').href  = urlFor('MODULES/14_GEBOTE_V2.1.md');
+  document.getElementById('nav-gebote').href  = urlFor('14_GEBOTE_V2.1.md');
   document.getElementById('nav-discuss').href = urlFor('MODULES/14_GEBOTE_DISCUSSION.md');
+  toggleBtn.addEventListener('click', ()=> list.classList.toggle('show'));
 
+  // ==== Nodes ====
   const nodes = [
-    // INNER
-    {label:"WATER",ring:"inner",file:"MODULES/Modul_02_WATER.md"},
-    {label:"SHELTER",ring:"inner",file:"MODULES/Modul_03_SHELTER.md"},
-    {label:"FOOD",ring:"inner",file:"MODULES/Modul_04_FOOD.md"},
-    {label:"SLEEP",ring:"inner",file:"MODULES/Modul_05_SLEEP.md"},
-    {label:"BODY",ring:"inner",file:"MODULES/Modul_06_BODY.md"},
-    {label:"PSYCHE",ring:"inner",file:"MODULES/Modul_07_PSYCHE.md"},
-    {label:"DEVICE",ring:"inner",file:"MODULES/Modul_08_DEVICE.md"},
-    {label:"DEBT",ring:"inner",file:"MODULES/Modul_09_DEBT.md"},
-    // MID
-    {label:"WORK",ring:"mid",file:"MODULES/Modul_10_WORK.md"},
-    {label:"SCHOOL",ring:"mid",file:"MODULES/Modul_11_SCHOOL.md"},
-    {label:"BORDER",ring:"mid",file:"MODULES/Modul_12_BORDER.md"},
-    {label:"NATURE",ring:"mid",file:"MODULES/Modul_13_NATURE.md"},
-    {label:"HEALTH",ring:"mid",file:"MODULES/Modul_14_HEALTH.md"},
-    {label:"CARE",ring:"mid",file:"MODULES/Modul_15_CARE.md"},
-    {label:"FAMILY",ring:"mid",file:"MODULES/Modul_16_FAMILY.md"},
-    {label:"ANIMAL",ring:"mid",file:"MODULES/Modul_17_ANIMAL.md"},
-    {label:"CULTURE",ring:"mid",file:"MODULES/Modul_18_CULTURE.md"},
-    {label:"MEDIA",ring:"mid",file:"MODULES/Modul_19_MEDIA.md"},
-    {label:"ENERGY",ring:"mid",file:"MODULES/Modul_20_ENERGY.md"},
-    {label:"CLIMATE",ring:"mid",file:"MODULES/Modul_21_CLIMATE.md"},
-    {label:"MIGRATION",ring:"mid",file:"MODULES/Modul_22_MIGRATION.md"},
-    {label:"JUSTICE",ring:"mid",file:"MODULES/Modul_23_JUSTICE.md"},
-    {label:"COMMUNITY",ring:"mid",file:"MODULES/Modul_24_COMMUNITY.md"},
-    // OUTER
-    {label:"HOUSING",ring:"outer",file:"MODULES/Modul_26_HOUSING.md"},
-    {label:"TRANSPORT",ring:"outer",file:"MODULES/Modul_27_TRANSPORT.md"},
-    {label:"NETWORK",ring:"outer",file:"MODULES/Modul_28_NETWORK.md"},
-    {label:"SYMBOL",ring:"outer",file:"MODULES/Modul_29_SYMBOL.md"},
-    {label:"TRUTH",ring:"outer",file:"MODULES/Modul_30_TRUTH.md"},
-    {label:"MEMORY",ring:"outer",file:"MODULES/Modul_31_MEMORY.md"},
-    {label:"LICENCE",ring:"outer",file:"MODULES/Modul_32_LICENCE.md"},
-    {label:"PRIVACY",ring:"outer",file:"MODULES/Modul_33_PRIVACY.md"},
-    {label:"DATA",ring:"outer",file:"MODULES/Modul_34_DATA.md"},
-    {label:"CONFLICT",ring:"outer",file:"MODULES/Modul_35_CONFLICT.md"},
-    {label:"DEMOCRACY",ring:"outer",file:"MODULES/Modul_37_DEMOCRACY.md"},
-    {label:"KNOWLEDGE",ring:"outer",file:"MODULES/Modul_39_KNOWLEDGE.md"},
-    {label:"ART",ring:"outer",file:"MODULES/Modul_40_ART.md"},
-    {label:"FUTURE",ring:"outer",file:"MODULES/Modul_41_FUTURE.md"},
-    {label:"DEATH",ring:"outer",file:"MODULES/Modul_42_DEATH.md"}
+    {key:"WATER",ring:"inner",file:"MODULES/Modul_02_WATER.md"},
+    {key:"SHELTER",ring:"inner",file:"MODULES/Modul_03_SHELTER.md"},
+    {key:"FOOD",ring:"inner",file:"MODULES/Modul_04_FOOD.md"},
+    {key:"SLEEP",ring:"inner",file:"MODULES/Modul_05_SLEEP.md"},
+    {key:"BODY",ring:"inner",file:"MODULES/Modul_06_BODY.md"},
+    {key:"PSYCHE",ring:"inner",file:"MODULES/Modul_07_PSYCHE.md"},
+    {key:"DEVICE",ring:"inner",file:"MODULES/Modul_08_DEVICE.md"},
+    {key:"DEBT",ring:"inner",file:"MODULES/Modul_09_DEBT.md"},
+    {key:"WORK",ring:"mid",file:"MODULES/Modul_10_WORK.md"},
+    {key:"SCHOOL",ring:"mid",file:"MODULES/Modul_11_SCHOOL.md"},
+    {key:"BORDER",ring:"mid",file:"MODULES/Modul_12_BORDER.md"},
+    {key:"NATURE",ring:"mid",file:"MODULES/Modul_13_NATURE.md"},
+    {key:"HEALTH",ring:"mid",file:"MODULES/Modul_14_HEALTH.md"},
+    {key:"CARE",ring:"mid",file:"MODULES/Modul_15_CARE.md"},
+    {key:"FAMILY",ring:"mid",file:"MODULES/Modul_16_FAMILY.md"},
+    {key:"ANIMAL",ring:"mid",file:"MODULES/Modul_17_ANIMAL.md"},
+    {key:"CULTURE",ring:"mid",file:"MODULES/Modul_18_CULTURE.md"},
+    {key:"MEDIA",ring:"mid",file:"MODULES/Modul_19_MEDIA.md"},
+    {key:"ENERGY",ring:"mid",file:"MODULES/Modul_20_ENERGY.md"},
+    {key:"CLIMATE",ring:"mid",file:"MODULES/Modul_21_CLIMATE.md"},
+    {key:"MIGRATION",ring:"mid",file:"MODULES/Modul_22_MIGRATION.md"},
+    {key:"JUSTICE",ring:"mid",file:"MODULES/Modul_23_JUSTICE.md"},
+    {key:"COMMUNITY",ring:"mid",file:"MODULES/Modul_24_COMMUNITY.md"},
+    {key:"HOUSING",ring:"outer",file:"MODULES/Modul_26_HOUSING.md"},
+    {key:"TRANSPORT",ring:"outer",file:"MODULES/Modul_27_TRANSPORT.md"},
+    {key:"NETWORK",ring:"outer",file:"MODULES/Modul_28_NETWORK.md"},
+    {key:"SYMBOL",ring:"outer",file:"MODULES/Modul_29_SYMBOL.md"},
+    {key:"TRUTH",ring:"outer",file:"MODULES/Modul_30_TRUTH.md"},
+    {key:"MEMORY",ring:"outer",file:"MODULES/Modul_31_MEMORY.md"},
+    {key:"LICENCE",ring:"outer",file:"MODULES/Modul_32_LICENCE.md"},
+    {key:"PRIVACY",ring:"outer",file:"MODULES/Modul_33_PRIVACY.md"},
+    {key:"DATA",ring:"outer",file:"MODULES/Modul_34_DATA.md"},
+    {key:"CONFLICT",ring:"outer",file:"MODULES/Modul_35_CONFLICT.md"},
+    {key:"DEMOCRACY",ring:"outer",file:"MODULES/Modul_37_DEMOCRACY.md"},
+    {key:"KNOWLEDGE",ring:"outer",file:"MODULES/Modul_39_KNOWLEDGE.md"},
+    {key:"ART",ring:"outer",file:"MODULES/Modul_40_ART.md"},
+    {key:"FUTURE",ring:"outer",file:"MODULES/Modul_41_FUTURE.md"},
+    {key:"DEATH",ring:"outer",file:"MODULES/Modul_42_DEATH.md"}
   ];
 
-  list.innerHTML = nodes.map(n => `<a href="${urlFor(n.file)}">${n.label}</a>`).join(' · ');
+  const CONNECTIONS = {
+    WATER:["HEALTH","NATURE","FOOD","ENERGY"],
+    FOOD:["HEALTH","NATURE","WORK"],
+    SLEEP:["HEALTH","PSYCHE","WORK"],
+    DEVICE:["DATA","PRIVACY","NETWORK","MEDIA"],
+    HEALTH:["CARE","PSYCHE","BODY","WORK"],
+    WORK:["SCHOOL","COMMUNITY","DEBT","DEVICE"],
+    ENERGY:["CLIMATE","NETWORK","HOUSING"],
+    DATA:["PRIVACY","MEDIA","TRUTH","KNOWLEDGE"],
+    PRIVACY:["DATA","JUSTICE"],
+    DEMOCRACY:["JUSTICE","MEDIA","TRUTH","COMMUNITY"],
+    KNOWLEDGE:["SCHOOL","MEDIA","TRUTH","MEMORY"],
+    ART:["CULTURE","SYMBOL","TRUTH"],
+    FUTURE:["CLIMATE","KNOWLEDGE","DEATH"]
+  };
 
-  const config = { inner:{r:220,class:"inner"}, mid:{r:380,class:"mid"}, outer:{r:540,class:"outer"} };
-  const SVG_NS   = "http://www.w3.org/2000/svg";
-  const XLINK_NS = "http://www.w3.org/1999/xlink";
+  list.innerHTML = nodes.map(n=>`<a href="${urlFor(n.file)}">${n.key}</a>`).join(' · ');
 
-  function showError(msg, err){
-    dbg.style.display='block';
-    dbg.textContent = `[FEHLER] ${msg}\n` + (err && err.stack ? err.stack : (err || ''));
-  }
+  const config={inner:{r:220,class:"inner"},mid:{r:380,class:"mid"},outer:{r:540,class:"outer"}};
+  const SVG_NS="http://www.w3.org/2000/svg"; const XLINK_NS="http://www.w3.org/1999/xlink";
+
+  const linkLayer=document.createElementNS(SVG_NS,"g"); linkLayer.setAttribute("class","link-layer");
+  svg.insertBefore(linkLayer,svg.firstChild);
+
+  const posByKey=new Map(), nodeElByKey=new Map();
 
   function placeNodes(){
-    try{
-      const groups = {inner:[], mid:[], outer:[]};
-      nodes.forEach(n=>groups[n.ring].push(n));
-
-      Object.entries(groups).forEach(([ring,list])=>{
-        const radius = config[ring].r;
-        const group  = document.createElementNS(SVG_NS,"g");
-        group.setAttribute("class", config[ring].class);
-        svg.appendChild(group);
-
-        const step  = (Math.PI*2)/list.length;
-        const start = (-Math.PI/2);
-
-        list.forEach((n,idx)=>{
-          const angle = start + idx*step;
-          const x = Math.cos(angle)*radius;
-          const y = Math.sin(angle)*radius;
-          const url = urlFor(n.file);
-
-          const a = document.createElementNS(SVG_NS,"a");
-          a.setAttribute("href", url);
-          a.setAttributeNS(XLINK_NS, "xlink:href", url);
-          a.setAttribute("target","_self");
-          a.setAttribute("transform",`translate(${x},${y})`);
-          a.classList.add("node",config[ring].class);
-
-          const go = () => { try{ window.location.assign(url); } catch(e){ location.href=url; } };
-          a.addEventListener('click',   e=>{ e.preventDefault(); go(); });
-          a.addEventListener('touchend',e=>{ e.preventDefault(); go(); }, {passive:false});
-          a.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); }});
-
-          // === NEU: Hitbox (volle Fläche) ===
-          const hit = document.createElementNS(SVG_NS,"circle");
-          hit.setAttribute("r", 58); // größere Klickfläche
-          hit.setAttribute("fill", "transparent");
-          hit.setAttribute("pointer-events", "all");
-          a.appendChild(hit);
-
-          // sichtbarer Kreis
-          const circle=document.createElementNS(SVG_NS,"circle");
-          circle.setAttribute("r",44);
-          a.appendChild(circle);
-
-          const text=document.createElementNS(SVG_NS,"text");
-          text.textContent=n.label;
-          a.appendChild(text);
-
-          group.appendChild(a);
-        });
+    const groups={inner:[],mid:[],outer:[]}; nodes.forEach(n=>groups[n.ring].push(n));
+    Object.entries(groups).forEach(([ring,list])=>{
+      const radius=config[ring].r, group=document.createElementNS(SVG_NS,"g"); group.setAttribute("class",config[ring].class); svg.appendChild(group);
+      const step=(Math.PI*2)/list.length, start=(-Math.PI/2);
+      list.forEach((n,idx)=>{
+        const angle=start+idx*step, x=Math.cos(angle)*radius, y=Math.sin(angle)*radius;
+        posByKey.set(n.key,{x,y});
+        const url=urlFor(n.file);
+        const a=document.createElementNS(SVG_NS,"a");
+        a.setAttribute("href",url); a.setAttributeNS(XLINK_NS,"xlink:href",url); a.setAttribute("target","_self");
+        a.setAttribute("transform",`translate(${x},${y})`); a.classList.add("node",config[ring].class);
+        a.setAttribute('tabindex','0'); a.setAttribute('role','link'); a.setAttribute('focusable','true');
+        a.setAttribute('aria-label',`${n.key} – öffnen`); nodeElByKey.set(n.key,a);
+        const go=()=>{try{window.location.assign(url);}catch(e){location.href=url;}};
+        a.addEventListener('click',e=>{e.preventDefault();go();});
+        a.addEventListener('touchend',e=>{e.preventDefault();go();},{passive:false});
+        a.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+        const hit=document.createElementNS(SVG_NS,"circle"); hit.setAttribute("r",58); hit.setAttribute("fill","transparent"); hit.setAttribute("pointer-events","all"); a.appendChild(hit);
+        const circle=document.createElementNS(SVG_NS,"circle"); circle.setAttribute("r",44); a.appendChild(circle);
+        const text=document.createElementNS(SVG_NS,"text"); text.textContent=n.key; a.appendChild(text);
+        const show=()=>showConnections(n.key); const hide=()=>clearConnections();
+        a.addEventListener('mouseenter',show); a.addEventListener('mouseleave',hide);
+        a.addEventListener('focusin',show); a.addEventListener('focusout',hide);
+        group.appendChild(a);
       });
-    }catch(err){ showError('placeNodes()', err); }
+    });
   }
+
+  function showConnections(srcKey){
+    clearConnections();
+    const src=posByKey.get(srcKey); if(!src) return;
+    const targets=new Set([
+      ...(CONNECTIONS[srcKey]||[]),
+      ...Object.entries(CONNECTIONS).filter(([k,arr])=>(arr||[]).includes(srcKey)).map(([k])=>k)
+    ]);
+    const srcEl=nodeElByKey.get(srcKey); if(srcEl) srcEl.classList.add('active');
+    targets.forEach(tKey=>{
+      const dst=posByKey.get(tKey), dstEl=nodeElByKey.get(tKey);
+      if(!dst||!dstEl) return;
+      const tNode=nodes.find(n=>n.key===tKey);
+      let cls="link-mid"; if(tNode.ring==="inner") cls="link-inner"; else if(tNode.ring==="outer") cls="link-outer";
+      const line=document.createElementNS(SVG_NS,"line");
+      line.setAttribute("x1",src.x); line.setAttribute("y1",src.y);
+      line.setAttribute("x2",dst.x); line.setAttribute("y2",dst.y);
+      line.setAttribute("class",cls); linkLayer.appendChild(line);
+      dstEl.classList.add('linked');
+    });
+  }
+
+  function clearConnections(){ while(linkLayer.firstChild) linkLayer.removeChild(linkLayer.firstChild); nodeElByKey.forEach(el=>el.classList.remove('linked','active')); }
 
   placeNodes();
 
   // RESETBOX klickbar
   (function(){
-    const reset = document.getElementById('reset');
-    if(!reset) return;
-    const url = `${BASE}module.html?file=${encodeURIComponent('README.md')}&v=${encodeURIComponent(V)}`;
-    reset.style.cursor = 'pointer';
-    reset.setAttribute('tabindex','0');
-    reset.setAttribute('role','link');
-    reset.setAttribute('focusable','true');
-    reset.setAttribute('aria-label','RESETBOX – README öffnen');
-    const go = () => { try{ window.location.assign(url); } catch(e){ location.href = url; } };
-    reset.addEventListener('click', e => { e.preventDefault(); go(); });
-    reset.addEventListener('touchend', e => { e.preventDefault(); go(); }, {passive:false});
-    reset.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); go(); }});
+    const reset=document.getElementById('reset'); if(!reset) return;
+    const url=`${BASE}module.html?file=${encodeURIComponent('README.md')}&v=${encodeURIComponent(V)}`;
+    reset.style.cursor='pointer'; const go=()=>{try{window.location.assign(url);}catch(e){location.href=url;}};
+    reset.addEventListener('click',e=>{e.preventDefault();go();});
+    reset.addEventListener('touchend',e=>{e.preventDefault();go();},{passive:false});
+    reset.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
   })();
 })();
 </script>

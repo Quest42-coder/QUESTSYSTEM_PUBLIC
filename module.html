@@ -4,17 +4,24 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>QUESTSYSTEM – Modulansicht</title>
-  <meta name="description" content="QUESTSYSTEM Modulansicht – lädt Module direkt von raw.githubusercontent.com" />
+  <meta name="description" content="QUESTSYSTEM Modulansicht – lädt Module direkt (ohne GitHub-API), mit automatischer Branch-Erkennung." />
   <style>
     :root{ --bg:#0b0f16; --fg:#e7eef7; --muted:#9fb0c6; --link:#9ad1ff; --border:#243047; --card:#0f1521; }
-    body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg); background:var(--bg);}
-    header{padding:12px 16px; background:#111624; border-bottom:1px solid var(--border);}
-    header strong{margin-right:12px;}
-    header a{color:var(--link); margin-right:12px; text-decoration:none;}
-    main{max-width:900px; margin:30px auto; padding:0 16px;}
-    #title{margin:0 0 12px 0;}
-    #content a{color:var(--link);}
-    .err{color:#ffb0b0;}
+    *{box-sizing:border-box}
+    body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg); background:var(--bg)}
+    header{padding:12px 16px; background:#111624; border-bottom:1px solid var(--border); display:flex; gap:12px; align-items:center}
+    header a{color:var(--link); text-decoration:none}
+    main{max-width:1000px; margin:28px auto; padding:0 16px}
+    .card{background:#0f1521; border:1px solid var(--border); border-radius:14px; padding:18px 20px}
+    #title{margin:0 0 10px 0}
+    #meta{color:var(--muted); font-size:13px; margin:4px 0 14px}
+    #content a{color:var(--link)}
+    #content code{background:#0b1220; padding:.15em .35em; border-radius:6px}
+    #content pre{background:#0b1220; padding:12px; border-radius:10px; overflow:auto}
+    .err{color:#ffb0b0}
+    details{margin-top:16px}
+    summary{cursor:pointer; color:var(--muted)}
+    .url-list code{display:block; padding:2px 0}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
@@ -23,59 +30,144 @@
   <header>
     <strong>🍄 QUESTSYSTEM</strong>
     <a href="./index.html">Ring-Übersicht</a>
+    <span style="flex:1"></span>
     <a id="view-raw" target="_blank" rel="noopener">Raw</a>
     <a id="view-github" target="_blank" rel="noopener">GitHub</a>
   </header>
 
   <main>
-    <h1 id="title">Modul wird geladen …</h1>
-    <div><code id="src"></code></div>
-    <article id="content"></article>
+    <div class="card">
+      <h1 id="title">Modul wird geladen …</h1>
+      <div id="meta">Quelle: <code id="src"></code></div>
+      <article id="content" aria-live="polite"></article>
+      <details id="diag" style="display:none;">
+        <summary>Diagnose: getestete URLs</summary>
+        <div class="url-list" id="diag-list"></div>
+      </details>
+    </div>
   </main>
 
   <script>
-    const OWNER="Quest42-coder";
-    const REPO="QUESTSYSTEM_PUBLIC";
-    const BRANCH="main"; // ⚠️ falls dein Repo "master" nutzt, hier ändern!
+    // Repo-Konfiguration (Owner/Repo), Branch wird automatisch ermittelt (main → master → gh-pages)
+    const OWNER = "Quest42-coder";
+    const REPO  = "QUESTSYSTEM_PUBLIC";
 
-    const qs = new URLSearchParams(location.search);
-    const file = qs.get("file");
+    // Query-Parameter
+    const qs   = new URLSearchParams(location.search);
+    const file = (qs.get("file") || "").replace(/^\.?\//, ""); // z.B. "MODULES/Modul_32_LICENCE.md"
+    const refHint = qs.get("ref"); // optional: &ref=main überschreibt Reihenfolge
 
-    const srcEl = document.getElementById("src");
+    // DOM-Refs
     const titleEl = document.getElementById("title");
-    const contentEl = document.getElementById("content");
-    const aRaw = document.getElementById("view-raw");
-    const aGH  = document.getElementById("view-github");
+    const srcEl   = document.getElementById("src");
+    const content = document.getElementById("content");
+    const aRaw    = document.getElementById("view-raw");
+    const aGH     = document.getElementById("view-github");
+    const diag    = document.getElementById("diag");
+    const diagList= document.getElementById("diag-list");
 
-    if(!file){
-      titleEl.textContent = "Kein Modul angegeben";
-      contentEl.innerHTML = `<p class="err">Verwende ?file=MODULES/Modul_XX_NAME.md</p>`;
-    } else {
-      const path = file.replace(/^\.?\//,'');
-      const rawUrl = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${path}`;
-      const ghUrl  = `https://github.com/${OWNER}/${REPO}/blob/${BRANCH}/${path}`;
+    // Utils
+    const encPath = (p) => p.split('/').map(encodeURIComponent).join('/');
+    const rawURL  = (br, p) => `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(br)}/${encPath(p)}`;
+    const cdnURL  = (br, p) => `https://cdn.jsdelivr.net/gh/${OWNER}/${REPO}@${encodeURIComponent(br)}/${encPath(p)}`;
+    const blobURL = (br, p) => `https://github.com/${OWNER}/${REPO}/blob/${encodeURIComponent(br)}/${encPath(p)}`;
 
-      srcEl.textContent = path;
-      aRaw.href = rawUrl;
-      aGH.href  = ghUrl;
-
-      fetch(rawUrl, {cache:'no-store'})
-        .then(r => {
-          if(!r.ok) throw new Error(`HTTP ${r.status}`);
-          return r.text();
-        })
-        .then(md => {
-          const h1 = md.match(/^#\s+(.+)$/m);
-          if(h1) titleEl.textContent = h1[1].trim();
-          const html = marked.parse(md, {mangle:false, headerIds:true});
-          contentEl.innerHTML = DOMPurify.sanitize(html);
-        })
-        .catch(err => {
-          titleEl.textContent = "Fehler beim Laden";
-          contentEl.innerHTML = `<p class="err">Konnte <code>${path}</code> nicht laden: ${err}</p>
-            <p>Prüfe den Dateinamen und Branch (${BRANCH}).</p>`;
-        });
+    function addDiag(url, status){
+      diag.style.display='';
+      const line = document.createElement('code');
+      line.textContent = `${status.padEnd(7)} ${url}`;
+      diagList.appendChild(line);
     }
+
+    function pathCandidates(f){
+      const name = f.split('/').pop();
+      // probiere exakt + typische Varianten
+      return Array.from(new Set([
+        f,
+        `MODULES/${name}`,
+        `modules/${name}`,
+        `docs/${name}`,
+        `docs/MODULES/${name}`
+      ]));
+    }
+
+    async function tryFetch(url){
+      try{
+        const res = await fetch(url, {cache:'no-store'});
+        if(!res.ok){ addDiag(url, `HTTP ${res.status}`); return null; }
+        addDiag(url, `OK`);
+        return await res.text();
+      }catch(e){
+        addDiag(url, `ERR`);
+        return null;
+      }
+    }
+
+    async function load(){
+      if(!file){
+        titleEl.textContent = "Kein Modul angegeben";
+        content.innerHTML = `<p class="err">Nutze z. B.: <code>module.html?file=MODULES/Modul_32_LICENCE.md</code></p>`;
+        return;
+      }
+
+      // Branch-Reihenfolge: Hint → main → master → gh-pages
+      const branches = refHint ? [refHint] : ["main","master","gh-pages"];
+      const paths    = pathCandidates(file);
+
+      let md=null, usedBranch=null, usedPath=null, usedURL=null;
+
+      outer:
+      for(const br of branches){
+        for(const p of paths){
+          // 1) raw.githubusercontent.com
+          const u1 = rawURL(br, p);
+          const t1 = await tryFetch(u1);
+          if(t1!==null){ md=t1; usedBranch=br; usedPath=p; usedURL=u1; break outer; }
+
+          // 2) jsDelivr CDN als Fallback (CORS-robust)
+          const u2 = cdnURL(br, p);
+          const t2 = await tryFetch(u2);
+          if(t2!==null){ md=t2; usedBranch=br; usedPath=p; usedURL=u2; break outer; }
+        }
+      }
+
+      if(!md){
+        titleEl.textContent = "Fehler beim Laden";
+        srcEl.textContent   = file;
+        const guessBlob = blobURL(branches[0], paths[0]);
+        aGH.href  = guessBlob;
+        aRaw.removeAttribute('href');
+        content.innerHTML = `<p class="err">Datei nicht gefunden. Prüfe Branch, Ordnername und Groß/Kleinschreibung.</p>
+          <p>Vermutete GitHub-Ansicht: <a href="${guessBlob}" target="_blank" rel="noopener">${guessBlob}</a></p>`;
+        return;
+      }
+
+      // UI-Links + Meta
+      srcEl.textContent = `${usedPath} @ ${usedBranch}`;
+      aRaw.href = usedURL;
+      aGH.href  = blobURL(usedBranch, usedPath);
+
+      // Titel aus erster H1, sonst Dateiname
+      const m = md.match(/^#\s+(.+)$/m);
+      titleEl.textContent = m ? m[1].trim() : usedPath.replace(/\.md$/,'').replace(/_/g,' ');
+
+      // Render Markdown → HTML, sicher säubern
+      const html = marked.parse(md, { mangle:false, headerIds:true });
+      const safe = DOMPurify.sanitize(html, { USE_PROFILES:{ html:true } });
+      content.innerHTML = safe;
+
+      // relative Links → GitHub-Blob (selber Branch)
+      content.querySelectorAll('a[href]').forEach(a=>{
+        const href = a.getAttribute('href'); if(!href) return;
+        const abs  = /^https?:\/\//i.test(href) || href.startsWith('#') || href.startsWith('mailto:');
+        if(abs) return;
+        const normalized = href.replace(/^\.\//,'').replace(/^\//,'');
+        a.setAttribute('href', blobURL(usedBranch, normalized));
+        a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+      });
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', load); else load();
   </script>
 </body>
 </html>

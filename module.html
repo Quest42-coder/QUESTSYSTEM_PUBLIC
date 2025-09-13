@@ -111,7 +111,8 @@
       }
 
       // Branch-Reihenfolge: Hint → main → master → gh-pages
-      const branches = refHint ? [refHint] : ["main","master","gh-pages"];
+     // in load():
+      const branches = ["main"]; // statt ["main","master","gh-pages"]
       const paths    = pathCandidates(file);
 
       let md=null, usedBranch=null, usedPath=null, usedURL=null;

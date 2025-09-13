@@ -1,8 +1,13 @@
 # QUESTSYSTEM – README
 
+**Version:** 1.0 (2025-09-13)  
+**Lizenz:** CC BY-SA 4.0 + Dignity Clause  
+**Status:** Blueprint / Open Commons Draft  
+
+---
 **This is not a concept, it’s a consequence.**
 
-**This is The Art of Crossing**
+**This is Art**
 
 **Proof it wrong.**
 
@@ -10,48 +15,54 @@
 
 ---
 
+## Einleitung
+
 **Ausgangspunkt:**  
 Was brauchen Menschen, um in einer Gesellschaft frei zu leben?  
 
-Das QUESTSYSTEM ist nicht aus Komfort oder Planung entstanden,
-sondern aus der School of Hard Knocks – aus Erfahrung von Not, Wut und Erschöpfung,
-aus unzähligen Brüchen und einem inneren Antrieb, den manche Medizin als „Krankheit“ bezeichnet.
-Für mich ist er ein unbeugsames Bedürfnis nach Wahrheit und Selbstbestimmung:
-die Unfähigkeit, mit Denken, Reflektieren und Fragen aufzuhören –
-selbst am Rand völliger Erschöpfung, unter maximaler Belastung.
+Das QUESTSYSTEM entstand nicht aus Komfort oder strategischer Planung,  
+sondern aus gelebter Erfahrung von Not, Wut und Erschöpfung.  
+Es ist ein Ergebnis von Brüchen – und eines inneren Antriebs,  
+den manche Medizin als „Krankheit“ bezeichnet,  
+der hier jedoch als unbeugsames Bedürfnis nach Wahrheit und Selbstbestimmung verstanden wird:  
+die Unfähigkeit, mit Denken, Reflektieren und Fragen aufzuhören –  
+selbst unter maximaler Belastung, am Rand der Erschöpfung.  
 
-Um daraus nicht nur Bruch, sondern Neubeginn zu machen, brauchte es Form.  
-So entstand ein Dreiklang:  
-- die **RESETBOX (01)** als Container für das Greifbare,  
-- die **42 Module** als Netz menschlicher Würde, von [02 WATER](./Modul_02_WATER.md), [10 WORK](./Modul_10_WORK.md) und [14 HEALTH](./Modul_14_HEALTH.md)  
-  bis [23 JUSTICE](./Modul_23_JUSTICE.md) und [30 TRUTH](./Modul_30_TRUTH.md),  
-- und die **gGmbH** als Hülle, die Transparenz und Gemeinnützigkeit sichert.  
+Damit aus Bruch ein Neubeginn werden konnte, brauchte es Form.  
+Diese Form ist der Dreiklang des QUESTSYSTEMs:  
 
-**Quest42** ist die **Signatur** – und der **Auftrag**.  
-Kein Spruch, keine Behauptung.  
-Es **ist The Art of Crossing**.  
+- **RESETBOX (01):** physischer Container für das Greifbare,  
+- **42 Module:** ein Netz menschlicher Würde – von *02 WATER*, *10 WORK*, *14 HEALTH*  
+  bis *23 JUSTICE* und *30 TRUTH*,  
+- **QUESTSYSTEM gGmbH (Blueprint):** eine mögliche Hülle, die Transparenz und Gemeinnützigkeit sichern könnte.  
 
-Der **🍄 (Pilz)** ist living proof.  
-Lebender Beweis dafür, dass Widerstand möglich ist –  
-gegen Bullshit, gegen Mindfuck, gegen Systeme, die zerstören.  
+**Quest42** ist die künstlerische Signatur – kein Unternehmen, keine Marke,  
+sondern der Hinweis auf den Auftrag:  
+*The Art of Crossing.*  
 
-Er wächst dort, wo nichts mehr wachsen sollte.  
-Er zeigt, dass Brüche nicht das Ende sind,  
-sondern der Anfang von Resilienz.  
+---
 
-Er verkörpert *each one teach one*:  
-das Weitergeben von Wissen, Haltung und Skills,  
+## Symbolik 🍄
+
+Der Pilz steht als Symbol für Widerstandskraft und Resilienz.  
+Er wächst dort, wo Bedingungen zerstört scheinen,  
+und zeigt damit: Brüche sind nicht das Ende,  
+sondern können der Anfang von Erneuerung sein.  
+
+Er verkörpert das Prinzip *each one teach one*:  
+Wissen, Haltung und Fähigkeiten weiterzugeben,  
 damit niemand am Rand zurückbleibt.  
 
 Seine Energie ist dieselbe wie in Hip-Hop:  
-**Beats** halten den Puls,  
-**Words** reißen Mauern,  
-**Signs** bleiben sichtbar,  
-**Moves** brechen Schwerkraft.  
+Beats halten den Puls,  
+Worte durchbrechen Mauern,  
+Zeichen bleiben sichtbar,  
+Bewegung bricht Schwerkraft.  
 
-Der 🍄 ist living proof –  
-dass das QUESTSYSTEM lebt,  
-nicht durch Besitz, sondern durch Weitergabe.  
+So ist der 🍄 der Beweis,  
+dass das QUESTSYSTEM lebt –  
+nicht durch Besitz,  
+sondern durch Weitergabe.  
 
 ---
 

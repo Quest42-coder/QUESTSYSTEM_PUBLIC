@@ -17,59 +17,49 @@
     body{
       margin:0; font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg);
       background: radial-gradient(1200px 800px at 50% 40%, #131824 0%, #0c0f16 60%, #090b11 100%);
-      overflow:hidden;
+      overflow: hidden;
+      padding-top:70px; /* Platz für Header freihalten */
     }
-
-    /* Header */
     header{
-      position:fixed; inset:16px 16px auto 16px; z-index:30;
-      display:flex; gap:14px; align-items:center; flex-wrap:wrap;
-      padding:10px 14px; background:rgba(10,13,20,.6); border:1px solid #222a39; border-radius:12px; backdrop-filter: blur(6px);
+      position:fixed;
+      top:0; left:0; right:0;
+      height:60px; z-index:30;
+      display:flex; gap:14px; align-items:center;
+      padding:10px 20px;
+      background:rgba(10,13,20,.9);
+      border-bottom:1px solid #222a39;
+      backdrop-filter: blur(6px);
       box-shadow: var(--shadow);
     }
     header .dot{font-size:18px}
     header h1{font-size:16px; margin:0; font-weight:700; letter-spacing:.4px}
-    header nav{margin-left:auto; display:flex; gap:12px; align-items:center; flex-wrap:wrap}
-    header a{color:var(--fg); text-decoration:none; opacity:.95; padding:6px 8px; border-radius:8px}
-    header a:hover{background:rgba(255,255,255,.08)}
-    @media (max-width:720px){ header{inset:10px} header h1{display:none} }
+    header nav{margin-left:auto; display:flex; gap:12px; flex-wrap:wrap}
+    header a{color:var(--fg); text-decoration:none; opacity:.9}
+    header a:hover{text-decoration:underline; opacity:1}
 
-    /* Dropdown-Navigation */
-    nav details { position: relative; }
-    nav summary {
-      list-style:none; cursor:pointer; padding:6px 10px; border-radius:8px; outline:none;
-    }
-    nav summary::-webkit-details-marker { display:none; }
-    nav details[open] summary { background:rgba(255,255,255,.08); }
-    nav .menu{
-      position:absolute; top:calc(100% + 6px); left:0; z-index:100;
-      min-width:220px; padding:8px; border-radius:10px;
-      background:rgba(12,16,24,.95); border:1px solid #222a39; box-shadow: var(--shadow);
-    }
-    nav .menu a{ display:block; padding:8px 10px; border-radius:8px; color:var(--fg); text-decoration:none; }
-    nav .menu a:hover{ background:rgba(255,255,255,.08) }
-    nav .sep{margin:6px 0; border:none; border-top:1px solid #222a39}
-
-    /* Bühne / SVG */
     .stage{position:absolute; inset:0; display:grid; place-items:center; padding:16px;}
-    svg{width:min(1200px,95vw); height:min(1200px,95vh)}
+    svg{width:min(1200px, 95vw); height:min(1200px, 95vh)}
+    /* Ringe */
     .ring-inner{stroke:var(--ring-inner); stroke-width:2.2; fill:none; stroke-opacity:.9}
     .ring-mid{stroke:var(--ring-mid); stroke-width:2.2; fill:none; stroke-opacity:.9}
     .ring-outer{stroke:var(--ring-outer); stroke-width:2.2; fill:none; stroke-opacity:.9}
-
     /* Nodes */
     svg a.node{ cursor:pointer; filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); transition: transform .15s ease, opacity .2s ease; }
     svg a.node:hover{ transform: translateY(-2px) scale(1.03); }
     .node circle{ fill:var(--node-bg); stroke:var(--node-border); stroke-width:1.5; }
-    .node text{ font-size:13px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle; }
+    .node text{ font-size:12px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle; }
     .inner text{ fill:#5d2029 }
     .mid   text{ fill:#6c5b00 }
     .outer text{ fill:#274b7a }
-
     /* Zentrum */
     .center circle{ fill:transparent; stroke:#59657c; stroke-dasharray:4 6; }
-    .center text{ fill:#7f8ea8; font-weight:700; font-size:13px; }
-
+    .center text{ 
+      fill:#ffffff;
+      font-weight:700;
+      font-size:20px;
+      text-anchor:middle;
+      dominant-baseline:middle;
+    }
     /* Tooltip */
     .tip{
       position:fixed; z-index:40; pointer-events:none;
@@ -80,7 +70,6 @@
     }
     .tip.show{opacity:1; transform:translate(-50%, calc(-100% - 10px))}
     .tip small{color:var(--muted)}
-
     /* Legende */
     .legend{
       position:fixed; inset:auto 16px 16px 16px; z-index:25;
@@ -92,58 +81,22 @@
     .sw.inner{background:var(--ring-inner)}
     .sw.mid{background:var(--ring-mid)}
     .sw.outer{background:var(--ring-outer)}
+    .focus-ring{ outline:2px dashed var(--focus); outline-offset:3px}
+    @media (max-width:720px){ header{height:auto; padding:12px} header h1{display:none} body{padding-top:90px} }
   </style>
 </head>
 <body>
-  <!-- Header mit Dropdowns -->
   <header aria-label="Seitennavigation">
     <div class="dot">🍄</div>
     <h1>QUESTSYSTEM</h1>
     <nav>
-      <a id="nav-start">Start</a>
-      <a id="nav-rings">Ringe</a>
-
-      <details>
-        <summary>Module ▾</summary>
-        <div class="menu" role="menu" aria-label="Module">
-          <a id="nav-mod-overview" role="menuitem">Übersicht</a>
-          <a id="nav-mod-resetbox" role="menuitem">RESETBOX</a>
-        </div>
-      </details>
-
-      <details>
-        <summary>Ethik ▾</summary>
-        <div class="menu" role="menu" aria-label="Ethik">
-          <a id="nav-dignity" role="menuitem">Dignity Clause</a>
-          <a id="nav-gebote" role="menuitem">14 Gebote (V2.1)</a>
-          <a id="nav-discuss" role="menuitem">Diskussion</a>
-        </div>
-      </details>
-
-      <details>
-        <summary>Kritikfelder ▾</summary>
-        <div class="menu" role="menu" aria-label="Kritikfelder">
-          <a id="nav-risk-matrix" role="menuitem">Matrix (alle)</a>
-          <hr class="sep">
-          <a id="nav-risk-high" role="menuitem">High-Risk</a>
-          <a id="nav-risk-medium" role="menuitem">Medium-Risk</a>
-          <a id="nav-risk-low" role="menuitem">Low-Risk</a>
-        </div>
-      </details>
-
-      <details style="margin-left:auto">
-        <summary>Über ▾</summary>
-        <div class="menu" role="menu" aria-label="Über">
-          <a id="nav-artist" role="menuitem">Artist Profile</a>
-          <a id="nav-licence" role="menuitem">Lizenz</a>
-          <a href="https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC" target="_blank" rel="noopener" role="menuitem">Repository ↗</a>
-        </div>
-      </details>
+      <a href="START_HERE.md">Start</a>
+      <a href="index.html">Ringe</a>
+      <a href="module.html?file=MODULES/Modul_01_RESETBOX.md">RESETBOX</a>
     </nav>
   </header>
 
   <div class="stage">
-    <!-- SVG-Map -->
     <svg id="ringmap" viewBox="-600 -600 1200 1200"
          xmlns="http://www.w3.org/2000/svg"
          xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -153,12 +106,10 @@
       <circle class="ring-mid"   r="380"></circle>
       <circle class="ring-outer" r="540"></circle>
       <!-- Zentrum -->
-      <a class="center" id="center-reset" target="_self">
-        <g aria-label="Resetbox">
-          <circle r="70"></circle>
-          <text y="0">RESETBOX</text>
-        </g>
-      </a>
+      <g class="center" aria-label="Resetbox">
+        <circle r="90"></circle>
+        <text y="0">RESETBOX</text>
+      </g>
     </svg>
   </div>
 
@@ -167,152 +118,5 @@
     <span class="chip"><span class="sw mid"></span>Societal</span>
     <span class="chip"><span class="sw outer"></span>Structural</span>
   </div>
-
-  <div id="tip" class="tip" role="status" aria-live="polite"></div>
-
-  <script>
-    // ---- Basis-URL absolut ableiten (funktioniert lokal und auf Pages) ----
-    const BASE = (()=>{
-      const u = new URL(window.location.href);
-      if (u.pathname.endsWith('index.html')) u.pathname = u.pathname.replace(/index\.html$/, '');
-      if (!u.pathname.endsWith('/')) u.pathname += '/';
-      return u.origin + u.pathname; // z.B. https://quest42-coder.github.io/QUESTSYSTEM_PUBLIC/
-    })();
-    const urlFor = (filePath) => `${BASE}module.html?file=${encodeURIComponent(filePath)}`;
-
-    // ---- Header-Links absolut setzen ----
-    document.getElementById('nav-start').setAttribute('href', `${BASE}START_HERE.md`);
-    document.getElementById('nav-rings').setAttribute('href', `${BASE}`);
-    document.getElementById('nav-mod-overview').setAttribute('href', `${BASE}MODULES/`);
-    document.getElementById('nav-mod-resetbox').setAttribute('href', urlFor('MODULES/Modul_01_RESETBOX.md'));
-
-    document.getElementById('nav-dignity').setAttribute('href', urlFor('MODULES/DIGNITY_CLAUSE.md'));
-    document.getElementById('nav-gebote').setAttribute('href',  urlFor('MODULES/14_GEBOTE_V2.1.md'));
-    document.getElementById('nav-discuss').setAttribute('href',  urlFor('MODULES/14_GEBOTE_DISCUSSION.md'));
-
-    document.getElementById('nav-risk-matrix').setAttribute('href', urlFor('RISK/QUESTSYSTEM_RISK_MATRIX.md'));
-    document.getElementById('nav-risk-high').setAttribute('href',   urlFor('RISK/HIGH_RISK.md'));
-    document.getElementById('nav-risk-medium').setAttribute('href', urlFor('RISK/MEDIUM_RISK.md'));
-    document.getElementById('nav-risk-low').setAttribute('href',    urlFor('RISK/LOW_RISK.md'));
-
-    document.getElementById('nav-artist').setAttribute('href',  urlFor('MODULES/ARTIST_PROFILE.md'));
-    document.getElementById('nav-licence').setAttribute('href', urlFor('MODULES/Modul_32_LICENCE.md'));
-
-    // Optional: Dropdown schließen, wenn nebenan geklickt wird
-    document.addEventListener('click', (e)=>{
-      document.querySelectorAll('header nav details[open]').forEach(d=>{
-        if(!d.contains(e.target)) d.removeAttribute('open');
-      });
-    });
-
-    // ---- Knoten-Definition (Dateipfade) ----
-    const nodes = [
-      // INNER – Existential
-      {label:"WATER",   ring:"inner", file:`MODULES/Modul_02_WATER.md`},
-      {label:"SHELTER", ring:"inner", file:`MODULES/Modul_03_SHELTER.md`},
-      {label:"FOOD",    ring:"inner", file:`MODULES/Modul_04_FOOD.md`},
-      {label:"SLEEP",   ring:"inner", file:`MODULES/Modul_05_SLEEP.md`},
-      {label:"BODY",    ring:"inner", file:`MODULES/Modul_06_BODY.md`},
-      {label:"PSYCHE",  ring:"inner", file:`MODULES/Modul_07_PSYCHE.md`},
-      {label:"DEVICE",  ring:"inner", file:`MODULES/Modul_08_DEVICE.md`},
-      {label:"DEBT",    ring:"inner", file:`MODULES/Modul_09_DEBT.md`},
-
-      // MID – Societal
-      {label:"WORK",     ring:"mid", file:`MODULES/Modul_10_WORK.md`},
-      {label:"SCHOOL",   ring:"mid", file:`MODULES/Modul_11_SCHOOL.md`},
-      {label:"BORDER",   ring:"mid", file:`MODULES/Modul_12_BORDER.md`},
-      {label:"NATURE",   ring:"mid", file:`MODULES/Modul_13_NATURE.md`},
-      {label:"HEALTH",   ring:"mid", file:`MODULES/Modul_14_HEALTH.md`},
-      {label:"CARE",     ring:"mid", file:`MODULES/Modul_15_CARE.md`},
-      {label:"FAMILY",   ring:"mid", file:`MODULES/Modul_16_FAMILY.md`},
-      {label:"ANIMAL",   ring:"mid", file:`MODULES/Modul_17_ANIMAL.md`},
-      {label:"CULTURE",  ring:"mid", file:`MODULES/Modul_18_CULTURE.md`},
-      {label:"MEDIA",    ring:"mid", file:`MODULES/Modul_19_MEDIA.md`},
-      {label:"ENERGY",   ring:"mid", file:`MODULES/Modul_20_ENERGY.md`},
-      {label:"CLIMATE",  ring:"mid", file:`MODULES/Modul_21_CLIMATE.md`},
-      {label:"MIGRATION",ring:"mid", file:`MODULES/Modul_22_MIGRATION.md`},
-      {label:"JUSTICE",  ring:"mid", file:`MODULES/Modul_23_JUSTICE.md`},
-      {label:"COMMUNITY",ring:"mid", file:`MODULES/Modul_24_COMMUNITY.md`},
-
-      // OUTER – Structural
-      {label:"ART",        ring:"outer", file:`MODULES/Modul_40_ART.md`},
-      {label:"FUTURE",     ring:"outer", file:`MODULES/Modul_41_FUTURE.md`},
-      {label:"DEATH",      ring:"outer", file:`MODULES/Modul_42_DEATH.md`},
-      {label:"HOUSING",    ring:"outer", file:`MODULES/Modul_26_HOUSING.md`},
-      {label:"TRANSPORT",  ring:"outer", file:`MODULES/Modul_27_TRANSPORT.md`},
-      {label:"NETWORK",    ring:"outer", file:`MODULES/Modul_28_NETWORK.md`},
-      {label:"SYMBOL",     ring:"outer", file:`MODULES/Modul_29_SYMBOL.md`},
-      {label:"TRUTH",      ring:"outer", file:`MODULES/Modul_30_TRUTH.md`},
-      {label:"MEMORY",     ring:"outer", file:`MODULES/Modul_31_MEMORY.md`},
-      {label:"LICENCE",    ring:"outer", file:`MODULES/Modul_32_LICENCE.md`},
-      {label:"PRIVACY",    ring:"outer", file:`MODULES/Modul_33_PRIVACY.md`},
-      {label:"DATA",       ring:"outer", file:`MODULES/Modul_34_DATA.md`},
-      {label:"CONFLICT",   ring:"outer", file:`MODULES/Modul_35_CONFLICT.md`},
-      {label:"DEMOCRACY",  ring:"outer", file:`MODULES/Modul_37_DEMOCRACY.md`},
-      {label:"KNOWLEDGE",  ring:"outer", file:`MODULES/Modul_39_KNOWLEDGE.md`}
-    ];
-
-    const config = { inner:{r:220,class:"inner"}, mid:{r:380,class:"mid"}, outer:{r:540,class:"outer"} };
-    const SVG_NS   = "http://www.w3.org/2000/svg";
-    const XLINK_NS = "http://www.w3.org/1999/xlink";
-    const svg = document.getElementById('ringmap');
-    const tip = document.getElementById('tip');
-
-    // Zentrum verlinken (volle Kreisfläche klickbar)
-    document.getElementById('center-reset').setAttribute('href', urlFor('MODULES/Modul_01_RESETBOX.md'));
-    document.getElementById('center-reset').setAttributeNS("http://www.w3.org/1999/xlink","xlink:href", urlFor('MODULES/Modul_01_RESETBOX.md'));
-
-    function placeNodes(){
-      const groups = {inner:[], mid:[], outer:[]};
-      nodes.forEach(n=>groups[n.ring].push(n));
-
-      Object.entries(groups).forEach(([ring,list])=>{
-        const radius=config[ring].r;
-        const group=document.createElementNS(SVG_NS,"g");
-        group.setAttribute("class",config[ring].class);
-        svg.appendChild(group);
-
-        const step=(Math.PI*2)/list.length; const start=(-Math.PI/2);
-
-        list.forEach((n,idx)=>{
-          const angle=start+idx*step;
-          const x=Math.cos(angle)*radius;
-          const y=Math.sin(angle)*radius;
-          const url = urlFor(n.file);
-
-          const a=document.createElementNS(SVG_NS,"a");
-          a.setAttribute("href", url);
-          a.setAttributeNS(XLINK_NS, "xlink:href", url);
-          a.setAttribute("target","_self");
-          a.setAttribute("transform",`translate(${x},${y})`);
-          a.classList.add("node",config[ring].class);
-
-          // gesamte Kreisfläche klickbar
-          const circle=document.createElementNS(SVG_NS,"circle"); circle.setAttribute("r",42); a.appendChild(circle);
-          const text=document.createElementNS(SVG_NS,"text"); text.textContent=n.label; a.appendChild(text);
-
-          // Tooltip
-          a.addEventListener('mouseenter',e=>showTip(n.label,e));
-          a.addEventListener('mousemove',e=>moveTip(e));
-          a.addEventListener('mouseleave',hideTip);
-
-          // Fallback (manche Browser ignorieren <a> in SVG)
-          a.addEventListener('click', (e) => {
-            setTimeout(() => {
-              if (location.href.indexOf('module.html') === -1) location.href = url;
-            }, 0);
-          });
-
-          group.appendChild(a);
-        });
-      });
-    }
-
-    function showTip(label,evt){ tip.innerHTML=`${label} <br><small>Öffnen</small>`; moveTip(evt); tip.classList.add('show'); }
-    function moveTip(evt){ tip.style.left=evt.clientX+'px'; tip.style.top=evt.clientY+'px'; }
-    function hideTip(){ tip.classList.remove('show'); }
-
-    placeNodes();
-  </script>
 </body>
 </html>

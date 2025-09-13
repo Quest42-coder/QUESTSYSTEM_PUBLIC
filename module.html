@@ -49,21 +49,20 @@
       <h1 id="title">Modul wird geladen …</h1>
       <div id="meta">Quelle: <code id="src"></code></div>
       <article id="content" aria-live="polite"></article>
-      <div id="notice">Bei 404 werden alternative Pfade probiert und es wird im Zielordner nach dem besten Match gesucht (case-insensitiv, Space-Normalisierung). Unten findest du eine Diagnose.</div>
+      <div id="notice">Diese Seite erkennt den Default-Branch automatisch, durchsucht bei 404 den gesamten Repo-Tree und lädt dann über die bestätigte <code>download_url</code>. Unten siehst du eine Diagnose.</div>
       <details id="diag" style="display:none;">
-        <summary>Diagnose: getestete URLs & Matches</summary>
+        <summary>Diagnose: getestete Pfade & URLs</summary>
         <div class="url-list" id="diag-list"></div>
       </details>
     </div>
   </main>
 
   <script>
-    const OWNER="Quest42-coder", REPO="QUESTSYSTEM_PUBLIC", REF="main";
+    const OWNER="Quest42-coder", REPO="QUESTSYSTEM_PUBLIC";
 
-    const params = new URLSearchParams(location.search);
-    const fileParam = params.get('file') || "";
+    const params=new URLSearchParams(location.search);
+    const requested = params.get('file') || "";
 
-    // DOM
     const titleEl=document.getElementById('title');
     const srcEl=document.getElementById('src');
     const content=document.getElementById('content');
@@ -72,168 +71,151 @@
     const diag=document.getElementById('diag');
     const diagList=document.getElementById('diag-list');
 
-    // Helpers
-    function encPath(p){ return p.split('/').map(encodeURIComponent).join('/'); }
-    function ghBlob(p){ return `https://github.com/${OWNER}/${REPO}/blob/${REF}/${encPath(p)}`; }
-    function apiContents(p){ return `https://api.github.com/repos/${OWNER}/${REPO}/contents/${encPath(p)}?ref=${encodeURIComponent(REF)}`; }
+    const encPath = (p)=> p.split('/').map(encodeURIComponent).join('/');
+
     function addDiag(label, info){
       diag.style.display='';
-      const line=document.createElement('code'); line.textContent = `${label} ${info}`;
+      const line=document.createElement('code');
+      line.textContent = `${label} ${info}`;
       diagList.appendChild(line);
     }
 
-    // Normalisiert Dateinamen: Trim, Zero-Width raus, mehrere Spaces → 1, „Modul _“ → „Modul_“, alles lower
     function normalizeName(name){
       return name
-        .replace(/[\u200B-\u200D\uFEFF]/g,'')   // zero-width
+        .replace(/[\u200B-\u200D\uFEFF]/g,'') // zero-width
         .replace(/\s+_/g,'_').replace(/_\s+/g,'_')
-        .replace(/\s{2,}/g,' ')                 // mehrfach-Space
-        .trim()
-        .toLowerCase();
+        .replace(/\s{2,}/g,' ')
+        .trim().toLowerCase();
     }
 
-    function getDirAndBase(p){
-      const clean = p.replace(/^\.?\//,'');
-      const parts = clean.split('/');
-      const base = parts.pop();
-      const dir  = parts.join('/');
-      return {dir, base};
+    async function getDefaultBranch(){
+      const url=`https://api.github.com/repos/${OWNER}/${REPO}`;
+      const res=await fetch(url,{cache:'no-store'});
+      if(!res.ok){ addDiag('REPO:', `HTTP ${res.status} ${url}`); throw new Error('repo meta'); }
+      const json=await res.json();
+      addDiag('REPO:', `default_branch=${json.default_branch}`);
+      return json.default_branch;
     }
 
-    async function fetchViaContentsAPI(path){
-      const url = apiContents(path);
-      try{
-        const res = await fetch(url, {cache:'no-store'});
-        if(!res.ok){ addDiag('API:', `${res.status} ${url}`); return null; }
-        const json = await res.json();
-        if(!json.download_url){ addDiag('API:', `no download_url for ${url}`); return null; }
-        addDiag('API:', `OK ${url}`);
-        const rawURL = json.download_url;
-        const rawRes = await fetch(rawURL, {cache:'no-store'});
-        if(!rawRes.ok){ addDiag('RAW:', `${rawRes.status} ${rawURL}`); return null; }
-        addDiag('RAW:', `OK ${rawURL}`);
-        return { md: await rawRes.text(), chosenPath: path, rawURL };
-      }catch(e){
-        addDiag('API:', `ERR ${url}`);
-        return null;
-      }
+    async function getTreeSha(ref){
+      const url=`https://api.github.com/repos/${OWNER}/${REPO}/git/trees/${encodeURIComponent(ref)}?recursive=1`;
+      const res=await fetch(url,{cache:'no-store'});
+      if(!res.ok){ addDiag('TREE:', `HTTP ${res.status} ${url}`); throw new Error('tree'); }
+      const json=await res.json();
+      addDiag('TREE:', `count=${(json.tree||[]).length}`);
+      return json;
     }
 
-    async function tryDirectThenMatch(originalPath){
-      // 1) Direkter Versuch
-      const direct = await fetchViaContentsAPI(originalPath);
-      if (direct) return direct;
-
-      // 2) Pfadvarianten (Root/MODULES/modules/docs)
-      const clean = originalPath.replace(/^\.?\//,'');
-      const only  = clean.split('/').pop();
-      const variants = Array.from(new Set([
-        clean,
-        `MODULES/${only}`,
-        `modules/${only}`,
-        `docs/${only}`,
-        `docs/MODULES/${only}`,
-      ]));
-
-      for (const v of variants){
-        const r = await fetchViaContentsAPI(v);
-        if (r) return r;
-      }
-
-      // 3) Fallback: Ordnerinhalt listen und bestes Match suchen
-      const {dir, base} = getDirAndBase(clean);
-      const dirsToScan = Array.from(new Set([
-        dir || 'MODULES',     // wenn kein Ordner angegeben war → MODULES
-        'MODULES',
-        'modules'
-      ]));
-
-      const normTarget = normalizeName(base);
-      for (const d of dirsToScan){
-        const listURL = apiContents(d);
-        try{
-          const res = await fetch(listURL, {cache:'no-store'});
-          if (!res.ok){ addDiag('LIST:', `${res.status} ${listURL}`); continue; }
-          const arr = await res.json();
-          if (!Array.isArray(arr)){ addDiag('LIST:', `not array ${listURL}`); continue; }
-          addDiag('LIST:', `OK ${listURL}`);
-
-          // Versuche exakten Treffer (case-insensitiv + normalisiert)
-          let pick = arr.find(it => normalizeName(it.name) === normTarget);
-
-          // Sonst: lockereres Matching (enthält)
-          if (!pick){
-            pick = arr.find(it => normalizeName(it.name).includes(normTarget));
-          }
-
-          if (pick && pick.download_url){
-            addDiag('MATCH:', `→ ${d}/${pick.name}`);
-            const rawRes = await fetch(pick.download_url, {cache:'no-store'});
-            if(rawRes.ok){
-              addDiag('RAW:', `OK ${pick.download_url}`);
-              return { md: await rawRes.text(), chosenPath: `${d}/${pick.name}`, rawURL: pick.download_url };
-            }else{
-              addDiag('RAW:', `${rawRes.status} ${pick.download_url}`);
-            }
-          }
-        }catch(e){
-          addDiag('LIST:', `ERR ${listURL}`);
-        }
-      }
-      return null;
+    async function contentsMeta(ref, path){
+      const url=`https://api.github.com/repos/${OWNER}/${REPO}/contents/${encPath(path)}?ref=${encodeURIComponent(ref)}`;
+      const res=await fetch(url,{cache:'no-store'});
+      addDiag('API:', `${res.status} ${url}`);
+      if(!res.ok) return null;
+      return await res.json(); // has download_url
     }
+
+    function toBlob(ref, path){ return `https://github.com/${OWNER}/${REPO}/blob/${encodeURIComponent(ref)}/${encPath(path)}`; }
 
     async function load(){
-      if(!fileParam){
+      if(!requested){
         titleEl.textContent="Kein Modul angegeben";
         content.innerHTML = `<p class="err">Parameter fehlt: <code>?file=DATEINAME.md</code><br>z. B. <code>module.html?file=MODULES/Modul_32_LICENCE.md</code></p>`;
         return;
       }
 
-      addDiag('INFO:', `requested="${fileParam}"`);
+      addDiag('REQUEST:', requested);
 
-      const result = await tryDirectThenMatch(fileParam);
-
-      if(!result){
-        titleEl.textContent = "Fehler beim Laden";
-        const firstBlob = ghBlob(fileParam.replace(/^\.?\//,''));
-        srcEl.textContent = fileParam;
-        aRaw.removeAttribute('href'); aGH.href = firstBlob;
-        content.innerHTML = `
-          <p class="err">Die Datei <code>${fileParam}</code> konnte nicht gefunden werden – auch nach Matching-Versuch.</p>
-          <p>Prüfe bitte:
-            <br>• Exakter Dateiname und Groß/Kleinschreibung
-            <br>• Versehentliche Spaces/Zero-Width-Zeichen (z. B. „Modul _“)
-            <br>• Branch (<code>${REF}</code>)
-          </p>
-          <p>GitHub-Ansicht: <a href="${firstBlob}" target="_blank" rel="noopener">${firstBlob}</a></p>`;
+      let ref;
+      try{ ref = await getDefaultBranch(); } catch(e){
+        titleEl.textContent="Fehler beim Laden";
+        content.innerHTML = `<p class="err">Konnte den Default-Branch nicht ermitteln.</p>`;
         return;
       }
 
-      const { md, chosenPath, rawURL } = result;
+      // 1) Exakt versuchen
+      const exactMeta = await contentsMeta(ref, requested.replace(/^\.?\//,''));
+      if(exactMeta && exactMeta.download_url){
+        addDiag('MATCH:', `EXACT ${requested}`);
+        return render(exactMeta, ref, requested);
+      }
 
-      // UI-Links + Quelle
-      srcEl.textContent = chosenPath;
+      // 2) Repo-Tree scannen und bestes Match suchen
+      let tree;
+      try{ tree = await getTreeSha(ref); } catch(e){
+        titleEl.textContent="Fehler beim Laden";
+        content.innerHTML = `<p class="err">Konnte Repo-Tree nicht laden.</p>`;
+        return;
+      }
+
+      const targetNorm = normalizeName(requested.split('/').pop());
+      const candidates = (tree.tree||[])
+        .filter(n => n.type === 'blob' && n.path.toLowerCase().endsWith('.md'));
+
+      // Scoring: exakte Normalisierung bevorzugen, sonst enthalten, sonst Levenshtein-Light (Beginn)
+      const scored = candidates.map(n => {
+        const base = n.path.split('/').pop();
+        const norm = normalizeName(base);
+        let score = 0;
+        if (norm === targetNorm) score = 100;
+        else if (norm.includes(targetNorm) || targetNorm.includes(norm)) score = 70;
+        else if (norm.startsWith(targetNorm) || targetNorm.startsWith(norm)) score = 60;
+        return {path:n.path, score};
+      }).sort((a,b)=>b.score-a.score);
+
+      const pick = scored[0] && scored[0].score >= 60 ? scored[0].path : null;
+      if (!pick){
+        titleEl.textContent="Fehler beim Laden";
+        const blob = toBlob(ref, requested);
+        srcEl.textContent = requested;
+        aGH.href = blob; aRaw.removeAttribute('href');
+        content.innerHTML = `<p class="err">Keine passende Datei gefunden. Prüfe Namen/Ordner/Branch.</p><p>GitHub: <a href="${blob}" target="_blank" rel="noopener">${blob}</a></p>`;
+        return;
+      }
+      addDiag('MATCH:', `BEST → ${pick}`);
+
+      // 3) Für pick die Contents-Meta holen (download_url)
+      const meta = await contentsMeta(ref, pick);
+      if (!meta || !meta.download_url){
+        titleEl.textContent="Fehler beim Laden";
+        content.innerHTML = `<p class="err">Konnte Download-URL für <code>${pick}</code> nicht ermitteln.</p>`;
+        return;
+      }
+      return render(meta, ref, pick);
+    }
+
+    async function render(meta, ref, effectivePath){
+      const rawURL = meta.download_url;
       aRaw.href = rawURL;
-      aGH.href  = ghBlob(chosenPath);
+      aGH.href  = toBlob(ref, effectivePath);
+      srcEl.textContent = effectivePath;
 
-      // Titel aus H1, sonst Dateiname
-      const m = md.match(/^#\s+(.+)$/m);
-      titleEl.textContent = m ? m[1].trim() : chosenPath.replace(/\.md$/,'').replace(/_/g,' ');
+      try{
+        const res = await fetch(rawURL,{cache:'no-store'});
+        addDiag('RAW:', `${res.status} ${rawURL}`);
+        if(!res.ok) throw new Error('raw');
+        const md = await res.text();
 
-      const html = marked.parse(md, { mangle:false, headerIds:true });
-      const safe = DOMPurify.sanitize(html, { USE_PROFILES:{ html:true } });
-      content.innerHTML = safe;
+        const m = md.match(/^#\s+(.+)$/m);
+        titleEl.textContent = m ? m[1].trim() : effectivePath.replace(/\.md$/,'').replace(/_/g,' ');
 
-      // relative Links → GitHub-Blob
-      content.querySelectorAll('a[href]').forEach(a=>{
-        const href=a.getAttribute('href'); if(!href) return;
-        const abs=/^https?:\/\//i.test(href)||href.startsWith('#')||href.startsWith('mailto:');
-        if(abs) return;
-        const normalized = href.replace(/^\.\//,'').replace(/^\//,'');
-        a.setAttribute('href', ghBlob(normalized));
-        a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
-      });
+        const html = marked.parse(md, { mangle:false, headerIds:true });
+        const safe = DOMPurify.sanitize(html, { USE_PROFILES:{ html:true } });
+        content.innerHTML = safe;
+
+        // relative Links → Blob
+        content.querySelectorAll('a[href]').forEach(a=>{
+          const href=a.getAttribute('href'); if(!href) return;
+          const abs=/^https?:\/\//i.test(href)||href.startsWith('#')||href.startsWith('mailto:');
+          if(abs) return;
+          const normalized = href.replace(/^\.\//,'').replace(/^\//,'');
+          a.setAttribute('href', toBlob(ref, normalized));
+          a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+        });
+
+      }catch(e){
+        titleEl.textContent="Fehler beim Laden";
+        content.innerHTML = `<p class="err">Download fehlgeschlagen.</p><p>Versuche direkt: <a href="${rawURL}" target="_blank" rel="noopener">${rawURL}</a></p>`;
+      }
     }
 
     if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', load); else load();

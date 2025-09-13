@@ -1,174 +1,133 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>QUESTSYSTEM – Modulansicht</title>
-  <meta name="description" content="QUESTSYSTEM Modulansicht – lädt Module direkt (ohne GitHub-API), mit automatischer Branch-Erkennung." />
-  <style>
-    :root{ --bg:#0b0f16; --fg:#e7eef7; --muted:#9fb0c6; --link:#9ad1ff; --border:#243047; --card:#0f1521; }
-    *{box-sizing:border-box}
-    body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg); background:var(--bg)}
-    header{padding:12px 16px; background:#111624; border-bottom:1px solid var(--border); display:flex; gap:12px; align-items:center}
-    header a{color:var(--link); text-decoration:none}
-    main{max-width:1000px; margin:28px auto; padding:0 16px}
-    .card{background:#0f1521; border:1px solid var(--border); border-radius:14px; padding:18px 20px}
-    #title{margin:0 0 10px 0}
-    #meta{color:var(--muted); font-size:13px; margin:4px 0 14px}
-    #content a{color:var(--link)}
-    #content code{background:#0b1220; padding:.15em .35em; border-radius:6px}
-    #content pre{background:#0b1220; padding:12px; border-radius:10px; overflow:auto}
-    .err{color:#ffb0b0}
-    details{margin-top:16px}
-    summary{cursor:pointer; color:var(--muted)}
-    .url-list code{display:block; padding:2px 0}
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>QUESTSYSTEM – Modulansicht</title>
+<style>
+  :root{ --bg:#0b0f16; --fg:#e7eef7; --muted:#9fb0c6; --link:#9ad1ff; --border:#243047; --card:#0f1521; }
+  body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg); background:var(--bg)}
+  header{padding:12px 16px; background:#111624; border-bottom:1px solid var(--border); display:flex; gap:12px; align-items:center}
+  header a{color:var(--link); text-decoration:none}
+  main{max-width:1000px; margin:28px auto; padding:0 16px}
+  .card{background:#0f1521; border:1px solid var(--border); border-radius:14px; padding:18px 20px}
+  #title{margin:0 0 10px 0}
+  #meta{color:var(--muted); font-size:13px; margin:4px 0 14px}
+  #content a{color:var(--link)}
+  #content code{background:#0b1220; padding:.15em .35em; border-radius:6px}
+  #content pre{background:#0b1220; padding:12px; border-radius:10px; overflow:auto}
+  .err{color:#ffb0b0}
+  details{margin-top:16px} summary{cursor:pointer; color:var(--muted)}
+  .url-list code{display:block; padding:2px 0}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 </head>
 <body>
-  <header>
-    <strong>🍄 QUESTSYSTEM</strong>
-    <a href="./index.html">Ring-Übersicht</a>
-    <span style="flex:1"></span>
-    <a id="view-raw" target="_blank" rel="noopener">Raw</a>
-    <a id="view-github" target="_blank" rel="noopener">GitHub</a>
-  </header>
+<header>
+  <strong>🍄 QUESTSYSTEM</strong>
+  <a href="./index.html">Ring-Übersicht</a>
+  <span style="flex:1"></span>
+  <a id="view-raw" target="_blank" rel="noopener">Raw</a>
+  <a id="view-github" target="_blank" rel="noopener">GitHub</a>
+</header>
 
-  <main>
-    <div class="card">
-      <h1 id="title">Modul wird geladen …</h1>
-      <div id="meta">Quelle: <code id="src"></code></div>
-      <article id="content" aria-live="polite"></article>
-      <details id="diag" style="display:none;">
-        <summary>Diagnose: getestete URLs</summary>
-        <div class="url-list" id="diag-list"></div>
-      </details>
-    </div>
-  </main>
+<main>
+  <div class="card">
+    <h1 id="title">Modul wird geladen …</h1>
+    <div id="meta">Quelle: <code id="src"></code></div>
+    <article id="content" aria-live="polite"></article>
+    <details id="diag" style="display:none;">
+      <summary>Diagnose</summary>
+      <div id="diag-list" class="url-list"></div>
+    </details>
+  </div>
+</main>
 
-  <script>
-    // Repo-Konfiguration (Owner/Repo), Branch wird automatisch ermittelt (main → master → gh-pages)
-    const OWNER = "Quest42-coder";
-    const REPO  = "QUESTSYSTEM_PUBLIC";
+<script>
+const OWNER="Quest42-coder", REPO="QUESTSYSTEM_PUBLIC", BRANCH="main";
 
-    // Query-Parameter
-    const qs   = new URLSearchParams(location.search);
-    const file = (qs.get("file") || "").replace(/^\.?\//, ""); // z.B. "MODULES/Modul_32_LICENCE.md"
-    const refHint = qs.get("ref"); // optional: &ref=main überschreibt Reihenfolge
+const qs=new URLSearchParams(location.search);
+const file=(qs.get("file")||"").replace(/^\.?\//,"");
+const ver =qs.get("v")||"";
 
-    // DOM-Refs
-    const titleEl = document.getElementById("title");
-    const srcEl   = document.getElementById("src");
-    const content = document.getElementById("content");
-    const aRaw    = document.getElementById("view-raw");
-    const aGH     = document.getElementById("view-github");
-    const diag    = document.getElementById("diag");
-    const diagList= document.getElementById("diag-list");
+const srcEl=document.getElementById("src");
+const titleEl=document.getElementById("title");
+const content=document.getElementById("content");
+const aRaw=document.getElementById("view-raw");
+const aGH =document.getElementById("view-github");
+const diag=document.getElementById("diag");
+const diagList=document.getElementById("diag-list");
 
-    // Utils
-    const encPath = (p) => p.split('/').map(encodeURIComponent).join('/');
-    const rawURL  = (br, p) => `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(br)}/${encPath(p)}`;
-    const cdnURL  = (br, p) => `https://cdn.jsdelivr.net/gh/${OWNER}/${REPO}@${encodeURIComponent(br)}/${encPath(p)}`;
-    const blobURL = (br, p) => `https://github.com/${OWNER}/${REPO}/blob/${encodeURIComponent(br)}/${encPath(p)}`;
+const enc=(p)=>p.split('/').map(encodeURIComponent).join('/');
+const raw=(p)=>`https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${enc(p)}${ver?`?v=${encodeURIComponent(ver)}`:""}`;
+const blob=(p)=>`https://github.com/${OWNER}/${REPO}/blob/${BRANCH}/${enc(p)}`;
 
-    function addDiag(url, status){
-      diag.style.display='';
-      const line = document.createElement('code');
-      line.textContent = `${status.padEnd(7)} ${url}`;
-      diagList.appendChild(line);
-    }
+function log(url,status){ diag.style.display=''; const line=document.createElement('code'); line.textContent=`${status} ${url}`; diagList.appendChild(line); }
 
-    function pathCandidates(f){
-      const name = f.split('/').pop();
-      // probiere exakt + typische Varianten
-      return Array.from(new Set([
-        f,
-        `MODULES/${name}`,
-        `modules/${name}`,
-        `docs/${name}`,
-        `docs/MODULES/${name}`
-      ]));
-    }
+async function load(){
+  if(!file){
+    titleEl.textContent="Kein Modul angegeben";
+    content.innerHTML=`<p class="err">Nutze z. B.: <code>module.html?file=MODULES/Modul_32_LICENCE.md</code></p>`;
+    return;
+  }
+  let path = file;
+  let rawUrl = raw(path), ghUrl = blob(path);
+  srcEl.textContent=`${path} @ ${BRANCH}`;
+  aRaw.href=rawUrl; aGH.href=ghUrl;
 
-    async function tryFetch(url){
-      try{
-        const res = await fetch(url, {cache:'no-store'});
-        if(!res.ok){ addDiag(url, `HTTP ${res.status}`); return null; }
-        addDiag(url, `OK`);
-        return await res.text();
-      }catch(e){
-        addDiag(url, `ERR`);
-        return null;
+  // 1) Hauptversuch
+  let res = await fetch(rawUrl,{cache:'no-store'});
+  log(rawUrl, `HTTP ${res.status}`);
+
+  // 2) Fallback: MODULES ↔ Root (z. B. 14_GEBOTE_V2.1.md liegt im Root)
+  if(!res.ok){
+    const basename = path.split('/').pop();
+    const tryPaths = [];
+    if (path.startsWith('MODULES/')) tryPaths.push(basename);
+    else tryPaths.push(`MODULES/${basename}`);
+
+    for (const alt of tryPaths){
+      const altRaw = raw(alt);
+      const altRes = await fetch(altRaw,{cache:'no-store'});
+      log(altRaw, `HTTP ${altRes.status}`);
+      if(altRes.ok){
+        res = altRes;
+        path = alt;
+        rawUrl = altRaw;
+        ghUrl = blob(path);
+        srcEl.textContent = `${path} @ ${BRANCH}`;
+        aRaw.href = rawUrl; aGH.href = ghUrl;
+        break;
       }
     }
+  }
 
-    async function load(){
-      if(!file){
-        titleEl.textContent = "Kein Modul angegeben";
-        content.innerHTML = `<p class="err">Nutze z. B.: <code>module.html?file=MODULES/Modul_32_LICENCE.md</code></p>`;
-        return;
-      }
+  if(!res.ok){
+    titleEl.textContent="Fehler beim Laden";
+    content.innerHTML=`<p class="err">Konnte <code>${file}</code> nicht laden (HTTP ${res.status}).</p>
+      <p>Prüfe Pfad/Case & Branch <code>${BRANCH}</code>. GitHub: <a href="${ghUrl}" target="_blank" rel="noopener">${ghUrl}</a></p>`;
+    return;
+  }
 
-      // Branch-Reihenfolge: Hint → main → master → gh-pages
-     // in load():
-      const branches = ["main"]; // statt ["main","master","gh-pages"]
-      const paths    = pathCandidates(file);
+  // 3) Rendern
+  const md=await res.text();
+  const h1=md.match(/^#\s+(.+)$/m);
+  if(h1) titleEl.textContent=h1[1].trim();
+  const html=marked.parse(md,{mangle:false,headerIds:true});
+  content.innerHTML=DOMPurify.sanitize(html,{USE_PROFILES:{html:true}});
 
-      let md=null, usedBranch=null, usedPath=null, usedURL=null;
+  // 4) relative Links → GitHub-Blob (selber Branch)
+  content.querySelectorAll('a[href]').forEach(a=>{
+    const href=a.getAttribute('href'); if(!href) return;
+    const abs=/^https?:\/\//i.test(href)||href.startsWith('#')||href.startsWith('mailto:');
+    if(abs) return;
+    const norm=href.replace(/^\.\//,'').replace(/^\//,'');
+    a.href=blob(norm); a.target="_blank"; a.rel="noopener";
+  });
+}
 
-      outer:
-      for(const br of branches){
-        for(const p of paths){
-          // 1) raw.githubusercontent.com
-          const u1 = rawURL(br, p);
-          const t1 = await tryFetch(u1);
-          if(t1!==null){ md=t1; usedBranch=br; usedPath=p; usedURL=u1; break outer; }
-
-          // 2) jsDelivr CDN als Fallback (CORS-robust)
-          const u2 = cdnURL(br, p);
-          const t2 = await tryFetch(u2);
-          if(t2!==null){ md=t2; usedBranch=br; usedPath=p; usedURL=u2; break outer; }
-        }
-      }
-
-      if(!md){
-        titleEl.textContent = "Fehler beim Laden";
-        srcEl.textContent   = file;
-        const guessBlob = blobURL(branches[0], paths[0]);
-        aGH.href  = guessBlob;
-        aRaw.removeAttribute('href');
-        content.innerHTML = `<p class="err">Datei nicht gefunden. Prüfe Branch, Ordnername und Groß/Kleinschreibung.</p>
-          <p>Vermutete GitHub-Ansicht: <a href="${guessBlob}" target="_blank" rel="noopener">${guessBlob}</a></p>`;
-        return;
-      }
-
-      // UI-Links + Meta
-      srcEl.textContent = `${usedPath} @ ${usedBranch}`;
-      aRaw.href = usedURL;
-      aGH.href  = blobURL(usedBranch, usedPath);
-
-      // Titel aus erster H1, sonst Dateiname
-      const m = md.match(/^#\s+(.+)$/m);
-      titleEl.textContent = m ? m[1].trim() : usedPath.replace(/\.md$/,'').replace(/_/g,' ');
-
-      // Render Markdown → HTML, sicher säubern
-      const html = marked.parse(md, { mangle:false, headerIds:true });
-      const safe = DOMPurify.sanitize(html, { USE_PROFILES:{ html:true } });
-      content.innerHTML = safe;
-
-      // relative Links → GitHub-Blob (selber Branch)
-      content.querySelectorAll('a[href]').forEach(a=>{
-        const href = a.getAttribute('href'); if(!href) return;
-        const abs  = /^https?:\/\//i.test(href) || href.startsWith('#') || href.startsWith('mailto:');
-        if(abs) return;
-        const normalized = href.replace(/^\.\//,'').replace(/^\//,'');
-        a.setAttribute('href', blobURL(usedBranch, normalized));
-        a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
-      });
-    }
-
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', load); else load();
-  </script>
+load();
+</script>
 </body>
 </html>

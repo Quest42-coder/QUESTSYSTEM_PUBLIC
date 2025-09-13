@@ -4,57 +4,72 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>QUESTSYSTEM – Ring-Homepage</title>
-  <meta name="description" content="QUESTSYSTEM – Übersicht aller Module als konzentrische Ringe. Klickbar zu den Modul-Beschreibung." />
+  <meta name="description" content="QUESTSYSTEM – Übersicht aller Module als konzentrische Ringe. Klickbar zu den Modulbeschreibungen." />
   <style>
     :root{
-      --bg:#0e1116;
-      --fg:#e7eef7;
-      --muted:#9fb0c6;
-      --ring-inner:#f3c0c7;
-      --ring-mid:#f0de94;
-      --ring-outer:#bcd5ff;
-      --node-bg:#10151f;
-      --node-border:#2a3344;
-      --focus:#66ccff;
+      --bg:#0e1116; --fg:#e7eef7; --muted:#9fb0c6;
+      --ring-inner:#f3c0c7; --ring-mid:#f0de94; --ring-outer:#bcd5ff;
+      --node-bg:#10151f; --node-border:#2a3344; --focus:#66ccff;
       --shadow: 0 6px 24px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0; font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg); background: radial-gradient(1200px 800px at 50% 40%, #131824 0%, #0c0f16 60%, #090b11 100%); overflow: hidden;}
-    header{position:fixed; inset:24px 24px auto 24px; display:flex; gap:14px; align-items:center; z-index:30; padding:10px 14px; background:rgba(10,13,20,.6); border:1px solid #222a39; border-radius:12px; backdrop-filter: blur(6px); box-shadow: var(--shadow);}
+    body{
+      margin:0; font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg);
+      background: radial-gradient(1200px 800px at 50% 40%, #131824 0%, #0c0f16 60%, #090b11 100%); overflow: hidden;
+    }
+    header{
+      position:fixed; inset:24px 24px auto 24px; z-index:30;
+      display:flex; gap:14px; align-items:center;
+      padding:10px 14px; background:rgba(10,13,20,.6); border:1px solid #222a39; border-radius:12px; backdrop-filter: blur(6px);
+      box-shadow: var(--shadow);
+    }
     header .dot{font-size:18px}
     header h1{font-size:16px; margin:0; font-weight:700; letter-spacing:.4px}
     header nav{margin-left:auto; display:flex; gap:12px; flex-wrap:wrap}
     header a{color:var(--fg); text-decoration:none; opacity:.9}
     header a:hover{text-decoration:underline; opacity:1}
+
     .stage{position:absolute; inset:0; display:grid; place-items:center; padding:16px;}
     svg{width:min(1200px, 95vw); height:min(1200px, 95vh)}
+    /* Ringe */
     .ring-inner{stroke:var(--ring-inner); stroke-width:2.2; fill:none; stroke-opacity:.9}
     .ring-mid{stroke:var(--ring-mid); stroke-width:2.2; fill:none; stroke-opacity:.9}
     .ring-outer{stroke:var(--ring-outer); stroke-width:2.2; fill:none; stroke-opacity:.9}
-    svg a.node { cursor:pointer; filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); transition: transform .15s ease, opacity .2s ease; }
+    /* Nodes */
+    svg a.node{ cursor:pointer; filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); transition: transform .15s ease, opacity .2s ease; }
     svg a.node:hover{ transform: translateY(-2px) scale(1.03); }
     .node circle{ fill:var(--node-bg); stroke:var(--node-border); stroke-width:1.5; }
     .node text{ font-size:12px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle; pointer-events:none; }
-    .inner text{ fill:#5d2029 }
-    .mid text{ fill:#6c5b00 }
-    .outer text{ fill:#274b7a }
+    .inner text{ fill:#5d2029 }  /* rosa */
+    .mid   text{ fill:#6c5b00 }  /* gelb */
+    .outer text{ fill:#274b7a }  /* blau */
+    /* Zentrum */
     .center circle{ fill:transparent; stroke:#59657c; stroke-dasharray:4 6; }
     .center text{ fill:#7f8ea8; font-weight:600; font-size:12px }
-    .tip{position:fixed; z-index:40; pointer-events:none; transform:translate(-50%, calc(-100% - 12px)); background:#0f1624; border:1px solid #2b3548; color:var(--fg); padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap; opacity:0; transition:opacity .15s ease, transform .15s ease; box-shadow: var(--shadow);}
+    /* Tooltip */
+    .tip{
+      position:fixed; z-index:40; pointer-events:none;
+      transform:translate(-50%, calc(-100% - 12px));
+      background:#0f1624; border:1px solid #2b3548; color:var(--fg);
+      padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap;
+      opacity:0; transition:opacity .15s ease, transform .15s ease; box-shadow: var(--shadow);
+    }
     .tip.show{opacity:1; transform:translate(-50%, calc(-100% - 10px))}
     .tip small{color:var(--muted)}
-    .legend{position:fixed; inset:auto 16px 16px 16px; z-index:25; display:flex; gap:10px; align-items:center; justify-content:center; background:rgba(12,16,24,.55); border:1px solid #222a39; border-radius:10px; padding:8px 10px; backdrop-filter: blur(6px);}
+    /* Legende */
+    .legend{
+      position:fixed; inset:auto 16px 16px 16px; z-index:25;
+      display:flex; gap:10px; align-items:center; justify-content:center;
+      background:rgba(12,16,24,.55); border:1px solid #222a39; border-radius:10px; padding:8px 10px; backdrop-filter: blur(6px);
+    }
     .chip{display:inline-flex; align-items:center; gap:8px; font-size:12px}
     .sw{width:14px; height:14px; border-radius:50%}
     .sw.inner{background:var(--ring-inner)}
     .sw.mid{background:var(--ring-mid)}
     .sw.outer{background:var(--ring-outer)}
     .focus-ring{ outline:2px dashed var(--focus); outline-offset:3px}
-    @media (max-width:720px){
-      header{inset:12px 12px auto 12px}
-      header h1{display:none}
-    }
+    @media (max-width:720px){ header{inset:12px 12px auto 12px} header h1{display:none} }
   </style>
 </head>
 <body>
@@ -70,11 +85,12 @@
   </header>
 
   <div class="stage">
-    <svg id="ringmap" viewBox="-600 -600 1200 1200" role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS">
+    <svg id="ringmap" viewBox="-600 -600 1200 1200" role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS" xmlns="http://www.w3.org/2000/svg">
+      <!-- Ringe -->
       <circle class="ring-inner" r="220"></circle>
       <circle class="ring-mid"   r="380"></circle>
       <circle class="ring-outer" r="540"></circle>
-
+      <!-- Zentrum -->
       <g class="center" aria-label="Resetbox">
         <circle r="70"></circle>
         <text y="0">RESETBOX</text>
@@ -91,7 +107,10 @@
   <div id="tip" class="tip" role="status" aria-live="polite"></div>
 
   <script>
-    const fallback = "module.html"; 
+    const SVG_NS   = "http://www.w3.org/2000/svg";
+    const XLINK_NS = "http://www.w3.org/1999/xlink";
+    const fallback = "module.html";
+
     const nodes = [
       // INNER – Existential
       {label:"WATER",   ring:"inner", href:`module.html?file=Modul_02_WATER.md`},
@@ -150,9 +169,10 @@
     function placeNodes() {
       const groups = {inner:[], mid:[], outer:[]};
       nodes.forEach(n => groups[n.ring].push(n));
+
       Object.entries(groups).forEach(([ring, list]) => {
         const radius = config[ring].r;
-        const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        const group = document.createElementNS(SVG_NS, "g");
         group.setAttribute("class", config[ring].class);
         svg.appendChild(group);
 
@@ -163,25 +183,34 @@
           const angle = start + idx*step;
           const x = Math.cos(angle) * radius;
           const y = Math.sin(angle) * radius;
+          const url = n.href || fallback;
 
-          const a = document.createElementNS("http://www.w3.org/2000/svg", "a");
-          a.setAttribute("href", n.href || fallback);
-          a.setAttribute("target","_blank");
-          a.setAttribute("rel","noopener");
+          // Native SVG-Link – inkl. xlink:href für Safari
+          const a = document.createElementNS(SVG_NS, "a");
+          a.setAttribute("href", url);
+          a.setAttributeNS(XLINK_NS, "xlink:href", url);
+          a.setAttribute("target","_self");
           a.setAttribute("tabindex","0");
           a.setAttribute("role","link");
           a.setAttribute("aria-label", `${n.label} – öffnen`);
           a.setAttribute("transform", `translate(${x}, ${y})`);
           a.classList.add("node", config[ring].class);
 
-          const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          // Fallback: falls ein Browser SVG-Links blockt, erzwinge Navigation
+          a.addEventListener('click', (e) => {
+            // Browser folgt href; wenn nicht, fallback:
+            setTimeout(()=>{ if (!location.search.includes(url)) location.href = url; }, 0);
+          });
+
+          const circle = document.createElementNS(SVG_NS, "circle");
           circle.setAttribute("r", 42);
           a.appendChild(circle);
 
-          const text = document.createElementNS("http://www.w3.org/200SVG", "text");
+          const text = document.createElementNS(SVG_NS, "text");
           text.textContent = n.label;
           a.appendChild(text);
 
+          // Tooltip / Fokus
           a.addEventListener('mouseenter', e => showTip(`${n.label}`, e));
           a.addEventListener('mousemove', e => moveTip(e));
           a.addEventListener('mouseleave', hideTip);

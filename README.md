@@ -13,12 +13,12 @@
 **Ausgangspunkt:**  
 Was brauchen Menschen, um in einer Gesellschaft frei zu leben?  
 
-Das QUESTSYSTEM entstand nicht aus Planung oder Privileg,  
-sondern aus der **School of Hard Knocks** – aus Not, Frust, Wut, Zorn,  
-unendlich viel Schmerz und einem Drang, den die Medizin als „Krankheit“ bezeichnet.  
-Ich selbst nenne es den **Schrei nach Freiheit**:  
-das Unvermögen, mit dem Denken, Reflektieren und Fragen aufzuhören –  
-selbst unter Vollauslastung, am absoluten Limit.  
+Das QUESTSYSTEM ist nicht aus Komfort oder Planung entstanden,
+sondern aus der School of Hard Knocks – aus Erfahrung von Not, Wut und Erschöpfung,
+aus unzähligen Brüchen und einem inneren Antrieb, den manche Medizin als „Krankheit“ bezeichnet.
+Für mich ist er ein unbeugsames Bedürfnis nach Wahrheit und Selbstbestimmung:
+die Unfähigkeit, mit Denken, Reflektieren und Fragen aufzuhören –
+selbst am Rand völliger Erschöpfung, unter maximaler Belastung.
 
 Um daraus nicht nur Bruch, sondern Neubeginn zu machen, brauchte es Form.  
 So entstand ein Dreiklang:  

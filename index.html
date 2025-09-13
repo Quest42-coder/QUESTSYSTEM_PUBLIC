@@ -208,8 +208,16 @@
 
           // Navigation ERZINGEN (gleiches Tab) – auch wenn der Browser SVG-<a> ignoriert
 // --- BEGIN: iOS/Opera-kompatible Navigation erzwingen ---
-const go = () => { try { window.location.assign(url); } catch(e) { location.href = url; } };
-
+const go = () => window.location.assign(url);
+a.addEventListener('click', (e) => { e.preventDefault(); go(); });
+a.addEventListener('touchend', (e) => { e.preventDefault(); go(); }, {passive:false});
+a.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+});
+a.setAttribute('tabindex','0');
+a.setAttribute('role','link');
+a.setAttribute('focusable','true');
+a.setAttribute('aria-label', `${n.label} – öffnen`);
 // 1) Hauptanker: Klicks + Pointer + Tastatur
 a.style.cursor = 'pointer';
 a.setAttribute('tabindex','0');

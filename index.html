@@ -6,77 +6,40 @@
   <title>QUESTSYSTEM – Ring-Homepage</title>
   <meta name="description" content="QUESTSYSTEM – Übersicht aller Module als konzentrische Ringe. Klickbar zu den Modulbeschreibungen." />
   <style>
-    :root{
-      --bg:#0e1116; --fg:#e7eef7; --muted:#9fb0c6;
-      --ring-inner:#f3c0c7; --ring-mid:#f0de94; --ring-outer:#bcd5ff;
-      --node-bg:#10151f; --node-border:#2a3344; --focus:#66ccff;
-      --shadow: 0 6px 24px rgba(0,0,0,.35);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg);
-      background: radial-gradient(1200px 800px at 50% 40%, #131824 0%, #0c0f16 60%, #090b11 100%); overflow: hidden;
-    }
-    header{
-      position:fixed; inset:24px 24px auto 24px; z-index:30;
-      display:flex; gap:14px; align-items:center;
-      padding:10px 14px; background:rgba(10,13,20,.6); border:1px solid #222a39; border-radius:12px; backdrop-filter: blur(6px);
-      box-shadow: var(--shadow);
-    }
-    header .dot{font-size:18px}
-    header h1{font-size:16px; margin:0; font-weight:700; letter-spacing:.4px}
-    header nav{margin-left:auto; display:flex; gap:12px; flex-wrap:wrap}
-    header a{color:var(--fg); text-decoration:none; opacity:.9}
-    header a:hover{text-decoration:underline; opacity:1}
-
-    .stage{position:absolute; inset:0; display:grid; place-items:center; padding:16px;}
-    svg{width:min(1200px, 95vw); height:min(1200px, 95vh)}
-    /* Ringe */
+    :root{ --bg:#0e1116; --fg:#e7eef7; --muted:#9fb0c6; --ring-inner:#f3c0c7; --ring-mid:#f0de94; --ring-outer:#bcd5ff; --node-bg:#10151f; --node-border:#2a3344; --focus:#66ccff; --shadow:0 6px 24px rgba(0,0,0,.35) }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0; font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg);
+      background: radial-gradient(1200px 800px at 50% 40%, #131824 0%, #0c0f16 60%, #090b11 100%); overflow:hidden}
+    header{position:fixed; inset:24px 24px auto 24px; z-index:30; display:flex; gap:14px; align-items:center;
+      padding:10px 14px; background:rgba(10,13,20,.6); border:1px solid #222a39; border-radius:12px; backdrop-filter: blur(6px); box-shadow:var(--shadow)}
+    header a{color:var(--fg); text-decoration:none; opacity:.9} header a:hover{text-decoration:underline; opacity:1}
+    .stage{position:absolute; inset:0; display:grid; place-items:center; padding:16px}
+    svg{width:min(1200px,95vw); height:min(1200px,95vh)}
     .ring-inner{stroke:var(--ring-inner); stroke-width:2.2; fill:none; stroke-opacity:.9}
     .ring-mid{stroke:var(--ring-mid); stroke-width:2.2; fill:none; stroke-opacity:.9}
     .ring-outer{stroke:var(--ring-outer); stroke-width:2.2; fill:none; stroke-opacity:.9}
-    /* Nodes */
-    svg a.node{ cursor:pointer; filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); transition: transform .15s ease, opacity .2s ease; }
-    svg a.node:hover{ transform: translateY(-2px) scale(1.03); }
-    .node circle{ fill:var(--node-bg); stroke:var(--node-border); stroke-width:1.5; }
-    .node text{ font-size:12px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle; }
-    .inner text{ fill:#5d2029 }
-    .mid   text{ fill:#6c5b00 }
-    .outer text{ fill:#274b7a }
-    /* Zentrum */
-    .center circle{ fill:transparent; stroke:#59657c; stroke-dasharray:4 6; }
+    svg a.node{cursor:pointer; filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); transition: transform .15s ease, opacity .2s ease}
+    svg a.node:hover{ transform: translateY(-2px) scale(1.03) }
+    .node circle{ fill:var(--node-bg); stroke:var(--node-border); stroke-width:1.5 }
+    .node text{ font-size:12px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle }
+    .inner text{ fill:#5d2029 } .mid text{ fill:#6c5b00 } .outer text{ fill:#274b7a }
+    .center circle{ fill:transparent; stroke:#59657c; stroke-dasharray:4 6 }
     .center text{ fill:#7f8ea8; font-weight:600; font-size:12px }
-    /* Tooltip */
-    .tip{
-      position:fixed; z-index:40; pointer-events:none;
-      transform:translate(-50%, calc(-100% - 12px));
-      background:#0f1624; border:1px solid #2b3548; color:var(--fg);
-      padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap;
-      opacity:0; transition:opacity .15s ease, transform .15s ease; box-shadow: var(--shadow);
-    }
+    .tip{position:fixed; z-index:40; pointer-events:none; transform:translate(-50%, calc(-100% - 12px));
+      background:#0f1624; border:1px solid #2b3548; color:var(--fg); padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap;
+      opacity:0; transition:opacity .15s ease, transform .15s ease; box-shadow:var(--shadow)}
     .tip.show{opacity:1; transform:translate(-50%, calc(-100% - 10px))}
-    .tip small{color:var(--muted)}
-    /* Legende */
-    .legend{
-      position:fixed; inset:auto 16px 16px 16px; z-index:25;
-      display:flex; gap:10px; align-items:center; justify-content:center;
-      background:rgba(12,16,24,.55); border:1px solid #222a39; border-radius:10px; padding:8px 10px; backdrop-filter: blur(6px);
-    }
+    .legend{position:fixed; inset:auto 16px 16px 16px; z-index:25; display:flex; gap:10px; align-items:center; justify-content:center;
+      background:rgba(12,16,24,.55); border:1px solid #222a39; border-radius:10px; padding:8px 10px; backdrop-filter: blur(6px)}
     .chip{display:inline-flex; align-items:center; gap:8px; font-size:12px}
-    .sw{width:14px; height:14px; border-radius:50%}
-    .sw.inner{background:var(--ring-inner)}
-    .sw.mid{background:var(--ring-mid)}
-    .sw.outer{background:var(--ring-outer)}
-    .focus-ring{ outline:2px dashed var(--focus); outline-offset:3px}
-    @media (max-width:720px){ header{inset:12px 12px auto 12px} header h1{display:none} }
+    .sw{width:14px; height:14px; border-radius:50%} .sw.inner{background:var(--ring-inner)} .sw.mid{background:var(--ring-mid)} .sw.outer{background:var(--ring-outer)}
   </style>
 </head>
 <body>
   <header aria-label="Seitennavigation">
     <div class="dot">🍄</div>
-    <h1>QUESTSYSTEM – Modul-Ringe</h1>
-    <nav>
+    <strong>QUESTSYSTEM – Modul-Ringe</strong>
+    <nav style="margin-left:auto">
       <a href="https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC" target="_blank" rel="noopener">Repository</a>
       <a id="nav-dignity">Dignity Clause</a>
       <a id="nav-gebote">14 Gebote (V2.1)</a>
@@ -85,20 +48,11 @@
   </header>
 
   <div class="stage">
-    <!-- WICHTIG: beide Namespaces setzen -->
-    <svg id="ringmap" viewBox="-600 -600 1200 1200"
-         xmlns="http://www.w3.org/2000/svg"
-         xmlns:xlink="http://www.w3.org/1999/xlink"
-         role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS">
-      <!-- Ringe -->
+    <svg id="ringmap" viewBox="-600 -600 1200 1200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="Konzentrische Modul-Ringe">
       <circle class="ring-inner" r="220"></circle>
       <circle class="ring-mid"   r="380"></circle>
       <circle class="ring-outer" r="540"></circle>
-      <!-- Zentrum -->
-      <g class="center" aria-label="Resetbox">
-        <circle r="70"></circle>
-        <text y="0">RESETBOX</text>
-      </g>
+      <g class="center"><circle r="70"></circle><text y="0">RESETBOX</text></g>
     </svg>
   </div>
 
@@ -111,24 +65,17 @@
   <div id="tip" class="tip" role="status" aria-live="polite"></div>
 
   <script>
-    // ---- Basis-URL absolut ableiten (funktioniert lokal und auf Pages) ----
-    const BASE = (()=>{
-      // ergibt: https://quest42-coder.github.io/QUESTSYSTEM_PUBLIC/
-      const u = new URL(window.location.href);
-      // Wenn direkt auf index.html aufgerufen, entferne den Dateinamen:
-      if (u.pathname.endsWith('index.html')) u.pathname = u.pathname.replace(/index\.html$/, '');
-      // sichere mit trailing slash
-      if (!u.pathname.endsWith('/')) u.pathname += '/';
-      return u.origin + u.pathname;
-    })();
-    const urlFor = (filePath) => `${BASE}module.html?file=${encodeURIComponent(filePath)}`;
+    // Basis-URL + Cache-Bust
+    const BASE = (()=>{ const u=new URL(location.href); if(u.pathname.endsWith('index.html')) u.pathname=u.pathname.replace(/index\.html$/, ''); if(!u.pathname.endsWith('/')) u.pathname+='/'; return u.origin+u.pathname; })();
+    const V = 'fixnodes1'; // bei Bedarf erhöhen → Cache bricht
+    const urlFor = (filePath) => `${BASE}module.html?file=${encodeURIComponent(filePath)}&v=${encodeURIComponent(V)}`;
 
-    // ---- Header-Links (ebenfalls absolut) ----
-    document.getElementById('nav-dignity').setAttribute('href', urlFor('MODULES/DIGNITY_CLAUSE.md'));
-    document.getElementById('nav-gebote').setAttribute('href',  urlFor('MODULES/14_GEBOTE_V2.1.md'));
-    document.getElementById('nav-discuss').setAttribute('href',  urlFor('MODULES/14_GEBOTE_DISCUSSION.md'));
+    // Header-Links
+    document.getElementById('nav-dignity').href = urlFor('MODULES/DIGNITY_CLAUSE.md');
+    document.getElementById('nav-gebote').href  = urlFor('MODULES/14_GEBOTE_V2.1.md');
+    document.getElementById('nav-discuss').href = urlFor('MODULES/14_GEBOTE_DISCUSSION.md');
 
-    // ---- Knoten-Definition (nur Dateipfade; URL wird absolut berechnet) ----
+    // Knotenliste (VOLLSTÄNDIG!)
     const nodes = [
       // INNER – Existential
       {label:"WATER",   ring:"inner", file:`MODULES/Modul_02_WATER.md`},
@@ -206,79 +153,12 @@
           a.setAttribute("transform",`translate(${x},${y})`);
           a.classList.add("node",config[ring].class);
 
-          // Navigation ERZINGEN (gleiches Tab) – auch wenn der Browser SVG-<a> ignoriert
-// --- BEGIN: iOS/Opera-kompatible Navigation erzwingen ---
-const go = () => window.location.assign(url);
-a.addEventListener('click', (e) => { e.preventDefault(); go(); });
-a.addEventListener('touchend', (e) => { e.preventDefault(); go(); }, {passive:false});
-a.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
-});
-a.setAttribute('tabindex','0');
-a.setAttribute('role','link');
-a.setAttribute('focusable','true');
-a.setAttribute('aria-label', `${n.label} – öffnen`);
-// 1) Hauptanker: Klicks + Pointer + Tastatur
-a.style.cursor = 'pointer';
-a.setAttribute('tabindex','0');
-a.setAttribute('role','link');
-a.setAttribute('focusable','true'); // wichtig für iOS SVG-Fokus
-a.setAttribute('aria-label', `${n.label} – öffnen`);
-
-const onActivate = (e) => { 
-  if (e) e.preventDefault();
-  go();
-};
-
-// Klick/Pointer auf <a>
-['click','pointerup'].forEach(type => {
-  a.addEventListener(type, onActivate, {passive:false});
-});
-
-// Tastatur (Enter/Space)
-a.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
-});
-
-// 2) Touch-Support (iOS WebKit)
-a.addEventListener('touchend', (e) => { e.preventDefault(); go(); }, {passive:false});
-
-// 3) Manche WebKit-Builds leiten Events NICHT an <a> weiter → auf Kinder spiegeln
-const attachChildHandlers = (el) => {
-  ['click','pointerup'].forEach(t => el.addEventListener(t, (e)=>{ e.preventDefault(); go(); }, {passive:false}));
-  el.addEventListener('touchend', (e)=>{ e.preventDefault(); go(); }, {passive:false});
-};
-attachChildHandlers(circle);
-attachChildHandlers(text);
-// --- END ---
-
-// bisheriger Handler raus und durch diesen ersetzen:
-a.addEventListener('click', (e) => { 
-  e.preventDefault(); 
-  go(); 
-});
-
-// Tastatur: Enter/Space öffnet ebenfalls
-a.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    go();
-  }
-});
-
-// für Fokus & A11y
-a.setAttribute('tabindex','0');
-a.setAttribute('role','link');
-a.setAttribute('aria-label', `${n.label} – öffnen`);
-
-          // JS-Fallback: falls SVG-Link nicht feuert, navigiere hart
-          a.addEventListener('click', (e) => {
-            // kurzer Delay – wenn Browser dem href folgt, bleibt location sich ändern;
-            // falls nicht, zwingen wir sie:
-            setTimeout(() => {
-              if (location.href.indexOf('module.html') === -1) location.href = url;
-            }, 0);
-          });
+          const go = () => window.location.assign(url);
+          a.addEventListener('click',   e => { e.preventDefault(); go(); });
+          a.addEventListener('touchend',e => { e.preventDefault(); go(); }, {passive:false});
+          a.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); go(); }});
+          a.setAttribute('tabindex','0'); a.setAttribute('role','link'); a.setAttribute('focusable','true');
+          a.setAttribute('aria-label', `${n.label} – öffnen`);
 
           const circle=document.createElementNS(SVG_NS,"circle"); circle.setAttribute("r",42); a.appendChild(circle);
           const text=document.createElementNS(SVG_NS,"text"); text.textContent=n.label; a.appendChild(text);

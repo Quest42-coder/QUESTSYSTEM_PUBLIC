@@ -5,7 +5,8 @@
 **Status:** Blueprint / Open Commons Draft  
 
 ---
-**This is not a concept, it’s a consequence.**
+**This is not a concept.
+This is a consequence.**
 
 **This is Art**
 
@@ -51,8 +52,8 @@ sondern Spuren hinterlässt – sichtbar, unauslöschlich, manchmal unbequem.
 
 ---
 
-###Quest42 ist der Mensch, der nach deinem Bad fragt  
-und ungefragt mit Markern deine Fliesen anmalt.###
+Quest42 ist die Haltung die nach deinem Bad fragt  
+und ungefragt mit Markern deine Fliesen anmalt.
 
 ---
 

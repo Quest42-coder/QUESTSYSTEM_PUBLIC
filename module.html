@@ -4,221 +4,78 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>QUESTSYSTEM – Modulansicht</title>
-  <meta name="description" content="QUESTSYSTEM Modulansicht – rendert eine Markdown-Datei direkt aus dem Repository." />
+  <meta name="description" content="QUESTSYSTEM Modulansicht – lädt Module direkt von raw.githubusercontent.com" />
   <style>
     :root{ --bg:#0b0f16; --fg:#e7eef7; --muted:#9fb0c6; --link:#9ad1ff; --border:#243047; --card:#0f1521; }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg); background:var(--bg)}
-    header{position:sticky; top:0; z-index:10; display:flex; gap:12px; align-items:center; padding:12px 16px; background:rgba(8,10,18,.75); border-bottom:1px solid var(--border); backdrop-filter: blur(6px);}
-    header .dot{font-size:18px}
-    header a{color:var(--link); text-decoration:none}
-    header a:hover{text-decoration:underline}
-    .wrap{max-width:1100px; margin:20px auto; padding:0 16px 40px}
-    .card{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px 20px; box-shadow:0 8px 32px rgba(0,0,0,.35)}
-    #title{margin:8px 0 18px 0; font-size:22px; letter-spacing:.2px}
-    #meta{color:var(--muted); font-size:13px; margin-bottom:14px}
-    #content{min-height:40vh}
-    #content h1,#content h2,#content h3{margin-top:1.6em}
-    #content a{color:var(--link)}
-    #content code{background:#0b1220; padding:.15em .35em; border-radius:6px}
-    #content pre{background:#0b1220; padding:12px; border-radius:10px; overflow:auto}
-    #notice{margin-top:18px; font-size:13px; color:var(--muted)}
-    .err{color:#ffc2c2}
-    details{margin-top:16px}
-    summary{cursor:pointer; color:var(--muted)}
-    .url-list code{display:block; padding:2px 0}
+    body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg); background:var(--bg);}
+    header{padding:12px 16px; background:#111624; border-bottom:1px solid var(--border);}
+    header strong{margin-right:12px;}
+    header a{color:var(--link); margin-right:12px; text-decoration:none;}
+    main{max-width:900px; margin:30px auto; padding:0 16px;}
+    #title{margin:0 0 12px 0;}
+    #content a{color:var(--link);}
+    .err{color:#ffb0b0;}
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 </head>
 <body>
   <header>
-    <div class="dot">🍄</div>
-    <strong>QUESTSYSTEM</strong>
-    <span style="opacity:.6">/ Modulansicht</span>
-    <nav style="margin-left:auto; display:flex; gap:12px;">
-      <a href="./index.html">Ring-Übersicht</a>
-      <a id="view-raw" target="_blank" rel="noopener">Raw MD</a>
-      <a id="view-github" target="_blank" rel="noopener">Auf GitHub</a>
-    </nav>
+    <strong>🍄 QUESTSYSTEM</strong>
+    <a href="./index.html">Ring-Übersicht</a>
+    <a id="view-raw" target="_blank" rel="noopener">Raw</a>
+    <a id="view-github" target="_blank" rel="noopener">GitHub</a>
   </header>
 
-  <main class="wrap">
-    <div class="card">
-      <h1 id="title">Modul wird geladen …</h1>
-      <div id="meta">Quelle: <code id="src"></code></div>
-      <article id="content" aria-live="polite"></article>
-      <div id="notice">Diese Seite erkennt den Default-Branch automatisch, durchsucht bei 404 den gesamten Repo-Tree und lädt dann über die bestätigte <code>download_url</code>. Unten siehst du eine Diagnose.</div>
-      <details id="diag" style="display:none;">
-        <summary>Diagnose: getestete Pfade & URLs</summary>
-        <div class="url-list" id="diag-list"></div>
-      </details>
-    </div>
+  <main>
+    <h1 id="title">Modul wird geladen …</h1>
+    <div><code id="src"></code></div>
+    <article id="content"></article>
   </main>
 
   <script>
-    const OWNER="Quest42-coder", REPO="QUESTSYSTEM_PUBLIC";
+    const OWNER="Quest42-coder";
+    const REPO="QUESTSYSTEM_PUBLIC";
+    const BRANCH="main"; // ⚠️ falls dein Repo "master" nutzt, hier ändern!
 
-    const params=new URLSearchParams(location.search);
-    const requested = params.get('file') || "";
+    const qs = new URLSearchParams(location.search);
+    const file = qs.get("file");
 
-    const titleEl=document.getElementById('title');
-    const srcEl=document.getElementById('src');
-    const content=document.getElementById('content');
-    const aRaw=document.getElementById('view-raw');
-    const aGH=document.getElementById('view-github');
-    const diag=document.getElementById('diag');
-    const diagList=document.getElementById('diag-list');
+    const srcEl = document.getElementById("src");
+    const titleEl = document.getElementById("title");
+    const contentEl = document.getElementById("content");
+    const aRaw = document.getElementById("view-raw");
+    const aGH  = document.getElementById("view-github");
 
-    const encPath = (p)=> p.split('/').map(encodeURIComponent).join('/');
+    if(!file){
+      titleEl.textContent = "Kein Modul angegeben";
+      contentEl.innerHTML = `<p class="err">Verwende ?file=MODULES/Modul_XX_NAME.md</p>`;
+    } else {
+      const path = file.replace(/^\.?\//,'');
+      const rawUrl = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${path}`;
+      const ghUrl  = `https://github.com/${OWNER}/${REPO}/blob/${BRANCH}/${path}`;
 
-    function addDiag(label, info){
-      diag.style.display='';
-      const line=document.createElement('code');
-      line.textContent = `${label} ${info}`;
-      diagList.appendChild(line);
-    }
+      srcEl.textContent = path;
+      aRaw.href = rawUrl;
+      aGH.href  = ghUrl;
 
-    function normalizeName(name){
-      return name
-        .replace(/[\u200B-\u200D\uFEFF]/g,'') // zero-width
-        .replace(/\s+_/g,'_').replace(/_\s+/g,'_')
-        .replace(/\s{2,}/g,' ')
-        .trim().toLowerCase();
-    }
-
-    async function getDefaultBranch(){
-      const url=`https://api.github.com/repos/${OWNER}/${REPO}`;
-      const res=await fetch(url,{cache:'no-store'});
-      if(!res.ok){ addDiag('REPO:', `HTTP ${res.status} ${url}`); throw new Error('repo meta'); }
-      const json=await res.json();
-      addDiag('REPO:', `default_branch=${json.default_branch}`);
-      return json.default_branch;
-    }
-
-    async function getTreeSha(ref){
-      const url=`https://api.github.com/repos/${OWNER}/${REPO}/git/trees/${encodeURIComponent(ref)}?recursive=1`;
-      const res=await fetch(url,{cache:'no-store'});
-      if(!res.ok){ addDiag('TREE:', `HTTP ${res.status} ${url}`); throw new Error('tree'); }
-      const json=await res.json();
-      addDiag('TREE:', `count=${(json.tree||[]).length}`);
-      return json;
-    }
-
-    async function contentsMeta(ref, path){
-      const url=`https://api.github.com/repos/${OWNER}/${REPO}/contents/${encPath(path)}?ref=${encodeURIComponent(ref)}`;
-      const res=await fetch(url,{cache:'no-store'});
-      addDiag('API:', `${res.status} ${url}`);
-      if(!res.ok) return null;
-      return await res.json(); // has download_url
-    }
-
-    function toBlob(ref, path){ return `https://github.com/${OWNER}/${REPO}/blob/${encodeURIComponent(ref)}/${encPath(path)}`; }
-
-    async function load(){
-      if(!requested){
-        titleEl.textContent="Kein Modul angegeben";
-        content.innerHTML = `<p class="err">Parameter fehlt: <code>?file=DATEINAME.md</code><br>z. B. <code>module.html?file=MODULES/Modul_32_LICENCE.md</code></p>`;
-        return;
-      }
-
-      addDiag('REQUEST:', requested);
-
-      let ref;
-      try{ ref = await getDefaultBranch(); } catch(e){
-        titleEl.textContent="Fehler beim Laden";
-        content.innerHTML = `<p class="err">Konnte den Default-Branch nicht ermitteln.</p>`;
-        return;
-      }
-
-      // 1) Exakt versuchen
-      const exactMeta = await contentsMeta(ref, requested.replace(/^\.?\//,''));
-      if(exactMeta && exactMeta.download_url){
-        addDiag('MATCH:', `EXACT ${requested}`);
-        return render(exactMeta, ref, requested);
-      }
-
-      // 2) Repo-Tree scannen und bestes Match suchen
-      let tree;
-      try{ tree = await getTreeSha(ref); } catch(e){
-        titleEl.textContent="Fehler beim Laden";
-        content.innerHTML = `<p class="err">Konnte Repo-Tree nicht laden.</p>`;
-        return;
-      }
-
-      const targetNorm = normalizeName(requested.split('/').pop());
-      const candidates = (tree.tree||[])
-        .filter(n => n.type === 'blob' && n.path.toLowerCase().endsWith('.md'));
-
-      // Scoring: exakte Normalisierung bevorzugen, sonst enthalten, sonst Levenshtein-Light (Beginn)
-      const scored = candidates.map(n => {
-        const base = n.path.split('/').pop();
-        const norm = normalizeName(base);
-        let score = 0;
-        if (norm === targetNorm) score = 100;
-        else if (norm.includes(targetNorm) || targetNorm.includes(norm)) score = 70;
-        else if (norm.startsWith(targetNorm) || targetNorm.startsWith(norm)) score = 60;
-        return {path:n.path, score};
-      }).sort((a,b)=>b.score-a.score);
-
-      const pick = scored[0] && scored[0].score >= 60 ? scored[0].path : null;
-      if (!pick){
-        titleEl.textContent="Fehler beim Laden";
-        const blob = toBlob(ref, requested);
-        srcEl.textContent = requested;
-        aGH.href = blob; aRaw.removeAttribute('href');
-        content.innerHTML = `<p class="err">Keine passende Datei gefunden. Prüfe Namen/Ordner/Branch.</p><p>GitHub: <a href="${blob}" target="_blank" rel="noopener">${blob}</a></p>`;
-        return;
-      }
-      addDiag('MATCH:', `BEST → ${pick}`);
-
-      // 3) Für pick die Contents-Meta holen (download_url)
-      const meta = await contentsMeta(ref, pick);
-      if (!meta || !meta.download_url){
-        titleEl.textContent="Fehler beim Laden";
-        content.innerHTML = `<p class="err">Konnte Download-URL für <code>${pick}</code> nicht ermitteln.</p>`;
-        return;
-      }
-      return render(meta, ref, pick);
-    }
-
-    async function render(meta, ref, effectivePath){
-      const rawURL = meta.download_url;
-      aRaw.href = rawURL;
-      aGH.href  = toBlob(ref, effectivePath);
-      srcEl.textContent = effectivePath;
-
-      try{
-        const res = await fetch(rawURL,{cache:'no-store'});
-        addDiag('RAW:', `${res.status} ${rawURL}`);
-        if(!res.ok) throw new Error('raw');
-        const md = await res.text();
-
-        const m = md.match(/^#\s+(.+)$/m);
-        titleEl.textContent = m ? m[1].trim() : effectivePath.replace(/\.md$/,'').replace(/_/g,' ');
-
-        const html = marked.parse(md, { mangle:false, headerIds:true });
-        const safe = DOMPurify.sanitize(html, { USE_PROFILES:{ html:true } });
-        content.innerHTML = safe;
-
-        // relative Links → Blob
-        content.querySelectorAll('a[href]').forEach(a=>{
-          const href=a.getAttribute('href'); if(!href) return;
-          const abs=/^https?:\/\//i.test(href)||href.startsWith('#')||href.startsWith('mailto:');
-          if(abs) return;
-          const normalized = href.replace(/^\.\//,'').replace(/^\//,'');
-          a.setAttribute('href', toBlob(ref, normalized));
-          a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+      fetch(rawUrl, {cache:'no-store'})
+        .then(r => {
+          if(!r.ok) throw new Error(`HTTP ${r.status}`);
+          return r.text();
+        })
+        .then(md => {
+          const h1 = md.match(/^#\s+(.+)$/m);
+          if(h1) titleEl.textContent = h1[1].trim();
+          const html = marked.parse(md, {mangle:false, headerIds:true});
+          contentEl.innerHTML = DOMPurify.sanitize(html);
+        })
+        .catch(err => {
+          titleEl.textContent = "Fehler beim Laden";
+          contentEl.innerHTML = `<p class="err">Konnte <code>${path}</code> nicht laden: ${err}</p>
+            <p>Prüfe den Dateinamen und Branch (${BRANCH}).</p>`;
         });
-
-      }catch(e){
-        titleEl.textContent="Fehler beim Laden";
-        content.innerHTML = `<p class="err">Download fehlgeschlagen.</p><p>Versuche direkt: <a href="${rawURL}" target="_blank" rel="noopener">${rawURL}</a></p>`;
-      }
     }
-
-    if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', load); else load();
   </script>
 </body>
 </html>

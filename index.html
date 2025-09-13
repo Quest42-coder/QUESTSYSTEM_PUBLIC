@@ -17,9 +17,25 @@
   .ring-inner{stroke:var(--ring-inner); stroke-width:2.2; fill:none; stroke-opacity:.9}
   .ring-mid{stroke:var(--ring-mid); stroke-width:2.2; fill:none; stroke-opacity:.9}
   .ring-outer{stroke:var(--ring-outer); stroke-width:2.2; fill:none; stroke-opacity:.9}
+
+  /* ——— größere Schrift für Modul-Labels ——— */
+  .node text{
+    font-size:15px;              /* +3pt */
+    letter-spacing:.3px;
+    text-anchor:middle;
+    dominant-baseline:middle;
+  }
+  @media (min-width: 900px){
+    .node text{ font-size:16px; } /* auf großen Screens etwas größer */
+  }
+
   .node circle{ fill:var(--node-bg); stroke:var(--node-border); stroke-width:1.5 }
-  .node text{ font-size:12px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle }
   .inner text{ fill:#5d2029 } .mid text{ fill:#6c5b00 } .outer text{ fill:#274b7a }
+
+  /* RESETBOX-Stile */
+  .center circle{ fill:transparent; stroke:#59657c; stroke-dasharray:4 6 }
+  .center text{ fill:#7f8ea8; font-weight:600; font-size:14px } /* zentriert + größer */
+
   .debug{position:fixed; left:16px; bottom:16px; right:16px; z-index:50; background:#1a2233; border:1px solid #2b3548; color:#ffe0e0; padding:10px 12px; border-radius:10px; font-size:13px; box-shadow:var(--shadow); display:none; white-space:pre-wrap}
   .listwrap{position:fixed; left:16px; right:16px; bottom:16px; z-index:20; background:rgba(10,13,20,.7); border:1px solid #222a39; border-radius:12px; padding:10px 12px; max-height:32vh; overflow:auto}
   .listwrap a{color:#9ad1ff; text-decoration:none; margin-right:10px}
@@ -40,11 +56,16 @@
       <circle class="ring-inner" r="220"></circle>
       <circle class="ring-mid"   r="380"></circle>
       <circle class="ring-outer" r="540"></circle>
-      <g class="center"><circle r="70"></circle><text y="0" fill="#7f8ea8" font-size="12" font-weight="600">RESETBOX</text></g>
+
+      <!-- RESETBOX: Text exakt zentriert + klickbar via Script (id="reset") -->
+      <g id="reset" class="center">
+        <circle r="70"></circle>
+        <text x="0" y="0" text-anchor="middle" dominant-baseline="middle">RESETBOX</text>
+      </g>
     </svg>
   </div>
 
-  <!-- Fallback-Linkliste (wird immer gerendert, damit man klicken kann) -->
+  <!-- Fallback-Linkliste (immer klickbar) -->
   <div id="list" class="listwrap"></div>
 
   <!-- Sichtbares Debug-Panel bei Fehlern -->
@@ -58,7 +79,7 @@
   const list = document.getElementById('list');
 
   const BASE = (()=>{ const u=new URL(location.href); if(u.pathname.endsWith('index.html')) u.pathname=u.pathname.replace(/index\.html$/,''); if(!u.pathname.endsWith('/')) u.pathname+='/'; return u.origin+u.pathname; })();
-  const V    = 'stable1'; // Cache-Bust
+  const V    = 'ui-tune1'; // Cache-Bust
   const urlFor = (p) => `${BASE}module.html?file=${encodeURIComponent(p)}&v=${encodeURIComponent(V)}`;
 
   // Header-Links
@@ -174,6 +195,33 @@
   }
 
   placeNodes();
+
+  // ===== RESETBOX klickbar machen (öffnet README.md in module.html)
+  (function makeResetboxClickable(){
+    const reset = document.getElementById('reset');
+    if(!reset) return;
+
+    const url = `${BASE}module.html?file=${encodeURIComponent('README.md')}&v=${encodeURIComponent(V)}`;
+
+    reset.style.cursor = 'pointer';
+    reset.setAttribute('tabindex','0');
+    reset.setAttribute('role','link');
+    reset.setAttribute('focusable','true');
+    reset.setAttribute('aria-label','RESETBOX – README öffnen');
+
+    const go = () => { try{ window.location.assign(url); } catch(e){ location.href = url; } };
+
+    reset.addEventListener('click',   e => { e.preventDefault(); go(); });
+    reset.addEventListener('touchend',e => { e.preventDefault(); go(); }, {passive:false});
+    reset.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); go(); }});
+
+    // Optional: Tooltip-Hook (falls vorhanden)
+    if (typeof showTip === 'function'){
+      reset.addEventListener('mouseenter', e => showTip('RESETBOX', e));
+      reset.addEventListener('mousemove',  e => (typeof moveTip==='function') && moveTip(e));
+      reset.addEventListener('mouseleave', () => (typeof hideTip==='function') && hideTip());
+    }
+  })();
 })();
 </script>
 </body>

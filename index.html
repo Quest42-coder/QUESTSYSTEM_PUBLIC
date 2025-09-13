@@ -207,7 +207,42 @@
           a.classList.add("node",config[ring].class);
 
           // Navigation ERZINGEN (gleiches Tab) – auch wenn der Browser SVG-<a> ignoriert
-const go = () => window.location.assign(url);
+// --- BEGIN: iOS/Opera-kompatible Navigation erzwingen ---
+const go = () => { try { window.location.assign(url); } catch(e) { location.href = url; } };
+
+// 1) Hauptanker: Klicks + Pointer + Tastatur
+a.style.cursor = 'pointer';
+a.setAttribute('tabindex','0');
+a.setAttribute('role','link');
+a.setAttribute('focusable','true'); // wichtig für iOS SVG-Fokus
+a.setAttribute('aria-label', `${n.label} – öffnen`);
+
+const onActivate = (e) => { 
+  if (e) e.preventDefault();
+  go();
+};
+
+// Klick/Pointer auf <a>
+['click','pointerup'].forEach(type => {
+  a.addEventListener(type, onActivate, {passive:false});
+});
+
+// Tastatur (Enter/Space)
+a.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+});
+
+// 2) Touch-Support (iOS WebKit)
+a.addEventListener('touchend', (e) => { e.preventDefault(); go(); }, {passive:false});
+
+// 3) Manche WebKit-Builds leiten Events NICHT an <a> weiter → auf Kinder spiegeln
+const attachChildHandlers = (el) => {
+  ['click','pointerup'].forEach(t => el.addEventListener(t, (e)=>{ e.preventDefault(); go(); }, {passive:false}));
+  el.addEventListener('touchend', (e)=>{ e.preventDefault(); go(); }, {passive:false});
+};
+attachChildHandlers(circle);
+attachChildHandlers(text);
+// --- END ---
 
 // bisheriger Handler raus und durch diesen ersetzen:
 a.addEventListener('click', (e) => { 

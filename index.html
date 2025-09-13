@@ -206,6 +206,28 @@
           a.setAttribute("transform",`translate(${x},${y})`);
           a.classList.add("node",config[ring].class);
 
+          // Navigation ERZINGEN (gleiches Tab) – auch wenn der Browser SVG-<a> ignoriert
+const go = () => window.location.assign(url);
+
+// bisheriger Handler raus und durch diesen ersetzen:
+a.addEventListener('click', (e) => { 
+  e.preventDefault(); 
+  go(); 
+});
+
+// Tastatur: Enter/Space öffnet ebenfalls
+a.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    go();
+  }
+});
+
+// für Fokus & A11y
+a.setAttribute('tabindex','0');
+a.setAttribute('role','link');
+a.setAttribute('aria-label', `${n.label} – öffnen`);
+
           // JS-Fallback: falls SVG-Link nicht feuert, navigiere hart
           a.addEventListener('click', (e) => {
             // kurzer Delay – wenn Browser dem href folgt, bleibt location sich ändern;

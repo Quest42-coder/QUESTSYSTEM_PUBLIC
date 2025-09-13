@@ -6,9 +6,7 @@
   <title>QUESTSYSTEM – Modulansicht</title>
   <meta name="description" content="QUESTSYSTEM Modulansicht – rendert eine Markdown-Datei direkt von GitHub." />
   <style>
-    :root{
-      --bg:#0b0f16; --fg:#e7eef7; --muted:#9fb0c6; --link:#9ad1ff; --border:#243047; --card:#0f1521;
-    }
+    :root{ --bg:#0b0f16; --fg:#e7eef7; --muted:#9fb0c6; --link:#9ad1ff; --border:#243047; --card:#0f1521; }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg); background:var(--bg)}
@@ -30,8 +28,10 @@
     #content pre{background:#0b1220; padding:12px; border-radius:10px; overflow:auto}
     #notice{margin-top:18px; font-size:13px; color:var(--muted)}
     .err{color:#ffc2c2}
+    details{margin-top:16px}
+    summary{cursor:pointer; color:var(--muted)}
+    .url-list code{display:block; padding:2px 0}
   </style>
-  <!-- Markdown-Renderer + Sanitizer per CDN -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
 </head>
@@ -53,102 +53,139 @@
       <div id="meta">Quelle: <code id="src"></code></div>
       <article id="content" aria-live="polite"></article>
       <div id="notice">
-        Hinweis: Diese Seite rendert die Markdown-Datei live von <code>raw.githubusercontent.com</code>.  
-        Relative Links im Modul werden automatisch auf die GitHub-Ansicht umgebogen.
+        Hinweis: Diese Seite rendert die Markdown-Datei live. Bei 404 werden alle alternativen Pfade und Quellen geprüft und unten angezeigt.
       </div>
+      <details id="diag" style="display:none;">
+        <summary>Diagnose: getestete URLs</summary>
+        <div class="url-list" id="diag-list"></div>
+      </details>
     </div>
   </main>
 
   <script>
     // Repo-Konfiguration
-    const REPO   = "Quest42-coder/QUESTSYSTEM_PUBLIC";
+    const REPO   = "Quest42-coder/QUESTSYSTEM_PUBLIC"; // user/repo
     const BRANCH = "main";
 
-    // Query-Param lesen
+    // Query-Param
     const params = new URLSearchParams(location.search);
-    const file   = params.get('file'); // z.B. "Modul_05_SLEEP.md"
+    const file   = params.get('file'); // z.B. "MODULES/Modul_39_KNOWLEDGE.md"
 
-    // DOM-Refs
+    // DOM
     const titleEl = document.getElementById('title');
     const srcEl   = document.getElementById('src');
     const content = document.getElementById('content');
     const aRaw    = document.getElementById('view-raw');
     const aGH     = document.getElementById('view-github');
+    const diag    = document.getElementById('diag');
+    const diagList= document.getElementById('diag-list');
 
-    // URL-Helfer
-    const rawUrl = (p) => `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${p}`;
-    const ghUrl  = (p) => `https://github.com/${REPO}/blob/${BRANCH}/${p}`;
-    const ghNew  = (p, init) => `https://github.com/${REPO}/new/${BRANCH}?filename=${encodeURIComponent(p)}&value=${encodeURIComponent(init||"")}`;
+    // Helfer
+    const candidatesFor = (f) => {
+      // Generiere alternative Pfade: übergebener Pfad selbst, plus gängige Varianten
+      const bare = f.replace(/^\.?\//,'');
+      const onlyName = bare.split('/').pop();            // Datei allein
+      const baseDir  = bare.split('/').slice(0,-1).join('/'); // Ordnerteil (falls vorhanden)
 
-    async function tryFetch(path){
-      const res = await fetch(rawUrl(path), {cache:'no-store'});
-      if (!res.ok) return null;
-      return { text: await res.text(), path };
+      const variants = new Set([
+        bare,
+        `MODULES/${onlyName}`,
+        `modules/${onlyName}`,
+        `docs/${onlyName}`,
+        `docs/MODULES/${onlyName}`,
+      ]);
+      // Doppelte entfernen
+      return Array.from(variants);
+    };
+
+    const sources = [
+      // raw.githubusercontent
+      (p) => `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${p}`,
+      // jsDelivr CDN (robuster bei CORS, aber auch case-sensitiv)
+      (p) => `https://cdn.jsdelivr.net/gh/${REPO}@${BRANCH}/${p}`
+    ];
+
+    function addDiag(url, status){
+      diag.style.display = '';
+      const line = document.createElement('code');
+      line.textContent = `${status.padEnd(7)} ${url}`;
+      diagList.appendChild(line);
+    }
+
+    async function tryFetch(url){
+      try{
+        const res = await fetch(url, {cache:'no-store'});
+        if(!res.ok){ addDiag(url, `HTTP ${res.status}`); return null; }
+        addDiag(url, `OK`);
+        return await res.text();
+      }catch(err){
+        addDiag(url, `ERR`);
+        return null;
+      }
     }
 
     async function load(){
       if(!file){
         titleEl.textContent = "Kein Modul angegeben";
-        content.innerHTML = `<p class="err">Parameter fehlt: <code>?file=DATEINAME.md</code><br>Beispiel: <code>module.html?file=Modul_02_WATER.md</code></p>`;
+        content.innerHTML = `<p class="err">Parameter fehlt: <code>?file=DATEINAME.md</code><br>Beispiel: <code>module.html?file=MODULES/Modul_32_LICENCE.md</code></p>`;
         return;
       }
 
-      // Kandidaten: zuerst Root, dann MODULES/
-      const candidates = [file, `MODULES/${file}`];
-      let loaded = null;
+      const paths = candidatesFor(file);
+      let chosenPath = null;
+      let md = null;
 
-      for (const p of candidates){
-        loaded = await tryFetch(p);
-        if (loaded) break;
+      // Versuche jede Pfadvariante auf beiden Quellen
+      outer: for (const p of paths){
+        for (const src of sources){
+          const url = src(p);
+          const text = await tryFetch(url);
+          if (text !== null){ md = text; chosenPath = p; break outer; }
+        }
       }
 
-      const shownPath = loaded ? loaded.path : file;
-      srcEl.textContent = shownPath;
-      aRaw.href = rawUrl(shownPath);
-      aGH.href  = ghUrl(shownPath);
+      // Anzeige der „Raw“ & „GitHub“-Links gemäß gewähltem Pfad (oder erster Kandidat)
+      const effectivePath = chosenPath || paths[0];
+      const rawUrl = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${effectivePath}`;
+      const ghUrl  = `https://github.com/${REPO}/blob/${BRANCH}/${effectivePath}`;
+      aRaw.href = rawUrl; aGH.href = ghUrl; srcEl.textContent = effectivePath;
 
-      if (!loaded){
-        const initContent = `# ${file.replace(/\.md$/,'').replace(/_/g,' ')}\n\n> Dieses Modul ist noch leer. Bitte füllen.\n`;
-        const newLink = ghNew(shownPath, initContent);
-
+      if (!md){
         titleEl.textContent = "Fehler beim Laden";
         content.innerHTML = `
-          <p class="err">Das Modul <code>${file}</code> wurde in <code>/</code> und in <code>/MODULES</code> nicht gefunden (HTTP 404).</p>
+          <p class="err">Das Modul <code>${file}</code> wurde nicht gefunden.</p>
+          <p>Prüfe bitte:
+            <br>• Ordner und Groß/Kleinschreibung (<code>MODULES</code> vs <code>modules</code>)
+            <br>• Exakter Dateiname (<code>Modul_39_KNOWLEDGE.md</code> vs <code>Modul_39_Knowledge.md</code>)
+            <br>• Branch (<code>${BRANCH}</code>)
+          </p>
           <p>
-            • <a href="${ghUrl(shownPath)}" target="_blank" rel="noopener">Auf GitHub öffnen</a><br>
-            • <a href="${newLink}" target="_blank" rel="noopener">Datei jetzt anlegen</a> (mit Titel-Template)
+            Direkt prüfen: <a href="${ghUrl}" target="_blank" rel="noopener">${ghUrl}</a>
           </p>`;
         return;
       }
 
       // Titel aus erster H1, sonst Dateiname
-      const md = loaded.text;
       const m = md.match(/^#\s+(.+)$/m);
-      titleEl.textContent = m ? m[1].trim() : shownPath.replace(/\.md$/,'').replace(/_/g,' ');
+      titleEl.textContent = m ? m[1].trim() : effectivePath.replace(/\.md$/,'').replace(/_/g,' ');
 
       // Rendern + säubern
       const html = marked.parse(md, { mangle:false, headerIds:true });
-      const safe = DOMPurify.sanitize(html, { USE_PROFILES: { html: true } });
+      const safe = DOMPurify.sanitize(html, { USE_PROFILES: { html:true } });
       content.innerHTML = safe;
 
-      // relative Links im Modul → GitHub-Blob
+      // relative Links → GitHub-Blob
       content.querySelectorAll('a[href]').forEach(a=>{
-        const href = a.getAttribute('href');
-        if(!href) return;
+        const href = a.getAttribute('href'); if(!href) return;
         const isAbs = /^https?:\/\//i.test(href) || href.startsWith('#') || href.startsWith('mailto:');
         if(isAbs) return;
         const normalized = href.replace(/^\.\//,'').replace(/^\//,'');
-        a.setAttribute('href', ghUrl(normalized));
-        a.setAttribute('target','_blank');
-        a.setAttribute('rel','noopener');
+        a.setAttribute('href', `https://github.com/${REPO}/blob/${BRANCH}/${normalized}`);
+        a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
       });
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', load);
-    } else {
-      load();
-    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', load); else load();
   </script>
 </body>
 </html>

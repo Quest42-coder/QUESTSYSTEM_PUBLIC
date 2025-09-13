@@ -41,7 +41,8 @@
     border-radius:999px; cursor:pointer; user-select:none; box-shadow:var(--shadow); font-size:14px }
 
   /* Linienfarben für Verbindungen */
-  .link-layer line{ stroke-opacity:.55; stroke-width:2.5 }
+  .link-layer{ pointer-events:none; } /* blockiert keine Klicks */
+  .link-layer line{ stroke-opacity:.9; stroke-width:3.5 }
   .link-inner { stroke:#f3c0c7; }
   .link-mid   { stroke:#f0de94; }
   .link-outer { stroke:#bcd5ff; }
@@ -79,26 +80,25 @@
 
 <script>
 (function(){
-  const svg = document.getElementById('ringmap');
-  const list = document.getElementById('list');
-  const toggleBtn = document.getElementById('toggleList');
-  const BASE = (()=>{ const u=new URL(location.href); if(u.pathname.endsWith('index.html')) u.pathname=u.pathname.replace(/index\.html$/,''); if(!u.pathname.endsWith('/')) u.pathname+='/'; return u.origin+u.pathname; })();
-  const V = 'links-color';
-  const urlFor = (p) => `${BASE}module.html?file=${encodeURIComponent(p)}&v=${encodeURIComponent(V)}`;
+  const svg=document.getElementById('ringmap');
+  const list=document.getElementById('list');
+  const toggleBtn=document.getElementById('toggleList');
+  const BASE=(()=>{const u=new URL(location.href);if(u.pathname.endsWith('index.html'))u.pathname=u.pathname.replace(/index\.html$/,'');if(!u.pathname.endsWith('/'))u.pathname+='/';return u.origin+u.pathname;})();
+  const V='links-fix';
+  const urlFor=(p)=>`${BASE}module.html?file=${encodeURIComponent(p)}&v=${encodeURIComponent(V)}`;
 
-  document.getElementById('nav-dignity').href = urlFor('MODULES/DIGNITY_CLAUSE.md');
-  document.getElementById('nav-gebote').href  = urlFor('14_GEBOTE_V2.1.md');
-  document.getElementById('nav-discuss').href = urlFor('MODULES/14_GEBOTE_DISCUSSION.md');
-  toggleBtn.addEventListener('click', ()=> list.classList.toggle('show'));
+  document.getElementById('nav-dignity').href=urlFor('MODULES/DIGNITY_CLAUSE.md');
+  document.getElementById('nav-gebote').href=urlFor('14_GEBOTE_V2.1.md');
+  document.getElementById('nav-discuss').href=urlFor('MODULES/14_GEBOTE_DISCUSSION.md');
+  toggleBtn.addEventListener('click',()=>list.classList.toggle('show'));
 
-  // ==== Nodes ====
-  const nodes = [
+  const nodes=[
     {key:"WATER",ring:"inner",file:"MODULES/Modul_02_WATER.md"},
     {key:"SHELTER",ring:"inner",file:"MODULES/Modul_03_SHELTER.md"},
     {key:"FOOD",ring:"inner",file:"MODULES/Modul_04_FOOD.md"},
     {key:"SLEEP",ring:"inner",file:"MODULES/Modul_05_SLEEP.md"},
     {key:"BODY",ring:"inner",file:"MODULES/Modul_06_BODY.md"},
-    {key:"PSYCHE",ring:"inner",file:"MODULES/Modul_07_PSYCHE.md"},
+    {key:"PSYCHE",ring:"inner",file:"MODULES/Modul_07_PSYCH.md"},
     {key:"DEVICE",ring:"inner",file:"MODULES/Modul_08_DEVICE.md"},
     {key:"DEBT",ring:"inner",file:"MODULES/Modul_09_DEBT.md"},
     {key:"WORK",ring:"mid",file:"MODULES/Modul_10_WORK.md"},
@@ -133,7 +133,7 @@
     {key:"DEATH",ring:"outer",file:"MODULES/Modul_42_DEATH.md"}
   ];
 
-  const CONNECTIONS = {
+  const CONNECTIONS={
     WATER:["HEALTH","NATURE","FOOD","ENERGY"],
     FOOD:["HEALTH","NATURE","WORK"],
     SLEEP:["HEALTH","PSYCHE","WORK"],
@@ -149,15 +149,13 @@
     FUTURE:["CLIMATE","KNOWLEDGE","DEATH"]
   };
 
-  list.innerHTML = nodes.map(n=>`<a href="${urlFor(n.file)}">${n.key}</a>`).join(' · ');
+  list.innerHTML=nodes.map(n=>`<a href="${urlFor(n.file)}">${n.key}</a>`).join(' · ');
 
   const config={inner:{r:220,class:"inner"},mid:{r:380,class:"mid"},outer:{r:540,class:"outer"}};
   const SVG_NS="http://www.w3.org/2000/svg"; const XLINK_NS="http://www.w3.org/1999/xlink";
 
   const linkLayer=document.createElementNS(SVG_NS,"g"); linkLayer.setAttribute("class","link-layer");
-  svg.insertBefore(linkLayer,svg.firstChild);
-
-  const posByKey=new Map(), nodeElByKey=new Map();
+  const posByKey=new Map(),nodeElByKey=new Map();
 
   function placeNodes(){
     const groups={inner:[],mid:[],outer:[]}; nodes.forEach(n=>groups[n.ring].push(n));
@@ -182,7 +180,8 @@
         const text=document.createElementNS(SVG_NS,"text"); text.textContent=n.key; a.appendChild(text);
         const show=()=>showConnections(n.key); const hide=()=>clearConnections();
         a.addEventListener('mouseenter',show); a.addEventListener('mouseleave',hide);
-        a.addEventListener('focusin',show); a.addEventListener('focusout',hide);
+        a.addEventListener('mouseover',show);  a.addEventListener('mouseout',hide);
+        a.addEventListener('focusin',show);    a.addEventListener('focusout',hide);
         group.appendChild(a);
       });
     });
@@ -212,6 +211,7 @@
   function clearConnections(){ while(linkLayer.firstChild) linkLayer.removeChild(linkLayer.firstChild); nodeElByKey.forEach(el=>el.classList.remove('linked','active')); }
 
   placeNodes();
+  svg.appendChild(linkLayer); requestAnimationFrame(()=>svg.appendChild(linkLayer));
 
   // RESETBOX klickbar
   (function(){

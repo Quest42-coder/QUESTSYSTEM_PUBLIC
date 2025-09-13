@@ -24,7 +24,6 @@
     #title{margin:8px 0 18px 0; font-size:22px; letter-spacing:.2px}
     #meta{color:var(--muted); font-size:13px; margin-bottom:14px}
     #content{min-height:40vh}
-    /* Markdown Basisstil */
     #content h1,#content h2,#content h3{margin-top:1.6em}
     #content a{color:var(--link)}
     #content code{background:#0b1220; padding:.15em .35em; border-radius:6px}
@@ -32,7 +31,7 @@
     #notice{margin-top:18px; font-size:13px; color:var(--muted)}
     .err{color:#ffc2c2}
   </style>
-  <!-- Markdown-Renderer + Sanitizer per CDN (funktioniert auf GitHub Pages) -->
+  <!-- Markdown-Renderer + Sanitizer per CDN -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
 </head>
@@ -61,70 +60,95 @@
   </main>
 
   <script>
-    // Konfiguration
-    const REPO   = "Quest42-coder/QUESTSYSTEM_PUBLIC"; // user/repo
+    // Repo-Konfiguration
+    const REPO   = "Quest42-coder/QUESTSYSTEM_PUBLIC";
     const BRANCH = "main";
 
-    // Hilfsfunktionen
+    // Query-Param lesen
     const params = new URLSearchParams(location.search);
-    const file   = params.get('file'); // z.B. "Modul_02_WATER.md"
-    const rawUrl = (p) => `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${p}`;
-    const ghUrl  = (p) => `https://github.com/${REPO}/blob/${BRANCH}/${p}`;
+    const file   = params.get('file'); // z.B. "Modul_05_SLEEP.md"
 
-    // DOM
+    // DOM-Refs
     const titleEl = document.getElementById('title');
     const srcEl   = document.getElementById('src');
     const content = document.getElementById('content');
     const aRaw    = document.getElementById('view-raw');
     const aGH     = document.getElementById('view-github');
 
+    // URL-Helfer
+    const rawUrl = (p) => `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${p}`;
+    const ghUrl  = (p) => `https://github.com/${REPO}/blob/${BRANCH}/${p}`;
+    const ghNew  = (p, init) => `https://github.com/${REPO}/new/${BRANCH}?filename=${encodeURIComponent(p)}&value=${encodeURIComponent(init||"")}`;
+
+    async function tryFetch(path){
+      const res = await fetch(rawUrl(path), {cache:'no-store'});
+      if (!res.ok) return null;
+      return { text: await res.text(), path };
+    }
+
     async function load(){
       if(!file){
         titleEl.textContent = "Kein Modul angegeben";
-        content.innerHTML = `<p class="err">Es fehlt der Parameter <code>?file=DATEINAME.md</code>.<br>Beispiel: <code>module.html?file=Modul_02_WATER.md</code></p>`;
+        content.innerHTML = `<p class="err">Parameter fehlt: <code>?file=DATEINAME.md</code><br>Beispiel: <code>module.html?file=Modul_02_WATER.md</code></p>`;
         return;
       }
-      srcEl.textContent = file;
-      aRaw.href = rawUrl(file);
-      aGH.href  = ghUrl(file);
 
-      try{
-        const res = await fetch(rawUrl(file), { cache: 'no-store' });
-        if(!res.ok) throw new Error(`HTTP ${res.status}`);
-        const md = await res.text();
+      // Kandidaten: zuerst Root, dann MODULES/
+      const candidates = [file, `MODULES/${file}`];
+      let loaded = null;
 
-        // Titel aus erster H1, sonst Dateiname
-        const m = md.match(/^#\s+(.+)$/m);
-        titleEl.textContent = m ? m[1].trim() : file.replace(/\.md$/,'').replace(/_/g,' ');
-
-        // Rendern + säubern
-        const html = marked.parse(md, { mangle:false, headerIds:true });
-        const safe = DOMPurify.sanitize(html, { USE_PROFILES: { html: true } });
-        content.innerHTML = safe;
-
-        // relative Links im Modul sauber machen (→ auf GitHub-Blob öffnen)
-        content.querySelectorAll('a[href]').forEach(a=>{
-          const href = a.getAttribute('href');
-          if(!href) return;
-          const isAbs = /^https?:\/\//i.test(href) || href.startsWith('#') || href.startsWith('mailto:');
-          if(isAbs) return;
-          const normalized = href.replace(/^\.\//,'').replace(/^\//,'');
-          a.setAttribute('href', ghUrl(normalized));
-          a.setAttribute('target','_blank');
-          a.setAttribute('rel','noopener');
-        });
-
-      } catch(err){
-        titleEl.textContent = "Fehler beim Laden";
-        const gh = ghUrl(file);
-        content.innerHTML = `<p class="err">Das Modul <code>${file}</code> konnte nicht geladen werden. (${err.message})</p>
-          <p>Prüfe, ob die Datei im Repo existiert: <a href="${gh}" target="_blank" rel="noopener">${gh}</a></p>`;
+      for (const p of candidates){
+        loaded = await tryFetch(p);
+        if (loaded) break;
       }
+
+      const shownPath = loaded ? loaded.path : file;
+      srcEl.textContent = shownPath;
+      aRaw.href = rawUrl(shownPath);
+      aGH.href  = ghUrl(shownPath);
+
+      if (!loaded){
+        const initContent = `# ${file.replace(/\.md$/,'').replace(/_/g,' ')}\n\n> Dieses Modul ist noch leer. Bitte füllen.\n`;
+        const newLink = ghNew(shownPath, initContent);
+
+        titleEl.textContent = "Fehler beim Laden";
+        content.innerHTML = `
+          <p class="err">Das Modul <code>${file}</code> wurde in <code>/</code> und in <code>/MODULES</code> nicht gefunden (HTTP 404).</p>
+          <p>
+            • <a href="${ghUrl(shownPath)}" target="_blank" rel="noopener">Auf GitHub öffnen</a><br>
+            • <a href="${newLink}" target="_blank" rel="noopener">Datei jetzt anlegen</a> (mit Titel-Template)
+          </p>`;
+        return;
+      }
+
+      // Titel aus erster H1, sonst Dateiname
+      const md = loaded.text;
+      const m = md.match(/^#\s+(.+)$/m);
+      titleEl.textContent = m ? m[1].trim() : shownPath.replace(/\.md$/,'').replace(/_/g,' ');
+
+      // Rendern + säubern
+      const html = marked.parse(md, { mangle:false, headerIds:true });
+      const safe = DOMPurify.sanitize(html, { USE_PROFILES: { html: true } });
+      content.innerHTML = safe;
+
+      // relative Links im Modul → GitHub-Blob
+      content.querySelectorAll('a[href]').forEach(a=>{
+        const href = a.getAttribute('href');
+        if(!href) return;
+        const isAbs = /^https?:\/\//i.test(href) || href.startsWith('#') || href.startsWith('mailto:');
+        if(isAbs) return;
+        const normalized = href.replace(/^\.\//,'').replace(/^\//,'');
+        a.setAttribute('href', ghUrl(normalized));
+        a.setAttribute('target','_blank');
+        a.setAttribute('rel','noopener');
+      });
     }
-    // Wenn die Libs geladen sind (defer), dann los:
+
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', load);
-    } else { load(); }
+    } else {
+      load();
+    }
   </script>
 </body>
 </html>

@@ -82,6 +82,9 @@ sondern durch Weitergabe.
 ---
 
 Und genau daraus entsteht die Frage, die größer ist als jede Antwort:  
+
+Was ist die Aufgabe eines Menschen, der in einer Gesellschaft lebt?
+
 **What’s your Quest?**
 
 ---

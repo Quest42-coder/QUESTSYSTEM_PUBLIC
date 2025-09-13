@@ -49,9 +49,9 @@
       <h1 id="title">Modul wird geladen …</h1>
       <div id="meta">Quelle: <code id="src"></code></div>
       <article id="content" aria-live="polite"></article>
-      <div id="notice">Diese Seite prüft mehrere Pfade per GitHub-API und lädt dann über den verifizierten <code>download_url</code>. Unten findest du eine Diagnose der getesteten URLs.</div>
+      <div id="notice">Bei 404 werden alternative Pfade probiert und es wird im Zielordner nach dem besten Match gesucht (case-insensitiv, Space-Normalisierung). Unten findest du eine Diagnose.</div>
       <details id="diag" style="display:none;">
-        <summary>Diagnose: getestete URLs</summary>
+        <summary>Diagnose: getestete URLs & Matches</summary>
         <div class="url-list" id="diag-list"></div>
       </details>
     </div>
@@ -72,48 +72,115 @@
     const diag=document.getElementById('diag');
     const diagList=document.getElementById('diag-list');
 
+    // Helpers
     function encPath(p){ return p.split('/').map(encodeURIComponent).join('/'); }
     function ghBlob(p){ return `https://github.com/${OWNER}/${REPO}/blob/${REF}/${encPath(p)}`; }
     function apiContents(p){ return `https://api.github.com/repos/${OWNER}/${REPO}/contents/${encPath(p)}?ref=${encodeURIComponent(REF)}`; }
-
-    function addDiag(label, url, status){
+    function addDiag(label, info){
       diag.style.display='';
-      const line=document.createElement('code');
-      line.textContent = `${label.padEnd(10)} ${status.padEnd(8)} ${url}`;
+      const line=document.createElement('code'); line.textContent = `${label} ${info}`;
       diagList.appendChild(line);
     }
 
-    function pathCandidates(f){
-      const bare = f.replace(/^\.?\//,'');
-      const only = bare.split('/').pop();
-      return Array.from(new Set([
-        bare,
+    // Normalisiert Dateinamen: Trim, Zero-Width raus, mehrere Spaces → 1, „Modul _“ → „Modul_“, alles lower
+    function normalizeName(name){
+      return name
+        .replace(/[\u200B-\u200D\uFEFF]/g,'')   // zero-width
+        .replace(/\s+_/g,'_').replace(/_\s+/g,'_')
+        .replace(/\s{2,}/g,' ')                 // mehrfach-Space
+        .trim()
+        .toLowerCase();
+    }
+
+    function getDirAndBase(p){
+      const clean = p.replace(/^\.?\//,'');
+      const parts = clean.split('/');
+      const base = parts.pop();
+      const dir  = parts.join('/');
+      return {dir, base};
+    }
+
+    async function fetchViaContentsAPI(path){
+      const url = apiContents(path);
+      try{
+        const res = await fetch(url, {cache:'no-store'});
+        if(!res.ok){ addDiag('API:', `${res.status} ${url}`); return null; }
+        const json = await res.json();
+        if(!json.download_url){ addDiag('API:', `no download_url for ${url}`); return null; }
+        addDiag('API:', `OK ${url}`);
+        const rawURL = json.download_url;
+        const rawRes = await fetch(rawURL, {cache:'no-store'});
+        if(!rawRes.ok){ addDiag('RAW:', `${rawRes.status} ${rawURL}`); return null; }
+        addDiag('RAW:', `OK ${rawURL}`);
+        return { md: await rawRes.text(), chosenPath: path, rawURL };
+      }catch(e){
+        addDiag('API:', `ERR ${url}`);
+        return null;
+      }
+    }
+
+    async function tryDirectThenMatch(originalPath){
+      // 1) Direkter Versuch
+      const direct = await fetchViaContentsAPI(originalPath);
+      if (direct) return direct;
+
+      // 2) Pfadvarianten (Root/MODULES/modules/docs)
+      const clean = originalPath.replace(/^\.?\//,'');
+      const only  = clean.split('/').pop();
+      const variants = Array.from(new Set([
+        clean,
         `MODULES/${only}`,
         `modules/${only}`,
         `docs/${only}`,
         `docs/MODULES/${only}`,
       ]));
-    }
 
-    async function fetchViaContentsAPI(path){
-      const apiURL = apiContents(path);
-      try{
-        const res = await fetch(apiURL, {cache:'no-store'});
-        if(!res.ok){ addDiag('API', apiURL, `HTTP ${res.status}`); return null; }
-        addDiag('API', apiURL, 'OK');
-        const json = await res.json();
-        if(!json.download_url){ addDiag('API', apiURL, 'no download_url'); return null; }
-        const rawURL = json.download_url;
-        addDiag('RAW', rawURL, 'TRY');
-        const rawRes = await fetch(rawURL, {cache:'no-store'});
-        if(!rawRes.ok){ addDiag('RAW', rawURL, `HTTP ${rawRes.status}`); return null; }
-        addDiag('RAW', rawURL, 'OK');
-        const md = await rawRes.text();
-        return { md, chosenPath: path, rawURL };
-      }catch(e){
-        addDiag('API', apiURL, 'ERR');
-        return null;
+      for (const v of variants){
+        const r = await fetchViaContentsAPI(v);
+        if (r) return r;
       }
+
+      // 3) Fallback: Ordnerinhalt listen und bestes Match suchen
+      const {dir, base} = getDirAndBase(clean);
+      const dirsToScan = Array.from(new Set([
+        dir || 'MODULES',     // wenn kein Ordner angegeben war → MODULES
+        'MODULES',
+        'modules'
+      ]));
+
+      const normTarget = normalizeName(base);
+      for (const d of dirsToScan){
+        const listURL = apiContents(d);
+        try{
+          const res = await fetch(listURL, {cache:'no-store'});
+          if (!res.ok){ addDiag('LIST:', `${res.status} ${listURL}`); continue; }
+          const arr = await res.json();
+          if (!Array.isArray(arr)){ addDiag('LIST:', `not array ${listURL}`); continue; }
+          addDiag('LIST:', `OK ${listURL}`);
+
+          // Versuche exakten Treffer (case-insensitiv + normalisiert)
+          let pick = arr.find(it => normalizeName(it.name) === normTarget);
+
+          // Sonst: lockereres Matching (enthält)
+          if (!pick){
+            pick = arr.find(it => normalizeName(it.name).includes(normTarget));
+          }
+
+          if (pick && pick.download_url){
+            addDiag('MATCH:', `→ ${d}/${pick.name}`);
+            const rawRes = await fetch(pick.download_url, {cache:'no-store'});
+            if(rawRes.ok){
+              addDiag('RAW:', `OK ${pick.download_url}`);
+              return { md: await rawRes.text(), chosenPath: `${d}/${pick.name}`, rawURL: pick.download_url };
+            }else{
+              addDiag('RAW:', `${rawRes.status} ${pick.download_url}`);
+            }
+          }
+        }catch(e){
+          addDiag('LIST:', `ERR ${listURL}`);
+        }
+      }
+      return null;
     }
 
     async function load(){
@@ -123,36 +190,38 @@
         return;
       }
 
-      const candidates = pathCandidates(fileParam);
-      let result = null;
-      for(const p of candidates){
-        result = await fetchViaContentsAPI(p);
-        if(result) break;
-      }
+      addDiag('INFO:', `requested="${fileParam}"`);
 
-      const effectivePath = result ? result.chosenPath : candidates[0];
-      srcEl.textContent = effectivePath;
-      aRaw.href = result ? result.rawURL : `https://raw.githubusercontent.com/${OWNER}/${REPO}/${REF}/${encPath(effectivePath)}`;
-      aGH.href  = ghBlob(effectivePath);
+      const result = await tryDirectThenMatch(fileParam);
 
       if(!result){
         titleEl.textContent = "Fehler beim Laden";
+        const firstBlob = ghBlob(fileParam.replace(/^\.?\//,''));
+        srcEl.textContent = fileParam;
+        aRaw.removeAttribute('href'); aGH.href = firstBlob;
         content.innerHTML = `
-          <p class="err">Das Modul <code>${fileParam}</code> konnte über die API nicht gefunden werden.</p>
+          <p class="err">Die Datei <code>${fileParam}</code> konnte nicht gefunden werden – auch nach Matching-Versuch.</p>
           <p>Prüfe bitte:
-            <br>• Ordner & Groß/Kleinschreibung (<code>MODULES</code> vs <code>modules</code>)
-            <br>• Exakter Dateiname (z. B. <code>Modul_39_KNOWLEDGE.md</code>)
+            <br>• Exakter Dateiname und Groß/Kleinschreibung
+            <br>• Versehentliche Spaces/Zero-Width-Zeichen (z. B. „Modul _“)
             <br>• Branch (<code>${REF}</code>)
           </p>
-          <p>Direkt prüfen: <a href="${ghBlob(effectivePath)}" target="_blank" rel="noopener">${ghBlob(effectivePath)}</a></p>`;
+          <p>GitHub-Ansicht: <a href="${firstBlob}" target="_blank" rel="noopener">${firstBlob}</a></p>`;
         return;
       }
 
-      // Titel aus erster H1, sonst Dateiname
-      const m = result.md.match(/^#\s+(.+)$/m);
-      titleEl.textContent = m ? m[1].trim() : effectivePath.replace(/\.md$/,'').replace(/_/g,' ');
+      const { md, chosenPath, rawURL } = result;
 
-      const html = marked.parse(result.md, { mangle:false, headerIds:true });
+      // UI-Links + Quelle
+      srcEl.textContent = chosenPath;
+      aRaw.href = rawURL;
+      aGH.href  = ghBlob(chosenPath);
+
+      // Titel aus H1, sonst Dateiname
+      const m = md.match(/^#\s+(.+)$/m);
+      titleEl.textContent = m ? m[1].trim() : chosenPath.replace(/\.md$/,'').replace(/_/g,' ');
+
+      const html = marked.parse(md, { mangle:false, headerIds:true });
       const safe = DOMPurify.sanitize(html, { USE_PROFILES:{ html:true } });
       content.innerHTML = safe;
 

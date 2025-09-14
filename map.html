@@ -3,19 +3,16 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>QUESTSYSTEM – Modul-Map (V7.2)</title>
-<meta name="description" content="Interaktive Ring-Map des QUESTSYSTEMS mit Hover-Verbindungen und klickbaren Modulen." />
+<title>QUESTSYSTEM – Modul-Map (V7.3)</title>
+<meta name="description" content="Interaktive Ring-Map des QUESTSYSTEMS mit externen Labels, Leader-Lines und Hover-Verbindungen." />
 <style>
   :root{
     --bg:#0a0f17; --fg:#eaf2ff; --muted:#9fb0c6; --border:#1f2a3d; --glass:rgba(14,18,28,.6);
-    /* Questfarben (Gradient) */
     --q1:#79e1ff; --q2:#8affc7; --q3:#b09bff;
-    /* Ringfarben */
     --inner:#f3c0c7; --mid:#f0de94; --outer:#bcd5ff; --center:#9fe3ff;
-    /* Node */
     --node-bg:#0e1422; --node-stroke:#2b3550; --node-text:#e6efff;
     --shadow: 0 10px 28px rgba(0,0,0,.45);
-    --header-h:56px;
+    --header-h:58px;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
@@ -53,17 +50,16 @@
 
   /* Bühne */
   .stage{ position:absolute; inset:var(--header-h) 0 0 0; display:grid; place-items:center; }
-  svg{ width:min(1200px, 96vw); height:min(1200px, calc(96vh - var(--header-h))); }
+  svg{ width:min(1300px, 96vw); height:min(1300px, calc(96vh - var(--header-h))); }
+
+  /* Gradients */
+  defs linearGradient stop{ transition:all .2s ease }
 
   /* Ringe */
-  defs linearGradient stop{ transition: all .2s ease }
   .ring{ fill:none; stroke-opacity:.9; }
   .ring.inner{ stroke:var(--inner); stroke-width:2.2 }
   .ring.mid{   stroke:var(--mid);   stroke-width:2.2 }
   .ring.outer{ stroke:var(--outer); stroke-width:2.2 }
-
-  /* Node Layer über Ringen (Durchbrechung) */
-  g.nodes{ filter: drop-shadow(0 2px 10px rgba(0,0,0,.45)); }
 
   /* Verbindungen */
   .links line{
@@ -73,54 +69,37 @@
   .links.hidden{ opacity:0; pointer-events:none }
   .links.visible{ opacity:1; transition: opacity .12s ease }
 
+  /* Nodes über Ringen (Durchbrechung) */
+  g.nodes{ filter: drop-shadow(0 2px 10px rgba(0,0,0,.45)); }
+
   /* Knoten */
   a.node{ cursor:pointer; transition: transform .12s ease, opacity .12s ease; }
-  a.node:hover{ transform: translateY(-1.5px) scale(1.03); }
+  a.node:hover{ transform: translateY(-1px) scale(1.02); }
   .node circle{
     fill:var(--node-bg); stroke:var(--node-stroke); stroke-width:1.9;
   }
-  /* subtile Glow-Kante, damit die Kreise den Ring „schneiden“ */
-  .node circle.glow{
-    fill: none; stroke: rgba(255,255,255,.15); stroke-width: 6; opacity:.6; filter: blur(1.5px);
-  }
-
-  .node text{
-    fill:var(--node-text); font-weight:900; letter-spacing:.35px; text-anchor:middle; dominant-baseline:middle;
-    pointer-events:none;
-  }
-  .node.inner text{ fill:#5d2029 }
-  .node.mid   text{ fill:#6c5b00 }
-  .node.outer text{ fill:#274b7a }
-
-  /* Ring-spezifische Schriftgrößen */
-  .node.inner text{ font-size:14.5px }
-  .node.mid   text{ font-size:13.8px }
-  .node.outer text{ font-size:13.2px }
-
-  .node.active circle{
-    stroke:url(#qgrad); stroke-width:2.8;
-  }
-  .node.linked circle{
-    stroke:url(#qgrad); stroke-width:2.6; opacity:.95;
-  }
+  .node circle.glow{ fill:none; stroke:rgba(255,255,255,.16); stroke-width:6; opacity:.65; filter:blur(1.5px); }
+  .node.active circle{ stroke:url(#qgrad); stroke-width:2.8; }
+  .node.linked circle{ stroke:url(#qgrad); stroke-width:2.5; opacity:.95; }
 
   /* Zentrum */
-  .center circle.core{
-    fill:transparent; stroke:#6b7a90; stroke-dasharray:4 6; stroke-width:2;
-  }
-  .center a.node text{ fill:#cceaff; font-size:16px }
-  .center a.node circle{ fill:rgba(20,28,44,.7); stroke:url(#qgrad); stroke-width:2.6 }
+  .center circle.core{ fill:transparent; stroke:#6b7a90; stroke-dasharray:4 6; stroke-width:2; }
+  .center a.node text{ fill:#cceaff; font-size:20px; font-weight:1000 }
+  .center a.node circle{ fill:rgba(20,28,44,.7); stroke:url(#qgrad); stroke-width:2.8 }
 
-  /* Tooltip */
-  .tip{
-    position:fixed; z-index:90; pointer-events:none;
-    transform:translate(-50%, calc(-100% - 12px));
-    background:#0f1624; border:1px solid #2b3548; color:var(--fg);
-    padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap;
-    opacity:0; transition:opacity .12s ease, transform .12s ease; box-shadow: var(--shadow);
+  /* Externe Labels + Leader-Lines */
+  .label text{
+    fill:var(--fg); font-weight:900; letter-spacing:.35px; font-size:15px;
+    paint-order: stroke; stroke: rgba(10,15,24,.75); stroke-width:4px; /* Kontur für Lesbarkeit */
   }
-  .tip.show{ opacity:1; transform:translate(-50%, calc(-100% - 10px)) }
-  .tip small{ color:var(--muted) }
+  .label line{
+    stroke:#a8c7ff; stroke-opacity:.8; stroke-width:1.6;
+  }
+  .label.active text{ fill:#04121a; stroke:none }
+  .label.active rect{ fill:url(#qgrad) }
+  .label rect{
+    fill:rgba(12,18,32,.8); stroke:1px solid #22314a; rx:7; ry:7;
+  }
 
   /* Legende */
   .legend{
@@ -134,6 +113,17 @@
   .sw.inner{background:var(--inner)}
   .sw.mid{background:var(--mid)}
   .sw.outer{background:var(--outer)}
+
+  /* Tooltip */
+  .tip{
+    position:fixed; z-index:90; pointer-events:none;
+    transform:translate(-50%, calc(-100% - 12px));
+    background:#0f1624; border:1px solid #2b3548; color:var(--fg);
+    padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap;
+    opacity:0; transition:opacity .12s ease, transform .12s ease; box-shadow: var(--shadow);
+  }
+  .tip.show{ opacity:1; transform:translate(-50%, calc(-100% - 10px)) }
+  .tip small{ color:var(--muted) }
 </style>
 </head>
 <body>
@@ -166,10 +156,10 @@
 </header>
 
 <div class="stage">
-  <svg id="map" viewBox="-640 -640 1280 1280" role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS"
-       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <svg id="map" viewBox="-660 -660 1320 1320"
+       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+       role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS">
     <defs>
-      <!-- Questfarben-Verlauf -->
       <linearGradient id="qgrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%"  stop-color="var(--q1)"/>
         <stop offset="50%" stop-color="var(--q2)"/>
@@ -184,17 +174,20 @@
       <circle class="ring outer" r="540"></circle>
     </g>
 
-    <!-- Verbindungen (dynamisch auf Hover sichtbar) -->
+    <!-- Verbindungen -->
     <g class="links hidden" id="links-layer"></g>
 
     <!-- Zentrum -->
     <g class="center">
       <circle class="core" r="90"></circle>
-      <!-- RESETBOX Node per JS -->
+      <!-- RESETBOX Node + Label via JS -->
     </g>
 
-    <!-- Nodes oben, damit sie die Ringe „schneiden“ -->
+    <!-- Nodes (über Ringen) -->
     <g class="nodes" id="nodes-layer"></g>
+
+    <!-- Labels separat (oberste Ebene) -->
+    <g class="labels" id="labels-layer"></g>
   </svg>
 </div>
 
@@ -208,7 +201,7 @@
 <div id="tip" class="tip" role="status" aria-live="polite"></div>
 
 <script>
-/* ---------- Daten ---------- */
+/* ===== Daten ===== */
 const MODS = [
   {no:"01", id:"RESETBOX", ring:"center", file:"MODULES/Modul_01_RESETBOX.md"},
   {no:"02", id:"WATER",   ring:"inner", file:"MODULES/Modul_02_WATER.md"},
@@ -253,7 +246,6 @@ const MODS = [
   {no:"41", id:"FUTURE",     ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
   {no:"42", id:"DEATH",      ring:"outer", file:"MODULES/Modul_42_DEATH.md"},
 ];
-
 const CORE = {
   "01:RESETBOX": ["02:WATER","03:SHELTER","09:DEBT"],
   "02:WATER":    ["04:FOOD","06:BODY","13:NATURE"],
@@ -301,90 +293,164 @@ const CORE = {
   "42:DEATH":     ["14:HEALTH","15:CARE","41:FUTURE"],
 };
 
-// Symmetrisierte Kanten
-const LINKS = new Map();
-for (const [k, arr] of Object.entries(CORE)) {
-  const a = k.split(':')[1];
-  if (!LINKS.has(a)) LINKS.set(a, new Set());
-  arr.forEach(bKey => {
-    const b = bKey.split(':')[1];
-    if (!LINKS.has(b)) LINKS.set(b, new Set());
-    LINKS.get(a).add(b);
-    LINKS.get(b).add(a);
-  });
-}
-
-/* ---------- Utils ---------- */
-const SVG_NS="http://www.w3.org/2000/svg";
-const XLINK_NS="http://www.w3.org/1999/xlink";
+/* ===== Helpers ===== */
+const SVG_NS="http://www.w3.org/2000/svg"; const XLINK_NS="http://www.w3.org/1999/xlink";
+const R = { inner:220, mid:380, outer:540, center:0 };
+const RS = { inner:46, mid:46, outer:46, center:78 }; // größere Kreise; RESETBOX prominent
+function polar(r, a){ return [Math.cos(a)*r, Math.sin(a)*r]; }
 function urlFor(filePath){
   const u = new URL(window.location.href);
   if (u.pathname.endsWith('map.html')) u.pathname = u.pathname.replace(/map\.html$/,'');
   if (!u.pathname.endsWith('/')) u.pathname += '/';
   return u.origin + u.pathname + 'module.html?file=' + encodeURIComponent(filePath);
 }
-function polar(r, a){ return [Math.cos(a)*r, Math.sin(a)*r]; }
 
-/* ---------- Aufbau ---------- */
+/* Symmetrisierte Kanten */
+const LINKS = new Map();
+for (const [k, arr] of Object.entries(CORE)) {
+  const a = k.split(':')[1];
+  if (!LINKS.has(a)) LINKS.set(a, new Set());
+  arr.forEach(bKey=>{
+    const b = bKey.split(':')[1];
+    if (!LINKS.has(b)) LINKS.set(b, new Set());
+    LINKS.get(a).add(b); LINKS.get(b).add(a);
+  });
+}
+
+/* ===== Build ===== */
 const svg = document.getElementById('map');
-const nodesLayer = document.getElementById('nodes-layer');
-const linksLayer = document.getElementById('links-layer');
+const nodesLayer  = document.getElementById('nodes-layer');
+const labelsLayer = document.getElementById('labels-layer');
+const linksLayer  = document.getElementById('links-layer');
 const tip = document.getElementById('tip');
 
-const R = { inner:220, mid:380, outer:540, center:0 };
-const RS = { inner:46,  mid:46,  outer:46,  center:68 }; // größere Kreise
+/* Anti-Overlap: leichte Winkelspreizung, wenn benachbart zu dicht */
+function distributeAngles(listLen){
+  const step = (Math.PI*2)/listLen, start=-Math.PI/2;
+  const angles = Array.from({length:listLen},(_,i)=>start+i*step);
+  // sanfte Spreizung: prüfe Nachbarn, addiere kleine Offsets
+  const MIN_GAP = (Math.PI/180)*6; // 6°
+  for(let i=0;i<listLen;i++){
+    const prev = angles[(i-1+listLen)%listLen], cur = angles[i], next = angles[(i+1)%listLen];
+    if (cur-prev < MIN_GAP) angles[i]+= (MIN_GAP - (cur-prev))/2;
+    if (next-cur < MIN_GAP) angles[i]-= (MIN_GAP - (next-cur))/2;
+  }
+  return angles;
+}
 
-function createNode(mod, x, y, ring){
+function addNode(mod, ring, angle, r){
+  const [x,y] = polar(r, angle);
   const a = document.createElementNS(SVG_NS,'a');
   a.classList.add('node', ring);
-  const url = urlFor(mod.file);
-  a.setAttribute('href', url);
-  a.setAttributeNS(XLINK_NS, 'xlink:href', url);
+  a.setAttribute('href', urlFor(mod.file));
+  a.setAttributeNS(XLINK_NS,'xlink:href', urlFor(mod.file));
   a.setAttribute('transform',`translate(${x},${y})`);
   a.dataset.id = mod.id;
 
-  // Glow-Kante (schneidet Ring)
-  const glow = document.createElementNS(SVG_NS,'circle');
-  glow.setAttribute('r', RS[ring]); glow.classList.add('glow'); a.appendChild(glow);
-
+  const glow = document.createElementNS(SVG_NS,'circle'); glow.setAttribute('r', RS[ring]); glow.setAttribute('class','glow'); a.appendChild(glow);
   const c = document.createElementNS(SVG_NS,'circle'); c.setAttribute('r', RS[ring]); a.appendChild(c);
 
-  const t = document.createElementNS(SVG_NS,'text'); t.textContent = mod.id; a.appendChild(t);
+  addNodeEvents(a, mod, {x,y,angle,ring});
+  nodesLayer.appendChild(a);
 
-  addNodeEvents(a, mod);
-  return a;
+  // Label außen
+  addLabel(mod, ring, angle, r, {x,y});
 }
 
-function placeNodes(){
-  // Center
+function addLabel(mod, ring, angle, r, center){
+  // Labelradius + Offset je Ring
+  const offset = ring==='inner'? 72 : ring==='mid'? 78 : 84;
+  const [lx,ly] = polar(r+offset, angle);
+
+  const g = document.createElementNS(SVG_NS,'g');
+  g.setAttribute('transform', `translate(${lx},${ly})`);
+  g.setAttribute('class','label');
+  g.dataset.id = mod.id;
+
+  // Leader-Line
+  const line = document.createElementNS(SVG_NS,'line');
+  line.setAttribute('x1', 0); line.setAttribute('y1', 0);
+  line.setAttribute('x2', center.x - lx); line.setAttribute('y2', center.y - ly);
+  g.appendChild(line);
+
+  // Hintergrund-Kapsel dynamisch
+  const text = document.createElementNS(SVG_NS,'text');
+  text.textContent = `${mod.no} ${mod.id}`;
+  text.setAttribute('dominant-baseline','middle');
+
+  // Text-Ausrichtung je Quadrant
+  const deg = angle * 180/Math.PI;
+  if (deg > -90 && deg <= 90){ // rechte Seite
+    text.setAttribute('text-anchor','start');
+    text.setAttribute('x', 10);
+  } else { // linke Seite
+    text.setAttribute('text-anchor','end');
+    text.setAttribute('x', -10);
+  }
+  text.setAttribute('y', 0);
+
+  // Hintergrund-Rect nach Text-BBox (nach minimaler Verzögerung für korrekte BBox)
+  const rect = document.createElementNS(SVG_NS,'rect');
+  g.appendChild(rect); g.appendChild(text);
+  labelsLayer.appendChild(g);
+
+  requestAnimationFrame(()=>{ // warte, bis im DOM
+    const bb = text.getBBox();
+    rect.setAttribute('x', bb.x - 8);
+    rect.setAttribute('y', bb.y - 4);
+    rect.setAttribute('width', bb.width + 16);
+    rect.setAttribute('height', bb.height + 8);
+  });
+}
+
+function buildMap(){
+  // Center (RESETBOX)
   const m0 = MODS.find(m=>m.ring==='center');
-  const a0 = createNode(m0, 0, 0, 'center');
-  // Center-Text etwas nach unten, damit optisch zentriert
-  a0.querySelector('text').setAttribute('y','2');
-  svg.querySelector('.center').appendChild(a0);
+  addNode(m0, 'center', 0, 0); // angle/r ignoriert
+  // überschreibe Position exakt im Zentrum:
+  const centerNode = nodesLayer.querySelector('a.node.center');
+  centerNode.setAttribute('transform','translate(0,0)');
 
-  // Ringe
-  const groupByRing = {inner:[], mid:[], outer:[]};
-  MODS.forEach(m=>{ if(m.ring!=='center') groupByRing[m.ring].push(m); });
+  // Label für RESETBOX zentral, ohne Leader
+  const g = document.createElementNS(SVG_NS,'g');
+  g.setAttribute('transform','translate(0,0)');
+  g.setAttribute('class','label active');
+  g.dataset.id = m0.id;
+  const rect = document.createElementNS(SVG_NS,'rect'); g.appendChild(rect);
+  const text = document.createElementNS(SVG_NS,'text');
+  text.textContent = `01 ${m0.id}`; text.setAttribute('text-anchor','middle'); text.setAttribute('y','0');
+  text.setAttribute('dominant-baseline','middle');
+  g.appendChild(text);
+  labelsLayer.appendChild(g);
+  requestAnimationFrame(()=>{
+    const bb = text.getBBox();
+    rect.setAttribute('x', bb.x - 10); rect.setAttribute('y', bb.y - 6);
+    rect.setAttribute('width', bb.width + 20); rect.setAttribute('height', bb.height + 12);
+  });
 
-  for (const ring of ['inner','mid','outer']){
-    const list = groupByRing[ring];
-    const step=(Math.PI*2)/list.length; const start=-Math.PI/2;
-    list.forEach((m,idx)=>{
-      const angle = start + idx*step;
-      const [x,y] = polar(R[ring], angle);
-      const node = createNode(m, x, y, ring);
-      nodesLayer.appendChild(node);
-    });
+  // Gruppen
+  const byRing = {inner:[], mid:[], outer:[]};
+  MODS.forEach(m=>{ if(m.ring!=='center') byRing[m.ring].push(m); });
+
+  // Platzieren mit sanfter Anti-Overlap-Spreizung
+  for(const ring of ['inner','mid','outer']){
+    const list = byRing[ring];
+    const angles = distributeAngles(list.length);
+    list.forEach((m,i)=> addNode(m, ring, angles[i], R[ring]));
   }
 }
 
-function moveTip(e){ tip.style.left = e.clientX+'px'; tip.style.top = e.clientY+'px'; }
-
+/* ===== Interaktion ===== */
 function nodeCenterPos(nodeEl){
   const tr = nodeEl.getAttribute('transform');
   const m = tr && tr.match(/translate\(([-\d.]+),([-\d.]+)\)/);
   return m ? {x:parseFloat(m[1]), y:parseFloat(m[2])} : {x:0,y:0};
+}
+
+function setLabelActive(id, on){
+  const label = labelsLayer.querySelector(`.label[data-id="${id}"]`);
+  if(!label) return;
+  if(on) label.classList.add('active'); else label.classList.remove('active');
 }
 
 function highlight(id){
@@ -392,18 +458,21 @@ function highlight(id){
   const active = Array.from(document.querySelectorAll('a.node')).find(n => n.dataset.id === id);
   if (active) active.classList.add('active');
 
-  const targetIds = Array.from(LINKS.get(id) || []);
-  const targets = [];
-  targetIds.forEach(tid=>{
+  setLabelActive(id, true);
+
+  const targets = Array.from(LINKS.get(id) || []);
+  const targetEls = [];
+  targets.forEach(tid=>{
     const el = Array.from(document.querySelectorAll('a.node')).find(n => n.dataset.id === tid);
-    if (el){ el.classList.add('linked'); targets.push(el); }
+    if(el){ el.classList.add('linked'); targetEls.push(el); }
+    setLabelActive(tid, true);
   });
 
   // Linien neu aufbauen
   while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
-  if (active && targets.length){
+  if (active && targetEls.length){
     const pA = nodeCenterPos(active);
-    targets.forEach(el=>{
+    targetEls.forEach(el=>{
       const pB = nodeCenterPos(el);
       const line = document.createElementNS(SVG_NS,'line');
       line.setAttribute('x1', pA.x); line.setAttribute('y1', pA.y);
@@ -418,24 +487,27 @@ function highlight(id){
 
 function clearHighlight(){
   document.querySelectorAll('a.node').forEach(n => n.classList.remove('active','linked'));
+  labelsLayer.querySelectorAll('.label').forEach(l => l.classList.remove('active'));
   while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
   linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
 }
 
-function addNodeEvents(anchor, mod){
+function addNodeEvents(anchor, mod, meta){
+  // Tooltip
   anchor.addEventListener('mouseenter', (e)=>{
     tip.innerHTML = `${mod.no} ${mod.id}<br><small>Öffnen</small>`;
-    moveTip(e); tip.classList.add('show');
+    tip.style.left = e.clientX+'px'; tip.style.top = e.clientY+'px';
+    tip.classList.add('show');
     highlight(mod.id);
   });
-  anchor.addEventListener('mousemove', moveTip);
+  anchor.addEventListener('mousemove', (e)=>{ tip.style.left = e.clientX+'px'; tip.style.top = e.clientY+'px'; });
   anchor.addEventListener('mouseleave', ()=>{
     tip.classList.remove('show');
     clearHighlight();
   });
 }
 
-/* ---------- Header: Module-Menü füllen ---------- */
+/* ===== Header: Module-Menü ===== */
 (function fillMenu(){
   const menu = document.getElementById('menu-mods');
   MODS.forEach(m=>{
@@ -446,8 +518,8 @@ function addNodeEvents(anchor, mod){
   });
 })();
 
-/* ---------- Init ---------- */
-placeNodes();
+/* ===== Init ===== */
+buildMap();
 </script>
 </body>
 </html>

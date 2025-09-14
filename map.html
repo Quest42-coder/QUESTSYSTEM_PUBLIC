@@ -3,42 +3,58 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>QUESTSYSTEM – Modul-Map (V7.4)</title>
-<meta name="description" content="Interaktive Ring-Map des QUESTSYSTEMS mit externen Labels, Leader-Lines und Hover-Verbindungen." />
+<title>QUESTSYSTEM – Modul-Map (V7.8)</title>
+<meta name="description" content="Interaktive Ring-Map des QUESTSYSTEMS mit Suche, Hover-Verbindungen, gebogenen Kurven, adaptiver Typografie und Dark/Light-Mode." />
 <style>
   :root{
-    --bg:#09101a; --fg:#eef5ff; --muted:#a7b8d3; --border:#1f2a3d; --glass:rgba(14,18,28,.6);
-    /* kräftigerer Quest-Gradient */
-    --q1:#3dd5ff; --q2:#7affb3; --q3:#a988ff;
-    /* Ringe */
-    --inner:#ffbac6; --mid:#f6e27a; --outer:#c6dcff; --center:#9fe3ff;
-    /* Nodes */
-    --node-bg:#0c1321; --node-stroke:#334364; --node-text:#eaf2ff;
-    --shadow: 0 12px 32px rgba(0,0,0,.5);
-    --header-h:58px;
+    /* Dark Theme (default) */
+    --bg:#060b12; --fg:#f2f7ff; --muted:#a8b8d3; --border:#1d2739; --glass:rgba(11,16,26,.68);
+    --q1:#51e2ff; --q2:#8dffb8; --q3:#b497ff;
+    --ring-inner:#ff6f86; --ring-mid:#e1c94d; --ring-outer:#7cb0ff; --ring-center:#22c7ff;
+    --node-bg:#0d1422; --node-stroke:#3b527c; --node-text:#eaf2ff;
+    --shadow: 0 16px 42px rgba(0,0,0,.55);
+    --header-h:60px;
+
+    /* Typo adaptiv */
+    --label-size: clamp(14px, 1.8vw, 21px);
+    --center-size: clamp(18px, 2.3vw, 28px);
+    --tooltip-size: clamp(12px, 1.4vw, 14px);
+
+    /* Node-Radien */
+    --r-node: 56px;
+    --r-center: 96px;
   }
+  /* Light Theme Tokens */
+  .light{
+    --bg:#f6f8fc; --fg:#0d1a29; --muted:#53657f; --border:#dbe4f0; --glass:rgba(255,255,255,.86);
+    --node-bg:#ffffff; --node-stroke:#b9c7da; --node-text:#0d1a29;
+    --ring-inner:#ff4768; --ring-mid:#d6ad00; --ring-outer:#4b83ff; --ring-center:#0db5ff;
+    --shadow: 0 10px 28px rgba(0,0,0,.12);
+  }
+
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0; color:var(--fg);
     font:16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
     background:
-      radial-gradient(1400px 900px at 50% 38%, #12203a 0%, #0f1a2d 55%, var(--bg) 100%),
-      radial-gradient(900px 700px at 12% 14%, rgba(255,255,255,.05), transparent 60%),
-      radial-gradient(900px 900px at 88% 84%, rgba(255,255,255,.035), transparent 65%);
+      radial-gradient(1600px 1000px at 50% 40%, #13223a20 0%, #0f1b2f33 55%, var(--bg) 100%),
+      radial-gradient(900px 700px at 12% 14%, rgba(255,255,255,.055), transparent 60%),
+      radial-gradient(900px 900px at 88% 84%, rgba(255,255,255,.04), transparent 65%);
     overflow:hidden;
+    transition: background-color .25s ease, color .25s ease;
   }
 
   /* Header */
   header{
     position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:80;
-    display:flex; align-items:center; gap:12px; padding:8px 12px;
+    display:flex; align-items:center; gap:12px; padding:10px 12px;
     background:var(--glass); border-bottom:1px solid var(--border); backdrop-filter: blur(8px);
   }
-  .brand{ color:var(--fg); text-decoration:none; font-weight:900; letter-spacing:.3px; font-size:15px }
+  .brand{ color:var(--fg); text-decoration:none; font-weight:900; letter-spacing:.3px; font-size:16px }
   nav{ margin-left:auto; display:flex; gap:10px; align-items:center }
   .dd{ position:relative }
-  .dd>button{
+  .dd>button, .theme button{
     color:var(--fg); background:transparent; border:1px solid var(--border);
     padding:6px 12px; border-radius:10px; cursor:pointer; font-weight:800
   }
@@ -47,80 +63,112 @@
     display:none; flex-direction:column; gap:4px; padding:10px;
     background:rgba(10,13,20,.98); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow);
   }
-  .dd:hover .menu{ display:flex }
+  .light .menu{ background:#ffffff; }
+  .dd:hover .menu, .dd:focus-within .menu{ display:flex }
   .menu a{ color:var(--fg); text-decoration:none; padding:10px 12px; border-radius:8px; font-size:15px }
-  .menu a:hover{ background:rgba(255,255,255,.08) }
+  .menu a:hover, .menu a:focus{ background:rgba(255,255,255,.08); outline: none }
+  .light .menu a:hover, .light .menu a:focus{ background:#eef3fb }
+  .theme{ display:flex; align-items:center; gap:8px; }
+
+  /* Suche */
+  .search{
+    display:flex; align-items:center; gap:8px; padding:0 8px;
+    border:1px solid var(--border); border-radius:10px; background:transparent; height:36px;
+  }
+  .search input{
+    background:transparent; color:var(--fg); border:none; outline:none; width:220px; font-weight:700;
+  }
+  .search input::placeholder{ color:var(--muted) }
+  .search .clear{ cursor:pointer; border:none; background:transparent; color:var(--muted); font-size:18px }
 
   /* Bühne */
   .stage{ position:absolute; inset:var(--header-h) 0 0 0; display:grid; place-items:center; }
-  svg{ width:min(1340px, 96vw); height:min(1340px, calc(96vh - var(--header-h))); }
-
-  /* Gradients */
-  defs linearGradient stop{ transition:all .2s ease }
+  svg{ width:min(1400px, 96.5vw); height:min(1400px, calc(96.5vh - var(--header-h))); }
 
   /* Ringe */
   .ring{ fill:none; stroke-opacity:.95; }
-  .ring.inner{ stroke:var(--inner); stroke-width:2.4 }
-  .ring.mid{   stroke:var(--mid);   stroke-width:2.4 }
-  .ring.outer{ stroke:var(--outer); stroke-width:2.4 }
+  .ring.inner{ stroke:var(--ring-inner); stroke-width:2.6 }
+  .ring.mid{   stroke:var(--ring-mid);   stroke-width:2.6 }
+  .ring.outer{ stroke:var(--ring-outer); stroke-width:2.6 }
 
-  /* Verbindungen */
-  .links line{
-    stroke:url(#qgrad); stroke-opacity:1; stroke-width:3.2;
-    filter: drop-shadow(0 0 12px rgba(61,213,255,.42));
+  /* Verbindungen (gekrümmt) */
+  .links path{
+    stroke: url(#qgrad); stroke-opacity:0; stroke-width:3.6; fill:none;
+    filter: drop-shadow(0 0 0 rgba(81,226,255,0));
+    transition: stroke-opacity .12s ease, filter .2s ease;
+  }
+  .links.visible path{
+    stroke-opacity:1;
+    filter: drop-shadow(0 0 18px rgba(81,226,255,.45));
+    animation: lineGlow 1.8s ease-in-out infinite;
   }
   .links.hidden{ opacity:0; pointer-events:none }
-  .links.visible{ opacity:1; transition: opacity .1s ease }
 
-  /* Nodes über Ringen (Durchbrechung) */
-  g.nodes{ filter: drop-shadow(0 3px 12px rgba(0,0,0,.5)); }
+  /* Nodes Layer */
+  g.nodes{ filter: drop-shadow(0 4px 14px rgba(0,0,0,.55)); }
+
+  /* Pulse + Glow */
+  @keyframes pulse { 0%,100%{ transform: translateY(0) scale(1); } 50%{ transform: translateY(-1px) scale(1.04); } }
+  @keyframes ringHalo { 0%{ stroke-width:9; opacity:.7 } 50%{ stroke-width:13; opacity:.18 } 100%{ stroke-width:9; opacity:.7 } }
+  @keyframes lineGlow{ 0%,100%{ filter: drop-shadow(0 0 12px rgba(81,226,255,.35)); } 50%{ filter: drop-shadow(0 0 24px rgba(141,255,184,.5)); } }
 
   /* Knoten */
-  a.node{ cursor:pointer; transition: transform .12s ease, opacity .12s ease; }
+  a.node{ cursor:pointer; transition: transform .12s ease, opacity .12s ease; outline:none }
   a.node:hover{ transform: translateY(-1px) scale(1.02); }
-  .node circle{
-    fill:var(--node-bg); stroke:var(--node-stroke); stroke-width:2.1;
-  }
-  .node circle.glow{ fill:none; stroke:rgba(255,255,255,.18); stroke-width:7; opacity:.7; filter:blur(1.6px); }
+  a.node:focus-visible{ outline:2px dashed #7de0ff; outline-offset:4px }
+  .node circle{ fill:var(--node-bg); stroke:var(--node-stroke); stroke-width:2.2; transition: stroke-width .12s ease; }
+  .node circle.glow{ fill:none; stroke:rgba(255,255,255,.2); stroke-width:9; opacity:.75; filter:blur(2px); }
+  .node.active{ animation: pulse 1.8s ease-in-out infinite; }
   .node.active circle{ stroke:url(#qgrad); stroke-width:3.2; }
-  .node.linked circle{ stroke:url(#qgrad); stroke-width:2.8; opacity:.98; }
+  .node.active .glow{ animation: ringHalo 2.2s ease-in-out infinite; }
+  .node.linked circle{ stroke:url(#qgrad); stroke-width:3.0; opacity:.98; }
+  .node.dim { opacity:.25; }
 
   /* Zentrum */
-  .center circle.core{ fill:transparent; stroke:#7a8eab; stroke-dasharray:4 6; stroke-width:2.2; }
-  .center a.node text{ fill:#d8f1ff; font-size:22px; font-weight:1000; letter-spacing:.5px }
-  .center a.node circle{ fill:rgba(20,28,44,.8); stroke:url(#qgrad); stroke-width:3.0 }
+  .center circle.core{ fill:transparent; stroke:#87a6c8; stroke-dasharray:4 6; stroke-width:2.6; }
+  .center a.node text{ fill:#e6f8ff; font-size:var(--center-size); font-weight:1000; letter-spacing:.6px }
+  .center a.node circle{ fill:rgba(22,30,48,.9); stroke:url(#qgrad); stroke-width:3.2 }
+  .light .center a.node circle{ fill:#ffffff }
 
-  /* Externe Labels + Leader-Lines (größer & kontrastreicher) */
+  /* Labels */
   .label text{
-    fill:var(--fg); font-weight:1000; letter-spacing:.38px; font-size:17px;
-    paint-order: stroke; stroke: rgba(8,12,20,.78); stroke-width:4.5px;
+    font-weight:1000; letter-spacing:.4px; font-size:var(--label-size);
+    paint-order: stroke; stroke: rgba(5,9,16,.82); stroke-width:5px;
   }
-  .label line{ stroke:#bcd8ff; stroke-opacity:.9; stroke-width:1.8; }
+  .label .t-center{ fill:var(--ring-center) }
+  .label .t-inner{  fill:var(--ring-inner) }
+  .label .t-mid{    fill:var(--ring-mid) }
+  .label .t-outer{  fill:var(--ring-outer) }
+  .label line{ stroke:#c9e1ff; stroke-opacity:.92; stroke-width:2.2; }
   .label.active text{ fill:#06131c; stroke:none }
   .label.active rect{ fill:url(#qgrad) }
-  .label rect{ fill:rgba(12,18,32,.88); stroke:1px solid #274065; rx:8; ry:8; }
+  .label rect{ fill:rgba(12,18,32,.9); stroke:1px solid #28466f; rx:9; ry:9; }
+  .light .label rect{ fill:#ffffff; stroke:#dbe4f0 }
+  .label.dim { opacity:.25; }
 
   /* Legende */
   .legend{
     position:fixed; inset:auto 12px 12px 12px; z-index:70;
     display:flex; gap:10px; align-items:center; justify-content:center;
-    background:rgba(12,16,24,.6); border:1px solid var(--border); border-radius:10px; padding:8px 12px; backdrop-filter: blur(6px);
+    background:rgba(12,16,24,.62); border:1px solid var(--border); border-radius:10px; padding:8px 12px; backdrop-filter: blur(6px);
   }
+  .light .legend{ background:#ffffffd0 }
   .chip{display:inline-flex; align-items:center; gap:8px; font-size:13px}
   .sw{width:14px; height:14px; border-radius:50%}
-  .sw.center{background:var(--center)}
-  .sw.inner{background:var(--inner)}
-  .sw.mid{background:var(--mid)}
-  .sw.outer{background:var(--outer)}
+  .sw.center{background:var(--ring-center)}
+  .sw.inner{background:var(--ring-inner)}
+  .sw.mid{background:var(--ring-mid)}
+  .sw.outer{background:var(--ring-outer)}
 
   /* Tooltip */
   .tip{
     position:fixed; z-index:90; pointer-events:none;
     transform:translate(-50%, calc(-100% - 12px));
     background:#0f1624; border:1px solid #2b3548; color:var(--fg);
-    padding:9px 11px; border-radius:8px; font-size:13px; white-space:nowrap;
-    opacity:0; transition:opacity .1s ease, transform .1s ease; box-shadow: var(--shadow);
+    padding:10px 12px; border-radius:10px; font-size:var(--tooltip-size); white-space:nowrap;
+    opacity:0; transition:opacity .12s ease, transform .12s ease; box-shadow:var(--shadow);
   }
+  .light .tip{ background:#ffffff; border-color:#dbe4f0 }
   .tip.show{ opacity:1; transform:translate(-50%, calc(-100% - 10px)) }
   .tip small{ color:var(--muted) }
 </style>
@@ -130,32 +178,42 @@
   <a class="brand" href="./index.html">🍄 QUESTSYSTEM</a>
   <nav>
     <div class="dd">
-      <button>System</button>
-      <div class="menu">
-        <a href="./index.html">Start</a>
-        <a href="./map.html">Modul-Map</a>
-        <a href="module.html?file=ARTIST_PROFILE.md">Artist Profile</a>
-        <a href="module.html?file=MODULES/Modul_32_LICENCE.md">Licence</a>
-        <a href="https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC" target="_blank" rel="noopener">Repository</a>
+      <button aria-haspopup="menu">System</button>
+      <div class="menu" role="menu">
+        <a role="menuitem" href="./index.html">Start</a>
+        <a role="menuitem" href="./map.html">Modul-Map</a>
+        <a role="menuitem" href="module.html?file=ARTIST_PROFILE.md">Artist Profile</a>
+        <a role="menuitem" href="module.html?file=MODULES/Modul_32_LICENCE.md">Licence</a>
+        <a role="menuitem" href="https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC" target="_blank" rel="noopener">Repository</a>
       </div>
     </div>
     <div class="dd">
-      <button>Ethik</button>
-      <div class="menu">
-        <a href="module.html?file=Dignity_Clause.md">Dignity Clause</a>
-        <a href="module.html?file=14_GEBOTE_V2.1.md">14 Gebote (V2.1)</a>
-        <a href="module.html?file=14_GEBOTE_DISCUSSION.md">Diskussion</a>
+      <button aria-haspopup="menu">Ethik</button>
+      <div class="menu" role="menu">
+        <a role="menuitem" href="module.html?file=Dignity_Clause.md">Dignity Clause</a>
+        <a role="menuitem" href="module.html?file=14_GEBOTE_V2.1.md">14 Gebote (V2.1)</a>
+        <a role="menuitem" href="module.html?file=14_GEBOTE_DISCUSSION.md">Diskussion</a>
       </div>
     </div>
     <div class="dd">
-      <button>Module</button>
-      <div class="menu" id="menu-mods"></div>
+      <button aria-haspopup="menu">Module</button>
+      <div class="menu" role="menu" id="menu-mods"></div>
+    </div>
+
+    <div class="search" role="search">
+      <span>🔎</span>
+      <input id="q" type="text" placeholder="Suche Modul/Nummer…" aria-label="Modulsuche" />
+      <button class="clear" id="q-clear" title="Suche löschen">×</button>
+    </div>
+
+    <div class="theme">
+      <button id="toggleTheme" title="Dark / Light umschalten">🌙</button>
     </div>
   </nav>
 </header>
 
 <div class="stage">
-  <svg id="map" viewBox="-670 -670 1340 1340"
+  <svg id="map" viewBox="-700 -700 1400 1400"
        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
        role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS">
     <defs>
@@ -178,14 +236,14 @@
 
     <!-- Zentrum -->
     <g class="center">
-      <circle class="core" r="90"></circle>
-      <!-- RESETBOX Node + Label via JS -->
+      <circle class="core" r="100"></circle>
+      <!-- RESETBOX Node via JS -->
     </g>
 
-    <!-- Nodes (über Ringen) -->
+    <!-- Nodes -->
     <g class="nodes" id="nodes-layer"></g>
 
-    <!-- Labels separat (oberste Ebene) -->
+    <!-- Labels -->
     <g class="labels" id="labels-layer"></g>
   </svg>
 </div>
@@ -245,6 +303,7 @@ const MODS = [
   {no:"41", id:"FUTURE",     ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
   {no:"42", id:"DEATH",      ring:"outer", file:"MODULES/Modul_42_DEATH.md"},
 ];
+/* Kern-Verknüpfungen (symmetrisch gerendert) */
 const CORE = {
   "01:RESETBOX": ["02:WATER","03:SHELTER","09:DEBT"],
   "02:WATER":    ["04:FOOD","06:BODY","13:NATURE"],
@@ -295,7 +354,12 @@ const CORE = {
 /* ===== Helpers ===== */
 const SVG_NS="http://www.w3.org/2000/svg"; const XLINK_NS="http://www.w3.org/1999/xlink";
 const R = { inner:220, mid:380, outer:540, center:0 };
-const RS = { inner:50, mid:50, outer:50, center:82 }; // größere Kreise
+const RS = {
+  inner:parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--r-node')) || 56,
+  mid:parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--r-node')) || 56,
+  outer:parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--r-node')) || 56,
+  center:parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--r-center')) || 96
+};
 function polar(r, a){ return [Math.cos(a)*r, Math.sin(a)*r]; }
 function urlFor(filePath){
   const u = new URL(window.location.href);
@@ -303,8 +367,7 @@ function urlFor(filePath){
   if (!u.pathname.endsWith('/')) u.pathname += '/';
   return u.origin + u.pathname + 'module.html?file=' + encodeURIComponent(filePath);
 }
-
-/* Symmetrisierte Kanten */
+/* symmetrische Kanten */
 const LINKS = new Map();
 for (const [k, arr] of Object.entries(CORE)) {
   const a = k.split(':')[1];
@@ -323,17 +386,9 @@ const labelsLayer = document.getElementById('labels-layer');
 const linksLayer  = document.getElementById('links-layer');
 const tip = document.getElementById('tip');
 
-/* sanfte Winkelverteilung zur Überlappungsreduktion */
 function distributeAngles(len){
   const step=(Math.PI*2)/len, start=-Math.PI/2;
-  const angles=Array.from({length:len},(_,i)=>start+i*step);
-  const MIN=(Math.PI/180)*6;
-  for(let i=0;i<len;i++){
-    const p=angles[(i-1+len)%len], c=angles[i], n=angles[(i+1)%len];
-    if(c-p<MIN) angles[i]+= (MIN-(c-p))/2;
-    if(n-c<MIN) angles[i]-= (MIN-(n-c))/2;
-  }
-  return angles;
+  return Array.from({length:len},(_,i)=>start+i*step);
 }
 
 function addNode(mod, ring, angle, r){
@@ -344,25 +399,27 @@ function addNode(mod, ring, angle, r){
   a.setAttributeNS(XLINK_NS,'xlink:href', urlFor(mod.file));
   a.setAttribute('transform',`translate(${x},${y})`);
   a.dataset.id = mod.id;
+  a.dataset.ring = ring;
+  a.setAttribute('tabindex','0');
 
   const glow = document.createElementNS(SVG_NS,'circle'); glow.setAttribute('r', RS[ring]); glow.setAttribute('class','glow'); a.appendChild(glow);
   const c = document.createElementNS(SVG_NS,'circle'); c.setAttribute('r', RS[ring]); a.appendChild(c);
 
-  addNodeEvents(a, mod, {x,y,angle,ring});
+  addNodeEvents(a, mod);
   nodesLayer.appendChild(a);
 
-  // Externes Label
   addLabel(mod, ring, angle, r, {x,y});
 }
 
 function addLabel(mod, ring, angle, r, center){
-  const offset = ring==='inner'? 78 : ring==='mid'? 86 : 94;
+  const offset = ring==='inner'? 86 : ring==='mid'? 96 : 104;
   const [lx,ly] = polar(r+offset, angle);
 
   const g = document.createElementNS(SVG_NS,'g');
   g.setAttribute('transform', `translate(${lx},${ly})`);
   g.setAttribute('class','label');
   g.dataset.id = mod.id;
+  g.dataset.ring = ring;
 
   const line = document.createElementNS(SVG_NS,'line');
   line.setAttribute('x1', 0); line.setAttribute('y1', 0);
@@ -372,10 +429,13 @@ function addLabel(mod, ring, angle, r, center){
   const text = document.createElementNS(SVG_NS,'text');
   text.textContent = `${mod.no} ${mod.id}`;
   text.setAttribute('dominant-baseline','middle');
+  text.classList.add(ring==='inner'?'t-inner': ring==='mid'?'t-mid': ring==='outer'?'t-outer':'t-center');
 
   const deg = angle * 180/Math.PI;
-  if (deg > -90 && deg <= 90){ text.setAttribute('text-anchor','start'); text.setAttribute('x', 12); }
-  else { text.setAttribute('text-anchor','end'); text.setAttribute('x', -12); }
+  if (ring === 'center'){
+    text.setAttribute('text-anchor','middle'); text.setAttribute('x', 0);
+  } else if (deg > -90 && deg <= 90){ text.setAttribute('text-anchor','start'); text.setAttribute('x', 14); }
+  else { text.setAttribute('text-anchor','end'); text.setAttribute('x', -14); }
   text.setAttribute('y', 0);
 
   const rect = document.createElementNS(SVG_NS,'rect');
@@ -384,10 +444,10 @@ function addLabel(mod, ring, angle, r, center){
 
   requestAnimationFrame(()=>{
     const bb = text.getBBox();
-    rect.setAttribute('x', bb.x - 10);
-    rect.setAttribute('y', bb.y - 6);
-    rect.setAttribute('width', bb.width + 20);
-    rect.setAttribute('height', bb.height + 12);
+    rect.setAttribute('x', bb.x - 12);
+    rect.setAttribute('y', bb.y - 10);
+    rect.setAttribute('width', bb.width + 24);
+    rect.setAttribute('height', bb.height + 20);
   });
 }
 
@@ -398,21 +458,21 @@ function buildMap(){
   const centerNode = nodesLayer.querySelector('a.node.center');
   centerNode.setAttribute('transform','translate(0,0)');
 
-  // zentrales Label
+  // Label für Zentrum
   const g = document.createElementNS(SVG_NS,'g');
   g.setAttribute('transform','translate(0,0)');
   g.setAttribute('class','label active');
-  g.dataset.id = m0.id;
+  g.dataset.id = m0.id; g.dataset.ring='center';
   const rect = document.createElementNS(SVG_NS,'rect'); g.appendChild(rect);
   const text = document.createElementNS(SVG_NS,'text');
   text.textContent = `01 ${m0.id}`; text.setAttribute('text-anchor','middle'); text.setAttribute('y','0');
-  text.setAttribute('dominant-baseline','middle'); text.style.fontSize = '22px';
+  text.setAttribute('dominant-baseline','middle'); text.classList.add('t-center'); text.style.fontSize = 'var(--center-size)';
   g.appendChild(text);
   labelsLayer.appendChild(g);
   requestAnimationFrame(()=>{
     const bb = text.getBBox();
-    rect.setAttribute('x', bb.x - 12); rect.setAttribute('y', bb.y - 8);
-    rect.setAttribute('width', bb.width + 24); rect.setAttribute('height', bb.height + 16);
+    rect.setAttribute('x', bb.x - 14); rect.setAttribute('y', bb.y - 12);
+    rect.setAttribute('width', bb.width + 28); rect.setAttribute('height', bb.height + 24);
   });
 
   // Ringe
@@ -423,23 +483,41 @@ function buildMap(){
     const angles = distributeAngles(list.length);
     list.forEach((m,i)=> addNode(m, ring, angles[i], R[ring]));
   }
+
+  // einfache Label-Kollision-Entzerrung (vertikal)
+  resolveLabelCollisions();
 }
 
-/* ===== Interaktion ===== */
+/* ===== Verbindungen als Kurven ===== */
 function nodeCenterPos(nodeEl){
   const tr = nodeEl.getAttribute('transform');
   const m = tr && tr.match(/translate\(([-\d.]+),([-\d.]+)\)/);
   return m ? {x:parseFloat(m[1]), y:parseFloat(m[2])} : {x:0,y:0};
 }
+function curvePath(pA, pB){
+  // Quadratic-Bezier: Kontrollpunkt radial leicht nach außen
+  const mid = { x:(pA.x+pB.x)/2, y:(pA.y+pB.y)/2 };
+  const v  = { x:mid.x*0.08, y:mid.y*0.08 };
+  const c  = { x:mid.x+v.x, y:mid.y+v.y };
+  return `M ${pA.x} ${pA.y} Q ${c.x} ${c.y} ${pB.x} ${pB.y}`;
+}
+
 function setLabelActive(id, on){
   const label = labelsLayer.querySelector(`.label[data-id="${id}"]`);
   if(!label) return;
   if(on) label.classList.add('active'); else label.classList.remove('active');
 }
+
+function dimAll(on){
+  document.querySelectorAll('a.node').forEach(n => n.classList.toggle('dim', on));
+  labelsLayer.querySelectorAll('.label').forEach(l => l.classList.toggle('dim', on));
+}
+
 function highlight(id){
   document.querySelectorAll('a.node').forEach(n => n.classList.remove('active','linked'));
   const active = Array.from(document.querySelectorAll('a.node')).find(n => n.dataset.id === id);
   if (active) active.classList.add('active');
+
   setLabelActive(id, true);
 
   const targets = Array.from(LINKS.get(id) || []);
@@ -455,46 +533,147 @@ function highlight(id){
     const pA = nodeCenterPos(active);
     targetEls.forEach(el=>{
       const pB = nodeCenterPos(el);
-      const line = document.createElementNS(SVG_NS,'line');
-      line.setAttribute('x1', pA.x); line.setAttribute('y1', pA.y);
-      line.setAttribute('x2', pB.x); line.setAttribute('y2', pB.y);
-      linksLayer.appendChild(line);
+      const path = document.createElementNS(SVG_NS,'path');
+      path.setAttribute('d', curvePath(pA, pB));
+      linksLayer.appendChild(path);
     });
     linksLayer.classList.remove('hidden'); linksLayer.classList.add('visible');
+    dimAll(true);
+    // Undim aktive & verlinkte
+    active.classList.remove('dim');
+    targetEls.forEach(e=>e.classList.remove('dim'));
+    [id, ...targets].forEach(t=>{
+      const lab = labelsLayer.querySelector(`.label[data-id="${t}"]`);
+      if(lab) lab.classList.remove('dim');
+    });
   }else{
     linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
+    dimAll(false);
   }
 }
+
 function clearHighlight(){
-  document.querySelectorAll('a.node').forEach(n => n.classList.remove('active','linked'));
-  labelsLayer.querySelectorAll('.label').forEach(l => l.classList.remove('active'));
+  document.querySelectorAll('a.node').forEach(n => n.classList.remove('active','linked','dim'));
+  labelsLayer.querySelectorAll('.label').forEach(l => l.classList.remove('active','dim'));
   while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
   linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
 }
+
+/* ===== Events ===== */
 function addNodeEvents(anchor, mod){
-  anchor.addEventListener('mouseenter', (e)=>{
+  const show = (e)=>{
     tip.innerHTML = `${mod.no} ${mod.id}<br><small>Öffnen</small>`;
     tip.style.left = e.clientX+'px'; tip.style.top = e.clientY+'px';
     tip.classList.add('show');
     highlight(mod.id);
-  });
-  anchor.addEventListener('mousemove', (e)=>{ tip.style.left = e.clientX+'px'; tip.style.top = e.clientY+'px'; });
-  anchor.addEventListener('mouseleave', ()=>{
+  };
+  const hide = ()=>{
     tip.classList.remove('show');
     clearHighlight();
-  });
+  };
+  anchor.addEventListener('mouseenter', show);
+  anchor.addEventListener('mousemove', (e)=>{ tip.style.left = e.clientX+'px'; tip.style.top = e.clientY+'px'; });
+  anchor.addEventListener('mouseleave', hide);
+  anchor.addEventListener('focus', (e)=>{ tip.classList.add('show'); highlight(mod.id); });
+  anchor.addEventListener('blur', hide);
 }
 
-/* ===== Header: Module-Menü ===== */
+/* ===== Header: Modul-Menü ===== */
 (function fillMenu(){
   const menu = document.getElementById('menu-mods');
   MODS.forEach(m=>{
     const a = document.createElement('a');
     a.href = 'module.html?file=' + encodeURIComponent(m.file);
     a.textContent = `${m.no} ${m.id}`;
+    a.setAttribute('role','menuitem');
     menu.appendChild(a);
   });
 })();
+
+/* ===== Suche ===== */
+(function searchInit(){
+  const input = document.getElementById('q');
+  const clear = document.getElementById('q-clear');
+  const norm = s => s.normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase();
+
+  function runSearch(){
+    const q = norm(input.value.trim());
+    if(!q){
+      clearHighlight();
+      return;
+    }
+    // Finde best match: Nummer oder Name enthält q
+    const match = MODS.find(m => norm(m.no).startsWith(q) || norm(m.id).includes(q));
+    if(!match){ clearHighlight(); return; }
+    highlight(match.id);
+    // Tooltip soft positionieren auf Mitte
+    tip.classList.add('show');
+    tip.innerHTML = `${match.no} ${match.id}<br><small>Enter zum Öffnen</small>`;
+  }
+
+  input.addEventListener('input', runSearch);
+  input.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter'){
+      const q = input.value.trim();
+      const match = MODS.find(m => m.no.startsWith(q) || m.id.toLowerCase().includes(q.toLowerCase()));
+      if(match){
+        window.location.href = urlFor(match.file);
+      }
+    }else if(e.key === 'Escape'){
+      input.value = ''; clearHighlight();
+    }
+  });
+  clear.addEventListener('click', ()=>{
+    input.value=''; input.focus(); clearHighlight();
+  });
+})();
+
+/* ===== Theme Toggle (persistiert) ===== */
+(function themeInit(){
+  const saved = localStorage.getItem('qs_theme');
+  if(saved === 'light'){ document.body.classList.add('light'); }
+  const btn = document.getElementById('toggleTheme');
+  const setIcon = ()=> btn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
+  setIcon();
+  btn.addEventListener('click', ()=>{
+    document.body.classList.toggle('light');
+    localStorage.setItem('qs_theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    setIcon();
+  });
+})();
+
+/* ===== Label-Kollisionen grob lösen ===== */
+function resolveLabelCollisions(){
+  const labels = Array.from(labelsLayer.querySelectorAll('.label'));
+  const getBox = el => el.getBBox();
+  let moved = true, safety=0;
+  while(moved && safety<10){
+    moved = false; safety++;
+    for(let i=0;i<labels.length;i++){
+      for(let j=i+1;j<labels.length;j++){
+        const a = labels[i], b = labels[j];
+        const A = getBox(a), B = getBox(b);
+        const overlap = !(A.x+A.width < B.x || B.x+B.width < A.x || A.y+A.height < B.y || B.y+B.height < A.y);
+        if(overlap){
+          // verschiebe das untere Label leicht nach außen
+          const da = /translate\(([-\d.]+),([-\d.]+)\)/.exec(a.getAttribute('transform'));
+          const db = /translate\(([-\d.]+),([-\d.]+)\)/.exec(b.getAttribute('transform'));
+          if(da && db){
+            const ay = parseFloat(da[2]), by = parseFloat(db[2]);
+            if(ay <= by){
+              a.setAttribute('transform', `translate(${da[1]}, ${ay-6})`);
+              b.setAttribute('transform', `translate(${db[1]}, ${by+6})`);
+            }else{
+              a.setAttribute('transform', `translate(${da[1]}, ${ay+6})`);
+              b.setAttribute('transform', `translate(${db[1]}, ${by-6})`);
+            }
+            moved = true;
+          }
+        }
+      }
+    }
+  }
+}
 
 /* ===== Init ===== */
 buildMap();

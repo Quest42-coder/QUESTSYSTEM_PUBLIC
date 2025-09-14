@@ -2,170 +2,296 @@
 <html lang="de">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>QUESTSYSTEM – Modul</title>
-<meta name="description" content="Anzeige einzelner QUESTSYSTEM-Module (Markdown) mit Direktlink ins Repository." />
+<meta name="color-scheme" content="dark light">
 <style>
   :root{
-    --bg:#0d1117; --fg:#e6eef7; --muted:#9fb0c6; --link:#a8d1ff;
-    --panel:#111827; --border:#1f2a3b; --code:#0e1423;
+    --bg:#0e1116; --fg:#e7eef7; --muted:#9fb0c6; --accent:#66ccff; --border:#222a39;
+    --card:rgba(12,16,24,.75); --shadow:0 8px 28px rgba(0,0,0,.35);
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   }
   *{box-sizing:border-box}
-  body{margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  html,body{height:100%}
+  body{
+    margin:0; color:var(--fg);
+    font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    background:
+      radial-gradient(1200px 800px at 50% 45%, #141a2a 0%, #0f1422 60%, var(--bg) 100%),
+      radial-gradient(800px 600px at 20% 10%, rgba(255,255,255,.04), transparent 60%),
+      radial-gradient(700px 700px at 80% 80%, rgba(255,255,255,.03), transparent 65%);
+  }
 
-  /* Header */
-  .site-header{position:sticky; top:0; z-index:10; display:flex; gap:12px; align-items:center;
-    padding:10px 14px; background:rgba(17,24,39,.92); border-bottom:1px solid var(--border); backdrop-filter: blur(4px)}
-  .site-header h1{margin:0; font-size:16px}
-  .site-header .spacer{flex:1}
-  .site-header a{color:var(--fg); text-decoration:none; opacity:.9}
-  .site-header a:hover{text-decoration:underline; opacity:1}
-  .btn{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border:1px solid var(--border);
-       border-radius:8px; background:#141c2a; color:var(--fg); text-decoration:none; font-size:14px}
-  .btn:hover{border-color:#2a3956}
+  header{
+    position:sticky; top:0; z-index:20;
+    display:flex; align-items:center; gap:10px; padding:10px 14px;
+    background:rgba(10,13,20,.7); border-bottom:1px solid var(--border); backdrop-filter: blur(6px);
+  }
+  header a.brand{font-weight:900; letter-spacing:.4px; color:var(--fg); text-decoration:none}
+  header .path{color:var(--muted); font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .actions{margin-left:auto; display:flex; gap:8px; flex-wrap:wrap}
+  .btn{
+    appearance:none; border:1px solid var(--border); background:var(--card);
+    color:var(--fg); padding:6px 10px; border-radius:8px; cursor:pointer; font-weight:600;
+  }
+  .btn:hover{border-color:#3a4760}
+  .btn.sec{background:transparent}
+  .wrap{max-width:1100px; margin:18px auto 56px; padding:0 16px;}
 
-  /* Container */
-  .wrap{max-width:1000px; margin:24px auto 56px; padding:0 16px}
+  /* Content card */
+  .card{
+    background:rgba(12,16,24,.55); border:1px solid var(--border); border-radius:12px;
+    box-shadow:var(--shadow); overflow:hidden;
+  }
+  .md{
+    padding:22px 22px;
+  }
+  .md h1,.md h2,.md h3,.md h4,.md h5{
+    line-height:1.25; margin:1.2em 0 .55em;
+  }
+  .md h1{font-size:2rem} .md h2{font-size:1.6rem}
+  .md h3{font-size:1.25rem} .md h4{font-size:1.1rem}
+  .md p{margin:.6em 0}
+  .md a{color:var(--accent); text-decoration:none}
+  .md a:hover{text-decoration:underline}
+  .md code{font-family:var(--mono); background:#101725; border:1px solid #263047; padding:.1em .35em; border-radius:6px}
+  .md pre{background:#0b1220; border:1px solid #263047; border-radius:10px; padding:12px; overflow:auto}
+  .md pre code{background:transparent; border:0; padding:0}
+  .md ul,.md ol{margin:.5em 0 .8em 1.2em}
+  .md blockquote{
+    margin:.8em 0; padding:.4em .8em; border-left:3px solid #3c4b6b; color:#c9d6ea; background:rgba(60,75,107,.08); border-radius:8px;
+  }
+  .md hr{border:0; border-top:1px solid var(--border); margin:1.2em 0}
+  .md table{width:100%; border-collapse:collapse; margin:1em 0; font-size:.95rem}
+  .md th,.md td{border:1px solid #29354c; padding:8px 10px}
+  .md th{background:#0f1626}
+  .md img{max-width:100%}
 
-  /* Markdown Basic */
-  article{line-height:1.6}
-  article h1,article h2,article h3,article h4{margin:1.2em 0 .6em}
-  article h1{font-size:28px} article h2{font-size:22px} article h3{font-size:18px}
-  article p{margin:.8em 0}
-  article a{color:var(--link)}
-  article ul,article ol{margin:.6em 0 .6em 1.2em}
-  article li{margin:.3em 0}
-  article code{background:var(--code); border:1px solid var(--border); border-radius:6px; padding:.1em .35em; font-family:ui-monospace,Menlo,Consolas,monospace}
-  pre{background:var(--code); border:1px solid var(--border); border-radius:10px; padding:12px; overflow:auto}
-  pre code{border:0; padding:0}
-  blockquote{border-left:3px solid #2a3956; margin:.8em 0; padding:.4em .8em; color:#bdd0ea}
-  table{border-collapse:collapse; width:100%; margin:1em 0}
-  th,td{border:1px solid var(--border); padding:.5em; text-align:left}
-  th{background:#121a29}
-
-  /* Info Panel */
-  .meta{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px}
-  .pill{font-size:12px; padding:4px 8px; border:1px solid var(--border); border-radius:999px; background:#121a29; color:var(--muted)}
-
-  /* Error */
-  .error{background:#241218; border:1px solid #5b2635; color:#ffd7de; padding:12px; border-radius:10px}
+  .meta{
+    display:flex; gap:12px; flex-wrap:wrap; align-items:center;
+    padding:10px 14px; border-top:1px solid var(--border); background:rgba(12,16,24,.5);
+    color:var(--muted); font-size:.9rem;
+  }
+  .meta .sp{flex:1}
+  .err{
+    margin:14px 0; padding:12px 14px; border:1px solid #5a2a2a; background:rgba(120,40,40,.18); color:#ffd7d7; border-radius:10px;
+  }
+  .note{color:#b9c7de; font-size:.95rem; margin:.6em 0}
 </style>
 </head>
 <body>
-<header class="site-header" aria-label="Seitennavigation">
-  <a class="btn" href="index.html">← Start</a>
-  <a class="btn" href="index.html#alle-module">Alle Module</a>
-  <div class="spacer"></div>
-  <a id="openRaw" class="btn" target="_blank" rel="noopener">Raw</a>
-  <a id="openBlob" class="btn" target="_blank" rel="noopener">Auf GitHub</a>
+<header>
+  <a class="brand" href="./">🍄 QUESTSYSTEM</a>
+  <div class="path" id="path"></div>
+  <div class="actions">
+    <button class="btn sec" id="btn-copy">Permalink kopieren</button>
+    <a class="btn" id="btn-github" target="_blank" rel="noopener">Auf GitHub öffnen</a>
+    <a class="btn sec" id="btn-raw" target="_blank" rel="noopener">Raw öffnen</a>
+  </div>
 </header>
 
 <div class="wrap">
-  <div class="meta">
-    <span class="pill" id="meta-file"></span>
-    <span class="pill" id="meta-size"></span>
-    <span class="pill" id="meta-status"></span>
+  <div class="card">
+    <div id="content" class="md">Lade Modul…</div>
+    <div class="meta">
+      <span class="sp" id="status">Status: lädt…</span>
+      <span id="branchHint"></span>
+    </div>
   </div>
-  <h1 id="title">Lade Modul…</h1>
-  <article id="md"></article>
-  <div id="err" class="error" style="display:none"></div>
 </div>
 
 <script>
 (function(){
-  // === Repo-Konfig (falls du Owner/Repo/Branch änderst, hier anpassen) ===
-  const OWNER = 'Quest42-coder';
-  const REPO  = 'QUESTSYSTEM_PUBLIC';
-  const BRANCH= 'main';
-
-  // === Utility ===
-  function getParam(name){
-    const m = new RegExp('[?&]'+name+'=([^&]+)').exec(location.search);
-    return m ? decodeURIComponent(m[1]) : '';
+  const qs = new URLSearchParams(location.search);
+  let file = qs.get('file') || '';
+  // Vorsicht bei absoluten URLs im Parameter
+  if (file.startsWith('http://') || file.startsWith('https://')) {
+    try { const u = new URL(file); file = u.pathname.replace(/^\\//,''); } catch {}
   }
-  function rawUrl(path){ return `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${path}`; }
-  function blobUrl(path){ return `https://github.com/${OWNER}/${REPO}/blob/${BRANCH}/${path}`; }
-  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  // kleine Normalisierung
+  file = file.replace(/^\\.\\//,'').replace(/^\\//,'').replace(/\\+/g,'/');
 
-  // Sehr einfacher Markdown→HTML-Renderer (überschriften, listen, links, code, tables)
-  function mdToHtml(md){
-    // code fences
-    md = md.replace(/```([\s\S]*?)```/g, (m,code)=>`<pre><code>${esc(code)}</code></pre>`);
-    // inline code
-    md = md.replace(/`([^`]+)`/g,(m,c)=>`<code>${esc(c)}</code>`);
-    // headings
-    md = md.replace(/^###### (.*)$/gm,'<h6>$1</h6>')
-           .replace(/^##### (.*)$/gm,'<h5>$1</h5>')
-           .replace(/^#### (.*)$/gm,'<h4>$1</h4>')
-           .replace(/^### (.*)$/gm,'<h3>$1</h3>')
-           .replace(/^## (.*)$/gm,'<h2>$1</h2>')
-           .replace(/^# (.*)$/gm,'<h1>$1</h1>');
-    // blockquote
-    md = md.replace(/^\> (.*)$/gm,'<blockquote>$1</blockquote>');
-    // links [t](u)
-    md = md.replace(/$begin:math:display$([^$end:math:display$]+)\]$begin:math:text$([^)]+)$end:math:text$/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
-    // lists
-    md = md.replace(/^(?:\s*)\- (.*)$/gm,'<li>$1</li>');
-    md = md.replace(/(<li>.*<\/li>)(?!\s*<\/ul>)/gs,'<ul>$1</ul>');
-    // tables (einfache Variante: pipe-reihen)
-    if(/\n\|/.test(md)){
-      md = md.replace(/(?:^|\n)\|(.+)\|\n\|([ :-|]+)\|\n([\s\S]*?)\n(?=\S)/g, function(_, head, sep, body){
-        const th = head.split('|').map(h=>`<th>${h.trim()}</th>`).join('');
-        const rows = body.trim().split('\n').map(r=>{
-          return '<tr>'+r.replace(/^\|/, '').replace(/\|$/, '').split('|').map(c=>`<td>${c.trim()}</td>`).join('')+'</tr>';
-        }).join('');
-        return '\n<table><thead><tr>'+th+'</tr></thead><tbody>'+rows+'</tbody></table>\n';
-      });
+  const contentEl = document.getElementById('content');
+  const statusEl = document.getElementById('status');
+  const pathEl = document.getElementById('path');
+  const btnRaw = document.getElementById('btn-raw');
+  const btnGit = document.getElementById('btn-github');
+  const btnCopy= document.getElementById('btn-copy');
+  const branchHint = document.getElementById('branchHint');
+
+  // Pfad im Header anzeigen
+  pathEl.textContent = file ? '› ' + file : '› (keine Datei angegeben)';
+
+  // Besitzer/Repo aus Pages-URL ableiten: https://USER.github.io/REPO/...
+  function detectRepo(){
+    const {host, pathname} = location;
+    const owner = host.endsWith('.github.io') ? host.replace('.github.io','') : null;
+    const parts = pathname.replace(/^\\//,'').split('/');
+    const repo = parts[0] || null;
+    return {owner, repo};
+  }
+  const {owner, repo} = detectRepo();
+
+  // Kandidaten-URLs aufbauen (Reihenfolge = Priorität)
+  function candidates(file){
+    const arr = [];
+    // 1) relative zum aktuellen Ort (funktioniert bei flachen Strukturen)
+    arr.push(file);
+    arr.push('./'+file);
+
+    // 2) Absolute Pfade relativ zur Site-Root
+    const base = location.origin + '/' + (repo ? (repo + '/') : '');
+    arr.push(base + file);
+
+    // 3) raw.githubusercontent.com (main, dann master)
+    if (owner && repo) {
+      arr.push(`https://raw.githubusercontent.com/${owner}/${repo}/main/${file}`);
+      arr.push(`https://raw.githubusercontent.com/${owner}/${repo}/master/${file}`);
     }
-    // paragraphs (nachdem blocks ersetzt wurden)
-    md = md.replace(/\n{2,}/g,'</p><p>');
-    if(!/^<h\d|<ul|<pre|<table|<blockquote|<p/.test(md)) md = '<p>'+md+'</p>';
+    return arr;
+  }
+
+  // Einfache Markdown→HTML-Konvertierung (ohne externe Libs)
+  function mdToHtml(md){
+    // Escape zuerst
+    const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    // Codefences
+    md = md.replace(/```([\\s\\S]*?)```/g, (m, code)=>`<pre><code>${esc(code)}</code></pre>`);
+    // Inline code
+    md = md.replace(/`([^`]+)`/g, (m, code)=>`<code>${esc(code)}</code>`);
+    // Headings
+    md = md.replace(/^######\\s*(.+)$/gm, '<h6>$1</h6>')
+           .replace(/^#####\\s*(.+)$/gm, '<h5>$1</h5>')
+           .replace(/^####\\s*(.+)$/gm, '<h4>$1</h4>')
+           .replace(/^###\\s*(.+)$/gm, '<h3>$1</h3>')
+           .replace(/^##\\s*(.+)$/gm, '<h2>$1</h2>')
+           .replace(/^#\\s*(.+)$/gm, '<h1>$1</h1>');
+    // Blockquotes
+    md = md.replace(/^>\\s?(.+)$/gm, '<blockquote>$1</blockquote>');
+    // Bold/Italic
+    md = md.replace(/\\*\\*([^*]+)\\*\\*/g, '<strong>$1</strong>')
+           .replace(/\\*(?!\\s)([^*]+)\\*/g, '<em>$1</em>');
+    // Links [text](url)
+    md = md.replace(/\$begin:math:display$([^\\$end:math:display$]+)\\]\$begin:math:text$([^)]+)\\$end:math:text$/g, (m,txt,href)=>{
+      // .md Links im Repo → über module.html öffnen
+      if (/\\.md(#[\\w-]+)?$/i.test(href) && !/^https?:/i.test(href)) {
+        const target = href.replace(/^\\.\\//,'').replace(/^\\//,'');
+        return `<a href="module.html?file=${encodeURIComponent(target)}">${txt}</a>`;
+      }
+      return `<a href="${href}">${txt}</a>`;
+    });
+    // Unordered lists
+    md = md.replace(/^(\\s*)-\\s+(.+)$/gm, '$1• $2');
+    md = md.replace(/(?:^|\\n)(• .+(?:\\n\\s{2,}.+)*)/g, (m,block)=>{
+      const items = block.split(/\\n/).map(l=>l.replace(/^•\\s+/,'').trim()).filter(Boolean);
+      return '<ul>'+items.map(i=>`<li>${i}</li>`).join('')+'</ul>';
+    });
+    // Ordered lists 1. 2. …
+    md = md.replace(/(?:^|\\n)((?:\\d+\\. .+(?:\\n\\s{2,}.+)*)+)/g, (m,block)=>{
+      const items = block.split(/\\n/).map(l=>l.replace(/^\\d+\\.\\s+/,'').trim()).filter(Boolean);
+      return '<ol>'+items.map(i=>`<li>${i}</li>`).join('')+'</ol>';
+    });
+    // Horizontale Linie
+    md = md.replace(/\\n-{3,}\\n/g, '<hr/>');
+
+    // Paragraphs: leere Zeilen → <p>
+    md = md.split(/\\n{2,}/).map(chunk=>{
+      if (/^\\s*<(h\\d|ul|ol|pre|blockquote|hr|table|img)/i.test(chunk)) return chunk;
+      return '<p>'+chunk.replace(/\\n/g,'<br/>')+'</p>';
+    }).join('\\n');
     return md;
   }
 
-  // === Main ===
-  const file = getParam('file'); // z. B. MODULES/Modul_05_SLEEP.md
-  const titleEl = document.getElementById('title');
-  const mdEl = document.getElementById('md');
-  const errEl = document.getElementById('err');
-  const metaFile = document.getElementById('meta-file');
-  const metaSize = document.getElementById('meta-size');
-  const metaStatus = document.getElementById('meta-status');
-  const openRaw = document.getElementById('openRaw');
-  const openBlob= document.getElementById('openBlob');
-
-  if(!file){
-    titleEl.textContent = 'Kein Datei-Pfad übergeben';
-    errEl.style.display='block';
-    errEl.innerHTML = 'Rufe die Seite so auf: <code>module.html?file=MODULES/Modul_01_RESETBOX.md</code>';
-    document.title = 'QUESTSYSTEM – Fehler';
-    return;
+  async function tryFetch(url){
+    try{
+      const res = await fetch(url, {cache:'no-store'});
+      if (!res.ok) return null;
+      const text = await res.text();
+      if (/^<!doctype/i.test(text)) return null; // HTML-Dokument → nicht die MD
+      return text;
+    }catch{ return null; }
   }
 
-  const raw = rawUrl(file);
-  const blob= blobUrl(file);
-  openRaw.href  = raw;
-  openBlob.href = blob;
+  async function load(){
+    if(!file){
+      contentEl.innerHTML = '<div class="err"><strong>Keine Datei angegeben.</strong><br>Aufruf z. B.: <code>module.html?file=MODULES/Modul_10_WORK.md</code></div>';
+      statusEl.textContent = 'Status: Fehler – fehlender Parameter "file".';
+      return;
+    }
+    statusEl.textContent = 'Status: lade…';
+    const urls = candidates(file);
+    let got = null, used = null, usedBranch = null;
+    for(const u of urls){
+      const txt = await tryFetch(u);
+      if(txt){ got = txt; used = u; break; }
+    }
+    if(!got){
+      contentEl.innerHTML =
+        `<div class="err">
+          <strong>Fehler beim Laden</strong><br>
+          Quelle: <code>${file}</code><br>
+          Die Datei konnte nicht geladen werden (HTTP 404/Fehler).<br>
+          <div class="note">Prüfe, ob die Datei im Repo existiert und Pfad & Groß/Kleinschreibung stimmen.</div>
+        </div>`;
+      statusEl.textContent = 'Status: Fehler – Datei nicht gefunden.';
+      return;
+    }
+    // Branch-Hinweis, falls raw URL verwendet wurde
+    if (/raw\\.githubusercontent\\.com\\/.+\\/(main|master)\\//.test(used)) {
+      usedBranch = used.match(/raw\\.githubusercontent\\.com\\/[^/]+\\/[^/]+\\/(main|master)\\//)[1];
+      branchHint.textContent = `Quelle: raw (${usedBranch})`;
+    } else {
+      branchHint.textContent = 'Quelle: relativ';
+    }
 
-  titleEl.textContent = file.split('/').pop().replace(/_/g,' ').replace(/\.md$/,'');
-  metaFile.textContent = file;
+    // Buttons verkabeln
+    if (owner && repo) {
+      const gh = `https://github.com/${owner}/${repo}/blob/${usedBranch||'main'}/${file}`;
+      const raw = `https://raw.githubusercontent.com/${owner}/${repo}/${usedBranch||'main'}/${file}`;
+      btnGit.href = gh;
+      btnRaw.href = raw;
+    } else {
+      // Fallback falls nicht ermittelbar
+      btnGit.href = '#';
+      btnRaw.href = used || '#';
+    }
 
-  fetch(raw).then(async r=>{
-    metaStatus.textContent = 'HTTP '+r.status;
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    const text = await r.text();
-    metaSize.textContent = (new Blob([text]).size/1024).toFixed(1)+' kB';
-    mdEl.innerHTML = mdToHtml(text);
-    document.title = 'QUESTSYSTEM – '+titleEl.textContent;
-  }).catch(err=>{
-    errEl.style.display='block';
-    errEl.innerHTML = `<strong>Fehler beim Laden</strong><br>
-      Quelle: <code>${file}</code><br>
-      ${esc(String(err))}<br><br>
-      Prüfe, ob die Datei im Repo existiert: 
-      <a href="${blob}" target="_blank" rel="noopener">Auf GitHub öffnen</a>`;
-    document.title = 'QUESTSYSTEM – 404';
+    // Render
+    const html = mdToHtml(got);
+    contentEl.innerHTML = html;
+    statusEl.textContent = 'Status: geladen.';
+
+    // Interne .md-Links im gerenderten HTML nach module.html routen
+    contentEl.querySelectorAll('a[href]').forEach(a=>{
+      const href = a.getAttribute('href');
+      if (!href) return;
+      if (/\\.md(#[\\w-]+)?$/i.test(href) && !/^https?:/i.test(href)) {
+        const target = href.replace(/^\\.\\//,'').replace(/^\\//,'');
+        a.setAttribute('href', 'module.html?file='+encodeURIComponent(target));
+      }
+    });
+
+    // Überschriften mit IDs versehen (für #Anker)
+    contentEl.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach(h=>{
+      if(!h.id){
+        const id = h.textContent.trim().toLowerCase()
+          .replace(/[^a-z0-9\\s-]/g,'').replace(/\\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$|/g,'');
+        if(id) h.id = id;
+      }
+    });
+  }
+
+  btnCopy.addEventListener('click', async ()=>{
+    try{
+      await navigator.clipboard.writeText(location.href);
+      btnCopy.textContent = 'Kopiert ✔';
+      setTimeout(()=>btnCopy.textContent='Permalink kopieren', 1200);
+    }catch{
+      alert('Konnte nicht kopieren.');
+    }
   });
+
+  load();
 })();
 </script>
 </body>

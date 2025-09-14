@@ -3,290 +3,453 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>QUESTSYSTEM – Ringkarte (map)</title>
-<meta name="description" content="Interaktive Karte der 42 QUESTSYSTEM-Module in drei Ringen mit Verbindungsnetz." />
+<title>QUESTSYSTEM – Modul-Map</title>
+<meta name="description" content="Interaktive Map der QUESTSYSTEM-Module. Verbindungen erscheinen nur bei Hover über dem Modulumrand." />
 <style>
   :root{
-    --bg:#0d1117; --fg:#e6eef7; --muted:#9fb0c6;
-    --ring-inner:#f3c0c7; --ring-mid:#f0de94; --ring-outer:#bcd5ff;
-    --node-stroke:#2a3344; --focus:#66ccff;
-    --edge:#8fb3ff; --edge-dim:#5e7592;
-    --panel:#111827; --border:#1e293b;
+    --bg:#0a0c12; --fg:#f3f7ff; --muted:#9fb0c6;
+    --inner:#ffd1d9; --mid:#f6eaa0; --outer:#c5dcff;
+    --edge:#7fb5ff; --edge-strong:#79e1ff;
+    --node-rim:#354057; --node-rim-hover:#86b7ff; --cut:#0a0c12;
+    --accent:#76d1ff; --accent2:#8affc7;
+    --header-h:56px; --glass:rgba(18,22,32,.6); --border:#222a39;
+    --shadow:0 14px 48px rgba(0,0,0,.55);
   }
   *{box-sizing:border-box}
   html,body{height:100%}
-  body{margin:0; font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg);
-       background: radial-gradient(1200px 800px at 50% 40%, #141a27 0%, #0e1421 55%, #0b101a 100%)}
+  body{
+    margin:0; color:var(--fg);
+    font:16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    background:
+      radial-gradient(1400px 900px at 50% 38%, #12192b 0%, #101728 55%, var(--bg) 100%),
+      radial-gradient(900px 700px at 12% 14%, rgba(255,255,255,.05), transparent 60%),
+      radial-gradient(900px 900px at 88% 84%, rgba(255,255,255,.035), transparent 65%);
+    overflow:hidden;
+  }
 
   /* Header */
-  .site-header{position:fixed; inset:0 0 auto 0; height:56px; z-index:30; display:flex; align-items:center; gap:14px; padding:10px 16px;
-    background:rgba(9,13,20,.9); border-bottom:1px solid var(--border); backdrop-filter: blur(4px)}
-  .site-header h1{margin:0; font-size:16px; letter-spacing:.3px}
-  .site-header nav{margin-left:auto; display:flex; gap:12px; flex-wrap:wrap}
-  .site-header a{color:var(--fg); text-decoration:none; opacity:.9}
-  .site-header a:hover{text-decoration:underline; opacity:1}
+  header{
+    position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:60;
+    display:flex; align-items:center; gap:12px; padding:10px 14px;
+    background:var(--glass); border-bottom:1px solid var(--border); backdrop-filter: blur(8px);
+  }
+  .brand{ color:var(--fg); text-decoration:none; font-weight:900; letter-spacing:.4px }
+  .nav{ margin-left:auto; display:flex; gap:10px; align-items:center }
+  .dd{ position:relative }
+  .dd>button{
+    color:var(--fg); background:transparent; border:1px solid transparent;
+    padding:6px 10px; border-radius:10px; cursor:pointer; font-weight:700;
+  }
+  .menu{
+    position:absolute; right:0; top:calc(100% + 8px); min-width:240px; max-height:60vh; overflow:auto;
+    display:none; flex-direction:column; gap:4px; padding:10px;
+    background:rgba(10,13,20,.98); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow);
+  }
+  .dd:hover .menu{ display:flex }
+  .menu a{ color:var(--fg); text-decoration:none; padding:9px 11px; border-radius:8px }
+  .menu a:hover{ background:rgba(255,255,255,.07) }
+  .burger{display:none; background:none; border:0; width:38px; height:38px; margin-left:auto; cursor:pointer}
+  .burger span{display:block; height:2px; background:var(--fg); margin:7px 5px; border-radius:2px}
+  @media (max-width:900px){
+    .burger{display:block}
+    .nav{position:fixed; top:var(--header-h); left:10px; right:10px; display:none; flex-direction:column; gap:12px;
+         background:rgba(10,13,20,.98); border:1px solid var(--border); border-radius:12px; padding:12px; z-index:65}
+    .dd{width:100%}
+    .dd>button{width:100%; text-align:left; border:1px solid var(--border)}
+    .menu{position:static; display:block; background:transparent; border:0; box-shadow:none; padding:6px 0; max-height:none; overflow:visible}
+  }
 
-  /* Stage */
-  main{padding-top:56px}
-  .stage{min-height:calc(100vh - 56px); display:grid; place-items:center; padding:12px}
-  svg{width:min(1200px, 96vw); height:min(1200px, 78vh)}
-  .ring{fill:none; stroke-width:2.2; opacity:.9}
-  .ring-inner{stroke:var(--ring-inner)} .ring-mid{stroke:var(--ring-mid)} .ring-outer{stroke:var(--ring-outer)}
+  /* Stage/SVG */
+  .stage{ position:absolute; inset:var(--header-h) 0 0 0; display:grid; place-items:center; padding:8px; }
+  svg{ width:min(1400px,96vw); height:min(1400px,96vh); }
 
-  /* Kanten */
-  .edges path{stroke:var(--edge); stroke-width:2; fill:none; opacity:.35; vector-effect:non-scaling-stroke; transition:opacity .12s ease, stroke-width .12s ease, stroke .12s ease}
-  svg.hovering .edges path{opacity:.15; stroke:var(--edge-dim)}
-  .edges path.on{opacity:.95; stroke-width:3.2}
+  /* Ringe */
+  .ring{ fill:none; stroke-width:1.8; opacity:.9; filter: drop-shadow(0 3px 16px rgba(0,0,0,.4)); }
+  .ring-inner{ stroke:var(--inner) } .ring-mid{ stroke:var(--mid) } .ring-outer{ stroke:var(--outer) }
 
-  /* Nodes */
-  .node .hit{fill:transparent; stroke:var(--node-stroke); stroke-width:1.6; cursor:pointer}
-  .node:hover .hit{fill:rgba(255,255,255,.06); stroke:#3b4862}
-  .node text{font-weight:800; font-size:16px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle; pointer-events:none}
-  .inner text{fill:#5d2029} .mid text{fill:#6c5b00} .outer text{fill:#274b7a}
+  /* Edges (versteckt bis Hover) */
+  .edges path{
+    stroke:var(--edge); stroke-width:2.2; fill:none; opacity:0;
+    vector-effect:non-scaling-stroke; transition:opacity .12s ease, stroke-width .12s ease, stroke .12s ease;
+  }
+  .edges path.on{ opacity:.98; stroke:var(--edge-strong); stroke-width:3; filter: drop-shadow(0 2px 10px rgba(110,220,255,.35)); }
 
-  /* RESETBOX */
-  .center circle{fill:transparent; stroke:#9cb5da; stroke-dasharray:5 7; stroke-width:2.6}
-  .center text{fill:#ffffff; font-weight:1000; font-size:48px; letter-spacing:.8px; text-anchor:middle; dominant-baseline:middle}
-  .center .hit{cursor:pointer}
+  /* Nodes – kräftige Kreise */
+  .node{ filter: drop-shadow(0 10px 28px rgba(0,0,0,.55)); transition: transform .14s ease; }
+  .node .cut{ fill:var(--cut); }
+  .node .rim{ fill:transparent; stroke:var(--node-rim); stroke-width:2.2; pointer-events:auto; } /* Hover NUR auf RIM */
+  .node .hit{ fill:rgba(255,255,255,0); cursor:pointer; pointer-events:all; } /* Klickfläche kompletter Kreis */
+  .node:hover{ transform: translateY(-2px) scale(1.035) }
+  .node:hover .rim{ stroke:var(--node-rim-hover) }
+  .node.active .rim{ stroke:var(--accent); stroke-width:3.1; filter: drop-shadow(0 0 24px rgba(120,220,255,.5)); }
+
+  /* Labels */
+  .node text{
+    font-weight:1000; letter-spacing:.4px;
+    text-anchor:middle; dominant-baseline:middle; pointer-events:none;
+    paint-order: stroke; stroke:rgba(10,14,24,.82); stroke-width:3.2;
+    filter: drop-shadow(0 1px 0 rgba(0,0,0,.35));
+  }
+  .inner text{ fill:#4e1e29 } .mid text{ fill:#5d4c00 } .outer text{ fill:#1f3b64 }
+  .inner text,.mid text,.outer text{ font-size:34px; }
+  @media (min-width:1100px){ .inner text,.mid text,.outer text{ font-size:36px; } }
+  @media (min-width:1300px){ .inner text,.mid text,.outer text{ font-size:38px; } }
+
+  /* Resetbox */
+  .center .cut{ fill:var(--cut) }
+  .center .rim{ fill:transparent; stroke:#a8d9ff; stroke-dasharray:9 12; stroke-width:3.2 }
+  .center text{
+    fill:#fff; font-weight:1000; font-size:96px; letter-spacing:1.2px;
+    text-anchor:middle; dominant-baseline:middle;
+    paint-order: stroke; stroke:rgba(10,14,24,.85); stroke-width:3.4;
+    filter: drop-shadow(0 4px 0 rgba(0,0,0,.38));
+  }
+  .center .hit{ fill:rgba(255,255,255,0); cursor:pointer }
 
   /* Tooltip */
-  .tip{position:fixed; z-index:40; transform:translate(-50%, calc(-100% - 10px));
-    background:#0f1624; border:1px solid #2b3548; color:var(--fg);
-    padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap;
-    opacity:0; transition:opacity .12s ease, transform .12s ease}
-  .tip.show{opacity:1; transform:translate(-50%, calc(-100% - 8px))}
-
-  /* Legende */
-  .legend{position:fixed; inset:auto 12px 12px 12px; z-index:25; display:flex; gap:10px; align-items:center; justify-content:center;
-    background:rgba(12,16,24,.6); border:1px solid var(--border); border-radius:10px; padding:8px 10px; backdrop-filter: blur(6px)}
-  .chip{display:inline-flex; align-items:center; gap:8px; font-size:12px}
-  .sw{width:14px; height:14px; border-radius:50%}
-  .sw.inner{background:var(--ring-inner)} .sw.mid{background:var(--ring-mid)} .sw.outer{background:var(--ring-outer)}
+  .tip{
+    position:fixed; z-index:70; pointer-events:none;
+    background:#0f1624; border:1px solid var(--border); color:var(--fg);
+    padding:8px 10px; border-radius:10px; font-size:13px; white-space:nowrap;
+    opacity:0; transform:translate(-50%,-140%); transition:opacity .12s ease, transform .12s ease; box-shadow:var(--shadow);
+  }
+  .tip.show{ opacity:1; transform:translate(-50%,-150%) }
 </style>
 </head>
 <body>
-<header class="site-header" aria-label="Seitennavigation">
-  <h1>QUESTSYSTEM – Ringkarte</h1>
-  <nav>
-    <a href="index.html">Start</a>
-    <a href="#legend">Legende</a>
-    <a href="module.html?file=ETHICS/DIGNITY_CLAUSE.md">Dignity Clause</a>
-    <a href="module.html?file=ETHICS/14_GEBOTE_V2.1.md">14 Gebote</a>
+<header>
+  <a class="brand" href="./">🍄 QUESTSYSTEM</a>
+  <button class="burger" aria-label="Menü" aria-expanded="false"><span></span><span></span><span></span></button>
+  <nav class="nav" aria-label="Hauptnavigation">
+    <div class="dd">
+      <button>System</button>
+      <div class="menu">
+        <a href="./index.html">Start</a>
+        <a href="./map.html" aria-current="page">Modul-Map</a>
+        <a href="module.html?file=ARTIST_PROFILE.md">Artist Profile</a>
+        <a href="module.html?file=MODULES/Modul_32_LICENCE.md">Licence</a>
+        <a href="https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC" target="_blank" rel="noopener">Repository</a>
+      </div>
+    </div>
+    <div class="dd">
+      <button>Ethik</button>
+      <div class="menu">
+        <a href="module.html?file=Dignity_Clause.md">Dignity Clause</a>
+        <a href="module.html?file=14_GEBOTE_V2.1.md">14 Gebote (V2.1)</a>
+        <a href="module.html?file=14_GEBOTE_DISCUSSION.md">Diskussion</a>
+      </div>
+    </div>
+    <div class="dd">
+      <button>Module</button>
+      <div class="menu" id="menu-mods"><!-- auto --></div>
+    </div>
   </nav>
 </header>
 
-<main>
-  <section class="stage">
-    <svg id="ringmap" viewBox="-600 -600 1200 1200"
-         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-         role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS">
-      <!-- Ringe -->
-      <circle class="ring ring-inner" r="220"></circle>
-      <circle class="ring ring-mid"   r="380"></circle>
-      <circle class="ring ring-outer" r="540"></circle>
+<div class="stage">
+  <svg id="ringmap" viewBox="-600 -600 1200 1200"
+       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+       role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS">
+    <g class="edges" id="edges"></g>
 
-      <!-- Verbindungen -->
-      <g id="edges" class="edges" aria-hidden="true"></g>
+    <!-- Ringe -->
+    <circle class="ring ring-inner" r="220"></circle>
+    <circle class="ring ring-mid"   r="380"></circle>
+    <circle class="ring ring-outer" r="540"></circle>
 
-      <!-- RESETBOX -->
-
-      <a xlink:href="module.html?file=MODULES/Modul_01_RESETBOX.md" href="module.html?file=MODULES/Modul_01_RESETBOX.md">
-        <g class="center">
-          <circle r="170"></circle>
-          <text y="0">RESETBOX</text>
-          <circle class="hit" r="170" fill="transparent"></circle>
-        </g>
-      </a>
-    </svg>
-    <div id="tip" class="tip" role="status" aria-live="polite"></div>
-  </section>
-</main>
-
-<div id="legend" class="legend" aria-hidden="false" role="note">
-  <span class="chip"><span class="sw inner"></span>Existential</span>
-  <span class="chip"><span class="sw mid"></span>Societal</span>
-  <span class="chip"><span class="sw outer"></span>Structural</span>
+    <!-- RESETBOX -->
+    <a class="node-anchor"
+       xlink:href="module.html?file=MODULES/Modul_01_RESETBOX.md"
+       href="module.html?file=MODULES/Modul_01_RESETBOX.md">
+      <g class="center" transform="translate(0,0)" tabindex="0" data-id="01" aria-label="01 RESETBOX">
+        <circle class="cut" r="190"></circle>
+        <circle class="rim" r="190"></circle>
+        <text y="10">RESETBOX</text>
+        <circle class="hit" r="190"></circle>
+      </g>
+    </a>
+  </svg>
 </div>
 
+<div id="tip" class="tip" role="status" aria-live="polite"></div>
+
 <script>
+/* ===== Mobile Menü ===== */
 (function(){
-  // === Module (Dateipfade exakt wie im Repo!) ===
-  const MODS = [
-    {no:"01", label:"RESETBOX", ring:"inner", file:"MODULES/Modul_01_RESETBOX.md"},
-    {no:"02", label:"WATER",    ring:"inner", file:"MODULES/Modul_02_WATER.md"},
-    {no:"03", label:"SHELTER",  ring:"inner", file:"MODULES/Modul_03_SHELTER.md"},
-    {no:"04", label:"FOOD",     ring:"inner", file:"MODULES/Modul_04_FOOD.md"},
-    {no:"05", label:"SLEEP",    ring:"inner", file:"MODULES/Modul_05_SLEEP.md"},
-    {no:"06", label:"BODY",     ring:"inner", file:"MODULES/Modul_06_BODY.md"},
-    {no:"07", label:"PSYCHE",   ring:"inner", file:"MODULES/Modul_07_PSYCHE.md"},
-    {no:"08", label:"DEVICE",   ring:"inner", file:"MODULES/Modul_08_DEVICE.md"},
-    {no:"09", label:"DEBT",     ring:"inner", file:"MODULES/Modul_09_DEBT.md"},
+  const burger=document.querySelector('.burger'); const nav=document.querySelector('.nav');
+  if(!burger||!nav) return;
+  burger.addEventListener('click', ()=>{
+    const open = nav.style.display==='flex';
+    nav.style.display = open ? 'none':'flex';
+    burger.setAttribute('aria-expanded', String(!open));
+  });
+  nav.addEventListener('click', e=>{
+    if(e.target.closest('a') && matchMedia('(max-width:900px)').matches){
+      nav.style.display='none'; burger.setAttribute('aria-expanded','false');
+    }
+  });
+})();
 
-    {no:"10", label:"WORK",      ring:"mid",   file:"MODULES/Modul_10_WORK.md"},
-    {no:"11", label:"SCHOOL",    ring:"mid",   file:"MODULES/Modul_11_SCHOOL.md"},
-    {no:"12", label:"BORDER",    ring:"mid",   file:"MODULES/Modul_12_BORDER.md"},
-    {no:"13", label:"NATURE",    ring:"mid",   file:"MODULES/Modul_13_NATURE.md"},
-    {no:"14", label:"HEALTH",    ring:"mid",   file:"MODULES/Modul_14_HEALTH.md"},
-    {no:"15", label:"CARE",      ring:"mid",   file:"MODULES/Modul_15_CARE.md"},
-    {no:"16", label:"FAMILY",    ring:"mid",   file:"MODULES/Modul_16_FAMILY.md"},
-    {no:"17", label:"ANIMAL",    ring:"mid",   file:"MODULES/Modul_17_ANIMAL.md"},
-    {no:"18", label:"CULTURE",   ring:"mid",   file:"MODULES/Modul_18_CULTURE.md"},
-    {no:"19", label:"MEDIA",     ring:"mid",   file:"MODULES/Modul_19_MEDIA.md"},
-    {no:"20", label:"ENERGY",    ring:"mid",   file:"MODULES/Modul_20_ENERGY.md"},
-    {no:"21", label:"CLIMATE",   ring:"mid",   file:"MODULES/Modul_21_CLIMATE.md"},
-    {no:"22", label:"MIGRATION", ring:"mid",   file:"MODULES/Modul_22_MIGRATION.md"},
-    {no:"23", label:"JUSTICE",   ring:"mid",   file:"MODULES/Modul_23_JUSTICE.md"},
-    {no:"24", label:"COMMUNITY", ring:"mid",   file:"MODULES/Modul_24_COMMUNITY.md"},
+/* ===== Daten ===== */
+const MODS = [
+  {no:"01", label:"RESETBOX", ring:"center", file:"MODULES/Modul_01_RESETBOX.md"},
+  {no:"02", label:"WATER",    ring:"inner", file:"MODULES/Modul_02_WATER.md"},
+  {no:"03", label:"SHELTER",  ring:"inner", file:"MODULES/Modul_03_SHELTER.md"},
+  {no:"04", label:"FOOD",     ring:"inner", file:"MODULES/Modul_04_FOOD.md"},
+  {no:"05", label:"SLEEP",    ring:"inner", file:"MODULES/Modul_05_SLEEP.md"},
+  {no:"06", label:"BODY",     ring:"inner", file:"MODULES/Modul_06_BODY.md"},
+  {no:"07", label:"PSYCHE",   ring:"inner", file:"MODULES/Modul_07_PSYCHE.md"},
+  {no:"08", label:"DEVICE",   ring:"inner", file:"MODULES/Modul_08_DEVICE.md"},
+  {no:"09", label:"DEBT",     ring:"inner", file:"MODULES/Modul_09_DEBT.md"},
 
-    {no:"25", label:"FINANCE",   ring:"outer", file:"MODULES/Modul_25_FINANCE.md"},
-    {no:"26", label:"HOUSING",   ring:"outer", file:"MODULES/Modul_26_HOUSING.md"},
-    {no:"27", label:"TRANSPORT", ring:"outer", file:"MODULES/Modul_27_TRANSPORT.md"},
-    {no:"28", label:"NETWORK",   ring:"outer", file:"MODULES/Modul_28_NETWORK.md"},
-    {no:"29", label:"SYMBOL",    ring:"outer", file:"MODULES/Modul_29_SYMBOL.md"},
-    {no:"30", label:"TRUTH",     ring:"outer", file:"MODULES/Modul_30_TRUTH.md"},
-    {no:"31", label:"MEMORY",    ring:"outer", file:"MODULES/Modul_31_MEMORY.md"},
-    {no:"32", label:"LICENCE",   ring:"outer", file:"MODULES/Modul_32_LICENCE.md"},
-    {no:"33", label:"PRIVACY",   ring:"outer", file:"MODULES/Modul_33_PRIVACY.md"},
-    {no:"34", label:"SECURITY",  ring:"outer", file:"MODULES/Modul_34_SECURITY.md"},
-    {no:"35", label:"DATA",      ring:"outer", file:"MODULES/Modul_35_DATA.md"},
-    {no:"36", label:"CONFLICT",  ring:"outer", file:"MODULES/Modul_36_CONFLICT.md"},
-    {no:"37", label:"DEMOCRACY", ring:"outer", file:"MODULES/Modul_37_DEMOCRACY.md"},
-    {no:"38", label:"GOVERNANCE",ring:"outer", file:"MODULES/Modul_38_GOVERNANCE.md"},
-    {no:"39", label:"KNOWLEDGE", ring:"outer", file:"MODULES/Modul_39_KNOWLEDGE.md"},
-    {no:"40", label:"ART",       ring:"outer", file:"MODULES/Modul_40_ART.md"},
-    {no:"41", label:"FUTURE",    ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
-    {no:"42", label:"DEATH",     ring:"outer", file:"MODULES/Modul_42_DEATH.md"}
-  ];
+  {no:"10", label:"WORK",      ring:"mid",   file:"MODULES/Modul_10_WORK.md"},
+  {no:"11", label:"SCHOOL",    ring:"mid",   file:"MODULES/Modul_11_SCHOOL.md"},
+  {no:"12", label:"BORDER",    ring:"mid",   file:"MODULES/Modul_12_BORDER.md"},
+  {no:"13", label:"NATURE",    ring:"mid",   file:"MODULES/Modul_13_NATURE.md"},
+  {no:"14", label:"HEALTH",    ring:"mid",   file:"MODULES/Modul_14_HEALTH.md"},
+  {no:"15", label:"CARE",      ring:"mid",   file:"MODULES/Modul_15_CARE.md"},
+  {no:"16", label:"FAMILY",    ring:"mid",   file:"MODULES/Modul_16_FAMILY.md"},
+  {no:"17", label:"ANIMAL",    ring:"mid",   file:"MODULES/Modul_17_ANIMAL.md"},
+  {no:"18", label:"CULTURE",   ring:"mid",   file:"MODULES/Modul_18_CULTURE.md"},
+  {no:"19", label:"MEDIA",     ring:"mid",   file:"MODULES/Modul_19_MEDIA.md"},
+  {no:"20", label:"ENERGY",    ring:"mid",   file:"MODULES/Modul_20_ENERGY.md"},
+  {no:"21", label:"CLIMATE",   ring:"mid",   file:"MODULES/Modul_21_CLIMATE.md"},
+  {no:"22", label:"MIGRATION", ring:"mid",   file:"MODULES/Modul_22_MIGRATION.md"},
+  {no:"23", label:"JUSTICE",   ring:"mid",   file:"MODULES/Modul_23_JUSTICE.md"},
+  {no:"24", label:"COMMUNITY", ring:"mid",   file:"MODULES/Modul_24_COMMUNITY.md"},
 
-  // === Verbindungen (STATIC CORE V5.0) ===
-  const LINKS = {
-    "01":["02","03","09"],
-    "02":["04","06","13"],
-    "03":["05","13","01"],
-    "04":["02","13","25"],
-    "05":["03","07","06"],
-    "06":["02","05","07"],
-    "07":["05","06","30"],
-    "08":["20","32","01"],
-    "09":["10","25","01"],
-    "10":["09","11","25"],
-    "11":["10","30","07"],
-    "12":["01","13","36"],
-    "13":["02","04","20"],
-    "14":["02","06","07"],
-    "15":["14","07","01"],
-    "16":["05","11","14"],
-    "17":["04","13","14"],
-    "18":["11","30","29"],
-    "19":["30","32","11"],
-    "20":["08","13","25"],
-    "21":["13","20","14"],
-    "22":["12","13","36"],
-    "23":["09","10","32"],
-    "24":["11","18","23"],
-    "25":["09","10","20"],
-    "26":["03","05","25"],
-    "27":["02","20","22"],
-    "28":["08","20","19"],
-    "29":["18","24","30"],
-    "30":["11","19","32"],
-    "31":["11","29","30"],
-    "32":["19","30","08"],
-    "33":["08","19","32"],
-    "34":["01","12","36"],
-    "35":["08","28","32"],
-    "36":["12","22","34"],
-    "37":["23","24","25"],
-    "38":["23","37","25"],
-    "39":["11","30","31"],
-    "40":["18","29","39"],
-    "41":["21","39","40"],
-    "42":["14","15","41"]
-  };
+  {no:"25", label:"FINANCE",   ring:"outer", file:"MODULES/Modul_25_FINANCE.md"},
+  {no:"26", label:"HOUSING",   ring:"outer", file:"MODULES/Modul_26_HOUSING.md"},
+  {no:"27", label:"TRANSPORT", ring:"outer", file:"MODULES/Modul_27_TRANSPORT.md"},
+  {no:"28", label:"NETWORK",   ring:"outer", file:"MODULES/Modul_28_NETWORK.md"},
+  {no:"29", label:"SYMBOL",    ring:"outer", file:"MODULES/Modul_29_SYMBOL.md"},
+  {no:"30", label:"TRUTH",     ring:"outer", file:"MODULES/Modul_30_TRUTH.md"},
+  {no:"31", label:"MEMORY",    ring:"outer", file:"MODULES/Modul_31_MEMORY.md"},
+  {no:"32", label:"LICENCE",   ring:"outer", file:"MODULES/Modul_32_LICENCE.md"},
+  {no:"33", label:"PRIVACY",   ring:"outer", file:"MODULES/Modul_33_PRIVACY.md"},
+  {no:"34", label:"SECURITY",  ring:"outer", file:"MODULES/Modul_34_SECURITY.md"},
+  {no:"35", label:"DATA",      ring:"outer", file:"MODULES/Modul_35_DATA.md"},
+  {no:"36", label:"CONFLICT",  ring:"outer", file:"MODULES/Modul_36_CONFLICT.md"},
+  {no:"37", label:"DEMOCRACY", ring:"outer", file:"MODULES/Modul_37_DEMOCRACY.md"},
+  {no:"38", label:"GOVERNANCE",ring:"outer", file:"MODULES/Modul_38_GOVERNANCE.md"},
+  {no:"39", label:"KNOWLEDGE", ring:"outer", file:"MODULES/Modul_39_KNOWLEDGE.md"},
+  {no:"40", label:"ART",       ring:"outer", file:"MODULES/Modul_40_ART.md"},
+  {no:"41", label:"FUTURE",    ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
+  {no:"42", label:"DEATH",     ring:"outer", file:"MODULES/Modul_42_DEATH.md"}
+];
 
-  const svg = document.getElementById('ringmap');
-  const edgesLayer = document.getElementById('edges');
-  const tip = document.getElementById('tip');
+/* Verknüpfungen */
+const LINKS = {
+  "01":["02","03","09"],
+  "02":["04","06","13"],
+  "03":["05","13","01"],
+  "04":["02","13","25"],
+  "05":["03","07","06"],
+  "06":["02","05","07"],
+  "07":["05","06","30"],
+  "08":["20","32","01"],
+  "09":["10","25","01"],
+  "10":["09","11","25"],
+  "11":["10","30","07"],
+  "12":["01","13","36"],
+  "13":["02","04","20"],
+  "14":["02","06","07"],
+  "15":["14","07","01"],
+  "16":["05","11","14"],
+  "17":["04","13","14"],
+  "18":["11","30","29"],
+  "19":["30","32","11"],
+  "20":["08","13","25"],
+  "21":["13","20","14"],
+  "22":["12","13","36"],
+  "23":["09","10","32"],
+  "24":["11","18","23"],
+  "25":["09","10","20"],
+  "26":["03","05","25"],
+  "27":["02","20","22"],
+  "28":["08","20","19"],
+  "29":["18","24","30"],
+  "30":["11","19","32"],
+  "31":["11","29","30"],
+  "32":["19","30","08"],
+  "33":["08","19","32"],
+  "34":["01","12","36"],
+  "35":["08","28","32"],
+  "36":["12","22","34"],
+  "37":["23","24","25"],
+  "38":["23","37","25"],
+  "39":["11","30","31"],
+  "40":["18","29","39"],
+  "41":["21","39","40"],
+  "42":["14","15","41"]
+};
 
-  // Gruppen & Positionen vorbereiten
-  const groups = {inner:[], mid:[], outer:[]};
-  MODS.forEach(m=>groups[m.ring].push(m));
-  const cfg = { inner:{r:220,cls:'inner'}, mid:{r:380,cls:'mid'}, outer:{r:540,cls:'outer'} };
-  const pos = {}, nodeRef = {};
+/* ===== Menü dynamisch füllen ===== */
+(function(){
+  const menu = document.getElementById('menu-mods');
+  MODS.filter(m=>m.no!=="01").forEach(m=>{
+    const a=document.createElement('a');
+    a.href = 'module.html?file='+encodeURIComponent(m.file);
+    a.textContent = `${m.no} ${m.label}`;
+    menu.appendChild(a);
+  });
+})();
 
-  // Nodes platzieren
-  Object.entries(groups).forEach(([ring, list])=>{
-    const radius = cfg[ring].r;
-    const step = (Math.PI*2) / list.length;
-    const start = -Math.PI/2;
+/* ===== SVG/Platzierung ===== */
+const svg = document.getElementById('ringmap');
+const edgesLayer = document.getElementById('edges');
+const tip = document.getElementById('tip');
 
-    list.forEach((m, idx)=>{
-      const ang = start + idx*step;
-      const x = Math.cos(ang)*radius;
-      const y = Math.sin(ang)*radius;
-      pos[m.no] = {x,y};
+const groups = {inner:[], mid:[], outer:[]};
+MODS.forEach(m=>{ if(m.ring!=="center") groups[m.ring].push(m); });
+const cfg = { inner:{r:220}, mid:{r:380}, outer:{r:540} };
+const pos = { "01": {x:0, y:0} }; // Resetbox
 
-      const a = document.createElementNS("http://www.w3.org/2000/svg","a");
-      const url = "module.html?file="+encodeURIComponent(m.file);
-      a.setAttributeNS("http://www.w3.org/1999/xlink","xlink:href", url);
-      a.setAttribute("href", url);
-      a.setAttribute("transform",`translate(${x},${y})`);
-      a.setAttribute("class","node "+ring);
-      nodeRef[m.no] = a;
+const xlinkNS='http://www.w3.org/1999/xlink';
+const NS='http://www.w3.org/2000/svg';
+const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
 
-      const c = document.createElementNS("http://www.w3.org/2000/svg","circle");
-      c.setAttribute("r", ring==='outer'?60:(ring==='mid'?56:54));
-      c.setAttribute("class","hit");
-      a.appendChild(c);
+function showTip(text, e){
+  tip.textContent = text;
+  tip.style.left = clamp(e.clientX,10,innerWidth-10)+'px';
+  tip.style.top = clamp(e.clientY,10,innerHeight-10)+'px';
+  tip.classList.add('show');
+}
+const hideTip=()=>tip.classList.remove('show');
 
-      const t = document.createElementNS("http://www.w3.org/2000/svg","text");
-      t.textContent = m.no+" "+m.label;
-      a.appendChild(t);
+function fitLabel(textEl, R){
+  let fs = parseFloat(textEl.getAttribute('font-size')||38); if(!fs||Number.isNaN(fs)) fs=38;
+  const maxW = 1.72 * R;
+  textEl.setAttribute('font-size', fs);
+  let bb; try { bb=textEl.getBBox(); } catch { return; }
+  if(!bb||!isFinite(bb.width)) return;
+  while(bb.width>maxW && fs>18){
+    fs -= 1; textEl.setAttribute('font-size',fs);
+    try { bb=textEl.getBBox(); } catch { break; }
+  }
+}
 
-      a.addEventListener('mouseenter', (e)=>{
-        svg.className.baseVal = 'hovering';
-        if (tip){ tip.textContent = t.textContent; tip.style.left=e.clientX+'px'; tip.style.top=e.clientY+'px'; tip.classList.add('show'); }
-        highlight(m.no, true);
-      });
-      a.addEventListener('mousemove', (e)=>{
-        if (tip){ tip.style.left=e.clientX+'px'; tip.style.top=e.clientY+'px'; }
-      });
-      a.addEventListener('mouseleave', ()=>{
-        svg.className.baseVal = '';
-        if (tip){ tip.classList.remove('show'); }
-        highlight(m.no, false);
-      });
+/* Nodes setzen (leicht nach außen, „durchbrechen“ Ringe) */
+Object.entries(groups).forEach(([ring,list])=>{
+  if(!list||!list.length) return;
+  const base = cfg[ring].r + 10;
+  const step = (Math.PI*2)/list.length; const start = -Math.PI/2;
 
-      svg.appendChild(a);
+  list.forEach((m,idx)=>{
+    const ang = start + idx*step;
+    const x = Math.cos(ang)*base; const y = Math.sin(ang)*base;
+    pos[m.no] = {x,y};
+
+    const a = document.createElementNS(NS,'a');
+    const url = 'module.html?file='+encodeURIComponent(m.file);
+    a.setAttributeNS(xlinkNS,'xlink:href', url); a.setAttribute('href', url);
+    a.classList.add('node-anchor');
+
+    const g = document.createElementNS(NS,'g');
+    g.setAttribute('class','node '+ring);
+    g.setAttribute('transform',`translate(${x},${y})`);
+    g.setAttribute('tabindex','0'); g.dataset.id=m.no; g.setAttribute('aria-label',`${m.no} ${m.label}`);
+
+    const R = ring==='outer'?78 : (ring==='mid'?74 : 72);
+    const cut = document.createElementNS(NS,'circle'); cut.setAttribute('class','cut'); cut.setAttribute('r',R);
+    const rim = document.createElementNS(NS,'circle'); rim.setAttribute('class','rim'); rim.setAttribute('r',R);
+    const hit = document.createElementNS(NS,'circle'); hit.setAttribute('class','hit'); hit.setAttribute('r',R);
+
+    const t = document.createElementNS(NS,'text'); t.textContent = `${m.no} ${m.label}`;
+
+    g.append(cut,rim,hit,t); a.appendChild(g); svg.appendChild(a);
+    fitLabel(t,R);
+
+    /* Hover NUR auf RIM: Verbindungen anzeigen */
+    const enter = (e)=>setActive(m.no, e);
+    const move  = (e)=>showTip(`${m.no} ${m.label}`, e);
+    const leave = ()=>setActive(null);
+
+    rim.addEventListener('pointerenter', enter);
+    rim.addEventListener('mouseenter',   enter);
+    rim.addEventListener('pointermove',  move);
+    rim.addEventListener('mousemove',    move);
+    rim.addEventListener('pointerleave', leave);
+    rim.addEventListener('mouseleave',   leave);
+
+    // Tastatur-Fokus (gesamter Node)
+    g.addEventListener('focusin', e=>setActive(m.no,e));
+    g.addEventListener('focusout', ()=>setActive(null));
+
+    // Klick (ganzer Kreis)
+    a.addEventListener('click', (e)=>{
+      // Bei Touch: 1. Tap nur Verbindungen → zweiter Tap öffnet
+      if(active!==m.no){
+        setActive(m.no, e);
+        e.preventDefault();
+      }
+    }, {capture:true});
+  });
+});
+
+/* Edges vorbereiten */
+(function drawEdges(){
+  const done={};
+  Object.keys(LINKS).forEach(a=>{
+    LINKS[a].forEach(b=>{
+      const key = (a<b)?`${a}-${b}`:`${b}-${a}`;
+      if(done[key]) return; done[key]=1;
+      const A=pos[a], B=pos[b]; if(!A||!B) return;
+      const mx=(A.x+B.x)/2, my=(A.y+B.y)/2, k=0.12, nx=(B.y-A.y), ny=-(B.x-A.x);
+      const cx=mx+nx*k, cy=my+ny*k;
+      const p=document.createElementNS(NS,'path');
+      p.setAttribute('d',`M ${A.x} ${A.y} Q ${cx} ${cy} ${B.x} ${B.y}`);
+      p.setAttribute('data-a',a); p.setAttribute('data-b',b);
+      edgesLayer.appendChild(p);
     });
   });
-
-  // Edges zeichnen
-  function drawEdges(){
-    const done = {};
-    Object.keys(LINKS).forEach(a=>{
-      LINKS[a].forEach(b=>{
-        const key = (a<b)?`${a}-${b}`:`${b}-${a}`;
-        if (done[key]) return; done[key]=1;
-        const A = pos[a], B = pos[b]; if(!A||!B) return;
-        const mx=(A.x+B.x)/2, my=(A.y+B.y)/2, k=0.12, nx=(B.y-A.y), ny=-(B.x-A.x);
-        const cx=mx+nx*k, cy=my+ny*k;
-        const d=`M ${A.x} ${A.y} Q ${cx} ${cy} ${B.x} ${B.y}`;
-        const p=document.createElementNS("http://www.w3.org/2000/svg","path");
-        p.setAttribute('d', d);
-        p.setAttribute('data-a', a); p.setAttribute('data-b', b);
-        edgesLayer.appendChild(p);
-      });
-    });
-  }
-  function highlight(no, on){
-    const sel = edgesLayer.querySelectorAll(`path[data-a="${no}"], path[data-b="${no}"]`);
-    for (let i=0;i<sel.length;i++){
-      if (on) sel[i].classList.add('on'); else sel[i].classList.remove('on');
-    }
-  }
-  drawEdges();
 })();
+
+/* Resetbox Hover (RIM) + Klick */
+(function bindReset(){
+  const center = document.querySelector('g.center');
+  const rim    = center.querySelector('.rim');
+  const hit    = center.querySelector('.hit');
+  const enter = (e)=>setActive('01',e);
+  const move  = (e)=>showTip('01 RESETBOX', e);
+  const leave = ()=>setActive(null);
+
+  rim.addEventListener('pointerenter', enter);
+  rim.addEventListener('mouseenter',   enter);
+  rim.addEventListener('pointermove',  move);
+  rim.addEventListener('mousemove',    move);
+  rim.addEventListener('pointerleave', leave);
+  rim.addEventListener('mouseleave',   leave);
+
+  hit.addEventListener('click', ()=>{ location.href='module.html?file='+encodeURIComponent('MODULES/Modul_01_RESETBOX.md'); });
+})();
+
+/* Hover/Fokus Logik */
+let active=null;
+function edgesFor(no){ return edgesLayer.querySelectorAll(`path[data-a="${no}"],path[data-b="${no}"]`); }
+function clearEdges(){ edgesLayer.querySelectorAll('.on').forEach(p=>p.classList.remove('on')); }
+function labelFor(id){ const m=MODS.find(x=>x.no===id); return m?`${m.no} ${m.label}`:id; }
+
+function setActive(id, evt){
+  if(active===id){ if(evt) showTip(labelFor(id),evt); return; }
+  if(active){
+    document.querySelector(`g.node[data-id="${active}"]`)?.classList.remove('active');
+    clearEdges();
+    hideTip();
+  }
+  active=id;
+  if(id){
+    edgesFor(id).forEach(p=>p.classList.add('on'));
+    document.querySelector(`g.node[data-id="${id}"]`)?.classList.add('active');
+    if(evt) showTip(labelFor(id),evt);
+  }
+}
+
+/* Bühne verlassen → aufräumen */
+const stageSvg = document.getElementById('ringmap');
+stageSvg.addEventListener('pointerleave', ()=>{ setActive(null); });
+stageSvg.addEventListener('mouseleave',   ()=>{ setActive(null); });
+
 </script>
 </body>
 </html>

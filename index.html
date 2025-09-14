@@ -1,359 +1,373 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>QUESTSYSTEM – Modul-Ringe</title>
-  <meta name="description" content="QUESTSYSTEM – Übersicht aller Module als konzentrische Ringe. Klickbar, mit Verbindungen & Hover-Highlight." />
-  <meta name="color-scheme" content="dark">
-  <style>
-    :root{
-      --bg:#0d1117; --fg:#e6eef7; --muted:#9fb0c6;
-      --ring-inner:#f3c0c7; --ring-mid:#f0de94; --ring-outer:#bcd5ff;
-      --node-border:#2a3344; --focus:#66ccff;
-      --edge:#8fb3ff; --edge-dim:#5e7592;
-      --hover-fill: rgba(255,255,255,.06);
-      --shadow: 0 6px 24px rgba(0,0,0,.35);
-      --header-h: 56px;
-      --hit-r: 56;          /* Klickfläche der Module */
-      --center-r: 140;      /* Resetbox-Radius */
-      --font: 16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font:var(--font); color:var(--fg);
-      background: radial-gradient(1200px 800px at 50% 40%, #141a27 0%, #0e1421 55%, #0b101a 100%);
-      overflow:hidden;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>QUESTSYSTEM – Modul-Ringe</title>
+<meta name="color-scheme" content="dark">
+<style>
+  :root{
+    --bg:#0d1117; --fg:#e6eef7; --muted:#9fb0c6;
+    --ring-inner:#f3c0c7; --ring-mid:#f0de94; --ring-outer:#bcd5ff;
+    --node-border:#2a3344; --focus:#66ccff;
+    --edge:#8fb3ff; --edge-dim:#5e7592;
+    --hover-fill: rgba(255,255,255,.06);
+    --shadow: 0 6px 24px rgba(0,0,0,.35);
+    --header-h: 54px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg);
+    background: radial-gradient(1200px 800px at 50% 40%, #141a27 0%, #0e1421 55%, #0b101a 100%);
+    overflow:hidden;
+  }
+  header{
+    position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:30;
+    display:flex; align-items:center; gap:10px; padding:8px 14px;
+    background:rgba(9,13,20,.85); border-bottom:1px solid #202738; backdrop-filter: blur(6px);
+  }
+  header .dot{font-size:16px}
+  header h1{font-size:14px; margin:0; font-weight:800; letter-spacing:.3px}
 
-    /* Header klein & unauffällig */
-    header{
-      position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:30;
-      display:flex; align-items:center; gap:12px; padding:8px 14px;
-      background:rgba(9,13,20,.85); border-bottom:1px solid #202738; backdrop-filter: blur(6px);
-    }
-    .brand{display:flex; align-items:center; gap:10px}
-    .brand .dot{font-size:16px}
-    .brand h1{font-size:14px; margin:0; font-weight:800; letter-spacing:.3px}
+  .stage{position:absolute; inset:var(--header-h) 0 0 0; display:grid; place-items:center; padding:10px;}
+  svg{width:min(1200px, 96vw); height:calc(96vh - var(--header-h));}
 
-    .stage{position:absolute; inset: var(--header-h) 0 0 0; display:grid; place-items:center; padding:12px;}
-    svg{width:min(1200px, 96vw); height:calc(96vh - var(--header-h));}
+  /* Ringe */
+  .ring-inner{stroke:var(--ring-inner); stroke-width:2.2; fill:none; stroke-opacity:.9}
+  .ring-mid{stroke:var(--ring-mid); stroke-width:2.2; fill:none; stroke-opacity:.9}
+  .ring-outer{stroke:var(--ring-outer); stroke-width:2.2; fill:none; stroke-opacity:.9}
 
-    /* Ringe */
-    .ring-inner{stroke:var(--ring-inner); stroke-width:2.2; fill:none; stroke-opacity:.9}
-    .ring-mid{stroke:var(--ring-mid); stroke-width:2.2; fill:none; stroke-opacity:.9}
-    .ring-outer{stroke:var(--ring-outer); stroke-width:2.2; fill:none; stroke-opacity:.9}
+  /* Kanten */
+  .edges path{
+    stroke:var(--edge); stroke-width:2; fill:none; opacity:.4; vector-effect:non-scaling-stroke;
+    transition:opacity .12s ease, stroke-width .12s ease, stroke .12s ease;
+  }
+  svg.hovering .edges path{ opacity:.15; stroke:var(--edge-dim) }
+  .edges path.on{ opacity:.98; stroke-width:3.2; stroke:var(--edge) }
 
-    /* Kanten */
-    .edges path{
-      stroke:var(--edge); stroke-width:2; fill:none; opacity:.4; vector-effect:non-scaling-stroke;
-      transition:opacity .12s ease, stroke-width .12s ease, stroke .12s ease;
-    }
-    svg.hovering .edges path{ opacity:.15; stroke:var(--edge-dim) }
-    .edges path.on{ opacity:.98; stroke-width:3.2; stroke:var(--edge) }
+  /* Nodes */
+  svg a.node{ cursor:pointer; filter: drop-shadow(0 2px 8px var(--shadow)); transition: transform .12s ease; outline:none; }
+  svg a.node:hover{ transform: translateY(-2px) scale(1.03); }
+  .node .hit{
+    fill: transparent;
+    stroke:var(--node-border); stroke-width:1.5; vector-effect:non-scaling-stroke;
+    pointer-events:visiblePainted;
+    transition: fill .12s ease, stroke .12s ease;
+  }
+  .node:hover .hit{ fill: var(--hover-fill); stroke:#3b4862; }
+  .node:focus .hit{ stroke: var(--focus); stroke-width:2.2 }
 
-    /* Modulknoten */
-    svg a.node{ cursor:pointer; filter: drop-shadow(0 2px 8px var(--shadow)); transition: transform .12s ease; outline:none; }
-    svg a.node:hover{ transform: translateY(-2px) scale(1.03); }
-    .node .hit{
-      r: var(--hit-r);
-      fill: transparent;
-      stroke:var(--node-border); stroke-width:1.5; vector-effect:non-scaling-stroke;
-      pointer-events:visiblePainted;
-      transition: fill .12s ease, stroke .12s ease;
-    }
-    .node:hover .hit{ fill: var(--hover-fill); stroke:#3b4862; }
-    .node:focus .hit{ stroke: var(--focus); stroke-width:2.2 }
+  .node text{
+    font-size:16px; font-weight:800; letter-spacing:.3px;
+    text-anchor:middle; dominant-baseline:middle; pointer-events:none;
+  }
+  .inner text{ fill:#ff6b81 }  /* sichtbare, kräftige Farben */
+  .mid   text{ fill:#ffd447 }
+  .outer text{ fill:#5da9ff }
+  .node.linked text{ font-weight:900; text-shadow:0 0 1px rgba(0,0,0,.35) }
 
-    .node text{
-      font-size:16px; font-weight:700; letter-spacing:.3px;
-      text-anchor:middle; dominant-baseline:middle; pointer-events:none;
-    }
-    .inner text{ fill:#ff6b81 }   /* kräftige Farben für Sichtbarkeit */
-    .mid   text{ fill:#ffd447 }
-    .outer text{ fill:#5da9ff }
-    .node.linked text{ font-weight:900; text-shadow:0 0 1px rgba(0,0,0,.3) }
+  /* RESETBOX */
+  .center circle{ fill:transparent; stroke:#9cb5da; stroke-dasharray:5 7; stroke-width:2.2 }
+  .center text{
+    fill:#ffffff; font-weight:1000; font-size:44px; letter-spacing:.8px;
+    text-anchor:middle; dominant-baseline:middle; pointer-events:none;
+  }
+  .center:hover circle{ stroke:#cfe2ff }
+  .center:focus circle{ stroke:var(--focus); stroke-width:2.6; outline:none }
 
-    /* RESETBOX prominent */
-    .center circle{ fill:transparent; stroke:#9cb5da; stroke-dasharray:5 7; stroke-width:2.2 }
-    .center text{
-      fill:#ffffff; font-weight:900; font-size:40px; letter-spacing:.6px;
-      text-anchor:middle; dominant-baseline:middle; pointer-events:none;
-    }
-    .center:hover circle{ stroke:#cfe2ff }
-    .center:focus circle{ stroke:var(--focus); stroke-width:2.6; outline:none }
+  /* Tooltip */
+  .tip{
+    position:fixed; z-index:40; pointer-events:none;
+    transform:translate(-50%, calc(-100% - 12px));
+    background:#0f1624; border:1px solid #2b3548; color:var(--fg);
+    padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap;
+    opacity:0; transition:opacity .12s ease, transform .12s ease; box-shadow:0 8px 24px var(--shadow);
+  }
+  .tip.show{opacity:1; transform:translate(-50%, calc(-100% - 10px))}
+  .tip small{color:var(--muted)}
 
-    /* Tooltip */
-    .tip{
-      position:fixed; z-index:40; pointer-events:none;
-      transform:translate(-50%, calc(-100% - 12px));
-      background:#0f1624; border:1px solid #2b3548; color:var(--fg);
-      padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap;
-      opacity:0; transition:opacity .12s ease, transform .12s ease; box-shadow:0 8px 24px var(--shadow);
-    }
-    .tip.show{opacity:1; transform:translate(-50%, calc(-100% - 10px))}
-    .tip small{color:var(--muted)}
+  .legend{
+    position:fixed; inset:auto 12px 12px 12px; z-index:25;
+    display:flex; gap:10px; align-items:center; justify-content:center;
+    background:rgba(12,16,24,.55); border:1px solid #202738; border-radius:10px; padding:8px 10px; backdrop-filter: blur(6px);
+    font-size:12px;
+  }
+  .chip{display:inline-flex; align-items:center; gap:8px}
+  .sw{width:14px; height:14px; border-radius:50%}
+  .sw.inner{background:var(--ring-inner)} .sw.mid{background:var(--ring-mid)} .sw.outer{background:var(--ring-outer)}
 
-    /* Legende */
-    .legend{
-      position:fixed; inset:auto 14px 14px 14px; z-index:25;
-      display:flex; gap:10px; align-items:center; justify-content:center;
-      background:rgba(12,16,24,.55); border:1px solid #202738; border-radius:10px; padding:8px 10px; backdrop-filter: blur(6px);
-      font-size:12px;
-    }
-    .chip{display:inline-flex; align-items:center; gap:8px}
-    .sw{width:14px; height:14px; border-radius:50%}
-    .sw.inner{background:var(--ring-inner)} .sw.mid{background:var(--ring-mid)} .sw.outer{background:var(--ring-outer)}
-
-    @media (prefers-reduced-motion: reduce){
-      svg a.node:hover{ transform:none }
-      .edges path, .tip{ transition:none }
-    }
-    @media (max-width:720px){
-      .brand h1{display:none}
-    }
-  </style>
+  @media (prefers-reduced-motion: reduce){
+    svg a.node:hover{ transform:none }
+    .edges path, .tip{ transition:none }
+  }
+  @media (max-width:720px){
+    header h1{display:none}
+  }
+</style>
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <div class="dot">🍄</div>
-      <h1>QUESTSYSTEM – Modul-Ringe</h1>
-    </div>
-  </header>
+<header>
+  <div class="dot">🍄</div>
+  <h1>QUESTSYSTEM – Modul-Ringe</h1>
+</header>
 
-  <div class="stage">
-    <svg id="ringmap" viewBox="-600 -600 1200 1200"
-         xmlns="http://www.w3.org/2000/svg"
-         xmlns:xlink="http://www.w3.org/1999/xlink"
-         role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS">
+<div class="stage">
+  <svg id="ringmap" viewBox="-600 -600 1200 1200"
+       xmlns="http://www.w3.org/2000/svg"
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS">
 
-      <!-- Ringe -->
-      <circle class="ring-inner" r="220"></circle>
-      <circle class="ring-mid"   r="380"></circle>
-      <circle class="ring-outer" r="540"></circle>
+    <!-- Ringe -->
+    <circle class="ring-inner" r="220"></circle>
+    <circle class="ring-mid"   r="380"></circle>
+    <circle class="ring-outer" r="540"></circle>
 
-      <!-- Edge-Layer -->
-      <g id="edges" class="edges" aria-hidden="true"></g>
+    <!-- Kanten -->
+    <g id="edges" class="edges" aria-hidden="true"></g>
 
-      <!-- RESETBOX -->
-      <a class="center" id="center-reset" target="_self" tabindex="0" aria-label="RESETBOX öffnen">
-        <g>
-          <circle r="140"></circle>
-          <text y="0">RESETBOX</text>
-        </g>
-      </a>
-    </svg>
-  </div>
+    <!-- RESETBOX -->
+    <a class="center" id="center-reset" target="_self" tabindex="0" aria-label="RESETBOX öffnen">
+      <g><circle r="150"></circle><text y="0">RESETBOX</text></g>
+    </a>
+  </svg>
+</div>
 
-  <div class="legend" aria-hidden="true">
-    <span class="chip"><span class="sw inner"></span>Existential</span>
-    <span class="chip"><span class="sw mid"></span>Societal</span>
-    <span class="chip"><span class="sw outer"></span>Structural</span>
-  </div>
+<div class="legend" aria-hidden="true">
+  <span class="chip"><span class="sw inner"></span>Existential</span>
+  <span class="chip"><span class="sw mid"></span>Societal</span>
+  <span class="chip"><span class="sw outer"></span>Structural</span>
+</div>
 
-  <div id="tip" class="tip" role="status" aria-live="polite"></div>
+<div id="tip" class="tip" role="status" aria-live="polite"></div>
 
-  <script>
-    // ---------- Basis-URL (GitHub Pages & lokal robust) ----------
-    const BASE = (()=>{
-      const u = new URL(window.location.href);
-      if (u.pathname.endsWith('index.html')) u.pathname = u.pathname.replace(/index\.html$/, '');
-      if (!u.pathname.endsWith('/')) u.pathname += '/';
-      return u.origin + u.pathname;
-    })();
-    const urlFor = (filePath) => `${BASE}module.html?file=${encodeURIComponent(filePath)}`;
+<script>
+  // ------- robuste Basis-URL (Pages + lokal) -------
+  const BASE = (()=>{
+    const u=new URL(window.location.href);
+    if(u.pathname.endsWith('index.html')) u.pathname=u.pathname.replace(/index\.html$/,'');
+    if(!u.pathname.endsWith('/')) u.pathname+='/';
+    return u.origin+u.pathname;
+  })();
+  const urlFor = (p)=> `${BASE}module.html?file=${encodeURIComponent(p)}`;
 
-    // ---------- Module ----------
-    const MODS = [
-      // inner
-      {label:"WATER",   ring:"inner", file:"MODULES/Modul_02_WATER.md"},
-      {label:"SHELTER", ring:"inner", file:"MODULES/Modul_03_SHELTER.md"},
-      {label:"FOOD",    ring:"inner", file:"MODULES/Modul_04_FOOD.md"},
-      {label:"SLEEP",   ring:"inner", file:"MODULES/Modul_05_SLEEP.md"},
-      {label:"BODY",    ring:"inner", file:"MODULES/Modul_06_BODY.md"},
-      {label:"PSYCHE",  ring:"inner", file:"MODULES/Modul_07_PSYCHE.md"},
-      {label:"DEVICE",  ring:"inner", file:"MODULES/Modul_08_DEVICE.md"},
-      {label:"DEBT",    ring:"inner", file:"MODULES/Modul_09_DEBT.md"},
+  // ------- Module (01–42, Dateipfade im /MODULES/ Ordner) -------
+  const MODS = [
+    // Existential (inner)
+    ["01","RESETBOX","inner","MODULES/Modul_01_RESETBOX.md"],
+    ["02","WATER","inner","MODULES/Modul_02_WATER.md"],
+    ["03","SHELTER","inner","MODULES/Modul_03_SHELTER.md"],
+    ["04","FOOD","inner","MODULES/Modul_04_FOOD.md"],
+    ["05","SLEEP","inner","MODULES/Modul_05_SLEEP.md"],
+    ["06","BODY","inner","MODULES/Modul_06_BODY.md"],
+    ["07","PSYCHE","inner","MODULES/Modul_07_PSYCHE.md"],
+    ["08","DEVICE","inner","MODULES/Modul_08_DEVICE.md"],
+    ["09","DEBT","inner","MODULES/Modul_09_DEBT.md"],
+    // Societal (mid)
+    ["10","WORK","mid","MODULES/Modul_10_WORK.md"],
+    ["11","SCHOOL","mid","MODULES/Modul_11_SCHOOL.md"],
+    ["12","BORDER","mid","MODULES/Modul_12_BORDER.md"],
+    ["13","NATURE","mid","MODULES/Modul_13_NATURE.md"],
+    ["14","HEALTH","mid","MODULES/Modul_14_HEALTH.md"],
+    ["15","CARE","mid","MODULES/Modul_15_CARE.md"],
+    ["16","FAMILY","mid","MODULES/Modul_16_FAMILY.md"],
+    ["17","ANIMAL","mid","MODULES/Modul_17_ANIMAL.md"],
+    ["18","CULTURE","mid","MODULES/Modul_18_CULTURE.md"],
+    ["19","MEDIA","mid","MODULES/Modul_19_MEDIA.md"],
+    ["20","ENERGY","mid","MODULES/Modul_20_ENERGY.md"],
+    ["21","CLIMATE","mid","MODULES/Modul_21_CLIMATE.md"],
+    ["22","MIGRATION","mid","MODULES/Modul_22_MIGRATION.md"],
+    ["23","JUSTICE","mid","MODULES/Modul_23_JUSTICE.md"],
+    ["24","COMMUNITY","mid","MODULES/Modul_24_COMMUNITY.md"],
+    // Structural (outer)
+    ["25","FINANCE","outer","MODULES/Modul_25_FINANCE.md"],
+    ["26","HOUSING","outer","MODULES/Modul_26_HOUSING.md"],
+    ["27","TRANSPORT","outer","MODULES/Modul_27_TRANSPORT.md"],
+    ["28","NETWORK","outer","MODULES/Modul_28_NETWORK.md"],
+    ["29","SYMBOL","outer","MODULES/Modul_29_SYMBOL.md"],
+    ["30","TRUTH","outer","MODULES/Modul_30_TRUTH.md"],
+    ["31","MEMORY","outer","MODULES/Modul_31_MEMORY.md"],
+    ["32","LICENCE","outer","MODULES/Modul_32_LICENCE.md"],
+    ["33","PRIVACY","outer","MODULES/Modul_33_PRIVACY.md"],
+    ["34","SECURITY","outer","MODULES/Modul_34_SECURITY.md"],
+    ["35","DATA","outer","MODULES/Modul_35_DATA.md"],
+    ["36","CONFLICT","outer","MODULES/Modul_36_CONFLICT.md"],
+    ["37","DEMOCRACY","outer","MODULES/Modul_37_DEMOCRACY.md"],
+    ["38","GOVERNANCE","outer","MODULES/Modul_38_GOVERNANCE.md"],
+    ["39","KNOWLEDGE","outer","MODULES/Modul_39_KNOWLEDGE.md"],
+    ["40","ART","outer","MODULES/Modul_40_ART.md"],
+    ["41","FUTURE","outer","MODULES/Modul_41_FUTURE.md"],
+    ["42","DEATH","outer","MODULES/Modul_42_DEATH.md"],
+  ].map(([no,label,ring,file])=>({no,label,ring,file}));
 
-      // mid
-      {label:"WORK",     ring:"mid", file:"MODULES/Modul_10_WORK.md"},
-      {label:"SCHOOL",   ring:"mid", file:"MODULES/Modul_11_SCHOOL.md"},
-      {label:"BORDER",   ring:"mid", file:"MODULES/Modul_12_BORDER.md"},
-      {label:"NATURE",   ring:"mid", file:"MODULES/Modul_13_NATURE.md"},
-      {label:"HEALTH",   ring:"mid", file:"MODULES/Modul_14_HEALTH.md"},
-      {label:"CARE",     ring:"mid", file:"MODULES/Modul_15_CARE.md"},
-      {label:"FAMILY",   ring:"mid", file:"MODULES/Modul_16_FAMILY.md"},
-      {label:"ANIMAL",   ring:"mid", file:"MODULES/Modul_17_ANIMAL.md"},
-      {label:"CULTURE",  ring:"mid", file:"MODULES/Modul_18_CULTURE.md"},
-      {label:"MEDIA",    ring:"mid", file:"MODULES/Modul_19_MEDIA.md"},
-      {label:"ENERGY",   ring:"mid", file:"MODULES/Modul_20_ENERGY.md"},
-      {label:"CLIMATE",  ring:"mid", file:"MODULES/Modul_21_CLIMATE.md"},
-      {label:"MIGRATION",ring:"mid", file:"MODULES/Modul_22_MIGRATION.md"},
-      {label:"JUSTICE",  ring:"mid", file:"MODULES/Modul_23_JUSTICE.md"},
-      {label:"COMMUNITY",ring:"mid", file:"MODULES/Modul_24_COMMUNITY.md"},
+  // ------- Kanten aus STATIC CORE V5.0 LOCKED -------
+  const CORE = {
+    "01":["02","03","09"],
+    "02":["04","06","13"],
+    "03":["05","13","01"],
+    "04":["02","13","25"],
+    "05":["03","07","06"],
+    "06":["02","05","07"],
+    "07":["05","06","30"],
+    "08":["20","32","01"],
+    "09":["10","25","01"],
 
-      // outer
-      {label:"HOUSING",    ring:"outer", file:"MODULES/Modul_26_HOUSING.md"},
-      {label:"TRANSPORT",  ring:"outer", file:"MODULES/Modul_27_TRANSPORT.md"},
-      {label:"NETWORK",    ring:"outer", file:"MODULES/Modul_28_NETWORK.md"},
-      {label:"SYMBOL",     ring:"outer", file:"MODULES/Modul_29_SYMBOL.md"},
-      {label:"TRUTH",      ring:"outer", file:"MODULES/Modul_30_TRUTH.md"},
-      {label:"MEMORY",     ring:"outer", file:"MODULES/Modul_31_MEMORY.md"},
-      {label:"LICENCE",    ring:"outer", file:"MODULES/Modul_32_LICENCE.md"},
-      {label:"PRIVACY",    ring:"outer", file:"MODULES/Modul_33_PRIVACY.md"},
-      {label:"DATA",       ring:"outer", file:"MODULES/Modul_34_DATA.md"},
-      {label:"CONFLICT",   ring:"outer", file:"MODULES/Modul_35_CONFLICT.md"},
-      {label:"DEMOCRACY",  ring:"outer", file:"MODULES/Modul_37_DEMOCRACY.md"},
-      {label:"KNOWLEDGE",  ring:"outer", file:"MODULES/Modul_39_KNOWLEDGE.md"},
-      {label:"ART",        ring:"outer", file:"MODULES/Modul_40_ART.md"},
-      {label:"FUTURE",     ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
-      {label:"DEATH",      ring:"outer", file:"MODULES/Modul_42_DEATH.md"}
-    ];
+    "10":["09","11","25"],
+    "11":["10","30","07"],
+    "12":["01","13","36"],
+    "13":["02","04","20"],
+    "14":["02","06","07"],
+    "15":["14","07","01"],
+    "16":["05","11","14"],
+    "17":["04","13","14"],
+    "18":["11","30","29"],
+    "19":["30","32","11"],
+    "20":["08","13","25"],
+    "21":["13","20","14"],
+    "22":["12","13","36"],
+    "23":["09","10","32"],
+    "24":["11","18","23"],
 
-    // ---------- Verbindungen (stabil geprüfte Paare) ----------
-    const EDGES = [
-      ["WATER","FOOD"],["WATER","HEALTH"],["WATER","BODY"],
-      ["SHELTER","HOUSING"],["SHELTER","COMMUNITY"],
-      ["SLEEP","HEALTH"],["SLEEP","PSYCHE"],
-      ["BODY","HEALTH"],["PSYCHE","FAMILY"],
-      ["DEVICE","DATA"],["DEVICE","PRIVACY"],
-      ["DEBT","WORK"],
+    "25":["09","10","20"],
+    "26":["03","05","25"],
+    "27":["02","20","22"],
+    "28":["08","20","19"],
+    "29":["18","24","30"],
+    "30":["11","19","32"],
+    "31":["11","29","30"],
+    "32":["19","30","08"],
+    "33":["08","19","32"],
+    "34":["01","12","36"],
+    "35":["08","28","32"],
+    "36":["12","22","34"],
+    "37":["23","24","25"],
+    "38":["23","37","25"],
+    "39":["11","30","31"],
+    "40":["18","29","39"],
+    "41":["21","39","40"],
+    "42":["14","15","41"]
+  };
 
-      ["WORK","SCHOOL"],["WORK","DEBT"],["SCHOOL","KNOWLEDGE"],
-      ["BORDER","MIGRATION"],["NATURE","CLIMATE"],
-      ["HEALTH","CARE"],["FAMILY","CARE"],["COMMUNITY","JUSTICE"],
-      ["CULTURE","ART"],["MEDIA","TRUTH"],["ENERGY","CLIMATE"],
-      ["JUSTICE","DEMOCRACY"],["COMMUNITY","FAMILY"],
+  // ------- SVG helpers -------
+  const SVG_NS="http://www.w3.org/2000/svg";
+  const XLINK_NS="http://www.w3.org/1999/xlink";
+  const svg=document.getElementById('ringmap');
+  const edgesLayer=document.getElementById('edges');
+  const tip=document.getElementById('tip');
 
-      ["ART","CULTURE"],["FUTURE","SCHOOL"],["FUTURE","KNOWLEDGE"],
-      ["DEATH","HEALTH"],["DEATH","PSYCHE"],
-      ["HOUSING","SHELTER"],["TRANSPORT","NETWORK"],
-      ["NETWORK","PRIVACY"],["NETWORK","DATA"],
-      ["SYMBOL","CULTURE"],["SYMBOL","TRUTH"],
-      ["TRUTH","MEDIA"],["TRUTH","KNOWLEDGE"],
-      ["MEMORY","KNOWLEDGE"],["MEMORY","PSYCHE"],
-      ["LICENCE","ART"],["LICENCE","DATA"],
-      ["PRIVACY","DATA"],["PRIVACY","DEVICE"],
-      ["DATA","MEDIA"],["DATA","TRUTH"],
-      ["CONFLICT","JUSTICE"],["CONFLICT","BORDER"],["CONFLICT","COMMUNITY"],
-      ["DEMOCRACY","JUSTICE"],["DEMOCRACY","MEDIA"],
-      ["KNOWLEDGE","SCHOOL"],["KNOWLEDGE","MEMORY"]
-    ];
+  const pos={}, nodeRef={}, neighbors={};
 
-    const SVG_NS="http://www.w3.org/2000/svg";
-    const XLINK_NS="http://www.w3.org/1999/xlink";
-    const svg=document.getElementById('ringmap');
-    const edgesLayer=document.getElementById('edges');
-    const tip=document.getElementById('tip');
+  // RESETBOX-Link
+  (function(){
+    const centerA=document.getElementById('center-reset');
+    const href=urlFor("MODULES/Modul_01_RESETBOX.md");
+    centerA.setAttribute('href', href);
+    centerA.setAttributeNS(XLINK_NS,'xlink:href', href);
+    centerA.addEventListener('click', ()=>{ setTimeout(()=>{ if(!location.href.includes('module.html')) location.href=href; },0); });
+    centerA.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); location.href=href; }});
+  })();
 
-    const pos={}, nodeRef={}, neighbors={};
+  function groupByRing(){ return MODS.reduce((a,m)=>{ (a[m.ring] ||= []).push(m); return a; },{}); }
 
-    // Resetbox-Link setzen
-    const resetA=document.getElementById('center-reset');
-    const resetURL=urlFor('MODULES/Modul_01_RESETBOX.md');
-    resetA.setAttribute('href', resetURL);
-    resetA.setAttributeNS(XLINK_NS,'xlink:href', resetURL);
-    resetA.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); location.href=resetURL; } });
+  function placeNodes(){
+    const groups=groupByRing();
+    const cfg={ inner:{r:220,class:'inner'}, mid:{r:380,class:'mid'}, outer:{r:540,class:'outer'} };
 
-    function groupByRing(){ return MODS.reduce((acc,m)=>{ (acc[m.ring] ||= []).push(m); return acc; },{}); }
+    Object.entries(groups).forEach(([ring,list])=>{
+      const radius=cfg[ring].r;
+      const g=document.createElementNS(SVG_NS,'g'); g.setAttribute('class',cfg[ring].class); svg.appendChild(g);
+      const step=(Math.PI*2)/list.length, start=-Math.PI/2;
 
-    function placeNodes(){
-      const groups=groupByRing();
-      const cfg={ inner:{r:220,class:'inner'}, mid:{r:380,class:'mid'}, outer:{r:540,class:'outer'} };
+      list.forEach((m,idx)=>{
+        const ang=start+idx*step, x=Math.cos(ang)*radius, y=Math.sin(ang)*radius;
+        pos[m.no]={x,y};
+        const href=urlFor(m.file);
 
-      Object.entries(groups).forEach(([ring,list])=>{
-        const radius=cfg[ring].r;
-        const g=document.createElementNS(SVG_NS,'g'); g.setAttribute('class',cfg[ring].class); svg.appendChild(g);
-        const step=(Math.PI*2)/list.length, start=-Math.PI/2;
+        const a=document.createElementNS(SVG_NS,'a');
+        a.setAttribute('href', href);
+        a.setAttributeNS(XLINK_NS,'xlink:href', href);
+        a.setAttribute('target','_self');
+        a.setAttribute('transform',`translate(${x},${y})`);
+        a.setAttribute('tabindex','0');
+        a.setAttribute('role','link');
+        a.setAttribute('aria-label', `${m.no} ${m.label} öffnen`);
+        a.classList.add('node',cfg[ring].class);
+        nodeRef[m.no]=a;
 
-        list.forEach((m,idx)=>{
-          const ang=start+idx*step, x=Math.cos(ang)*radius, y=Math.sin(ang)*radius;
-          pos[m.label]={x,y}; const href=urlFor(m.file);
-
-          const a=document.createElementNS(SVG_NS,'a');
-          a.setAttribute('href', href);
-          a.setAttributeNS(XLINK_NS,'xlink:href', href);
-          a.setAttribute('target','_self');
-          a.setAttribute('transform',`translate(${x},${y})`);
-          a.setAttribute('tabindex','0');
-          a.setAttribute('role','link');
-          a.setAttribute('aria-label', `${m.label} öffnen`);
-          a.classList.add('node',cfg[ring].class);
-          nodeRef[m.label]=a;
-
-          // Klickfläche (ganzer Kreis)
-          const hit=document.createElementNS(SVG_NS,'circle');
-          hit.setAttribute('class','hit');
-          hit.setAttribute('r', String(getHitRadius(m.label, ring)));
-          a.appendChild(hit);
-
-          // Label
-          const txt=document.createElementNS(SVG_NS,'text');
-          txt.textContent=m.label;
-          a.appendChild(txt);
-
-          // Tooltip & Highlight
-          a.addEventListener('mouseenter', e=>{ svg.classList.add('hovering'); showTip(m.label,e); highlight(m.label,true); });
-          a.addEventListener('mousemove', e=>moveTip(e));
-          a.addEventListener('mouseleave', ()=>{ svg.classList.remove('hovering'); hideTip(); highlight(m.label,false); });
-
-          // Tastatur aktivieren
-          a.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); location.href=href; } });
-
-          g.appendChild(a);
+        // Fallback-Navigation (für Browser, die SVG-<a> ignorieren)
+        a.addEventListener('click', (e)=>{
+          setTimeout(()=>{ if(!location.href.includes('module.html')) location.href=href; }, 0);
         });
+        a.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); location.href=href; } });
+
+        // Klickkreis (ganze Fläche)
+        const hit=document.createElementNS(SVG_NS,'circle');
+        hit.setAttribute('class','hit');
+        hit.setAttribute('r', String(ring==='outer'?60 : ring==='mid'?56 : 54));
+        hit.setAttribute('pointer-events','visible');
+        a.appendChild(hit);
+
+        // Label (Nummer + Name)
+        const txt=document.createElementNS(SVG_NS,'text');
+        txt.textContent = `${m.no} ${m.label}`;
+        a.appendChild(txt);
+
+        // Tooltip + Hover-Verbindungen
+        a.addEventListener('mouseenter', e=>{ svg.classList.add('hovering'); showTip(`${m.no} ${m.label}`,e); highlight(m.no,true); });
+        a.addEventListener('mousemove', e=>moveTip(e));
+        a.addEventListener('mouseleave', ()=>{ svg.classList.remove('hovering'); hideTip(); highlight(m.no,false); });
+
+        g.appendChild(a);
       });
-    }
+    });
+  }
 
-    // etwas größere Klickflächen im Außenring für bessere Treffgenauigkeit
-    function getHitRadius(label, ring){
-      if(ring==='outer') return 60;
-      if(ring==='mid')   return 56;
-      return 54;
-    }
+  function buildNeighbors(){
+    MODS.forEach(m=>neighbors[m.no]=new Set());
+    Object.entries(CORE).forEach(([a,arr])=>{
+      arr.forEach(b=>{
+        neighbors[a].add(b);
+        if(!neighbors[b]) neighbors[b]=new Set();
+        neighbors[b].add(a);
+      });
+    });
+  }
 
-    function buildNeighbors(){
-      MODS.forEach(m=>neighbors[m.label]=new Set());
-      EDGES.forEach(([a,b])=>{ if(neighbors[a]) neighbors[a].add(b); if(neighbors[b]) neighbors[b].add(a); });
-    }
-
-    function drawEdges(){
-      EDGES.forEach(([a,b])=>{
+  function drawEdges(){
+    const done=new Set();
+    Object.entries(CORE).forEach(([a,arr])=>{
+      arr.forEach(b=>{
+        const key = a<b ? `${a}-${b}` : `${b}-${a}`;
+        if(done.has(key)) return;
+        done.add(key);
         const pa=pos[a], pb=pos[b]; if(!pa||!pb) return;
-        const mx=(pa.x+pb.x)/2, my=(pa.y+pb.y)/2;
-        const k=0.12, nx=(pb.y-pa.y), ny=-(pb.x-pa.x);
+        const mx=(pa.x+pb.x)/2, my=(pa.y+pb.y)/2, k=0.12, nx=(pb.y-pa.y), ny=-(pb.x-pa.x);
         const cx=mx+nx*k, cy=my+ny*k;
         const d=`M ${pa.x} ${pa.y} Q ${cx} ${cy} ${pb.x} ${pb.y}`;
         const p=document.createElementNS(SVG_NS,'path');
-        p.setAttribute('d', d);
-        p.dataset.a=a; p.dataset.b=b;
+        p.setAttribute('d', d); p.dataset.a=a; p.dataset.b=b;
         edgesLayer.appendChild(p);
       });
-    }
+    });
+  }
 
-    function highlight(label,on){
-      // Kanten ein-/ausblenden
-      document.querySelectorAll(`.edges path[data-a="${label}"], .edges path[data-b="${label}"]`)
-        .forEach(p=>p.classList.toggle('on', on));
-      // Nachbarn hervorheben
-      (neighbors[label]||new Set()).forEach(lab=>{
-        const el=nodeRef[lab]; if(el) el.classList.toggle('linked', on);
-      });
-      // aktiver Knoten
-      const self=nodeRef[label]; if(self) self.classList.toggle('linked', on);
-    }
+  function highlight(no,on){
+    document.querySelectorAll(`.edges path[data-a="${no}"], .edges path[data-b="${no}"]`).forEach(p=>p.classList.toggle('on', on));
+    (neighbors[no]||new Set()).forEach(n=>{
+      const el=nodeRef[n]; if(el) el.classList.toggle('linked', on);
+    });
+    const self=nodeRef[no]; if(self) self.classList.toggle('linked', on);
+  }
 
-    // Tooltip
-    function showTip(label,evt){ tip.innerHTML = `${label}<br><small>Öffnen</small>`; moveTip(evt); tip.classList.add('show'); }
-    function moveTip(evt){ tip.style.left = evt.clientX+'px'; tip.style.top = evt.clientY+'px'; }
-    function hideTip(){ tip.classList.remove('show'); }
+  // Tooltip
+  function showTip(txt,evt){ tip.innerHTML = `${txt}<br><small>Öffnen</small>`; moveTip(evt); tip.classList.add('show'); }
+  function moveTip(evt){ tip.style.left = evt.clientX+'px'; tip.style.top = evt.clientY+'px'; }
+  function hideTip(){ tip.classList.remove('show'); }
 
-    // Build
-    placeNodes();
-    buildNeighbors();
-    drawEdges();
-  </script>
+  // Build
+  placeNodes();
+  buildNeighbors();
+  drawEdges();
+</script>
 </body>
 </html>

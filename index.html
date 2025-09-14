@@ -10,8 +10,9 @@
       --bg:#0e1116; --fg:#e7eef7; --muted:#9fb0c6;
       --ring-inner:#f3c0c7; --ring-mid:#f0de94; --ring-outer:#bcd5ff;
       --node-bg:#10151f; --node-border:#2a3344;
+      --edge:#6f849f; --edge-on:#a7c4ff;
       --shadow: 0 6px 24px rgba(0,0,0,.35);
-      --header-h: 54px; /* kleiner Header */
+      --header-h: 54px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -21,7 +22,7 @@
       overflow:hidden;
     }
 
-    /* Kleiner Header oben */
+    /* Kleiner Header */
     header{
       position:fixed; top:0; left:0; right:0; height:var(--header-h); z-index:30;
       display:flex; gap:12px; align-items:center;
@@ -29,11 +30,24 @@
     }
     header .dot{font-size:16px}
     header h1{font-size:14px; margin:0; font-weight:700; letter-spacing:.3px}
-    header nav{margin-left:auto; display:flex; gap:10px}
+    header nav{margin-left:auto; display:flex; gap:10px; align-items:center}
     header a{color:var(--fg); text-decoration:none; opacity:.9; font-size:13px}
     header a:hover{opacity:1; text-decoration:underline}
 
-    /* Bühne startet unter dem Header */
+    /* Dropdown */
+    nav details{position:relative}
+    nav summary{list-style:none; cursor:pointer; padding:4px 8px; border-radius:8px}
+    nav summary::-webkit-details-marker{display:none}
+    nav details[open] summary{background:rgba(255,255,255,.06)}
+    .menu{
+      position:absolute; top:calc(100% + 6px); right:0; z-index:100; max-height:70vh; overflow:auto;
+      min-width:260px; padding:8px; border-radius:10px; background:rgba(12,16,24,.96); border:1px solid #222a39; box-shadow: var(--shadow);
+    }
+    .menu h4{margin:8px 8px 6px; font-size:12px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.6px}
+    .menu a{display:block; padding:6px 8px; border-radius:8px; color:var(--fg); text-decoration:none; font-size:13px}
+    .menu a:hover{background:rgba(255,255,255,.08)}
+
+    /* Bühne unter Header */
     .stage{position:absolute; inset: var(--header-h) 0 0 0; display:grid; place-items:center; padding:16px;}
     svg{width:min(1200px, 95vw); height:calc(95vh - var(--header-h));}
 
@@ -42,16 +56,23 @@
     .ring-mid{stroke:var(--ring-mid); stroke-width:2.2; fill:none; stroke-opacity:.9}
     .ring-outer{stroke:var(--ring-outer); stroke-width:2.2; fill:none; stroke-opacity:.9}
 
+    /* Edges (Verbindungen) */
+    .edges path{ stroke:var(--edge); stroke-width:1.4; fill:none; opacity:.14; transition:opacity .15s ease, stroke .15s ease, stroke-width .15s ease; }
+    svg.hovering .edges path{ opacity:.06 }              /* wenn etwas gehovt wird: alles erstmal dimmen */
+    .edges path.on{ stroke:var(--edge-on); opacity:.9; stroke-width:2.2 }  /* verbundene Kanten aktiv */
+
     /* Nodes */
     svg a.node{ cursor:pointer; filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); transition: transform .15s ease, opacity .2s ease; }
     svg a.node:hover{ transform: translateY(-2px) scale(1.03); }
-    .node circle{ fill:var(--node-bg); stroke:var(--node-border); stroke-width:1.5; }
-    .node text{ font-size:12px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle; }
-    .inner text{ fill:#5d2029 }
-    .mid   text{ fill:#6c5b00 }
-    .outer text{ fill:#274b7a }
+    .node circle{
+      r:46; fill:rgba(255,255,255,0.001); /* unsichtbar, aber fängt Klicks */
+      stroke:var(--node-border); stroke-width:1.5;
+    }
+    .node text{ font-size:12px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle; pointer-events:none }
+    .inner text{ fill:#5d2029 } .mid text{ fill:#6c5b00 } .outer text{ fill:#274b7a }
+    .node.linked text{ font-weight:700 } /* verbundene Knoten betonen */
 
-    /* Zentrum (wie vorher, nicht übertrieben) */
+    /* Zentrum (neutral wie vorher) */
     .center circle{ fill:transparent; stroke:#59657c; stroke-dasharray:4 6; }
     .center text{ fill:#7f8ea8; font-weight:600; font-size:12px; text-anchor:middle; dominant-baseline:middle }
 
@@ -74,13 +95,11 @@
     }
     .chip{display:inline-flex; align-items:center; gap:8px; font-size:12px}
     .sw{width:14px; height:14px; border-radius:50%}
-    .sw.inner{background:var(--ring-inner)}
-    .sw.mid{background:var(--ring-mid)}
-    .sw.outer{background:var(--ring-outer)}
+    .sw.inner{background:var(--ring-inner)} .sw.mid{background:var(--ring-mid)} .sw.outer{background:var(--ring-outer)}
 
     @media (max-width:720px){
-      :root{ --header-h: 64px; }
       header h1{display:none}
+      .menu{ right:auto; left:0; min-width:220px }
     }
   </style>
 </head>
@@ -92,21 +111,30 @@
     <nav>
       <a href="https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC" target="_blank" rel="noopener">Repository</a>
       <a id="nav-dignity">Dignity Clause</a>
-      <a id="nav-gebote">14 Gebote (V2.1)</a>
+      <a id="nav-gebote">14 Gebote</a>
       <a id="nav-discuss">Diskussion</a>
+
+      <details>
+        <summary>Module ▾</summary>
+        <div id="menu-modules" class="menu" role="menu" aria-label="Module"></div>
+      </details>
     </nav>
   </header>
 
   <div class="stage">
-    <!-- SVG wie zuvor -->
     <svg id="ringmap" viewBox="-600 -600 1200 1200"
          xmlns="http://www.w3.org/2000/svg"
          xmlns:xlink="http://www.w3.org/1999/xlink"
          role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS">
+
       <!-- Ringe -->
       <circle class="ring-inner" r="220"></circle>
       <circle class="ring-mid"   r="380"></circle>
       <circle class="ring-outer" r="540"></circle>
+
+      <!-- Verbindungs-Layer (kommt hinter die Nodes) -->
+      <g id="edges" class="edges"></g>
+
       <!-- Zentrum -->
       <g class="center" aria-label="Resetbox">
         <circle r="70"></circle>
@@ -124,21 +152,21 @@
   <div id="tip" class="tip" role="status" aria-live="polite"></div>
 
   <script>
-    // ---- Basis-URL absolut ableiten (funktioniert lokal und auf Pages) ----
+    // ---- Basis-URL absolut ableiten ----
     const BASE = (()=>{
       const u = new URL(window.location.href);
       if (u.pathname.endsWith('index.html')) u.pathname = u.pathname.replace(/index\.html$/, '');
       if (!u.pathname.endsWith('/')) u.pathname += '/';
-      return u.origin + u.pathname; // z.B. https://quest42-coder.github.io/QUESTSYSTEM_PUBLIC/
+      return u.origin + u.pathname;
     })();
     const urlFor = (filePath) => `${BASE}module.html?file=${encodeURIComponent(filePath)}`;
 
-    // ---- Header-Links (absolut) ----
-    document.getElementById('nav-dignity').setAttribute('href', urlFor('MODULES/DIGNITY_CLAUSE.md'));
-    document.getElementById('nav-gebote').setAttribute('href',  urlFor('MODULES/14_GEBOTE_V2.1.md'));
-    document.getElementById('nav-discuss').setAttribute('href',  urlFor('MODULES/14_GEBOTE_DISCUSSION.md'));
+    // Header-Links setzen
+    document.getElementById('nav-dignity').href = urlFor('MODULES/DIGNITY_CLAUSE.md');
+    document.getElementById('nav-gebote').href  = urlFor('MODULES/14_GEBOTE_V2.1.md');
+    document.getElementById('nav-discuss').href = urlFor('MODULES/14_GEBOTE_DISCUSSION.md');
 
-    // ---- Knoten-Definition (nur Dateipfade; URL wird absolut berechnet) ----
+    // ---- Modul-Liste (Nodes) ----
     const nodes = [
       // INNER – Existential
       {label:"WATER",   ring:"inner", file:`MODULES/Modul_02_WATER.md`},
@@ -185,11 +213,71 @@
       {label:"KNOWLEDGE",  ring:"outer", file:`MODULES/Modul_39_KNOWLEDGE.md`}
     ];
 
+    // ---- Verbindungen (Edges) – Beispiel-Graph, erweiterbar ----
+    const edges = [
+      // Inner
+      ["WATER","FOOD"],["WATER","HEALTH"],["WATER","BODY"],
+      ["SHELTER","HOUSING"],["SHELTER","COMMUNITY"],
+      ["SLEEP","HEALTH"],["SLEEP","PSYCHE"],
+      ["BODY","HEALTH"],["PSYCHE","FAMILY"],
+      ["DEVICE","DATA"],["DEVICE","PRIVACY"],
+      ["DEBT","WORK"],
+
+      // Mid
+      ["WORK","SCHOOL"],["WORK","DEBT"],["SCHOOL","KNOWLEDGE"],
+      ["BORDER","MIGRATION"],["NATURE","CLIMATE"],
+      ["HEALTH","CARE"],["FAMILY","CARE"],["COMMUNITY","JUSTICE"],
+      ["CULTURE","ART"],["MEDIA","TRUTH"],["ENERGY","CLIMATE"],
+      ["JUSTICE","DEMOCRACY"],["COMMUNITY","FAMILY"],
+
+      // Outer x Inner/Mid
+      ["ART","CULTURE"],["FUTURE","SCHOOL"],["FUTURE","KNOWLEDGE"],
+      ["DEATH","HEALTH"],["DEATH","PSYCHE"],
+      ["HOUSING","SHELTER"],["TRANSPORT","NETWORK"],
+      ["NETWORK","PRIVACY"],["NETWORK","DATA"],
+      ["SYMBOL","CULTURE"],["SYMBOL","TRUTH"],
+      ["TRUTH","MEDIA"],["TRUTH","KNOWLEDGE"],
+      ["MEMORY","KNOWLEDGE"],["MEMORY","PSYCHE"],
+      ["LICENCE","ART"],["LICENCE","DATA"],
+      ["PRIVACY","DATA"],["PRIVACY","DEVICE"],
+      ["DATA","MEDIA"],["DATA","TRUTH"],
+      ["CONFLICT","JUSTICE"],["CONFLICT","BORDER"],["CONFLICT","COMMUNITY"],
+      ["DEMOCRACY","JUSTICE"],["DEMOCRACY","MEDIA"],
+      ["KNOWLEDGE","SCHOOL"],["KNOWLEDGE","MEMORY"]
+    ];
+
     const config = { inner:{r:220,class:"inner"}, mid:{r:380,class:"mid"}, outer:{r:540,class:"outer"} };
-    const SVG_NS   = "http://www.w3.org/2000/svg";
+    const SVG_NS = "http://www.w3.org/2000/svg";
     const XLINK_NS = "http://www.w3.org/1999/xlink";
     const svg = document.getElementById('ringmap');
+    const edgesLayer = document.getElementById('edges');
     const tip = document.getElementById('tip');
+
+    // Positions & <a>-Refs
+    const pos = {};           // label -> {x,y}
+    const nodeRef = {};       // label -> <a>
+    const neighbors = {};     // label -> Set<label>
+
+    // Dropdown „Module“ dynamisch bauen
+    const menuModules = document.getElementById('menu-modules');
+    function buildModuleMenu(){
+      const groups = {inner:[], mid:[], outer:[]};
+      nodes.forEach(n=>groups[n.ring].push(n));
+      const order = [
+        ["Existential (inner)","inner"],
+        ["Societal (mid)","mid"],
+        ["Structural (outer)","outer"]
+      ];
+      order.forEach(([title,key])=>{
+        const h = document.createElement('h4'); h.textContent = title; menuModules.appendChild(h);
+        groups[key].forEach(n=>{
+          const a = document.createElement('a');
+          a.textContent = n.label;
+          a.href = urlFor(n.file);
+          menuModules.appendChild(a);
+        });
+      });
+    }
 
     function placeNodes(){
       const groups = {inner:[], mid:[], outer:[]};
@@ -207,24 +295,34 @@
           const angle=start+idx*step;
           const x=Math.cos(angle)*radius;
           const y=Math.sin(angle)*radius;
-          const url = urlFor(n.file);
+          pos[n.label] = {x,y};
 
+          const url = urlFor(n.file);
           const a=document.createElementNS(SVG_NS,"a");
           a.setAttribute("href", url);
           a.setAttributeNS(XLINK_NS, "xlink:href", url);
           a.setAttribute("target","_self");
           a.setAttribute("transform",`translate(${x},${y})`);
           a.classList.add("node",config[ring].class);
+          a.dataset.label = n.label;
+          nodeRef[n.label]=a;
 
-          const circle=document.createElementNS(SVG_NS,"circle"); circle.setAttribute("r",42); a.appendChild(circle);
-          const text=document.createElementNS(SVG_NS,"text"); text.textContent=n.label; a.appendChild(text);
+          // Klickfläche (groß, sicher klickbar)
+          const circle=document.createElementNS(SVG_NS,"circle");
+          circle.setAttribute("r", 46);
+          circle.setAttribute("vector-effect","non-scaling-stroke");
+          a.appendChild(circle);
 
-          // Tooltip
-          a.addEventListener('mouseenter',e=>showTip(n.label,e));
+          const text=document.createElementNS(SVG_NS,"text");
+          text.textContent=n.label;
+          a.appendChild(text);
+
+          // Tooltip & Hover-Hervorhebung
+          a.addEventListener('mouseenter',e=>{ showTip(n.label,e); svg.classList.add('hovering'); highlight(n.label,true); });
           a.addEventListener('mousemove',e=>moveTip(e));
-          a.addEventListener('mouseleave',hideTip);
+          a.addEventListener('mouseleave',()=>{ hideTip(); svg.classList.remove('hovering'); highlight(n.label,false); });
 
-          // Fallback (falls SVG <a> nicht feuert)
+          // Fallback (falls SVG-Links nicht feuern)
           a.addEventListener('click', (e) => {
             setTimeout(() => {
               if (location.href.indexOf('module.html') === -1) location.href = url;
@@ -236,11 +334,56 @@
       });
     }
 
+    function buildNeighbors(){
+      nodes.forEach(n=>neighbors[n.label]=new Set());
+      edges.forEach(([a,b])=>{
+        if(neighbors[a]) neighbors[a].add(b);
+        if(neighbors[b]) neighbors[b].add(a);
+      });
+    }
+
+    function drawEdges(){
+      edges.forEach(([a,b])=>{
+        const pa = pos[a], pb = pos[b];
+        if(!pa || !pb) return;
+        // leichte Kurve (Quadratic Bezier) zur Lesbarkeit
+        const mx = (pa.x + pb.x)/2, my = (pa.y + pb.y)/2;
+        const k = 0.12; // Krümmung
+        const nx = (pb.y - pa.y), ny = -(pb.x - pa.x);
+        const cx = mx + nx*k, cy = my + ny*k;
+        const d = `M ${pa.x} ${pa.y} Q ${cx} ${cy} ${pb.x} ${pb.y}`;
+        const p = document.createElementNS(SVG_NS,'path');
+        p.setAttribute('d', d);
+        p.dataset.a=a; p.dataset.b=b;
+        edgesLayer.appendChild(p);
+      });
+      // Edges hinter die Nodes legen (bereits vor den Node-Groups im DOM)
+    }
+
+    function highlight(label, on){
+      // Kanten
+      document.querySelectorAll(`.edges path[data-a="${label}"], .edges path[data-b="${label}"]`)
+        .forEach(p=> p.classList.toggle('on', on));
+      // verbundene Knoten
+      (neighbors[label]||[]).forEach(lab=>{
+        const el = nodeRef[lab];
+        if(el) el.classList.toggle('linked', on);
+      });
+      // aktiver Knoten selbst (leicht betonen)
+      const self = nodeRef[label];
+      if (self) self.classList.toggle('linked', on);
+    }
+
+    // Build all
+    buildModuleMenu();
+    placeNodes();
+    buildNeighbors();
+    drawEdges();
+
+    // Tooltip
     function showTip(label,evt){ tip.innerHTML=`${label} <br><small>Öffnen</small>`; moveTip(evt); tip.classList.add('show'); }
     function moveTip(evt){ tip.style.left=evt.clientX+'px'; tip.style.top=evt.clientY+'px'; }
     function hideTip(){ tip.classList.remove('show'); }
-
-    placeNodes();
   </script>
 </body>
 </html>

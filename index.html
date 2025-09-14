@@ -1,117 +1,262 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>QUESTSYSTEM – Start</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    body {margin:0; font-family: system-ui, sans-serif; background:#0d1117; color:#e6eef7;}
-    header {padding:16px; background:#111827; border-bottom:1px solid #222;}
-    header h1 {margin:0; font-size:22px;}
-    nav {margin-top:8px;}
-    nav a {margin-right:12px; text-decoration:none; color:#a8d1ff;}
-    nav a:hover {text-decoration:underline;}
-    main {max-width:1000px; margin:40px auto; padding:0 16px;}
-    h2 {margin-top:32px;}
-    .grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:16px;}
-    .card {padding:16px; border:1px solid #2a3344; border-radius:8px; background:#1a2234; text-decoration:none; color:#e6eef7;}
-    .card strong {display:block; font-size:16px; margin-bottom:6px;}
-    .card:hover {border-color:#3a4b66;}
-    footer {margin-top:40px; padding:20px; border-top:1px solid #222; text-align:center; color:#9fb0c6;}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>QUESTSYSTEM – Pfad-Checker</title>
+<style>
+  :root{ --ok:#19c37d; --bad:#ff6961; --muted:#9fb0c6; --bg:#0d1117; --fg:#e6eef7; --card:#141c2a; --border:#223047 }
+  body{margin:0; font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--fg)}
+  header{position:sticky; top:0; z-index:2; padding:12px 16px; background:#0f1624; border-bottom:1px solid var(--border)}
+  h1{margin:0; font-size:18px}
+  main{max-width:1100px; margin:24px auto; padding:0 16px}
+  .row{display:grid; grid-template-columns: 32ch 1fr 1fr 1fr; gap:10px; align-items:center; padding:10px; border-bottom:1px solid var(--border)}
+  .row.header{font-weight:700; position:sticky; top:57px; background:#101728; z-index:1}
+  .pill{display:inline-flex; align-items:center; gap:6px; padding:2px 8px; border-radius:999px; font-size:12px; border:1px solid var(--border); background:var(--card)}
+  .ok{color:#002a16; background:color-mix(in oklab, var(--ok) 22%, #0d1117); border-color: color-mix(in oklab, var(--ok) 60%, #0d1117)}
+  .bad{color:#2a0000; background:color-mix(in oklab, var(--bad) 22%, #0d1117); border-color: color-mix(in oklab, var(--bad) 60%, #0d1117)}
+  code{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background:#0d1422; padding:2px 6px; border-radius:6px; border:1px solid var(--border)}
+  a{color:#a8d1ff; text-decoration:none}
+  a:hover{text-decoration:underline}
+  .card{background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px; margin:18px 0}
+  .controls{display:flex; gap:8px; flex-wrap:wrap}
+  button{background:#16253a; color:var(--fg); border:1px solid var(--border); border-radius:8px; padding:8px 10px; cursor:pointer}
+  button:hover{background:#1b2d47}
+  .small{color:var(--muted); font-size:12px}
+  .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:10px}
+  textarea{width:100%; min-height:160px; background:#0d1422; color:var(--fg); border:1px solid var(--border); border-radius:8px; padding:10px}
+</style>
 </head>
 <body>
 <header>
-  <h1>QUESTSYSTEM</h1>
-  <nav>
-    <a href="map.html">Ringe (Interaktiv)</a>
-    <a href="module.html?file=ETHICS/DIGNITY_CLAUSE.md">Dignity Clause</a>
-    <a href="module.html?file=ETHICS/14_GEBOTE_V2.1.md">14 Gebote</a>
-    <a href="module.html?file=ETHICS/14_GEBOTE_DISCUSSION.md">Diskussion</a>
-    <a href="module.html?file=ETHICS/KRITIKFELDER_RESETBOX.md">Kritikfelder</a>
-  </nav>
+  <h1>QUESTSYSTEM – Pfad-Checker (MODULES & ETHICS)</h1>
+  <div class="small">Prüft exakt existierende Dateien im Repo und erzeugt dir bei Bedarf ein korrigiertes Link-Grid.</div>
 </header>
 
 <main>
-  <section>
-    <h2>Start Here</h2>
-    <p>
-      Das QUESTSYSTEM besteht aus <strong>42 Modulen</strong> in drei Ringen 
-      (Existential, Societal, Structural). Im Zentrum steht die 
-      <a href="module.html?file=MODULES/Modul_01_RESETBOX.md"><strong>RESETBOX</strong></a>.
-    </p>
+  <div class="card">
     <div class="grid">
-      <a class="card" href="map.html">
-        <strong>Ringe ansehen</strong>
-        <span>Interaktive Übersicht aller Module</span>
-      </a>
-      <a class="card" href="module.html?file=MODULES/Modul_01_RESETBOX.md">
-        <strong>Modul 01 – RESETBOX</strong>
-        <span>Basiskit & Kernlogik</span>
-      </a>
-      <a class="card" href="module.html?file=ETHICS/DIGNITY_CLAUSE.md">
-        <strong>Dignity Clause</strong>
-        <span>Würde- & Schutz-Rahmen</span>
-      </a>
-      <a class="card" href="module.html?file=ETHICS/14_GEBOTE_V2.1.md">
-        <strong>14 Gebote</strong>
-        <span>Version 2.1 (stabil)</span>
-      </a>
+      <div>
+        <div class="small">Owner</div>
+        <input id="owner" class="mono" value="Quest42-coder">
+      </div>
+      <div>
+        <div class="small">Repo</div>
+        <input id="repo" class="mono" value="QUESTSYSTEM_PUBLIC">
+      </div>
+      <div>
+        <div class="small">Branch</div>
+        <input id="branch" class="mono" value="main">
+      </div>
     </div>
-  </section>
+    <div class="controls" style="margin-top:10px">
+      <button id="run">Jetzt prüfen</button>
+      <button id="gen">Korrigiertes Link-Grid erzeugen</button>
+      <span id="status" class="small"></span>
+    </div>
+  </div>
 
-  <section>
-    <h2>Alle Module</h2>
-    <div class="grid">
-      <a class="card" href="module.html?file=MODULES/Modul_01_RESETBOX.md"><strong>01 RESETBOX</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_02_WATER.md"><strong>02 WATER</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_03_SHELTER.md"><strong>03 SHELTER</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_04_FOOD.md"><strong>04 FOOD</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_05_SLEEP.md"><strong>05 SLEEP</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_06_BODY.md"><strong>06 BODY</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_07_PSYCHE.md"><strong>07 PSYCHE</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_08_DEVICE.md"><strong>08 DEVICE</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_09_DEBT.md"><strong>09 DEBT</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_10_WORK.md"><strong>10 WORK</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_11_SCHOOL.md"><strong>11 SCHOOL</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_12_BORDER.md"><strong>12 BORDER</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_13_NATURE.md"><strong>13 NATURE</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_14_HEALTH.md"><strong>14 HEALTH</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_15_CARE.md"><strong>15 CARE</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_16_FAMILY.md"><strong>16 FAMILY</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_17_ANIMAL.md"><strong>17 ANIMAL</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_18_CULTURE.md"><strong>18 CULTURE</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_19_MEDIA.md"><strong>19 MEDIA</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_20_ENERGY.md"><strong>20 ENERGY</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_21_CLIMATE.md"><strong>21 CLIMATE</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_22_MIGRATION.md"><strong>22 MIGRATION</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_23_JUSTICE.md"><strong>23 JUSTICE</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_24_COMMUNITY.md"><strong>24 COMMUNITY</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_25_FINANCE.md"><strong>25 FINANCE</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_26_HOUSING.md"><strong>26 HOUSING</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_27_TRANSPORT.md"><strong>27 TRANSPORT</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_28_NETWORK.md"><strong>28 NETWORK</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_29_SYMBOL.md"><strong>29 SYMBOL</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_30_TRUTH.md"><strong>30 TRUTH</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_31_MEMORY.md"><strong>31 MEMORY</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_32_LICENCE.md"><strong>32 LICENCE</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_33_PRIVACY.md"><strong>33 PRIVACY</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_34_SECURITY.md"><strong>34 SECURITY</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_35_DATA.md"><strong>35 DATA</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_36_CONFLICT.md"><strong>36 CONFLICT</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_37_DEMOCRACY.md"><strong>37 DEMOCRACY</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_38_GOVERNANCE.md"><strong>38 GOVERNANCE</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_39_KNOWLEDGE.md"><strong>39 KNOWLEDGE</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_40_ART.md"><strong>40 ART</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_41_FUTURE.md"><strong>41 FUTURE</strong></a>
-      <a class="card" href="module.html?file=MODULES/Modul_42_DEATH.md"><strong>42 DEATH</strong></a>
+  <div id="summary" class="card">
+    <strong>Zusammenfassung</strong>
+    <div class="small" id="sumtext">Noch keine Prüfung durchgeführt.</div>
+  </div>
+
+  <div class="card">
+    <div class="row header">
+      <div>Erwarteter Pfad</div>
+      <div>Fund im Repo</div>
+      <div>Direkter Check (raw)</div>
+      <div>Aktion</div>
     </div>
-  </section>
+    <div id="rows"></div>
+  </div>
+
+  <div class="card">
+    <strong>Korrigiertes Link-Grid (HTML für index.html)</strong>
+    <div class="small">Wenn unten generiert, kannst du das 1:1 in deine <code>index.html</code> kopieren.</div>
+    <textarea id="out" placeholder="Hier erscheint das generierte Grid..."></textarea>
+  </div>
 </main>
 
-<footer>
-  <span>© QUESTSYSTEM – Open Commons</span>
-</footer>
+<script>
+(function(){
+  const EXPECTED = [
+    // ETHICS
+    "ETHICS/DIGNITY_CLAUSE.md",
+    "ETHICS/14_GEBOTE_V2.1.md",
+    "ETHICS/14_GEBOTE_DISCUSSION.md",
+    // MODULES 01–42
+    "MODULES/Modul_01_RESETBOX.md",
+    "MODULES/Modul_02_WATER.md",
+    "MODULES/Modul_03_SHELTER.md",
+    "MODULES/Modul_04_FOOD.md",
+    "MODULES/Modul_05_SLEEP.md",
+    "MODULES/Modul_06_BODY.md",
+    "MODULES/Modul_07_PSYCHE.md",
+    "MODULES/Modul_08_DEVICE.md",
+    "MODULES/Modul_09_DEBT.md",
+    "MODULES/Modul_10_WORK.md",
+    "MODULES/Modul_11_SCHOOL.md",
+    "MODULES/Modul_12_BORDER.md",
+    "MODULES/Modul_13_NATURE.md",
+    "MODULES/Modul_14_HEALTH.md",
+    "MODULES/Modul_15_CARE.md",
+    "MODULES/Modul_16_FAMILY.md",
+    "MODULES/Modul_17_ANIMAL.md",
+    "MODULES/Modul_18_CULTURE.md",
+    "MODULES/Modul_19_MEDIA.md",
+    "MODULES/Modul_20_ENERGY.md",
+    "MODULES/Modul_21_CLIMATE.md",
+    "MODULES/Modul_22_MIGRATION.md",
+    "MODULES/Modul_23_JUSTICE.md",
+    "MODULES/Modul_24_COMMUNITY.md",
+    "MODULES/Modul_25_FINANCE.md",
+    "MODULES/Modul_26_HOUSING.md",
+    "MODULES/Modul_27_TRANSPORT.md",
+    "MODULES/Modul_28_NETWORK.md",
+    "MODULES/Modul_29_SYMBOL.md",
+    "MODULES/Modul_30_TRUTH.md",
+    "MODULES/Modul_31_MEMORY.md",
+    "MODULES/Modul_32_LICENCE.md",
+    "MODULES/Modul_33_PRIVACY.md",
+    "MODULES/Modul_34_SECURITY.md",
+    "MODULES/Modul_35_DATA.md",
+    "MODULES/Modul_36_CONFLICT.md",
+    "MODULES/Modul_37_DEMOCRACY.md",
+    "MODULES/Modul_38_GOVERNANCE.md",
+    "MODULES/Modul_39_KNOWLEDGE.md",
+    "MODULES/Modul_40_ART.md",
+    "MODULES/Modul_41_FUTURE.md",
+    "MODULES/Modul_42_DEATH.md"
+  ];
+
+  const q = s => document.querySelector(s);
+  const rowsEl = q('#rows');
+  const status = q('#status');
+  const sumtext = q('#sumtext');
+  const out = q('#out');
+
+  function apiList(owner, repo, branch, path){
+    const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
+    return fetch(url).then(r=>{
+      if(!r.ok) throw new Error(`API ${r.status} ${url}`);
+      return r.json();
+    });
+  }
+  function rawUrl(owner,repo,branch,path){
+    return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`;
+  }
+  function checkRaw(owner,repo,branch,path){
+    return fetch(rawUrl(owner,repo,branch,path), {method:'HEAD'}).then(r=>r.ok);
+  }
+
+  async function run(){
+    rowsEl.innerHTML = '';
+    status.textContent = 'Lade Repo-Inhalt...';
+
+    const owner = q('#owner').value.trim();
+    const repo  = q('#repo').value.trim();
+    const branch= q('#branch').value.trim();
+
+    let foundEthics=[], foundModules=[];
+    let allEntries = new Map(); // key: path (case-sensitive) → true
+
+    try{
+      const ethics = await apiList(owner,repo,branch,'ETHICS');
+      ethics.forEach(e=> allEntries.set(`ETHICS/${e.name}`, true));
+      foundEthics = ethics.map(e=>e.name);
+    }catch(e){ /* ETHICS fehlt ggf. */ }
+
+    try{
+      const mods = await apiList(owner,repo,branch,'MODULES');
+      mods.forEach(m=> allEntries.set(`MODULES/${m.name}`, true));
+      foundModules = mods.map(m=>m.name);
+    }catch(e){ /* MODULES fehlt oder 403 */ }
+
+    // Case-insensitive Lookup vorbereiten
+    const ciIndex = new Map();
+    for (const key of allEntries.keys()){
+      ciIndex.set(key.toLowerCase(), key);
+    }
+
+    let ok=0, bad=0;
+    for (const exp of EXPECTED){
+      const row = document.createElement('div');
+      row.className = 'row';
+      const expCell = document.createElement('div');
+      const foundCell = document.createElement('div');
+      const rawCell = document.createElement('div');
+      const actionCell = document.createElement('div');
+
+      expCell.innerHTML = `<code>${exp}</code>`;
+
+      let exact = allEntries.has(exp);
+      let ci = !exact && ciIndex.has(exp.toLowerCase()) ? ciIndex.get(exp.toLowerCase()) : null;
+
+      if (exact){
+        foundCell.innerHTML = `<span class="pill ok">Exact match</span> <a href="https://github.com/${owner}/${repo}/blob/${branch}/${exp}" target="_blank">auf GitHub öffnen</a>`;
+      } else if (ci){
+        foundCell.innerHTML = `<span class="pill bad">Case mismatch</span> &nbsp;<code>${ci}</code><br><a href="https://github.com/${owner}/${repo}/blob/${branch}/${ci}" target="_blank">ähnliche Datei</a>`;
+      } else {
+        foundCell.innerHTML = `<span class="pill bad">Fehlt</span>`;
+      }
+
+      const rawLink = rawUrl(owner,repo,branch, exact?exp:(ci||exp));
+      let rawOK=false;
+      try{
+        rawOK = await checkRaw(owner,repo,branch, exact?exp:(ci||exp));
+      }catch(e){ rawOK=false; }
+      rawCell.innerHTML = rawOK
+        ? `<span class="pill ok">200 OK</span> <a href="${rawLink}" target="_blank">raw</a>`
+        : `<span class="pill bad">404</span>`;
+
+      if (exact){
+        actionCell.innerHTML = `<a class="pill" href="module.html?file=${encodeURIComponent(exp)}">Test öffnen</a>`;
+        ok++;
+      } else if (ci){
+        actionCell.innerHTML = `<button data-fix="${ci}">Link auf ${ci} umschreiben</button>`;
+        bad++;
+      } else {
+        actionCell.innerHTML = `<span class="small">Lege die Datei an oder passe den Link an.</span>`;
+        bad++;
+      }
+
+      row.appendChild(expCell);
+      row.appendChild(foundCell);
+      row.appendChild(rawCell);
+      row.appendChild(actionCell);
+      rowsEl.appendChild(row);
+    }
+
+    sumtext.textContent = `Gefunden: ${ok} / ${EXPECTED.length} korrekt · ${bad} Abweichungen`;
+    status.textContent = 'Fertig.';
+  }
+
+  // „Korrigiertes Link-Grid“ generieren (nimmt vorhandene Dateien, behält fehlende trotzdem drin)
+  function generateGrid(){
+    const owner = q('#owner').value.trim();
+    const repo  = q('#repo').value.trim();
+    const branch= q('#branch').value.trim();
+    const cards = EXPECTED.filter(p=>p.startsWith('MODULES/')).map(p=>{
+      const num = (p.match(/Modul_(\d+)_/)||[])[1] || '??';
+      const label = (p.match(/Modul_\d+_([^.]+)\.md$/)||[])[1] || p;
+      return `      <a class="card" href="module.html?file=${p}"><strong>${num} ${label}</strong></a>`;
+    }).join('\n');
+
+    const tpl = `<!-- Einfügen in index.html: Abschnitt „Alle Module“ -->
+<div class="grid">
+${cards}
+</div>`;
+    out.value = tpl;
+  }
+
+  document.getElementById('run').addEventListener('click', run);
+  document.getElementById('gen').addEventListener('click', generateGrid);
+
+  // Auto-Start mit Defaults
+  run();
+})();
+</script>
 </body>
 </html>

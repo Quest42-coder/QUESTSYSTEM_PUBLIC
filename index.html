@@ -18,9 +18,11 @@
     .ring{fill:none; stroke-width:2.2; opacity:.9}
     .ring-inner{stroke:var(--ring-inner)} .ring-mid{stroke:var(--ring-mid)} .ring-outer{stroke:var(--ring-outer)}
 
-    .edges path{stroke:var(--edge); stroke-width:2; fill:none; opacity:0; transition:opacity .12s ease, stroke-width .12s ease}
-    .edges path.on{opacity:.95; stroke-width:3.2}
-    .edges path.base{opacity:.35}
+    /* Kanten standardmäßig unsichtbar – nur .on wird gezeigt */
+    svg .edges path{stroke:var(--edge); stroke-width:2; fill:none; opacity:0 !important; transition:opacity .12s ease, stroke-width .12s ease}
+    svg .edges path.on{opacity:.95 !important; stroke-width:3.2}
+    /* Falls irgendwo noch eine alte "base"-Klasse existiert, hart ausblenden: */
+    svg .edges path.base{opacity:0 !important}
 
     .node .hit{fill:rgba(255,255,255,0); stroke:var(--node-stroke); stroke-width:1.6; cursor:pointer; pointer-events:all}
     .node:hover .hit{fill:rgba(255,255,255,.06); stroke:#3b4862}
@@ -53,8 +55,7 @@
 
   <script>
   (function(){
-    const SHOW_BASE_FROM_RESETBOX = false; // auf true für Dauerlinien ab Modul 01
-
+    // Keine Basislinien mehr
     const MODS = [
       {no:"01", label:"RESETBOX", ring:"inner", file:"MODULES/Modul_01_RESETBOX.md"},
       {no:"02", label:"WATER",    ring:"inner", file:"MODULES/Modul_02_WATER.md"},
@@ -93,7 +94,7 @@
       {no:"35", label:"DATA",     ring:"outer", file:"MODULES/Modul_35_DATA.md"},
       {no:"36", label:"CONFLICT", ring:"outer", file:"MODULES/Modul_36_CONFLICT.md"},
       {no:"37", label:"DEMOCRACY",ring:"outer", file:"MODULES/Modul_37_DEMOCRACY.md"},
-      {no:"38", label:"GOVERNANCE",ring:"outer",file:"MODULES/Modul_38_GOVERNANCE.md"},
+      {no:"38", label:"GOVERNANCE",ring:"outer", file:"MODULES/Modul_38_GOVERNANCE.md"},
       {no:"39", label:"KNOWLEDGE",ring:"outer", file:"MODULES/Modul_39_KNOWLEDGE.md"},
       {no:"40", label:"ART",      ring:"outer", file:"MODULES/Modul_40_ART.md"},
       {no:"41", label:"FUTURE",   ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
@@ -154,6 +155,9 @@
     const cfg = { inner:{r:220}, mid:{r:380}, outer:{r:540} };
     const pos = {};
 
+    function clearEdges(){
+      edgesLayer.querySelectorAll('path.on').forEach(p=>p.classList.remove('on'));
+    }
     function selEdges(no){ return edgesLayer.querySelectorAll(`path[data-a="${no}"], path[data-b="${no}"]`); }
     function highlight(no, on){
       const list = selEdges(no);
@@ -190,11 +194,21 @@
         a.appendChild(t);
 
         function onEnter(e){
-          if(tip){tip.textContent=t.textContent; tip.style.left=e.clientX+'px'; tip.style.top=e.clientY+'px'; tip.classList.add('show');}
+          tip.textContent=t.textContent;
+          tip.style.left=e.clientX+'px';
+          tip.style.top=e.clientY+'px';
+          tip.classList.add('show');
+          clearEdges();
           highlight(m.no,true);
         }
-        function onMove(e){ if(tip){ tip.style.left=e.clientX+'px'; tip.style.top=e.clientY+'px'; } }
-        function onLeave(){ if(tip){tip.classList.remove('show');} highlight(m.no,false); if(SHOW_BASE_FROM_RESETBOX){selEdges("01").forEach(p=>p.classList.add('base'));} }
+        function onMove(e){
+          tip.style.left=e.clientX+'px';
+          tip.style.top=e.clientY+'px';
+        }
+        function onLeave(){
+          tip.classList.remove('show');
+          clearEdges();
+        }
 
         a.addEventListener('mouseenter',onEnter);
         a.addEventListener('mousemove',onMove);
@@ -216,15 +230,17 @@
           const A=pos[a],B=pos[b]; if(!A||!B)return;
           const mx=(A.x+B.x)/2,my=(A.y+B.y)/2,k=0.12,nx=(B.y-A.y),ny=-(B.x-A.x);
           const cx=mx+nx*k,cy=my+ny*k;
-          const d=`M ${A.x} ${A.y} Q ${cx} ${cy} ${B.x} ${B.y}`;
           const p=document.createElementNS("http://www.w3.org/2000/svg","path");
-          p.setAttribute('d',d); p.setAttribute('data-a',a); p.setAttribute('data-b',b);
+          p.setAttribute('d',`M ${A.x} ${A.y} Q ${cx} ${cy} ${B.x} ${B.y}`);
+          p.setAttribute('data-a',a); p.setAttribute('data-b',b);
           edgesLayer.appendChild(p);
         });
       });
-      if(SHOW_BASE_FROM_RESETBOX){ selEdges("01").forEach(p=>p.classList.add('base')); }
     }
     drawEdges();
+
+    // Sicherheitsnetz: verlässt die Maus das SVG komplett -> alles aus
+    svg.addEventListener('mouseleave', ()=>{ clearEdges(); tip.classList.remove('show'); });
   })();
   </script>
 </body>

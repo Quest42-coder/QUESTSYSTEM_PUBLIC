@@ -10,7 +10,7 @@
       --bg:#0e1116; --fg:#e7eef7; --muted:#9fb0c6;
       --ring-inner:#f3c0c7; --ring-mid:#f0de94; --ring-outer:#bcd5ff;
       --node-bg:#10151f; --node-border:#2a3344;
-      --edge:#6f849f; --edge-on:#a7c4ff;
+      --edge:#8fb3ff; --edge-dim:#6f849f;
       --shadow: 0 6px 24px rgba(0,0,0,.35);
       --header-h: 54px;
     }
@@ -34,19 +34,6 @@
     header a{color:var(--fg); text-decoration:none; opacity:.9; font-size:13px}
     header a:hover{opacity:1; text-decoration:underline}
 
-    /* Dropdown */
-    nav details{position:relative}
-    nav summary{list-style:none; cursor:pointer; padding:4px 8px; border-radius:8px}
-    nav summary::-webkit-details-marker{display:none}
-    nav details[open] summary{background:rgba(255,255,255,.06)}
-    .menu{
-      position:absolute; top:calc(100% + 6px); right:0; z-index:100; max-height:70vh; overflow:auto;
-      min-width:260px; padding:8px; border-radius:10px; background:rgba(12,16,24,.96); border:1px solid #222a39; box-shadow: var(--shadow);
-    }
-    .menu h4{margin:8px 8px 6px; font-size:12px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.6px}
-    .menu a{display:block; padding:6px 8px; border-radius:8px; color:var(--fg); text-decoration:none; font-size:13px}
-    .menu a:hover{background:rgba(255,255,255,.08)}
-
     /* Bühne unter Header */
     .stage{position:absolute; inset: var(--header-h) 0 0 0; display:grid; place-items:center; padding:16px;}
     svg{width:min(1200px, 95vw); height:calc(95vh - var(--header-h));}
@@ -56,25 +43,35 @@
     .ring-mid{stroke:var(--ring-mid); stroke-width:2.2; fill:none; stroke-opacity:.9}
     .ring-outer{stroke:var(--ring-outer); stroke-width:2.2; fill:none; stroke-opacity:.9}
 
-    /* Edges (Verbindungen) */
-    .edges path{ stroke:var(--edge); stroke-width:1.4; fill:none; opacity:.14; transition:opacity .15s ease, stroke .15s ease, stroke-width .15s ease; }
-    svg.hovering .edges path{ opacity:.06 }              /* wenn etwas gehovt wird: alles erstmal dimmen */
-    .edges path.on{ stroke:var(--edge-on); opacity:.9; stroke-width:2.2 }  /* verbundene Kanten aktiv */
+    /* Edges (Verbindungen) – jetzt deutlich sichtbar */
+    .edges path{
+      stroke:var(--edge); stroke-width:2; fill:none; opacity:.5;
+      transition:opacity .15s ease, stroke .15s ease, stroke-width .15s ease;
+    }
+    svg.hovering .edges path{ opacity:.2; stroke:var(--edge-dim) } /* beim Hover alles leicht dimmen */
+    .edges path.on{ opacity:.95; stroke:var(--edge); stroke-width:3 } /* aktive Verbindungen stark hervorheben */
 
-    /* Nodes */
+    /* Nodes – volle Kreisfläche klickbar */
     svg a.node{ cursor:pointer; filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); transition: transform .15s ease, opacity .2s ease; }
     svg a.node:hover{ transform: translateY(-2px) scale(1.03); }
     .node circle{
-      r:46; fill:rgba(255,255,255,0.001); /* unsichtbar, aber fängt Klicks */
+      r:50; /* größer: füllt den sichtbaren Modulkreis */
+      fill:rgba(255,255,255,0.001); /* unsichtbar, aber „gemalt“ -> fängt Klicks */
       stroke:var(--node-border); stroke-width:1.5;
+      pointer-events:visiblePainted;
+      vector-effect:non-scaling-stroke;
     }
     .node text{ font-size:12px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle; pointer-events:none }
     .inner text{ fill:#5d2029 } .mid text{ fill:#6c5b00 } .outer text{ fill:#274b7a }
-    .node.linked text{ font-weight:700 } /* verbundene Knoten betonen */
+    .node.linked text{ font-weight:700 }
 
-    /* Zentrum (neutral wie vorher) */
-    .center circle{ fill:transparent; stroke:#59657c; stroke-dasharray:4 6; }
-    .center text{ fill:#7f8ea8; font-weight:600; font-size:12px; text-anchor:middle; dominant-baseline:middle }
+    /* Zentrum: RESETBOX groß & zentral & klickbar */
+    .center circle{ fill:transparent; stroke:#8aa2c6; stroke-dasharray:4 6; stroke-width:2 }
+    .center text{
+      fill:#ffffff; font-weight:800; font-size:28px;
+      text-anchor:middle; dominant-baseline:middle; letter-spacing:.6px;
+      pointer-events:none;
+    }
 
     /* Tooltip */
     .tip{
@@ -99,7 +96,6 @@
 
     @media (max-width:720px){
       header h1{display:none}
-      .menu{ right:auto; left:0; min-width:220px }
     }
   </style>
 </head>
@@ -113,11 +109,6 @@
       <a id="nav-dignity">Dignity Clause</a>
       <a id="nav-gebote">14 Gebote</a>
       <a id="nav-discuss">Diskussion</a>
-
-      <details>
-        <summary>Module ▾</summary>
-        <div id="menu-modules" class="menu" role="menu" aria-label="Module"></div>
-      </details>
     </nav>
   </header>
 
@@ -132,14 +123,16 @@
       <circle class="ring-mid"   r="380"></circle>
       <circle class="ring-outer" r="540"></circle>
 
-      <!-- Verbindungs-Layer (kommt hinter die Nodes) -->
+      <!-- Verbindungs-Layer (hinter den Nodes) -->
       <g id="edges" class="edges"></g>
 
-      <!-- Zentrum -->
-      <g class="center" aria-label="Resetbox">
-        <circle r="70"></circle>
-        <text y="0">RESETBOX</text>
-      </g>
+      <!-- Zentrum: RESETBOX (deutlich größer & klickbar) -->
+      <a class="center" id="center-reset" target="_self">
+        <g aria-label="Resetbox">
+          <circle r="140"></circle>
+          <text y="0">RESETBOX</text>
+        </g>
+      </a>
     </svg>
   </div>
 
@@ -166,7 +159,7 @@
     document.getElementById('nav-gebote').href  = urlFor('MODULES/14_GEBOTE_V2.1.md');
     document.getElementById('nav-discuss').href = urlFor('MODULES/14_GEBOTE_DISCUSSION.md');
 
-    // ---- Modul-Liste (Nodes) ----
+    // ---- Module (Nodes) ----
     const nodes = [
       // INNER – Existential
       {label:"WATER",   ring:"inner", file:`MODULES/Modul_02_WATER.md`},
@@ -213,9 +206,8 @@
       {label:"KNOWLEDGE",  ring:"outer", file:`MODULES/Modul_39_KNOWLEDGE.md`}
     ];
 
-    // ---- Verbindungen (Edges) – Beispiel-Graph, erweiterbar ----
+    // ---- Verbindungen (Edges) ----
     const edges = [
-      // Inner
       ["WATER","FOOD"],["WATER","HEALTH"],["WATER","BODY"],
       ["SHELTER","HOUSING"],["SHELTER","COMMUNITY"],
       ["SLEEP","HEALTH"],["SLEEP","PSYCHE"],
@@ -223,14 +215,12 @@
       ["DEVICE","DATA"],["DEVICE","PRIVACY"],
       ["DEBT","WORK"],
 
-      // Mid
       ["WORK","SCHOOL"],["WORK","DEBT"],["SCHOOL","KNOWLEDGE"],
       ["BORDER","MIGRATION"],["NATURE","CLIMATE"],
       ["HEALTH","CARE"],["FAMILY","CARE"],["COMMUNITY","JUSTICE"],
       ["CULTURE","ART"],["MEDIA","TRUTH"],["ENERGY","CLIMATE"],
       ["JUSTICE","DEMOCRACY"],["COMMUNITY","FAMILY"],
 
-      // Outer x Inner/Mid
       ["ART","CULTURE"],["FUTURE","SCHOOL"],["FUTURE","KNOWLEDGE"],
       ["DEATH","HEALTH"],["DEATH","PSYCHE"],
       ["HOUSING","SHELTER"],["TRANSPORT","NETWORK"],
@@ -253,31 +243,13 @@
     const edgesLayer = document.getElementById('edges');
     const tip = document.getElementById('tip');
 
-    // Positions & <a>-Refs
-    const pos = {};           // label -> {x,y}
-    const nodeRef = {};       // label -> <a>
-    const neighbors = {};     // label -> Set<label>
+    const pos = {};       // label -> {x,y}
+    const nodeRef = {};   // label -> <a>
+    const neighbors = {}; // label -> Set<label>
 
-    // Dropdown „Module“ dynamisch bauen
-    const menuModules = document.getElementById('menu-modules');
-    function buildModuleMenu(){
-      const groups = {inner:[], mid:[], outer:[]};
-      nodes.forEach(n=>groups[n.ring].push(n));
-      const order = [
-        ["Existential (inner)","inner"],
-        ["Societal (mid)","mid"],
-        ["Structural (outer)","outer"]
-      ];
-      order.forEach(([title,key])=>{
-        const h = document.createElement('h4'); h.textContent = title; menuModules.appendChild(h);
-        groups[key].forEach(n=>{
-          const a = document.createElement('a');
-          a.textContent = n.label;
-          a.href = urlFor(n.file);
-          menuModules.appendChild(a);
-        });
-      });
-    }
+    // RESETBOX verlinken
+    document.getElementById('center-reset').setAttribute('href', urlFor('MODULES/Modul_01_RESETBOX.md'));
+    document.getElementById('center-reset').setAttributeNS(XLINK_NS, 'xlink:href', urlFor('MODULES/Modul_01_RESETBOX.md'));
 
     function placeNodes(){
       const groups = {inner:[], mid:[], outer:[]};
@@ -307,15 +279,11 @@
           a.dataset.label = n.label;
           nodeRef[n.label]=a;
 
-          // Klickfläche (groß, sicher klickbar)
-          const circle=document.createElementNS(SVG_NS,"circle");
-          circle.setAttribute("r", 46);
-          circle.setAttribute("vector-effect","non-scaling-stroke");
+          const circle=document.createElementNS(SVG_NS,"circle"); // volle Klickfläche
           a.appendChild(circle);
 
           const text=document.createElementNS(SVG_NS,"text");
-          text.textContent=n.label;
-          a.appendChild(text);
+          text.textContent=n.label; a.appendChild(text);
 
           // Tooltip & Hover-Hervorhebung
           a.addEventListener('mouseenter',e=>{ showTip(n.label,e); svg.classList.add('hovering'); highlight(n.label,true); });
@@ -346,7 +314,6 @@
       edges.forEach(([a,b])=>{
         const pa = pos[a], pb = pos[b];
         if(!pa || !pb) return;
-        // leichte Kurve (Quadratic Bezier) zur Lesbarkeit
         const mx = (pa.x + pb.x)/2, my = (pa.y + pb.y)/2;
         const k = 0.12; // Krümmung
         const nx = (pb.y - pa.y), ny = -(pb.x - pa.x);
@@ -357,7 +324,6 @@
         p.dataset.a=a; p.dataset.b=b;
         edgesLayer.appendChild(p);
       });
-      // Edges hinter die Nodes legen (bereits vor den Node-Groups im DOM)
     }
 
     function highlight(label, on){
@@ -369,13 +335,12 @@
         const el = nodeRef[lab];
         if(el) el.classList.toggle('linked', on);
       });
-      // aktiver Knoten selbst (leicht betonen)
+      // aktiver Knoten
       const self = nodeRef[label];
       if (self) self.classList.toggle('linked', on);
     }
 
     // Build all
-    buildModuleMenu();
     placeNodes();
     buildNeighbors();
     drawEdges();

@@ -2,297 +2,472 @@
 <html lang="de">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>QUESTSYSTEM – Modul</title>
-<meta name="color-scheme" content="dark light">
+<meta name="description" content="Markdown-Ansicht für Module und Ethik-Dokumente des QUESTSYSTEMS." />
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
 <style>
   :root{
-    --bg:#0e1116; --fg:#e7eef7; --muted:#9fb0c6; --accent:#66ccff; --border:#222a39;
-    --card:rgba(12,16,24,.75); --shadow:0 8px 28px rgba(0,0,0,.35);
-    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    --bg:#0a0f17; --fg:#eef4ff; --muted:#9fb0c6; --border:#1f2a3d; --glass:rgba(14,18,28,.6);
+    --accent:#79e1ff; --accent2:#8affc7;
+    --header-h:58px; --shadow:0 14px 48px rgba(0,0,0,.55);
+    --code-bg:#0f1624; --code-border:#20304a;
+    --toc-bg:rgba(11,16,26,.9);
+    --active:#9fe3ff;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0; color:var(--fg);
-    font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    font:17px/1.75 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", sans-serif;
     background:
-      radial-gradient(1200px 800px at 50% 45%, #141a2a 0%, #0f1422 60%, var(--bg) 100%),
-      radial-gradient(800px 600px at 20% 10%, rgba(255,255,255,.04), transparent 60%),
-      radial-gradient(700px 700px at 80% 80%, rgba(255,255,255,.03), transparent 65%);
+      radial-gradient(1400px 900px at 50% 38%, #131b2b 0%, #111828 55%, var(--bg) 100%),
+      radial-gradient(900px 700px at 12% 14%, rgba(255,255,255,.05), transparent 60%),
+      radial-gradient(900px 900px at 88% 84%, rgba(255,255,255,.035), transparent 65%);
   }
 
+  /* Header */
   header{
-    position:sticky; top:0; z-index:20;
-    display:flex; align-items:center; gap:10px; padding:10px 14px;
-    background:rgba(10,13,20,.7); border-bottom:1px solid var(--border); backdrop-filter: blur(6px);
+    position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:60;
+    display:flex; align-items:center; gap:12px; padding:10px 14px;
+    background:var(--glass); border-bottom:1px solid var(--border); backdrop-filter: blur(8px);
   }
-  header a.brand{font-weight:900; letter-spacing:.4px; color:var(--fg); text-decoration:none}
-  header .path{color:var(--muted); font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-  .actions{margin-left:auto; display:flex; gap:8px; flex-wrap:wrap}
-  .btn{
-    appearance:none; border:1px solid var(--border); background:var(--card);
-    color:var(--fg); padding:6px 10px; border-radius:8px; cursor:pointer; font-weight:600;
+  .brand{ color:var(--fg); text-decoration:none; font-weight:900; letter-spacing:.4px }
+  .nav{ margin-left:auto; display:flex; gap:10px; align-items:center }
+  .dd{ position:relative }
+  .dd>button{ color:var(--fg); background:transparent; border:1px solid transparent; padding:6px 10px; border-radius:10px; cursor:pointer; font-weight:700 }
+  .menu{
+    position:absolute; right:0; top:calc(100% + 8px); min-width:240px; max-height:60vh; overflow:auto;
+    display:none; flex-direction:column; gap:4px; padding:10px;
+    background:rgba(10,13,20,.98); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow);
   }
-  .btn:hover{border-color:#3a4760}
-  .btn.sec{background:transparent}
-  .wrap{max-width:1100px; margin:18px auto 56px; padding:0 16px;}
+  .dd:hover .menu{ display:flex }
+  .menu a{ color:var(--fg); text-decoration:none; padding:9px 11px; border-radius:8px }
+  .menu a:hover{ background:rgba(255,255,255,.07) }
+  .burger{display:none; background:none; border:0; width:38px; height:38px; margin-left:auto; cursor:pointer}
+  .burger span{display:block; height:2px; background:var(--fg); margin:7px 5px; border-radius:2px}
+  @media (max-width:900px){
+    .burger{display:block}
+    .nav{position:fixed; top:var(--header-h); left:10px; right:10px; display:none; flex-direction:column; gap:12px;
+         background:rgba(10,13,20,.98); border:1px solid var(--border); border-radius:12px; padding:12px; z-index:65}
+    .dd{width:100%}
+    .dd>button{width:100%; text-align:left; border:1px solid var(--border)}
+    .menu{position:static; display:block; background:transparent; border:0; box-shadow:none; padding:6px 0; max-height:none; overflow:visible}
+  }
 
-  /* Content card */
-  .card{
-    background:rgba(12,16,24,.55); border:1px solid var(--border); border-radius:12px;
-    box-shadow:var(--shadow); overflow:hidden;
+  /* Bühne & Content */
+  .stage{ position:absolute; inset:var(--header-h) 0 0 0; overflow:auto; scroll-behavior:smooth; }
+  .container{
+    max-width:min(1100px, 92vw);
+    margin: 24px auto 80px auto;
+    padding: 26px 26px 30px 26px;
+    background:rgba(12,16,26,.55); backdrop-filter: blur(6px);
+    border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow);
   }
-  .md{
-    padding:22px 22px;
-  }
-  .md h1,.md h2,.md h3,.md h4,.md h5{
-    line-height:1.25; margin:1.2em 0 .55em;
-  }
-  .md h1{font-size:2rem} .md h2{font-size:1.6rem}
-  .md h3{font-size:1.25rem} .md h4{font-size:1.1rem}
-  .md p{margin:.6em 0}
-  .md a{color:var(--accent); text-decoration:none}
-  .md a:hover{text-decoration:underline}
-  .md code{font-family:var(--mono); background:#101725; border:1px solid #263047; padding:.1em .35em; border-radius:6px}
-  .md pre{background:#0b1220; border:1px solid #263047; border-radius:10px; padding:12px; overflow:auto}
-  .md pre code{background:transparent; border:0; padding:0}
-  .md ul,.md ol{margin:.5em 0 .8em 1.2em}
-  .md blockquote{
-    margin:.8em 0; padding:.4em .8em; border-left:3px solid #3c4b6b; color:#c9d6ea; background:rgba(60,75,107,.08); border-radius:8px;
-  }
-  .md hr{border:0; border-top:1px solid var(--border); margin:1.2em 0}
-  .md table{width:100%; border-collapse:collapse; margin:1em 0; font-size:.95rem}
-  .md th,.md td{border:1px solid #29354c; padding:8px 10px}
-  .md th{background:#0f1626}
-  .md img{max-width:100%}
 
+  /* Meta-Bar */
   .meta{
-    display:flex; gap:12px; flex-wrap:wrap; align-items:center;
-    padding:10px 14px; border-top:1px solid var(--border); background:rgba(12,16,24,.5);
-    color:var(--muted); font-size:.9rem;
+    display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+    margin-bottom:16px; color:var(--muted); font-size:14px
   }
-  .meta .sp{flex:1}
-  .err{
-    margin:14px 0; padding:12px 14px; border:1px solid #5a2a2a; background:rgba(120,40,40,.18); color:#ffd7d7; border-radius:10px;
+  .meta .path{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:60ch }
+  .meta .actions{ display:flex; gap:8px; flex-wrap:wrap }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:8px 10px; border-radius:10px; text-decoration:none; cursor:pointer;
+    background:transparent; color:var(--fg); border:1px solid var(--border); font-weight:700
   }
-  .note{color:#b9c7de; font-size:.95rem; margin:.6em 0}
+  .btn:hover{ border-color:#2a3953 }
+
+  /* Markdown Typo */
+  .md h1,.md h2,.md h3,.md h4{ line-height:1.25; margin: 1.2em 0 .6em 0; scroll-margin-top: calc(var(--header-h) + 14px); }
+  .md h1{ font-size:36px } .md h2{ font-size:28px } .md h3{ font-size:22px } .md h4{ font-size:18px }
+  .md p{ margin:.7em 0; color:var(--fg) }
+  .md a{ color:#9fe3ff; text-decoration:none } .md a:hover{ text-decoration:underline }
+  .md ul, .md ol{ padding-left:1.3em }
+  .md blockquote{
+    margin:1em 0; padding:10px 14px; border-left:3px solid var(--accent);
+    background:rgba(127,205,255,.06); color:#dce9ff; border-radius:8px;
+  }
+  .md code{ background:var(--code-bg); border:1px solid var(--code-border); padding:.1em .35em; border-radius:6px; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace }
+  .md pre{ background:var(--code-bg); border:1px solid var(--code-border); padding:12px; border-radius:10px; overflow:auto }
+  .md pre code{ border:0; padding:0; background:transparent }
+  .md table{ width:100%; border-collapse: collapse; margin:1em 0; font-size:15px }
+  .md th,.md td{ border:1px solid var(--border); padding:8px 10px }
+  .md th{ background:rgba(255,255,255,.05) }
+
+  /* Fehlerbox */
+  .error{
+    padding:16px; border:1px solid #6b2d2d; background:rgba(120,20,20,.25); border-radius:12px; color:#ffdede; margin-top:12px
+  }
+  .hint{ color:var(--muted); font-size:14px; margin-top:6px }
+
+  /* TOC */
+  .toc-wrap{
+    position:fixed; right:16px; top:calc(var(--header-h) + 16px); z-index:55;
+    width:min(300px, 60vw); max-height:60vh; overflow:auto;
+    background:var(--toc-bg); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow);
+  }
+  .toc-head{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:10px 12px; border-bottom:1px solid var(--border);
+  }
+  .toc-head b{ font-size:14px; letter-spacing:.3px }
+  .toc-toggle{
+    background:transparent; border:1px solid var(--border); color:var(--fg);
+    padding:6px 10px; border-radius:8px; cursor:pointer; font-weight:700;
+  }
+  .toc{ padding:10px 12px; font-size:14px }
+  .toc a{ display:block; color:var(--fg); text-decoration:none; padding:6px 6px; border-radius:6px; }
+  .toc a:hover{ background:rgba(255,255,255,.06) }
+  .toc .lvl-1{ font-weight:800; }
+  .toc .lvl-2{ padding-left:10px }
+  .toc .lvl-3{ padding-left:20px }
+  .toc a.active{
+    background:linear-gradient(135deg, var(--accent), var(--accent2));
+    color:#03202b; font-weight:900;
+  }
+  @media (max-width:1100px){ .toc-wrap{ display:none } }
+
+  /* Bottom back */
+  .back-bottom{ margin-top:28px; display:flex; justify-content:flex-end }
+
+  /* Back-To-Top (Questfarben) */
+  .to-top{
+    position:fixed; right:18px; bottom:18px; z-index:70;
+    display:none; align-items:center; gap:10px;
+    padding:12px 16px; border-radius:999px; cursor:pointer; border:0;
+    color:#04121a; font-weight:900; letter-spacing:.3px;
+    background:linear-gradient(135deg, var(--accent), var(--accent2));
+    box-shadow:0 10px 28px rgba(0,0,0,.45);
+  }
+  .to-top.show{ display:inline-flex }
 </style>
 </head>
 <body>
 <header>
-  <a class="brand" href="./">🍄 QUESTSYSTEM</a>
-  <div class="path" id="path"></div>
-  <div class="actions">
-    <button class="btn sec" id="btn-copy">Permalink kopieren</button>
-    <a class="btn" id="btn-github" target="_blank" rel="noopener">Auf GitHub öffnen</a>
-    <a class="btn sec" id="btn-raw" target="_blank" rel="noopener">Raw öffnen</a>
-  </div>
+  <a class="brand" href="./index.html">🍄 QUESTSYSTEM</a>
+  <button class="burger" aria-label="Menü" aria-expanded="false"><span></span><span></span><span></span></button>
+  <nav class="nav" aria-label="Hauptnavigation">
+    <div class="dd">
+      <button>System</button>
+      <div class="menu">
+        <a href="./index.html">Start</a>
+        <a href="./map.html">Modul-Map</a>
+        <a href="module.html?file=ARTIST_PROFILE.md">Artist Profile</a>
+        <a href="module.html?file=MODULES/Modul_32_LICENCE.md">Licence</a>
+        <a href="https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC" target="_blank" rel="noopener">Repository</a>
+      </div>
+    </div>
+    <div class="dd">
+      <button>Ethik</button>
+      <div class="menu">
+        <a href="module.html?file=Dignity_Clause.md">Dignity Clause</a>
+        <a href="module.html?file=14_GEBOTE_V2.1.md">14 Gebote (V2.1)</a>
+        <a href="module.html?file=14_GEBOTE_DISCUSSION.md">Diskussion</a>
+      </div>
+    </div>
+    <div class="dd">
+      <button>Module</button>
+      <div class="menu" id="menu-mods"></div>
+    </div>
+  </nav>
 </header>
 
-<div class="wrap">
-  <div class="card">
-    <div id="content" class="md">Lade Modul…</div>
+<!-- Floating TOC -->
+<aside class="toc-wrap" id="toc-wrap" aria-label="Inhaltsverzeichnis" hidden>
+  <div class="toc-head">
+    <b>Inhalt</b>
+    <button class="toc-toggle" id="toc-toggle" type="button">Ausblenden</button>
+  </div>
+  <nav class="toc" id="toc"></nav>
+</aside>
+
+<main class="stage" id="stage">
+  <div class="container">
     <div class="meta">
-      <span class="sp" id="status">Status: lädt…</span>
-      <span id="branchHint"></span>
+      <div class="path" id="meta-path">Lade …</div>
+      <div class="actions">
+        <a href="./map.html" class="btn">← Zur Map</a>
+        <a id="open-gh" class="btn" target="_blank" rel="noopener">Auf GitHub öffnen</a>
+        <a id="open-raw" class="btn" target="_blank" rel="noopener">Raw öffnen</a>
+        <button id="copy-url" class="btn" type="button">URL kopieren</button>
+      </div>
+    </div>
+    <article id="content" class="md">Wird geladen …</article>
+    <div class="back-bottom">
+      <a href="./map.html" class="btn">← Zur Map</a>
     </div>
   </div>
-</div>
+</main>
+
+<button class="to-top" id="to-top" type="button" aria-label="Nach oben">↑ Nach oben</button>
 
 <script>
+/* ===== Mobile Menü ===== */
 (function(){
-  const qs = new URLSearchParams(location.search);
-  let file = qs.get('file') || '';
-  // Vorsicht bei absoluten URLs im Parameter
-  if (file.startsWith('http://') || file.startsWith('https://')) {
-    try { const u = new URL(file); file = u.pathname.replace(/^\\//,''); } catch {}
-  }
-  // kleine Normalisierung
-  file = file.replace(/^\\.\\//,'').replace(/^\\//,'').replace(/\\+/g,'/');
-
-  const contentEl = document.getElementById('content');
-  const statusEl = document.getElementById('status');
-  const pathEl = document.getElementById('path');
-  const btnRaw = document.getElementById('btn-raw');
-  const btnGit = document.getElementById('btn-github');
-  const btnCopy= document.getElementById('btn-copy');
-  const branchHint = document.getElementById('branchHint');
-
-  // Pfad im Header anzeigen
-  pathEl.textContent = file ? '› ' + file : '› (keine Datei angegeben)';
-
-  // Besitzer/Repo aus Pages-URL ableiten: https://USER.github.io/REPO/...
-  function detectRepo(){
-    const {host, pathname} = location;
-    const owner = host.endsWith('.github.io') ? host.replace('.github.io','') : null;
-    const parts = pathname.replace(/^\\//,'').split('/');
-    const repo = parts[0] || null;
-    return {owner, repo};
-  }
-  const {owner, repo} = detectRepo();
-
-  // Kandidaten-URLs aufbauen (Reihenfolge = Priorität)
-  function candidates(file){
-    const arr = [];
-    // 1) relative zum aktuellen Ort (funktioniert bei flachen Strukturen)
-    arr.push(file);
-    arr.push('./'+file);
-
-    // 2) Absolute Pfade relativ zur Site-Root
-    const base = location.origin + '/' + (repo ? (repo + '/') : '');
-    arr.push(base + file);
-
-    // 3) raw.githubusercontent.com (main, dann master)
-    if (owner && repo) {
-      arr.push(`https://raw.githubusercontent.com/${owner}/${repo}/main/${file}`);
-      arr.push(`https://raw.githubusercontent.com/${owner}/${repo}/master/${file}`);
-    }
-    return arr;
-  }
-
-  // Einfache Markdown→HTML-Konvertierung (ohne externe Libs)
-  function mdToHtml(md){
-    // Escape zuerst
-    const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-    // Codefences
-    md = md.replace(/```([\\s\\S]*?)```/g, (m, code)=>`<pre><code>${esc(code)}</code></pre>`);
-    // Inline code
-    md = md.replace(/`([^`]+)`/g, (m, code)=>`<code>${esc(code)}</code>`);
-    // Headings
-    md = md.replace(/^######\\s*(.+)$/gm, '<h6>$1</h6>')
-           .replace(/^#####\\s*(.+)$/gm, '<h5>$1</h5>')
-           .replace(/^####\\s*(.+)$/gm, '<h4>$1</h4>')
-           .replace(/^###\\s*(.+)$/gm, '<h3>$1</h3>')
-           .replace(/^##\\s*(.+)$/gm, '<h2>$1</h2>')
-           .replace(/^#\\s*(.+)$/gm, '<h1>$1</h1>');
-    // Blockquotes
-    md = md.replace(/^>\\s?(.+)$/gm, '<blockquote>$1</blockquote>');
-    // Bold/Italic
-    md = md.replace(/\\*\\*([^*]+)\\*\\*/g, '<strong>$1</strong>')
-           .replace(/\\*(?!\\s)([^*]+)\\*/g, '<em>$1</em>');
-    // Links [text](url)
-    md = md.replace(/\$begin:math:display$([^\\$end:math:display$]+)\\]\$begin:math:text$([^)]+)\\$end:math:text$/g, (m,txt,href)=>{
-      // .md Links im Repo → über module.html öffnen
-      if (/\\.md(#[\\w-]+)?$/i.test(href) && !/^https?:/i.test(href)) {
-        const target = href.replace(/^\\.\\//,'').replace(/^\\//,'');
-        return `<a href="module.html?file=${encodeURIComponent(target)}">${txt}</a>`;
-      }
-      return `<a href="${href}">${txt}</a>`;
-    });
-    // Unordered lists
-    md = md.replace(/^(\\s*)-\\s+(.+)$/gm, '$1• $2');
-    md = md.replace(/(?:^|\\n)(• .+(?:\\n\\s{2,}.+)*)/g, (m,block)=>{
-      const items = block.split(/\\n/).map(l=>l.replace(/^•\\s+/,'').trim()).filter(Boolean);
-      return '<ul>'+items.map(i=>`<li>${i}</li>`).join('')+'</ul>';
-    });
-    // Ordered lists 1. 2. …
-    md = md.replace(/(?:^|\\n)((?:\\d+\\. .+(?:\\n\\s{2,}.+)*)+)/g, (m,block)=>{
-      const items = block.split(/\\n/).map(l=>l.replace(/^\\d+\\.\\s+/,'').trim()).filter(Boolean);
-      return '<ol>'+items.map(i=>`<li>${i}</li>`).join('')+'</ol>';
-    });
-    // Horizontale Linie
-    md = md.replace(/\\n-{3,}\\n/g, '<hr/>');
-
-    // Paragraphs: leere Zeilen → <p>
-    md = md.split(/\\n{2,}/).map(chunk=>{
-      if (/^\\s*<(h\\d|ul|ol|pre|blockquote|hr|table|img)/i.test(chunk)) return chunk;
-      return '<p>'+chunk.replace(/\\n/g,'<br/>')+'</p>';
-    }).join('\\n');
-    return md;
-  }
-
-  async function tryFetch(url){
-    try{
-      const res = await fetch(url, {cache:'no-store'});
-      if (!res.ok) return null;
-      const text = await res.text();
-      if (/^<!doctype/i.test(text)) return null; // HTML-Dokument → nicht die MD
-      return text;
-    }catch{ return null; }
-  }
-
-  async function load(){
-    if(!file){
-      contentEl.innerHTML = '<div class="err"><strong>Keine Datei angegeben.</strong><br>Aufruf z. B.: <code>module.html?file=MODULES/Modul_10_WORK.md</code></div>';
-      statusEl.textContent = 'Status: Fehler – fehlender Parameter "file".';
-      return;
-    }
-    statusEl.textContent = 'Status: lade…';
-    const urls = candidates(file);
-    let got = null, used = null, usedBranch = null;
-    for(const u of urls){
-      const txt = await tryFetch(u);
-      if(txt){ got = txt; used = u; break; }
-    }
-    if(!got){
-      contentEl.innerHTML =
-        `<div class="err">
-          <strong>Fehler beim Laden</strong><br>
-          Quelle: <code>${file}</code><br>
-          Die Datei konnte nicht geladen werden (HTTP 404/Fehler).<br>
-          <div class="note">Prüfe, ob die Datei im Repo existiert und Pfad & Groß/Kleinschreibung stimmen.</div>
-        </div>`;
-      statusEl.textContent = 'Status: Fehler – Datei nicht gefunden.';
-      return;
-    }
-    // Branch-Hinweis, falls raw URL verwendet wurde
-    if (/raw\\.githubusercontent\\.com\\/.+\\/(main|master)\\//.test(used)) {
-      usedBranch = used.match(/raw\\.githubusercontent\\.com\\/[^/]+\\/[^/]+\\/(main|master)\\//)[1];
-      branchHint.textContent = `Quelle: raw (${usedBranch})`;
-    } else {
-      branchHint.textContent = 'Quelle: relativ';
-    }
-
-    // Buttons verkabeln
-    if (owner && repo) {
-      const gh = `https://github.com/${owner}/${repo}/blob/${usedBranch||'main'}/${file}`;
-      const raw = `https://raw.githubusercontent.com/${owner}/${repo}/${usedBranch||'main'}/${file}`;
-      btnGit.href = gh;
-      btnRaw.href = raw;
-    } else {
-      // Fallback falls nicht ermittelbar
-      btnGit.href = '#';
-      btnRaw.href = used || '#';
-    }
-
-    // Render
-    const html = mdToHtml(got);
-    contentEl.innerHTML = html;
-    statusEl.textContent = 'Status: geladen.';
-
-    // Interne .md-Links im gerenderten HTML nach module.html routen
-    contentEl.querySelectorAll('a[href]').forEach(a=>{
-      const href = a.getAttribute('href');
-      if (!href) return;
-      if (/\\.md(#[\\w-]+)?$/i.test(href) && !/^https?:/i.test(href)) {
-        const target = href.replace(/^\\.\\//,'').replace(/^\\//,'');
-        a.setAttribute('href', 'module.html?file='+encodeURIComponent(target));
-      }
-    });
-
-    // Überschriften mit IDs versehen (für #Anker)
-    contentEl.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach(h=>{
-      if(!h.id){
-        const id = h.textContent.trim().toLowerCase()
-          .replace(/[^a-z0-9\\s-]/g,'').replace(/\\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$|/g,'');
-        if(id) h.id = id;
-      }
-    });
-  }
-
-  btnCopy.addEventListener('click', async ()=>{
-    try{
-      await navigator.clipboard.writeText(location.href);
-      btnCopy.textContent = 'Kopiert ✔';
-      setTimeout(()=>btnCopy.textContent='Permalink kopieren', 1200);
-    }catch{
-      alert('Konnte nicht kopieren.');
+  const burger=document.querySelector('.burger'); const nav=document.querySelector('.nav');
+  if(!burger||!nav) return;
+  burger.addEventListener('click', ()=>{
+    const open = nav.style.display==='flex';
+    nav.style.display = open ? 'none':'flex';
+    burger.setAttribute('aria-expanded', String(!open));
+  });
+  nav.addEventListener('click', e=>{
+    if(e.target.closest('a') && matchMedia('(max-width:900px)').matches){
+      nav.style.display='none'; burger.setAttribute('aria-expanded','false');
     }
   });
-
-  load();
 })();
+
+/* ===== Menü: Module füllen ===== */
+const MODS = [
+  {no:"01", label:"RESETBOX", file:"MODULES/Modul_01_RESETBOX.md"},
+  {no:"02", label:"WATER", file:"MODULES/Modul_02_WATER.md"},
+  {no:"03", label:"SHELTER", file:"MODULES/Modul_03_SHELTER.md"},
+  {no:"04", label:"FOOD", file:"MODULES/Modul_04_FOOD.md"},
+  {no:"05", label:"SLEEP", file:"MODULES/Modul_05_SLEEP.md"},
+  {no:"06", label:"BODY", file:"MODULES/Modul_06_BODY.md"},
+  {no:"07", label:"PSYCHE", file:"MODULES/Modul_07_PSYCHE.md"},
+  {no:"08", label:"DEVICE", file:"MODULES/Modul_08_DEVICE.md"},
+  {no:"09", label:"DEBT", file:"MODULES/Modul_09_DEBT.md"},
+  {no:"10", label:"WORK", file:"MODULES/Modul_10_WORK.md"},
+  {no:"11", label:"SCHOOL", file:"MODULES/Modul_11_SCHOOL.md"},
+  {no:"12", label:"BORDER", file:"MODULES/Modul_12_BORDER.md"},
+  {no:"13", label:"NATURE", file:"MODULES/Modul_13_NATURE.md"},
+  {no:"14", label:"HEALTH", file:"MODULES/Modul_14_HEALTH.md"},
+  {no:"15", label:"CARE", file:"MODULES/Modul_15_CARE.md"},
+  {no:"16", label:"FAMILY", file:"MODULES/Modul_16_FAMILY.md"},
+  {no:"17", label:"ANIMAL", file:"MODULES/Modul_17_ANIMAL.md"},
+  {no:"18", label:"CULTURE", file:"MODULES/Modul_18_CULTURE.md"},
+  {no:"19", label:"MEDIA", file:"MODULES/Modul_19_MEDIA.md"},
+  {no:"20", label:"ENERGY", file:"MODULES/Modul_20_ENERGY.md"},
+  {no:"21", label:"CLIMATE", file:"MODULES/Modul_21_CLIMATE.md"},
+  {no:"22", label:"MIGRATION", file:"MODULES/Modul_22_MIGRATION.md"},
+  {no:"23", label:"JUSTICE", file:"MODULES/Modul_23_JUSTICE.md"},
+  {no:"24", label:"COMMUNITY", file:"MODULES/Modul_24_COMMUNITY.md"},
+  {no:"25", label:"FINANCE", file:"MODULES/Modul_25_FINANCE.md"},
+  {no:"26", label:"HOUSING", file:"MODULES/Modul_26_HOUSING.md"},
+  {no:"27", label:"TRANSPORT", file:"MODULES/Modul_27_TRANSPORT.md"},
+  {no:"28", label:"NETWORK", file:"MODULES/Modul_28_NETWORK.md"},
+  {no:"29", label:"SYMBOL", file:"MODULES/Modul_29_SYMBOL.md"},
+  {no:"30", label:"TRUTH", file:"MODULES/Modul_30_TRUTH.md"},
+  {no:"31", label:"MEMORY", file:"MODULES/Modul_31_MEMORY.md"},
+  {no:"32", label:"LICENCE", file:"MODULES/Modul_32_LICENCE.md"},
+  {no:"33", label:"PRIVACY", file:"MODULES/Modul_33_PRIVACY.md"},
+  {no:"34", label:"SECURITY", file:"MODULES/Modul_34_SECURITY.md"},
+  {no:"35", label:"DATA", file:"MODULES/Modul_35_DATA.md"},
+  {no:"36", label:"CONFLICT", file:"MODULES/Modul_36_CONFLICT.md"},
+  {no:"37", label:"DEMOCRACY", file:"MODULES/Modul_37_DEMOCRACY.md"},
+  {no:"38", label:"GOVERNANCE", file:"MODULES/Modul_38_GOVERNANCE.md"},
+  {no:"39", label:"KNOWLEDGE", file:"MODULES/Modul_39_KNOWLEDGE.md"},
+  {no:"40", label:"ART", file:"MODULES/Modul_40_ART.md"},
+  {no:"41", label:"FUTURE", file:"MODULES/Modul_41_FUTURE.md"},
+  {no:"42", label:"DEATH", file:"MODULES/Modul_42_DEATH.md"},
+];
+(function(){
+  const menu=document.getElementById('menu-mods');
+  MODS.forEach(m=>{
+    const a=document.createElement('a');
+    a.href='module.html?file='+encodeURIComponent(m.file);
+    a.textContent=`${m.no} ${m.label}`;
+    menu.appendChild(a);
+  });
+})();
+
+/* ===== Loader ===== */
+const $stage  = document.getElementById('stage');
+const $content = document.getElementById('content');
+const $meta    = document.getElementById('meta-path');
+const $openGh  = document.getElementById('open-gh');
+const $openRaw = document.getElementById('open-raw');
+const $copyUrl = document.getElementById('copy-url');
+const $tocWrap = document.getElementById('toc-wrap');
+const $toc     = document.getElementById('toc');
+const $tocToggle = document.getElementById('toc-toggle');
+const $toTop   = document.getElementById('to-top');
+
+function q(name){ const u = new URL(location.href); return u.searchParams.get(name); }
+function normPath(p){ return (p||'').replace(/^\/+/, ''); }
+function pathVariants(p){
+  const clean = normPath(p);
+  const inModules = clean.startsWith('MODULES/') ? clean : 'MODULES/'+clean;
+  const inRoot    = clean.replace(/^MODULES\//,'');
+  return [clean, inRoot, inModules];
+}
+function repoInfoFromPages(){
+  try{
+    const u = new URL(location.href);
+    const parts = u.pathname.split('/').filter(Boolean);
+    const user = u.hostname.split('.')[0];
+    const repo = parts.length ? parts[0] : 'QUESTSYSTEM_PUBLIC';
+    return {user, repo};
+  }catch{ return {user:'Quest42-coder', repo:'QUESTSYSTEM_PUBLIC'}; }
+}
+function rawUrl(user, repo, branch, path){ return `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${path}`; }
+function ghUrl(user, repo, path){ return `https://github.com/${user}/${repo}/blob/main/${path}`; }
+
+async function fetchText(url){ const r = await fetch(url, {cache:'no-store'}); if(!r.ok) throw new Error('HTTP '+r.status); return await r.text(); }
+function renderMd(md){
+  marked.setOptions({ mangle:false, headerIds:true, breaks:false, gfm:true });
+  const dirty = marked.parse(md);
+  const html  = DOMPurify.sanitize(dirty, { ADD_ATTR: ['target','rel','id'] });
+  $content.innerHTML = html;
+  // Externe Links im neuen Tab
+  $content.querySelectorAll('a[href]').forEach(a=>{
+    const href=a.getAttribute('href'); if(/^https?:\/\//i.test(href)){ a.target='_blank'; a.rel='noopener'; }
+  });
+  buildTOC();
+  initScrollSpy();
+}
+
+function showError(msg, tried){
+  const list = tried.map(t=>`<li><code>${t}</code></li>`).join('');
+  $content.innerHTML = `
+    <div class="error">
+      <strong>Fehler beim Laden</strong><br/>
+      ${msg}
+      <div class="hint" style="margin-top:10px">
+        Geprüfte Pfade/URLs:
+        <ul>${list}</ul>
+      </div>
+    </div>`;
+}
+
+/* ===== TOC ===== */
+function slugify(text){
+  return text.toLowerCase().trim()
+    .replace(/[^\p{L}\p{N}\s-]/gu,'')
+    .replace(/\s+/g,'-')
+    .replace(/-+/g,'-');
+}
+function ensureIds(headings){
+  headings.forEach(h=>{
+    if(!h.id || h.id==='') h.id = slugify(h.textContent || 'section');
+  });
+}
+function buildTOC(){
+  const hs = Array.from($content.querySelectorAll('h1, h2, h3'));
+  if(!hs.length){ $tocWrap.hidden=true; return; }
+  ensureIds(hs);
+  const frag = document.createDocumentFragment();
+  hs.forEach(h=>{
+    const a = document.createElement('a');
+    a.href = '#'+h.id;
+    a.textContent = h.textContent;
+    const lvl = h.tagName==='H1'?1:h.tagName==='H2'?2:3;
+    a.className = 'lvl-'+lvl;
+    a.dataset.target = h.id;
+    a.addEventListener('click', (e)=>{
+      e.preventDefault();
+      document.getElementById(h.id)?.scrollIntoView({behavior:'smooth', block:'start'});
+      history.replaceState(null,'','#'+h.id);
+    });
+    frag.appendChild(a);
+  });
+  $toc.innerHTML=''; $toc.appendChild(frag);
+  $tocWrap.hidden=false;
+}
+
+/* ===== Scroll-Spy ===== */
+let spyObserver=null;
+function initScrollSpy(){
+  if(spyObserver){ spyObserver.disconnect(); spyObserver=null; }
+  const links = Array.from($toc.querySelectorAll('a[data-target]'));
+  if(!links.length) return;
+
+  const map = new Map(links.map(a=>[a.dataset.target, a]));
+  const heads = links.map(a=>document.getElementById(a.dataset.target)).filter(Boolean);
+
+  // Observer: Kapitel aktiv, wenn 25% im Viewport, mit Offset wegen Header
+  const marginTop = (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'))||58) + 20;
+  spyObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const id = entry.target.id;
+      const link = map.get(id);
+      if(!link) return;
+      if(entry.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { root:null, rootMargin:`-${marginTop}px 0px -60% 0px`, threshold:0.25 });
+
+  heads.forEach(h=>spyObserver.observe(h));
+}
+
+/* ===== Back-To-Top ===== */
+function onScroll(){
+  const y = $stage.scrollTop;
+  if(y > 400) $toTop.classList.add('show'); else $toTop.classList.remove('show');
+}
+$stage.addEventListener('scroll', onScroll, {passive:true});
+$toTop.addEventListener('click', ()=>{ $stage.scrollTo({top:0, behavior:'smooth'}); });
+
+/* TOC Toggle */
+$tocToggle.addEventListener('click', ()=>{
+  const body = document.querySelector('#toc-wrap .toc');
+  const hidden = body.style.display==='none';
+  body.style.display = hidden ? 'block':'none';
+  $tocToggle.textContent = hidden ? 'Ausblenden':'Einblenden';
+});
+
+/* ===== Init ===== */
+(async function init(){
+  const fileParam = q('file');
+  if(!fileParam){
+    $meta.textContent = 'Kein ?file= Parameter – wähle ein Modul im Header.';
+    $content.innerHTML = '<p class="hint">Beispiel: <code>module.html?file=MODULES/Modul_40_ART.md</code></p>';
+    document.getElementById('open-gh').style.display='none';
+    document.getElementById('open-raw').style.display='none';
+    document.getElementById('toc-wrap').hidden=true;
+    return;
+  }
+
+  const requested = normPath(fileParam);
+  const variants  = pathVariants(requested);
+  const tried = [];
+  const {user, repo} = repoInfoFromPages();
+  const branch = 'main';
+
+  $meta.textContent = requested;
+
+  // 1) Lokale Pfade (Pages)
+  for(const v of variants){
+    const localUrl = v;
+    tried.push(localUrl);
+    try{
+      const text = await fetchText(localUrl);
+      renderMd(text);
+      document.getElementById('open-gh').href  = ghUrl(user, repo, v);
+      document.getElementById('open-raw').href = rawUrl(user, repo, branch, v);
+      return;
+    }catch(e){}
+  }
+  // 2) Raw-Fallback
+  for(const v of variants){
+    const raw = rawUrl(user, repo, branch, v);
+    tried.push(raw);
+    try{
+      const text = await fetchText(raw);
+      renderMd(text);
+      document.getElementById('open-gh').href  = ghUrl(user, repo, v);
+      document.getElementById('open-raw').href = raw;
+      return;
+    }catch(e){}
+  }
+  // 3) Fehler
+  showError(`Die Datei <code>${requested}</code> konnte nicht geladen werden. (HTTP 404)`, tried);
+  document.getElementById('open-gh').href  = ghUrl(user, repo, requested);
+  document.getElementById('open-raw').href = rawUrl(user, repo, branch, requested);
+})();
+
+/* Copy URL */
+document.getElementById('copy-url').addEventListener('click', async ()=>{
+  try{ await navigator.clipboard.writeText(location.href); alert('URL kopiert'); }
+  catch(e){ alert('Kopieren fehlgeschlagen: '+e); }
+});
 </script>
 </body>
 </html>

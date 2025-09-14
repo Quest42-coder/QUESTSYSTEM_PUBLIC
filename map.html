@@ -3,765 +3,313 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>QUESTSYSTEM – Modul-Map (V7.8.1 Bulletproof)</title>
-<meta name="description" content="Interaktive Ring-Map des QUESTSYSTEMS mit Suche, Hover-Verbindungen, adaptiver Typografie, Dark/Light-Mode. Kompatibilitätsfixes für ältere Browser." />
+<title>QUESTSYSTEM – Map Debug</title>
 <style>
-  :root{
-    --bg:#060b12; --fg:#f2f7ff; --muted:#a8b8d3; --border:#1d2739; --glass:rgba(11,16,26,.68);
-    --q1:#51e2ff; --q2:#8dffb8; --q3:#b497ff;
-    --ring-inner:#ff6f86; --ring-mid:#e1c94d; --ring-outer:#7cb0ff; --ring-center:#22c7ff;
-    --node-bg:#0d1422; --node-stroke:#3b527c; --node-text:#eaf2ff;
-    --shadow: 0 16px 42px rgba(0,0,0,.55);
-    --header-h:60px;
-    --label-size: clamp(14px, 1.8vw, 21px);
-    --center-size: clamp(18px, 2.3vw, 28px);
-    --tooltip-size: clamp(12px, 1.4vw, 14px);
-    --r-node: 56px; --r-center: 96px;
-  }
-  .light{
-    --bg:#f6f8fc; --fg:#0d1a29; --muted:#53657f; --border:#dbe4f0; --glass:rgba(255,255,255,.86);
-    --node-bg:#ffffff; --node-stroke:#b9c7da; --node-text:#0d1a29;
-    --ring-inner:#ff4768; --ring-mid:#d6ad00; --ring-outer:#4b83ff; --ring-center:#0db5ff;
-    --shadow: 0 10px 28px rgba(0,0,0,.12);
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  <script>
-(function(){
-  const box = document.createElement('div');
-  box.style.cssText = 'position:fixed;right:12px;bottom:12px;z-index:9999;max-width:45ch;padding:10px 12px;border:1px solid #c33;background:#1a0d12;color:#ffd9d9;border-radius:8px;font:12px/1.4 ui-monospace,monospace;display:none';
-  document.body.appendChild(box);
-  function show(msg){
-    box.innerHTML = '⚠️ <b>Script-Fehler:</b><br>'+String(msg).replace(/</g,'&lt;');
-    box.style.display = 'block';
-  }
-  window.addEventListener('error', e => show(e.message || e.error || e));
-  window.addEventListener('unhandledrejection', e => show(e.reason || 'Promise rejected'));
-})();
-</script>
-  <script>
-document.addEventListener('DOMContentLoaded', function(){
-  // --- HARD DEFAULTS: falls CSS-Variablen nicht gelesen werden ---
-  var RS = { inner:56, mid:56, outer:56, center:96 }; // Node-Radien
-  var R  = { inner:220, mid:380, outer:540, center:0 }; // Ring-Radien
+  body{margin:0;background:#0e1116;color:#e7eef7;font:14px/1.5 system-ui,Arial}
+  .stage{position:fixed;inset:0;display:grid;place-items:center;padding:8px}
+  svg{width:min(1200px,95vw);height:min(1200px,95vh);background:#0a0f18}
+  .ring{fill:none;stroke-width:2.6}
+  .ring.inner{stroke:#ff6f86}
+  .ring.mid{stroke:#e1c94d}
+  .ring.outer{stroke:#7cb0ff}
+  .center circle{fill:transparent;stroke:#87a6c8;stroke-dasharray:4 6;stroke-width:2.6}
+  /* Nodes */
+  a.node .glow{fill:none;stroke:rgba(255,255,255,.22);stroke-width:9;opacity:.8}
+  a.node circle{fill:#101826;stroke:#3b527c;stroke-width:2.2}
+  a.node{cursor:pointer}
+  /* Links (nur bei Hover sichtbar) */
+  .links path{stroke:#51e2ff;stroke-width:3.4;fill:none;opacity:0;filter: drop-shadow(0 0 14px rgba(81,226,255,.4))}
+  .links.visible path{opacity:1}
+  /* Labels */
+  .label text{font-weight:800;fill:#dfeaff;paint-order:stroke;stroke:#0a0f18;stroke-width:5px}
+  .label.active text{fill:#06131c;stroke:none}
+  .label rect{fill:#dfeaff;rx:8;ry:8}
+  /* Tooltip + Diagnose */
+  .tip{position:fixed;pointer-events:none;left:0;top:0;background:#0f1624;color:#fff;
+       border:1px solid #30405a;border-radius:8px;padding:6px 8px;opacity:0;transition:.12s}
+  .tip.show{opacity:1;transform:translateY(-2px)}
+  .diag{position:fixed;left:10px;bottom:10px;background:#222;color:#fff;border-radius:8px;padding:6px 8px;font:12px ui-monospace,monospace}
+</style>
+</head>
+<body>
+<div class="stage">
+  <svg id="map" viewBox="-700 -700 1400 1400"
+       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g class="rings">
+      <circle class="ring inner" r="220"></circle>
+      <circle class="ring mid"   r="380"></circle>
+      <circle class="ring outer" r="540"></circle>
+    </g>
+    <g class="links" id="links-layer"></g>
+    <g class="center"><circle r="100"></circle></g>
+    <g class="nodes" id="nodes-layer"></g>
+    <g class="labels" id="labels-layer"></g>
+  </svg>
+</div>
+<div class="tip" id="tip"></div>
+<div class="diag" id="diag">boot…</div>
 
-  // --- Daten (unverändert) ---
-  var MODS = [
-    {no:"01", id:"RESETBOX", ring:"center", file:"MODULES/Modul_01_RESETBOX.md"},
-    {no:"02", id:"WATER",   ring:"inner", file:"MODULES/Modul_02_WATER.md"},
-    {no:"03", id:"SHELTER", ring:"inner", file:"MODULES/Modul_03_SHELTER.md"},
-    {no:"04", id:"FOOD",    ring:"inner", file:"MODULES/Modul_04_FOOD.md"},
-    {no:"05", id:"SLEEP",   ring:"inner", file:"MODULES/Modul_05_SLEEP.md"},
-    {no:"06", id:"BODY",    ring:"inner", file:"MODULES/Modul_06_BODY.md"},
-    {no:"07", id:"PSYCHE",  ring:"inner", file:"MODULES/Modul_07_PSYCHE.md"},
-    {no:"08", id:"DEVICE",  ring:"inner", file:"MODULES/Modul_08_DEVICE.md"},
-    {no:"09", id:"DEBT",    ring:"inner", file:"MODULES/Modul_09_DEBT.md"},
-    {no:"10", id:"WORK",      ring:"mid", file:"MODULES/Modul_10_WORK.md"},
-    {no:"11", id:"SCHOOL",    ring:"mid", file:"MODULES/Modul_11_SCHOOL.md"},
-    {no:"12", id:"BORDER",    ring:"mid", file:"MODULES/Modul_12_BORDER.md"},
-    {no:"13", id:"NATURE",    ring:"mid", file:"MODULES/Modul_13_NATURE.md"},
-    {no:"14", id:"HEALTH",    ring:"mid", file:"MODULES/Modul_14_HEALTH.md"},
-    {no:"15", id:"CARE",      ring:"mid", file:"MODULES/Modul_15_CARE.md"},
-    {no:"16", id:"FAMILY",    ring:"mid", file:"MODULES/Modul_16_FAMILY.md"},
-    {no:"17", id:"ANIMAL",    ring:"mid", file:"MODULES/Modul_17_ANIMAL.md"},
-    {no:"18", id:"CULTURE",   ring:"mid", file:"MODULES/Modul_18_CULTURE.md"},
-    {no:"19", id:"MEDIA",     ring:"mid", file:"MODULES/Modul_19_MEDIA.md"},
-    {no:"20", id:"ENERGY",    ring:"mid", file:"MODULES/Modul_20_ENERGY.md"},
-    {no:"21", id:"CLIMATE",   ring:"mid", file:"MODULES/Modul_21_CLIMATE.md"},
-    {no:"22", id:"MIGRATION", ring:"mid", file:"MODULES/Modul_22_MIGRATION.md"},
-    {no:"23", id:"JUSTICE",   ring:"mid", file:"MODULES/Modul_23_JUSTICE.md"},
-    {no:"24", id:"COMMUNITY", ring:"mid", file:"MODULES/Modul_24_COMMUNITY.md"},
-    {no:"25", id:"FINANCE",    ring:"outer", file:"MODULES/Modul_25_FINANCE.md"},
-    {no:"26", id:"HOUSING",    ring:"outer", file:"MODULES/Modul_26_HOUSING.md"},
-    {no:"27", id:"TRANSPORT",  ring:"outer", file:"MODULES/Modul_27_TRANSPORT.md"},
-    {no:"28", id:"NETWORK",    ring:"outer", file:"MODULES/Modul_28_NETWORK.md"},
-    {no:"29", id:"SYMBOL",     ring:"outer", file:"MODULES/Modul_29_SYMBOL.md"},
-    {no:"30", id:"TRUTH",      ring:"outer", file:"MODULES/Modul_30_TRUTH.md"},
-    {no:"31", id:"MEMORY",     ring:"outer", file:"MODULES/Modul_31_MEMORY.md"},
-    {no:"32", id:"LICENCE",    ring:"outer", file:"MODULES/Modul_32_LICENCE.md"},
-    {no:"33", id:"PRIVACY",    ring:"outer", file:"MODULES/Modul_33_PRIVACY.md"},
-    {no:"34", id:"SECURITY",   ring:"outer", file:"MODULES/Modul_34_SECURITY.md"},
-    {no:"35", id:"DATA",       ring:"outer", file:"MODULES/Modul_35_DATA.md"},
-    {no:"36", id:"CONFLICT",   ring:"outer", file:"MODULES/Modul_36_CONFLICT.md"},
-    {no:"37", id:"DEMOCRACY",  ring:"outer", file:"MODULES/Modul_37_DEMOCRACY.md"},
-    {no:"38", id:"GOVERNANCE", ring:"outer", file:"MODULES/Modul_38_GOVERNANCE.md"},
-    {no:"39", id:"KNOWLEDGE",  ring:"outer", file:"MODULES/Modul_39_KNOWLEDGE.md"},
-    {no:"40", id:"ART",        ring:"outer", file:"MODULES/Modul_40_ART.md"},
-    {no:"41", id:"FUTURE",     ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
-    {no:"42", id:"DEATH",      ring:"outer", file:"MODULES/Modul_42_DEATH.md"},
+<script>
+(function(){
+  // --- harte Defaults (unabhängig von CSS-Variablen) ---
+  var RS={inner:56,mid:56,outer:56,center:96};
+  var R={inner:220,mid:380,outer:540,center:0};
+
+  // --- Module + Dateien (Root/MODULES) ---
+  var MODS=[
+    {no:"01",id:"RESETBOX", ring:"center", file:"MODULES/Modul_01_RESETBOX.md"},
+    {no:"02",id:"WATER",    ring:"inner",  file:"MODULES/Modul_02_WATER.md"},
+    {no:"03",id:"SHELTER",  ring:"inner",  file:"MODULES/Modul_03_SHELTER.md"},
+    {no:"04",id:"FOOD",     ring:"inner",  file:"MODULES/Modul_04_FOOD.md"},
+    {no:"05",id:"SLEEP",    ring:"inner",  file:"MODULES/Modul_05_SLEEP.md"},
+    {no:"06",id:"BODY",     ring:"inner",  file:"MODULES/Modul_06_BODY.md"},
+    {no:"07",id:"PSYCHE",   ring:"inner",  file:"MODULES/Modul_07_PSYCHE.md"},
+    {no:"08",id:"DEVICE",   ring:"inner",  file:"MODULES/Modul_08_DEVICE.md"},
+    {no:"09",id:"DEBT",     ring:"inner",  file:"MODULES/Modul_09_DEBT.md"},
+    {no:"10",id:"WORK",     ring:"mid",    file:"MODULES/Modul_10_WORK.md"},
+    {no:"11",id:"SCHOOL",   ring:"mid",    file:"MODULES/Modul_11_SCHOOL.md"},
+    {no:"12",id:"BORDER",   ring:"mid",    file:"MODULES/Modul_12_BORDER.md"},
+    {no:"13",id:"NATURE",   ring:"mid",    file:"MODULES/Modul_13_NATURE.md"},
+    {no:"14",id:"HEALTH",   ring:"mid",    file:"MODULES/Modul_14_HEALTH.md"},
+    {no:"15",id:"CARE",     ring:"mid",    file:"MODULES/Modul_15_CARE.md"},
+    {no:"16",id:"FAMILY",   ring:"mid",    file:"MODULES/Modul_16_FAMILY.md"},
+    {no:"17",id:"ANIMAL",   ring:"mid",    file:"MODULES/Modul_17_ANIMAL.md"},
+    {no:"18",id:"CULTURE",  ring:"mid",    file:"MODULES/Modul_18_CULTURE.md"},
+    {no:"19",id:"MEDIA",    ring:"mid",    file:"MODULES/Modul_19_MEDIA.md"},
+    {no:"20",id:"ENERGY",   ring:"mid",    file:"MODULES/Modul_20_ENERGY.md"},
+    {no:"21",id:"CLIMATE",  ring:"mid",    file:"MODULES/Modul_21_CLIMATE.md"},
+    {no:"22",id:"MIGRATION",ring:"mid",    file:"MODULES/Modul_22_MIGRATION.md"},
+    {no:"23",id:"JUSTICE",  ring:"mid",    file:"MODULES/Modul_23_JUSTICE.md"},
+    {no:"24",id:"COMMUNITY",ring:"mid",    file:"MODULES/Modul_24_COMMUNITY.md"},
+    {no:"25",id:"FINANCE",  ring:"outer",  file:"MODULES/Modul_25_FINANCE.md"},
+    {no:"26",id:"HOUSING",  ring:"outer",  file:"MODULES/Modul_26_HOUSING.md"},
+    {no:"27",id:"TRANSPORT",ring:"outer",  file:"MODULES/Modul_27_TRANSPORT.md"},
+    {no:"28",id:"NETWORK",  ring:"outer",  file:"MODULES/Modul_28_NETWORK.md"},
+    {no:"29",id:"SYMBOL",   ring:"outer",  file:"MODULES/Modul_29_SYMBOL.md"},
+    {no:"30",id:"TRUTH",    ring:"outer",  file:"MODULES/Modul_30_TRUTH.md"},
+    {no:"31",id:"MEMORY",   ring:"outer",  file:"MODULES/Modul_31_MEMORY.md"},
+    {no:"32",id:"LICENCE",  ring:"outer",  file:"MODULES/Modul_32_LICENCE.md"},
+    {no:"33",id:"PRIVACY",  ring:"outer",  file:"MODULES/Modul_33_PRIVACY.md"},
+    {no:"34",id:"SECURITY", ring:"outer",  file:"MODULES/Modul_34_SECURITY.md"},
+    {no:"35",id:"DATA",     ring:"outer",  file:"MODULES/Modul_35_DATA.md"},
+    {no:"36",id:"CONFLICT", ring:"outer",  file:"MODULES/Modul_36_CONFLICT.md"},
+    {no:"37",id:"DEMOCRACY",ring:"outer",  file:"MODULES/Modul_37_DEMOCRACY.md"},
+    {no:"38",id:"GOVERNANCE",ring:"outer", file:"MODULES/Modul_38_GOVERNANCE.md"},
+    {no:"39",id:"KNOWLEDGE", ring:"outer", file:"MODULES/Modul_39_KNOWLEDGE.md"},
+    {no:"40",id:"ART",       ring:"outer", file:"MODULES/Modul_40_ART.md"},
+    {no:"41",id:"FUTURE",    ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
+    {no:"42",id:"DEATH",     ring:"outer", file:"MODULES/Modul_42_DEATH.md"}
   ];
-  var CORE = {
-    "01:RESETBOX": ["02:WATER","03:SHELTER","09:DEBT"],
-    "02:WATER":    ["04:FOOD","06:BODY","13:NATURE"],
-    "03:SHELTER":  ["05:SLEEP","13:NATURE","01:RESETBOX"],
-    "04:FOOD":     ["02:WATER","13:NATURE","25:FINANCE"],
-    "05:SLEEP":    ["03:SHELTER","07:PSYCHE","06:BODY"],
-    "06:BODY":     ["02:WATER","05:SLEEP","07:PSYCHE"],
-    "07:PSYCHE":   ["05:SLEEP","06:BODY","30:TRUTH"],
-    "08:DEVICE":   ["20:ENERGY","32:LICENCE","01:RESETBOX"],
-    "09:DEBT":     ["10:WORK","25:FINANCE","01:RESETBOX"],
-    "10:WORK":      ["09:DEBT","11:SCHOOL","25:FINANCE"],
-    "11:SCHOOL":    ["10:WORK","30:TRUTH","07:PSYCHE"],
-    "12:BORDER":    ["01:RESETBOX","13:NATURE","36:CONFLICT"],
-    "13:NATURE":    ["02:WATER","04:FOOD","20:ENERGY"],
-    "14:HEALTH":    ["02:WATER","06:BODY","07:PSYCHE"],
-    "15:CARE":      ["14:HEALTH","07:PSYCHE","01:RESETBOX"],
-    "16:FAMILY":    ["05:SLEEP","11:SCHOOL","14:HEALTH"],
-    "17:ANIMAL":    ["04:FOOD","13:NATURE","14:HEALTH"],
-    "18:CULTURE":   ["11:SCHOOL","30:TRUTH","29:SYMBOL"],
-    "19:MEDIA":     ["30:TRUTH","32:LICENCE","11:SCHOOL"],
-    "20:ENERGY":    ["08:DEVICE","13:NATURE","25:FINANCE"],
-    "21:CLIMATE":   ["13:NATURE","20:ENERGY","14:HEALTH"],
-    "22:MIGRATION": ["12:BORDER","13:NATURE","36:CONFLICT"],
-    "23:JUSTICE":   ["09:DEBT","10:WORK","32:LICENCE"],
-    "24:COMMUNITY": ["11:SCHOOL","18:CULTURE","23:JUSTICE"],
-    "25:FINANCE":   ["09:DEBT","10:WORK","20:ENERGY"],
-    "26:HOUSING":   ["03:SHELTER","05:SLEEP","25:FINANCE"],
-    "27:TRANSPORT": ["02:WATER","20:ENERGY","22:MIGRATION"],
-    "28:NETWORK":   ["08:DEVICE","20:ENERGY","19:MEDIA"],
-    "29:SYMBOL":    ["18:CULTURE","24:COMMUNITY","30:TRUTH"],
-    "30:TRUTH":     ["11:SCHOOL","19:MEDIA","32:LICENCE"],
-    "31:MEMORY":    ["11:SCHOOL","29:SYMBOL","30:TRUTH"],
-    "32:LICENCE":   ["19:MEDIA","30:TRUTH","08:DEVICE"],
-    "33:PRIVACY":   ["08:DEVICE","19:MEDIA","32:LICENCE"],
-    "34:SECURITY":  ["01:RESETBOX","12:BORDER","36:CONFLICT"],
-    "35:DATA":      ["08:DEVICE","28:NETWORK","32:LICENCE"],
-    "36:CONFLICT":  ["12:BORDER","22:MIGRATION","34:SECURITY"],
-    "37:DEMOCRACY": ["23:JUSTICE","24:COMMUNITY","25:FINANCE"],
+
+  // --- CORE-Verknüpfungen (voll) ---
+  var CORE={
+    "01:RESETBOX":["02:WATER","03:SHELTER","09:DEBT"],
+    "02:WATER":["04:FOOD","06:BODY","13:NATURE"],
+    "03:SH​ELTER":["05:SLEEP","13:NATURE","01:RESETBOX"],
+    "04:FOOD":["02:WATER","13:NATURE","25:FINANCE"],
+    "05:SLEEP":["03:SHELTER","07:PSYCHE","06:BODY"],
+    "06:BODY":["02:WATER","05:SLEEP","07:PSYCHE"],
+    "07:PSYCHE":["05:SLEEP","06:BODY","30:TRUTH"],
+    "08:DEVICE":["20:ENERGY","32:LICENCE","01:RESETBOX"],
+    "09:DEBT":["10:WORK","25:FINANCE","01:RESETBOX"],
+    "10:WORK":["09:DEBT","11:SCHOOL","25:FINANCE"],
+    "11:SCHOOL":["10:WORK","30:TRUTH","07:PSYCHE"],
+    "12:BORDER":["01:RESETBOX","13:NATURE","36:CONFLICT"],
+    "13:NATURE":["02:WATER","04:FOOD","20:ENERGY"],
+    "14:HEALTH":["02:WATER","06:BODY","07:PSYCHE"],
+    "15:CARE":["14:HEALTH","07:PSYCHE","01:RESETBOX"],
+    "16:FAMILY":["05:SLEEP","11:SCHOOL","14:HEALTH"],
+    "17:ANIMAL":["04:FOOD","13:NATURE","14:HEALTH"],
+    "18:CULTURE":["11:SCHOOL","30:TRUTH","29:SYMBOL"],
+    "19:MEDIA":["30:TRUTH","32:LICENCE","11:SCHOOL"],
+    "20:ENERGY":["08:DEVICE","13:NATURE","25:FINANCE"],
+    "21:CLIMATE":["13:NATURE","20:ENERGY","14:HEALTH"],
+    "22:MIGRATION":["12:BORDER","13:NATURE","36:CONFLICT"],
+    "23:JUSTICE":["09:DEBT","10:WORK","32:LICENCE"],
+    "24:COMMUNITY":["11:SCHOOL","18:CULTURE","23:JUSTICE"],
+    "25:FINANCE":["09:DEBT","10:WORK","20:ENERGY"],
+    "26:HOUSING":["03:SHELTER","05:SLEEP","25:FINANCE"],
+    "27:TRANSPORT":["02:WATER","20:ENERGY","22:MIGRATION"],
+    "28:NETWORK":["08:DEVICE","20:ENERGY","19:MEDIA"],
+    "29:SYMBOL":["18:CULTURE","24:COMMUNITY","30:TRUTH"],
+    "30:TRUTH":["11:SCHOOL","19:MEDIA","32:LICENCE"],
+    "31:MEMORY":["11:SCHOOL","29:SYMBOL","30:TRUTH"],
+    "32:LICENCE":["19:MEDIA","30:TRUTH","08:DEVICE"],
+    "33:PRIVACY":["08:DEVICE","19:MEDIA","32:LICENCE"],
+    "34:SECURITY":["01:RESETBOX","12:BORDER","36:CONFLICT"],
+    "35:DATA":["08:DEVICE","28:NETWORK","32:LICENCE"],
+    "36:CONFLICT":["12:BORDER","22:MIGRATION","34:SECURITY"],
+    "37:DEMOCRACY":["23:JUSTICE","24:COMMUNITY","25:FINANCE"],
     "38:GOVERNANCE":["23:JUSTICE","37:DEMOCRACY","25:FINANCE"],
-    "39:KNOWLEDGE": ["11:SCHOOL","30:TRUTH","31:MEMORY"],
-    "40:ART":       ["18:CULTURE","29:SYMBOL","39:KNOWLEDGE"],
-    "41:FUTURE":    ["21:CLIMATE","39:KNOWLEDGE","40:ART"],
-    "42:DEATH":     ["14:HEALTH","15:CARE","41:FUTURE"],
+    "39:KNOWLEDGE":["11:SCHOOL","30:TRUTH","31:MEMORY"],
+    "40:ART":["18:CULTURE","29:SYMBOL","39:KNOWLEDGE"],
+    "41:FUTURE":["21:CLIMATE","39:KNOWLEDGE","40:ART"],
+    "42:DEATH":["14:HEALTH","15:CARE","41:FUTURE"]
   };
 
   var SVG_NS="http://www.w3.org/2000/svg", XLINK_NS="http://www.w3.org/1999/xlink";
-  var svg = document.getElementById('map');
-  var nodesLayer  = document.getElementById('nodes-layer');
-  var labelsLayer = document.getElementById('labels-layer');
-  var linksLayer  = document.getElementById('links-layer');
-  var tip = document.getElementById('tip');
+  var svg=document.getElementById('map'),
+      nodes=document.getElementById('nodes-layer'),
+      labels=document.getElementById('labels-layer'),
+      links=document.getElementById('links-layer');
+  var tip=document.getElementById('tip'), diag=document.getElementById('diag');
 
-  function urlFor(filePath){
-    var u = new URL(window.location.href);
-    if (u.pathname.endsWith('map.html')) u.pathname = u.pathname.replace(/map\.html$/,'');
-    if (!u.pathname.endsWith('/')) u.pathname += '/';
-    return u.origin + u.pathname + 'module.html?file=' + encodeURIComponent(filePath);
+  function urlFor(file){
+    var u=new URL(location.href);
+    if(u.pathname.endsWith('map_debug.html')) u.pathname=u.pathname.replace(/map_debug\.html$/,'');
+    if(!u.pathname.endsWith('/')) u.pathname+='/';
+    return u.origin+u.pathname+'module.html?file='+encodeURIComponent(file);
   }
   function polar(r,a){ return [Math.cos(a)*r, Math.sin(a)*r]; }
-  function distributeAngles(n){ var step=(Math.PI*2)/n, start=-Math.PI/2; var a=[]; for(var i=0;i<n;i++) a.push(start+i*step); return a; }
-
-  // Verbindungstabellen
-  var LINKS = new Map();
-  Object.keys(CORE).forEach(function(k){
-    var a=k.split(':')[1];
-    if(!LINKS.has(a)) LINKS.set(a,new Set());
-    CORE[k].forEach(function(bKey){
-      var b=bKey.split(':')[1];
-      if(!LINKS.has(b)) LINKS.set(b,new Set());
-      LINKS.get(a).add(b); LINKS.get(b).add(a);
-    });
-  });
-
+  function distributeAngles(n){ var step=(Math.PI*2)/n, start=-Math.PI/2, out=[]; for(var i=0;i<n;i++) out.push(start+i*step); return out; }
   function nodeCenterPos(el){
-    var tr = el.getAttribute('transform');
-    var m = tr && tr.match(/translate\(([-\d.]+),([-\d.]+)\)/);
-    return m ? {x:parseFloat(m[1]), y:parseFloat(m[2])} : {x:0,y:0};
+    var tr=el.getAttribute('transform'); var m=tr && tr.match(/translate\(([-\d.]+),([-\d.]+)\)/);
+    return m? {x:parseFloat(m[1]), y:parseFloat(m[2])} : {x:0,y:0};
   }
-  function curvePath(pA,pB){
-    var mid={x:(pA.x+pB.x)/2,y:(pA.y+pB.y)/2};
-    var v={x:mid.x*0.08,y:mid.y*0.08};
-    var c={x:mid.x+v.x,y:mid.y+v.y};
+  function curve(pA,pB){
+    var mid={x:(pA.x+pB.x)/2,y:(pA.y+pB.y)/2}, v={x:mid.x*0.08,y:mid.y*0.08},
+        c={x:mid.x+v.x,y:mid.y+v.y};
     return "M "+pA.x+" "+pA.y+" Q "+c.x+" "+c.y+" "+pB.x+" "+pB.y;
   }
 
-  function addNodeEvents(a, mod){
-    var show = function(e){
-      tip.innerHTML = mod.no+" "+mod.id+"<br><small>Öffnen</small>";
-      tip.style.left = e.clientX+'px'; tip.style.top = e.clientY+'px';
-      tip.classList.add('show'); highlight(mod.id);
+  function addNodeEvents(a, m){
+    var show=function(e){
+      tip.textContent=m.no+" "+m.id;
+      tip.style.left=e.clientX+'px'; tip.style.top=e.clientY+'px';
+      tip.classList.add('show'); highlight(m.id);
     };
-    var hide = function(){ tip.classList.remove('show'); clearHighlight(); };
+    var hide=function(){ tip.classList.remove('show'); clearHighlight(); };
     a.addEventListener('mouseenter', show);
     a.addEventListener('mousemove', function(e){ tip.style.left=e.clientX+'px'; tip.style.top=e.clientY+'px'; });
     a.addEventListener('mouseleave', hide);
-    a.addEventListener('focus', function(){ tip.classList.add('show'); highlight(mod.id); });
+    a.addEventListener('focus', function(){ tip.classList.add('show'); highlight(m.id); });
     a.addEventListener('blur', hide);
   }
 
-  function addLabel(mod, ring, angle, r, center){
-    var offset = ring==='inner'? 86 : ring==='mid'? 96 : 104;
-    var p = polar(r+offset, angle); var lx=p[0], ly=p[1];
-    var g = document.createElementNS(SVG_NS,'g');
-    g.setAttribute('transform','translate('+lx+','+ly+')');
-    g.setAttribute('class','label');
-    g.dataset.id = mod.id; g.dataset.ring = ring;
-
-    var line = document.createElementNS(SVG_NS,'line');
-    line.setAttribute('x1',0); line.setAttribute('y1',0);
-    line.setAttribute('x2', center.x - lx); line.setAttribute('y2', center.y - ly);
-    g.appendChild(line);
-
-    var text = document.createElementNS(SVG_NS,'text');
-    text.textContent = mod.no+' '+mod.id;
-    text.setAttribute('dominant-baseline','middle');
-
-    var deg = angle*180/Math.PI;
+  function addLabel(m, ring, angle, r, center){
+    var offset=(ring==='inner')?86:(ring==='mid')?96:104;
+    var p=polar(r+offset, angle), lx=p[0], ly=p[1];
+    var g=document.createElementNS(SVG_NS,'g'); g.setAttribute('transform','translate('+lx+','+ly+')'); g.setAttribute('class','label'); g.dataset.id=m.id;
+    var line=document.createElementNS(SVG_NS,'line');
+    line.setAttribute('x1',0); line.setAttribute('y1',0); line.setAttribute('x2', center.x-lx); line.setAttribute('y2', center.y-ly);
+    var rect=document.createElementNS(SVG_NS,'rect');
+    var text=document.createElementNS(SVG_NS,'text'); text.textContent=m.no+" "+m.id; text.setAttribute('dominant-baseline','middle');
+    var deg=angle*180/Math.PI;
     if(ring==='center'){ text.setAttribute('text-anchor','middle'); text.setAttribute('x',0); }
     else if(deg>-90 && deg<=90){ text.setAttribute('text-anchor','start'); text.setAttribute('x',14); }
     else{ text.setAttribute('text-anchor','end'); text.setAttribute('x',-14); }
     text.setAttribute('y',0);
-
-    var rect = document.createElementNS(SVG_NS,'rect');
-    g.appendChild(rect); g.appendChild(text);
-    labelsLayer.appendChild(g);
-
+    g.appendChild(line); g.appendChild(rect); g.appendChild(text); labels.appendChild(g);
     requestAnimationFrame(function(){
-      var bb = text.getBBox();
-      rect.setAttribute('x', bb.x - 12);
-      rect.setAttribute('y', bb.y - 10);
-      rect.setAttribute('width', bb.width + 24);
-      rect.setAttribute('height', bb.height + 20);
+      var bb=text.getBBox();
+      rect.setAttribute('x', bb.x-10); rect.setAttribute('y', bb.y-8);
+      rect.setAttribute('width', bb.width+20); rect.setAttribute('height', bb.height+16);
     });
   }
 
-  function addNode(mod, ring, angle, r){
-    var p = polar(r, angle), x=p[0], y=p[1];
-    var a = document.createElementNS(SVG_NS,'a');
-    a.classList.add('node', ring);
-    var url = urlFor(mod.file);
-    a.setAttribute('href', url); a.setAttributeNS(XLINK_NS,'xlink:href', url);
-    a.setAttribute('transform','translate('+x+','+y+')');
-    a.dataset.id = mod.id; a.dataset.ring = ring; a.setAttribute('tabindex','0');
+  function addNode(m, ring, angle, r){
+    var p=polar(r,angle), x=p[0], y=p[1];
+    var a=document.createElementNS(SVG_NS,'a'); a.classList.add('node', ring);
+    var href=urlFor(m.file);
+    a.setAttribute('href', href); a.setAttributeNS(XLINK_NS,'xlink:href', href);
+    a.setAttribute('transform','translate('+x+','+y+')'); a.dataset.id=m.id;
 
-    var glow = document.createElementNS(SVG_NS,'circle'); glow.setAttribute('r', RS[ring]); glow.setAttribute('class','glow'); a.appendChild(glow);
-    var c = document.createElementNS(SVG_NS,'circle'); c.setAttribute('r', RS[ring]); a.appendChild(c);
+    var glow=document.createElementNS(SVG_NS,'circle'); glow.setAttribute('class','glow'); glow.setAttribute('r', RS[ring]); a.appendChild(glow);
+    var c=document.createElementNS(SVG_NS,'circle'); c.setAttribute('r', RS[ring]); a.appendChild(c);
 
-    addNodeEvents(a, mod);
-    nodesLayer.appendChild(a);
-
-    addLabel(mod, ring, angle, r, {x:x,y:y});
+    addNodeEvents(a, m);
+    nodes.appendChild(a);
+    addLabel(m, ring, angle, r, {x:x, y:y});
   }
 
-  function setLabelActive(id, on){
-    var label = labelsLayer.querySelector('.label[data-id="'+id+'"]');
-    if(!label) return; if(on) label.classList.add('active'); else label.classList.remove('active');
-  }
-  function dimAll(on){
-    document.querySelectorAll('a.node').forEach(function(n){ n.classList.toggle('dim', on); });
-    labelsLayer.querySelectorAll('.label').forEach(function(l){ l.classList.toggle('dim', on); });
-  }
-  function highlight(id){
-    document.querySelectorAll('a.node').forEach(function(n){ n.classList.remove('active','linked'); });
-    var active = Array.prototype.slice.call(document.querySelectorAll('a.node')).find(function(n){ return n.dataset.id===id; });
-    if(active) active.classList.add('active');
-    setLabelActive(id, true);
-
-    var targets = Array.from(LINKS.get(id)||[]);
-    var targetEls = [];
-    targets.forEach(function(tid){
-      var el = Array.prototype.slice.call(document.querySelectorAll('a.node')).find(function(n){ return n.dataset.id===tid; });
-      if(el){ el.classList.add('linked'); targetEls.push(el); }
-      setLabelActive(tid, true);
-    });
-
-    while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
-    if(active && targetEls.length){
-      var pA = nodeCenterPos(active);
-      targetEls.forEach(function(el){
-        var pB = nodeCenterPos(el);
-        var path = document.createElementNS(SVG_NS,'path');
-        path.setAttribute('d', curvePath(pA, pB));
-        linksLayer.appendChild(path);
-      });
-      linksLayer.classList.remove('hidden'); linksLayer.classList.add('visible');
-      dimAll(true);
-      active.classList.remove('dim'); targetEls.forEach(function(e){ e.classList.remove('dim'); });
-      [id].concat(targets).forEach(function(t){
-        var lab = labelsLayer.querySelector('.label[data-id="'+t+'"]'); if(lab) lab.classList.remove('dim');
-      });
-    }else{
-      linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
-      dimAll(false);
-    }
-  }
-  function clearHighlight(){
-    document.querySelectorAll('a.node').forEach(function(n){ n.classList.remove('active','linked','dim'); });
-    labelsLayer.querySelectorAll('.label').forEach(function(l){ l.classList.remove('active','dim'); });
-    while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
-    linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
-  }
-
-  function buildMap(){
-    var m0 = MODS.find(function(m){ return m.ring==='center'; });
-    // Zentrum
-    addNode(m0, 'center', 0, 0);
-    var centerNode = nodesLayer.querySelector('a.node.center');
-    centerNode.setAttribute('transform','translate(0,0)');
-
-    // Label im Zentrum
-    var g = document.createElementNS(SVG_NS,'g');
-    g.setAttribute('transform','translate(0,0)');
-    g.setAttribute('class','label active');
-    g.dataset.id = m0.id; g.dataset.ring='center';
-    var rect = document.createElementNS(SVG_NS,'rect'); g.appendChild(rect);
-    var text = document.createElementNS(SVG_NS,'text');
-    text.textContent = "01 "+m0.id; text.setAttribute('text-anchor','middle'); text.setAttribute('y','0');
-    text.setAttribute('dominant-baseline','middle'); text.setAttribute('class','t-center');
-    g.appendChild(text); labelsLayer.appendChild(g);
-    requestAnimationFrame(function(){
-      var bb = text.getBBox();
-      rect.setAttribute('x', bb.x - 14); rect.setAttribute('y', bb.y - 12);
-      rect.setAttribute('width', bb.width + 28); rect.setAttribute('height', bb.height + 24);
-    });
-
-    // Ringe
-    var byRing = {inner:[], mid:[], outer:[]};
-    MODS.forEach(function(m){ if(m.ring!=='center') byRing[m.ring].push(m); });
-    ['inner','mid','outer'].forEach(function(ring){
-      var list = byRing[ring], angles = distributeAngles(list.length);
-      list.forEach(function(m,i){ addNode(m, ring, angles[i], R[ring]); });
-    });
-  }
-
-  // --- UI: Menü füllen ---
-  (function fillMenu(){
-    var menu = document.getElementById('menu-mods');
-    if(!menu) return;
-    MODS.forEach(function(m){
-      var a = document.createElement('a');
-      a.href = 'module.html?file=' + encodeURIComponent(m.file);
-      a.textContent = m.no+' '+m.id;
-      a.setAttribute('role','menuitem');
-      menu.appendChild(a);
-    });
-  })();
-
-  // --- Theme Toggle ---
-  (function themeInit(){
-    var saved = localStorage.getItem('qs_theme');
-    if(saved === 'light'){ document.body.classList.add('light'); }
-    var btn = document.getElementById('toggleTheme');
-    if(!btn) return;
-    function setIcon(){ btn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙'; }
-    setIcon();
-    btn.addEventListener('click', function(){
-      document.body.classList.toggle('light');
-      localStorage.setItem('qs_theme', document.body.classList.contains('light') ? 'light' : 'dark');
-      setIcon();
-    });
-  })();
-
-  // --- Build & Diagnose ---
-  buildMap();
-
-  // Diagnose-Badge (unten links): zeigt, wie viele Nodes gerendert wurden
-  (function diag(){
-    var badge = document.createElement('div');
-    badge.style.cssText='position:fixed;left:10px;bottom:10px;z-index:99;font:12px ui-monospace,monospace;background:rgba(0,0,0,.45);color:#fff;padding:6px 8px;border-radius:8px';
-    badge.textContent='nodes='+document.querySelectorAll("a.node").length+' | labels='+document.querySelectorAll(".label").length;
-    document.body.appendChild(badge);
-  })();
-
-});
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  /* ===== Daten ===== */
-  const MODS = [
-    {no:"01", id:"RESETBOX", ring:"center", file:"MODULES/Modul_01_RESETBOX.md"},
-    {no:"02", id:"WATER",   ring:"inner", file:"MODULES/Modul_02_WATER.md"},
-    {no:"03", id:"SHELTER", ring:"inner", file:"MODULES/Modul_03_SHELTER.md"},
-    {no:"04", id:"FOOD",    ring:"inner", file:"MODULES/Modul_04_FOOD.md"},
-    {no:"05", id:"SLEEP",   ring:"inner", file:"MODULES/Modul_05_SLEEP.md"},
-    {no:"06", id:"BODY",    ring:"inner", file:"MODULES/Modul_06_BODY.md"},
-    {no:"07", id:"PSYCHE",  ring:"inner", file:"MODULES/Modul_07_PSYCHE.md"},
-    {no:"08", id:"DEVICE",  ring:"inner", file:"MODULES/Modul_08_DEVICE.md"},
-    {no:"09", id:"DEBT",    ring:"inner", file:"MODULES/Modul_09_DEBT.md"},
-    {no:"10", id:"WORK",      ring:"mid", file:"MODULES/Modul_10_WORK.md"},
-    {no:"11", id:"SCHOOL",    ring:"mid", file:"MODULES/Modul_11_SCHOOL.md"},
-    {no:"12", id:"BORDER",    ring:"mid", file:"MODULES/Modul_12_BORDER.md"},
-    {no:"13", id:"NATURE",    ring:"mid", file:"MODULES/Modul_13_NATURE.md"},
-    {no:"14", id:"HEALTH",    ring:"mid", file:"MODULES/Modul_14_HEALTH.md"},
-    {no:"15", id:"CARE",      ring:"mid", file:"MODULES/Modul_15_CARE.md"},
-    {no:"16", id:"FAMILY",    ring:"mid", file:"MODULES/Modul_16_FAMILY.md"},
-    {no:"17", id:"ANIMAL",    ring:"mid", file:"MODULES/Modul_17_ANIMAL.md"},
-    {no:"18", id:"CULTURE",   ring:"mid", file:"MODULES/Modul_18_CULTURE.md"},
-    {no:"19", id:"MEDIA",     ring:"mid", file:"MODULES/Modul_19_MEDIA.md"},
-    {no:"20", id:"ENERGY",    ring:"mid", file:"MODULES/Modul_20_ENERGY.md"},
-    {no:"21", id:"CLIMATE",   ring:"mid", file:"MODULES/Modul_21_CLIMATE.md"},
-    {no:"22", id:"MIGRATION", ring:"mid", file:"MODULES/Modul_22_MIGRATION.md"},
-    {no:"23", id:"JUSTICE",   ring:"mid", file:"MODULES/Modul_23_JUSTICE.md"},
-    {no:"24", id:"COMMUNITY", ring:"mid", file:"MODULES/Modul_24_COMMUNITY.md"},
-    {no:"25", id:"FINANCE",    ring:"outer", file:"MODULES/Modul_25_FINANCE.md"},
-    {no:"26", id:"HOUSING",    ring:"outer", file:"MODULES/Modul_26_HOUSING.md"},
-    {no:"27", id:"TRANSPORT",  ring:"outer", file:"MODULES/Modul_27_TRANSPORT.md"},
-    {no:"28", id:"NETWORK",    ring:"outer", file:"MODULES/Modul_28_NETWORK.md"},
-    {no:"29", id:"SYMBOL",     ring:"outer", file:"MODULES/Modul_29_SYMBOL.md"},
-    {no:"30", id:"TRUTH",      ring:"outer", file:"MODULES/Modul_30_TRUTH.md"},
-    {no:"31", id:"MEMORY",     ring:"outer", file:"MODULES/Modul_31_MEMORY.md"},
-    {no:"32", id:"LICENCE",    ring:"outer", file:"MODULES/Modul_32_LICENCE.md"},
-    {no:"33", id:"PRIVACY",    ring:"outer", file:"MODULES/Modul_33_PRIVACY.md"},
-    {no:"34", id:"SECURITY",   ring:"outer", file:"MODULES/Modul_34_SECURITY.md"},
-    {no:"35", id:"DATA",       ring:"outer", file:"MODULES/Modul_35_DATA.md"},
-    {no:"36", id:"CONFLICT",   ring:"outer", file:"MODULES/Modul_36_CONFLICT.md"},
-    {no:"37", id:"DEMOCRACY",  ring:"outer", file:"MODULES/Modul_37_DEMOCRACY.md"},
-    {no:"38", id:"GOVERNANCE", ring:"outer", file:"MODULES/Modul_38_GOVERNANCE.md"},
-    {no:"39", id:"KNOWLEDGE",  ring:"outer", file:"MODULES/Modul_39_KNOWLEDGE.md"},
-    {no:"40", id:"ART",        ring:"outer", file:"MODULES/Modul_40_ART.md"},
-    {no:"41", id:"FUTURE",     ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
-    {no:"42", id:"DEATH",      ring:"outer", file:"MODULES/Modul_42_DEATH.md"},
-  ];
-  const CORE = {
-    "01:RESETBOX": ["02:WATER","03:SHELTER","09:DEBT"],
-    "02:WATER":    ["04:FOOD","06:BODY","13:NATURE"],
-    "03:SHELTER":  ["05:SLEEP","13:NATURE","01:RESETBOX"],
-    "04:FOOD":     ["02:WATER","13:NATURE","25:FINANCE"],
-    "05:SLEEP":    ["03:SHELTER","07:PSYCHE","06:BODY"],
-    "06:BODY":     ["02:WATER","05:SLEEP","07:PSYCHE"],
-    "07:PSYCHE":   ["05:SLEEP","06:BODY","30:TRUTH"],
-    "08:DEVICE":   ["20:ENERGY","32:LICENCE","01:RESETBOX"],
-    "09:DEBT":     ["10:WORK","25:FINANCE","01:RESETBOX"],
-    "10:WORK":      ["09:DEBT","11:SCHOOL","25:FINANCE"],
-    "11:SCHOOL":    ["10:WORK","30:TRUTH","07:PSYCHE"],
-    "12:BORDER":    ["01:RESETBOX","13:NATURE","36:CONFLICT"],
-    "13:NATURE":    ["02:WATER","04:FOOD","20:ENERGY"],
-    "14:HEALTH":    ["02:WATER","06:BODY","07:PSYCHE"],
-    "15:CARE":      ["14:HEALTH","07:PSYCHE","01:RESETBOX"],
-    "16:FAMILY":    ["05:SLEEP","11:SCHOOL","14:HEALTH"],
-    "17:ANIMAL":    ["04:FOOD","13:NATURE","14:HEALTH"],
-    "18:CULTURE":   ["11:SCHOOL","30:TRUTH","29:SYMBOL"],
-    "19:MEDIA":     ["30:TRUTH","32:LICENCE","11:SCHOOL"],
-    "20:ENERGY":    ["08:DEVICE","13:NATURE","25:FINANCE"],
-    "21:CLIMATE":   ["13:NATURE","20:ENERGY","14:HEALTH"],
-    "22:MIGRATION": ["12:BORDER","13:NATURE","36:CONFLICT"],
-    "23:JUSTICE":   ["09:DEBT","10:WORK","32:LICENCE"],
-    "24:COMMUNITY": ["11:SCHOOL","18:CULTURE","23:JUSTICE"],
-    "25:FINANCE":   ["09:DEBT","10:WORK","20:ENERGY"],
-    "26:HOUSING":   ["03:SHELTER","05:SLEEP","25:FINANCE"],
-    "27:TRANSPORT": ["02:WATER","20:ENERGY","22:MIGRATION"],
-    "28:NETWORK":   ["08:DEVICE","20:ENERGY","19:MEDIA"],
-    "29:SYMBOL":    ["18:CULTURE","24:COMMUNITY","30:TRUTH"],
-    "30:TRUTH":     ["11:SCHOOL","19:MEDIA","32:LICENCE"],
-    "31:MEMORY":    ["11:SCHOOL","29:SYMBOL","30:TRUTH"],
-    "32:LICENCE":   ["19:MEDIA","30:TRUTH","08:DEVICE"],
-    "33:PRIVACY":   ["08:DEVICE","19:MEDIA","32:LICENCE"],
-    "34:SECURITY":  ["01:RESETBOX","12:BORDER","36:CONFLICT"],
-    "35:DATA":      ["08:DEVICE","28:NETWORK","32:LICENCE"],
-    "36:CONFLICT":  ["12:BORDER","22:MIGRATION","34:SECURITY"],
-    "37:DEMOCRACY": ["23:JUSTICE","24:COMMUNITY","25:FINANCE"],
-    "38:GOVERNANCE":["23:JUSTICE","37:DEMOCRACY","25:FINANCE"],
-    "39:KNOWLEDGE": ["11:SCHOOL","30:TRUTH","31:MEMORY"],
-    "40:ART":       ["18:CULTURE","29:SYMBOL","39:KNOWLEDGE"],
-    "41:FUTURE":    ["21:CLIMATE","39:KNOWLEDGE","40:ART"],
-    "42:DEATH":     ["14:HEALTH","15:CARE","41:FUTURE"],
-  };
-
-  /* ===== Helpers ===== */
-  const SVG_NS="http://www.w3.org/2000/svg"; const XLINK_NS="http://www.w3.org/1999/xlink";
-  const R = { inner:220, mid:380, outer:540, center:0 };
-  const css = getComputedStyle(document.documentElement);
-  const RS = {
-    inner:parseFloat(css.getPropertyValue('--r-node')) || 56,
-    mid:parseFloat(css.getPropertyValue('--r-node')) || 56,
-    outer:parseFloat(css.getPropertyValue('--r-node')) || 56,
-    center:parseFloat(css.getPropertyValue('--r-center')) || 96
-  };
-  function polar(r, a){ return [Math.cos(a)*r, Math.sin(a)*r]; }
-  function urlFor(filePath){
-    const u = new URL(window.location.href);
-    if (u.pathname.endsWith('map.html')) u.pathname = u.pathname.replace(/map\.html$/,'');
-    if (!u.pathname.endsWith('/')) u.pathname += '/';
-    return u.origin + u.pathname + 'module.html?file=' + encodeURIComponent(filePath);
-  }
-  const LINKS = new Map();
-  for (const [k, arr] of Object.entries(CORE)) {
-    const a = k.split(':')[1];
-    if (!LINKS.has(a)) LINKS.set(a, new Set());
-    arr.forEach(bKey=>{
-      const b = bKey.split(':')[1];
-      if (!LINKS.has(b)) LINKS.set(b, new Set());
+  // Link-Index
+  var LINKS=new Map();
+  Object.keys(CORE).forEach(function(k){
+    var a=k.split(':')[1]; if(!LINKS.has(a)) LINKS.set(a,new Set());
+    CORE[k].forEach(function(bk){
+      var b=bk.split(':')[1]; if(!LINKS.has(b)) LINKS.set(b,new Set());
       LINKS.get(a).add(b); LINKS.get(b).add(a);
     });
-  }
+  });
 
-  /* ===== Build ===== */
-  const svg = document.getElementById('map');
-  const nodesLayer  = document.getElementById('nodes-layer');
-  const labelsLayer = document.getElementById('labels-layer');
-  const linksLayer  = document.getElementById('links-layer');
-  const tip = document.getElementById('tip');
-
-  function distributeAngles(len){ const step=(Math.PI*2)/len, start=-Math.PI/2; return Array.from({length:len},(_,i)=>start+i*step); }
-
-  function addNode(mod, ring, angle, r){
-    const [x,y] = polar(r, angle);
-    const a = document.createElementNS(SVG_NS,'a');
-    a.classList.add('node', ring);
-    a.setAttribute('href', urlFor(mod.file));
-    a.setAttributeNS(XLINK_NS,'xlink:href', urlFor(mod.file));
-    a.setAttribute('transform',`translate(${x},${y})`);
-    a.dataset.id = mod.id; a.dataset.ring = ring; a.setAttribute('tabindex','0');
-
-    const glow = document.createElementNS(SVG_NS,'circle'); glow.setAttribute('r', RS[ring]); glow.setAttribute('class','glow'); a.appendChild(glow);
-    const c = document.createElementNS(SVG_NS,'circle'); c.setAttribute('r', RS[ring]); a.appendChild(c);
-
-    addNodeEvents(a, mod);
-    nodesLayer.appendChild(a);
-
-    addLabel(mod, ring, angle, r, {x,y});
-  }
-
-  function addLabel(mod, ring, angle, r, center){
-    const offset = ring==='inner'? 86 : ring==='mid'? 96 : 104;
-    const [lx,ly] = polar(r+offset, angle);
-    const g = document.createElementNS(SVG_NS,'g');
-    g.setAttribute('transform', `translate(${lx},${ly})`);
-    g.setAttribute('class','label');
-    g.dataset.id = mod.id; g.dataset.ring = ring;
-
-    const line = document.createElementNS(SVG_NS,'line');
-    line.setAttribute('x1', 0); line.setAttribute('y1', 0);
-    line.setAttribute('x2', center.x - lx); line.setAttribute('y2', center.y - ly);
-    g.appendChild(line);
-
-    const text = document.createElementNS(SVG_NS,'text');
-    text.textContent = `${mod.no} ${mod.id}`;
-    text.setAttribute('dominant-baseline','middle');
-    text.classList.add(ring==='inner'?'t-inner': ring==='mid'?'t-mid': ring==='outer'?'t-outer':'t-center');
-
-    const deg = angle * 180/Math.PI;
-    if (ring === 'center'){
-      text.setAttribute('text-anchor','middle'); text.setAttribute('x', 0);
-    } else if (deg > -90 && deg <= 90){ text.setAttribute('text-anchor','start'); text.setAttribute('x', 14); }
-    else { text.setAttribute('text-anchor','end'); text.setAttribute('x', -14); }
-    text.setAttribute('y', 0);
-
-    const rect = document.createElementNS(SVG_NS,'rect');
-    g.appendChild(rect); g.appendChild(text);
-    labelsLayer.appendChild(g);
-
-    requestAnimationFrame(()=>{
-      const bb = text.getBBox();
-      rect.setAttribute('x', bb.x - 12);
-      rect.setAttribute('y', bb.y - 10);
-      rect.setAttribute('width', bb.width + 24);
-      rect.setAttribute('height', bb.height + 20);
-    });
-  }
-
-  function buildMap(){
-    const m0 = MODS.find(m=>m.ring==='center');
-    addNode(m0, 'center', 0, 0);
-    const centerNode = nodesLayer.querySelector('a.node.center');
-    centerNode.setAttribute('transform','translate(0,0)');
-
-    // Center-Label
-    const g = document.createElementNS(SVG_NS,'g');
-    g.setAttribute('transform','translate(0,0)');
-    g.setAttribute('class','label active');
-    g.dataset.id = m0.id; g.dataset.ring='center';
-    const rect = document.createElementNS(SVG_NS,'rect'); g.appendChild(rect);
-    const text = document.createElementNS(SVG_NS,'text');
-    text.textContent = `01 ${m0.id}`; text.setAttribute('text-anchor','middle'); text.setAttribute('y','0');
-    text.setAttribute('dominant-baseline','middle'); text.classList.add('t-center'); text.style.fontSize = 'var(--center-size)';
-    g.appendChild(text);
-    labelsLayer.appendChild(g);
-    requestAnimationFrame(()=>{
-      const bb = text.getBBox();
-      rect.setAttribute('x', bb.x - 14); rect.setAttribute('y', bb.y - 12);
-      rect.setAttribute('width', bb.width + 28); rect.setAttribute('height', bb.height + 24);
-    });
-
-    const byRing = {inner:[], mid:[], outer:[]};
-    MODS.forEach(m=>{ if(m.ring!=='center') byRing[m.ring].push(m); });
-    for(const ring of ['inner','mid','outer']){
-      const list = byRing[ring], angles = distributeAngles(list.length);
-      list.forEach((m,i)=> addNode(m, ring, angles[i], R[ring]));
-    }
-    resolveLabelCollisions();
-  }
-
-  /* ===== Verbindungen (gekrümmt) ===== */
-  function nodeCenterPos(nodeEl){
-    const tr = nodeEl.getAttribute('transform');
-    const m = tr && tr.match(/translate\(([-\d.]+),([-\d.]+)\)/);
-    return m ? {x:parseFloat(m[1]), y:parseFloat(m[2])} : {x:0,y:0};
-  }
-  function curvePath(pA, pB){
-    const mid = { x:(pA.x+pB.x)/2, y:(pA.y+pB.y)/2 };
-    const v  = { x:mid.x*0.08, y:mid.y*0.08 };
-    const c  = { x:mid.x+v.x, y:mid.y+v.y };
-    return `M ${pA.x} ${pA.y} Q ${c.x} ${c.y} ${pB.x} ${pB.y}`;
-  }
   function setLabelActive(id, on){
-    const label = labelsLayer.querySelector(`.label[data-id="${id}"]`);
-    if(!label) return;
-    if(on) label.classList.add('active'); else label.classList.remove('active');
+    var lab=labels.querySelector('.label[data-id="'+id+'"]'); if(!lab) return;
+    if(on) lab.classList.add('active'); else lab.classList.remove('active');
   }
   function dimAll(on){
-    document.querySelectorAll('a.node').forEach(n => n.classList.toggle('dim', on));
-    labelsLayer.querySelectorAll('.label').forEach(l => l.classList.toggle('dim', on));
+    var i, ns=document.querySelectorAll('a.node'), ls=labels.querySelectorAll('.label');
+    for(i=0;i<ns.length;i++) ns[i].style.opacity=on?.25:1;
+    for(i=0;i<ls.length;i++) ls[i].style.opacity=on?.25:1;
   }
-  const linksLayer  = document.getElementById('links-layer');
+
   function highlight(id){
-    document.querySelectorAll('a.node').forEach(n => n.classList.remove('active','linked'));
-    const active = Array.from(document.querySelectorAll('a.node')).find(n => n.dataset.id === id);
-    if (active) active.classList.add('active');
+    var nodesAll=document.querySelectorAll('a.node'), i;
+    for(i=0;i<nodesAll.length;i++){ nodesAll[i].classList.remove('active'); }
     setLabelActive(id, true);
 
-    const targets = Array.from(LINKS.get(id) || []);
-    const targetEls = [];
-    targets.forEach(tid=>{
-      const el = Array.from(document.querySelectorAll('a.node')).find(n => n.dataset.id === tid);
-      if(el){ el.classList.add('linked'); targetEls.push(el); }
-      setLabelActive(tid, true);
-    });
+    var active=null;
+    for(i=0;i<nodesAll.length;i++){ if(nodesAll[i].dataset.id===id){ active=nodesAll[i]; active.classList.add('active'); break; } }
 
-    while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
-    if (active && targetEls.length){
-      const pA = nodeCenterPos(active);
-      targetEls.forEach(el=>{
-        const pB = nodeCenterPos(el);
-        const path = document.createElementNS(SVG_NS,'path');
-        path.setAttribute('d', curvePath(pA, pB));
-        linksLayer.appendChild(path);
-      });
-      linksLayer.classList.remove('hidden'); linksLayer.classList.add('visible');
+    // Clear paths
+    while(links.firstChild) links.removeChild(links.firstChild);
+
+    var targets = LINKS.get(id) ? Array.from(LINKS.get(id)) : [];
+    var targetEls=[], t, el;
+    for(i=0;i<targets.length;i++){
+      t=targets[i];
+      el=null;
+      for(var j=0;j<nodesAll.length;j++){ if(nodesAll[j].dataset.id===t){ el=nodesAll[j]; break; } }
+      if(el){ targetEls.push(el); setLabelActive(t, true); }
+    }
+
+    if(active && targetEls.length){
+      var pA=nodeCenterPos(active);
+      for(i=0;i<targetEls.length;i++){
+        var pB=nodeCenterPos(targetEls[i]);
+        var path=document.createElementNS(SVG_NS,'path');
+        path.setAttribute('d', curve(pA, pB));
+        links.appendChild(path);
+      }
+      links.classList.add('visible');
       dimAll(true);
-      active.classList.remove('dim'); targetEls.forEach(e=>e.classList.remove('dim'));
-      [id, ...targets].forEach(t=>{
-        const lab = labelsLayer.querySelector(`.label[data-id="${t}"]`);
-        if(lab) lab.classList.remove('dim');
-      });
+      active.style.opacity=1; for(i=0;i<targetEls.length;i++) targetEls[i].style.opacity=1;
+      // Labels von aktiven/Targets auch hell
+      setLabelActive(id,true);
+      for(i=0;i<targets.length;i++) setLabelActive(targets[i],true);
     }else{
-      linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
+      links.classList.remove('visible');
       dimAll(false);
     }
   }
+
   function clearHighlight(){
-    document.querySelectorAll('a.node').forEach(n => n.classList.remove('active','linked','dim'));
-    labelsLayer.querySelectorAll('.label').forEach(l => l.classList.remove('active','dim'));
-    while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
-    linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
-  }
-  function addNodeEvents(anchor, mod){
-    const tip = document.getElementById('tip');
-    const show = (e)=>{
-      tip.innerHTML = `${mod.no} ${mod.id}<br><small>Öffnen</small>`;
-      tip.style.left = e.clientX+'px'; tip.style.top = e.clientY+'px';
-      tip.classList.add('show'); highlight(mod.id);
-    };
-    const hide = ()=>{ tip.classList.remove('show'); clearHighlight(); };
-    anchor.addEventListener('mouseenter', show);
-    anchor.addEventListener('mousemove', (e)=>{ tip.style.left = e.clientX+'px'; tip.style.top = e.clientY+'px'; });
-    anchor.addEventListener('mouseleave', hide);
-    anchor.addEventListener('focus', ()=>{ tip.classList.add('show'); highlight(mod.id); });
-    anchor.addEventListener('blur', hide);
+    while(links.firstChild) links.removeChild(links.firstChild);
+    links.classList.remove('visible');
+    dimAll(false);
+    // remove label active
+    var labs=labels.querySelectorAll('.label'); for(var i=0;i<labs.length;i++) labs[i].classList.remove('active');
   }
 
-  /* ===== Header-Menü ===== */
-  (function fillMenu(){
-    const menu = document.getElementById('menu-mods');
-    MODS.forEach(m=>{
-      const a = document.createElement('a');
-      a.href = 'module.html?file=' + encodeURIComponent(m.file);
-      a.textContent = `${m.no} ${m.id}`;
-      a.setAttribute('role','menuitem');
-      menu.appendChild(a);
-    });
-  })();
+  function build(){
+    // Zentrum
+    var center=MODS.find(function(m){return m.ring==='center';});
+    addNode(center,'center',0,0);
 
-  /* ===== Suche (ohne Unicode Property Regex) ===== */
-  (function searchInit(){
-    const input = document.getElementById('q');
-    const clearBtn = document.getElementById('q-clear');
-
-    // sehr robuster Normalizer (entfernt gängige Diakritika ohne \p{})
-    const DIAC = {'á':'a','à':'a','ä':'a','â':'a','ã':'a','å':'a','č':'c','ç':'c','ď':'d','é':'e','è':'e','ë':'e','ê':'e','í':'i','ì':'i','ï':'i','î':'i','ñ':'n','ń':'n','ó':'o','ò':'o','ö':'o','ô':'o','õ':'o','ř':'r','š':'s','ß':'ss','ú':'u','ù':'u','ü':'u','û':'u','ý':'y','ž':'z'};
-    function norm(s){
-      if(!s) return '';
-      let t = s.toLowerCase();
-      t = t.normalize ? t.normalize('NFD').replace(/[\u0300-\u036f]/g,'') : t;
-      t = t.replace(/[^\x20-\x7E]/g, ch => DIAC[ch] || ch); // ASCII fallback
-      return t;
+    // Ringe
+    var rings=['inner','mid','outer'], r, list, ang;
+    for(var k=0;k<rings.length;k++){
+      r=rings[k];
+      list=MODS.filter(function(m){return m.ring===r;});
+      ang=distributeAngles(list.length);
+      list.forEach(function(m,i){ addNode(m, r, ang[i], R[r]); });
     }
 
-    function run(){
-      try{
-        const q = norm(input.value.trim());
-        if(!q){ clearHighlight(); return; }
-        const match = MODS.find(m => norm(m.no).startsWith(q) || norm(m.id).includes(q));
-        if(!match){ clearHighlight(); return; }
-        highlight(match.id);
-        const tip = document.getElementById('tip');
-        tip.classList.add('show');
-        tip.innerHTML = `${match.no} ${match.id}<br><small>Enter zum Öffnen</small>`;
-      }catch(e){ /* fail-silent, Map bleibt nutzbar */ }
-    }
-
-    input.addEventListener('input', run);
-    input.addEventListener('keydown', (e)=>{
-      if(e.key === 'Enter'){
-        const q = input.value.trim();
-        const match = MODS.find(m => m.no.startsWith(q) || m.id.toLowerCase().includes(q.toLowerCase()));
-        if(match){ window.location.href = urlFor(match.file); }
-      }else if(e.key === 'Escape'){
-        input.value = ''; clearHighlight();
-      }
-    });
-    clearBtn.addEventListener('click', ()=>{ input.value=''; input.focus(); clearHighlight(); });
-  })();
-
-  /* ===== Theme ===== */
-  (function themeInit(){
-    const saved = localStorage.getItem('qs_theme');
-    if(saved === 'light'){ document.body.classList.add('light'); }
-    const btn = document.getElementById('toggleTheme');
-    const setIcon = ()=> btn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
-    setIcon();
-    btn.addEventListener('click', ()=>{
-      document.body.classList.toggle('light');
-      localStorage.setItem('qs_theme', document.body.classList.contains('light') ? 'light' : 'dark');
-      setIcon();
-    });
-  })();
-
-  /* ===== Label-Kollisionen (einfach) ===== */
-  function resolveLabelCollisions(){
-    const labels = Array.from(labelsLayer.querySelectorAll('.label'));
-    const getBox = el => el.getBBox();
-    let moved = true, safety=0;
-    while(moved && safety<10){
-      moved = false; safety++;
-      for(let i=0;i<labels.length;i++){
-        for(let j=i+1;j<labels.length;j++){
-          const a = labels[i], b = labels[j];
-          const A = getBox(a), B = getBox(b);
-          const overlap = !(A.x+A.width < B.x || B.x+B.width < A.x || A.y+A.height < B.y || B.y+B.height < A.y);
-          if(overlap){
-            const da = /translate\(([-\d.]+),([-\d.]+)\)/.exec(a.getAttribute('transform'));
-            const db = /translate\(([-\d.]+),([-\d.]+)\)/.exec(b.getAttribute('transform'));
-            if(da && db){
-              const ay = parseFloat(da[2]), by = parseFloat(db[2]);
-              if(ay <= by){
-                a.setAttribute('transform', `translate(${da[1]}, ${ay-6})`);
-                b.setAttribute('transform', `translate(${db[1]}, ${by+6})`);
-              }else{
-                a.setAttribute('transform', `translate(${da[1]}, ${ay+6})`);
-                b.setAttribute('transform', `translate(${db[1]}, ${by-6})`);
-              }
-              moved = true;
-            }
-          }
-        }
-      }
-    }
+    // Diagnose
+    diag.textContent='nodes='+document.querySelectorAll("a.node").length+' | labels='+document.querySelectorAll(".label").length;
   }
 
-  /* ===== Init ===== */
-  buildMap();
-});
+  build();
+})();
 </script>
 </body>
 </html>

@@ -3,16 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>QUESTSYSTEM – Ring-Homepage</title>
-  <meta name="description" content="QUESTSYSTEM – Übersicht aller Module als konzentrische Ringe. Klickbar zu den Modulbeschreibungen." />
+  <title>QUESTSYSTEM – Modul-Ringe</title>
+  <meta name="description" content="Ringe mit klickbaren Modulen & automatisch berechneten inhaltlichen Verbindungen (mit Querstrichen)." />
   <style>
     :root{
       --bg:#0e1116; --fg:#e7eef7; --muted:#9fb0c6;
       --ring-inner:#f3c0c7; --ring-mid:#f0de94; --ring-outer:#bcd5ff;
-      --node-bg:#10151f; --node-border:#2a3344;
-      --edge:#8fb3ff; --edge-dim:#6f849f;
+      --inner-fill:#3a0f18; --mid-fill:#3a3200; --outer-fill:#0f2847;
+      --node-border:#2a3344;
+      --edge:#8fb3ff; --edge-dim:#6f849f; --tick:#c9dbff;
       --shadow: 0 6px 24px rgba(0,0,0,.35);
       --header-h: 54px;
+      --node-r: 50;     /* Sichtkreis (Text) */
+      --node-hit-r: 56; /* Klickfläche: füllt den ganzen Kreis */
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -34,7 +37,7 @@
     header a{color:var(--fg); text-decoration:none; opacity:.9; font-size:13px}
     header a:hover{opacity:1; text-decoration:underline}
 
-    /* Bühne unter Header */
+    /* Bühne */
     .stage{position:absolute; inset: var(--header-h) 0 0 0; display:grid; place-items:center; padding:16px;}
     svg{width:min(1200px, 95vw); height:calc(95vh - var(--header-h));}
 
@@ -43,35 +46,43 @@
     .ring-mid{stroke:var(--ring-mid); stroke-width:2.2; fill:none; stroke-opacity:.9}
     .ring-outer{stroke:var(--ring-outer); stroke-width:2.2; fill:none; stroke-opacity:.9}
 
-    /* Edges (Verbindungen) – jetzt deutlich sichtbar */
+    /* Edges */
     .edges path{
-      stroke:var(--edge); stroke-width:2; fill:none; opacity:.5;
+      stroke:var(--edge); stroke-width:2; fill:none; opacity:.4;
       transition:opacity .15s ease, stroke .15s ease, stroke-width .15s ease;
     }
-    svg.hovering .edges path{ opacity:.2; stroke:var(--edge-dim) } /* beim Hover alles leicht dimmen */
-    .edges path.on{ opacity:.95; stroke:var(--edge); stroke-width:3 } /* aktive Verbindungen stark hervorheben */
+    svg.hovering .edges path{ opacity:.18; stroke:var(--edge-dim) }
+    .edges path.on{ opacity:.98; stroke:var(--edge); stroke-width:3.2 }
 
-    /* Nodes – volle Kreisfläche klickbar */
-    svg a.node{ cursor:pointer; filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); transition: transform .15s ease, opacity .2s ease; }
-    svg a.node:hover{ transform: translateY(-2px) scale(1.03); }
-    .node circle{
-      r:50; /* größer: füllt den sichtbaren Modulkreis */
-      fill:rgba(255,255,255,0.001); /* unsichtbar, aber „gemalt“ -> fängt Klicks */
-      stroke:var(--node-border); stroke-width:1.5;
-      pointer-events:visiblePainted;
+    /* Quer-Verbindungsstriche (Ticks) */
+    .ticks line{
+      stroke:var(--tick); stroke-width:1.4; opacity:.85;
       vector-effect:non-scaling-stroke;
     }
-    .node text{ font-size:12px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle; pointer-events:none }
-    .inner text{ fill:#5d2029 } .mid text{ fill:#6c5b00 } .outer text{ fill:#274b7a }
-    .node.linked text{ font-weight:700 }
+    svg.hovering .ticks line{ opacity:.35 }
+    .ticks line.on{ opacity:1; stroke-width:1.8 }
 
-    /* Zentrum: RESETBOX groß & zentral & klickbar */
-    .center circle{ fill:transparent; stroke:#8aa2c6; stroke-dasharray:4 6; stroke-width:2 }
-    .center text{
-      fill:#ffffff; font-weight:800; font-size:28px;
-      text-anchor:middle; dominant-baseline:middle; letter-spacing:.6px;
-      pointer-events:none;
+    /* Nodes – ganze Kreisfläche klickbar */
+    svg a.node{ cursor:pointer; filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); transition: transform .15s ease, opacity .2s ease; }
+    svg a.node:hover{ transform: translateY(-2px) scale(1.03); }
+    .node .hit{
+      r: var(--node-hit-r);
+      fill:rgba(255,255,255,0.001); /* unsichtbar, fängt aber Klicks zuverlässig */
+      stroke:var(--node-border); stroke-width:1.5; vector-effect:non-scaling-stroke;
+      pointer-events:visiblePainted;
     }
+    .node text{ font-size:12px; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle; pointer-events:none }
+    .inner text{ fill:#f5b0ba } .mid text{ fill:#f1d86d } .outer text{ fill:#9cc1ff }
+
+    /* farbig markieren bei Verbindung */
+    .node.on.inner .hit{ fill:var(--inner-fill); stroke:var(--ring-inner) }
+    .node.on.mid   .hit{ fill:var(--mid-fill);   stroke:var(--ring-mid) }
+    .node.on.outer .hit{ fill:var(--outer-fill); stroke:var(--ring-outer) }
+    .node.on text{ font-weight:800 }
+
+    /* RESETBOX */
+    .center circle{ fill:transparent; stroke:#8aa2c6; stroke-dasharray:4 6; stroke-width:2 }
+    .center text{ fill:#ffffff; font-weight:800; font-size:28px; text-anchor:middle; dominant-baseline:middle; letter-spacing:.6px; pointer-events:none; }
 
     /* Tooltip */
     .tip{
@@ -94,13 +105,10 @@
     .sw{width:14px; height:14px; border-radius:50%}
     .sw.inner{background:var(--ring-inner)} .sw.mid{background:var(--ring-mid)} .sw.outer{background:var(--ring-outer)}
 
-    @media (max-width:720px){
-      header h1{display:none}
-    }
+    @media (max-width:720px){ header h1{display:none} }
   </style>
 </head>
 <body>
-  <!-- kleiner Header -->
   <header aria-label="Seitennavigation">
     <div class="dot">🍄</div>
     <h1>QUESTSYSTEM – Modul-Ringe</h1>
@@ -123,10 +131,11 @@
       <circle class="ring-mid"   r="380"></circle>
       <circle class="ring-outer" r="540"></circle>
 
-      <!-- Verbindungs-Layer (hinter den Nodes) -->
+      <!-- Verbindungen -->
       <g id="edges" class="edges"></g>
+      <g id="ticks" class="ticks"></g>
 
-      <!-- Zentrum: RESETBOX (deutlich größer & klickbar) -->
+      <!-- Zentrum: RESETBOX (groß & klickbar) -->
       <a class="center" id="center-reset" target="_self">
         <g aria-label="Resetbox">
           <circle r="140"></circle>
@@ -145,7 +154,7 @@
   <div id="tip" class="tip" role="status" aria-live="polite"></div>
 
   <script>
-    // ---- Basis-URL absolut ableiten ----
+    // ---- Basis-URL ----
     const BASE = (()=>{
       const u = new URL(window.location.href);
       if (u.pathname.endsWith('index.html')) u.pathname = u.pathname.replace(/index\.html$/, '');
@@ -154,86 +163,56 @@
     })();
     const urlFor = (filePath) => `${BASE}module.html?file=${encodeURIComponent(filePath)}`;
 
-    // Header-Links setzen
+    // Header-Links
     document.getElementById('nav-dignity').href = urlFor('MODULES/DIGNITY_CLAUSE.md');
     document.getElementById('nav-gebote').href  = urlFor('MODULES/14_GEBOTE_V2.1.md');
     document.getElementById('nav-discuss').href = urlFor('MODULES/14_GEBOTE_DISCUSSION.md');
 
-    // ---- Module (Nodes) ----
+    // ---- Module inkl. Tags (für inhaltliche Verbindungen) ----
     const nodes = [
       // INNER – Existential
-      {label:"WATER",   ring:"inner", file:`MODULES/Modul_02_WATER.md`},
-      {label:"SHELTER", ring:"inner", file:`MODULES/Modul_03_SHELTER.md`},
-      {label:"FOOD",    ring:"inner", file:`MODULES/Modul_04_FOOD.md`},
-      {label:"SLEEP",   ring:"inner", file:`MODULES/Modul_05_SLEEP.md`},
-      {label:"BODY",    ring:"inner", file:`MODULES/Modul_06_BODY.md`},
-      {label:"PSYCHE",  ring:"inner", file:`MODULES/Modul_07_PSYCHE.md`},
-      {label:"DEVICE",  ring:"inner", file:`MODULES/Modul_08_DEVICE.md`},
-      {label:"DEBT",    ring:"inner", file:`MODULES/Modul_09_DEBT.md`},
+      {label:"WATER",   ring:"inner", file:`MODULES/Modul_02_WATER.md`,   tags:["basic","survival","health","body","infrastructure"]},
+      {label:"SHELTER", ring:"inner", file:`MODULES/Modul_03_SHELTER.md`, tags:["basic","survival","housing","safety","community"]},
+      {label:"FOOD",    ring:"inner", file:`MODULES/Modul_04_FOOD.md`,    tags:["basic","survival","health","supply"]},
+      {label:"SLEEP",   ring:"inner", file:`MODULES/Modul_05_SLEEP.md`,   tags:["basic","health","psyche","body"]},
+      {label:"BODY",    ring:"inner", file:`MODULES/Modul_06_BODY.md`,    tags:["health","body","care"]},
+      {label:"PSYCHE",  ring:"inner", file:`MODULES/Modul_07_PSYCHE.md`,  tags:["health","psyche","care","community"]},
+      {label:"DEVICE",  ring:"inner", file:`MODULES/Modul_08_DEVICE.md`,  tags:["tech","device","data","privacy","media"]},
+      {label:"DEBT",    ring:"inner", file:`MODULES/Modul_09_DEBT.md`,    tags:["economy","work","justice"]},
 
       // MID – Societal
-      {label:"WORK",     ring:"mid", file:`MODULES/Modul_10_WORK.md`},
-      {label:"SCHOOL",   ring:"mid", file:`MODULES/Modul_11_SCHOOL.md`},
-      {label:"BORDER",   ring:"mid", file:`MODULES/Modul_12_BORDER.md`},
-      {label:"NATURE",   ring:"mid", file:`MODULES/Modul_13_NATURE.md`},
-      {label:"HEALTH",   ring:"mid", file:`MODULES/Modul_14_HEALTH.md`},
-      {label:"CARE",     ring:"mid", file:`MODULES/Modul_15_CARE.md`},
-      {label:"FAMILY",   ring:"mid", file:`MODULES/Modul_16_FAMILY.md`},
-      {label:"ANIMAL",   ring:"mid", file:`MODULES/Modul_17_ANIMAL.md`},
-      {label:"CULTURE",  ring:"mid", file:`MODULES/Modul_18_CULTURE.md`},
-      {label:"MEDIA",    ring:"mid", file:`MODULES/Modul_19_MEDIA.md`},
-      {label:"ENERGY",   ring:"mid", file:`MODULES/Modul_20_ENERGY.md`},
-      {label:"CLIMATE",  ring:"mid", file:`MODULES/Modul_21_CLIMATE.md`},
-      {label:"MIGRATION",ring:"mid", file:`MODULES/Modul_22_MIGRATION.md`},
-      {label:"JUSTICE",  ring:"mid", file:`MODULES/Modul_23_JUSTICE.md`},
-      {label:"COMMUNITY",ring:"mid", file:`MODULES/Modul_24_COMMUNITY.md`},
+      {label:"WORK",     ring:"mid", file:`MODULES/Modul_10_WORK.md`,      tags:["economy","work","justice","education"]},
+      {label:"SCHOOL",   ring:"mid", file:`MODULES/Modul_11_SCHOOL.md`,    tags:["education","knowledge","youth"]},
+      {label:"BORDER",   ring:"mid", file:`MODULES/Modul_12_BORDER.md`,    tags:["justice","migration","state"]},
+      {label:"NATURE",   ring:"mid", file:`MODULES/Modul_13_NATURE.md`,    tags:["climate","environment","resources"]},
+      {label:"HEALTH",   ring:"mid", file:`MODULES/Modul_14_HEALTH.md`,    tags:["health","care","infrastructure"]},
+      {label:"CARE",     ring:"mid", file:`MODULES/Modul_15_CARE.md`,      tags:["care","family","community","health"]},
+      {label:"FAMILY",   ring:"mid", file:`MODULES/Modul_16_FAMILY.md`,    tags:["family","community","care"]},
+      {label:"ANIMAL",   ring:"mid", file:`MODULES/Modul_17_ANIMAL.md`,    tags:["animal","environment","ethics"]},
+      {label:"CULTURE",  ring:"mid", file:`MODULES/Modul_18_CULTURE.md`,   tags:["culture","symbol","art","media"]},
+      {label:"MEDIA",    ring:"mid", file:`MODULES/Modul_19_MEDIA.md`,     tags:["media","truth","data","privacy"]},
+      {label:"ENERGY",   ring:"mid", file:`MODULES/Modul_20_ENERGY.md`,    tags:["energy","infrastructure","climate"]},
+      {label:"CLIMATE",  ring:"mid", file:`MODULES/Modul_21_CLIMATE.md`,   tags:["climate","environment","policy"]},
+      {label:"MIGRATION",ring:"mid", file:`MODULES/Modul_22_MIGRATION.md`, tags:["migration","border","justice","community"]},
+      {label:"JUSTICE",  ring:"mid", file:`MODULES/Modul_23_JUSTICE.md`,   tags:["justice","law","rights","democracy"]},
+      {label:"COMMUNITY",ring:"mid", file:`MODULES/Modul_24_COMMUNITY.md`, tags:["community","care","governance"]},
 
       // OUTER – Structural
-      {label:"ART",        ring:"outer", file:`MODULES/Modul_40_ART.md`},
-      {label:"FUTURE",     ring:"outer", file:`MODULES/Modul_41_FUTURE.md`},
-      {label:"DEATH",      ring:"outer", file:`MODULES/Modul_42_DEATH.md`},
-      {label:"HOUSING",    ring:"outer", file:`MODULES/Modul_26_HOUSING.md`},
-      {label:"TRANSPORT",  ring:"outer", file:`MODULES/Modul_27_TRANSPORT.md`},
-      {label:"NETWORK",    ring:"outer", file:`MODULES/Modul_28_NETWORK.md`},
-      {label:"SYMBOL",     ring:"outer", file:`MODULES/Modul_29_SYMBOL.md`},
-      {label:"TRUTH",      ring:"outer", file:`MODULES/Modul_30_TRUTH.md`},
-      {label:"MEMORY",     ring:"outer", file:`MODULES/Modul_31_MEMORY.md`},
-      {label:"LICENCE",    ring:"outer", file:`MODULES/Modul_32_LICENCE.md`},
-      {label:"PRIVACY",    ring:"outer", file:`MODULES/Modul_33_PRIVACY.md`},
-      {label:"DATA",       ring:"outer", file:`MODULES/Modul_34_DATA.md`},
-      {label:"CONFLICT",   ring:"outer", file:`MODULES/Modul_35_CONFLICT.md`},
-      {label:"DEMOCRACY",  ring:"outer", file:`MODULES/Modul_37_DEMOCRACY.md`},
-      {label:"KNOWLEDGE",  ring:"outer", file:`MODULES/Modul_39_KNOWLEDGE.md`}
-    ];
-
-    // ---- Verbindungen (Edges) ----
-    const edges = [
-      ["WATER","FOOD"],["WATER","HEALTH"],["WATER","BODY"],
-      ["SHELTER","HOUSING"],["SHELTER","COMMUNITY"],
-      ["SLEEP","HEALTH"],["SLEEP","PSYCHE"],
-      ["BODY","HEALTH"],["PSYCHE","FAMILY"],
-      ["DEVICE","DATA"],["DEVICE","PRIVACY"],
-      ["DEBT","WORK"],
-
-      ["WORK","SCHOOL"],["WORK","DEBT"],["SCHOOL","KNOWLEDGE"],
-      ["BORDER","MIGRATION"],["NATURE","CLIMATE"],
-      ["HEALTH","CARE"],["FAMILY","CARE"],["COMMUNITY","JUSTICE"],
-      ["CULTURE","ART"],["MEDIA","TRUTH"],["ENERGY","CLIMATE"],
-      ["JUSTICE","DEMOCRACY"],["COMMUNITY","FAMILY"],
-
-      ["ART","CULTURE"],["FUTURE","SCHOOL"],["FUTURE","KNOWLEDGE"],
-      ["DEATH","HEALTH"],["DEATH","PSYCHE"],
-      ["HOUSING","SHELTER"],["TRANSPORT","NETWORK"],
-      ["NETWORK","PRIVACY"],["NETWORK","DATA"],
-      ["SYMBOL","CULTURE"],["SYMBOL","TRUTH"],
-      ["TRUTH","MEDIA"],["TRUTH","KNOWLEDGE"],
-      ["MEMORY","KNOWLEDGE"],["MEMORY","PSYCHE"],
-      ["LICENCE","ART"],["LICENCE","DATA"],
-      ["PRIVACY","DATA"],["PRIVACY","DEVICE"],
-      ["DATA","MEDIA"],["DATA","TRUTH"],
-      ["CONFLICT","JUSTICE"],["CONFLICT","BORDER"],["CONFLICT","COMMUNITY"],
-      ["DEMOCRACY","JUSTICE"],["DEMOCRACY","MEDIA"],
-      ["KNOWLEDGE","SCHOOL"],["KNOWLEDGE","MEMORY"]
+      {label:"HOUSING",    ring:"outer", file:`MODULES/Modul_26_HOUSING.md`,    tags:["housing","infrastructure","community"]},
+      {label:"TRANSPORT",  ring:"outer", file:`MODULES/Modul_27_TRANSPORT.md`,  tags:["transport","infrastructure","energy"]},
+      {label:"NETWORK",    ring:"outer", file:`MODULES/Modul_28_NETWORK.md`,    tags:["network","data","privacy","tech"]},
+      {label:"SYMBOL",     ring:"outer", file:`MODULES/Modul_29_SYMBOL.md`,     tags:["symbol","culture","truth","art"]},
+      {label:"TRUTH",      ring:"outer", file:`MODULES/Modul_30_TRUTH.md`,      tags:["truth","media","knowledge"]},
+      {label:"MEMORY",     ring:"outer", file:`MODULES/Modul_31_MEMORY.md`,     tags:["memory","psyche","knowledge","culture"]},
+      {label:"LICENCE",    ring:"outer", file:`MODULES/Modul_32_LICENCE.md`,    tags:["licence","governance","art","data"]},
+      {label:"PRIVACY",    ring:"outer", file:`MODULES/Modul_33_PRIVACY.md`,    tags:["privacy","rights","data","network"]},
+      {label:"DATA",       ring:"outer", file:`MODULES/Modul_34_DATA.md`,       tags:["data","media","truth","network"]},
+      {label:"CONFLICT",   ring:"outer", file:`MODULES/Modul_35_CONFLICT.md`,   tags:["conflict","justice","community"]},
+      {label:"DEMOCRACY",  ring:"outer", file:`MODULES/Modul_37_DEMOCRACY.md`,  tags:["democracy","rights","justice","media"]},
+      {label:"KNOWLEDGE",  ring:"outer", file:`MODULES/Modul_39_KNOWLEDGE.md`,  tags:["knowledge","education","truth","memory"]},
+      {label:"ART",        ring:"outer", file:`MODULES/Modul_40_ART.md`,        tags:["art","culture","symbol","licence"]},
+      {label:"FUTURE",     ring:"outer", file:`MODULES/Modul_41_FUTURE.md`,     tags:["future","education","knowledge","climate"]},
+      {label:"DEATH",      ring:"outer", file:`MODULES/Modul_42_DEATH.md`,      tags:["death","psyche","health"]}
     ];
 
     const config = { inner:{r:220,class:"inner"}, mid:{r:380,class:"mid"}, outer:{r:540,class:"outer"} };
@@ -241,16 +220,20 @@
     const XLINK_NS = "http://www.w3.org/1999/xlink";
     const svg = document.getElementById('ringmap');
     const edgesLayer = document.getElementById('edges');
+    const ticksLayer = document.getElementById('ticks');
     const tip = document.getElementById('tip');
 
     const pos = {};       // label -> {x,y}
     const nodeRef = {};   // label -> <a>
     const neighbors = {}; // label -> Set<label>
+    const edgeRef = [];   // [{a,b,path,ticks: [<line>,...]}]
 
-    // RESETBOX verlinken
-    document.getElementById('center-reset').setAttribute('href', urlFor('MODULES/Modul_01_RESETBOX.md'));
-    document.getElementById('center-reset').setAttributeNS(XLINK_NS, 'xlink:href', urlFor('MODULES/Modul_01_RESETBOX.md'));
+    // Resetbox-Link
+    const resetA = document.getElementById('center-reset');
+    resetA.setAttribute('href', urlFor('MODULES/Modul_01_RESETBOX.md'));
+    resetA.setAttributeNS(XLINK_NS, 'xlink:href', urlFor('MODULES/Modul_01_RESETBOX.md'));
 
+    // ---- Placement ----
     function placeNodes(){
       const groups = {inner:[], mid:[], outer:[]};
       nodes.forEach(n=>groups[n.ring].push(n));
@@ -279,8 +262,10 @@
           a.dataset.label = n.label;
           nodeRef[n.label]=a;
 
-          const circle=document.createElementNS(SVG_NS,"circle"); // volle Klickfläche
-          a.appendChild(circle);
+          // Klickfläche (ganzer Kreis)
+          const hit=document.createElementNS(SVG_NS,"circle");
+          hit.setAttribute("class","hit");
+          a.appendChild(hit);
 
           const text=document.createElementNS(SVG_NS,"text");
           text.textContent=n.label; a.appendChild(text);
@@ -290,7 +275,7 @@
           a.addEventListener('mousemove',e=>moveTip(e));
           a.addEventListener('mouseleave',()=>{ hideTip(); svg.classList.remove('hovering'); highlight(n.label,false); });
 
-          // Fallback (falls SVG-Links nicht feuern)
+          // Fallback für harte Navigation
           a.addEventListener('click', (e) => {
             setTimeout(() => {
               if (location.href.indexOf('module.html') === -1) location.href = url;
@@ -302,53 +287,14 @@
       });
     }
 
-    function buildNeighbors(){
-      nodes.forEach(n=>neighbors[n.label]=new Set());
-      edges.forEach(([a,b])=>{
-        if(neighbors[a]) neighbors[a].add(b);
-        if(neighbors[b]) neighbors[b].add(a);
-      });
-    }
-
-    function drawEdges(){
-      edges.forEach(([a,b])=>{
-        const pa = pos[a], pb = pos[b];
-        if(!pa || !pb) return;
-        const mx = (pa.x + pb.x)/2, my = (pa.y + pb.y)/2;
-        const k = 0.12; // Krümmung
-        const nx = (pb.y - pa.y), ny = -(pb.x - pa.x);
-        const cx = mx + nx*k, cy = my + ny*k;
-        const d = `M ${pa.x} ${pa.y} Q ${cx} ${cy} ${pb.x} ${pb.y}`;
-        const p = document.createElementNS(SVG_NS,'path');
-        p.setAttribute('d', d);
-        p.dataset.a=a; p.dataset.b=b;
-        edgesLayer.appendChild(p);
-      });
-    }
-
-    function highlight(label, on){
-      // Kanten
-      document.querySelectorAll(`.edges path[data-a="${label}"], .edges path[data-b="${label}"]`)
-        .forEach(p=> p.classList.toggle('on', on));
-      // verbundene Knoten
-      (neighbors[label]||[]).forEach(lab=>{
-        const el = nodeRef[lab];
-        if(el) el.classList.toggle('linked', on);
-      });
-      // aktiver Knoten
-      const self = nodeRef[label];
-      if (self) self.classList.toggle('linked', on);
-    }
-
-    // Build all
-    placeNodes();
-    buildNeighbors();
-    drawEdges();
-
-    // Tooltip
-    function showTip(label,evt){ tip.innerHTML=`${label} <br><small>Öffnen</small>`; moveTip(evt); tip.classList.add('show'); }
-    function moveTip(evt){ tip.style.left=evt.clientX+'px'; tip.style.top=evt.clientY+'px'; }
-    function hideTip(){ tip.classList.remove('show'); }
-  </script>
-</body>
-</html>
+    // ---- Kanten aus Tags berechnen ----
+    function computeEdgesByTags(){
+      const labelByIdx = nodes.map(n=>n.label);
+      const tagsets = nodes.map(n=>new Set(n.tags||[]));
+      const pairs = [];
+      for(let i=0;i<nodes.length;i++){
+        for(let j=i+1;j<nodes.length;j++){
+          const A = tagsets[i], B = tagsets[j];
+          let share=false;
+          for(const t of A){ if(B.has(t)){ share=true; break; } }
+          if(share) pairs.push([labelByIdx[i], label

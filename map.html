@@ -3,14 +3,17 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>QUESTSYSTEM – Modul-Map (V7.1)</title>
+<title>QUESTSYSTEM – Modul-Map (V7.2)</title>
 <meta name="description" content="Interaktive Ring-Map des QUESTSYSTEMS mit Hover-Verbindungen und klickbaren Modulen." />
 <style>
   :root{
     --bg:#0a0f17; --fg:#eaf2ff; --muted:#9fb0c6; --border:#1f2a3d; --glass:rgba(14,18,28,.6);
+    /* Questfarben (Gradient) */
+    --q1:#79e1ff; --q2:#8affc7; --q3:#b09bff;
+    /* Ringfarben */
     --inner:#f3c0c7; --mid:#f0de94; --outer:#bcd5ff; --center:#9fe3ff;
-    --node-bg:#0f1422; --node-stroke:#2a3348; --node-text:#dfeaff;
-    --active:#79e1ff; --linked:#8affc7;
+    /* Node */
+    --node-bg:#0e1422; --node-stroke:#2b3550; --node-text:#e6efff;
     --shadow: 0 10px 28px rgba(0,0,0,.45);
     --header-h:56px;
   }
@@ -18,9 +21,9 @@
   html,body{height:100%}
   body{
     margin:0; color:var(--fg);
-    font:16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font:16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
     background:
-      radial-gradient(1400px 900px at 50% 38%, #141c2e 0%, #101726 55%, var(--bg) 100%),
+      radial-gradient(1400px 900px at 50% 38%, #121a2e 0%, #101726 55%, var(--bg) 100%),
       radial-gradient(900px 700px at 12% 14%, rgba(255,255,255,.05), transparent 60%),
       radial-gradient(900px 900px at 88% 84%, rgba(255,255,255,.035), transparent 65%);
     overflow:hidden;
@@ -28,7 +31,7 @@
 
   /* Header */
   header{
-    position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:50;
+    position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:80;
     display:flex; align-items:center; gap:12px; padding:8px 12px;
     background:var(--glass); border-bottom:1px solid var(--border); backdrop-filter: blur(8px);
   }
@@ -50,51 +53,67 @@
 
   /* Bühne */
   .stage{ position:absolute; inset:var(--header-h) 0 0 0; display:grid; place-items:center; }
-  svg{ width:min(1200px, 95vw); height:min(1200px, calc(95vh - var(--header-h))); }
+  svg{ width:min(1200px, 96vw); height:min(1200px, calc(96vh - var(--header-h))); }
 
   /* Ringe */
-  .ring{ fill:none; stroke-opacity:.9 }
+  defs linearGradient stop{ transition: all .2s ease }
+  .ring{ fill:none; stroke-opacity:.9; }
   .ring.inner{ stroke:var(--inner); stroke-width:2.2 }
   .ring.mid{   stroke:var(--mid);   stroke-width:2.2 }
   .ring.outer{ stroke:var(--outer); stroke-width:2.2 }
 
-  /* Knoten */
-  a.node{ cursor:pointer; transition: transform .15s ease, opacity .15s ease; }
-  a.node:hover{ transform: translateY(-2px) scale(1.03); }
-  .node circle{
-    fill:var(--node-bg); stroke:var(--node-stroke); stroke-width:1.8;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,.35));
+  /* Node Layer über Ringen (Durchbrechung) */
+  g.nodes{ filter: drop-shadow(0 2px 10px rgba(0,0,0,.45)); }
+
+  /* Verbindungen */
+  .links line{
+    stroke:url(#qgrad); stroke-opacity:.95; stroke-width:2.6;
+    filter: drop-shadow(0 0 10px rgba(121,225,255,.35));
   }
+  .links.hidden{ opacity:0; pointer-events:none }
+  .links.visible{ opacity:1; transition: opacity .12s ease }
+
+  /* Knoten */
+  a.node{ cursor:pointer; transition: transform .12s ease, opacity .12s ease; }
+  a.node:hover{ transform: translateY(-1.5px) scale(1.03); }
+  .node circle{
+    fill:var(--node-bg); stroke:var(--node-stroke); stroke-width:1.9;
+  }
+  /* subtile Glow-Kante, damit die Kreise den Ring „schneiden“ */
+  .node circle.glow{
+    fill: none; stroke: rgba(255,255,255,.15); stroke-width: 6; opacity:.6; filter: blur(1.5px);
+  }
+
   .node text{
-    fill:var(--node-text); font-weight:800; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle;
-    font-size:12px; /* wird per JS hochskaliert */
-    pointer-events:none; /* Klickfläche = Kreis */
+    fill:var(--node-text); font-weight:900; letter-spacing:.35px; text-anchor:middle; dominant-baseline:middle;
+    pointer-events:none;
   }
   .node.inner text{ fill:#5d2029 }
   .node.mid   text{ fill:#6c5b00 }
   .node.outer text{ fill:#274b7a }
 
-  .node.active circle{ stroke:var(--active); stroke-width:2.6 }
-  .node.linked circle{ stroke:var(--linked); stroke-width:2.6 }
+  /* Ring-spezifische Schriftgrößen */
+  .node.inner text{ font-size:14.5px }
+  .node.mid   text{ font-size:13.8px }
+  .node.outer text{ font-size:13.2px }
+
+  .node.active circle{
+    stroke:url(#qgrad); stroke-width:2.8;
+  }
+  .node.linked circle{
+    stroke:url(#qgrad); stroke-width:2.6; opacity:.95;
+  }
 
   /* Zentrum */
   .center circle.core{
     fill:transparent; stroke:#6b7a90; stroke-dasharray:4 6; stroke-width:2;
   }
-  .center a.node text{ fill:#b9dfff; font-size:14px }
-  .center a.node circle{ fill:rgba(20,28,44,.6); stroke:#3a5478; stroke-width:2.4 }
-
-  /* Verbindungen */
-  .links line{
-    stroke:#86e9ff; stroke-opacity:.85; stroke-width:2.2;
-    filter: drop-shadow(0 0 8px rgba(121,225,255,.35));
-  }
-  .links.hidden{ opacity:0; pointer-events:none }
-  .links.visible{ opacity:1; transition: opacity .12s ease }
+  .center a.node text{ fill:#cceaff; font-size:16px }
+  .center a.node circle{ fill:rgba(20,28,44,.7); stroke:url(#qgrad); stroke-width:2.6 }
 
   /* Tooltip */
   .tip{
-    position:fixed; z-index:70; pointer-events:none;
+    position:fixed; z-index:90; pointer-events:none;
     transform:translate(-50%, calc(-100% - 12px));
     background:#0f1624; border:1px solid #2b3548; color:var(--fg);
     padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap;
@@ -105,16 +124,16 @@
 
   /* Legende */
   .legend{
-    position:fixed; inset:auto 12px 12px 12px; z-index:25;
+    position:fixed; inset:auto 12px 12px 12px; z-index:70;
     display:flex; gap:10px; align-items:center; justify-content:center;
     background:rgba(12,16,24,.55); border:1px solid var(--border); border-radius:10px; padding:8px 10px; backdrop-filter: blur(6px);
   }
   .chip{display:inline-flex; align-items:center; gap:8px; font-size:12px}
   .sw{width:14px; height:14px; border-radius:50%}
+  .sw.center{background:var(--center)}
   .sw.inner{background:var(--inner)}
   .sw.mid{background:var(--mid)}
   .sw.outer{background:var(--outer)}
-  .sw.center{background:var(--center)}
 </style>
 </head>
 <body>
@@ -149,10 +168,21 @@
 <div class="stage">
   <svg id="map" viewBox="-640 -640 1280 1280" role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS"
        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <!-- Questfarben-Verlauf -->
+      <linearGradient id="qgrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%"  stop-color="var(--q1)"/>
+        <stop offset="50%" stop-color="var(--q2)"/>
+        <stop offset="100%" stop-color="var(--q3)"/>
+      </linearGradient>
+    </defs>
+
     <!-- Ringe -->
-    <circle class="ring inner" r="220"></circle>
-    <circle class="ring mid"   r="380"></circle>
-    <circle class="ring outer" r="540"></circle>
+    <g class="rings">
+      <circle class="ring inner" r="220"></circle>
+      <circle class="ring mid"   r="380"></circle>
+      <circle class="ring outer" r="540"></circle>
+    </g>
 
     <!-- Verbindungen (dynamisch auf Hover sichtbar) -->
     <g class="links hidden" id="links-layer"></g>
@@ -160,8 +190,11 @@
     <!-- Zentrum -->
     <g class="center">
       <circle class="core" r="90"></circle>
-      <!-- RESETBOX Node wird durch JS gesetzt, damit gleiche Logik gilt -->
+      <!-- RESETBOX Node per JS -->
     </g>
+
+    <!-- Nodes oben, damit sie die Ringe „schneiden“ -->
+    <g class="nodes" id="nodes-layer"></g>
   </svg>
 </div>
 
@@ -176,11 +209,8 @@
 
 <script>
 /* ---------- Daten ---------- */
-// Modul-Definition (Nr, Label, Ring, Datei)
 const MODS = [
-  // Center
   {no:"01", id:"RESETBOX", ring:"center", file:"MODULES/Modul_01_RESETBOX.md"},
-  // Inner
   {no:"02", id:"WATER",   ring:"inner", file:"MODULES/Modul_02_WATER.md"},
   {no:"03", id:"SHELTER", ring:"inner", file:"MODULES/Modul_03_SHELTER.md"},
   {no:"04", id:"FOOD",    ring:"inner", file:"MODULES/Modul_04_FOOD.md"},
@@ -189,7 +219,6 @@ const MODS = [
   {no:"07", id:"PSYCHE",  ring:"inner", file:"MODULES/Modul_07_PSYCHE.md"},
   {no:"08", id:"DEVICE",  ring:"inner", file:"MODULES/Modul_08_DEVICE.md"},
   {no:"09", id:"DEBT",    ring:"inner", file:"MODULES/Modul_09_DEBT.md"},
-  // Mid
   {no:"10", id:"WORK",      ring:"mid", file:"MODULES/Modul_10_WORK.md"},
   {no:"11", id:"SCHOOL",    ring:"mid", file:"MODULES/Modul_11_SCHOOL.md"},
   {no:"12", id:"BORDER",    ring:"mid", file:"MODULES/Modul_12_BORDER.md"},
@@ -205,7 +234,6 @@ const MODS = [
   {no:"22", id:"MIGRATION", ring:"mid", file:"MODULES/Modul_22_MIGRATION.md"},
   {no:"23", id:"JUSTICE",   ring:"mid", file:"MODULES/Modul_23_JUSTICE.md"},
   {no:"24", id:"COMMUNITY", ring:"mid", file:"MODULES/Modul_24_COMMUNITY.md"},
-  // Outer
   {no:"25", id:"FINANCE",    ring:"outer", file:"MODULES/Modul_25_FINANCE.md"},
   {no:"26", id:"HOUSING",    ring:"outer", file:"MODULES/Modul_26_HOUSING.md"},
   {no:"27", id:"TRANSPORT",  ring:"outer", file:"MODULES/Modul_27_TRANSPORT.md"},
@@ -226,8 +254,6 @@ const MODS = [
   {no:"42", id:"DEATH",      ring:"outer", file:"MODULES/Modul_42_DEATH.md"},
 ];
 
-// Kern-Verknüpfungen nach „STATIC CORE V5.0 LOCKED (Überschrieben)“.
-// Wir tragen Direktverbindungen ein; unten symmetrisieren wir automatisch.
 const CORE = {
   "01:RESETBOX": ["02:WATER","03:SHELTER","09:DEBT"],
   "02:WATER":    ["04:FOOD","06:BODY","13:NATURE"],
@@ -275,12 +301,8 @@ const CORE = {
   "42:DEATH":     ["14:HEALTH","15:CARE","41:FUTURE"],
 };
 
-// Hilfs-Mapping
-const byId = new Map(MODS.map(m => [m.id, m]));
-const byKey = new Map(MODS.map(m => [`${m.no}:${m.id}`, m]));
-
-// Symmetrisierte Kantenliste
-const LINKS = new Map(); // id -> Set(ids)
+// Symmetrisierte Kanten
+const LINKS = new Map();
 for (const [k, arr] of Object.entries(CORE)) {
   const a = k.split(':')[1];
   if (!LINKS.has(a)) LINKS.set(a, new Set());
@@ -299,122 +321,91 @@ function urlFor(filePath){
   const u = new URL(window.location.href);
   if (u.pathname.endsWith('map.html')) u.pathname = u.pathname.replace(/map\.html$/,'');
   if (!u.pathname.endsWith('/')) u.pathname += '/';
-  const base = u.origin + u.pathname;
-  return `${base}module.html?file=${encodeURIComponent(filePath)}`;
+  return u.origin + u.pathname + 'module.html?file=' + encodeURIComponent(filePath);
 }
+function polar(r, a){ return [Math.cos(a)*r, Math.sin(a)*r]; }
 
 /* ---------- Aufbau ---------- */
 const svg = document.getElementById('map');
-const tip = document.getElementById('tip');
+const nodesLayer = document.getElementById('nodes-layer');
 const linksLayer = document.getElementById('links-layer');
+const tip = document.getElementById('tip');
 
-// Platzierung
 const R = { inner:220, mid:380, outer:540, center:0 };
-const RS = { inner:42, mid:42, outer:42, center:60 }; // Knotengrößen
-const TEXT_SIZE = 13.5; // gut lesbar
+const RS = { inner:46,  mid:46,  outer:46,  center:68 }; // größere Kreise
 
-function polar(r, angle){ return [Math.cos(angle)*r, Math.sin(angle)*r]; }
+function createNode(mod, x, y, ring){
+  const a = document.createElementNS(SVG_NS,'a');
+  a.classList.add('node', ring);
+  const url = urlFor(mod.file);
+  a.setAttribute('href', url);
+  a.setAttributeNS(XLINK_NS, 'xlink:href', url);
+  a.setAttribute('transform',`translate(${x},${y})`);
+  a.dataset.id = mod.id;
+
+  // Glow-Kante (schneidet Ring)
+  const glow = document.createElementNS(SVG_NS,'circle');
+  glow.setAttribute('r', RS[ring]); glow.classList.add('glow'); a.appendChild(glow);
+
+  const c = document.createElementNS(SVG_NS,'circle'); c.setAttribute('r', RS[ring]); a.appendChild(c);
+
+  const t = document.createElementNS(SVG_NS,'text'); t.textContent = mod.id; a.appendChild(t);
+
+  addNodeEvents(a, mod);
+  return a;
+}
 
 function placeNodes(){
-  // Gruppen pro Ring
-  const groups = {inner:[], mid:[], outer:[], center:[]};
-  MODS.forEach(m => groups[m.ring].push(m));
-
-  // Center: RESETBOX
-  const centerG = svg.querySelector('.center');
-  const m0 = groups.center[0];
-  const a0 = document.createElementNS(SVG_NS, 'a');
-  a0.classList.add('node','center');
-  const url0 = urlFor(m0.file);
-  a0.setAttribute('href', url0);
-  a0.setAttributeNS(XLINK_NS, 'xlink:href', url0);
-  a0.dataset.id = m0.id;
-
-  const c0 = document.createElementNS(SVG_NS, 'circle'); c0.setAttribute('r', RS.center);
-  const t0 = document.createElementNS(SVG_NS, 'text'); t0.textContent = m0.id; t0.setAttribute('y','3'); t0.setAttribute('font-size','15');
-  a0.appendChild(c0); a0.appendChild(t0);
-  addNodeEvents(a0, m0);
-  centerG.appendChild(a0);
+  // Center
+  const m0 = MODS.find(m=>m.ring==='center');
+  const a0 = createNode(m0, 0, 0, 'center');
+  // Center-Text etwas nach unten, damit optisch zentriert
+  a0.querySelector('text').setAttribute('y','2');
+  svg.querySelector('.center').appendChild(a0);
 
   // Ringe
-  for (const ring of ['inner','mid','outer']) {
-    const list = groups[ring];
-    const radius = R[ring];
-    const step = (Math.PI*2)/list.length;
-    const start = -Math.PI/2; // oben anfangen
-    list.forEach((m, idx)=>{
+  const groupByRing = {inner:[], mid:[], outer:[]};
+  MODS.forEach(m=>{ if(m.ring!=='center') groupByRing[m.ring].push(m); });
+
+  for (const ring of ['inner','mid','outer']){
+    const list = groupByRing[ring];
+    const step=(Math.PI*2)/list.length; const start=-Math.PI/2;
+    list.forEach((m,idx)=>{
       const angle = start + idx*step;
-      const [x,y] = polar(radius, angle);
-      const a = document.createElementNS(SVG_NS, 'a');
-      a.classList.add('node', ring);
-      const url = urlFor(m.file);
-      a.setAttribute('href', url);
-      a.setAttributeNS(XLINK_NS, 'xlink:href', url);
-      a.setAttribute('transform',`translate(${x},${y})`);
-      a.dataset.id = m.id;
-
-      const circ = document.createElementNS(SVG_NS, 'circle'); circ.setAttribute('r', RS[ring]);
-      const text = document.createElementNS(SVG_NS, 'text'); text.textContent = m.id; text.setAttribute('font-size', TEXT_SIZE);
-      a.appendChild(circ); a.appendChild(text);
-      addNodeEvents(a, m);
-
-      svg.appendChild(a);
+      const [x,y] = polar(R[ring], angle);
+      const node = createNode(m, x, y, ring);
+      nodesLayer.appendChild(node);
     });
   }
 }
 
-function addNodeEvents(anchor, mod){
-  // Tooltip
-  anchor.addEventListener('mouseenter', (e)=>{
-    tip.innerHTML = `${mod.no} ${mod.id}<br><small>Öffnen</small>`;
-    moveTip(e); tip.classList.add('show');
-    highlight(mod.id);
-  });
-  anchor.addEventListener('mousemove', moveTip);
-  anchor.addEventListener('mouseleave', ()=>{
-    tip.classList.remove('show');
-    clearHighlight();
-  });
-  // Fallback: falls irgendein Browser den SVG-Link nicht öffnet
-  anchor.addEventListener('click', (e)=>{
-    // nichts machen – Standardnavigation reicht; sonst:
-    // location.href = anchor.getAttribute('href');
-  });
-}
+function moveTip(e){ tip.style.left = e.clientX+'px'; tip.style.top = e.clientY+'px'; }
 
-function moveTip(evt){ tip.style.left = evt.clientX+'px'; tip.style.top = evt.clientY+'px'; }
-
-/* ---------- Highlight & Verbindungen ---------- */
 function nodeCenterPos(nodeEl){
-  // globale Koordinaten im SVG-Koordinatensystem ermitteln
-  const tr = nodeEl.getAttribute('transform'); // translate(x,y)
-  if(!tr) return {x:0,y:0};
-  const m = tr.match(/translate\(([-\d.]+),([-\d.]+)\)/);
-  if(m) return {x:parseFloat(m[1]), y:parseFloat(m[2])};
-  return {x:0,y:0};
+  const tr = nodeEl.getAttribute('transform');
+  const m = tr && tr.match(/translate\(([-\d.]+),([-\d.]+)\)/);
+  return m ? {x:parseFloat(m[1]), y:parseFloat(m[2])} : {x:0,y:0};
 }
 
 function highlight(id){
-  // aktive/verbundene Knoten stylen & Linien zeichnen
   document.querySelectorAll('a.node').forEach(n => n.classList.remove('active','linked'));
   const active = Array.from(document.querySelectorAll('a.node')).find(n => n.dataset.id === id);
   if (active) active.classList.add('active');
 
-  // Zielknoten
-  const targets = Array.from(LINKS.get(id) || []);
-  const targetEls = [];
-  targets.forEach(tid=>{
+  const targetIds = Array.from(LINKS.get(id) || []);
+  const targets = [];
+  targetIds.forEach(tid=>{
     const el = Array.from(document.querySelectorAll('a.node')).find(n => n.dataset.id === tid);
-    if(el){ el.classList.add('linked'); targetEls.push(el); }
+    if (el){ el.classList.add('linked'); targets.push(el); }
   });
 
-  // Linien aufbauen
+  // Linien neu aufbauen
   while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
-  if (active && targetEls.length){
+  if (active && targets.length){
     const pA = nodeCenterPos(active);
-    targetEls.forEach(el=>{
+    targets.forEach(el=>{
       const pB = nodeCenterPos(el);
-      const line = document.createElementNS(SVG_NS, 'line');
+      const line = document.createElementNS(SVG_NS,'line');
       line.setAttribute('x1', pA.x); line.setAttribute('y1', pA.y);
       line.setAttribute('x2', pB.x); line.setAttribute('y2', pB.y);
       linksLayer.appendChild(line);
@@ -427,11 +418,24 @@ function highlight(id){
 
 function clearHighlight(){
   document.querySelectorAll('a.node').forEach(n => n.classList.remove('active','linked'));
-  linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
   while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
+  linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
 }
 
-/* ---------- Module-Menü im Header ---------- */
+function addNodeEvents(anchor, mod){
+  anchor.addEventListener('mouseenter', (e)=>{
+    tip.innerHTML = `${mod.no} ${mod.id}<br><small>Öffnen</small>`;
+    moveTip(e); tip.classList.add('show');
+    highlight(mod.id);
+  });
+  anchor.addEventListener('mousemove', moveTip);
+  anchor.addEventListener('mouseleave', ()=>{
+    tip.classList.remove('show');
+    clearHighlight();
+  });
+}
+
+/* ---------- Header: Module-Menü füllen ---------- */
 (function fillMenu(){
   const menu = document.getElementById('menu-mods');
   MODS.forEach(m=>{

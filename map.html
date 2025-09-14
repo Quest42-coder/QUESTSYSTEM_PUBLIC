@@ -3,24 +3,27 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>QUESTSYSTEM – Modul-Map (V7.3)</title>
+<title>QUESTSYSTEM – Modul-Map (V7.4)</title>
 <meta name="description" content="Interaktive Ring-Map des QUESTSYSTEMS mit externen Labels, Leader-Lines und Hover-Verbindungen." />
 <style>
   :root{
-    --bg:#0a0f17; --fg:#eaf2ff; --muted:#9fb0c6; --border:#1f2a3d; --glass:rgba(14,18,28,.6);
-    --q1:#79e1ff; --q2:#8affc7; --q3:#b09bff;
-    --inner:#f3c0c7; --mid:#f0de94; --outer:#bcd5ff; --center:#9fe3ff;
-    --node-bg:#0e1422; --node-stroke:#2b3550; --node-text:#e6efff;
-    --shadow: 0 10px 28px rgba(0,0,0,.45);
+    --bg:#09101a; --fg:#eef5ff; --muted:#a7b8d3; --border:#1f2a3d; --glass:rgba(14,18,28,.6);
+    /* kräftigerer Quest-Gradient */
+    --q1:#3dd5ff; --q2:#7affb3; --q3:#a988ff;
+    /* Ringe */
+    --inner:#ffbac6; --mid:#f6e27a; --outer:#c6dcff; --center:#9fe3ff;
+    /* Nodes */
+    --node-bg:#0c1321; --node-stroke:#334364; --node-text:#eaf2ff;
+    --shadow: 0 12px 32px rgba(0,0,0,.5);
     --header-h:58px;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0; color:var(--fg);
-    font:16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font:16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
     background:
-      radial-gradient(1400px 900px at 50% 38%, #121a2e 0%, #101726 55%, var(--bg) 100%),
+      radial-gradient(1400px 900px at 50% 38%, #12203a 0%, #0f1a2d 55%, var(--bg) 100%),
       radial-gradient(900px 700px at 12% 14%, rgba(255,255,255,.05), transparent 60%),
       radial-gradient(900px 900px at 88% 84%, rgba(255,255,255,.035), transparent 65%);
     overflow:hidden;
@@ -37,77 +40,73 @@
   .dd{ position:relative }
   .dd>button{
     color:var(--fg); background:transparent; border:1px solid var(--border);
-    padding:6px 10px; border-radius:10px; cursor:pointer; font-weight:700
+    padding:6px 12px; border-radius:10px; cursor:pointer; font-weight:800
   }
   .menu{
-    position:absolute; right:0; top:calc(100% + 8px); min-width:240px; max-height:60vh; overflow:auto;
+    position:absolute; right:0; top:calc(100% + 8px); min-width:260px; max-height:60vh; overflow:auto;
     display:none; flex-direction:column; gap:4px; padding:10px;
     background:rgba(10,13,20,.98); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow);
   }
   .dd:hover .menu{ display:flex }
-  .menu a{ color:var(--fg); text-decoration:none; padding:9px 11px; border-radius:8px }
-  .menu a:hover{ background:rgba(255,255,255,.07) }
+  .menu a{ color:var(--fg); text-decoration:none; padding:10px 12px; border-radius:8px; font-size:15px }
+  .menu a:hover{ background:rgba(255,255,255,.08) }
 
   /* Bühne */
   .stage{ position:absolute; inset:var(--header-h) 0 0 0; display:grid; place-items:center; }
-  svg{ width:min(1300px, 96vw); height:min(1300px, calc(96vh - var(--header-h))); }
+  svg{ width:min(1340px, 96vw); height:min(1340px, calc(96vh - var(--header-h))); }
 
   /* Gradients */
   defs linearGradient stop{ transition:all .2s ease }
 
   /* Ringe */
-  .ring{ fill:none; stroke-opacity:.9; }
-  .ring.inner{ stroke:var(--inner); stroke-width:2.2 }
-  .ring.mid{   stroke:var(--mid);   stroke-width:2.2 }
-  .ring.outer{ stroke:var(--outer); stroke-width:2.2 }
+  .ring{ fill:none; stroke-opacity:.95; }
+  .ring.inner{ stroke:var(--inner); stroke-width:2.4 }
+  .ring.mid{   stroke:var(--mid);   stroke-width:2.4 }
+  .ring.outer{ stroke:var(--outer); stroke-width:2.4 }
 
   /* Verbindungen */
   .links line{
-    stroke:url(#qgrad); stroke-opacity:.95; stroke-width:2.6;
-    filter: drop-shadow(0 0 10px rgba(121,225,255,.35));
+    stroke:url(#qgrad); stroke-opacity:1; stroke-width:3.2;
+    filter: drop-shadow(0 0 12px rgba(61,213,255,.42));
   }
   .links.hidden{ opacity:0; pointer-events:none }
-  .links.visible{ opacity:1; transition: opacity .12s ease }
+  .links.visible{ opacity:1; transition: opacity .1s ease }
 
   /* Nodes über Ringen (Durchbrechung) */
-  g.nodes{ filter: drop-shadow(0 2px 10px rgba(0,0,0,.45)); }
+  g.nodes{ filter: drop-shadow(0 3px 12px rgba(0,0,0,.5)); }
 
   /* Knoten */
   a.node{ cursor:pointer; transition: transform .12s ease, opacity .12s ease; }
   a.node:hover{ transform: translateY(-1px) scale(1.02); }
   .node circle{
-    fill:var(--node-bg); stroke:var(--node-stroke); stroke-width:1.9;
+    fill:var(--node-bg); stroke:var(--node-stroke); stroke-width:2.1;
   }
-  .node circle.glow{ fill:none; stroke:rgba(255,255,255,.16); stroke-width:6; opacity:.65; filter:blur(1.5px); }
-  .node.active circle{ stroke:url(#qgrad); stroke-width:2.8; }
-  .node.linked circle{ stroke:url(#qgrad); stroke-width:2.5; opacity:.95; }
+  .node circle.glow{ fill:none; stroke:rgba(255,255,255,.18); stroke-width:7; opacity:.7; filter:blur(1.6px); }
+  .node.active circle{ stroke:url(#qgrad); stroke-width:3.2; }
+  .node.linked circle{ stroke:url(#qgrad); stroke-width:2.8; opacity:.98; }
 
   /* Zentrum */
-  .center circle.core{ fill:transparent; stroke:#6b7a90; stroke-dasharray:4 6; stroke-width:2; }
-  .center a.node text{ fill:#cceaff; font-size:20px; font-weight:1000 }
-  .center a.node circle{ fill:rgba(20,28,44,.7); stroke:url(#qgrad); stroke-width:2.8 }
+  .center circle.core{ fill:transparent; stroke:#7a8eab; stroke-dasharray:4 6; stroke-width:2.2; }
+  .center a.node text{ fill:#d8f1ff; font-size:22px; font-weight:1000; letter-spacing:.5px }
+  .center a.node circle{ fill:rgba(20,28,44,.8); stroke:url(#qgrad); stroke-width:3.0 }
 
-  /* Externe Labels + Leader-Lines */
+  /* Externe Labels + Leader-Lines (größer & kontrastreicher) */
   .label text{
-    fill:var(--fg); font-weight:900; letter-spacing:.35px; font-size:15px;
-    paint-order: stroke; stroke: rgba(10,15,24,.75); stroke-width:4px; /* Kontur für Lesbarkeit */
+    fill:var(--fg); font-weight:1000; letter-spacing:.38px; font-size:17px;
+    paint-order: stroke; stroke: rgba(8,12,20,.78); stroke-width:4.5px;
   }
-  .label line{
-    stroke:#a8c7ff; stroke-opacity:.8; stroke-width:1.6;
-  }
-  .label.active text{ fill:#04121a; stroke:none }
+  .label line{ stroke:#bcd8ff; stroke-opacity:.9; stroke-width:1.8; }
+  .label.active text{ fill:#06131c; stroke:none }
   .label.active rect{ fill:url(#qgrad) }
-  .label rect{
-    fill:rgba(12,18,32,.8); stroke:1px solid #22314a; rx:7; ry:7;
-  }
+  .label rect{ fill:rgba(12,18,32,.88); stroke:1px solid #274065; rx:8; ry:8; }
 
   /* Legende */
   .legend{
     position:fixed; inset:auto 12px 12px 12px; z-index:70;
     display:flex; gap:10px; align-items:center; justify-content:center;
-    background:rgba(12,16,24,.55); border:1px solid var(--border); border-radius:10px; padding:8px 10px; backdrop-filter: blur(6px);
+    background:rgba(12,16,24,.6); border:1px solid var(--border); border-radius:10px; padding:8px 12px; backdrop-filter: blur(6px);
   }
-  .chip{display:inline-flex; align-items:center; gap:8px; font-size:12px}
+  .chip{display:inline-flex; align-items:center; gap:8px; font-size:13px}
   .sw{width:14px; height:14px; border-radius:50%}
   .sw.center{background:var(--center)}
   .sw.inner{background:var(--inner)}
@@ -119,8 +118,8 @@
     position:fixed; z-index:90; pointer-events:none;
     transform:translate(-50%, calc(-100% - 12px));
     background:#0f1624; border:1px solid #2b3548; color:var(--fg);
-    padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap;
-    opacity:0; transition:opacity .12s ease, transform .12s ease; box-shadow: var(--shadow);
+    padding:9px 11px; border-radius:8px; font-size:13px; white-space:nowrap;
+    opacity:0; transition:opacity .1s ease, transform .1s ease; box-shadow: var(--shadow);
   }
   .tip.show{ opacity:1; transform:translate(-50%, calc(-100% - 10px)) }
   .tip small{ color:var(--muted) }
@@ -156,7 +155,7 @@
 </header>
 
 <div class="stage">
-  <svg id="map" viewBox="-660 -660 1320 1320"
+  <svg id="map" viewBox="-670 -670 1340 1340"
        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
        role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS">
     <defs>
@@ -296,7 +295,7 @@ const CORE = {
 /* ===== Helpers ===== */
 const SVG_NS="http://www.w3.org/2000/svg"; const XLINK_NS="http://www.w3.org/1999/xlink";
 const R = { inner:220, mid:380, outer:540, center:0 };
-const RS = { inner:46, mid:46, outer:46, center:78 }; // größere Kreise; RESETBOX prominent
+const RS = { inner:50, mid:50, outer:50, center:82 }; // größere Kreise
 function polar(r, a){ return [Math.cos(a)*r, Math.sin(a)*r]; }
 function urlFor(filePath){
   const u = new URL(window.location.href);
@@ -324,16 +323,15 @@ const labelsLayer = document.getElementById('labels-layer');
 const linksLayer  = document.getElementById('links-layer');
 const tip = document.getElementById('tip');
 
-/* Anti-Overlap: leichte Winkelspreizung, wenn benachbart zu dicht */
-function distributeAngles(listLen){
-  const step = (Math.PI*2)/listLen, start=-Math.PI/2;
-  const angles = Array.from({length:listLen},(_,i)=>start+i*step);
-  // sanfte Spreizung: prüfe Nachbarn, addiere kleine Offsets
-  const MIN_GAP = (Math.PI/180)*6; // 6°
-  for(let i=0;i<listLen;i++){
-    const prev = angles[(i-1+listLen)%listLen], cur = angles[i], next = angles[(i+1)%listLen];
-    if (cur-prev < MIN_GAP) angles[i]+= (MIN_GAP - (cur-prev))/2;
-    if (next-cur < MIN_GAP) angles[i]-= (MIN_GAP - (next-cur))/2;
+/* sanfte Winkelverteilung zur Überlappungsreduktion */
+function distributeAngles(len){
+  const step=(Math.PI*2)/len, start=-Math.PI/2;
+  const angles=Array.from({length:len},(_,i)=>start+i*step);
+  const MIN=(Math.PI/180)*6;
+  for(let i=0;i<len;i++){
+    const p=angles[(i-1+len)%len], c=angles[i], n=angles[(i+1)%len];
+    if(c-p<MIN) angles[i]+= (MIN-(c-p))/2;
+    if(n-c<MIN) angles[i]-= (MIN-(n-c))/2;
   }
   return angles;
 }
@@ -353,13 +351,12 @@ function addNode(mod, ring, angle, r){
   addNodeEvents(a, mod, {x,y,angle,ring});
   nodesLayer.appendChild(a);
 
-  // Label außen
+  // Externes Label
   addLabel(mod, ring, angle, r, {x,y});
 }
 
 function addLabel(mod, ring, angle, r, center){
-  // Labelradius + Offset je Ring
-  const offset = ring==='inner'? 72 : ring==='mid'? 78 : 84;
+  const offset = ring==='inner'? 78 : ring==='mid'? 86 : 94;
   const [lx,ly] = polar(r+offset, angle);
 
   const g = document.createElementNS(SVG_NS,'g');
@@ -367,51 +364,41 @@ function addLabel(mod, ring, angle, r, center){
   g.setAttribute('class','label');
   g.dataset.id = mod.id;
 
-  // Leader-Line
   const line = document.createElementNS(SVG_NS,'line');
   line.setAttribute('x1', 0); line.setAttribute('y1', 0);
   line.setAttribute('x2', center.x - lx); line.setAttribute('y2', center.y - ly);
   g.appendChild(line);
 
-  // Hintergrund-Kapsel dynamisch
   const text = document.createElementNS(SVG_NS,'text');
   text.textContent = `${mod.no} ${mod.id}`;
   text.setAttribute('dominant-baseline','middle');
 
-  // Text-Ausrichtung je Quadrant
   const deg = angle * 180/Math.PI;
-  if (deg > -90 && deg <= 90){ // rechte Seite
-    text.setAttribute('text-anchor','start');
-    text.setAttribute('x', 10);
-  } else { // linke Seite
-    text.setAttribute('text-anchor','end');
-    text.setAttribute('x', -10);
-  }
+  if (deg > -90 && deg <= 90){ text.setAttribute('text-anchor','start'); text.setAttribute('x', 12); }
+  else { text.setAttribute('text-anchor','end'); text.setAttribute('x', -12); }
   text.setAttribute('y', 0);
 
-  // Hintergrund-Rect nach Text-BBox (nach minimaler Verzögerung für korrekte BBox)
   const rect = document.createElementNS(SVG_NS,'rect');
   g.appendChild(rect); g.appendChild(text);
   labelsLayer.appendChild(g);
 
-  requestAnimationFrame(()=>{ // warte, bis im DOM
+  requestAnimationFrame(()=>{
     const bb = text.getBBox();
-    rect.setAttribute('x', bb.x - 8);
-    rect.setAttribute('y', bb.y - 4);
-    rect.setAttribute('width', bb.width + 16);
-    rect.setAttribute('height', bb.height + 8);
+    rect.setAttribute('x', bb.x - 10);
+    rect.setAttribute('y', bb.y - 6);
+    rect.setAttribute('width', bb.width + 20);
+    rect.setAttribute('height', bb.height + 12);
   });
 }
 
 function buildMap(){
   // Center (RESETBOX)
   const m0 = MODS.find(m=>m.ring==='center');
-  addNode(m0, 'center', 0, 0); // angle/r ignoriert
-  // überschreibe Position exakt im Zentrum:
+  addNode(m0, 'center', 0, 0);
   const centerNode = nodesLayer.querySelector('a.node.center');
   centerNode.setAttribute('transform','translate(0,0)');
 
-  // Label für RESETBOX zentral, ohne Leader
+  // zentrales Label
   const g = document.createElementNS(SVG_NS,'g');
   g.setAttribute('transform','translate(0,0)');
   g.setAttribute('class','label active');
@@ -419,20 +406,18 @@ function buildMap(){
   const rect = document.createElementNS(SVG_NS,'rect'); g.appendChild(rect);
   const text = document.createElementNS(SVG_NS,'text');
   text.textContent = `01 ${m0.id}`; text.setAttribute('text-anchor','middle'); text.setAttribute('y','0');
-  text.setAttribute('dominant-baseline','middle');
+  text.setAttribute('dominant-baseline','middle'); text.style.fontSize = '22px';
   g.appendChild(text);
   labelsLayer.appendChild(g);
   requestAnimationFrame(()=>{
     const bb = text.getBBox();
-    rect.setAttribute('x', bb.x - 10); rect.setAttribute('y', bb.y - 6);
-    rect.setAttribute('width', bb.width + 20); rect.setAttribute('height', bb.height + 12);
+    rect.setAttribute('x', bb.x - 12); rect.setAttribute('y', bb.y - 8);
+    rect.setAttribute('width', bb.width + 24); rect.setAttribute('height', bb.height + 16);
   });
 
-  // Gruppen
+  // Ringe
   const byRing = {inner:[], mid:[], outer:[]};
   MODS.forEach(m=>{ if(m.ring!=='center') byRing[m.ring].push(m); });
-
-  // Platzieren mit sanfter Anti-Overlap-Spreizung
   for(const ring of ['inner','mid','outer']){
     const list = byRing[ring];
     const angles = distributeAngles(list.length);
@@ -446,18 +431,15 @@ function nodeCenterPos(nodeEl){
   const m = tr && tr.match(/translate\(([-\d.]+),([-\d.]+)\)/);
   return m ? {x:parseFloat(m[1]), y:parseFloat(m[2])} : {x:0,y:0};
 }
-
 function setLabelActive(id, on){
   const label = labelsLayer.querySelector(`.label[data-id="${id}"]`);
   if(!label) return;
   if(on) label.classList.add('active'); else label.classList.remove('active');
 }
-
 function highlight(id){
   document.querySelectorAll('a.node').forEach(n => n.classList.remove('active','linked'));
   const active = Array.from(document.querySelectorAll('a.node')).find(n => n.dataset.id === id);
   if (active) active.classList.add('active');
-
   setLabelActive(id, true);
 
   const targets = Array.from(LINKS.get(id) || []);
@@ -468,7 +450,6 @@ function highlight(id){
     setLabelActive(tid, true);
   });
 
-  // Linien neu aufbauen
   while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
   if (active && targetEls.length){
     const pA = nodeCenterPos(active);
@@ -484,16 +465,13 @@ function highlight(id){
     linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
   }
 }
-
 function clearHighlight(){
   document.querySelectorAll('a.node').forEach(n => n.classList.remove('active','linked'));
   labelsLayer.querySelectorAll('.label').forEach(l => l.classList.remove('active'));
   while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
   linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
 }
-
-function addNodeEvents(anchor, mod, meta){
-  // Tooltip
+function addNodeEvents(anchor, mod){
   anchor.addEventListener('mouseenter', (e)=>{
     tip.innerHTML = `${mod.no} ${mod.id}<br><small>Öffnen</small>`;
     tip.style.left = e.clientX+'px'; tip.style.top = e.clientY+'px';

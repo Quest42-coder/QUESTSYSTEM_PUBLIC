@@ -3,37 +3,42 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>QUESTSYSTEM – Modul-Map (V7)</title>
-<meta name="description" content="Interaktive Map der QUESTSYSTEM-Module. Verbindungen erscheinen nur bei Hover über dem Modulumrand (RIM)." />
+<title>QUESTSYSTEM – Modul-Map (V7.1)</title>
+<meta name="description" content="Interaktive Ring-Map des QUESTSYSTEMS mit Hover-Verbindungen und klickbaren Modulen." />
 <style>
   :root{
-    --bg:#0a0f17; --fg:#f1f5ff; --muted:#a7b7cf; --border:#1f2a3d; --glass:rgba(14,18,28,.6);
-    --ring-i:#ffd1d9; --ring-m:#f6eaa0; --ring-o:#c5dcff;
-    --edge:#74caff; --edge-strong:#79e1ff;
-    --rim:#36445f; --rim-hover:#8ac2ff; --cut:#0a0f17;
-    --center:#a8d9ff;
-    --header-h:58px; --shadow:0 14px 48px rgba(0,0,0,.55);
+    --bg:#0a0f17; --fg:#eaf2ff; --muted:#9fb0c6; --border:#1f2a3d; --glass:rgba(14,18,28,.6);
+    --inner:#f3c0c7; --mid:#f0de94; --outer:#bcd5ff; --center:#9fe3ff;
+    --node-bg:#0f1422; --node-stroke:#2a3348; --node-text:#dfeaff;
+    --active:#79e1ff; --linked:#8affc7;
+    --shadow: 0 10px 28px rgba(0,0,0,.45);
+    --header-h:56px;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0; color:var(--fg);
-    font:16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", sans-serif;
+    font:16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
     background:
-      radial-gradient(1400px 900px at 50% 38%, #131b2b 0%, #111828 55%, var(--bg) 100%),
+      radial-gradient(1400px 900px at 50% 38%, #141c2e 0%, #101726 55%, var(--bg) 100%),
       radial-gradient(900px 700px at 12% 14%, rgba(255,255,255,.05), transparent 60%),
       radial-gradient(900px 900px at 88% 84%, rgba(255,255,255,.035), transparent 65%);
     overflow:hidden;
   }
+
+  /* Header */
   header{
-    position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:60;
-    display:flex; align-items:center; gap:12px; padding:10px 14px;
+    position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:50;
+    display:flex; align-items:center; gap:12px; padding:8px 12px;
     background:var(--glass); border-bottom:1px solid var(--border); backdrop-filter: blur(8px);
   }
-  .brand{ color:var(--fg); text-decoration:none; font-weight:900; letter-spacing:.4px }
-  .nav{ margin-left:auto; display:flex; gap:10px; align-items:center }
+  .brand{ color:var(--fg); text-decoration:none; font-weight:900; letter-spacing:.3px; font-size:15px }
+  nav{ margin-left:auto; display:flex; gap:10px; align-items:center }
   .dd{ position:relative }
-  .dd>button{ color:var(--fg); background:transparent; border:1px solid transparent; padding:6px 10px; border-radius:10px; cursor:pointer; font-weight:700 }
+  .dd>button{
+    color:var(--fg); background:transparent; border:1px solid var(--border);
+    padding:6px 10px; border-radius:10px; cursor:pointer; font-weight:700
+  }
   .menu{
     position:absolute; right:0; top:calc(100% + 8px); min-width:240px; max-height:60vh; overflow:auto;
     display:none; flex-direction:column; gap:4px; padding:10px;
@@ -42,81 +47,85 @@
   .dd:hover .menu{ display:flex }
   .menu a{ color:var(--fg); text-decoration:none; padding:9px 11px; border-radius:8px }
   .menu a:hover{ background:rgba(255,255,255,.07) }
-  .burger{display:none; background:none; border:0; width:38px; height:38px; margin-left:auto; cursor:pointer}
-  .burger span{display:block; height:2px; background:var(--fg); margin:7px 5px; border-radius:2px}
-  @media (max-width:900px){
-    .burger{display:block}
-    .nav{position:fixed; top:var(--header-h); left:10px; right:10px; display:none; flex-direction:column; gap:12px;
-         background:rgba(10,13,20,.98); border:1px solid var(--border); border-radius:12px; padding:12px; z-index:65}
-    .dd{width:100%}
-    .dd>button{width:100%; text-align:left; border:1px solid var(--border)}
-    .menu{position:static; display:block; background:transparent; border:0; box-shadow:none; padding:6px 0; max-height:none; overflow:visible}
-  }
 
-  .stage{ position:absolute; inset:var(--header-h) 0 0 0; display:grid; place-items:center; padding:8px }
-  svg{ width:min(1400px,96vw); height:min(1400px,96vh) }
+  /* Bühne */
+  .stage{ position:absolute; inset:var(--header-h) 0 0 0; display:grid; place-items:center; }
+  svg{ width:min(1200px, 95vw); height:min(1200px, calc(95vh - var(--header-h))); }
 
   /* Ringe */
-  .ring{ fill:none; stroke-width:1.8; opacity:.9; filter: drop-shadow(0 3px 16px rgba(0,0,0,.4)); }
-  .ring-inner{ stroke:var(--ring-i) } .ring-mid{ stroke:var(--ring-m) } .ring-outer{ stroke:var(--ring-o) }
+  .ring{ fill:none; stroke-opacity:.9 }
+  .ring.inner{ stroke:var(--inner); stroke-width:2.2 }
+  .ring.mid{   stroke:var(--mid);   stroke-width:2.2 }
+  .ring.outer{ stroke:var(--outer); stroke-width:2.2 }
 
-  /* Verbindungen (unsichtbar bis Hover) */
-  .edges path{
-    stroke:var(--edge); stroke-width:2.2; fill:none; opacity:0;
-    vector-effect:non-scaling-stroke; transition:opacity .12s ease, stroke-width .12s ease, stroke .12s ease;
+  /* Knoten */
+  a.node{ cursor:pointer; transition: transform .15s ease, opacity .15s ease; }
+  a.node:hover{ transform: translateY(-2px) scale(1.03); }
+  .node circle{
+    fill:var(--node-bg); stroke:var(--node-stroke); stroke-width:1.8;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,.35));
   }
-  .edges path.on{ opacity:.98; stroke:var(--edge-strong); stroke-width:3; filter: drop-shadow(0 2px 10px rgba(110,220,255,.35)); }
-
-  /* Nodes */
-  .node{ filter: drop-shadow(0 10px 28px rgba(0,0,0,.55)); transition: transform .14s ease }
-  .node .cut{ fill:var(--cut) }
-  .node .rim{ fill:transparent; stroke:var(--rim); stroke-width:2.2; pointer-events:auto }  /* Hover nur auf RIM */
-  .node .hit{ fill:rgba(255,255,255,0); cursor:pointer; pointer-events:all }                /* Klickfläche = voll */
-  .node:hover{ transform: translateY(-2px) scale(1.035) }
-  .node:hover .rim{ stroke:var(--rim-hover) }
-  .node.active .rim{ stroke:var(--edge-strong); stroke-width:3.1; filter: drop-shadow(0 0 24px rgba(120,220,255,.5)) }
-
-  /* Labels */
   .node text{
-    font-weight:1000; letter-spacing:.4px;
-    text-anchor:middle; dominant-baseline:middle; pointer-events:none;
-    paint-order: stroke; stroke:rgba(10,14,24,.82); stroke-width:3.2;
-    filter: drop-shadow(0 1px 0 rgba(0,0,0,.35));
+    fill:var(--node-text); font-weight:800; letter-spacing:.3px; text-anchor:middle; dominant-baseline:middle;
+    font-size:12px; /* wird per JS hochskaliert */
+    pointer-events:none; /* Klickfläche = Kreis */
   }
-  .inner text{ fill:#4e1e29 } .mid text{ fill:#5d4c00 } .outer text{ fill:#1f3b64 }
-  .inner text,.mid text,.outer text{ font-size:36px }
+  .node.inner text{ fill:#5d2029 }
+  .node.mid   text{ fill:#6c5b00 }
+  .node.outer text{ fill:#274b7a }
 
-  /* RESETBOX groß im Zentrum */
-  .center .cut{ fill:var(--cut) }
-  .center .rim{ fill:transparent; stroke:var(--center); stroke-dasharray:10 12; stroke-width:3.4 }
-  .center text{
-    fill:#ffffff; font-weight:1000; font-size:104px; letter-spacing:1.2px;
-    text-anchor:middle; dominant-baseline:middle;
-    paint-order: stroke; stroke:rgba(10,14,24,.85); stroke-width:3.6;
-    filter: drop-shadow(0 4px 0 rgba(0,0,0,.38));
+  .node.active circle{ stroke:var(--active); stroke-width:2.6 }
+  .node.linked circle{ stroke:var(--linked); stroke-width:2.6 }
+
+  /* Zentrum */
+  .center circle.core{
+    fill:transparent; stroke:#6b7a90; stroke-dasharray:4 6; stroke-width:2;
   }
-  .center .hit{ fill:rgba(255,255,255,0); cursor:pointer }
+  .center a.node text{ fill:#b9dfff; font-size:14px }
+  .center a.node circle{ fill:rgba(20,28,44,.6); stroke:#3a5478; stroke-width:2.4 }
+
+  /* Verbindungen */
+  .links line{
+    stroke:#86e9ff; stroke-opacity:.85; stroke-width:2.2;
+    filter: drop-shadow(0 0 8px rgba(121,225,255,.35));
+  }
+  .links.hidden{ opacity:0; pointer-events:none }
+  .links.visible{ opacity:1; transition: opacity .12s ease }
 
   /* Tooltip */
   .tip{
     position:fixed; z-index:70; pointer-events:none;
-    background:#0f1624; border:1px solid var(--border); color:var(--fg);
-    padding:8px 10px; border-radius:10px; font-size:13px; white-space:nowrap;
-    opacity:0; transform:translate(-50%,-140%); transition:opacity .12s ease, transform .12s ease; box-shadow:var(--shadow);
+    transform:translate(-50%, calc(-100% - 12px));
+    background:#0f1624; border:1px solid #2b3548; color:var(--fg);
+    padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap;
+    opacity:0; transition:opacity .12s ease, transform .12s ease; box-shadow: var(--shadow);
   }
-  .tip.show{ opacity:1; transform:translate(-50%,-150%) }
+  .tip.show{ opacity:1; transform:translate(-50%, calc(-100% - 10px)) }
+  .tip small{ color:var(--muted) }
+
+  /* Legende */
+  .legend{
+    position:fixed; inset:auto 12px 12px 12px; z-index:25;
+    display:flex; gap:10px; align-items:center; justify-content:center;
+    background:rgba(12,16,24,.55); border:1px solid var(--border); border-radius:10px; padding:8px 10px; backdrop-filter: blur(6px);
+  }
+  .chip{display:inline-flex; align-items:center; gap:8px; font-size:12px}
+  .sw{width:14px; height:14px; border-radius:50%}
+  .sw.inner{background:var(--inner)}
+  .sw.mid{background:var(--mid)}
+  .sw.outer{background:var(--outer)}
+  .sw.center{background:var(--center)}
 </style>
 </head>
 <body>
-<header>
+<header aria-label="Seitennavigation">
   <a class="brand" href="./index.html">🍄 QUESTSYSTEM</a>
-  <button class="burger" aria-label="Menü" aria-expanded="false"><span></span><span></span><span></span></button>
-  <nav class="nav" aria-label="Hauptnavigation">
+  <nav>
     <div class="dd">
       <button>System</button>
       <div class="menu">
         <a href="./index.html">Start</a>
-        <a href="./map.html" aria-current="page">Modul-Map</a>
+        <a href="./map.html">Modul-Map</a>
         <a href="module.html?file=ARTIST_PROFILE.md">Artist Profile</a>
         <a href="module.html?file=MODULES/Modul_32_LICENCE.md">Licence</a>
         <a href="https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC" target="_blank" rel="noopener">Repository</a>
@@ -132,309 +141,309 @@
     </div>
     <div class="dd">
       <button>Module</button>
-      <div class="menu" id="menu-mods"><!-- auto --></div>
+      <div class="menu" id="menu-mods"></div>
     </div>
   </nav>
 </header>
 
 <div class="stage">
-  <svg id="ringmap" viewBox="-600 -600 1200 1200"
-       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-       role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS">
-
-    <!-- Verbindungen-Layer -->
-    <g class="edges" id="edges"></g>
-
+  <svg id="map" viewBox="-640 -640 1280 1280" role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS"
+       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Ringe -->
-    <circle class="ring ring-inner" r="220"></circle>
-    <circle class="ring ring-mid"   r="380"></circle>
-    <circle class="ring ring-outer" r="540"></circle>
+    <circle class="ring inner" r="220"></circle>
+    <circle class="ring mid"   r="380"></circle>
+    <circle class="ring outer" r="540"></circle>
 
-    <!-- RESETBOX im Kern -->
-    <a xlink:href="module.html?file=MODULES/Modul_01_RESETBOX.md" href="module.html?file=MODULES/Modul_01_RESETBOX.md">
-      <g class="center" transform="translate(0,0)" tabindex="0" data-id="01" aria-label="01 RESETBOX">
-        <circle class="cut" r="195"></circle>
-        <circle class="rim" r="195"></circle>
-        <text y="8">RESETBOX</text>
-        <circle class="hit" r="195"></circle>
-      </g>
-    </a>
+    <!-- Verbindungen (dynamisch auf Hover sichtbar) -->
+    <g class="links hidden" id="links-layer"></g>
+
+    <!-- Zentrum -->
+    <g class="center">
+      <circle class="core" r="90"></circle>
+      <!-- RESETBOX Node wird durch JS gesetzt, damit gleiche Logik gilt -->
+    </g>
   </svg>
+</div>
+
+<div class="legend" aria-hidden="true">
+  <span class="chip"><span class="sw center"></span>RESETBOX</span>
+  <span class="chip"><span class="sw inner"></span>Existential</span>
+  <span class="chip"><span class="sw mid"></span>Societal</span>
+  <span class="chip"><span class="sw outer"></span>Structural</span>
 </div>
 
 <div id="tip" class="tip" role="status" aria-live="polite"></div>
 
 <script>
-/* ===== Mobile Menü ===== */
-(function(){
-  const burger=document.querySelector('.burger'); const nav=document.querySelector('.nav');
-  if(!burger||!nav) return;
-  burger.addEventListener('click', ()=>{
-    const open = nav.style.display==='flex';
-    nav.style.display = open ? 'none':'flex';
-    burger.setAttribute('aria-expanded', String(!open));
-  });
-  nav.addEventListener('click', e=>{
-    if(e.target.closest('a') && matchMedia('(max-width:900px)').matches){
-      nav.style.display='none'; burger.setAttribute('aria-expanded','false');
-    }
-  });
-})();
-
-/* ===== Daten ===== */
+/* ---------- Daten ---------- */
+// Modul-Definition (Nr, Label, Ring, Datei)
 const MODS = [
-  {no:"01", label:"RESETBOX", ring:"center", file:"MODULES/Modul_01_RESETBOX.md"},
-  {no:"02", label:"WATER",    ring:"inner", file:"MODULES/Modul_02_WATER.md"},
-  {no:"03", label:"SHELTER",  ring:"inner", file:"MODULES/Modul_03_SHELTER.md"},
-  {no:"04", label:"FOOD",     ring:"inner", file:"MODULES/Modul_04_FOOD.md"},
-  {no:"05", label:"SLEEP",    ring:"inner", file:"MODULES/Modul_05_SLEEP.md"},
-  {no:"06", label:"BODY",     ring:"inner", file:"MODULES/Modul_06_BODY.md"},
-  {no:"07", label:"PSYCHE",   ring:"inner", file:"MODULES/Modul_07_PSYCHE.md"},
-  {no:"08", label:"DEVICE",   ring:"inner", file:"MODULES/Modul_08_DEVICE.md"},
-  {no:"09", label:"DEBT",     ring:"inner", file:"MODULES/Modul_09_DEBT.md"},
-
-  {no:"10", label:"WORK",      ring:"mid",   file:"MODULES/Modul_10_WORK.md"},
-  {no:"11", label:"SCHOOL",    ring:"mid",   file:"MODULES/Modul_11_SCHOOL.md"},
-  {no:"12", label:"BORDER",    ring:"mid",   file:"MODULES/Modul_12_BORDER.md"},
-  {no:"13", label:"NATURE",    ring:"mid",   file:"MODULES/Modul_13_NATURE.md"},
-  {no:"14", label:"HEALTH",    ring:"mid",   file:"MODULES/Modul_14_HEALTH.md"},
-  {no:"15", label:"CARE",      ring:"mid",   file:"MODULES/Modul_15_CARE.md"},
-  {no:"16", label:"FAMILY",    ring:"mid",   file:"MODULES/Modul_16_FAMILY.md"},
-  {no:"17", label:"ANIMAL",    ring:"mid",   file:"MODULES/Modul_17_ANIMAL.md"},
-  {no:"18", label:"CULTURE",   ring:"mid",   file:"MODULES/Modul_18_CULTURE.md"},
-  {no:"19", label:"MEDIA",     ring:"mid",   file:"MODULES/Modul_19_MEDIA.md"},
-  {no:"20", label:"ENERGY",    ring:"mid",   file:"MODULES/Modul_20_ENERGY.md"},
-  {no:"21", label:"CLIMATE",   ring:"mid",   file:"MODULES/Modul_21_CLIMATE.md"},
-  {no:"22", label:"MIGRATION", ring:"mid",   file:"MODULES/Modul_22_MIGRATION.md"},
-  {no:"23", label:"JUSTICE",   ring:"mid",   file:"MODULES/Modul_23_JUSTICE.md"},
-  {no:"24", label:"COMMUNITY", ring:"mid",   file:"MODULES/Modul_24_COMMUNITY.md"},
-
-  {no:"25", label:"FINANCE",   ring:"outer", file:"MODULES/Modul_25_FINANCE.md"},
-  {no:"26", label:"HOUSING",   ring:"outer", file:"MODULES/Modul_26_HOUSING.md"},
-  {no:"27", label:"TRANSPORT", ring:"outer", file:"MODULES/Modul_27_TRANSPORT.md"},
-  {no:"28", label:"NETWORK",   ring:"outer", file:"MODULES/Modul_28_NETWORK.md"},
-  {no:"29", label:"SYMBOL",    ring:"outer", file:"MODULES/Modul_29_SYMBOL.md"},
-  {no:"30", label:"TRUTH",     ring:"outer", file:"MODULES/Modul_30_TRUTH.md"},
-  {no:"31", label:"MEMORY",    ring:"outer", file:"MODULES/Modul_31_MEMORY.md"},
-  {no:"32", label:"LICENCE",   ring:"outer", file:"MODULES/Modul_32_LICENCE.md"},
-  {no:"33", label:"PRIVACY",   ring:"outer", file:"MODULES/Modul_33_PRIVACY.md"},
-  {no:"34", label:"SECURITY",  ring:"outer", file:"MODULES/Modul_34_SECURITY.md"},
-  {no:"35", label:"DATA",      ring:"outer", file:"MODULES/Modul_35_DATA.md"},
-  {no:"36", label:"CONFLICT",  ring:"outer", file:"MODULES/Modul_36_CONFLICT.md"},
-  {no:"37", label:"DEMOCRACY", ring:"outer", file:"MODULES/Modul_37_DEMOCRACY.md"},
-  {no:"38", label:"GOVERNANCE",ring:"outer", file:"MODULES/Modul_38_GOVERNANCE.md"},
-  {no:"39", label:"KNOWLEDGE", ring:"outer", file:"MODULES/Modul_39_KNOWLEDGE.md"},
-  {no:"40", label:"ART",       ring:"outer", file:"MODULES/Modul_40_ART.md"},
-  {no:"41", label:"FUTURE",    ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
-  {no:"42", label:"DEATH",     ring:"outer", file:"MODULES/Modul_42_DEATH.md"}
+  // Center
+  {no:"01", id:"RESETBOX", ring:"center", file:"MODULES/Modul_01_RESETBOX.md"},
+  // Inner
+  {no:"02", id:"WATER",   ring:"inner", file:"MODULES/Modul_02_WATER.md"},
+  {no:"03", id:"SHELTER", ring:"inner", file:"MODULES/Modul_03_SHELTER.md"},
+  {no:"04", id:"FOOD",    ring:"inner", file:"MODULES/Modul_04_FOOD.md"},
+  {no:"05", id:"SLEEP",   ring:"inner", file:"MODULES/Modul_05_SLEEP.md"},
+  {no:"06", id:"BODY",    ring:"inner", file:"MODULES/Modul_06_BODY.md"},
+  {no:"07", id:"PSYCHE",  ring:"inner", file:"MODULES/Modul_07_PSYCHE.md"},
+  {no:"08", id:"DEVICE",  ring:"inner", file:"MODULES/Modul_08_DEVICE.md"},
+  {no:"09", id:"DEBT",    ring:"inner", file:"MODULES/Modul_09_DEBT.md"},
+  // Mid
+  {no:"10", id:"WORK",      ring:"mid", file:"MODULES/Modul_10_WORK.md"},
+  {no:"11", id:"SCHOOL",    ring:"mid", file:"MODULES/Modul_11_SCHOOL.md"},
+  {no:"12", id:"BORDER",    ring:"mid", file:"MODULES/Modul_12_BORDER.md"},
+  {no:"13", id:"NATURE",    ring:"mid", file:"MODULES/Modul_13_NATURE.md"},
+  {no:"14", id:"HEALTH",    ring:"mid", file:"MODULES/Modul_14_HEALTH.md"},
+  {no:"15", id:"CARE",      ring:"mid", file:"MODULES/Modul_15_CARE.md"},
+  {no:"16", id:"FAMILY",    ring:"mid", file:"MODULES/Modul_16_FAMILY.md"},
+  {no:"17", id:"ANIMAL",    ring:"mid", file:"MODULES/Modul_17_ANIMAL.md"},
+  {no:"18", id:"CULTURE",   ring:"mid", file:"MODULES/Modul_18_CULTURE.md"},
+  {no:"19", id:"MEDIA",     ring:"mid", file:"MODULES/Modul_19_MEDIA.md"},
+  {no:"20", id:"ENERGY",    ring:"mid", file:"MODULES/Modul_20_ENERGY.md"},
+  {no:"21", id:"CLIMATE",   ring:"mid", file:"MODULES/Modul_21_CLIMATE.md"},
+  {no:"22", id:"MIGRATION", ring:"mid", file:"MODULES/Modul_22_MIGRATION.md"},
+  {no:"23", id:"JUSTICE",   ring:"mid", file:"MODULES/Modul_23_JUSTICE.md"},
+  {no:"24", id:"COMMUNITY", ring:"mid", file:"MODULES/Modul_24_COMMUNITY.md"},
+  // Outer
+  {no:"25", id:"FINANCE",    ring:"outer", file:"MODULES/Modul_25_FINANCE.md"},
+  {no:"26", id:"HOUSING",    ring:"outer", file:"MODULES/Modul_26_HOUSING.md"},
+  {no:"27", id:"TRANSPORT",  ring:"outer", file:"MODULES/Modul_27_TRANSPORT.md"},
+  {no:"28", id:"NETWORK",    ring:"outer", file:"MODULES/Modul_28_NETWORK.md"},
+  {no:"29", id:"SYMBOL",     ring:"outer", file:"MODULES/Modul_29_SYMBOL.md"},
+  {no:"30", id:"TRUTH",      ring:"outer", file:"MODULES/Modul_30_TRUTH.md"},
+  {no:"31", id:"MEMORY",     ring:"outer", file:"MODULES/Modul_31_MEMORY.md"},
+  {no:"32", id:"LICENCE",    ring:"outer", file:"MODULES/Modul_32_LICENCE.md"},
+  {no:"33", id:"PRIVACY",    ring:"outer", file:"MODULES/Modul_33_PRIVACY.md"},
+  {no:"34", id:"SECURITY",   ring:"outer", file:"MODULES/Modul_34_SECURITY.md"},
+  {no:"35", id:"DATA",       ring:"outer", file:"MODULES/Modul_35_DATA.md"},
+  {no:"36", id:"CONFLICT",   ring:"outer", file:"MODULES/Modul_36_CONFLICT.md"},
+  {no:"37", id:"DEMOCRACY",  ring:"outer", file:"MODULES/Modul_37_DEMOCRACY.md"},
+  {no:"38", id:"GOVERNANCE", ring:"outer", file:"MODULES/Modul_38_GOVERNANCE.md"},
+  {no:"39", id:"KNOWLEDGE",  ring:"outer", file:"MODULES/Modul_39_KNOWLEDGE.md"},
+  {no:"40", id:"ART",        ring:"outer", file:"MODULES/Modul_40_ART.md"},
+  {no:"41", id:"FUTURE",     ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
+  {no:"42", id:"DEATH",      ring:"outer", file:"MODULES/Modul_42_DEATH.md"},
 ];
 
-/* Kern-Verknüpfungen (V7) */
-const LINKS = {
-  "01":["02","03","09"],
-  "02":["04","06","13"],
-  "03":["05","13","01"],
-  "04":["02","13","25"],
-  "05":["03","07","06"],
-  "06":["02","05","07"],
-  "07":["05","06","30"],
-  "08":["20","32","01"],
-  "09":["10","25","01"],
-  "10":["09","11","25"],
-  "11":["10","30","07"],
-  "12":["01","13","36"],
-  "13":["02","04","20"],
-  "14":["02","06","07"],
-  "15":["14","07","01"],
-  "16":["05","11","14"],
-  "17":["04","13","14"],
-  "18":["11","30","29"],
-  "19":["30","32","11"],
-  "20":["08","13","25"],
-  "21":["13","20","14"],
-  "22":["12","13","36"],
-  "23":["09","10","32"],
-  "24":["11","18","23"],
-  "25":["09","10","20"],
-  "26":["03","05","25"],
-  "27":["02","20","22"],
-  "28":["08","20","19"],
-  "29":["18","24","30"],
-  "30":["11","19","32"],
-  "31":["11","29","30"],
-  "32":["19","30","08"],
-  "33":["08","19","32"],
-  "34":["01","12","36"],
-  "35":["08","28","32"],
-  "36":["12","22","34"],
-  "37":["23","24","25"],
-  "38":["23","37","25"],
-  "39":["11","30","31"],
-  "40":["18","29","39"],
-  "41":["21","39","40"],
-  "42":["14","15","41"]
+// Kern-Verknüpfungen nach „STATIC CORE V5.0 LOCKED (Überschrieben)“.
+// Wir tragen Direktverbindungen ein; unten symmetrisieren wir automatisch.
+const CORE = {
+  "01:RESETBOX": ["02:WATER","03:SHELTER","09:DEBT"],
+  "02:WATER":    ["04:FOOD","06:BODY","13:NATURE"],
+  "03:SHELTER":  ["05:SLEEP","13:NATURE","01:RESETBOX"],
+  "04:FOOD":     ["02:WATER","13:NATURE","25:FINANCE"],
+  "05:SLEEP":    ["03:SHELTER","07:PSYCHE","06:BODY"],
+  "06:BODY":     ["02:WATER","05:SLEEP","07:PSYCHE"],
+  "07:PSYCHE":   ["05:SLEEP","06:BODY","30:TRUTH"],
+  "08:DEVICE":   ["20:ENERGY","32:LICENCE","01:RESETBOX"],
+  "09:DEBT":     ["10:WORK","25:FINANCE","01:RESETBOX"],
+
+  "10:WORK":      ["09:DEBT","11:SCHOOL","25:FINANCE"],
+  "11:SCHOOL":    ["10:WORK","30:TRUTH","07:PSYCHE"],
+  "12:BORDER":    ["01:RESETBOX","13:NATURE","36:CONFLICT"],
+  "13:NATURE":    ["02:WATER","04:FOOD","20:ENERGY"],
+  "14:HEALTH":    ["02:WATER","06:BODY","07:PSYCHE"],
+  "15:CARE":      ["14:HEALTH","07:PSYCHE","01:RESETBOX"],
+  "16:FAMILY":    ["05:SLEEP","11:SCHOOL","14:HEALTH"],
+  "17:ANIMAL":    ["04:FOOD","13:NATURE","14:HEALTH"],
+  "18:CULTURE":   ["11:SCHOOL","30:TRUTH","29:SYMBOL"],
+  "19:MEDIA":     ["30:TRUTH","32:LICENCE","11:SCHOOL"],
+  "20:ENERGY":    ["08:DEVICE","13:NATURE","25:FINANCE"],
+  "21:CLIMATE":   ["13:NATURE","20:ENERGY","14:HEALTH"],
+  "22:MIGRATION": ["12:BORDER","13:NATURE","36:CONFLICT"],
+  "23:JUSTICE":   ["09:DEBT","10:WORK","32:LICENCE"],
+  "24:COMMUNITY": ["11:SCHOOL","18:CULTURE","23:JUSTICE"],
+
+  "25:FINANCE":   ["09:DEBT","10:WORK","20:ENERGY"],
+  "26:HOUSING":   ["03:SHELTER","05:SLEEP","25:FINANCE"],
+  "27:TRANSPORT": ["02:WATER","20:ENERGY","22:MIGRATION"],
+  "28:NETWORK":   ["08:DEVICE","20:ENERGY","19:MEDIA"],
+  "29:SYMBOL":    ["18:CULTURE","24:COMMUNITY","30:TRUTH"],
+  "30:TRUTH":     ["11:SCHOOL","19:MEDIA","32:LICENCE"],
+  "31:MEMORY":    ["11:SCHOOL","29:SYMBOL","30:TRUTH"],
+  "32:LICENCE":   ["19:MEDIA","30:TRUTH","08:DEVICE"],
+  "33:PRIVACY":   ["08:DEVICE","19:MEDIA","32:LICENCE"],
+  "34:SECURITY":  ["01:RESETBOX","12:BORDER","36:CONFLICT"],
+  "35:DATA":      ["08:DEVICE","28:NETWORK","32:LICENCE"],
+  "36:CONFLICT":  ["12:BORDER","22:MIGRATION","34:SECURITY"],
+  "37:DEMOCRACY": ["23:JUSTICE","24:COMMUNITY","25:FINANCE"],
+  "38:GOVERNANCE":["23:JUSTICE","37:DEMOCRACY","25:FINANCE"],
+  "39:KNOWLEDGE": ["11:SCHOOL","30:TRUTH","31:MEMORY"],
+  "40:ART":       ["18:CULTURE","29:SYMBOL","39:KNOWLEDGE"],
+  "41:FUTURE":    ["21:CLIMATE","39:KNOWLEDGE","40:ART"],
+  "42:DEATH":     ["14:HEALTH","15:CARE","41:FUTURE"],
 };
 
-/* ===== Menü dynamisch füllen ===== */
-(function(){
+// Hilfs-Mapping
+const byId = new Map(MODS.map(m => [m.id, m]));
+const byKey = new Map(MODS.map(m => [`${m.no}:${m.id}`, m]));
+
+// Symmetrisierte Kantenliste
+const LINKS = new Map(); // id -> Set(ids)
+for (const [k, arr] of Object.entries(CORE)) {
+  const a = k.split(':')[1];
+  if (!LINKS.has(a)) LINKS.set(a, new Set());
+  arr.forEach(bKey => {
+    const b = bKey.split(':')[1];
+    if (!LINKS.has(b)) LINKS.set(b, new Set());
+    LINKS.get(a).add(b);
+    LINKS.get(b).add(a);
+  });
+}
+
+/* ---------- Utils ---------- */
+const SVG_NS="http://www.w3.org/2000/svg";
+const XLINK_NS="http://www.w3.org/1999/xlink";
+function urlFor(filePath){
+  const u = new URL(window.location.href);
+  if (u.pathname.endsWith('map.html')) u.pathname = u.pathname.replace(/map\.html$/,'');
+  if (!u.pathname.endsWith('/')) u.pathname += '/';
+  const base = u.origin + u.pathname;
+  return `${base}module.html?file=${encodeURIComponent(filePath)}`;
+}
+
+/* ---------- Aufbau ---------- */
+const svg = document.getElementById('map');
+const tip = document.getElementById('tip');
+const linksLayer = document.getElementById('links-layer');
+
+// Platzierung
+const R = { inner:220, mid:380, outer:540, center:0 };
+const RS = { inner:42, mid:42, outer:42, center:60 }; // Knotengrößen
+const TEXT_SIZE = 13.5; // gut lesbar
+
+function polar(r, angle){ return [Math.cos(angle)*r, Math.sin(angle)*r]; }
+
+function placeNodes(){
+  // Gruppen pro Ring
+  const groups = {inner:[], mid:[], outer:[], center:[]};
+  MODS.forEach(m => groups[m.ring].push(m));
+
+  // Center: RESETBOX
+  const centerG = svg.querySelector('.center');
+  const m0 = groups.center[0];
+  const a0 = document.createElementNS(SVG_NS, 'a');
+  a0.classList.add('node','center');
+  const url0 = urlFor(m0.file);
+  a0.setAttribute('href', url0);
+  a0.setAttributeNS(XLINK_NS, 'xlink:href', url0);
+  a0.dataset.id = m0.id;
+
+  const c0 = document.createElementNS(SVG_NS, 'circle'); c0.setAttribute('r', RS.center);
+  const t0 = document.createElementNS(SVG_NS, 'text'); t0.textContent = m0.id; t0.setAttribute('y','3'); t0.setAttribute('font-size','15');
+  a0.appendChild(c0); a0.appendChild(t0);
+  addNodeEvents(a0, m0);
+  centerG.appendChild(a0);
+
+  // Ringe
+  for (const ring of ['inner','mid','outer']) {
+    const list = groups[ring];
+    const radius = R[ring];
+    const step = (Math.PI*2)/list.length;
+    const start = -Math.PI/2; // oben anfangen
+    list.forEach((m, idx)=>{
+      const angle = start + idx*step;
+      const [x,y] = polar(radius, angle);
+      const a = document.createElementNS(SVG_NS, 'a');
+      a.classList.add('node', ring);
+      const url = urlFor(m.file);
+      a.setAttribute('href', url);
+      a.setAttributeNS(XLINK_NS, 'xlink:href', url);
+      a.setAttribute('transform',`translate(${x},${y})`);
+      a.dataset.id = m.id;
+
+      const circ = document.createElementNS(SVG_NS, 'circle'); circ.setAttribute('r', RS[ring]);
+      const text = document.createElementNS(SVG_NS, 'text'); text.textContent = m.id; text.setAttribute('font-size', TEXT_SIZE);
+      a.appendChild(circ); a.appendChild(text);
+      addNodeEvents(a, m);
+
+      svg.appendChild(a);
+    });
+  }
+}
+
+function addNodeEvents(anchor, mod){
+  // Tooltip
+  anchor.addEventListener('mouseenter', (e)=>{
+    tip.innerHTML = `${mod.no} ${mod.id}<br><small>Öffnen</small>`;
+    moveTip(e); tip.classList.add('show');
+    highlight(mod.id);
+  });
+  anchor.addEventListener('mousemove', moveTip);
+  anchor.addEventListener('mouseleave', ()=>{
+    tip.classList.remove('show');
+    clearHighlight();
+  });
+  // Fallback: falls irgendein Browser den SVG-Link nicht öffnet
+  anchor.addEventListener('click', (e)=>{
+    // nichts machen – Standardnavigation reicht; sonst:
+    // location.href = anchor.getAttribute('href');
+  });
+}
+
+function moveTip(evt){ tip.style.left = evt.clientX+'px'; tip.style.top = evt.clientY+'px'; }
+
+/* ---------- Highlight & Verbindungen ---------- */
+function nodeCenterPos(nodeEl){
+  // globale Koordinaten im SVG-Koordinatensystem ermitteln
+  const tr = nodeEl.getAttribute('transform'); // translate(x,y)
+  if(!tr) return {x:0,y:0};
+  const m = tr.match(/translate\(([-\d.]+),([-\d.]+)\)/);
+  if(m) return {x:parseFloat(m[1]), y:parseFloat(m[2])};
+  return {x:0,y:0};
+}
+
+function highlight(id){
+  // aktive/verbundene Knoten stylen & Linien zeichnen
+  document.querySelectorAll('a.node').forEach(n => n.classList.remove('active','linked'));
+  const active = Array.from(document.querySelectorAll('a.node')).find(n => n.dataset.id === id);
+  if (active) active.classList.add('active');
+
+  // Zielknoten
+  const targets = Array.from(LINKS.get(id) || []);
+  const targetEls = [];
+  targets.forEach(tid=>{
+    const el = Array.from(document.querySelectorAll('a.node')).find(n => n.dataset.id === tid);
+    if(el){ el.classList.add('linked'); targetEls.push(el); }
+  });
+
+  // Linien aufbauen
+  while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
+  if (active && targetEls.length){
+    const pA = nodeCenterPos(active);
+    targetEls.forEach(el=>{
+      const pB = nodeCenterPos(el);
+      const line = document.createElementNS(SVG_NS, 'line');
+      line.setAttribute('x1', pA.x); line.setAttribute('y1', pA.y);
+      line.setAttribute('x2', pB.x); line.setAttribute('y2', pB.y);
+      linksLayer.appendChild(line);
+    });
+    linksLayer.classList.remove('hidden'); linksLayer.classList.add('visible');
+  }else{
+    linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
+  }
+}
+
+function clearHighlight(){
+  document.querySelectorAll('a.node').forEach(n => n.classList.remove('active','linked'));
+  linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
+  while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
+}
+
+/* ---------- Module-Menü im Header ---------- */
+(function fillMenu(){
   const menu = document.getElementById('menu-mods');
-  MODS.filter(m=>m.no!=="01").forEach(m=>{
-    const a=document.createElement('a');
-    a.href = 'module.html?file='+encodeURIComponent(m.file);
-    a.textContent = `${m.no} ${m.label}`;
+  MODS.forEach(m=>{
+    const a = document.createElement('a');
+    a.href = 'module.html?file=' + encodeURIComponent(m.file);
+    a.textContent = `${m.no} ${m.id}`;
     menu.appendChild(a);
   });
 })();
 
-/* ===== SVG/Platzierung ===== */
-const svg = document.getElementById('ringmap');
-const edgesLayer = document.getElementById('edges');
-const tip = document.getElementById('tip');
-
-const groups = {inner:[], mid:[], outer:[]};
-MODS.forEach(m=>{ if(m.ring!=="center") groups[m.ring].push(m); });
-const cfg = { inner:{r:220}, mid:{r:380}, outer:{r:540} };
-const pos = { "01": {x:0, y:0} };
-
-const NS='http://www.w3.org/2000/svg';
-const XLINK='http://www.w3.org/1999/xlink';
-const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
-
-function showTip(text, e){
-  tip.textContent = text;
-  tip.style.left = clamp(e.clientX,10,innerWidth-10)+'px';
-  tip.style.top  = clamp(e.clientY,10,innerHeight-10)+'px';
-  tip.classList.add('show');
-}
-const hideTip=()=>tip.classList.remove('show');
-
-function fitLabel(textEl, R){
-  let fs = parseFloat(textEl.getAttribute('font-size')||36); if(!fs||Number.isNaN(fs)) fs=36;
-  const maxW = 1.75 * R;
-  textEl.setAttribute('font-size', fs);
-  let bb; try { bb=textEl.getBBox(); } catch { return; }
-  if(!bb||!isFinite(bb.width)) return;
-  while(bb.width>maxW && fs>18){
-    fs -= 1; textEl.setAttribute('font-size',fs);
-    try { bb=textEl.getBBox(); } catch { break; }
-  }
-}
-
-/* Nodes platzieren – leicht außerhalb der Ringe (durchbrechen) */
-Object.entries(groups).forEach(([ring,list])=>{
-  if(!list||!list.length) return;
-  const base = cfg[ring].r + 10;
-  const step = (Math.PI*2)/list.length; const start = -Math.PI/2;
-
-  list.forEach((m,idx)=>{
-    const ang = start + idx*step;
-    const x = Math.cos(ang)*base; const y = Math.sin(ang)*base;
-    pos[m.no] = {x,y};
-
-    const a = document.createElementNS(NS,'a');
-    const url = 'module.html?file='+encodeURIComponent(m.file);
-    a.setAttributeNS(XLINK,'xlink:href', url); a.setAttribute('href', url);
-
-    const g = document.createElementNS(NS,'g');
-    g.setAttribute('class','node '+ring);
-    g.setAttribute('transform',`translate(${x},${y})`);
-    g.setAttribute('tabindex','0'); g.dataset.id=m.no; g.setAttribute('aria-label',`${m.no} ${m.label}`);
-
-    const R = ring==='outer'?78 : (ring==='mid'?74 : 72);
-    const cut = document.createElementNS(NS,'circle'); cut.setAttribute('class','cut'); cut.setAttribute('r',R);
-    const rim = document.createElementNS(NS,'circle'); rim.setAttribute('class','rim'); rim.setAttribute('r',R);
-    const hit = document.createElementNS(NS,'circle'); hit.setAttribute('class','hit'); hit.setAttribute('r',R);
-
-    const t = document.createElementNS(NS,'text'); t.textContent = `${m.no} ${m.label}`;
-
-    g.append(cut,rim,hit,t); a.appendChild(g); svg.appendChild(a);
-    fitLabel(t,R);
-
-    // Hover NUR auf RIM → Verbindungen zeigen, stabil solange RIM
-    const enter = (e)=>setActive(m.no, e);
-    const move  = (e)=>showTip(`${m.no} ${m.label}`, e);
-    const leave = ()=>setActive(null);
-
-    rim.addEventListener('pointerenter', enter);
-    rim.addEventListener('mouseenter',   enter);
-    rim.addEventListener('pointermove',  move);
-    rim.addEventListener('mousemove',    move);
-    rim.addEventListener('pointerleave', leave);
-    rim.addEventListener('mouseleave',   leave);
-
-    // Tastatur
-    g.addEventListener('focusin', e=>setActive(m.no,e));
-    g.addEventListener('focusout', ()=>setActive(null));
-
-    // Touch: 1. Tap = show edges, 2. Tap = navigate
-    a.addEventListener('click', (e)=>{
-      if(active!==m.no){ setActive(m.no, e); e.preventDefault(); }
-    }, {capture:true});
-  });
-});
-
-/* Edges zeichnen */
-(function drawEdges(){
-  const done={};
-  Object.keys(LINKS).forEach(a=>{
-    LINKS[a].forEach(b=>{
-      const key = (a<b)?`${a}-${b}`:`${b}-${a}`;
-      if(done[key]) return; done[key]=1;
-      const A=pos[a], B=pos[b]; if(!A||!B) return;
-      const mx=(A.x+B.x)/2, my=(A.y+B.y)/2, k=0.12, nx=(B.y-A.y), ny=-(B.x-A.x);
-      const cx=mx+nx*k, cy=my+ny*k;
-      const p=document.createElementNS(NS,'path');
-      p.setAttribute('d',`M ${A.x} ${A.y} Q ${cx} ${cy} ${B.x} ${B.y}`);
-      p.setAttribute('data-a',a); p.setAttribute('data-b',b);
-      edgesLayer.appendChild(p);
-    });
-  });
-})();
-
-/* Resetbox Hover (RIM) + Klick */
-(function bindReset(){
-  const center = document.querySelector('g.center');
-  const rim    = center.querySelector('.rim');
-  const hit    = center.querySelector('.hit');
-  const enter = (e)=>setActive('01',e);
-  const move  = (e)=>showTip('01 RESETBOX', e);
-  const leave = ()=>setActive(null);
-
-  rim.addEventListener('pointerenter', enter);
-  rim.addEventListener('mouseenter',   enter);
-  rim.addEventListener('pointermove',  move);
-  rim.addEventListener('mousemove',    move);
-  rim.addEventListener('pointerleave', leave);
-  rim.addEventListener('mouseleave',   leave);
-
-  hit.addEventListener('click', ()=>{ location.href='module.html?file='+encodeURIComponent('MODULES/Modul_01_RESETBOX.md'); });
-})();
-
-/* Hover/Fokus Logik */
-let active=null;
-function edgesFor(no){ return edgesLayer.querySelectorAll(`path[data-a="${no}"],path[data-b="${no}"]`); }
-function clearEdges(){ edgesLayer.querySelectorAll('.on').forEach(p=>p.classList.remove('on')); }
-function labelFor(id){ const m=MODS.find(x=>x.no===id); return m?`${m.no} ${m.label}`:id; }
-
-function setActive(id, evt){
-  if(active===id){ if(evt) showTip(labelFor(id),evt); return; }
-  if(active){
-    document.querySelector(`g.node[data-id="${active}"]`)?.classList.remove('active');
-    clearEdges();
-    hideTip();
-  }
-  active=id;
-  if(id){
-    edgesFor(id).forEach(p=>p.classList.add('on'));
-    document.querySelector(`g.node[data-id="${id}"]`)?.classList.add('active');
-    if(evt) showTip(labelFor(id),evt);
-  }
-}
-
-/* Bühne verlassen → Verbindungen aus */
-const stageSvg = document.getElementById('ringmap');
-stageSvg.addEventListener('pointerleave', ()=>{ setActive(null); });
-stageSvg.addEventListener('mouseleave',   ()=>{ setActive(null); });
+/* ---------- Init ---------- */
+placeNodes();
 </script>
 </body>
 </html>

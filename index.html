@@ -4,114 +4,220 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>QUESTSYSTEM – Modul-Ringe</title>
+<meta name="description" content="QUESTSYSTEM – Übersicht aller Module als konzentrische Ringe. Hover zeigt Verbindungen. Klick öffnet Modulbeschreibung." />
 <style>
   :root{
     --bg:#0e1116; --fg:#e7eef7; --muted:#9fb0c6;
     --inner:#f3c0c7; --mid:#f0de94; --outer:#bcd5ff;
     --edge:#8fb3ff; --edge-strong:#66ccff;
     --node-border:#2a3344; --node-hover:#4a5d80;
-    --cut:#0e1116; --header-h:48px; --glass:rgba(12,16,24,.6); --border:#222a39;
+    --cut:#0c1018; --header-h:56px; --glass:rgba(12,16,24,.6); --border:#222a39;
+    --shadow: 0 10px 30px rgba(0,0,0,.45);
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0; color:var(--fg);
-    font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-    background: radial-gradient(1200px 800px at 50% 45%, #131824 0%, #0e1421 55%, var(--bg) 100%);
+    font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    background:
+      radial-gradient(1200px 800px at 50% 45%, #141a2a 0%, #0f1422 60%, var(--bg) 100%),
+      radial-gradient(800px 600px at 20% 10%, rgba(255,255,255,.04), transparent 60%),
+      radial-gradient(700px 700px at 80% 80%, rgba(255,255,255,.03), transparent 65%);
     overflow:hidden;
   }
 
-  /* Header (klein, nicht überdeckend) */
-  header{
-    position:fixed; top:0; left:0; right:0; height:var(--header-h); z-index:50;
-    display:flex; align-items:center; gap:10px; padding:6px 12px;
-    background:var(--glass); border-bottom:1px solid var(--border); backdrop-filter:blur(6px);
-    font-size:14px;
+  /* ===== Header ===== */
+  .qs-header{
+    position:fixed; top:0; left:0; right:0; height:var(--header-h); z-index:60;
+    display:flex; align-items:center; gap:12px; padding:10px 14px;
+    background:var(--glass); border-bottom:1px solid var(--border); backdrop-filter:blur(8px);
   }
-  header .logo{font-weight:800; letter-spacing:.3px}
-  header nav{margin-left:auto; display:flex; gap:10px}
-  header a{color:var(--fg); text-decoration:none; opacity:.9}
-  header a:hover{text-decoration:underline; opacity:1}
+  .qs-logo{ color:var(--fg); font-weight:900; letter-spacing:.4px; text-decoration:none; }
+  .qs-nav{ margin-left:auto; display:flex; gap:10px; align-items:center; }
+  .qs-dd{ position:relative; }
+  .qs-dd-btn{
+    color:var(--fg); background:transparent; border:1px solid transparent;
+    padding:6px 10px; border-radius:8px; cursor:pointer; font-weight:600;
+  }
+  .qs-dd-btn:focus{ outline:2px solid var(--edge-strong); outline-offset:2px; }
+  .qs-dd-menu{
+    position:absolute; right:0; top:calc(100% + 6px); min-width:240px; max-height:60vh; overflow:auto;
+    display:none; flex-direction:column; gap:4px; padding:8px;
+    background:rgba(10,13,20,.97); border:1px solid var(--border); border-radius:10px; box-shadow:var(--shadow);
+  }
+  .qs-dd:hover .qs-dd-menu{ display:flex; }
+  .qs-dd-menu a{ color:var(--fg); text-decoration:none; padding:8px 10px; border-radius:6px; white-space:nowrap; }
+  .qs-dd-menu a:hover{ background:rgba(255,255,255,.06); }
 
-  /* Bühne / SVG */
+  .qs-burger{ display:none; background:none; border:0; width:38px; height:38px; margin-left:auto; cursor:pointer; }
+  .qs-burger span{ display:block; height:2px; background:var(--fg); margin:7px 5px; border-radius:2px; }
+
+  @media (max-width:900px){
+    .qs-burger{ display:block; }
+    .qs-nav{ position:fixed; top:var(--header-h); left:10px; right:10px; display:none; flex-direction:column; gap:12px;
+             background:rgba(10,13,20,.98); border:1px solid var(--border); border-radius:12px; padding:12px; z-index:65; }
+    .qs-dd{ width:100%; }
+    .qs-dd-btn{ width:100%; text-align:left; border:1px solid var(--border); border-radius:10px; }
+    .qs-dd-menu{ position:static; display:block; max-height:none; overflow:visible; background:transparent; border:0; box-shadow:none; padding:6px 0; }
+    .qs-dd:hover .qs-dd-menu{ display:block; }
+  }
+
+  /* ===== Bühne / SVG ===== */
   .stage{ position:absolute; inset:var(--header-h) 0 0 0; display:grid; place-items:center; padding:8px; }
-  svg{ width:min(1280px,95vw); height:min(1280px,95vh); }
+  svg{ width:min(1400px,96vw); height:min(1400px,96vh); }
 
   /* Ringe */
-  .ring{ fill:none; stroke-width:2.8; opacity:.95 }
+  .ring{ fill:none; stroke-width:3; opacity:.95; filter: drop-shadow(0 3px 12px rgba(0,0,0,.35)); }
   .ring-inner{ stroke:var(--inner) } .ring-mid{ stroke:var(--mid) } .ring-outer{ stroke:var(--outer) }
 
   /* Kanten (einmal gezeichnet, Sichtbarkeit via Klasse) */
   .edges path{
-    stroke:var(--edge); stroke-width:2.2; fill:none; opacity:0;
+    stroke:var(--edge); stroke-width:2.4; fill:none; opacity:0;
     vector-effect:non-scaling-stroke; transition:opacity .12s ease, stroke-width .12s ease, stroke .12s ease;
     will-change: opacity;
   }
-  .edges path.on{ opacity:.98; stroke:var(--edge-strong); stroke-width:3.2; }
+  .edges path.on{ opacity:.98; stroke:var(--edge-strong); stroke-width:3.4; }
 
-  /* Nodes (durchbrechen Ring via Cut) */
-  .node{ filter: drop-shadow(0 4px 16px rgba(0,0,0,.40)); transition: transform .12s ease; }
+  /* Nodes (durchbrechen Ring sichtbar via „cut“) */
+  .node{ filter: drop-shadow(0 6px 20px rgba(0,0,0,.45)); transition: transform .12s ease; }
   .node .cut{ fill:var(--cut); }
-  .node .rim{ fill:transparent; stroke:var(--node-border); stroke-width:2; }
+  .node .rim{ fill:transparent; stroke:var(--node-border); stroke-width:2.2; }
   .node .hit{ fill:rgba(255,255,255,0); cursor:pointer; pointer-events:all; } /* volle Klickfläche */
   .node:hover{ transform: translateY(-2px) scale(1.03); }
   .node:hover .rim{ stroke:var(--node-hover); }
+
   .node:focus-within .rim{ stroke:var(--edge-strong); stroke-width:3; } /* Tastatur-Fokus sichtbar */
 
-  /* Labels – groß, mit Outline */
+  /* Labels – groß, mit „Outline“ */
   .node text{
-    font-weight:1000; letter-spacing:.35px;
+    font-weight:1000; letter-spacing:.38px;
     text-anchor:middle; dominant-baseline:middle; pointer-events:none;
-    paint-order: stroke; stroke:rgba(12,16,24,.65); stroke-width:2.2;
+    paint-order: stroke; stroke:rgba(12,16,24,.7); stroke-width:2.4;
     filter: drop-shadow(0 1px 0 rgba(0,0,0,.35));
   }
-  .inner text{ fill:#5a1d27 } .mid text{ fill:#6c5b00 } .outer text{ fill:#24466f }
-  .inner text,.mid text,.outer text{ font-size:24px; }
-  @media (min-width:900px){ .inner text,.mid text,.outer text{ font-size:26px; } }
-  @media (min-width:1200px){ .inner text,.mid text,.outer text{ font-size:28px; } }
+  .inner text{ fill:#571e28 } .mid text{ fill:#6c5b00 } .outer text{ fill:#23436a }
+  .inner text,.mid text,.outer text{ font-size:26px; }
+  @media (min-width:1100px){ .inner text,.mid text,.outer text{ font-size:28px; } }
+  @media (min-width:1300px){ .inner text,.mid text,.outer text{ font-size:30px; } }
 
-  /* RESETBOX im Zentrum – präsent */
+  /* RESETBOX im Zentrum */
   .center .cut{ fill:var(--cut); }
   .center .rim{ fill:transparent; stroke:#9cb5da; stroke-dasharray:7 10; stroke-width:3.2; }
   .center text{
-    fill:#ffffff; font-weight:1000; font-size:68px; letter-spacing:.9px;
+    fill:#ffffff; font-weight:1000; font-size:76px; letter-spacing:1px;
     text-anchor:middle; dominant-baseline:middle;
-    paint-order: stroke; stroke:rgba(12,16,24,.7); stroke-width:2.6;
-    filter: drop-shadow(0 2px 0 rgba(0,0,0,.35));
+    paint-order: stroke; stroke:rgba(12,16,24,.75); stroke-width:3;
+    filter: drop-shadow(0 3px 0 rgba(0,0,0,.35));
   }
   .center .hit{ fill:rgba(255,255,255,0); cursor:pointer; }
 
   /* Tooltip */
   .tip{
-    position:fixed; z-index:40; pointer-events:none;
+    position:fixed; z-index:70; pointer-events:none;
     background:#0f1624; border:1px solid #2b3548; color:var(--fg);
     padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap;
     opacity:0; transform:translate(-50%,-140%); transition:opacity .12s ease, transform .12s ease;
+    box-shadow: var(--shadow);
   }
   .tip.show{ opacity:1; transform:translate(-50%,-150%); }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">🍄 QUESTSYSTEM</div>
-  <nav>
-    <a href="module.html?file=14_GEBOTE_V2.1.md">14 Gebote</a>
-    <a href="module.html?file=Dignity_Clause.md">Dignity Clause</a>
-    <a href="module.html?file=MODULES/Modul_32_LICENCE.md">Licence</a>
-    <a href="https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC" target="_blank" rel="noopener">GitHub</a>
+<!-- Header -->
+<header class="qs-header" role="navigation" aria-label="Hauptnavigation">
+  <a class="qs-logo" href="./">🍄 QUESTSYSTEM</a>
+  <button class="qs-burger" aria-label="Menü öffnen/schließen" aria-expanded="false"><span></span><span></span><span></span></button>
+  <nav class="qs-nav">
+    <div class="qs-dd">
+      <button class="qs-dd-btn" aria-haspopup="true" aria-expanded="false">System</button>
+      <div class="qs-dd-menu">
+        <a href="./index.html">Modul-Map</a>
+        <a href="module.html?file=MODULES/Modul_01_RESETBOX.md">01 RESETBOX</a>
+      </div>
+    </div>
+    <div class="qs-dd">
+      <button class="qs-dd-btn" aria-haspopup="true" aria-expanded="false">Dokumente</button>
+      <div class="qs-dd-menu">
+        <a href="module.html?file=Dignity_Clause.md">Dignity Clause</a>
+        <a href="module.html?file=14_GEBOTE_V2.1.md">14 Gebote (V2.1)</a>
+        <a href="module.html?file=MODULES/14_GEBOTE_DISCUSSION.md">Diskussion</a>
+        <a href="module.html?file=MODULES/Modul_32_LICENCE.md">Licence</a>
+      </div>
+    </div>
+    <div class="qs-dd">
+      <button class="qs-dd-btn" aria-haspopup="true" aria-expanded="false">Kritikfelder</button>
+      <div class="qs-dd-menu">
+        <a href="module.html?file=CRITIQUE/RESETBOX_HIGHRISK.md">High-Risk</a>
+        <a href="module.html?file=CRITIQUE/RESETBOX_MEDIUMRISK.md">Medium-Risk</a>
+        <a href="module.html?file=CRITIQUE/RESETBOX_LOWRISK.md">Low-Risk</a>
+      </div>
+    </div>
+    <div class="qs-dd">
+      <button class="qs-dd-btn" aria-haspopup="true" aria-expanded="false">Module</button>
+      <div class="qs-dd-menu">
+        <!-- kompakte Liste – alle 42 -->
+        <a href="module.html?file=MODULES/Modul_02_WATER.md">02 WATER</a>
+        <a href="module.html?file=MODULES/Modul_03_SHELTER.md">03 SHELTER</a>
+        <a href="module.html?file=MODULES/Modul_04_FOOD.md">04 FOOD</a>
+        <a href="module.html?file=MODULES/Modul_05_SLEEP.md">05 SLEEP</a>
+        <a href="module.html?file=MODULES/Modul_06_BODY.md">06 BODY</a>
+        <a href="module.html?file=MODULES/Modul_07_PSYCHE.md">07 PSYCHE</a>
+        <a href="module.html?file=MODULES/Modul_08_DEVICE.md">08 DEVICE</a>
+        <a href="module.html?file=MODULES/Modul_09_DEBT.md">09 DEBT</a>
+        <a href="module.html?file=MODULES/Modul_10_WORK.md">10 WORK</a>
+        <a href="module.html?file=MODULES/Modul_11_SCHOOL.md">11 SCHOOL</a>
+        <a href="module.html?file=MODULES/Modul_12_BORDER.md">12 BORDER</a>
+        <a href="module.html?file=MODULES/Modul_13_NATURE.md">13 NATURE</a>
+        <a href="module.html?file=MODULES/Modul_14_HEALTH.md">14 HEALTH</a>
+        <a href="module.html?file=MODULES/Modul_15_CARE.md">15 CARE</a>
+        <a href="module.html?file=MODULES/Modul_16_FAMILY.md">16 FAMILY</a>
+        <a href="module.html?file=MODULES/Modul_17_ANIMAL.md">17 ANIMAL</a>
+        <a href="module.html?file=MODULES/Modul_18_CULTURE.md">18 CULTURE</a>
+        <a href="module.html?file=MODULES/Modul_19_MEDIA.md">19 MEDIA</a>
+        <a href="module.html?file=MODULES/Modul_20_ENERGY.md">20 ENERGY</a>
+        <a href="module.html?file=MODULES/Modul_21_CLIMATE.md">21 CLIMATE</a>
+        <a href="module.html?file=MODULES/Modul_22_MIGRATION.md">22 MIGRATION</a>
+        <a href="module.html?file=MODULES/Modul_23_JUSTICE.md">23 JUSTICE</a>
+        <a href="module.html?file=MODULES/Modul_24_COMMUNITY.md">24 COMMUNITY</a>
+        <a href="module.html?file=MODULES/Modul_25_FINANCE.md">25 FINANCE</a>
+        <a href="module.html?file=MODULES/Modul_26_HOUSING.md">26 HOUSING</a>
+        <a href="module.html?file=MODULES/Modul_27_TRANSPORT.md">27 TRANSPORT</a>
+        <a href="module.html?file=MODULES/Modul_28_NETWORK.md">28 NETWORK</a>
+        <a href="module.html?file=MODULES/Modul_29_SYMBOL.md">29 SYMBOL</a>
+        <a href="module.html?file=MODULES/Modul_30_TRUTH.md">30 TRUTH</a>
+        <a href="module.html?file=MODULES/Modul_31_MEMORY.md">31 MEMORY</a>
+        <a href="module.html?file=MODULES/Modul_32_LICENCE.md">32 LICENCE</a>
+        <a href="module.html?file=MODULES/Modul_33_PRIVACY.md">33 PRIVACY</a>
+        <a href="module.html?file=MODULES/Modul_34_SECURITY.md">34 SECURITY</a>
+        <a href="module.html?file=MODULES/Modul_35_DATA.md">35 DATA</a>
+        <a href="module.html?file=MODULES/Modul_36_CONFLICT.md">36 CONFLICT</a>
+        <a href="module.html?file=MODULES/Modul_37_DEMOCRACY.md">37 DEMOCRACY</a>
+        <a href="module.html?file=MODULES/Modul_38_GOVERNANCE.md">38 GOVERNANCE</a>
+        <a href="module.html?file=MODULES/Modul_39_KNOWLEDGE.md">39 KNOWLEDGE</a>
+        <a href="module.html?file=MODULES/Modul_40_ART.md">40 ART</a>
+        <a href="module.html?file=MODULES/Modul_41_FUTURE.md">41 FUTURE</a>
+        <a href="module.html?file=MODULES/Modul_42_DEATH.md">42 DEATH</a>
+      </div>
+    </div>
+    <div class="qs-dd">
+      <button class="qs-dd-btn" aria-haspopup="true" aria-expanded="false">Info</button>
+      <div class="qs-dd-menu">
+        <a href="module.html?file=README.md">README</a>
+        <a href="module.html?file=MODULES/ARTIST_PROFILE.md">Artist Profile</a>
+        <a href="https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
   </nav>
 </header>
 
+<!-- Bühne -->
 <div class="stage">
   <svg id="ringmap" viewBox="-600 -600 1200 1200"
        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
        role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS">
-
-    <!-- Verbindungen -->
     <g class="edges" id="edges"></g>
 
-    <!-- Ringe -->
     <circle class="ring ring-inner" r="220"></circle>
     <circle class="ring ring-mid"   r="380"></circle>
     <circle class="ring ring-outer" r="540"></circle>
@@ -120,11 +226,11 @@
     <a class="node-anchor"
        xlink:href="module.html?file=MODULES/Modul_01_RESETBOX.md"
        href="module.html?file=MODULES/Modul_01_RESETBOX.md">
-      <g class="center" transform="translate(0,0)" tabindex="0" data-id="01">
-        <circle class="cut" r="170"></circle>
-        <circle class="rim" r="170"></circle>
+      <g class="center" transform="translate(0,0)" tabindex="0" data-id="01" aria-label="01 RESETBOX">
+        <circle class="cut" r="175"></circle>
+        <circle class="rim" r="175"></circle>
         <text y="6">RESETBOX</text>
-        <circle class="hit" r="170"></circle>
+        <circle class="hit" r="175"></circle>
       </g>
     </a>
   </svg>
@@ -133,11 +239,28 @@
 <div id="tip" class="tip" role="status" aria-live="polite"></div>
 
 <script>
-/* ===== Setup ===== */
+/* ===== Mobile Header Toggle ===== */
+(function(){
+  const burger = document.querySelector('.qs-burger');
+  const nav = document.querySelector('.qs-nav');
+  if(!burger || !nav) return;
+  burger.addEventListener('click', ()=>{
+    const open = nav.style.display === 'flex';
+    nav.style.display = open ? 'none' : 'flex';
+    burger.setAttribute('aria-expanded', String(!open));
+  });
+  nav.addEventListener('click', (e)=>{
+    const a = e.target.closest('a');
+    if(a && window.matchMedia('(max-width: 900px)').matches){
+      nav.style.display = 'none';
+      burger.setAttribute('aria-expanded','false');
+    }
+  });
+})();
+
+/* ===== Daten ===== */
 const MODS = [
-  // center
   {no:"01", label:"RESETBOX", ring:"center", file:"MODULES/Modul_01_RESETBOX.md"},
-  // inner
   {no:"02", label:"WATER",    ring:"inner", file:"MODULES/Modul_02_WATER.md"},
   {no:"03", label:"SHELTER",  ring:"inner", file:"MODULES/Modul_03_SHELTER.md"},
   {no:"04", label:"FOOD",     ring:"inner", file:"MODULES/Modul_04_FOOD.md"},
@@ -146,7 +269,7 @@ const MODS = [
   {no:"07", label:"PSYCHE",   ring:"inner", file:"MODULES/Modul_07_PSYCHE.md"},
   {no:"08", label:"DEVICE",   ring:"inner", file:"MODULES/Modul_08_DEVICE.md"},
   {no:"09", label:"DEBT",     ring:"inner", file:"MODULES/Modul_09_DEBT.md"},
-  // mid
+
   {no:"10", label:"WORK",      ring:"mid",   file:"MODULES/Modul_10_WORK.md"},
   {no:"11", label:"SCHOOL",    ring:"mid",   file:"MODULES/Modul_11_SCHOOL.md"},
   {no:"12", label:"BORDER",    ring:"mid",   file:"MODULES/Modul_12_BORDER.md"},
@@ -162,7 +285,7 @@ const MODS = [
   {no:"22", label:"MIGRATION", ring:"mid",   file:"MODULES/Modul_22_MIGRATION.md"},
   {no:"23", label:"JUSTICE",   ring:"mid",   file:"MODULES/Modul_23_JUSTICE.md"},
   {no:"24", label:"COMMUNITY", ring:"mid",   file:"MODULES/Modul_24_COMMUNITY.md"},
-  // outer
+
   {no:"25", label:"FINANCE",   ring:"outer", file:"MODULES/Modul_25_FINANCE.md"},
   {no:"26", label:"HOUSING",   ring:"outer", file:"MODULES/Modul_26_HOUSING.md"},
   {no:"27", label:"TRANSPORT", ring:"outer", file:"MODULES/Modul_27_TRANSPORT.md"},
@@ -228,6 +351,7 @@ const LINKS = {
   "42":["14","15","41"]
 };
 
+/* ===== SVG & Layout ===== */
 const svg = document.getElementById('ringmap');
 const edgesLayer = document.getElementById('edges');
 const tip = document.getElementById('tip');
@@ -250,22 +374,28 @@ function clearEdges(){ edgesLayer.querySelectorAll('.on').forEach(p=>p.classList
 function edgesFor(no){ return edgesLayer.querySelectorAll(`path[data-a="${no}"], path[data-b="${no}"]`); }
 function highlight(no, on){ edgesFor(no).forEach(p=>p.classList.toggle('on', !!on)); }
 
-// Label-Fitting
+/* --- robustes Label-Fitting (verhindert NaN & Crashes) --- */
 function fitLabel(textEl, R){
-  const maxW = 1.7 * R;
-  let fs = parseFloat(getComputedStyle(textEl).fontSize);
-  const minFs = 16;
-  let bb = textEl.getBBox();
-  while (bb.width > maxW && fs > minFs){
+  let fsAttr = textEl.getAttribute('font-size');
+  let fs = parseFloat(fsAttr || 28);
+  if (!fs || Number.isNaN(fs)) fs = 28;
+  const maxW = 1.65 * R;
+  textEl.setAttribute('font-size', fs);
+  let bb;
+  try { bb = textEl.getBBox(); } catch { return; }
+  if (!bb || !isFinite(bb.width)) return;
+  while (bb.width > maxW && fs > 16){
     fs -= 1;
     textEl.setAttribute('font-size', fs);
-    bb = textEl.getBBox();
+    try { bb = textEl.getBBox(); } catch { break; }
+    if (!bb || !isFinite(bb.width)) break;
   }
 }
 
-// Nodes platzieren (leicht nach außen, damit sie den Ring „durchbrechen“)
+/* --- Nodes platzieren (leicht nach außen = Durchbruch-Effekt) --- */
 Object.entries(groups).forEach(([ring, list])=>{
-  const radius = cfg[ring].r + 6; // +6px für sichtbaren Cut
+  if (!list || !list.length) return;
+  const radius = cfg[ring].r + 8;
   const step = (Math.PI*2)/list.length;
   const start = -Math.PI/2;
 
@@ -277,7 +407,7 @@ Object.entries(groups).forEach(([ring, list])=>{
 
     const a = document.createElementNS("http://www.w3.org/2000/svg","a");
     const url = "module.html?file="+encodeURIComponent(m.file);
-    a.setAttributeNS("http://www.w3.org/1999/xlink","xlink:href",url); // xlink für ältere Engines
+    a.setAttributeNS("http://www.w3.org/1999/xlink","xlink:href",url);
     a.setAttribute("href",url);
     a.setAttribute("class","node-anchor");
 
@@ -286,14 +416,15 @@ Object.entries(groups).forEach(([ring, list])=>{
     g.setAttribute("transform",`translate(${x},${y})`);
     g.setAttribute("tabindex","0");
     g.dataset.id = m.no;
+    g.setAttribute("aria-label", `${m.no} ${m.label}`);
 
+    const R = ring==='outer'?70 : (ring==='mid'?66 : 64);
     const cut = document.createElementNS("http://www.w3.org/2000/svg","circle");
     const rim = document.createElementNS("http://www.w3.org/2000/svg","circle");
     const hit = document.createElementNS("http://www.w3.org/2000/svg","circle");
-    const R = ring==='outer'?68 : (ring==='mid'?64 : 62);
     cut.setAttribute('r', R); cut.setAttribute('class','cut');
     rim.setAttribute('r', R); rim.setAttribute('class','rim');
-    hit.setAttribute('r', R); hit.setAttribute('class','hit'); // volle Klick- & Hoverfläche
+    hit.setAttribute('r', R); hit.setAttribute('class','hit');
 
     const t = document.createElementNS("http://www.w3.org/2000/svg","text");
     t.textContent = m.no+" "+m.label;
@@ -306,7 +437,7 @@ Object.entries(groups).forEach(([ring, list])=>{
   });
 });
 
-// Kanten einmal zeichnen
+/* --- Kanten einmal zeichnen (Bezier-leichte Krümmung) --- */
 (function drawEdges(){
   const done = {};
   Object.keys(LINKS).forEach(a=>{
@@ -314,7 +445,6 @@ Object.entries(groups).forEach(([ring, list])=>{
       const key = (a<b)?`${a}-${b}`:`${b}-${a}`;
       if(done[key]) return; done[key]=1;
       const A = pos[a], B = pos[b]; if(!A||!B) return;
-      // leichte Krümmung
       const mx=(A.x+B.x)/2, my=(A.y+B.y)/2, k=0.12, nx=(B.y-A.y), ny=-(B.x-A.x);
       const cx=mx+nx*k, cy=my+ny*k;
       const p=document.createElementNS("http://www.w3.org/2000/svg","path");
@@ -325,7 +455,7 @@ Object.entries(groups).forEach(([ring, list])=>{
   });
 })();
 
-// Hover- & Fokus-Logik – stabil, solange auf der Node-Umkreisung
+/* --- Hover/Fokus: Verbindungen stabil, solange über dem Modul --- */
 let active = null;
 function labelFor(id){
   if(id==="01") return "01 RESETBOX";
@@ -342,48 +472,42 @@ function setActive(id, evt){
   else { hideTip(); }
 }
 
-// Anker (inkl. Resetbox) binden – pointer + mouse für Safari-Fallback
-function bindAnchors(){
+(function bindAnchors(){
   const anchors = document.querySelectorAll('a.node-anchor');
   anchors.forEach(a => {
     const g = a.querySelector('[data-id]');
     if(!g) return;
     const id = g.dataset.id;
 
-    // Stabiles Hover über die gesamte Klickfläche
     const enter = e => setActive(id, e);
     const move  = e => showTip(labelFor(id), e);
     const leave = () => { if(active === id) setActive(null); };
 
+    // Stabil & kompatibel
     a.addEventListener('pointerenter', enter);
     a.addEventListener('pointermove',  move);
     a.addEventListener('pointerleave', leave);
-    // Safari-Fallback
-    a.addEventListener('mouseenter', enter);
-    a.addEventListener('mousemove',  move);
-    a.addEventListener('mouseleave', leave);
+    a.addEventListener('mouseenter',   enter);  // Safari-Fallback
+    a.addEventListener('mousemove',    move);
+    a.addEventListener('mouseleave',   leave);
 
-    // Tastatur-Unterstützung
+    // Tastatur
     g.addEventListener('focusin',  e => setActive(id, e));
     g.addEventListener('focusout', () => { if(active === id) setActive(null); });
 
-    // Touch-UX: Erstes Tippen = Kanten zeigen, zweites = öffnen
+    // Touch: 1. Tap = zeigen, 2. Tap = öffnen
     a.addEventListener('click', (e)=>{
-      // Wenn nicht aktiv, erst aktivieren & Navigation stoppen
       if(active !== id){
         setActive(id, e);
         e.preventDefault();
       }
-      // Wenn bereits aktiv, Klick durchlassen (öffnet module.html)
     }, {capture:true});
   });
 
-  // Maus/Pointer verlässt die SVG → alles aus
-  const svgEl = document.getElementById('ringmap');
-  svgEl.addEventListener('pointerleave', ()=> setActive(null));
-  svgEl.addEventListener('mouseleave',   ()=> setActive(null));
-}
-bindAnchors();
+  // Verlässt der Pointer die SVG → aus
+  svg.addEventListener('pointerleave', ()=> setActive(null));
+  svg.addEventListener('mouseleave',   ()=> setActive(null));
+})();
 </script>
 </body>
 </html>

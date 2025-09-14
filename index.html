@@ -6,111 +6,125 @@
 <title>QUESTSYSTEM – Modul-Ringe</title>
 <meta name="color-scheme" content="dark">
 <style>
-  :root{
-    --bg:#0d1117; --fg:#e6eef7; --muted:#9fb0c6;
-    --ring-inner:#f3c0c7; --ring-mid:#f0de94; --ring-outer:#bcd5ff;
-    --node-border:#2a3344; --focus:#66ccff;
-    --edge:#8fb3ff; --edge-dim:#5e7592;
-    --hover-fill: rgba(255,255,255,.06);
-    --shadow: 0 6px 24px rgba(0,0,0,.35);
-    --header-h: 54px;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0; font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg);
-    background: radial-gradient(1200px 800px at 50% 40%, #141a27 0%, #0e1421 55%, #0b101a 100%);
-    overflow:hidden;
-  }
-  header{
-    position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:30;
-    display:flex; align-items:center; gap:10px; padding:8px 14px;
-    background:rgba(9,13,20,.85); border-bottom:1px solid #202738; backdrop-filter: blur(6px);
-  }
-  header .dot{font-size:16px}
-  header h1{font-size:14px; margin:0; font-weight:800; letter-spacing:.3px}
+:root{
+  /* Grundfarben (RGB) */
+  --bg:               rgb(13,17,23);
+  --fg:               rgb(230,238,247);
+  --muted:            rgb(159,176,198);
 
-  .stage{position:absolute; inset:var(--header-h) 0 0 0; display:grid; place-items:center; padding:10px;}
-  svg{width:min(1200px, 96vw); height:calc(96vh - var(--header-h));}
-
-  /* Ringe */
-  .ring-inner{stroke:var(--ring-inner); stroke-width:2.2; fill:none; stroke-opacity:.9}
-  .ring-mid{stroke:var(--ring-mid); stroke-width:2.2; fill:none; stroke-opacity:.9}
-  .ring-outer{stroke:var(--ring-outer); stroke-width:2.2; fill:none; stroke-opacity:.9}
-
-  /* Kanten */
-  .edges path{
-    stroke:var(--edge); stroke-width:2; fill:none; opacity:.4; vector-effect:non-scaling-stroke;
-    transition:opacity .12s ease, stroke-width .12s ease, stroke .12s ease;
-  }
-  svg.hovering .edges path{ opacity:.15; stroke:var(--edge-dim) }
-  .edges path.on{ opacity:.98; stroke-width:3.2; stroke:var(--edge) }
+  /* Ringfarben */
+  --ring-inner:       rgb(243,192,199);   /* Existential */
+  --ring-mid:         rgb(240,222,148);   /* Societal */
+  --ring-outer:       rgb(188,213,255);   /* Structural */
 
   /* Nodes */
-  svg a.node{ cursor:pointer; filter: drop-shadow(0 2px 8px var(--shadow)); transition: transform .12s ease; outline:none; }
-  svg a.node:hover{ transform: translateY(-2px) scale(1.03); }
-  .node .hit{
-    fill: transparent;
-    stroke:var(--node-border); stroke-width:1.5; vector-effect:non-scaling-stroke;
-    pointer-events:visiblePainted;
-    transition: fill .12s ease, stroke .12s ease;
-  }
-  .node:hover .hit{ fill: var(--hover-fill); stroke:#3b4862; }
-  .node:focus .hit{ stroke: var(--focus); stroke-width:2.2 }
+  --node-bg:          rgb(16,21,31);
+  --node-border:      rgb(42,51,68);
 
-  .node text{
-    font-size:16px; font-weight:800; letter-spacing:.3px;
-    text-anchor:middle; dominant-baseline:middle; pointer-events:none;
-  }
-  .inner text{ fill:#ff6b81 }  /* sichtbare, kräftige Farben */
-  .mid   text{ fill:#ffd447 }
-  .outer text{ fill:#5da9ff }
-  .node.linked text{ font-weight:900; text-shadow:0 0 1px rgba(0,0,0,.35) }
+  /* Texte in den Ringen */
+  --text-inner:       rgb(93,32,41);
+  --text-mid:         rgb(108,91,0);
+  --text-outer:       rgb(39,75,122);
 
-  /* RESETBOX */
-  .center circle{ fill:transparent; stroke:#9cb5da; stroke-dasharray:5 7; stroke-width:2.2 }
-  .center text{
-    fill:#ffffff; font-weight:1000; font-size:44px; letter-spacing:.8px;
-    text-anchor:middle; dominant-baseline:middle; pointer-events:none;
-  }
-  .center:hover circle{ stroke:#cfe2ff }
-  .center:focus circle{ stroke:var(--focus); stroke-width:2.6; outline:none }
+  /* Resetbox & Interaktionen */
+  --center-stroke:    rgb(156,181,218);
+  --center-stroke-h:  rgb(207,226,255);
+  --focus:            rgb(102,204,255);
 
-  /* Tooltip */
-  .tip{
-    position:fixed; z-index:40; pointer-events:none;
-    transform:translate(-50%, calc(-100% - 12px));
-    background:#0f1624; border:1px solid #2b3548; color:var(--fg);
-    padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap;
-    opacity:0; transition:opacity .12s ease, transform .12s ease; box-shadow:0 8px 24px var(--shadow);
-  }
-  .tip.show{opacity:1; transform:translate(-50%, calc(-100% - 10px))}
-  .tip small{color:var(--muted)}
+  /* Kanten (Verbindungen) */
+  --edge:             rgb(143,179,255);
+  --edge-dim:         rgb(94,117,146);
 
-  .legend{
-    position:fixed; inset:auto 12px 12px 12px; z-index:25;
-    display:flex; gap:10px; align-items:center; justify-content:center;
-    background:rgba(12,16,24,.55); border:1px solid #202738; border-radius:10px; padding:8px 10px; backdrop-filter: blur(6px);
-    font-size:12px;
-  }
-  .chip{display:inline-flex; align-items:center; gap:8px}
-  .sw{width:14px; height:14px; border-radius:50%}
-  .sw.inner{background:var(--ring-inner)} .sw.mid{background:var(--ring-mid)} .sw.outer{background:var(--ring-outer)}
+  /* Tooltip / Overlays */
+  --tooltip-bg:       rgb(15,22,36);
+  --tooltip-border:   rgb(43,53,72);
 
-  @media (prefers-reduced-motion: reduce){
-    svg a.node:hover{ transform:none }
-    .edges path, .tip{ transition:none }
-  }
-  @media (max-width:720px){
-    header h1{display:none}
-  }
+  /* Effekte */
+  --hover-fill:       rgba(255,255,255,.06);
+  --shadow:           0 6px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--fg);
+  background: radial-gradient(1200px 800px at 50% 40%, #141a27 0%, #0e1421 55%, #0b101a 100%);
+  overflow:hidden;
+}
+.header{position:fixed; inset:0 0 auto 0; height:48px; display:flex; align-items:center; gap:10px; padding:8px 12px; background:rgba(9,13,20,.85); border-bottom:1px solid #202738; z-index:5}
+.header h1{margin:0; font-size:14px; font-weight:800; letter-spacing:.3px}
+.stage{position:absolute; inset:48px 0 0 0; display:grid; place-items:center; padding:10px;}
+svg{width:min(1200px, 96vw); height:calc(96vh - 48px);}
+
+.ring-inner{stroke: var(--ring-inner); stroke-width: 2.2; fill: none; stroke-opacity: .9;}
+.ring-mid  {stroke: var(--ring-mid);   stroke-width: 2.2; fill: none; stroke-opacity: .9;}
+.ring-outer{stroke: var(--ring-outer); stroke-width: 2.2; fill: none; stroke-opacity: .9;}
+
+/* Verbindungen */
+.edges path{
+  stroke: var(--edge);
+  stroke-width: 2;
+  fill: none;
+  opacity: .4;
+  vector-effect: non-scaling-stroke;
+  transition: opacity .12s ease, stroke-width .12s ease, stroke .12s ease;
+}
+svg.hovering .edges path{ opacity: .15; stroke: var(--edge-dim); }
+.edges path.on{ opacity: .98; stroke-width: 3.2; stroke: var(--edge); }
+
+/* Nodes */
+svg a.node{ cursor:pointer; filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); transition: transform .12s ease; outline:none; }
+svg a.node:hover{ transform: translateY(-2px) scale(1.03); }
+.node .hit{
+  fill: transparent;
+  stroke: var(--node-border);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  pointer-events: visiblePainted;      /* macht den ganzen Kreis klickbar */
+  transition: fill .12s ease, stroke .12s ease;
+}
+.node:hover .hit{ fill: var(--hover-fill); stroke:#3b4862; }
+.node:focus .hit{ stroke: var(--focus); stroke-width: 2.2; }
+
+.node text{
+  font-size: 16px; font-weight: 800; letter-spacing: .3px;
+  text-anchor: middle; dominant-baseline: middle; pointer-events: none;
+}
+.inner text{ fill: var(--text-inner); }
+.mid   text{ fill: var(--text-mid); }
+.outer text{ fill: var(--text-outer); }
+.node.linked text{ font-weight: 900; text-shadow: 0 0 1px rgba(0,0,0,.35); }
+
+/* RESETBOX */
+.center circle{
+  fill: transparent; stroke: var(--center-stroke);
+  stroke-dasharray: 5 7; stroke-width: 2.2;
+}
+.center text{
+  fill:#fff; font-weight:1000; font-size:44px; letter-spacing:.8px;
+  text-anchor:middle; dominant-baseline:middle; pointer-events:none;
+}
+.center:hover circle{ stroke: var(--center-stroke-h); }
+.center:focus circle{ stroke: var(--focus); stroke-width: 2.6; outline: none; }
+
+/* Tooltip */
+.tip{
+  position: fixed; z-index: 40; pointer-events: none;
+  transform: translate(-50%, calc(-100% - 12px));
+  background: var(--tooltip-bg); border: 1px solid var(--tooltip-border); color: var(--fg);
+  padding: 8px 10px; border-radius: 8px; font-size: 12px; white-space: nowrap;
+  opacity: 0; transition: opacity .12s ease, transform .12s ease; box-shadow: var(--shadow);
+}
+.tip.show{ opacity:1; transform:translate(-50%, calc(-100% - 10px)); }
+.tip small{ color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce){
+  svg a.node:hover{ transform:none }
+  .edges path, .tip{ transition:none }
+}
 </style>
 </head>
 <body>
-<header>
-  <div class="dot">🍄</div>
-  <h1>QUESTSYSTEM – Modul-Ringe</h1>
-</header>
+<div class="header"><h1>QUESTSYSTEM – Modul-Ringe</h1></div>
 
 <div class="stage">
   <svg id="ringmap" viewBox="-600 -600 1200 1200"
@@ -123,7 +137,7 @@
     <circle class="ring-mid"   r="380"></circle>
     <circle class="ring-outer" r="540"></circle>
 
-    <!-- Kanten -->
+    <!-- Verbindungen -->
     <g id="edges" class="edges" aria-hidden="true"></g>
 
     <!-- RESETBOX -->
@@ -133,75 +147,74 @@
   </svg>
 </div>
 
-<div class="legend" aria-hidden="true">
-  <span class="chip"><span class="sw inner"></span>Existential</span>
-  <span class="chip"><span class="sw mid"></span>Societal</span>
-  <span class="chip"><span class="sw outer"></span>Structural</span>
-</div>
-
 <div id="tip" class="tip" role="status" aria-live="polite"></div>
 
 <script>
-  // ------- robuste Basis-URL (Pages + lokal) -------
-  const BASE = (()=>{
-    const u=new URL(window.location.href);
-    if(u.pathname.endsWith('index.html')) u.pathname=u.pathname.replace(/index\.html$/,'');
-    if(!u.pathname.endsWith('/')) u.pathname+='/';
-    return u.origin+u.pathname;
-  })();
-  const urlFor = (p)=> `${BASE}module.html?file=${encodeURIComponent(p)}`;
+(function(){
+  /* ===== Helpers ohne classList (SVG-safe) ===== */
+  function addCls(el, c){ if(!el) return; var cl=el.getAttribute('class')||''; if((' '+cl+' ').indexOf(' '+c+' ')===-1){ el.setAttribute('class', (cl?cl+' ':'')+c); } }
+  function rmCls(el, c){ if(!el) return; var cl=(el.getAttribute('class')||'').split(/\s+/).filter(Boolean).filter(function(x){return x!==c;}).join(' '); el.setAttribute('class', cl); }
 
-  // ------- Module (01–42, Dateipfade im /MODULES/ Ordner) -------
-  const MODS = [
-    // Existential (inner)
-    ["01","RESETBOX","inner","MODULES/Modul_01_RESETBOX.md"],
-    ["02","WATER","inner","MODULES/Modul_02_WATER.md"],
-    ["03","SHELTER","inner","MODULES/Modul_03_SHELTER.md"],
-    ["04","FOOD","inner","MODULES/Modul_04_FOOD.md"],
-    ["05","SLEEP","inner","MODULES/Modul_05_SLEEP.md"],
-    ["06","BODY","inner","MODULES/Modul_06_BODY.md"],
-    ["07","PSYCHE","inner","MODULES/Modul_07_PSYCHE.md"],
-    ["08","DEVICE","inner","MODULES/Modul_08_DEVICE.md"],
-    ["09","DEBT","inner","MODULES/Modul_09_DEBT.md"],
-    // Societal (mid)
-    ["10","WORK","mid","MODULES/Modul_10_WORK.md"],
-    ["11","SCHOOL","mid","MODULES/Modul_11_SCHOOL.md"],
-    ["12","BORDER","mid","MODULES/Modul_12_BORDER.md"],
-    ["13","NATURE","mid","MODULES/Modul_13_NATURE.md"],
-    ["14","HEALTH","mid","MODULES/Modul_14_HEALTH.md"],
-    ["15","CARE","mid","MODULES/Modul_15_CARE.md"],
-    ["16","FAMILY","mid","MODULES/Modul_16_FAMILY.md"],
-    ["17","ANIMAL","mid","MODULES/Modul_17_ANIMAL.md"],
-    ["18","CULTURE","mid","MODULES/Modul_18_CULTURE.md"],
-    ["19","MEDIA","mid","MODULES/Modul_19_MEDIA.md"],
-    ["20","ENERGY","mid","MODULES/Modul_20_ENERGY.md"],
-    ["21","CLIMATE","mid","MODULES/Modul_21_CLIMATE.md"],
-    ["22","MIGRATION","mid","MODULES/Modul_22_MIGRATION.md"],
-    ["23","JUSTICE","mid","MODULES/Modul_23_JUSTICE.md"],
-    ["24","COMMUNITY","mid","MODULES/Modul_24_COMMUNITY.md"],
-    // Structural (outer)
-    ["25","FINANCE","outer","MODULES/Modul_25_FINANCE.md"],
-    ["26","HOUSING","outer","MODULES/Modul_26_HOUSING.md"],
-    ["27","TRANSPORT","outer","MODULES/Modul_27_TRANSPORT.md"],
-    ["28","NETWORK","outer","MODULES/Modul_28_NETWORK.md"],
-    ["29","SYMBOL","outer","MODULES/Modul_29_SYMBOL.md"],
-    ["30","TRUTH","outer","MODULES/Modul_30_TRUTH.md"],
-    ["31","MEMORY","outer","MODULES/Modul_31_MEMORY.md"],
-    ["32","LICENCE","outer","MODULES/Modul_32_LICENCE.md"],
-    ["33","PRIVACY","outer","MODULES/Modul_33_PRIVACY.md"],
-    ["34","SECURITY","outer","MODULES/Modul_34_SECURITY.md"],
-    ["35","DATA","outer","MODULES/Modul_35_DATA.md"],
-    ["36","CONFLICT","outer","MODULES/Modul_36_CONFLICT.md"],
-    ["37","DEMOCRACY","outer","MODULES/Modul_37_DEMOCRACY.md"],
-    ["38","GOVERNANCE","outer","MODULES/Modul_38_GOVERNANCE.md"],
-    ["39","KNOWLEDGE","outer","MODULES/Modul_39_KNOWLEDGE.md"],
-    ["40","ART","outer","MODULES/Modul_40_ART.md"],
-    ["41","FUTURE","outer","MODULES/Modul_41_FUTURE.md"],
-    ["42","DEATH","outer","MODULES/Modul_42_DEATH.md"],
-  ].map(([no,label,ring,file])=>({no,label,ring,file}));
+  /* ===== Basis-URL → module.html?file=… ===== */
+  function baseUrl(){
+    var loc=window.location, p=loc.pathname;
+    if(p.slice(-10)==='index.html') p=p.slice(0,-10);
+    if(p.slice(-1)!=='/') p+='/';
+    return loc.protocol+'//'+loc.host+p;
+  }
+  var BASE=baseUrl();
+  function urlFor(p){ return BASE+'module.html?file='+encodeURIComponent(p); }
 
-  // ------- Kanten aus STATIC CORE V5.0 LOCKED -------
-  const CORE = {
+  /* ===== Module (Pfad exakt wie im Repo) ===== */
+  var MODS = [
+    {no:"01",label:"RESETBOX", ring:"inner", file:"MODULES/Modul_01_RESETBOX.md"},
+    {no:"02",label:"WATER",    ring:"inner", file:"MODULES/Modul_02_WATER.md"},
+    {no:"03",label:"SHELTER",  ring:"inner", file:"MODULES/Modul_03_SHELTER.md"},
+    {no:"04",label:"FOOD",     ring:"inner", file:"MODULES/Modul_04_FOOD.md"},
+    {no:"05",label:"SLEEP",    ring:"inner", file:"MODULES/Modul_05_SLEEP.md"},
+    {no:"06",label:"BODY",     ring:"inner", file:"MODULES/Modul_06_BODY.md"},
+    {no:"07",label:"PSYCHE",   ring:"inner", file:"MODULES/Modul_07_PSYCHE.md"},
+    {no:"08",label:"DEVICE",   ring:"inner", file:"MODULES/Modul_08_DEVICE.md"},
+    {no:"09",label:"DEBT",     ring:"inner", file:"MODULES/Modul_09_DEBT.md"},
+
+    {no:"10",label:"WORK",     ring:"mid", file:"MODULES/Modul_10_WORK.md"},
+    {no:"11",label:"SCHOOL",   ring:"mid", file:"MODULES/Modul_11_SCHOOL.md"},
+    {no:"12",label:"BORDER",   ring:"mid", file:"MODULES/Modul_12_BORDER.md"},
+    {no:"13",label:"NATURE",   ring:"mid", file:"MODULES/Modul_13_NATURE.md"},
+    {no:"14",label:"HEALTH",   ring:"mid", file:"MODULES/Modul_14_HEALTH.md"},
+    {no:"15",label:"CARE",     ring:"mid", file:"MODULES/Modul_15_CARE.md"},
+    {no:"16",label:"FAMILY",   ring:"mid", file:"MODULES/Modul_16_FAMILY.md"},
+    {no:"17",label:"ANIMAL",   ring:"mid", file:"MODULES/Modul_17_ANIMAL.md"},
+    {no:"18",label:"CULTURE",  ring:"mid", file:"MODULES/Modul_18_CULTURE.md"},
+    {no:"19",label:"MEDIA",    ring:"mid", file:"MODULES/Modul_19_MEDIA.md"},
+    {no:"20",label:"ENERGY",   ring:"mid", file:"MODULES/Modul_20_ENERGY.md"},
+    {no:"21",label:"CLIMATE",  ring:"mid", file:"MODULES/Modul_21_CLIMATE.md"},
+    {no:"22",label:"MIGRATION",ring:"mid", file:"MODULES/Modul_22_MIGRATION.md"},
+    {no:"23",label:"JUSTICE",  ring:"mid", file:"MODULES/Modul_23_JUSTICE.md"},
+    {no:"24",label:"COMMUNITY",ring:"mid", file:"MODULES/Modul_24_COMMUNITY.md"},
+
+    {no:"25",label:"FINANCE",   ring:"outer", file:"MODULES/Modul_25_FINANCE.md"},
+    {no:"26",label:"HOUSING",   ring:"outer", file:"MODULES/Modul_26_HOUSING.md"},
+    {no:"27",label:"TRANSPORT", ring:"outer", file:"MODULES/Modul_27_TRANSPORT.md"},
+    {no:"28",label:"NETWORK",   ring:"outer", file:"MODULES/Modul_28_NETWORK.md"},
+    {no:"29",label:"SYMBOL",    ring:"outer", file:"MODULES/Modul_29_SYMBOL.md"},
+    {no:"30",label:"TRUTH",     ring:"outer", file:"MODULES/Modul_30_TRUTH.md"},
+    {no:"31",label:"MEMORY",    ring:"outer", file:"MODULES/Modul_31_MEMORY.md"},
+    {no:"32",label:"LICENCE",   ring:"outer", file:"MODULES/Modul_32_LICENCE.md"},
+    {no:"33",label:"PRIVACY",   ring:"outer", file:"MODULES/Modul_33_PRIVACY.md"},
+    {no:"34",label:"SECURITY",  ring:"outer", file:"MODULES/Modul_34_SECURITY.md"},
+    {no:"35",label:"DATA",      ring:"outer", file:"MODULES/Modul_35_DATA.md"},
+    {no:"36",label:"CONFLICT",  ring:"outer", file:"MODULES/Modul_36_CONFLICT.md"},
+    {no:"37",label:"DEMOCRACY", ring:"outer", file:"MODULES/Modul_37_DEMOCRACY.md"},
+    {no:"38",label:"GOVERNANCE",ring:"outer", file:"MODULES/Modul_38_GOVERNANCE.md"},
+    {no:"39",label:"KNOWLEDGE", ring:"outer", file:"MODULES/Modul_39_KNOWLEDGE.md"},
+    {no:"40",label:"ART",       ring:"outer", file:"MODULES/Modul_40_ART.md"},
+    {no:"41",label:"FUTURE",    ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
+    {no:"42",label:"DEATH",     ring:"outer", file:"MODULES/Modul_42_DEATH.md"}
+  ];
+
+  /* ===== Verbindungen (STATIC CORE V5.0 LOCKED) ===== */
+  var CORE = {
     "01":["02","03","09"],
     "02":["04","06","13"],
     "03":["05","13","01"],
@@ -248,126 +261,133 @@
     "42":["14","15","41"]
   };
 
-  // ------- SVG helpers -------
-  const SVG_NS="http://www.w3.org/2000/svg";
-  const XLINK_NS="http://www.w3.org/1999/xlink";
-  const svg=document.getElementById('ringmap');
-  const edgesLayer=document.getElementById('edges');
-  const tip=document.getElementById('tip');
+  /* ===== SVG Refs ===== */
+  var SVG_NS="http://www.w3.org/2000/svg";
+  var XLINK_NS="http://www.w3.org/1999/xlink";
+  var svg=document.getElementById('ringmap');
+  var edgesLayer=document.getElementById('edges');
+  var tip=document.getElementById('tip');
+  var pos={}, nodeRef={}, neighbors={};
 
-  const pos={}, nodeRef={}, neighbors={};
-
-  // RESETBOX-Link
+  /* ===== RESETBOX-Link robust ===== */
   (function(){
-    const centerA=document.getElementById('center-reset');
-    const href=urlFor("MODULES/Modul_01_RESETBOX.md");
+    var centerA=document.getElementById('center-reset');
+    var href=urlFor("MODULES/Modul_01_RESETBOX.md");
     centerA.setAttribute('href', href);
     centerA.setAttributeNS(XLINK_NS,'xlink:href', href);
-    centerA.addEventListener('click', ()=>{ setTimeout(()=>{ if(!location.href.includes('module.html')) location.href=href; },0); });
-    centerA.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); location.href=href; }});
+    centerA.onclick=function(){ setTimeout(function(){ if(window.location.href.indexOf('module.html')===-1) window.location.href=href; },0); };
+    centerA.onkeydown=function(e){ e=e||window.event; var k=e.key||e.keyCode; if(k==='Enter'||k===' '||k===13||k===32){ if(e.preventDefault) e.preventDefault(); window.location.href=href; } };
   })();
 
-  function groupByRing(){ return MODS.reduce((a,m)=>{ (a[m.ring] ||= []).push(m); return a; },{}); }
-
+  /* ===== Placement ===== */
+  function groupByRing(){
+    var g={inner:[], mid:[], outer:[]}, i;
+    for(i=0;i<MODS.length;i++){ g[MODS[i].ring].push(MODS[i]); }
+    return g;
+  }
   function placeNodes(){
-    const groups=groupByRing();
-    const cfg={ inner:{r:220,class:'inner'}, mid:{r:380,class:'mid'}, outer:{r:540,class:'outer'} };
+    var groups=groupByRing();
+    var cfg={ inner:{r:220,cls:'inner'}, mid:{r:380,cls:'mid'}, outer:{r:540,cls:'outer'} };
+    var ring, list, radius, g, step, start, idx, m, ang, x, y, href, a, hit, rr, txt;
 
-    Object.entries(groups).forEach(([ring,list])=>{
-      const radius=cfg[ring].r;
-      const g=document.createElementNS(SVG_NS,'g'); g.setAttribute('class',cfg[ring].class); svg.appendChild(g);
-      const step=(Math.PI*2)/list.length, start=-Math.PI/2;
+    for(ring in groups){
+      list=groups[ring];
+      radius=cfg[ring].r;
+      g=document.createElementNS(SVG_NS,'g'); g.setAttribute('class', cfg[ring].cls); svg.appendChild(g);
+      step=(Math.PI*2)/list.length; start=-Math.PI/2;
 
-      list.forEach((m,idx)=>{
-        const ang=start+idx*step, x=Math.cos(ang)*radius, y=Math.sin(ang)*radius;
-        pos[m.no]={x,y};
-        const href=urlFor(m.file);
+      for(idx=0; idx<list.length; idx++){
+        m=list[idx];
+        ang=start+idx*step; x=Math.cos(ang)*radius; y=Math.sin(ang)*radius;
+        pos[m.no]={x:x,y:y}; href=urlFor(m.file);
 
-        const a=document.createElementNS(SVG_NS,'a');
+        a=document.createElementNS(SVG_NS,'a');
         a.setAttribute('href', href);
         a.setAttributeNS(XLINK_NS,'xlink:href', href);
         a.setAttribute('target','_self');
-        a.setAttribute('transform',`translate(${x},${y})`);
+        a.setAttribute('transform','translate('+x+','+y+')');
         a.setAttribute('tabindex','0');
         a.setAttribute('role','link');
-        a.setAttribute('aria-label', `${m.no} ${m.label} öffnen`);
-        a.classList.add('node',cfg[ring].class);
+        a.setAttribute('aria-label', m.no+' '+m.label+' öffnen');
+        a.setAttribute('class','node '+cfg[ring].cls);
         nodeRef[m.no]=a;
 
-        // Fallback-Navigation (für Browser, die SVG-<a> ignorieren)
-        a.addEventListener('click', (e)=>{
-          setTimeout(()=>{ if(!location.href.includes('module.html')) location.href=href; }, 0);
-        });
-        a.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); location.href=href; } });
+        (function(h, no, label){
+          a.addEventListener('click', function(){ setTimeout(function(){ if(window.location.href.indexOf('module.html')===-1) window.location.href=h; },0); });
+          a.addEventListener('keydown', function(e){ e=e||window.event; var k=e.key||e.keyCode; if(k==='Enter'||k===' '||k===13||k===32){ if(e.preventDefault) e.preventDefault(); window.location.href=h; } });
+          a.addEventListener('mouseenter', function(e){ addCls(svg,'hovering'); showTip(no+' '+label, e); highlight(no,true); });
+          a.addEventListener('mousemove', function(e){ moveTip(e); });
+          a.addEventListener('mouseleave', function(){ rmCls(svg,'hovering'); hideTip(); highlight(no,false); });
+        })(href, m.no, m.label);
 
-        // Klickkreis (ganze Fläche)
-        const hit=document.createElementNS(SVG_NS,'circle');
+        /* Vollflächige Klickfläche */
+        hit=document.createElementNS(SVG_NS,'circle');
+        rr=(ring==='outer')?60:(ring==='mid')?56:54;
         hit.setAttribute('class','hit');
-        hit.setAttribute('r', String(ring==='outer'?60 : ring==='mid'?56 : 54));
+        hit.setAttribute('r', String(rr));
         hit.setAttribute('pointer-events','visible');
         a.appendChild(hit);
 
-        // Label (Nummer + Name)
-        const txt=document.createElementNS(SVG_NS,'text');
-        txt.textContent = `${m.no} ${m.label}`;
+        /* Label */
+        txt=document.createElementNS(SVG_NS,'text');
+        txt.textContent=m.no+' '+m.label;
         a.appendChild(txt);
 
-        // Tooltip + Hover-Verbindungen
-        a.addEventListener('mouseenter', e=>{ svg.classList.add('hovering'); showTip(`${m.no} ${m.label}`,e); highlight(m.no,true); });
-        a.addEventListener('mousemove', e=>moveTip(e));
-        a.addEventListener('mouseleave', ()=>{ svg.classList.remove('hovering'); hideTip(); highlight(m.no,false); });
-
         g.appendChild(a);
-      });
-    });
+      }
+    }
   }
 
+  /* ===== Nachbarn & Kanten ===== */
   function buildNeighbors(){
-    MODS.forEach(m=>neighbors[m.no]=new Set());
-    Object.entries(CORE).forEach(([a,arr])=>{
-      arr.forEach(b=>{
-        neighbors[a].add(b);
-        if(!neighbors[b]) neighbors[b]=new Set();
-        neighbors[b].add(a);
-      });
-    });
+    var i,a,j,b;
+    for(i=0;i<MODS.length;i++){ neighbors[MODS[i].no]=[]; }
+    for(a in CORE){
+      for(j=0;j<CORE[a].length;j++){
+        b=CORE[a][j];
+        if(neighbors[a].indexOf(b)===-1) neighbors[a].push(b);
+        if(!neighbors[b]) neighbors[b]=[];
+        if(neighbors[b].indexOf(a)===-1) neighbors[b].push(a);
+      }
+    }
   }
-
   function drawEdges(){
-    const done=new Set();
-    Object.entries(CORE).forEach(([a,arr])=>{
-      arr.forEach(b=>{
-        const key = a<b ? `${a}-${b}` : `${b}-${a}`;
-        if(done.has(key)) return;
-        done.add(key);
-        const pa=pos[a], pb=pos[b]; if(!pa||!pb) return;
-        const mx=(pa.x+pb.x)/2, my=(pa.y+pb.y)/2, k=0.12, nx=(pb.y-pa.y), ny=-(pb.x-pa.x);
-        const cx=mx+nx*k, cy=my+ny*k;
-        const d=`M ${pa.x} ${pa.y} Q ${cx} ${cy} ${pb.x} ${pb.y}`;
-        const p=document.createElementNS(SVG_NS,'path');
-        p.setAttribute('d', d); p.dataset.a=a; p.dataset.b=b;
+    var done={}, a, arr, j, b, key, pa, pb, mx, my, k, nx, ny, cx, cy, d, p;
+    for(a in CORE){
+      arr=CORE[a];
+      for(j=0;j<arr.length;j++){
+        b=arr[j]; key=(a<b)?(a+'-'+b):(b+'-'+a);
+        if(done[key]) continue; done[key]=1;
+        pa=pos[a]; pb=pos[b]; if(!pa||!pb) continue;
+        mx=(pa.x+pb.x)/2; my=(pa.y+pb.y)/2; k=0.12; nx=(pb.y-pa.y); ny=-(pb.x-pa.x);
+        cx=mx+nx*k; cy=my+ny*k;
+        d='M '+pa.x+' '+pa.y+' Q '+cx+' '+cy+' '+pb.x+' '+pb.y;
+        p=document.createElementNS(SVG_NS,'path');
+        p.setAttribute('d', d); p.setAttribute('data-a', a); p.setAttribute('data-b', b);
         edgesLayer.appendChild(p);
-      });
-    });
+      }
+    }
   }
-
   function highlight(no,on){
-    document.querySelectorAll(`.edges path[data-a="${no}"], .edges path[data-b="${no}"]`).forEach(p=>p.classList.toggle('on', on));
-    (neighbors[no]||new Set()).forEach(n=>{
-      const el=nodeRef[n]; if(el) el.classList.toggle('linked', on);
-    });
-    const self=nodeRef[no]; if(self) self.classList.toggle('linked', on);
+    var list=edgesLayer.querySelectorAll('path[data-a="'+no+'"], path[data-b="'+no+'"]');
+    var i, el;
+    for(i=0;i<list.length;i++){ if(on) addCls(list[i],'on'); else rmCls(list[i],'on'); }
+    var neigh=neighbors[no]||[];
+    for(i=0;i<neigh.length;i++){ el=nodeRef[neigh[i]]; if(el){ if(on) addCls(el,'linked'); else rmCls(el,'linked'); } }
+    el=nodeRef[no]; if(el){ if(on) addCls(el,'linked'); else rmCls(el,'linked'); }
   }
 
-  // Tooltip
-  function showTip(txt,evt){ tip.innerHTML = `${txt}<br><small>Öffnen</small>`; moveTip(evt); tip.classList.add('show'); }
-  function moveTip(evt){ tip.style.left = evt.clientX+'px'; tip.style.top = evt.clientY+'px'; }
-  function hideTip(){ tip.classList.remove('show'); }
+  /* ===== Tooltip ===== */
+  var tipEl=document.getElementById('tip');
+  function showTip(txt,evt){ tipEl.innerHTML=txt+'<br><small>Öffnen</small>'; moveTip(evt); addCls(tipEl,'show'); }
+  function moveTip(evt){ tipEl.style.left=(evt.clientX||0)+'px'; tipEl.style.top=(evt.clientY||0)+'px'; }
+  function hideTip(){ rmCls(tipEl,'show'); }
 
-  // Build
+  /* ===== Build ===== */
   placeNodes();
   buildNeighbors();
   drawEdges();
+})();
 </script>
 </body>
 </html>

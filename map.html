@@ -39,194 +39,332 @@
   window.addEventListener('unhandledrejection', e => show(e.reason || 'Promise rejected'));
 })();
 </script>
-  body{
-    margin:0; color:var(--fg);
-    font:16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    background:
-      radial-gradient(1600px 1000px at 50% 40%, #13223a20 0%, #0f1b2f33 55%, var(--bg) 100%),
-      radial-gradient(900px 700px at 12% 14%, rgba(255,255,255,.055), transparent 60%),
-      radial-gradient(900px 900px at 88% 84%, rgba(255,255,255,.04), transparent 65%);
-    overflow:hidden; transition: background-color .25s ease, color .25s ease;
-  }
-  header{
-    position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:80;
-    display:flex; align-items:center; gap:12px; padding:10px 12px;
-    background:var(--glass); border-bottom:1px solid var(--border); backdrop-filter: blur(8px);
-  }
-  .brand{ color:var(--fg); text-decoration:none; font-weight:900; letter-spacing:.3px; font-size:16px }
-  nav{ margin-left:auto; display:flex; gap:10px; align-items:center }
-  .dd{ position:relative }
-  .dd>button, .theme button{
-    color:var(--fg); background:transparent; border:1px solid var(--border);
-    padding:6px 12px; border-radius:10px; cursor:pointer; font-weight:800
-  }
-  .menu{
-    position:absolute; right:0; top:calc(100% + 8px); min-width:260px; max-height:60vh; overflow:auto;
-    display:none; flex-direction:column; gap:4px; padding:10px;
-    background:rgba(10,13,20,.98); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow);
-  }
-  .light .menu{ background:#ffffff; }
-  .dd:hover .menu, .dd:focus-within .menu{ display:flex }
-  .menu a{ color:var(--fg); text-decoration:none; padding:10px 12px; border-radius:8px; font-size:15px }
-  .menu a:hover, .menu a:focus{ background:rgba(255,255,255,.08); outline: none }
-  .light .menu a:hover, .light .menu a:focus{ background:#eef3fb }
-  .search{
-    display:flex; align-items:center; gap:8px; padding:0 8px;
-    border:1px solid var(--border); border-radius:10px; background:transparent; height:36px;
-  }
-  .search input{ background:transparent; color:var(--fg); border:none; outline:none; width:220px; font-weight:700; }
-  .search input::placeholder{ color:var(--muted) }
-  .search .clear{ cursor:pointer; border:none; background:transparent; color:var(--muted); font-size:18px }
-  .stage{ position:absolute; inset:var(--header-h) 0 0 0; display:grid; place-items:center; }
-  svg{ width:min(1400px, 96.5vw); height:min(1400px, calc(96.5vh - var(--header-h))); }
-  .ring{ fill:none; stroke-opacity:.95; }
-  .ring.inner{ stroke:var(--ring-inner); stroke-width:2.6 }
-  .ring.mid{   stroke:var(--ring-mid);   stroke-width:2.6 }
-  .ring.outer{ stroke:var(--ring-outer); stroke-width:2.6 }
-  .links path{
-    stroke: url(#qgrad); stroke-opacity:0; stroke-width:3.6; fill:none;
-    filter: drop-shadow(0 0 0 rgba(81,226,255,0));
-    transition: stroke-opacity .12s ease, filter .2s ease;
-  }
-  .links.visible path{
-    stroke-opacity:1;
-    filter: drop-shadow(0 0 18px rgba(81,226,255,.45));
-    animation: lineGlow 1.8s ease-in-out infinite;
-  }
-  .links.hidden{ opacity:0; pointer-events:none }
-  g.nodes{ filter: drop-shadow(0 4px 14px rgba(0,0,0,.55)); }
-  @keyframes pulse { 0%,100%{ transform: translateY(0) scale(1); } 50%{ transform: translateY(-1px) scale(1.04); } }
-  @keyframes ringHalo { 0%{ stroke-width:9; opacity:.7 } 50%{ stroke-width:13; opacity:.18 } 100%{ stroke-width:9; opacity:.7 } }
-  @keyframes lineGlow{ 0%,100%{ filter: drop-shadow(0 0 12px rgba(81,226,255,.35)); } 50%{ filter: drop-shadow(0 0 24px rgba(141,255,184,.5)); } }
-  a.node{ cursor:pointer; transition: transform .12s ease, opacity .12s ease; outline:none }
-  a.node:hover{ transform: translateY(-1px) scale(1.02); }
-  a.node:focus-visible{ outline:2px dashed #7de0ff; outline-offset:4px }
-  .node circle{ fill:var(--node-bg); stroke:var(--node-stroke); stroke-width:2.2; transition: stroke-width .12s ease; }
-  .node circle.glow{ fill:none; stroke:rgba(255,255,255,.2); stroke-width:9; opacity:.75; filter:blur(2px); }
-  .node.active{ animation: pulse 1.8s ease-in-out infinite; }
-  .node.active circle{ stroke:url(#qgrad); stroke-width:3.2; }
-  .node.active .glow{ animation: ringHalo 2.2s ease-in-out infinite; }
-  .node.linked circle{ stroke:url(#qgrad); stroke-width:3.0; opacity:.98; }
-  .node.dim { opacity:.25; }
-  .center circle.core{ fill:transparent; stroke:#87a6c8; stroke-dasharray:4 6; stroke-width:2.6; }
-  .center a.node text{ fill:#e6f8ff; font-size:var(--center-size); font-weight:1000; letter-spacing:.6px }
-  .center a.node circle{ fill:rgba(22,30,48,.9); stroke:url(#qgrad); stroke-width:3.2 }
-  .light .center a.node circle{ fill:#ffffff }
-  .label text{
-    font-weight:1000; letter-spacing:.4px; font-size:var(--label-size);
-    paint-order: stroke; stroke: rgba(5,9,16,.82); stroke-width:5px;
-  }
-  .label .t-center{ fill:var(--ring-center) }
-  .label .t-inner{  fill:var(--ring-inner) }
-  .label .t-mid{    fill:var(--ring-mid) }
-  .label .t-outer{  fill:var(--ring-outer) }
-  .label line{ stroke:#c9e1ff; stroke-opacity:.92; stroke-width:2.2; }
-  .label.active text{ fill:#06131c; stroke:none }
-  .label.active rect{ fill:url(#qgrad) }
-  .label rect{ fill:rgba(12,18,32,.9); stroke:1px solid #28466f; rx:9; ry:9; }
-  .light .label rect{ fill:#ffffff; stroke:#dbe4f0 }
-  .label.dim { opacity:.25; }
-  .legend{
-    position:fixed; inset:auto 12px 12px 12px; z-index:70;
-    display:flex; gap:10px; align-items:center; justify-content:center;
-    background:rgba(12,16,24,.62); border:1px solid var(--border); border-radius:10px; padding:8px 12px; backdrop-filter: blur(6px);
-  }
-  .light .legend{ background:#ffffffd0 }
-  .chip{display:inline-flex; align-items:center; gap:8px; font-size:13px}
-  .sw{width:14px; height:14px; border-radius:50%}
-  .sw.center{background:var(--ring-center)}
-  .sw.inner{background:var(--ring-inner)}
-  .sw.mid{background:var(--ring-mid)}
-  .sw.outer{background:var(--ring-outer)}
-  .tip{
-    position:fixed; z-index:90; pointer-events:none;
-    transform:translate(-50%, calc(-100% - 12px));
-    background:#0f1624; border:1px solid #2b3548; color:var(--fg);
-    padding:10px 12px; border-radius:10px; font-size:var(--tooltip-size); white-space:nowrap;
-    opacity:0; transition:opacity .12s ease, transform .12s ease; box-shadow:var(--shadow);
-  }
-  .light .tip{ background:#ffffff; border-color:#dbe4f0 }
-  .tip.show{ opacity:1; transform:translate(-50%, calc(-100% - 10px)) }
-  .tip small{ color:var(--muted) }
-</style>
-</head>
-<body>
-<header aria-label="Seitennavigation">
-  <a class="brand" href="./index.html">🍄 QUESTSYSTEM</a>
-  <nav>
-    <div class="dd">
-      <button aria-haspopup="menu">System</button>
-      <div class="menu" role="menu">
-        <a role="menuitem" href="./index.html">Start</a>
-        <a role="menuitem" href="./map.html">Modul-Map</a>
-        <a role="menuitem" href="module.html?file=ARTIST_PROFILE.md">Artist Profile</a>
-        <a role="menuitem" href="module.html?file=MODULES/Modul_32_LICENCE.md">Licence</a>
-        <a role="menuitem" href="https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC" target="_blank" rel="noopener">Repository</a>
-      </div>
-    </div>
-    <div class="dd">
-      <button aria-haspopup="menu">Ethik</button>
-      <div class="menu" role="menu">
-        <a role="menuitem" href="module.html?file=Dignity_Clause.md">Dignity Clause</a>
-        <a role="menuitem" href="module.html?file=14_GEBOTE_V2.1.md">14 Gebote (V2.1)</a>
-        <a role="menuitem" href="module.html?file=14_GEBOTE_DISCUSSION.md">Diskussion</a>
-      </div>
-    </div>
-    <div class="dd">
-      <button aria-haspopup="menu">Module</button>
-      <div class="menu" role="menu" id="menu-mods"></div>
-    </div>
+  <script>
+document.addEventListener('DOMContentLoaded', function(){
+  // --- HARD DEFAULTS: falls CSS-Variablen nicht gelesen werden ---
+  var RS = { inner:56, mid:56, outer:56, center:96 }; // Node-Radien
+  var R  = { inner:220, mid:380, outer:540, center:0 }; // Ring-Radien
 
-    <div class="search" role="search">
-      <span>🔎</span>
-      <input id="q" type="text" placeholder="Suche Modul/Nummer…" aria-label="Modulsuche" />
-      <button class="clear" id="q-clear" title="Suche löschen">×</button>
-    </div>
+  // --- Daten (unverändert) ---
+  var MODS = [
+    {no:"01", id:"RESETBOX", ring:"center", file:"MODULES/Modul_01_RESETBOX.md"},
+    {no:"02", id:"WATER",   ring:"inner", file:"MODULES/Modul_02_WATER.md"},
+    {no:"03", id:"SHELTER", ring:"inner", file:"MODULES/Modul_03_SHELTER.md"},
+    {no:"04", id:"FOOD",    ring:"inner", file:"MODULES/Modul_04_FOOD.md"},
+    {no:"05", id:"SLEEP",   ring:"inner", file:"MODULES/Modul_05_SLEEP.md"},
+    {no:"06", id:"BODY",    ring:"inner", file:"MODULES/Modul_06_BODY.md"},
+    {no:"07", id:"PSYCHE",  ring:"inner", file:"MODULES/Modul_07_PSYCHE.md"},
+    {no:"08", id:"DEVICE",  ring:"inner", file:"MODULES/Modul_08_DEVICE.md"},
+    {no:"09", id:"DEBT",    ring:"inner", file:"MODULES/Modul_09_DEBT.md"},
+    {no:"10", id:"WORK",      ring:"mid", file:"MODULES/Modul_10_WORK.md"},
+    {no:"11", id:"SCHOOL",    ring:"mid", file:"MODULES/Modul_11_SCHOOL.md"},
+    {no:"12", id:"BORDER",    ring:"mid", file:"MODULES/Modul_12_BORDER.md"},
+    {no:"13", id:"NATURE",    ring:"mid", file:"MODULES/Modul_13_NATURE.md"},
+    {no:"14", id:"HEALTH",    ring:"mid", file:"MODULES/Modul_14_HEALTH.md"},
+    {no:"15", id:"CARE",      ring:"mid", file:"MODULES/Modul_15_CARE.md"},
+    {no:"16", id:"FAMILY",    ring:"mid", file:"MODULES/Modul_16_FAMILY.md"},
+    {no:"17", id:"ANIMAL",    ring:"mid", file:"MODULES/Modul_17_ANIMAL.md"},
+    {no:"18", id:"CULTURE",   ring:"mid", file:"MODULES/Modul_18_CULTURE.md"},
+    {no:"19", id:"MEDIA",     ring:"mid", file:"MODULES/Modul_19_MEDIA.md"},
+    {no:"20", id:"ENERGY",    ring:"mid", file:"MODULES/Modul_20_ENERGY.md"},
+    {no:"21", id:"CLIMATE",   ring:"mid", file:"MODULES/Modul_21_CLIMATE.md"},
+    {no:"22", id:"MIGRATION", ring:"mid", file:"MODULES/Modul_22_MIGRATION.md"},
+    {no:"23", id:"JUSTICE",   ring:"mid", file:"MODULES/Modul_23_JUSTICE.md"},
+    {no:"24", id:"COMMUNITY", ring:"mid", file:"MODULES/Modul_24_COMMUNITY.md"},
+    {no:"25", id:"FINANCE",    ring:"outer", file:"MODULES/Modul_25_FINANCE.md"},
+    {no:"26", id:"HOUSING",    ring:"outer", file:"MODULES/Modul_26_HOUSING.md"},
+    {no:"27", id:"TRANSPORT",  ring:"outer", file:"MODULES/Modul_27_TRANSPORT.md"},
+    {no:"28", id:"NETWORK",    ring:"outer", file:"MODULES/Modul_28_NETWORK.md"},
+    {no:"29", id:"SYMBOL",     ring:"outer", file:"MODULES/Modul_29_SYMBOL.md"},
+    {no:"30", id:"TRUTH",      ring:"outer", file:"MODULES/Modul_30_TRUTH.md"},
+    {no:"31", id:"MEMORY",     ring:"outer", file:"MODULES/Modul_31_MEMORY.md"},
+    {no:"32", id:"LICENCE",    ring:"outer", file:"MODULES/Modul_32_LICENCE.md"},
+    {no:"33", id:"PRIVACY",    ring:"outer", file:"MODULES/Modul_33_PRIVACY.md"},
+    {no:"34", id:"SECURITY",   ring:"outer", file:"MODULES/Modul_34_SECURITY.md"},
+    {no:"35", id:"DATA",       ring:"outer", file:"MODULES/Modul_35_DATA.md"},
+    {no:"36", id:"CONFLICT",   ring:"outer", file:"MODULES/Modul_36_CONFLICT.md"},
+    {no:"37", id:"DEMOCRACY",  ring:"outer", file:"MODULES/Modul_37_DEMOCRACY.md"},
+    {no:"38", id:"GOVERNANCE", ring:"outer", file:"MODULES/Modul_38_GOVERNANCE.md"},
+    {no:"39", id:"KNOWLEDGE",  ring:"outer", file:"MODULES/Modul_39_KNOWLEDGE.md"},
+    {no:"40", id:"ART",        ring:"outer", file:"MODULES/Modul_40_ART.md"},
+    {no:"41", id:"FUTURE",     ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
+    {no:"42", id:"DEATH",      ring:"outer", file:"MODULES/Modul_42_DEATH.md"},
+  ];
+  var CORE = {
+    "01:RESETBOX": ["02:WATER","03:SHELTER","09:DEBT"],
+    "02:WATER":    ["04:FOOD","06:BODY","13:NATURE"],
+    "03:SHELTER":  ["05:SLEEP","13:NATURE","01:RESETBOX"],
+    "04:FOOD":     ["02:WATER","13:NATURE","25:FINANCE"],
+    "05:SLEEP":    ["03:SHELTER","07:PSYCHE","06:BODY"],
+    "06:BODY":     ["02:WATER","05:SLEEP","07:PSYCHE"],
+    "07:PSYCHE":   ["05:SLEEP","06:BODY","30:TRUTH"],
+    "08:DEVICE":   ["20:ENERGY","32:LICENCE","01:RESETBOX"],
+    "09:DEBT":     ["10:WORK","25:FINANCE","01:RESETBOX"],
+    "10:WORK":      ["09:DEBT","11:SCHOOL","25:FINANCE"],
+    "11:SCHOOL":    ["10:WORK","30:TRUTH","07:PSYCHE"],
+    "12:BORDER":    ["01:RESETBOX","13:NATURE","36:CONFLICT"],
+    "13:NATURE":    ["02:WATER","04:FOOD","20:ENERGY"],
+    "14:HEALTH":    ["02:WATER","06:BODY","07:PSYCHE"],
+    "15:CARE":      ["14:HEALTH","07:PSYCHE","01:RESETBOX"],
+    "16:FAMILY":    ["05:SLEEP","11:SCHOOL","14:HEALTH"],
+    "17:ANIMAL":    ["04:FOOD","13:NATURE","14:HEALTH"],
+    "18:CULTURE":   ["11:SCHOOL","30:TRUTH","29:SYMBOL"],
+    "19:MEDIA":     ["30:TRUTH","32:LICENCE","11:SCHOOL"],
+    "20:ENERGY":    ["08:DEVICE","13:NATURE","25:FINANCE"],
+    "21:CLIMATE":   ["13:NATURE","20:ENERGY","14:HEALTH"],
+    "22:MIGRATION": ["12:BORDER","13:NATURE","36:CONFLICT"],
+    "23:JUSTICE":   ["09:DEBT","10:WORK","32:LICENCE"],
+    "24:COMMUNITY": ["11:SCHOOL","18:CULTURE","23:JUSTICE"],
+    "25:FINANCE":   ["09:DEBT","10:WORK","20:ENERGY"],
+    "26:HOUSING":   ["03:SHELTER","05:SLEEP","25:FINANCE"],
+    "27:TRANSPORT": ["02:WATER","20:ENERGY","22:MIGRATION"],
+    "28:NETWORK":   ["08:DEVICE","20:ENERGY","19:MEDIA"],
+    "29:SYMBOL":    ["18:CULTURE","24:COMMUNITY","30:TRUTH"],
+    "30:TRUTH":     ["11:SCHOOL","19:MEDIA","32:LICENCE"],
+    "31:MEMORY":    ["11:SCHOOL","29:SYMBOL","30:TRUTH"],
+    "32:LICENCE":   ["19:MEDIA","30:TRUTH","08:DEVICE"],
+    "33:PRIVACY":   ["08:DEVICE","19:MEDIA","32:LICENCE"],
+    "34:SECURITY":  ["01:RESETBOX","12:BORDER","36:CONFLICT"],
+    "35:DATA":      ["08:DEVICE","28:NETWORK","32:LICENCE"],
+    "36:CONFLICT":  ["12:BORDER","22:MIGRATION","34:SECURITY"],
+    "37:DEMOCRACY": ["23:JUSTICE","24:COMMUNITY","25:FINANCE"],
+    "38:GOVERNANCE":["23:JUSTICE","37:DEMOCRACY","25:FINANCE"],
+    "39:KNOWLEDGE": ["11:SCHOOL","30:TRUTH","31:MEMORY"],
+    "40:ART":       ["18:CULTURE","29:SYMBOL","39:KNOWLEDGE"],
+    "41:FUTURE":    ["21:CLIMATE","39:KNOWLEDGE","40:ART"],
+    "42:DEATH":     ["14:HEALTH","15:CARE","41:FUTURE"],
+  };
 
-    <div class="theme">
-      <button id="toggleTheme" title="Dark / Light umschalten">🌙</button>
-    </div>
-  </nav>
-</header>
+  var SVG_NS="http://www.w3.org/2000/svg", XLINK_NS="http://www.w3.org/1999/xlink";
+  var svg = document.getElementById('map');
+  var nodesLayer  = document.getElementById('nodes-layer');
+  var labelsLayer = document.getElementById('labels-layer');
+  var linksLayer  = document.getElementById('links-layer');
+  var tip = document.getElementById('tip');
 
-<div class="stage">
-  <svg id="map" viewBox="-700 -700 1400 1400"
-       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-       role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS">
-    <defs>
-      <linearGradient id="qgrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%"  stop-color="var(--q1)"/>
-        <stop offset="50%" stop-color="var(--q2)"/>
-        <stop offset="100%" stop-color="var(--q3)"/>
-      </linearGradient>
-    </defs>
+  function urlFor(filePath){
+    var u = new URL(window.location.href);
+    if (u.pathname.endsWith('map.html')) u.pathname = u.pathname.replace(/map\.html$/,'');
+    if (!u.pathname.endsWith('/')) u.pathname += '/';
+    return u.origin + u.pathname + 'module.html?file=' + encodeURIComponent(filePath);
+  }
+  function polar(r,a){ return [Math.cos(a)*r, Math.sin(a)*r]; }
+  function distributeAngles(n){ var step=(Math.PI*2)/n, start=-Math.PI/2; var a=[]; for(var i=0;i<n;i++) a.push(start+i*step); return a; }
 
-    <g class="rings">
-      <circle class="ring inner" r="220"></circle>
-      <circle class="ring mid"   r="380"></circle>
-      <circle class="ring outer" r="540"></circle>
-    </g>
+  // Verbindungstabellen
+  var LINKS = new Map();
+  Object.keys(CORE).forEach(function(k){
+    var a=k.split(':')[1];
+    if(!LINKS.has(a)) LINKS.set(a,new Set());
+    CORE[k].forEach(function(bKey){
+      var b=bKey.split(':')[1];
+      if(!LINKS.has(b)) LINKS.set(b,new Set());
+      LINKS.get(a).add(b); LINKS.get(b).add(a);
+    });
+  });
 
-    <g class="links hidden" id="links-layer"></g>
+  function nodeCenterPos(el){
+    var tr = el.getAttribute('transform');
+    var m = tr && tr.match(/translate\(([-\d.]+),([-\d.]+)\)/);
+    return m ? {x:parseFloat(m[1]), y:parseFloat(m[2])} : {x:0,y:0};
+  }
+  function curvePath(pA,pB){
+    var mid={x:(pA.x+pB.x)/2,y:(pA.y+pB.y)/2};
+    var v={x:mid.x*0.08,y:mid.y*0.08};
+    var c={x:mid.x+v.x,y:mid.y+v.y};
+    return "M "+pA.x+" "+pA.y+" Q "+c.x+" "+c.y+" "+pB.x+" "+pB.y;
+  }
 
-    <g class="center">
-      <circle class="core" r="100"></circle>
-    </g>
+  function addNodeEvents(a, mod){
+    var show = function(e){
+      tip.innerHTML = mod.no+" "+mod.id+"<br><small>Öffnen</small>";
+      tip.style.left = e.clientX+'px'; tip.style.top = e.clientY+'px';
+      tip.classList.add('show'); highlight(mod.id);
+    };
+    var hide = function(){ tip.classList.remove('show'); clearHighlight(); };
+    a.addEventListener('mouseenter', show);
+    a.addEventListener('mousemove', function(e){ tip.style.left=e.clientX+'px'; tip.style.top=e.clientY+'px'; });
+    a.addEventListener('mouseleave', hide);
+    a.addEventListener('focus', function(){ tip.classList.add('show'); highlight(mod.id); });
+    a.addEventListener('blur', hide);
+  }
 
-    <g class="nodes" id="nodes-layer"></g>
-    <g class="labels" id="labels-layer"></g>
-  </svg>
-</div>
+  function addLabel(mod, ring, angle, r, center){
+    var offset = ring==='inner'? 86 : ring==='mid'? 96 : 104;
+    var p = polar(r+offset, angle); var lx=p[0], ly=p[1];
+    var g = document.createElementNS(SVG_NS,'g');
+    g.setAttribute('transform','translate('+lx+','+ly+')');
+    g.setAttribute('class','label');
+    g.dataset.id = mod.id; g.dataset.ring = ring;
 
-<div class="legend" aria-hidden="true">
-  <span class="chip"><span class="sw center"></span>RESETBOX</span>
-  <span class="chip"><span class="sw inner"></span>Existential</span>
-  <span class="chip"><span class="sw mid"></span>Societal</span>
-  <span class="chip"><span class="sw outer"></span>Structural</span>
-</div>
+    var line = document.createElementNS(SVG_NS,'line');
+    line.setAttribute('x1',0); line.setAttribute('y1',0);
+    line.setAttribute('x2', center.x - lx); line.setAttribute('y2', center.y - ly);
+    g.appendChild(line);
 
-<div id="tip" class="tip" role="status" aria-live="polite"></div>
+    var text = document.createElementNS(SVG_NS,'text');
+    text.textContent = mod.no+' '+mod.id;
+    text.setAttribute('dominant-baseline','middle');
 
+    var deg = angle*180/Math.PI;
+    if(ring==='center'){ text.setAttribute('text-anchor','middle'); text.setAttribute('x',0); }
+    else if(deg>-90 && deg<=90){ text.setAttribute('text-anchor','start'); text.setAttribute('x',14); }
+    else{ text.setAttribute('text-anchor','end'); text.setAttribute('x',-14); }
+    text.setAttribute('y',0);
+
+    var rect = document.createElementNS(SVG_NS,'rect');
+    g.appendChild(rect); g.appendChild(text);
+    labelsLayer.appendChild(g);
+
+    requestAnimationFrame(function(){
+      var bb = text.getBBox();
+      rect.setAttribute('x', bb.x - 12);
+      rect.setAttribute('y', bb.y - 10);
+      rect.setAttribute('width', bb.width + 24);
+      rect.setAttribute('height', bb.height + 20);
+    });
+  }
+
+  function addNode(mod, ring, angle, r){
+    var p = polar(r, angle), x=p[0], y=p[1];
+    var a = document.createElementNS(SVG_NS,'a');
+    a.classList.add('node', ring);
+    var url = urlFor(mod.file);
+    a.setAttribute('href', url); a.setAttributeNS(XLINK_NS,'xlink:href', url);
+    a.setAttribute('transform','translate('+x+','+y+')');
+    a.dataset.id = mod.id; a.dataset.ring = ring; a.setAttribute('tabindex','0');
+
+    var glow = document.createElementNS(SVG_NS,'circle'); glow.setAttribute('r', RS[ring]); glow.setAttribute('class','glow'); a.appendChild(glow);
+    var c = document.createElementNS(SVG_NS,'circle'); c.setAttribute('r', RS[ring]); a.appendChild(c);
+
+    addNodeEvents(a, mod);
+    nodesLayer.appendChild(a);
+
+    addLabel(mod, ring, angle, r, {x:x,y:y});
+  }
+
+  function setLabelActive(id, on){
+    var label = labelsLayer.querySelector('.label[data-id="'+id+'"]');
+    if(!label) return; if(on) label.classList.add('active'); else label.classList.remove('active');
+  }
+  function dimAll(on){
+    document.querySelectorAll('a.node').forEach(function(n){ n.classList.toggle('dim', on); });
+    labelsLayer.querySelectorAll('.label').forEach(function(l){ l.classList.toggle('dim', on); });
+  }
+  function highlight(id){
+    document.querySelectorAll('a.node').forEach(function(n){ n.classList.remove('active','linked'); });
+    var active = Array.prototype.slice.call(document.querySelectorAll('a.node')).find(function(n){ return n.dataset.id===id; });
+    if(active) active.classList.add('active');
+    setLabelActive(id, true);
+
+    var targets = Array.from(LINKS.get(id)||[]);
+    var targetEls = [];
+    targets.forEach(function(tid){
+      var el = Array.prototype.slice.call(document.querySelectorAll('a.node')).find(function(n){ return n.dataset.id===tid; });
+      if(el){ el.classList.add('linked'); targetEls.push(el); }
+      setLabelActive(tid, true);
+    });
+
+    while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
+    if(active && targetEls.length){
+      var pA = nodeCenterPos(active);
+      targetEls.forEach(function(el){
+        var pB = nodeCenterPos(el);
+        var path = document.createElementNS(SVG_NS,'path');
+        path.setAttribute('d', curvePath(pA, pB));
+        linksLayer.appendChild(path);
+      });
+      linksLayer.classList.remove('hidden'); linksLayer.classList.add('visible');
+      dimAll(true);
+      active.classList.remove('dim'); targetEls.forEach(function(e){ e.classList.remove('dim'); });
+      [id].concat(targets).forEach(function(t){
+        var lab = labelsLayer.querySelector('.label[data-id="'+t+'"]'); if(lab) lab.classList.remove('dim');
+      });
+    }else{
+      linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
+      dimAll(false);
+    }
+  }
+  function clearHighlight(){
+    document.querySelectorAll('a.node').forEach(function(n){ n.classList.remove('active','linked','dim'); });
+    labelsLayer.querySelectorAll('.label').forEach(function(l){ l.classList.remove('active','dim'); });
+    while (linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild);
+    linksLayer.classList.remove('visible'); linksLayer.classList.add('hidden');
+  }
+
+  function buildMap(){
+    var m0 = MODS.find(function(m){ return m.ring==='center'; });
+    // Zentrum
+    addNode(m0, 'center', 0, 0);
+    var centerNode = nodesLayer.querySelector('a.node.center');
+    centerNode.setAttribute('transform','translate(0,0)');
+
+    // Label im Zentrum
+    var g = document.createElementNS(SVG_NS,'g');
+    g.setAttribute('transform','translate(0,0)');
+    g.setAttribute('class','label active');
+    g.dataset.id = m0.id; g.dataset.ring='center';
+    var rect = document.createElementNS(SVG_NS,'rect'); g.appendChild(rect);
+    var text = document.createElementNS(SVG_NS,'text');
+    text.textContent = "01 "+m0.id; text.setAttribute('text-anchor','middle'); text.setAttribute('y','0');
+    text.setAttribute('dominant-baseline','middle'); text.setAttribute('class','t-center');
+    g.appendChild(text); labelsLayer.appendChild(g);
+    requestAnimationFrame(function(){
+      var bb = text.getBBox();
+      rect.setAttribute('x', bb.x - 14); rect.setAttribute('y', bb.y - 12);
+      rect.setAttribute('width', bb.width + 28); rect.setAttribute('height', bb.height + 24);
+    });
+
+    // Ringe
+    var byRing = {inner:[], mid:[], outer:[]};
+    MODS.forEach(function(m){ if(m.ring!=='center') byRing[m.ring].push(m); });
+    ['inner','mid','outer'].forEach(function(ring){
+      var list = byRing[ring], angles = distributeAngles(list.length);
+      list.forEach(function(m,i){ addNode(m, ring, angles[i], R[ring]); });
+    });
+  }
+
+  // --- UI: Menü füllen ---
+  (function fillMenu(){
+    var menu = document.getElementById('menu-mods');
+    if(!menu) return;
+    MODS.forEach(function(m){
+      var a = document.createElement('a');
+      a.href = 'module.html?file=' + encodeURIComponent(m.file);
+      a.textContent = m.no+' '+m.id;
+      a.setAttribute('role','menuitem');
+      menu.appendChild(a);
+    });
+  })();
+
+  // --- Theme Toggle ---
+  (function themeInit(){
+    var saved = localStorage.getItem('qs_theme');
+    if(saved === 'light'){ document.body.classList.add('light'); }
+    var btn = document.getElementById('toggleTheme');
+    if(!btn) return;
+    function setIcon(){ btn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙'; }
+    setIcon();
+    btn.addEventListener('click', function(){
+      document.body.classList.toggle('light');
+      localStorage.setItem('qs_theme', document.body.classList.contains('light') ? 'light' : 'dark');
+      setIcon();
+    });
+  })();
+
+  // --- Build & Diagnose ---
+  buildMap();
+
+  // Diagnose-Badge (unten links): zeigt, wie viele Nodes gerendert wurden
+  (function diag(){
+    var badge = document.createElement('div');
+    badge.style.cssText='position:fixed;left:10px;bottom:10px;z-index:99;font:12px ui-monospace,monospace;background:rgba(0,0,0,.45);color:#fff;padding:6px 8px;border-radius:8px';
+    badge.textContent='nodes='+document.querySelectorAll("a.node").length+' | labels='+document.querySelectorAll(".label").length;
+    document.body.appendChild(badge);
+  })();
+
+});
+</script>
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   /* ===== Daten ===== */

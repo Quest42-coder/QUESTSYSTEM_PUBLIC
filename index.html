@@ -1,247 +1,322 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>QUESTSYSTEM – Modul-Ringe</title>
-  <style>
-    :root{
-      --bg:#0e1116; --fg:#e7eef7;
-      --ring-inner:#f3c0c7; --ring-mid:#f0de94; --ring-outer:#bcd5ff;
-      --edge:#66ccff; --node-stroke:#2a3344;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%; margin:0; background:#0c0f16; color:var(--fg); font-family:system-ui,sans-serif;}
-    .stage{position:absolute; inset:0; display:grid; place-items:center;}
-    svg{width:min(1200px,95vw); height:min(1200px,95vh)}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>QUESTSYSTEM – Modul-Ringe</title>
+<style>
+  :root{
+    --bg:#0c0f16; --fg:#e9eef7; --muted:#9fb0c6;
+    --ring-inner:#f3c0c7; --ring-mid:#f0de94; --ring-outer:#bcd5ff;
+    --edge:#8fb3ff; --edge-strong:#66ccff;
+    --node-border:#2a3344; --node-rim-hover:#4a5d80;
+    --cut:#0c0f16; /* MUSS zum Body-Hintergrund passen (für den “Durchbruch”) */
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%; margin:0; color:var(--fg);
+    font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+  body{
+    background: radial-gradient(1200px 800px at 50% 45%, #131824 0%, #0e1421 55%, var(--bg) 100%);
+  }
 
-    .ring{fill:none; stroke-width:2.2; opacity:.9}
-    .ring-inner{stroke:var(--ring-inner)} .ring-mid{stroke:var(--ring-mid)} .ring-outer{stroke:var(--ring-outer)}
+  .stage{position:absolute; inset:0; display:grid; place-items:center; padding:10px}
+  svg{width:min(1280px,95vw); height:min(1280px,95vh)}
 
-    /* Kanten standardmäßig unsichtbar – nur .on wird gezeigt */
-    svg .edges path{stroke:var(--edge); stroke-width:2; fill:none; opacity:0 !important; transition:opacity .12s ease, stroke-width .12s ease}
-    svg .edges path.on{opacity:.95 !important; stroke-width:3.2}
-    /* Falls irgendwo noch eine alte "base"-Klasse existiert, hart ausblenden: */
-    svg .edges path.base{opacity:0 !important}
+  /* Ringe */
+  .ring{fill:none; stroke-width:2.8; opacity:.95}
+  .ring-inner{stroke:var(--ring-inner)} .ring-mid{stroke:var(--ring-mid)} .ring-outer{stroke:var(--ring-outer)}
 
-    .node .hit{fill:rgba(255,255,255,0); stroke:var(--node-stroke); stroke-width:1.6; cursor:pointer; pointer-events:all}
-    .node:hover .hit{fill:rgba(255,255,255,.06); stroke:#3b4862}
-    .node text{font-weight:800; font-size:16px; text-anchor:middle; dominant-baseline:middle; pointer-events:none}
-    .inner text{fill:#5d2029} .mid text{fill:#6c5b00} .outer text{fill:#274b7a}
+  /* Kanten – nur beim Hover sichtbar */
+  .edges path{
+    stroke:var(--edge); stroke-width:2.2; fill:none;
+    opacity:0 !important; vector-effect:non-scaling-stroke;
+    transition:opacity .12s ease, stroke-width .12s ease, stroke .12s ease;
+  }
+  .edges path.on{opacity:.98 !important; stroke:var(--edge-strong); stroke-width:3.2}
 
-    .center circle{fill:transparent; stroke:#9cb5da; stroke-dasharray:5 7; stroke-width:2.6}
-    .center text{fill:#ffffff; font-weight:1000; font-size:48px; text-anchor:middle; dominant-baseline:middle}
-    .center .hit{cursor:pointer}
+  /* Nodes – Cut (durchtrennt Ring), Rim, Hit (volle Klickfläche), Text */
+  .node{filter: drop-shadow(0 4px 16px rgba(0,0,0,.40)); transition: transform .12s ease;}
+  .node .cut{ fill:var(--cut); } /* “Loch” im Ring */
+  .node .rim{ fill:transparent; stroke:var(--node-border); stroke-width:2; }
+  .node .hit{ fill:rgba(255,255,255,0); cursor:pointer; pointer-events:all; }
+  .node:hover{ transform: translateY(-2px) scale(1.03); }
+  .node:hover .rim{ stroke:var(--node-rim-hover); }
 
-    .tip{position:fixed; z-index:40; pointer-events:none;
-      background:#0f1624; border:1px solid #2b3548; color:var(--fg);
-      padding:6px 8px; border-radius:6px; font-size:12px;
-      opacity:0; transition:opacity .12s ease; white-space:nowrap;}
-    .tip.show{opacity:1}
-  </style>
+  /* Text – sehr fett + Outline für Kontrast, je Ring-Farbe */
+  .node text{
+    font-weight:1000; letter-spacing:.35px;
+    text-anchor:middle; dominant-baseline:middle; pointer-events:none;
+    paint-order: stroke; stroke:rgba(12,16,24,.65); stroke-width:2.2; /* Outline */
+    filter: drop-shadow(0 1px 0 rgba(0,0,0,.35));
+  }
+  .inner text{ fill:#5a1d27; }
+  .mid   text{ fill:#6c5b00; }
+  .outer text{ fill:#24466f; }
+
+  /* Grundgröße + responsive Steps (groß & lesbar) */
+  .inner text,.mid text,.outer text{ font-size:22px; }
+  @media (min-width:900px){ .inner text,.mid text,.outer text{ font-size:24px; } }
+  @media (min-width:1200px){ .inner text,.mid text,.outer text{ font-size:26px; } }
+
+  /* RESETBOX im Kern – sehr präsent */
+  .center .cut{ fill:var(--cut); }
+  .center .rim{ fill:transparent; stroke:#9cb5da; stroke-dasharray:7 10; stroke-width:3.2; }
+  .center text{
+    fill:#ffffff; font-weight:1000; font-size:64px; letter-spacing:.9px;
+    text-anchor:middle; dominant-baseline:middle;
+    paint-order: stroke; stroke:rgba(12,16,24,.7); stroke-width:2.6;
+    filter: drop-shadow(0 2px 0 rgba(0,0,0,.35));
+  }
+  .center .hit{ fill:rgba(255,255,255,0); cursor:pointer; }
+
+  /* Tooltip */
+  .tip{position:fixed; z-index:40; pointer-events:none;
+    background:#0f1624; border:1px solid #2b3548; color:var(--fg);
+    padding:8px 10px; border-radius:8px; font-size:12px; white-space:nowrap;
+    opacity:0; transform:translate(-50%,-140%); transition:opacity .12s ease, transform .12s ease;}
+  .tip.show{opacity:1; transform:translate(-50%,-150%);}
+</style>
 </head>
 <body>
   <div class="stage">
     <svg id="ringmap" viewBox="-600 -600 1200 1200"
          xmlns="http://www.w3.org/2000/svg"
-         xmlns:xlink="http://www.w3.org/1999/xlink">
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         role="img" aria-label="Konzentrische Modul-Ringe des QUESTSYSTEMS">
+      <!-- Kanten (unter alles) -->
       <g class="edges" id="edges"></g>
+      <!-- Ringe -->
       <circle class="ring ring-inner" r="220"></circle>
       <circle class="ring ring-mid"   r="380"></circle>
       <circle class="ring ring-outer" r="540"></circle>
+
+      <!-- RESETBOX (01) im Kern -->
+      <a xlink:href="module.html?file=MODULES/Modul_01_RESETBOX.md" href="module.html?file=MODULES/Modul_01_RESETBOX.md">
+        <g class="center" transform="translate(0,0)">
+          <circle class="cut" r="160"></circle>
+          <circle class="rim" r="160"></circle>
+          <text y="5">RESETBOX</text>
+          <circle class="hit" r="160"></circle>
+        </g>
+      </a>
     </svg>
   </div>
-  <div id="tip" class="tip"></div>
+  <div id="tip" class="tip" role="status" aria-live="polite"></div>
 
-  <script>
-  (function(){
-    // Keine Basislinien mehr
-    const MODS = [
-      {no:"01", label:"RESETBOX", ring:"inner", file:"MODULES/Modul_01_RESETBOX.md"},
-      {no:"02", label:"WATER",    ring:"inner", file:"MODULES/Modul_02_WATER.md"},
-      {no:"03", label:"SHELTER",  ring:"inner", file:"MODULES/Modul_03_SHELTER.md"},
-      {no:"04", label:"FOOD",     ring:"inner", file:"MODULES/Modul_04_FOOD.md"},
-      {no:"05", label:"SLEEP",    ring:"inner", file:"MODULES/Modul_05_SLEEP.md"},
-      {no:"06", label:"BODY",     ring:"inner", file:"MODULES/Modul_06_BODY.md"},
-      {no:"07", label:"PSYCHE",   ring:"inner", file:"MODULES/Modul_07_PSYCHE.md"},
-      {no:"08", label:"DEVICE",   ring:"inner", file:"MODULES/Modul_08_DEVICE.md"},
-      {no:"09", label:"DEBT",     ring:"inner", file:"MODULES/Modul_09_DEBT.md"},
-      {no:"10", label:"WORK",     ring:"mid",   file:"MODULES/Modul_10_WORK.md"},
-      {no:"11", label:"SCHOOL",   ring:"mid",   file:"MODULES/Modul_11_SCHOOL.md"},
-      {no:"12", label:"BORDER",   ring:"mid",   file:"MODULES/Modul_12_BORDER.md"},
-      {no:"13", label:"NATURE",   ring:"mid",   file:"MODULES/Modul_13_NATURE.md"},
-      {no:"14", label:"HEALTH",   ring:"mid",   file:"MODULES/Modul_14_HEALTH.md"},
-      {no:"15", label:"CARE",     ring:"mid",   file:"MODULES/Modul_15_CARE.md"},
-      {no:"16", label:"FAMILY",   ring:"mid",   file:"MODULES/Modul_16_FAMILY.md"},
-      {no:"17", label:"ANIMAL",   ring:"mid",   file:"MODULES/Modul_17_ANIMAL.md"},
-      {no:"18", label:"CULTURE",  ring:"mid",   file:"MODULES/Modul_18_CULTURE.md"},
-      {no:"19", label:"MEDIA",    ring:"mid",   file:"MODULES/Modul_19_MEDIA.md"},
-      {no:"20", label:"ENERGY",   ring:"mid",   file:"MODULES/Modul_20_ENERGY.md"},
-      {no:"21", label:"CLIMATE",  ring:"mid",   file:"MODULES/Modul_21_CLIMATE.md"},
-      {no:"22", label:"MIGRATION",ring:"mid",   file:"MODULES/Modul_22_MIGRATION.md"},
-      {no:"23", label:"JUSTICE",  ring:"mid",   file:"MODULES/Modul_23_JUSTICE.md"},
-      {no:"24", label:"COMMUNITY",ring:"mid",   file:"MODULES/Modul_24_COMMUNITY.md"},
-      {no:"25", label:"FINANCE",  ring:"outer", file:"MODULES/Modul_25_FINANCE.md"},
-      {no:"26", label:"HOUSING",  ring:"outer", file:"MODULES/Modul_26_HOUSING.md"},
-      {no:"27", label:"TRANSPORT",ring:"outer", file:"MODULES/Modul_27_TRANSPORT.md"},
-      {no:"28", label:"NETWORK",  ring:"outer", file:"MODULES/Modul_28_NETWORK.md"},
-      {no:"29", label:"SYMBOL",   ring:"outer", file:"MODULES/Modul_29_SYMBOL.md"},
-      {no:"30", label:"TRUTH",    ring:"outer", file:"MODULES/Modul_30_TRUTH.md"},
-      {no:"31", label:"MEMORY",   ring:"outer", file:"MODULES/Modul_31_MEMORY.md"},
-      {no:"32", label:"LICENCE",  ring:"outer", file:"MODULES/Modul_32_LICENCE.md"},
-      {no:"33", label:"PRIVACY",  ring:"outer", file:"MODULES/Modul_33_PRIVACY.md"},
-      {no:"34", label:"SECURITY", ring:"outer", file:"MODULES/Modul_34_SECURITY.md"},
-      {no:"35", label:"DATA",     ring:"outer", file:"MODULES/Modul_35_DATA.md"},
-      {no:"36", label:"CONFLICT", ring:"outer", file:"MODULES/Modul_36_CONFLICT.md"},
-      {no:"37", label:"DEMOCRACY",ring:"outer", file:"MODULES/Modul_37_DEMOCRACY.md"},
-      {no:"38", label:"GOVERNANCE",ring:"outer", file:"MODULES/Modul_38_GOVERNANCE.md"},
-      {no:"39", label:"KNOWLEDGE",ring:"outer", file:"MODULES/Modul_39_KNOWLEDGE.md"},
-      {no:"40", label:"ART",      ring:"outer", file:"MODULES/Modul_40_ART.md"},
-      {no:"41", label:"FUTURE",   ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
-      {no:"42", label:"DEATH",    ring:"outer", file:"MODULES/Modul_42_DEATH.md"}
-    ];
+<script>
+(function(){
+  // === Module (02–42) – 01 (RESETBOX) ist separat im Kern ===
+  const MODS = [
+    {no:"02", label:"WATER",    ring:"inner", file:"MODULES/Modul_02_WATER.md"},
+    {no:"03", label:"SHELTER",  ring:"inner", file:"MODULES/Modul_03_SHELTER.md"},
+    {no:"04", label:"FOOD",     ring:"inner", file:"MODULES/Modul_04_FOOD.md"},
+    {no:"05", label:"SLEEP",    ring:"inner", file:"MODULES/Modul_05_SLEEP.md"},
+    {no:"06", label:"BODY",     ring:"inner", file:"MODULES/Modul_06_BODY.md"},
+    {no:"07", label:"PSYCHE",   ring:"inner", file:"MODULES/Modul_07_PSYCHE.md"},
+    {no:"08", label:"DEVICE",   ring:"inner", file:"MODULES/Modul_08_DEVICE.md"},
+    {no:"09", label:"DEBT",     ring:"inner", file:"MODULES/Modul_09_DEBT.md"},
 
-    const LINKS = {
-      "01":["02","03","09"],
-      "02":["04","06","13"],
-      "03":["05","13","01"],
-      "04":["02","13","25"],
-      "05":["03","07","06"],
-      "06":["02","05","07"],
-      "07":["05","06","30"],
-      "08":["20","32","01"],
-      "09":["10","25","01"],
-      "10":["09","11","25"],
-      "11":["10","30","07"],
-      "12":["01","13","36"],
-      "13":["02","04","20"],
-      "14":["02","06","07"],
-      "15":["14","07","01"],
-      "16":["05","11","14"],
-      "17":["04","13","14"],
-      "18":["11","30","29"],
-      "19":["30","32","11"],
-      "20":["08","13","25"],
-      "21":["13","20","14"],
-      "22":["12","13","36"],
-      "23":["09","10","32"],
-      "24":["11","18","23"],
-      "25":["09","10","20"],
-      "26":["03","05","25"],
-      "27":["02","20","22"],
-      "28":["08","20","19"],
-      "29":["18","24","30"],
-      "30":["11","19","32"],
-      "31":["11","29","30"],
-      "32":["19","30","08"],
-      "33":["08","19","32"],
-      "34":["01","12","36"],
-      "35":["08","28","32"],
-      "36":["12","22","34"],
-      "37":["23","24","25"],
-      "38":["23","37","25"],
-      "39":["11","30","31"],
-      "40":["18","29","39"],
-      "41":["21","39","40"],
-      "42":["14","15","41"]
-    };
+    {no:"10", label:"WORK",      ring:"mid",   file:"MODULES/Modul_10_WORK.md"},
+    {no:"11", label:"SCHOOL",    ring:"mid",   file:"MODULES/Modul_11_SCHOOL.md"},
+    {no:"12", label:"BORDER",    ring:"mid",   file:"MODULES/Modul_12_BORDER.md"},
+    {no:"13", label:"NATURE",    ring:"mid",   file:"MODULES/Modul_13_NATURE.md"},
+    {no:"14", label:"HEALTH",    ring:"mid",   file:"MODULES/Modul_14_HEALTH.md"},
+    {no:"15", label:"CARE",      ring:"mid",   file:"MODULES/Modul_15_CARE.md"},
+    {no:"16", label:"FAMILY",    ring:"mid",   file:"MODULES/Modul_16_FAMILY.md"},
+    {no:"17", label:"ANIMAL",    ring:"mid",   file:"MODULES/Modul_17_ANIMAL.md"},
+    {no:"18", label:"CULTURE",   ring:"mid",   file:"MODULES/Modul_18_CULTURE.md"},
+    {no:"19", label:"MEDIA",     ring:"mid",   file:"MODULES/Modul_19_MEDIA.md"},
+    {no:"20", label:"ENERGY",    ring:"mid",   file:"MODULES/Modul_20_ENERGY.md"},
+    {no:"21", label:"CLIMATE",   ring:"mid",   file:"MODULES/Modul_21_CLIMATE.md"},
+    {no:"22", label:"MIGRATION", ring:"mid",   file:"MODULES/Modul_22_MIGRATION.md"},
+    {no:"23", label:"JUSTICE",   ring:"mid",   file:"MODULES/Modul_23_JUSTICE.md"},
+    {no:"24", label:"COMMUNITY", ring:"mid",   file:"MODULES/Modul_24_COMMUNITY.md"},
 
-    const svg = document.getElementById('ringmap');
-    const edgesLayer = document.getElementById('edges');
-    const tip = document.getElementById('tip');
+    {no:"25", label:"FINANCE",   ring:"outer", file:"MODULES/Modul_25_FINANCE.md"},
+    {no:"26", label:"HOUSING",   ring:"outer", file:"MODULES/Modul_26_HOUSING.md"},
+    {no:"27", label:"TRANSPORT", ring:"outer", file:"MODULES/Modul_27_TRANSPORT.md"},
+    {no:"28", label:"NETWORK",   ring:"outer", file:"MODULES/Modul_28_NETWORK.md"},
+    {no:"29", label:"SYMBOL",    ring:"outer", file:"MODULES/Modul_29_SYMBOL.md"},
+    {no:"30", label:"TRUTH",     ring:"outer", file:"MODULES/Modul_30_TRUTH.md"},
+    {no:"31", label:"MEMORY",    ring:"outer", file:"MODULES/Modul_31_MEMORY.md"},
+    {no:"32", label:"LICENCE",   ring:"outer", file:"MODULES/Modul_32_LICENCE.md"},
+    {no:"33", label:"PRIVACY",   ring:"outer", file:"MODULES/Modul_33_PRIVACY.md"},
+    {no:"34", label:"SECURITY",  ring:"outer", file:"MODULES/Modul_34_SECURITY.md"},
+    {no:"35", label:"DATA",      ring:"outer", file:"MODULES/Modul_35_DATA.md"},
+    {no:"36", label:"CONFLICT",  ring:"outer", file:"MODULES/Modul_36_CONFLICT.md"},
+    {no:"37", label:"DEMOCRACY", ring:"outer", file:"MODULES/Modul_37_DEMOCRACY.md"},
+    {no:"38", label:"GOVERNANCE",ring:"outer", file:"MODULES/Modul_38_GOVERNANCE.md"},
+    {no:"39", label:"KNOWLEDGE", ring:"outer", file:"MODULES/Modul_39_KNOWLEDGE.md"},
+    {no:"40", label:"ART",       ring:"outer", file:"MODULES/Modul_40_ART.md"},
+    {no:"41", label:"FUTURE",    ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
+    {no:"42", label:"DEATH",     ring:"outer", file:"MODULES/Modul_42_DEATH.md"}
+  ];
 
-    const groups = {inner:[], mid:[], outer:[]};
-    MODS.forEach(m=>groups[m.ring].push(m));
-    const cfg = { inner:{r:220}, mid:{r:380}, outer:{r:540} };
-    const pos = {};
+  // Verbindungen (Static Core V5.0 LOCKED)
+  const LINKS = {
+    "01":["02","03","09"],
+    "02":["04","06","13"],
+    "03":["05","13","01"],
+    "04":["02","13","25"],
+    "05":["03","07","06"],
+    "06":["02","05","07"],
+    "07":["05","06","30"],
+    "08":["20","32","01"],
+    "09":["10","25","01"],
+    "10":["09","11","25"],
+    "11":["10","30","07"],
+    "12":["01","13","36"],
+    "13":["02","04","20"],
+    "14":["02","06","07"],
+    "15":["14","07","01"],
+    "16":["05","11","14"],
+    "17":["04","13","14"],
+    "18":["11","30","29"],
+    "19":["30","32","11"],
+    "20":["08","13","25"],
+    "21":["13","20","14"],
+    "22":["12","13","36"],
+    "23":["09","10","32"],
+    "24":["11","18","23"],
+    "25":["09","10","20"],
+    "26":["03","05","25"],
+    "27":["02","20","22"],
+    "28":["08","20","19"],
+    "29":["18","24","30"],
+    "30":["11","19","32"],
+    "31":["11","29","30"],
+    "32":["19","30","08"],
+    "33":["08","19","32"],
+    "34":["01","12","36"],
+    "35":["08","28","32"],
+    "36":["12","22","34"],
+    "37":["23","24","25"],
+    "38":["23","37","25"],
+    "39":["11","30","31"],
+    "40":["18","29","39"],
+    "41":["21","39","40"],
+    "42":["14","15","41"]
+  };
 
-    function clearEdges(){
-      edgesLayer.querySelectorAll('path.on').forEach(p=>p.classList.remove('on'));
+  const svg = document.getElementById('ringmap');
+  const edgesLayer = document.getElementById('edges');
+  const tip = document.getElementById('tip');
+
+  const groups = {inner:[], mid:[], outer:[]};
+  MODS.forEach(m=>groups[m.ring].push(m));
+  const cfg = { inner:{r:220}, mid:{r:380}, outer:{r:540} };
+  const pos = { "01": {x:0, y:0} }; // Resetbox zentriert
+
+  const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
+  function showTip(text, e){
+    tip.textContent = text;
+    const x = clamp(e.clientX, 10, window.innerWidth-10);
+    const y = clamp(e.clientY, 10, window.innerHeight-10);
+    tip.style.left = x+'px'; tip.style.top = y+'px'; tip.classList.add('show');
+  }
+  const hideTip = ()=> tip.classList.remove('show');
+
+  function clearEdges(){ edgesLayer.querySelectorAll('.on').forEach(p=>p.classList.remove('on')); }
+  function edgesFor(no){ return edgesLayer.querySelectorAll(`path[data-a="${no}"], path[data-b="${no}"]`); }
+  function highlight(no, on){ edgesFor(no).forEach(p=>p.classList.toggle('on', !!on)); }
+
+  // Hilfsfunktion: Label-Fit (macht Text kleiner, falls zu breit)
+  function fitLabel(textEl, R){
+    // Maximale Breite (etwas Innenabstand): 1.6 * R
+    const maxW = 1.6 * R;
+    // Ausgangsgröße aus CSS lesen:
+    let fs = parseFloat(getComputedStyle(textEl).fontSize);
+    // Notbremse:
+    const minFs = 14;
+    // Messung:
+    let bb = textEl.getBBox();
+    while (bb.width > maxW && fs > minFs){
+      fs -= 1;
+      textEl.setAttribute('font-size', fs);
+      bb = textEl.getBBox();
     }
-    function selEdges(no){ return edgesLayer.querySelectorAll(`path[data-a="${no}"], path[data-b="${no}"]`); }
-    function highlight(no, on){
-      const list = selEdges(no);
-      for (let i=0;i<list.length;i++){
-        if(on) list[i].classList.add('on'); else list[i].classList.remove('on');
-      }
-    }
+  }
 
-    Object.entries(groups).forEach(([ring, list])=>{
-      const radius = cfg[ring].r;
-      const step = (Math.PI*2)/list.length;
-      const start = -Math.PI/2;
+  // Nodes (02–42) platzieren
+  Object.entries(groups).forEach(([ring, list])=>{
+    const radius = cfg[ring].r;
+    const step = (Math.PI*2)/list.length;
+    const start = -Math.PI/2;
 
-      list.forEach((m, idx)=>{
-        const ang=start+idx*step;
-        const x=Math.cos(ang)*radius;
-        const y=Math.sin(ang)*radius;
-        pos[m.no]={x,y};
+    list.forEach((m, idx)=>{
+      const ang = start + idx*step;
+      const x = Math.cos(ang)*radius;
+      const y = Math.sin(ang)*radius;
+      pos[m.no] = {x,y};
 
-        const a=document.createElementNS("http://www.w3.org/2000/svg","a");
-        const url="module.html?file="+encodeURIComponent(m.file);
-        a.setAttributeNS("http://www.w3.org/1999/xlink","xlink:href",url);
-        a.setAttribute("href",url);
-        a.setAttribute("transform",`translate(${x},${y})`);
-        a.setAttribute("class","node "+ring);
+      const a = document.createElementNS("http://www.w3.org/2000/svg","a");
+      const url = "module.html?file="+encodeURIComponent(m.file);
+      a.setAttributeNS("http://www.w3.org/1999/xlink","xlink:href",url);
+      a.setAttribute("href",url);
+      a.setAttribute("class","node "+ring);
+      a.setAttribute("transform",`translate(${x},${y})`);
 
-        const c=document.createElementNS("http://www.w3.org/2000/svg","circle");
-        c.setAttribute("r", ring==='outer'?60:(ring==='mid'?56:54));
-        c.setAttribute("class","hit");
-        a.appendChild(c);
+      // Ring-Durchbruch + Rand + Klickfläche
+      const cut = document.createElementNS("http://www.w3.org/2000/svg","circle");
+      const rim = document.createElementNS("http://www.w3.org/2000/svg","circle");
+      const hit = document.createElementNS("http://www.w3.org/2000/svg","circle");
+      const R = ring==='outer'?68 : (ring==='mid'?64 : 62); // größer → klarer Durchbruch
+      cut.setAttribute('r', R); cut.setAttribute('class','cut');
+      rim.setAttribute('r', R); rim.setAttribute('class','rim');
+      hit.setAttribute('r', R); hit.setAttribute('class','hit');
 
-        const t=document.createElementNS("http://www.w3.org/2000/svg","text");
-        t.textContent=m.no+" "+m.label;
-        a.appendChild(t);
+      const t = document.createElementNS("http://www.w3.org/2000/svg","text");
+      t.textContent = m.no+" "+m.label;
 
-        function onEnter(e){
-          tip.textContent=t.textContent;
-          tip.style.left=e.clientX+'px';
-          tip.style.top=e.clientY+'px';
-          tip.classList.add('show');
-          clearEdges();
-          highlight(m.no,true);
-        }
-        function onMove(e){
-          tip.style.left=e.clientX+'px';
-          tip.style.top=e.clientY+'px';
-        }
-        function onLeave(){
-          tip.classList.remove('show');
-          clearEdges();
-        }
+      a.appendChild(cut); a.appendChild(rim); a.appendChild(hit); a.appendChild(t);
 
-        a.addEventListener('mouseenter',onEnter);
-        a.addEventListener('mousemove',onMove);
-        a.addEventListener('mouseleave',onLeave);
-        c.addEventListener('mouseenter',onEnter);
-        c.addEventListener('mousemove',onMove);
-        c.addEventListener('mouseleave',onLeave);
+      // Tooltip/Highlight
+      function onEnter(e){ showTip(t.textContent,e); clearEdges(); highlight(m.no,true); }
+      function onMove(e){ showTip(t.textContent,e); }
+      function onLeave(){ hideTip(); clearEdges(); }
 
-        svg.appendChild(a);
+      a.addEventListener('mouseenter',onEnter);
+      a.addEventListener('mousemove',onMove);
+      a.addEventListener('mouseleave',onLeave);
+
+      svg.appendChild(a);
+
+      // Nach dem Einfügen: Schrift ggf. fitten
+      fitLabel(t, R);
+    });
+  });
+
+  // Kanten zeichnen (einmalig)
+  function drawEdges(){
+    const done = {};
+    Object.keys(LINKS).forEach(a=>{
+      LINKS[a].forEach(b=>{
+        const key = (a<b)?`${a}-${b}`:`${b}-${a}`;
+        if(done[key]) return; done[key]=1;
+        const A = pos[a], B = pos[b]; if(!A||!B) return;
+        const mx=(A.x+B.x)/2, my=(A.y+B.y)/2, k=0.12, nx=(B.y-A.y), ny=-(B.x-A.x);
+        const cx=mx+nx*k, cy=my+ny*k;
+        const p=document.createElementNS("http://www.w3.org/2000/svg","path");
+        p.setAttribute('d',`M ${A.x} ${A.y} Q ${cx} ${cy} ${B.x} ${B.y}`);
+        p.setAttribute('data-a',a); p.setAttribute('data-b',b);
+        edgesLayer.appendChild(p);
       });
     });
+  }
+  drawEdges();
 
-    function drawEdges(){
-      const done={};
-      Object.keys(LINKS).forEach(a=>{
-        LINKS[a].forEach(b=>{
-          const key=(a<b)?`${a}-${b}`:`${b}-${a}`;
-          if(done[key])return; done[key]=1;
-          const A=pos[a],B=pos[b]; if(!A||!B)return;
-          const mx=(A.x+B.x)/2,my=(A.y+B.y)/2,k=0.12,nx=(B.y-A.y),ny=-(B.x-A.x);
-          const cx=mx+nx*k,cy=my+ny*k;
-          const p=document.createElementNS("http://www.w3.org/2000/svg","path");
-          p.setAttribute('d',`M ${A.x} ${A.y} Q ${cx} ${cy} ${B.x} ${B.y}`);
-          p.setAttribute('data-a',a); p.setAttribute('data-b',b);
-          edgesLayer.appendChild(p);
-        });
-      });
-    }
-    drawEdges();
-
-    // Sicherheitsnetz: verlässt die Maus das SVG komplett -> alles aus
-    svg.addEventListener('mouseleave', ()=>{ clearEdges(); tip.classList.remove('show'); });
+  // Hover für RESETBOX (01)
+  (function bindResetbox(){
+    const center = document.querySelector('.center');
+    if(!center) return;
+    center.addEventListener('mouseenter', (e)=>{ showTip('01 RESETBOX', e); clearEdges(); highlight('01', true); });
+    center.addEventListener('mousemove',  (e)=>{ showTip('01 RESETBOX', e); });
+    center.addEventListener('mouseleave', ()=>{ hideTip(); clearEdges(); });
   })();
-  </script>
+
+  // Sicherheitsnetz: verlässt Maus das SVG komplett → alles aus
+  svg.addEventListener('mouseleave', ()=>{ hideTip(); clearEdges(); });
+})();
+</script>
 </body>
 </html>

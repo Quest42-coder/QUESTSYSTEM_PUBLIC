@@ -5,79 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>QUESTSYSTEM – Testversion</title>
   <style>
-    body {margin:0; background:#0e1116; color:#fff; display:flex; justify-content:center; align-items:center; height:100vh;}
-    svg {width:90vw; height:90vh;}
-    .ring {stroke:#666; stroke-width:2; fill:none;}
-    .node text {fill:#fff; font-size:14px; font-weight:600; text-anchor:middle; dominant-baseline:middle;}
-    .node circle {fill:#222; stroke:#888; stroke-width:1.5;}
-    .node:hover circle {fill:#444; stroke:#66ccff; stroke-width:3;}
-    .hit {cursor:pointer;}
-    .edge {stroke:#555; stroke-width:2; opacity:0.7;}
-    .highlight {stroke:#66ccff; stroke-width:3; opacity:1;}
-    .center text {fill:#fff; font-size:18px; font-weight:700; text-anchor:middle; dominant-baseline:middle;}
-    .center circle {fill:#111; stroke:#888; stroke-width:2;}
+    body {
+      margin:0;
+      background:#0e1116;
+      display:grid;
+      place-items:center;
+      height:100vh;
+    }
+    svg {
+      width:90vmin; height:90vmin;
+    }
+    .node circle {
+      fill:#10151f;
+      stroke:#2a3344;
+      stroke-width:2;
+      cursor:pointer;
+    }
+    .node text {
+      font-size:14px;
+      fill:#e7eef7;
+      pointer-events:none;
+    }
+    .reset circle {
+      fill:transparent;
+      stroke:#66ccff;
+      stroke-width:3;
+      cursor:pointer;
+    }
+    .reset text {
+      font-size:22px;
+      font-weight:bold;
+      fill:#66ccff;
+      pointer-events:none;
+      text-anchor:middle;
+      dominant-baseline:middle;
+    }
   </style>
 </head>
 <body>
-  <svg id="map" viewBox="-400 -400 800 800" xmlns="http://www.w3.org/2000/svg">
-    <!-- Ringe -->
-    <circle class="ring" r="220"/>
-    <circle class="ring" r="380"/>
+  <svg viewBox="-300 -300 600 600"
+       xmlns="http://www.w3.org/2000/svg">
 
-    <!-- Resetbox -->
-    <a class="node center hit" href="MODULES/Modul_01_RESETBOX.md">
+    <!-- Zentrum: RESETBOX -->
+    <a class="reset" href="MODULES/Modul_01_RESETBOX.md" target="_blank">
       <circle r="70"></circle>
       <text y="5">RESETBOX</text>
     </a>
+
+    <!-- WATER -->
+    <a class="node" href="MODULES/Modul_02_WATER.md" target="_blank" transform="translate(0,-200)">
+      <circle r="50"></circle>
+      <text y="5">WATER</text>
+    </a>
+
+    <!-- SHELTER -->
+    <a class="node" href="MODULES/Modul_03_SHELTER.md" target="_blank" transform="translate(-173,100)">
+      <circle r="50"></circle>
+      <text y="5">SHELTER</text>
+    </a>
+
+    <!-- FOOD -->
+    <a class="node" href="MODULES/Modul_04_FOOD.md" target="_blank" transform="translate(173,100)">
+      <circle r="50"></circle>
+      <text y="5">FOOD</text>
+    </a>
+
   </svg>
-
-<script>
-const svg = document.getElementById("map");
-
-// Module definieren
-const MODS = [
-  {id:"02", label:"WATER", x:Math.cos(-Math.PI/2)*220, y:Math.sin(-Math.PI/2)*220, file:"MODULES/Modul_02_WATER.md"},
-  {id:"03", label:"SHELTER", x:Math.cos(0)*220, y:Math.sin(0)*220, file:"MODULES/Modul_03_SHELTER.md"},
-  {id:"04", label:"FOOD", x:Math.cos(Math.PI/2)*220, y:Math.sin(Math.PI/2)*220, file:"MODULES/Modul_04_FOOD.md"}
-];
-
-// Verbindungen (Edges)
-const EDGES = [
-  ["02","04"], ["02","03"], ["03","04"], ["01","02"], ["01","03"]
-];
-
-// Module zeichnen
-MODS.forEach(m=>{
-  const a = document.createElementNS("http://www.w3.org/2000/svg","a");
-  a.setAttribute("href", m.file);
-  a.classList.add("node","hit");
-  a.setAttribute("transform",`translate(${m.x},${m.y})`);
-
-  const c = document.createElementNS("http://www.w3.org/2000/svg","circle");
-  c.setAttribute("r",40); a.appendChild(c);
-
-  const t = document.createElementNS("http://www.w3.org/2000/svg","text");
-  t.textContent=m.label; a.appendChild(t);
-
-  svg.appendChild(a);
-});
-
-// Knoten-Lookup für Kanten
-function getPos(id){
-  if(id==="01") return {x:0,y:0};
-  const m = MODS.find(m=>m.id===id);
-  return {x:m.x,y:m.y};
-}
-
-// Kanten zeichnen
-EDGES.forEach(([a,b])=>{
-  const A=getPos(a), B=getPos(b);
-  const line=document.createElementNS("http://www.w3.org/2000/svg","line");
-  line.setAttribute("x1",A.x); line.setAttribute("y1",A.y);
-  line.setAttribute("x2",B.x); line.setAttribute("y2",B.y);
-  line.setAttribute("class","edge");
-  svg.insertBefore(line, svg.firstChild);
-});
-</script>
 </body>
 </html>

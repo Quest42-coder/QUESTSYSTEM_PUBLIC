@@ -1,20 +1,36 @@
 # Artist Profile – Quest42 🍄
 
 ⸻
-
 ## Artistic Origin
 
 **Name:** Quest42  
 **Symbol:** 🍄  
-**Rooted:** in Nature.  
-**Created:** by Punkrock.  
-**Raised:** by HipHop with dirty handz.  
-**Graduated:** in the *School of Hard Knocks* 
-**Title:** Phd, NoseBleed Section.  
+**Graduated:** in the *School of Hard Knocks*  
+**Title:** PhD, NoseBleed Section.  
 **Style:** Handmade. Wild. Mindfucked.  
-**Medium:** Everything that carries.  
+**Medium:** Everything that carries.
 
-**Artistic Act:** One shot.  
+<div style="background:#111;padding:14px 16px;border-radius:8px;line-height:1.5">
+
+- <span style="color:#2E8B57">Born: in Nature.</span><br>
+- <span style="color:#FF4500">Created: by Punkrock.</span><br>
+- <span style="color:#800080">Cobained: by Grunge.</span><br>
+- <span style="color:#FFD700">Rooted: in Hiphop. With dirty handz.</span><br>
+- <span style="color:#8B0000">Shredded: by Metal.</span><br>
+- <span style="color:#00BFFF">Elevated: by Techno.</span><br>
+- <span style="color:#1E90FF">Cried: by Blues.</span><br>
+- <span style="color:#FF00FF">Grounded: by Funk & Soul.</span><br>
+- <span style="color:#2ECC71">Resisted: by Reggae.</span><br>
+- <span style="color:#FF1493">Propelled: by Drum’n’Bass.</span><br>
+- <span style="color:#8B0000"><b>Shredded (again): by Metal.</b></span><br>
+- <span style="color:#FFD700">Redefined: by Hiphop.</span><br>
+- <span style="color:#EEEEEE">Framed: by Classical.</span>
+
+</div>
+
+*Jazz.*  
+
+**Artistic Act:** One shot. 
 
 ⸻
 

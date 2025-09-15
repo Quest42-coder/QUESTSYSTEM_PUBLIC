@@ -7,7 +7,7 @@
 **Symbol:** 🍄  
 **Graduated:** in the *School of Hard Knocks*  
 **Title:** PhD, NoseBleed Section.  
-**Style:** Handmade. Wild. Mindfucked.  
+**Style:**  Wild. Mindfucked. Handmade. 
 **Medium:** Everything that carries.
 
 <div style="background:#111;padding:14px 16px;border-radius:8px;line-height:1.5">
@@ -63,6 +63,8 @@ Hopefully in an offroad camper.
 
 ## System Context
 
+**Quest42 🍄 is not a conventional artist, but an origin point shaped by subculture, resistance, and the search for truth – art as consequence, not as concept.**
+
 This is not a brand.  
 This is not an artist in the classical sense.  
 
@@ -73,7 +75,7 @@ To systems built on destruction.
 To silence.  
 To collapse.  
 
-**radically transparent, open source, and not for sale**.  
+**Radically transparent, open source, and not for sale.**
 
 ⸻
 
@@ -82,7 +84,25 @@ To collapse.
 „Standing in line, believing the lies?  
 You bowing down to the flag,  
 you got a bullet in ya head.“  
-– Rage Against The Machine  
+– Rage Against The Machine 
+
+"Und einmal in vier Jahren
+kriegt man einen Zettel in die Hand
+um ein kleines Kreuz zu malen
+damit alles seine Ordnung hat"
+- Toten Hosen
+
+"Doch in mir wohnt der Geist der den Wahnsinn draußen aufnimmt und ihn staut
+Bis meine Seele davon durchtränkt ist und so wringe ich sie aus."
+- Amewu
+
+"Ich mach es anders als erwartet wird
+Held in einem Film in dem am Anfang meist der Schwarze stirbt"
+- Megaloh
+
+
+
+
 
 “Wenn Arbeit hier nicht Kraft mal Weg ist,  
 widerleg es.  
@@ -93,18 +113,21 @@ als wär es Tetris.”
 "Ein Fuchs muss tun, was ein Fuchs tun muss"
 - Beginner
 
+"Zu guter letzt: Ich wollt keine langen Reden halten
+drop ein paar Baars auf das Blatt wie paar Ehrensalven"
+- Lakmann
+
+
 Yo:  
 1UP Berlin  
 
 ...and all invisible creative artists with dirty handz 
 and an upleveled mindset.  
+   
 
-Punkx not dead.  
-HipHop’s not dead.  
+- WE ARE THE ARTIST -
 
-- YOU ARE THE ARTIST -
-
-*SO, WHAT`S YOUR ARTISTIC QUEST?*  
+*SO, WHAT`S OUR ARTISTIC QUEST?*  
 
 ⸻
 

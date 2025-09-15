@@ -80,6 +80,9 @@ To collapse.
 ⸻
 
 ## Quote
+"Show me how to lie, you ´re getting better all the time
+And turning all angainst the one is an art that´s hard to teach"
+- The Offspring
 
 „Standing in line, believing the lies?  
 You bowing down to the flag,  
@@ -92,8 +95,15 @@ um ein kleines Kreuz zu malen
 damit alles seine Ordnung hat"
 - Toten Hosen
 
-"Doch in mir wohnt der Geist der den Wahnsinn draußen aufnimmt und ihn staut
-Bis meine Seele davon durchtränkt ist und so wringe ich sie aus."
+"Sie spalten die Lebensstile in Klassen
+Und Gesichter sind gezeichnet von depressiven Grimassen"
+- Cengiz
+
+"Ich bin ein schlechtes Vorbild - na und, wer sagt was schlecht ist?
+Ich passe nicht in dein Konzept, egal mir geht es prächtig"
+- Sido
+
+"Freiheitskämpfer seit man mich zur Schule brachte und mir sagte "Halt dein Maul, denn das hier ist ne gute Sache"
 - Amewu
 
 "Ich mach es anders als erwartet wird
@@ -101,8 +111,13 @@ Held in einem Film in dem am Anfang meist der Schwarze stirbt"
 - Megaloh
 
 
+"Malocht und bloß Billiglohn. Bin mir zu gut dafür....
+Kenn dein Limit du Arschloch"
+- Aphroe
 
-
+"Wenn der Vorhang fällt, schau hinter die Kulissen
+die Bösen sind oft gut und die Guten sind gerissen"
+- Freundeskreis
 
 “Wenn Arbeit hier nicht Kraft mal Weg ist,  
 widerleg es.  
@@ -113,9 +128,14 @@ als wär es Tetris.”
 "Ein Fuchs muss tun, was ein Fuchs tun muss"
 - Beginner
 
+"Das hier ist mein Leben - Was ich sonst so machte, machte ich vergebens"
+- Witten Untouchable
+
 "Zu guter letzt: Ich wollt keine langen Reden halten
 drop ein paar Baars auf das Blatt wie paar Ehrensalven"
 - Lakmann
+
+
 
 
 Yo:  

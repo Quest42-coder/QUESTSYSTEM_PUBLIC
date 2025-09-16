@@ -6,6 +6,7 @@
   <title>QUESTSYSTEM – 42 Module in drei Ringen</title>
   <meta name="description" content="Das QUESTSYSTEM: 42 Module in drei Ringen (Existential, Societal, Structural). Ein offenes Gesellschaftsmodell für Resilienz und Würde.">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="manifest" href="./manifest.webmanifest">
 </head>
 <body>
   <a href="#main" class="visually-hidden-focusable">Skip to content</a>
@@ -14,19 +15,21 @@
     <h1>QUESTSYSTEM – 42 Module in drei Ringen</h1>
   </header>
 
+  <div id="global-nav"></div>
+
   <main id="main" class="container">
     <section class="card">
       <h2>Überblick</h2>
       <p>
-        Das <strong>QUESTSYSTEM</strong> besteht aus <strong>42 Modulen</strong>, 
-        verteilt auf drei Ringe: <em>Existential, Societal, Structural</em>. 
-        Jedes Modul behandelt einen wesentlichen Aspekt von Überleben, Zusammenleben 
+        Das <strong>QUESTSYSTEM</strong> besteht aus <strong>42 Modulen</strong>,
+        verteilt auf drei Ringe: <em>Existential, Societal, Structural</em>.
+        Jedes Modul behandelt einen wesentlichen Aspekt von Überleben, Zusammenleben
         und Struktur – von Wasser und Shelter bis zu Wahrheit und Governance.
       </p>
       <p>
-        Ziel ist ein <strong>offenes, resilientes Gesellschaftsmodell</strong>, 
-        das in Krisen ebenso funktioniert wie im Alltag. 
-        Startpunkt ist die <a href="./module.html?id=01_RESETBOX">RESETBOX</a> – 
+        Ziel ist ein <strong>offenes, resilientes Gesellschaftsmodell</strong>,
+        das in Krisen ebenso funktioniert wie im Alltag.
+        Startpunkt ist die <a href="./module.html?id=01_RESETBOX">RESETBOX</a> –
         von dort öffnen sich alle Module.
       </p>
     </section>
@@ -34,7 +37,7 @@
     <section class="grid grid-2">
       <div class="card">
         <h3>Zur Modul-Karte</h3>
-        <p>Die interaktive Karte zeigt die 42 Module in drei Ringen. 
+        <p>Die interaktive Karte zeigt die 42 Module in drei Ringen.
         Hover oder Tippen enthüllt ihre Verknüpfungen.</p>
         <p><a class="button" href="./map.html">→ Modul-Karte öffnen</a></p>
       </div>
@@ -42,19 +45,20 @@
       <div class="card">
         <h3>Alle Module</h3>
         <p>Direkter Zugriff auf jedes Modul über das gemeinsame Template.</p>
-        <p><a class="button" href="./module.html?id=01_RESETBOX">→ Beispiel: Modul 01 RESETBOX</a></p>
+        <p><a class="button" href="./modules.html">→ Alle Module anzeigen</a></p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <small>
-      © QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause · 
-      Ringe: 🔴 Existential · 🟡 Societal · 🔵 Structural · 
+      © QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause ·
+      Ringe: 🔴 Existential · 🟡 Societal · 🔵 Structural ·
       Seite auch offline nutzbar
     </small>
   </footer>
 
+  <script src="./nav.js"></script>
   <script>
     if('serviceWorker' in navigator){
       navigator.serviceWorker.register('./sw.js').catch(()=>{});

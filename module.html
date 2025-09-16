@@ -24,14 +24,18 @@
 
   <header class="site-header">
     <h1 id="mod-title">Modul</h1>
-    <nav class="navrow">
-      <a class="button--ghost" href="./index.html">← Start</a>
-      <a class="button--ghost" href="./map.html">○ Map</a>
-      <span class="muted" id="mod-id"></span>
-    </nav>
   </header>
 
+  <div id="global-nav"></div>
+
   <main id="main" class="container">
+    <nav class="navrow" style="margin-bottom:12px">
+      <a class="button--ghost" href="./index.html">← Start</a>
+      <a class="button--ghost" href="./map.html">○ Karte</a>
+      <a class="button--ghost" href="./modules.html">↺ Zur Liste</a>
+      <span class="muted" id="mod-id" style="margin-left:auto"></span>
+    </nav>
+
     <section class="card" id="desc-card">
       <h2>Überblick <span id="ring-badge" class="badge"></span></h2>
       <p id="mod-desc" class="muted">Lade Modul …</p>
@@ -55,6 +59,7 @@
     <small>© QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause</small>
   </footer>
 
+  <script src="./nav.js"></script>
   <script src="./module.js"></script>
 </body>
 </html>

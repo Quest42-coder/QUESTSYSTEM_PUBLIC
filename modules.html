@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QUESTSYSTEM · Alle Module</title>
+  <meta name="description" content="Liste aller 42 QUESTSYSTEM-Module mit Suche, Filtern und Sortierung.">
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px 0}
+    .toolbar input[type="search"]{padding:8px 10px;border:1px solid #2a2a33;background:#0f0f12;color:var(--fg);border-radius:8px;min-width:240px}
+    .toolbar .checkgroup{display:flex;gap:8px;flex-wrap:wrap}
+    .toolbar label{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--muted)}
+    .toolbar select{padding:8px 10px;border:1px solid #2a2a33;background:#0f0f12;color:var(--fg);border-radius:8px}
+    .badge{display:inline-block;padding:4px 8px;border:1px solid #2a2a33;border-radius:999px;font-size:12px;margin-left:8px}
+    .badge--Existential{background:#e34b4b22;border-color:#e34b4b55}
+    .badge--Societal{background:#e9c64a22;border-color:#e9c64a55}
+    .badge--Structural{background:#4b8fe322;border-color:#4b8fe355}
+    .grid-cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .card h3{margin:0 0 6px 0}
+    .card p{margin:0;color:var(--muted)}
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <a href="#results" class="visually-hidden-focusable">Skip to results</a>
+
+  <header class="site-header">
+    <h1>Alle Module</h1>
+  </header>
+
+  <div id="global-nav"></div>
+
+  <main class="container">
+    <section class="card">
+      <div class="toolbar" role="search">
+        <input id="q" type="search" placeholder="Suchen (z. B. WATER, TRUTH, 01 …)" aria-label="Module durchsuchen" autocomplete="off">
+        <div class="checkgroup" aria-label="Ring-Filter">
+          <label><input type="checkbox" id="f-ex" checked aria-label="Existential Ring"> 🔴 Existential</label>
+          <label><input type="checkbox" id="f-so" checked aria-label="Societal Ring"> 🟡 Societal</label>
+          <label><input type="checkbox" id="f-st" checked aria-label="Structural Ring"> 🔵 Structural</label>
+        </div>
+        <label class="muted">Sortieren:
+          <select id="sort">
+            <option value="id">ID (01→42)</option>
+            <option value="name">Name (A→Z)</option>
+            <option value="ring">Ring (Ex→So→St, ID)</option>
+          </select>
+        </label>
+        <span id="count" class="muted" aria-live="polite"></span>
+      </div>
+    </section>
+
+    <section id="results" class="grid-cards" aria-label="Modulliste" aria-live="polite"></section>
+
+    <p id="empty" class="muted" style="display:none">Keine Treffer. Filter/Suche anpassen.</p>
+  </main>
+
+  <footer class="site-footer">
+    <small>© QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause</small>
+  </footer>
+
+  <script src="./nav.js"></script>
+  <script src="./modules.js"></script>
+</body>
+</html>

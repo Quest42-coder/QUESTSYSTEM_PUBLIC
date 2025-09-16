@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mitmachen – QUESTSYSTEM</title>
+  <meta name="description" content="So kannst du am QUESTSYSTEM mitarbeiten: Inhalte ergänzen, Module verbessern, Bugs melden.">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a href="#main" class="visually-hidden-focusable">Skip to content</a>
+
+  <header class="site-header">
+    <h1>Mitmachen</h1>
+  </header>
+
+  <div id="global-nav"></div>
+
+  <main id="main" class="container">
+    <section class="card">
+      <h2>Wie du beitragen kannst</h2>
+      <ul>
+        <li><strong>Module verbessern:</strong> Formulierungen schärfen, Beispiele ergänzen, Querverknüpfungen prüfen.</li>
+        <li><strong>Bugs melden:</strong> Fehler in UI/Links/Offline-Modus dokumentieren.</li>
+        <li><strong>Neue Ressourcen:</strong> Quellenlisten, Anleitungen, Übersetzungen.</li>
+      </ul>
+      <p>
+        Alles läuft offen – bitte beachte die <a href="./licence.html">Lizenz</a> (CC BY-SA + Dignity Clause).
+      </p>
+    </section>
+
+    <section class="card">
+      <h3>Projektstruktur (kurz)</h3>
+      <pre class="muted" style="white-space:pre-wrap;">/
+├─ index.html · Start
+├─ map.html + map.js · Karte
+├─ modules.html + modules.js · Liste/Suche
+├─ module.html + module.js · Detailseite
+├─ MODULES/modules.json · Datenquelle
+└─ sw.js, nav.js, styles.css …</pre>
+    </section>
+
+    <section class="card">
+      <h3>Beitragswege</h3>
+      <ol>
+        <li><strong>Issue eröffnen:</strong> Beschreibe Problem/Verbesserung präzise, ggf. Screenshot.</li>
+        <li><strong>Pull Request:</strong> Forken, Branch erstellen, Änderungen mit knappen Commits, PR eröffnen.</li>
+        <li><strong>Diskussion:</strong> Größere Ideen erst als Issue/Discussion skizzieren.</li>
+      </ol>
+      <p class="muted">Style: klar, inklusiv, faktenbasiert; keine personenbezogenen Daten in Beispielen.</p>
+    </section>
+
+    <section class="card">
+      <h3>Guidelines</h3>
+      <ul>
+        <li><strong>Konsistenz:</strong> Schreibweisen exakt wie STATIC CORE V5.0 LOCKED (z. B. PSYCHE, TRUTH, MEDIA).</li>
+        <li><strong>Kurzbeschreibungen:</strong> 2–3 Sätze + optional Negativszenario in einem Satz.</li>
+        <li><strong>Links-Matrix:</strong> Pro Modul 2–3 Kern-Verknüpfungen, begründet.</li>
+        <li><strong>Barrierefreiheit:</strong> A11y beachten (Kontraste, aria-labels, Tastatur-Nutzung).</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>© QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause</small>
+  </footer>
+
+  <script src="./nav.js"></script>
+</body>
+</html>

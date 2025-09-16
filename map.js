@@ -171,12 +171,9 @@
     clampTip();
   }
 
-  function hideTooltip() {
-    tip.hidden = true;
-  }
+  function hideTooltip() { tip.hidden = true; }
 
   function clampTip() {
-    // Nach dem Platzieren sicherstellen, dass Tooltip im Container bleibt
     const r = svg.getBoundingClientRect();
     const tw = tip.offsetWidth || 240;
     const th = tip.offsetHeight || 80;
@@ -203,11 +200,9 @@
   function slug(s) { return String(s).toUpperCase().replace(/\s+/g, '_').replace(/[^A-Z0-9_]/g, ''); }
 
   function renderFatal(msg) {
-    // Fallback ins SVG schreiben
     const t = el('text', { x: cx, y: cy, class: 'label' }, msg);
     t.setAttribute('text-anchor', 'middle');
     svg.appendChild(t);
-    // Tooltip aus
     tip.hidden = true;
   }
 })();

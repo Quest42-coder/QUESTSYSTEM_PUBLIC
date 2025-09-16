@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://quest42-coder.github.io/QUESTSYSTEM_PUBLIC/sitemap.xml

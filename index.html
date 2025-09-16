@@ -1,99 +1,64 @@
 <!doctype html>
 <html lang="de">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>QUESTSYSTEM – Start</title>
-<meta name="description" content="Startseite des QUESTSYSTEMS. Einstieg, Ethik-Dokumente und Link zur interaktiven Modul-Map." />
-<style>
-  :root{
-    --bg:#0b0f16; --fg:#eaf2ff; --muted:#9fb0c6; --border:#1f2737; --glass:rgba(14,18,28,.6);
-    --cta:#79e1ff; --cta2:#8affc7;
-    --header-h:58px; --shadow:0 16px 48px rgba(0,0,0,.45);
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0; color:var(--fg);
-    font:16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Liberation Sans", sans-serif;
-    background:
-      radial-gradient(1200px 800px at 50% 36%, #141b2b 0%, #0f1522 55%, var(--bg) 100%),
-      radial-gradient(900px 700px at 12% 14%, rgba(255,255,255,.05), transparent 60%),
-      radial-gradient(900px 900px at 88% 84%, rgba(255,255,255,.035), transparent 65%);
-  }
-  header{
-    position:fixed; inset:0 0 auto 0; height:var(--header-h); z-index:50;
-    display:flex; align-items:center; gap:12px; padding:10px 14px;
-    background:var(--glass); border-bottom:1px solid var(--border); backdrop-filter: blur(8px);
-  }
-  .brand{ color:var(--fg); text-decoration:none; font-weight:900; letter-spacing:.4px }
-  nav{ margin-left:auto; display:flex; gap:12px; align-items:center }
-  .btn{ color:var(--fg); text-decoration:none; padding:6px 10px; border-radius:10px; border:1px solid transparent }
-  .btn:hover{ border-color:var(--border) }
-  .stage{ position:absolute; inset:var(--header-h) 0 0 0; display:grid; place-items:center; padding:18px }
-  .card{
-    width:min(1000px, 94vw); padding:28px; border:1px solid var(--border); border-radius:16px;
-    background:rgba(12,16,26,.55); backdrop-filter: blur(6px); box-shadow:var(--shadow);
-  }
-  .hero{ display:grid; gap:10px }
-  h1{ margin:0 0 6px 0; font-size:36px; letter-spacing:.6px }
-  p{ margin:0; color:var(--muted) }
-  .cta{
-    margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;
-  }
-  .cta a{
-    display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px;
-    text-decoration:none; color:#04121a; font-weight:800; letter-spacing:.3px;
-    background:linear-gradient(135deg, var(--cta), var(--cta2));
-  }
-  .cta a.secondary{ background:transparent; color:var(--fg); border:1px solid var(--border); font-weight:700 }
-  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:18px }
-  .tile{ padding:16px; border:1px solid var(--border); border-radius:12px; background:rgba(10,13,20,.55) }
-  .tile a{ color:var(--fg); text-decoration:none }
-  .tile a:hover{ text-decoration:underline }
-  @media(max-width:900px){ .grid{ grid-template-columns:1fr } }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QUESTSYSTEM – 42 Module in drei Ringen</title>
+  <meta name="description" content="Das QUESTSYSTEM: 42 Module in drei Ringen (Existential, Societal, Structural). Ein offenes Gesellschaftsmodell für Resilienz und Würde.">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <header>
-    <a class="brand" href="./">🍄 QUESTSYSTEM</a>
-    <nav>
-      <a class="btn" href="./map.html">Modul-Map</a>
-      <a class="btn" href="module.html?file=Dignity_Clause.md">Dignity Clause</a>
-      <a class="btn" href="module.html?file=14_GEBOTE_V2.1.md">14 Gebote</a>
-      <a class="btn" href="module.html?file=MODULES/Modul_32_LICENCE.md">Licence</a>
-      <a class="btn" href="https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC" target="_blank" rel="noopener">Repository</a>
-    </nav>
+  <a href="#main" class="visually-hidden-focusable">Skip to content</a>
+
+  <header class="site-header">
+    <h1>QUESTSYSTEM – 42 Module in drei Ringen</h1>
   </header>
 
-  <main class="stage">
-    <section class="card hero">
-      <h1>QUESTSYSTEM</h1>
-      <p>42 Module – gegliedert in drei Ringe (Existential, Societal, Structural). Klicke dich über die interaktive <strong>Modul-Map</strong> oder nutze die Ethik-Dokumente.</p>
-      <div class="cta">
-        <a href="./map.html">Zur interaktiven Modul-Map</a>
-        <a class="secondary" href="module.html?file=ARTIST_PROFILE.md">Artist Profile</a>
+  <main id="main" class="container">
+    <section class="card">
+      <h2>Überblick</h2>
+      <p>
+        Das <strong>QUESTSYSTEM</strong> besteht aus <strong>42 Modulen</strong>, 
+        verteilt auf drei Ringe: <em>Existential, Societal, Structural</em>. 
+        Jedes Modul behandelt einen wesentlichen Aspekt von Überleben, Zusammenleben 
+        und Struktur – von Wasser und Shelter bis zu Wahrheit und Governance.
+      </p>
+      <p>
+        Ziel ist ein <strong>offenes, resilientes Gesellschaftsmodell</strong>, 
+        das in Krisen ebenso funktioniert wie im Alltag. 
+        Startpunkt ist die <a href="./module.html?id=01_RESETBOX">RESETBOX</a> – 
+        von dort öffnen sich alle Module.
+      </p>
+    </section>
+
+    <section class="grid grid-2">
+      <div class="card">
+        <h3>Zur Modul-Karte</h3>
+        <p>Die interaktive Karte zeigt die 42 Module in drei Ringen. 
+        Hover oder Tippen enthüllt ihre Verknüpfungen.</p>
+        <p><a class="button" href="./map.html">→ Modul-Karte öffnen</a></p>
       </div>
 
-      <div class="grid">
-        <div class="tile">
-          <h3>Ethik</h3>
-          <ul>
-            <li><a href="module.html?file=Dignity_Clause.md">Dignity Clause</a></li>
-            <li><a href="module.html?file=14_GEBOTE_V2.1.md">14 Gebote (V2.1)</a></li>
-            <li><a href="module.html?file=14_GEBOTE_DISCUSSION.md">Diskussion</a></li>
-          </ul>
-        </div>
-        <div class="tile">
-          <h3>Startpunkte</h3>
-          <ul>
-            <li><a href="module.html?file=MODULES/Modul_01_RESETBOX.md">01 RESETBOX</a></li>
-            <li><a href="module.html?file=MODULES/Modul_02_WATER.md">02 WATER</a></li>
-            <li><a href="module.html?file=MODULES/Modul_39_KNOWLEDGE.md">39 KNOWLEDGE</a></li>
-          </ul>
-        </div>
+      <div class="card">
+        <h3>Alle Module</h3>
+        <p>Direkter Zugriff auf jedes Modul über das gemeinsame Template.</p>
+        <p><a class="button" href="./module.html?id=01_RESETBOX">→ Beispiel: Modul 01 RESETBOX</a></p>
       </div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <small>
+      © QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause · 
+      Ringe: 🔴 Existential · 🟡 Societal · 🔵 Structural · 
+      Seite auch offline nutzbar
+    </small>
+  </footer>
+
+  <script>
+    if('serviceWorker' in navigator){
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    }
+  </script>
 </body>
 </html>

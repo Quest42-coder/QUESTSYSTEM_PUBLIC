@@ -8,10 +8,13 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+  <a href="#map" class="visually-hidden-focusable">Skip to map</a>
+
   <header class="site-header">
     <h1>QUESTSYSTEM · Modul-Karte</h1>
-    <nav><a class="button--ghost" href="./index.html">← Start</a></nav>
   </header>
+
+  <div id="global-nav"></div>
 
   <main class="container">
     <div class="map-wrap">
@@ -27,12 +30,7 @@
     <small>Ringe: 🔴 Existential · 🟡 Societal · 🔵 Structural</small>
   </footer>
 
-  <!-- Optional: Offline -->
-  <script>
-    if('serviceWorker' in navigator){
-      navigator.serviceWorker.register('./sw.js').catch(()=>{});
-    }
-  </script>
+  <script src="./nav.js"></script>
   <script src="./map.js"></script>
 </body>
 </html>

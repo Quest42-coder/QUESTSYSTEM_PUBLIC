@@ -80,9 +80,28 @@ To collapse.
 ⸻
 
 ## Quote
+
+"Das hier ist mein Leben - Was ich sonst so machte, machte ich vergebens"
+- Witten Untouchable
+
+"Freiheitskämpfer seit man mich zur Schule brachte und mir sagte "Halt dein Maul, denn das hier ist ne gute Sache"
+- Amewu
+
+"Scheiss auf Haus bauen und Baum pflanzen - ich will Traumtanzen"
+- K.I.Z
+
+"Du willst etwas ändern, änder lieber deine Sicht
+Du meinst du kannst mich zerficken... Aber nicht!"
+- Kool Savas
+
+"
 "Show me how to lie, you ´re getting better all the time
 And turning all angainst the one is an art that´s hard to teach"
 - The Offspring
+
+"And I don′t believe in your American dream
+I see it working for a lot of folks but it ain't done much for me"
+- Ramallah
 
 „Standing in line, believing the lies?  
 You bowing down to the flag,  
@@ -103,9 +122,17 @@ Und Gesichter sind gezeichnet von depressiven Grimassen"
 Ich passe nicht in dein Konzept, egal mir geht es prächtig"
 - Sido
 
-"Freiheitskämpfer seit man mich zur Schule brachte und mir sagte "Halt dein Maul, denn das hier ist ne gute Sache"
-- Amewu
+"Why can’t you just leave me alone?
+Solitude is a faithful friend.
+I’ll sort my life out on my own,
+I just want this pressure to end."
+- Toten Hosen
 
+"Meine Verse schmerzen, denn ich bin die Wahrheit und deshalb immer ein Rebell
+Bring' Herzen vom Derbsten zum Zerbersten und treff' deine schlimmsten Stellen"
+- Azad
+
+  
 "Ich mach es anders als erwartet wird
 Held in einem Film in dem am Anfang meist der Schwarze stirbt"
 - Megaloh
@@ -128,8 +155,7 @@ als wär es Tetris.”
 "Ein Fuchs muss tun, was ein Fuchs tun muss"
 - Beginner
 
-"Das hier ist mein Leben - Was ich sonst so machte, machte ich vergebens"
-- Witten Untouchable
+
 
 "Zu guter letzt: Ich wollt keine langen Reden halten
 drop ein paar Baars auf das Blatt wie paar Ehrensalven"

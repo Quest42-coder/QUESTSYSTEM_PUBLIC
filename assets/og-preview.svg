@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0b0b0c"/>
+  <text x="50%" y="100" fill="#e9e9ee" font-family="system-ui, sans-serif" font-size="56" text-anchor="middle">
+    QUESTSYSTEM
+  </text>
+  <text x="50%" y="160" fill="#a7a7b0" font-family="system-ui, sans-serif" font-size="28" text-anchor="middle">
+    42 Module · 3 Ringe
+  </text>
+
+  <!-- Ringe -->
+  <circle cx="600" cy="350" r="140" stroke="#e34b4b" stroke-width="6" fill="none"/>
+  <circle cx="600" cy="350" r="220" stroke="#e9c64a" stroke-width="6" fill="none"/>
+  <circle cx="600" cy="350" r="300" stroke="#4b8fe3" stroke-width="6" fill="none"/>
+
+  <!-- Punkte auf Ringen (Beispielhaft, nicht alle 42 exakt) -->
+  <circle cx="600" cy="210" r="10" fill="#e34b4b"/>
+  <circle cx="740" cy="350" r="10" fill="#e9c64a"/>
+  <circle cx="600" cy="650" r="10" fill="#4b8fe3"/>
+  <circle cx="460" cy="350" r="10" fill="#e34b4b"/>
+  <circle cx="900" cy="350" r="10" fill="#4b8fe3"/>
+
+  <text x="50%" y="600" fill="#a7a7b0" font-family="system-ui, sans-serif" font-size="22" text-anchor="middle">
+    Existential · Societal · Structural
+  </text>
+</svg>

@@ -4,11 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>QUESTSYSTEM · Modul-Karte</title>
-  <meta name="description" content="Interaktive Karte des QUESTSYSTEMS: 42 Module in drei Ringen (Existential, Societal, Structural).">
+  <meta name="description" content="Interaktive Karte des QUESTSYSTEMS: 42 Module in drei Ringen (Existential, Societal, Structural), beginnend mit der RESETBOX.">
+  <meta property="og:title" content="QUESTSYSTEM · Modul-Karte">
+  <meta property="og:description" content="Die 42 Module als Ringmodell – Verbindungen per Hover oder Tap sichtbar. Start bei der RESETBOX.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./assets/og-preview.png">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <a href="#map" class="visually-hidden-focusable">Skip to map</a>
+  <a href="#main" class="visually-hidden-focusable">Skip to map</a>
 
   <header class="site-header">
     <h1>QUESTSYSTEM · Modul-Karte</h1>
@@ -16,18 +20,32 @@
 
   <div id="global-nav"></div>
 
-  <main class="container">
+  <main id="main" class="container">
+    <section class="card">
+      <h2>Über die Karte</h2>
+      <p>
+        Die Modul-Karte zeigt alle <strong>42 Module</strong> in drei Ringen: 
+        <span style="color:var(--red)">Existential</span>, 
+        <span style="color:var(--yellow)">Societal</span>, 
+        <span style="color:var(--blue)">Structural</span>.  
+        Hover (Desktop) oder Tippen (Mobile) macht Verknüpfungen sichtbar.  
+        Klick öffnet die Detailseite eines Moduls.
+      </p>
+    </section>
+
     <div class="map-wrap">
       <svg id="map" viewBox="0 0 1200 900" role="img" aria-label="QUESTSYSTEM Modulkarte">
-        <desc>Interaktive Karte lädt… Wenn nichts erscheint, bitte neu laden oder Verbindung prüfen.</desc>
+        <desc>Interaktive Karte lädt … Wenn nichts erscheint, bitte neu laden oder Verbindung prüfen.</desc>
       </svg>
       <div id="tooltip" class="tooltip" hidden></div>
     </div>
-    <p class="hint">Desktop: Hover zeigt Verbindungen. Klick öffnet Details. Touch: Tippen zum Anzeigen/Verbergen.</p>
   </main>
 
   <footer class="site-footer">
-    <small>Ringe: 🔴 Existential · 🟡 Societal · 🔵 Structural</small>
+    <small>
+      © QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause · 
+      Ringe: 🔴 Existential · 🟡 Societal · 🔵 Structural
+    </small>
   </footer>
 
   <script src="./nav.js"></script>

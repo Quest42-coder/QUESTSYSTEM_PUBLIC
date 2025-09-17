@@ -4,7 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>QUESTSYSTEM · Modul</title>
-  <meta name="description" content="Detailansicht eines QUESTSYSTEM Moduls – Infos, Ring-Zuordnung und Verknüpfungen.">
+  <meta name="description" content="Detailansicht eines QUESTSYSTEM-Moduls: Ring-Zuordnung, Kurzbeschreibung und Verknüpfungen zu anderen Modulen.">
+  <meta property="og:title" content="QUESTSYSTEM · Modul">
+  <meta property="og:description" content="Ein Modul des QUESTSYSTEMS – mit Ring, Kurzbeschreibung und Verknüpfungen.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./assets/og-preview.png">
   <link rel="stylesheet" href="./styles.css">
   <style>
     .badge{display:inline-block;padding:4px 8px;border:1px solid #2a2a33;border-radius:999px;font-size:12px;margin-left:8px}
@@ -29,6 +33,7 @@
   <div id="global-nav"></div>
 
   <main id="main" class="container">
+    <!-- Lokale Navigation -->
     <nav class="navrow" style="margin-bottom:12px">
       <a class="button--ghost" href="./index.html">← Start</a>
       <a class="button--ghost" href="./map.html">○ Karte</a>
@@ -36,6 +41,16 @@
       <span class="muted" id="mod-id" style="margin-left:auto"></span>
     </nav>
 
+    <!-- Kurz-Intro zur Detailseite -->
+    <section class="card" aria-label="Einordnung">
+      <p class="muted">
+        Jede Detailseite zeigt <strong>Titel &amp; Ring</strong>, eine kurze <strong>Beschreibung</strong>
+        sowie <strong>Verknüpfungen</strong> zu 2–3 eng verbundenen Modulen. Über die Buttons unten
+        kommst du zum <em>vorherigen/nächsten</em> Modul oder zurück zur Karte.
+      </p>
+    </section>
+
+    <!-- Modul-Inhalte -->
     <section class="card" id="desc-card">
       <h2>Überblick <span id="ring-badge" class="badge"></span></h2>
       <p id="mod-desc" class="muted">Lade Modul …</p>
@@ -56,7 +71,10 @@
   </main>
 
   <footer class="site-footer">
-    <small>© QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause</small>
+    <small>
+      © QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause ·
+      Ringe: 🔴 Existential · 🟡 Societal · 🔵 Structural
+    </small>
   </footer>
 
   <script src="./nav.js"></script>

@@ -6,8 +6,8 @@
 <title>Modul · QUESTSYSTEM</title>
 <style>
   :root{--bg:#0b0b0b;--fg:#f5f5f5;--muted:#9aa4b0;--panel:#111;--link:#4aa3ff}
-  html,body{height:100%} body{margin:0;background:var(--bg);color:var(--fg);
-    font:16px/1.5 system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   header,footer,main{max-width:1000px;margin:0 auto;padding:16px}
   a{color:var(--link);text-decoration:none}
   a:hover{text-decoration:underline}
@@ -37,6 +37,7 @@
 </footer>
 
 <script>
+// --- Parameter aus Query ODER Hash holen ---
 function getFileParam(){
   try{
     var qs = new URLSearchParams(location.search);
@@ -49,6 +50,8 @@ function getFileParam(){
   }
   return null;
 }
+
+// --- Pfad säubern/normalisieren (nur relative MODULES/ Pfade) ---
 function cleanPath(p){
   try{ p = decodeURIComponent(p); }catch(e){}
   p = (p||'').trim();
@@ -58,6 +61,8 @@ function cleanPath(p){
   }
   return p.replace(/\.\./g,'');
 }
+
+// --- sehr einfache Markdown -> HTML ---
 function md2html(md){
   md = md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   md = md.replace(/^###### (.*)$/gm,'<h6>$1</h6>')
@@ -74,6 +79,7 @@ function md2html(md){
   md = md.replace(/\n{2,}/g,'</p><p>');
   return '<p>'+md+'</p>';
 }
+
 (function(){
   var status = document.getElementById('status');
   var content = document.getElementById('content');
@@ -81,26 +87,30 @@ function md2html(md){
 
   var file = getFileParam();
   if (!file){
-    status.innerHTML = '<span class="err">Kein Parameter <code>file</code> gefunden.</span>';
+    status.innerHTML = '<span class="err">Kein Parameter <code>file</code> gefunden.</span><br>Beispiel: <code>module.html#file=MODULES/Modul_07_PSYCHE.md</code>';
     return;
   }
   var path = cleanPath(file);
   status.textContent = 'Lade: ' + path;
 
   fetch(path,{cache:'no-store'})
-    .then(function(res){ if(!res.ok) throw new Error('HTTP '+res.status+' – '+res.statusText); return res.text(); })
+    .then(function(res){
+      if(!res.ok) throw new Error('HTTP '+res.status+' – '+res.statusText);
+      return res.text();
+    })
     .then(function(md){
       content.innerHTML = md2html(md);
       content.hidden = false;
       raw.hidden = true;
       status.textContent = path;
+
       var h1 = md.match(/^#\s*(.+)$/m);
       if(h1) document.title = h1[1] + ' · Modul · QUESTSYSTEM';
     })
     .catch(function(err){
       content.hidden = true;
       raw.hidden = false;
-      raw.textContent = 'Fehler beim Laden von '+path+'\n\n'+err.message+'\n\nTipp: Prüfe Groß-/Kleinschreibung & Pfad.';
+      raw.textContent = 'Fehler beim Laden von '+path+'\n\n'+err.message+'\n\nTipp: Groß-/Kleinschreibung & Pfad prüfen.';
       status.innerHTML = '<span class="err">Fehler</span> · '+path;
     });
 })();

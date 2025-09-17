@@ -22,7 +22,7 @@
 </head>
 <body>
 <header>
-  <a href="./">← Karte</a>
+  <a href="./map.html">← Karte</a>
   <div class="meta">Modulansicht · lädt Markdown aus <code>MODULES/…</code></div>
 </header>
 
@@ -37,59 +37,45 @@
 </footer>
 
 <script>
-// --- Pfad aus Query ODER Hash holen ---
+// --- Parameter aus Query ODER Hash holen ---
 function getFileParam(){
-  try{
-    var q = new URLSearchParams(location.search);
-    if (q.has('file')) return q.get('file');
-  }catch(e){}
-  if (location.hash && location.hash.indexOf('file=')>=0){
-    var h = location.hash.replace(/^#/, '');
+  var search = new URLSearchParams(window.location.search);
+  if (search.has('file')) return search.get('file');
+  if (window.location.hash.indexOf('file=')>=0){
+    var h = window.location.hash.replace(/^#/, '');
     var params = new URLSearchParams(h);
     if (params.has('file')) return params.get('file');
   }
   return null;
 }
 
-// --- Normalisieren (decode, Trim, Slash-Schutz) ---
+// --- Pfad säubern ---
 function cleanPath(p){
   try{ p = decodeURIComponent(p); }catch(e){}
   p = p.trim();
-  // erlaub nur relative Pfade in MODULES/
   if (!/^MODULES\//i.test(p)) {
-    // Falls nur Dateiname kam, prepend MODULES/
     if (!p.includes('/')) p = 'MODULES/' + p;
-    else p = 'MODULES/' + p.split('/').slice(-1)[0];
+    else p = 'MODULES/' + p.split('/').pop();
   }
-  // Keine Traversals
-  p = p.replace(/\.\./g,'');
-  return p;
+  return p.replace(/\.\./g,''); // Sicherheit
 }
 
-// --- sehr einfache Markdown -> HTML (Headlines/Listen/Links) ---
+// --- ganz einfache Markdown -> HTML ---
 function md2html(md){
-  // Escaping
   md = md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-
-  // Headlines
-  md = md.replace(/^######\s?(.*)$/gm,'<h6>$1</h6>')
-         .replace(/^#####\s?(.*)$/gm,'<h5>$1</h5>')
-         .replace(/^####\s?(.*)$/gm,'<h4>$1</h4>')
-         .replace(/^###\s?(.*)$/gm,'<h3>$1</h3>')
-         .replace(/^##\s?(.*)$/gm,'<h2>$1</h2>')
-         .replace(/^#\s?(.*)$/gm,'<h1>$1</h1>');
-  // Fett/Kursiv/Code inline
+  md = md.replace(/^###### (.*)$/gm,'<h6>$1</h6>')
+         .replace(/^##### (.*)$/gm,'<h5>$1</h5>')
+         .replace(/^#### (.*)$/gm,'<h4>$1</h4>')
+         .replace(/^### (.*)$/gm,'<h3>$1</h3>')
+         .replace(/^## (.*)$/gm,'<h2>$1</h2>')
+         .replace(/^# (.*)$/gm,'<h1>$1</h1>');
   md = md.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
          .replace(/\*(.+?)\*/g,'<em>$1</em>')
          .replace(/`(.+?)`/g,'<code>$1</code>');
-  // Links [text](url)
   md = md.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
-  // Listen
   md = md.replace(/^\s*-\s+(.*)$/gm,'• $1');
-  // Absätze
   md = md.replace(/\n{2,}/g,'</p><p>');
-  md = '<p>'+md+'</p>';
-  return md;
+  return '<p>'+md+'</p>';
 }
 
 (function(){
@@ -99,30 +85,26 @@ function md2html(md){
 
   var file = getFileParam();
   if (!file){
-    status.innerHTML = '<span class="err">Kein <code>file</code>-Parameter gefunden.</span><br>Beispiel: <code>module.html?file=MODULES/Modul_07_PSYCHE.md</code> oder <code>module.html#file=MODULES/Modul_07_PSYCHE.md</code>';
+    status.innerHTML = '<span class="err">Kein Parameter <code>file</code> gefunden.</span>';
     return;
   }
   var path = cleanPath(file);
   status.textContent = 'Lade: ' + path;
 
-  fetch(path, {cache:'no-store'})
-    .then(function(res){
-      if (!res.ok) throw new Error('HTTP '+res.status+' – '+res.statusText);
-      return res.text();
-    })
+  fetch(path,{cache:'no-store'})
+    .then(function(res){ if(!res.ok) throw new Error('HTTP '+res.status); return res.text(); })
     .then(function(md){
-      // Wenn Datei wie erwartet aussieht, rendern; sonst raw anzeigen
-      var html = md2html(md);
-      content.innerHTML = html;
+      content.innerHTML = md2html(md);
       content.hidden = false;
       raw.hidden = true;
       status.textContent = path;
-      document.title = (md.match(/^#\s*(.+)$/m)||[])[1] ? (md.match(/^#\s*(.+)$/m)||[])[1] + ' · Modul · QUESTSYSTEM' : ('Modul · QUESTSYSTEM');
+      var h1 = md.match(/^#\s*(.+)$/m);
+      if(h1) document.title = h1[1] + ' · Modul · QUESTSYSTEM';
     })
     .catch(function(err){
       content.hidden = true;
       raw.hidden = false;
-      raw.textContent = 'Fehler beim Laden von '+path+'\n\n'+err.message+'\n\nTipp: Prüfe Groß-/Kleinschreibung & Pfad.';
+      raw.textContent = 'Fehler beim Laden von '+path+'\n\n'+err.message;
       status.innerHTML = '<span class="err">Fehler</span> · '+path;
     });
 })();

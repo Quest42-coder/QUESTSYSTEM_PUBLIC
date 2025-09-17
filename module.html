@@ -1,83 +1,51 @@
-<!doctype html>
-<html lang="de">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>QUESTSYSTEM · Modul</title>
-  <meta name="description" content="Detailansicht eines QUESTSYSTEM-Moduls: Ring-Zuordnung, Kurzbeschreibung und Verknüpfungen zu anderen Modulen.">
-  <meta property="og:title" content="QUESTSYSTEM · Modul">
-  <meta property="og:description" content="Ein Modul des QUESTSYSTEMS – mit Ring, Kurzbeschreibung und Verknüpfungen.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="./assets/og-preview.png">
-  <link rel="stylesheet" href="./styles.css">
-  <style>
-    .badge{display:inline-block;padding:4px 8px;border:1px solid #2a2a33;border-radius:999px;font-size:12px;margin-left:8px}
-    .badge--Existential{background:#e34b4b22;border-color:#e34b4b55}
-    .badge--Societal{background:#e9c64a22;border-color:#e9c64a55}
-    .badge--Structural{background:#4b8fe322;border-color:#4b8fe355}
-    .pill{display:inline-block;padding:6px 10px;border:1px solid #2a2a33;border-radius:999px;margin:4px 6px 0 0}
-    .grid{display:grid;gap:16px}
-    .grid-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .muted{color:var(--muted)}
-    .navrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-    .button--ghost{background:transparent;border:1px solid #2a2a33;color:var(--fg);padding:8px 10px;border-radius:8px}
-  </style>
-</head>
-<body>
-  <a href="#main" class="visually-hidden-focusable">Skip to content</a>
+<script>
+(async function(){
+  const params = new URLSearchParams(location.search);
+  const file = params.get('file');
+  const target = document.getElementById('content'); // dein Container
 
-  <header class="site-header">
-    <h1 id="mod-title">Modul</h1>
-  </header>
+  function rawUrl(path){
+    // Erzwingt Raw-Fallback vom Default-Branch "main"
+    return `https://raw.githubusercontent.com/Quest42-coder/QUESTSYSTEM_PUBLIC/main/${path}`;
+  }
 
-  <div id="global-nav"></div>
+  async function fetchText(url){
+    const r = await fetch(url, {cache:'no-store'});
+    if(!r.ok) throw new Error(`HTTP ${r.status} ${url}`);
+    return await r.text();
+  }
 
-  <main id="main" class="container">
-    <!-- Lokale Navigation -->
-    <nav class="navrow" style="margin-bottom:12px">
-      <a class="button--ghost" href="./index.html">← Start</a>
-      <a class="button--ghost" href="./map.html">○ Karte</a>
-      <a class="button--ghost" href="./modules.html">↺ Zur Liste</a>
-      <span class="muted" id="mod-id" style="margin-left:auto"></span>
-    </nav>
+  if(!file){ target.innerHTML = '<p>Keine Datei angegeben.</p>'; return; }
 
-    <!-- Kurz-Intro zur Detailseite -->
-    <section class="card" aria-label="Einordnung">
-      <p class="muted">
-        Jede Detailseite zeigt <strong>Titel &amp; Ring</strong>, eine kurze <strong>Beschreibung</strong>
-        sowie <strong>Verknüpfungen</strong> zu 2–3 eng verbundenen Modulen. Über die Buttons unten
-        kommst du zum <em>vorherigen/nächsten</em> Modul oder zurück zur Karte.
-      </p>
-    </section>
+  // 1) Primär: direkt versuchen (relativ vom Pages-Root)
+  const direct = file;
+  // 2) Fallback: RAW
+  const raw = rawUrl(file);
 
-    <!-- Modul-Inhalte -->
-    <section class="card" id="desc-card">
-      <h2>Überblick <span id="ring-badge" class="badge"></span></h2>
-      <p id="mod-desc" class="muted">Lade Modul …</p>
-    </section>
+  let md;
+  try { md = await fetchText(direct); }
+  catch(e1){
+    try { md = await fetchText(raw); }
+    catch(e2){
+      target.innerHTML = `
+        <h3>Fehler beim Laden</h3>
+        <p>Quelle: <code>${file}</code></p>
+        <p>Konnte die Datei nicht laden (auch Raw-Fallback fehlgeschlagen).</p>
+        <p>Prüfe, ob die Datei existiert und der Pfad stimmt.</p>
+        <p><a href="https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC/blob/main/${file}" target="_blank" rel="noopener">Auf GitHub öffnen</a></p>`;
+      return;
+    }
+  }
 
-    <section class="grid grid-2">
-      <div class="card">
-        <h3>Verknüpfte Module</h3>
-        <div id="link-pills"></div>
-        <p class="muted" id="no-links" style="display:none">Keine Verknüpfungen hinterlegt.</p>
-      </div>
-
-      <div class="card">
-        <h3>Nächste / Vorherige</h3>
-        <div class="navrow" id="prevnext"></div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <small>
-      © QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause ·
-      Ringe: 🔴 Existential · 🟡 Societal · 🔵 Structural
-    </small>
-  </footer>
-
-  <script src="./nav.js"></script>
-  <script src="./module.js"></script>
-</body>
-</html>
+  // Minimal-Markdown-Render (nur Überschriften/Links/Absatz)
+  const html = md
+    .replace(/^### (.*)$/gm,'<h3>$1</h3>')
+    .replace(/^## (.*)$/gm,'<h2>$1</h2>')
+    .replace(/^# (.*)$/gm,'<h1>$1</h1>')
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\[(.*?)\]\((.*?)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/\n{2,}/g,'</p><p>')
+    .replace(/^\s*$/g,'');
+  target.innerHTML = `<p>${html}</p>`;
+})();
+</script>

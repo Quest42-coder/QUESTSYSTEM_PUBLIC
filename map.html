@@ -4,8 +4,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>QUESTSYSTEM · Modul-Karte</title>
-  <meta name="description" content="Interaktive Karte des QUESTSYSTEMS: 42 Module in drei Ringen (Existential, Societal, Structural), beginnend mit der RESETBOX.">
-  <link rel="stylesheet" href="./styles.css">
+  <meta name="description" content="Interaktive Karte des QUESTSYSTEMS: 42 Module in drei Ringen.">
+  <style>
+    :root{
+      --bg:#0b0b0c; --fg:#e9e9ee; --muted:#a7a7b0;
+      --red:#e34b4b; --yellow:#e9c64a; --blue:#4b8fe3;
+      --edge:#a0a0aa33; --edge-hi:#ffffffaa;
+      --card:#131316;
+    }
+    html,body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
+    .site-header,.site-footer{padding:14px 20px;border-bottom:1px solid #202026}
+    .site-footer{border:0;border-top:1px solid #202026}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    .card{background:var(--card);padding:12px 14px;border:1px solid #202026;border-radius:10px;margin-bottom:16px}
+    .map-wrap{position:relative;background:#101013;border:1px solid #202026;border-radius:12px;overflow:hidden}
+    #map{display:block;width:100%;height:auto}
+    .tooltip{position:absolute;min-width:180px;max-width:280px;background:#0e0e11;border:1px solid #2a2a33;border-radius:10px;padding:10px 12px;box-shadow:0 6px 20px #0008}
+    .tooltip h3{margin:0 0 6px 0;font-size:14px}
+    .tooltip p{margin:0;color:var(--muted);font-size:12px}
+    .label{pointer-events:none;font-size:12px;fill:var(--fg);text-anchor:middle;dominant-baseline:middle}
+    .label-bg{fill:#000;fill-opacity:.45;rx:4;ry:4}
+    .edge{stroke:var(--edge);stroke-width:2}
+    .edge--hi{stroke:var(--edge-hi);stroke-width:2.5}
+    .node{cursor:pointer;transition:transform .08s ease}
+    .node:hover{transform:scale(1.06)}
+    .visually-hidden-focusable{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+    .visually-hidden-focusable:focus{position:static;width:auto;height:auto;padding:8px 10px;background:#222;border-radius:6px}
+  </style>
 </head>
 <body>
   <a href="#main" class="visually-hidden-focusable">Skip to map</a>
@@ -13,8 +38,6 @@
   <header class="site-header">
     <h1>QUESTSYSTEM · Modul-Karte</h1>
   </header>
-
-  <div id="global-nav"></div>
 
   <main id="main" class="container">
     <section class="card">
@@ -37,157 +60,131 @@
     <small>© QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause · Ringe: 🔴 Existential · 🟡 Societal · 🔵 Structural</small>
   </footer>
 
-  <!-- Globales Menü (falls vorhanden) -->
-  <script src="./nav.js"></script>
-
-  <!-- Eingebettete Map-Logik (keine externe map.js nötig) -->
   <script>
   (async function () {
     const svg = document.getElementById('map');
     const tip = document.getElementById('tooltip');
 
-    // ---- Daten laden mit Fallbacks (Groß/Klein & Root) ----
-    const candidates = [
-      './MODULES/modules.json',
-      './modules/modules.json',
-      './modules.json'
-    ];
-    let data = null, used = null;
+    // ---- Daten laden mit robusten Fallbacks ----
+    const candidates = ['./MODULES/modules.json','./modules/modules.json','./modules.json'];
+    let data=null;
     for (const p of candidates) {
-      try {
-        const r = await fetch(p, { cache: 'no-cache' });
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        data = await r.json();
-        used = p;
-        break;
-      } catch (_) {}
+      try { const r=await fetch(p,{cache:'no-cache'}); if(!r.ok) throw 0; data=await r.json(); break; } catch {}
     }
-    if (!data || !Array.isArray(data.modules)) {
-      renderFatal('Konnte Daten nicht laden. Prüfe MODULES/modules.json (exakte Groß-/Kleinschreibung).');
-      return;
-    }
+    if (!data || !Array.isArray(data.modules)) { return fatal('Konnte Daten nicht laden. Prüfe MODULES/modules.json (Case!).'); }
 
     const modules = data.modules;
     const links = data.links || {};
 
     // ---- Geometrie ----
-    const cx = 600, cy = 450;
-    const radii = { Existential: 180, Societal: 310, Structural: 440 };
-    const nodeR = 18;
+    const cx=600, cy=450;
+    const R={Existential:180, Societal:310, Structural:440};
+    const nodeR=18;
 
-    const perRing = { Existential: [], Societal: [], Structural: [] };
-    modules.forEach(m => { if (perRing[m.ring]) perRing[m.ring].push(m); });
-
-    const ringLayer = el('g', { class: 'rings' });
-    ['Existential','Societal','Structural'].forEach(rk =>
-      ringLayer.appendChild(el('circle', { class: 'ring', cx, cy, r: radii[rk] }))
-    );
+    // Ebenen
+    const ringLayer = el('g', { class:'rings' });
+    // WICHTIG: Ringe explizit ohne Füllung zeichnen (kein schwarzer Kreis!)
+    ringLayer.appendChild(el('circle', { cx, cy, r:R.Existential, fill:'none', stroke:'#ffffff18', 'stroke-dasharray':'6 6' }));
+    ringLayer.appendChild(el('circle', { cx, cy, r:R.Societal,    fill:'none', stroke:'#ffffff12', 'stroke-dasharray':'6 6' }));
+    ringLayer.appendChild(el('circle', { cx, cy, r:R.Structural,  fill:'none', stroke:'#ffffff0e', 'stroke-dasharray':'6 6' }));
     svg.appendChild(ringLayer);
 
-    const edgeLayer = el('g', { class: 'edges' });
-    const nodeLayer = el('g', { class: 'nodes' });
-    svg.append(edgeLayer, nodeLayer);
+    const edgeLayer = el('g', { class:'edges' }); svg.appendChild(edgeLayer);
+    const nodeLayer = el('g', { class:'nodes' }); svg.appendChild(nodeLayer);
 
-    // Positionen ringweise verteilen
-    const pos = {};
-    Object.entries(perRing).forEach(([rk, arr]) => {
-      const n = arr.length || 1;
-      arr.forEach((m, i) => {
-        const a = (i / n) * Math.PI * 2 - Math.PI/2;
-        pos[m.id] = { x: cx + radii[rk]*Math.cos(a), y: cy + radii[rk]*Math.sin(a) };
+    // Positionen
+    const perRing={Existential:[],Societal:[],Structural:[]};
+    modules.forEach(m=>{ if(perRing[m.ring]) perRing[m.ring].push(m); });
+
+    const pos={};
+    Object.entries(perRing).forEach(([rk, arr])=>{
+      const n=arr.length||1;
+      arr.forEach((m,i)=>{
+        const a=(i/n)*Math.PI*2 - Math.PI/2;
+        pos[m.id]={ x: cx + R[rk]*Math.cos(a), y: cy + R[rk]*Math.sin(a) };
       });
     });
 
-    // ---- Interaktion ----
-    let activeId = null;
+    let activeId=null;
 
-    modules.forEach(m => {
-      const { x, y } = pos[m.id] || { x: cx, y: cy };
-      const g = el('g', { class: 'node', tabindex: 0, 'data-id': m.id });
-      g.setAttribute('role', 'button');
+    // Nodes
+    modules.forEach(m=>{
+      const {x,y}=pos[m.id]||{x:cx,y:cy};
+      const g=el('g',{class:'node',tabindex:0,'data-id':m.id}); g.setAttribute('role','button');
 
-      const label = (m.name ? (String(m.id).padStart(2,'0') + ' ' + m.name) : ('Modul ' + String(m.id).padStart(2,'0')));
-      g.setAttribute('aria-label', label + (m.ring ? (' – ' + m.ring + ' Ring') : ''));
+      const label=(m.name?(`${pad(m.id)} ${m.name}`):(`Modul ${pad(m.id)}`));
+      g.setAttribute('aria-label', `${label}${m.ring?` – ${m.ring} Ring`:''}`);
 
-      const color = (m.ring === 'Existential') ? 'var(--red)' : (m.ring === 'Societal') ? 'var(--yellow)' : 'var(--blue)';
+      const color = (m.ring==='Existential')?'var(--red)' : (m.ring==='Societal')?'var(--yellow)' : 'var(--blue)';
 
-      g.appendChild(el('circle', { cx:x, cy:y, r:nodeR, fill:color, 'fill-opacity':0.9, stroke:'#000', 'stroke-opacity':.35 }));
+      g.appendChild(el('circle',{cx:x,cy:y,r:nodeR,fill:color,'fill-opacity':0.9,stroke:'#000','stroke-opacity':.35}));
 
-      const boxW = (label.length * 7.0) + 16;
-      g.appendChild(el('rect', { x:x - boxW/2, y:y + nodeR + 8, width:boxW, height:18, class:'label-bg', rx:4, ry:4 }));
-      g.appendChild(el('text', { x, y:y + nodeR + 18, class:'label' }, label));
+      const boxW=(label.length*7)+16;
+      g.appendChild(el('rect',{x:x-boxW/2,y:y+nodeR+8,width:boxW,height:18,class:'label-bg'}));
+      g.appendChild(el('text',{x,y:y+nodeR+18,class:'label'},label));
 
-      g.addEventListener('mouseenter', ()=>{ activeId=m.id; showTip(m); drawEdges(m.id,true); });
-      g.addEventListener('mouseleave', ()=>{ if(activeId===m.id){ activeId=null; hideTip(); drawEdges(m.id,false);} });
-      g.addEventListener('focus',      ()=>{ activeId=m.id; showTip(m); drawEdges(m.id,true); });
-      g.addEventListener('blur',       ()=>{ if(activeId===m.id){ activeId=null; hideTip(); drawEdges(m.id,false);} });
-
-      g.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); openMod(m); } });
-      g.addEventListener('touchstart', (e)=>{
-        e.preventDefault();
-        const on = activeId !== m.id; activeId = on ? m.id : null;
-        if(on){ showTip(m); drawEdges(m.id,true); } else { hideTip(); drawEdges(m.id,false); }
-      }, { passive:false });
-
-      g.addEventListener('click', ()=> openMod(m));
+      g.addEventListener('mouseenter', ()=>{ activeId=m.id; tipShow(m); edges(m.id,true); });
+      g.addEventListener('mouseleave', ()=>{ if(activeId===m.id){ activeId=null; tipHide(); edges(m.id,false); }});
+      g.addEventListener('focus',      ()=>{ activeId=m.id; tipShow(m); edges(m.id,true); });
+      g.addEventListener('blur',       ()=>{ if(activeId===m.id){ activeId=null; tipHide(); edges(m.id,false); }});
+      g.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(m);} });
+      g.addEventListener('touchstart',(e)=>{ e.preventDefault(); const on=activeId!==m.id; activeId=on?m.id:null; on?(tipShow(m),edges(m.id,true)):(tipHide(),edges(m.id,false)); },{passive:false});
+      g.addEventListener('click', ()=>open(m));
 
       nodeLayer.appendChild(g);
     });
 
-    function drawEdges(id,on){
+    function edges(id,on){
       while(edgeLayer.firstChild) edgeLayer.removeChild(edgeLayer.firstChild);
       if(!on) return;
-      const peers = links[String(id)] || [];
+      const peers=links[String(id)]||[];
       peers.forEach(pid=>{
-        const p1 = pos[id], p2 = pos[pid]; if(!p1||!p2) return;
+        const p1=pos[id], p2=pos[pid]; if(!p1||!p2) return;
         edgeLayer.appendChild(el('line',{x1:p1.x,y1:p1.y,x2:p2.x,y2:p2.y,class:'edge edge--hi'}));
       });
     }
 
-    function showTip(m){
-      const t = (m.name ? (String(m.id).padStart(2,'0') + ' — ' + m.name) : ('Modul ' + String(m.id).padStart(2,'0')));
-      const d = m.desc || (m.ring ? (m.ring + ' Ring') : '');
+    function tipShow(m){
+      const t = m.name ? `${pad(m.id)} — ${m.name}` : `Modul ${pad(m.id)}`;
+      const d = m.desc || (m.ring? `${m.ring} Ring` : '');
       tip.replaceChildren();
       const h3=document.createElement('h3'); h3.textContent=t;
       const p=document.createElement('p'); p.textContent=d;
       tip.append(h3,p); tip.hidden=false;
-
-      const {x,y} = pos[m.id]; const r = svg.getBoundingClientRect();
-      tip.style.left = (x - r.left + 16) + 'px';
-      tip.style.top  = (y - r.top  + 16) + 'px';
-      clampTip();
+      const {x,y}=pos[m.id]; const r=svg.getBoundingClientRect();
+      tip.style.left=(x - r.left + 16)+'px';
+      tip.style.top =(y - r.top  + 16)+'px';
+      clamp();
     }
-    function hideTip(){ tip.hidden=true; }
-    function clampTip(){
-      const r = svg.getBoundingClientRect();
-      const tw = tip.offsetWidth || 240, th = tip.offsetHeight || 80;
-      let L = parseInt(tip.style.left,10)||r.left+8;
-      let T = parseInt(tip.style.top,10)||r.top+8;
-      L = Math.min(Math.max(L, r.left+8), r.right - tw - 8);
-      T = Math.min(Math.max(T, r.top +8), r.bottom - th - 8);
-      tip.style.left = L + 'px'; tip.style.top = T + 'px';
+    function tipHide(){ tip.hidden=true; }
+    function clamp(){
+      const r=svg.getBoundingClientRect(), tw=tip.offsetWidth||240, th=tip.offsetHeight||80;
+      let L=parseInt(tip.style.left,10)||r.left+8, T=parseInt(tip.style.top,10)||r.top+8;
+      L=Math.min(Math.max(L, r.left+8), r.right - tw - 8);
+      T=Math.min(Math.max(T, r.top +8), r.bottom - th - 8);
+      tip.style.left=L+'px'; tip.style.top=T+'px';
     }
-    function openMod(m){
-      const id = String(m.id).padStart(2,'0');
-      const href = (m.href && m.href.startsWith('./module.html')) ? m.href
-                 : `./module.html?id=${id}${m.name?'_'+slug(m.name):''}`;
-      location.href = href;
+    function open(m){
+      const id=pad(m.id);
+      const href = (m.href && m.href.startsWith('./module.html')) ? m.href : `./module.html?id=${id}${m.name?'_'+slug(m.name):''}`;
+      location.href=href;
     }
 
-    // SVG Helper
-    function el(tag, attrs = {}, text){
-      const n = document.createElementNS('http://www.w3.org/2000/svg', tag);
-      for (const k in attrs) n.setAttribute(k, attrs[k]);
-      if (text != null) n.textContent = text;
+    // Helper
+    function el(tag, attrs={}, text){
+      const n=document.createElementNS('http://www.w3.org/2000/svg',tag);
+      for(const k in attrs) n.setAttribute(k,attrs[k]);
+      if(text!=null) n.textContent=text;
       return n;
     }
+    function pad(n){ return String(n).padStart(2,'0'); }
     function slug(s){ return String(s).toUpperCase().replace(/\s+/g,'_').replace(/[^A-Z0-9_]/g,''); }
 
-    function renderFatal(msg){
-      const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      t.setAttribute('x','600'); t.setAttribute('y','450'); t.setAttribute('class','label');
-      t.setAttribute('text-anchor','middle'); t.textContent = msg; svg.appendChild(t);
-      tip.hidden = true;
+    function fatal(msg){
+      const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('x','600'); t.setAttribute('y','450'); t.setAttribute('text-anchor','middle');
+      t.setAttribute('class','label'); t.textContent=msg; svg.appendChild(t);
+      tip.hidden=true;
     }
   })();
   </script>

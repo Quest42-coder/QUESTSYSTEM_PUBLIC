@@ -1,51 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Modul · QUESTSYSTEM</title>
+<style>
+  :root{--bg:#0b0b0b;--fg:#f5f5f5;--muted:#9aa4b0;--panel:#111;--link:#4aa3ff}
+  html,body{height:100%} body{margin:0;background:var(--bg);color:var(--fg);
+    font:16px/1.5 system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  header,footer,main{max-width:1000px;margin:0 auto;padding:16px}
+  a{color:var(--link);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .meta{opacity:.85;font-size:.92rem}
+  .panel{background:var(--panel);border-radius:12px;padding:18px;box-shadow:0 0 0 1px #1a1a1a}
+  pre{white-space:pre-wrap;word-wrap:break-word}
+  h1,h2,h3{margin:1.2em 0 .5em}
+  code{background:#0f0f0f;padding:0 .25em;border-radius:4px}
+  .err{color:#ff6b6b}
+  .muted{color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <a href="./">← Karte</a>
+  <div class="meta">Modulansicht · lädt Markdown aus <code>MODULES/…</code></div>
+</header>
+
+<main>
+  <div id="status" class="muted">Lade …</div>
+  <article id="content" class="panel" hidden></article>
+  <pre id="raw" class="panel" hidden></pre>
+</main>
+
+<footer class="muted">
+  © QUESTSYSTEM · CC BY-SA 4.0
+</footer>
+
 <script>
-(async function(){
-  const params = new URLSearchParams(location.search);
-  const file = params.get('file');
-  const target = document.getElementById('content'); // dein Container
-
-  function rawUrl(path){
-    // Erzwingt Raw-Fallback vom Default-Branch "main"
-    return `https://raw.githubusercontent.com/Quest42-coder/QUESTSYSTEM_PUBLIC/main/${path}`;
+// --- Pfad aus Query ODER Hash holen ---
+function getFileParam(){
+  try{
+    var q = new URLSearchParams(location.search);
+    if (q.has('file')) return q.get('file');
+  }catch(e){}
+  if (location.hash && location.hash.indexOf('file=')>=0){
+    var h = location.hash.replace(/^#/, '');
+    var params = new URLSearchParams(h);
+    if (params.has('file')) return params.get('file');
   }
+  return null;
+}
 
-  async function fetchText(url){
-    const r = await fetch(url, {cache:'no-store'});
-    if(!r.ok) throw new Error(`HTTP ${r.status} ${url}`);
-    return await r.text();
+// --- Normalisieren (decode, Trim, Slash-Schutz) ---
+function cleanPath(p){
+  try{ p = decodeURIComponent(p); }catch(e){}
+  p = p.trim();
+  // erlaub nur relative Pfade in MODULES/
+  if (!/^MODULES\//i.test(p)) {
+    // Falls nur Dateiname kam, prepend MODULES/
+    if (!p.includes('/')) p = 'MODULES/' + p;
+    else p = 'MODULES/' + p.split('/').slice(-1)[0];
   }
+  // Keine Traversals
+  p = p.replace(/\.\./g,'');
+  return p;
+}
 
-  if(!file){ target.innerHTML = '<p>Keine Datei angegeben.</p>'; return; }
+// --- sehr einfache Markdown -> HTML (Headlines/Listen/Links) ---
+function md2html(md){
+  // Escaping
+  md = md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
-  // 1) Primär: direkt versuchen (relativ vom Pages-Root)
-  const direct = file;
-  // 2) Fallback: RAW
-  const raw = rawUrl(file);
+  // Headlines
+  md = md.replace(/^######\s?(.*)$/gm,'<h6>$1</h6>')
+         .replace(/^#####\s?(.*)$/gm,'<h5>$1</h5>')
+         .replace(/^####\s?(.*)$/gm,'<h4>$1</h4>')
+         .replace(/^###\s?(.*)$/gm,'<h3>$1</h3>')
+         .replace(/^##\s?(.*)$/gm,'<h2>$1</h2>')
+         .replace(/^#\s?(.*)$/gm,'<h1>$1</h1>');
+  // Fett/Kursiv/Code inline
+  md = md.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+         .replace(/\*(.+?)\*/g,'<em>$1</em>')
+         .replace(/`(.+?)`/g,'<code>$1</code>');
+  // Links [text](url)
+  md = md.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+  // Listen
+  md = md.replace(/^\s*-\s+(.*)$/gm,'• $1');
+  // Absätze
+  md = md.replace(/\n{2,}/g,'</p><p>');
+  md = '<p>'+md+'</p>';
+  return md;
+}
 
-  let md;
-  try { md = await fetchText(direct); }
-  catch(e1){
-    try { md = await fetchText(raw); }
-    catch(e2){
-      target.innerHTML = `
-        <h3>Fehler beim Laden</h3>
-        <p>Quelle: <code>${file}</code></p>
-        <p>Konnte die Datei nicht laden (auch Raw-Fallback fehlgeschlagen).</p>
-        <p>Prüfe, ob die Datei existiert und der Pfad stimmt.</p>
-        <p><a href="https://github.com/Quest42-coder/QUESTSYSTEM_PUBLIC/blob/main/${file}" target="_blank" rel="noopener">Auf GitHub öffnen</a></p>`;
-      return;
-    }
+(function(){
+  var status = document.getElementById('status');
+  var content = document.getElementById('content');
+  var raw = document.getElementById('raw');
+
+  var file = getFileParam();
+  if (!file){
+    status.innerHTML = '<span class="err">Kein <code>file</code>-Parameter gefunden.</span><br>Beispiel: <code>module.html?file=MODULES/Modul_07_PSYCHE.md</code> oder <code>module.html#file=MODULES/Modul_07_PSYCHE.md</code>';
+    return;
   }
+  var path = cleanPath(file);
+  status.textContent = 'Lade: ' + path;
 
-  // Minimal-Markdown-Render (nur Überschriften/Links/Absatz)
-  const html = md
-    .replace(/^### (.*)$/gm,'<h3>$1</h3>')
-    .replace(/^## (.*)$/gm,'<h2>$1</h2>')
-    .replace(/^# (.*)$/gm,'<h1>$1</h1>')
-    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
-    .replace(/\[(.*?)\]\((.*?)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>')
-    .replace(/\n{2,}/g,'</p><p>')
-    .replace(/^\s*$/g,'');
-  target.innerHTML = `<p>${html}</p>`;
+  fetch(path, {cache:'no-store'})
+    .then(function(res){
+      if (!res.ok) throw new Error('HTTP '+res.status+' – '+res.statusText);
+      return res.text();
+    })
+    .then(function(md){
+      // Wenn Datei wie erwartet aussieht, rendern; sonst raw anzeigen
+      var html = md2html(md);
+      content.innerHTML = html;
+      content.hidden = false;
+      raw.hidden = true;
+      status.textContent = path;
+      document.title = (md.match(/^#\s*(.+)$/m)||[])[1] ? (md.match(/^#\s*(.+)$/m)||[])[1] + ' · Modul · QUESTSYSTEM' : ('Modul · QUESTSYSTEM');
+    })
+    .catch(function(err){
+      content.hidden = true;
+      raw.hidden = false;
+      raw.textContent = 'Fehler beim Laden von '+path+'\n\n'+err.message+'\n\nTipp: Prüfe Groß-/Kleinschreibung & Pfad.';
+      status.innerHTML = '<span class="err">Fehler</span> · '+path;
+    });
 })();
 </script>
+</body>
+</html>

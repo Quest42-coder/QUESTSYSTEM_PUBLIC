@@ -39,7 +39,157 @@
 
   <!-- Globales Menü (falls vorhanden) -->
   <script src="./nav.js"></script>
-  <!-- Gepatchte Map-Logik -->
-  <script src="./map.js"></script>
+
+  <!-- Eingebettete Map-Logik (keine externe map.js nötig) -->
+  <script>
+  (async function () {
+    const svg = document.getElementById('map');
+    const tip = document.getElementById('tooltip');
+
+    // ---- Daten laden mit Fallbacks (Groß/Klein & Root) ----
+    const candidates = [
+      './MODULES/modules.json',
+      './modules/modules.json',
+      './modules.json'
+    ];
+    let data = null, used = null;
+    for (const p of candidates) {
+      try {
+        const r = await fetch(p, { cache: 'no-cache' });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        data = await r.json();
+        used = p;
+        break;
+      } catch (_) {}
+    }
+    if (!data || !Array.isArray(data.modules)) {
+      renderFatal('Konnte Daten nicht laden. Prüfe MODULES/modules.json (exakte Groß-/Kleinschreibung).');
+      return;
+    }
+
+    const modules = data.modules;
+    const links = data.links || {};
+
+    // ---- Geometrie ----
+    const cx = 600, cy = 450;
+    const radii = { Existential: 180, Societal: 310, Structural: 440 };
+    const nodeR = 18;
+
+    const perRing = { Existential: [], Societal: [], Structural: [] };
+    modules.forEach(m => { if (perRing[m.ring]) perRing[m.ring].push(m); });
+
+    const ringLayer = el('g', { class: 'rings' });
+    ['Existential','Societal','Structural'].forEach(rk =>
+      ringLayer.appendChild(el('circle', { class: 'ring', cx, cy, r: radii[rk] }))
+    );
+    svg.appendChild(ringLayer);
+
+    const edgeLayer = el('g', { class: 'edges' });
+    const nodeLayer = el('g', { class: 'nodes' });
+    svg.append(edgeLayer, nodeLayer);
+
+    // Positionen ringweise verteilen
+    const pos = {};
+    Object.entries(perRing).forEach(([rk, arr]) => {
+      const n = arr.length || 1;
+      arr.forEach((m, i) => {
+        const a = (i / n) * Math.PI * 2 - Math.PI/2;
+        pos[m.id] = { x: cx + radii[rk]*Math.cos(a), y: cy + radii[rk]*Math.sin(a) };
+      });
+    });
+
+    // ---- Interaktion ----
+    let activeId = null;
+
+    modules.forEach(m => {
+      const { x, y } = pos[m.id] || { x: cx, y: cy };
+      const g = el('g', { class: 'node', tabindex: 0, 'data-id': m.id });
+      g.setAttribute('role', 'button');
+
+      const label = (m.name ? (String(m.id).padStart(2,'0') + ' ' + m.name) : ('Modul ' + String(m.id).padStart(2,'0')));
+      g.setAttribute('aria-label', label + (m.ring ? (' – ' + m.ring + ' Ring') : ''));
+
+      const color = (m.ring === 'Existential') ? 'var(--red)' : (m.ring === 'Societal') ? 'var(--yellow)' : 'var(--blue)';
+
+      g.appendChild(el('circle', { cx:x, cy:y, r:nodeR, fill:color, 'fill-opacity':0.9, stroke:'#000', 'stroke-opacity':.35 }));
+
+      const boxW = (label.length * 7.0) + 16;
+      g.appendChild(el('rect', { x:x - boxW/2, y:y + nodeR + 8, width:boxW, height:18, class:'label-bg', rx:4, ry:4 }));
+      g.appendChild(el('text', { x, y:y + nodeR + 18, class:'label' }, label));
+
+      g.addEventListener('mouseenter', ()=>{ activeId=m.id; showTip(m); drawEdges(m.id,true); });
+      g.addEventListener('mouseleave', ()=>{ if(activeId===m.id){ activeId=null; hideTip(); drawEdges(m.id,false);} });
+      g.addEventListener('focus',      ()=>{ activeId=m.id; showTip(m); drawEdges(m.id,true); });
+      g.addEventListener('blur',       ()=>{ if(activeId===m.id){ activeId=null; hideTip(); drawEdges(m.id,false);} });
+
+      g.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); openMod(m); } });
+      g.addEventListener('touchstart', (e)=>{
+        e.preventDefault();
+        const on = activeId !== m.id; activeId = on ? m.id : null;
+        if(on){ showTip(m); drawEdges(m.id,true); } else { hideTip(); drawEdges(m.id,false); }
+      }, { passive:false });
+
+      g.addEventListener('click', ()=> openMod(m));
+
+      nodeLayer.appendChild(g);
+    });
+
+    function drawEdges(id,on){
+      while(edgeLayer.firstChild) edgeLayer.removeChild(edgeLayer.firstChild);
+      if(!on) return;
+      const peers = links[String(id)] || [];
+      peers.forEach(pid=>{
+        const p1 = pos[id], p2 = pos[pid]; if(!p1||!p2) return;
+        edgeLayer.appendChild(el('line',{x1:p1.x,y1:p1.y,x2:p2.x,y2:p2.y,class:'edge edge--hi'}));
+      });
+    }
+
+    function showTip(m){
+      const t = (m.name ? (String(m.id).padStart(2,'0') + ' — ' + m.name) : ('Modul ' + String(m.id).padStart(2,'0')));
+      const d = m.desc || (m.ring ? (m.ring + ' Ring') : '');
+      tip.replaceChildren();
+      const h3=document.createElement('h3'); h3.textContent=t;
+      const p=document.createElement('p'); p.textContent=d;
+      tip.append(h3,p); tip.hidden=false;
+
+      const {x,y} = pos[m.id]; const r = svg.getBoundingClientRect();
+      tip.style.left = (x - r.left + 16) + 'px';
+      tip.style.top  = (y - r.top  + 16) + 'px';
+      clampTip();
+    }
+    function hideTip(){ tip.hidden=true; }
+    function clampTip(){
+      const r = svg.getBoundingClientRect();
+      const tw = tip.offsetWidth || 240, th = tip.offsetHeight || 80;
+      let L = parseInt(tip.style.left,10)||r.left+8;
+      let T = parseInt(tip.style.top,10)||r.top+8;
+      L = Math.min(Math.max(L, r.left+8), r.right - tw - 8);
+      T = Math.min(Math.max(T, r.top +8), r.bottom - th - 8);
+      tip.style.left = L + 'px'; tip.style.top = T + 'px';
+    }
+    function openMod(m){
+      const id = String(m.id).padStart(2,'0');
+      const href = (m.href && m.href.startsWith('./module.html')) ? m.href
+                 : `./module.html?id=${id}${m.name?'_'+slug(m.name):''}`;
+      location.href = href;
+    }
+
+    // SVG Helper
+    function el(tag, attrs = {}, text){
+      const n = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      for (const k in attrs) n.setAttribute(k, attrs[k]);
+      if (text != null) n.textContent = text;
+      return n;
+    }
+    function slug(s){ return String(s).toUpperCase().replace(/\s+/g,'_').replace(/[^A-Z0-9_]/g,''); }
+
+    function renderFatal(msg){
+      const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      t.setAttribute('x','600'); t.setAttribute('y','450'); t.setAttribute('class','label');
+      t.setAttribute('text-anchor','middle'); t.textContent = msg; svg.appendChild(t);
+      tip.hidden = true;
+    }
+  })();
+  </script>
 </body>
 </html>

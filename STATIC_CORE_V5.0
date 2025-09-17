@@ -1,0 +1,68 @@
+# STATIC CORE V5.0 LOCKED
+
+## 10.2 Existential Ring (01–09)
+
+**Überleben, Würde, Autonomie.**
+
+| Modul | Kern-Verknüpfungen | Begründung | Negativszenario |
+|-------|--------------------|------------|-----------------|
+| **01 RESETBOX** | 02 WATER, 03 SHELTER, 09 DEBT | Basiskit muss Versorgung, Schutz & Entlastung verbinden. | Ohne Box: Verlust der Grundautonomie im Notfall. |
+| **02 WATER** | 04 FOOD, 06 BODY, 13 NATURE | Wasser ist Basis für Ernährung, Hygiene & Ökologie. | Ohne Wasser: Gesundheits- & Ernährungskollaps. |
+| **03 SHELTER** | 05 SLEEP, 13 NATURE, 01 RESETBOX | Schutzraum erfordert Ruhe, Umweltanpassung & Basiskit. | Ohne Shelter: Obdachlosigkeit, erhöhte Mortalität. |
+| **04 FOOD** | 02 WATER, 13 NATURE, 25 FINANCE | Ernährung benötigt Ressourcen & ökonomische Absicherung. | Ohne Food: Hunger, Abhängigkeit von Hilfssystemen. |
+| **05 SLEEP** | 03 SHELTER, 07 PSYCHE, 06 BODY | Schlaf stabilisiert Körper & Psyche. | Ohne Schlaf: Burnout, psychische Destabilisierung. |
+| **06 BODY** | 02 WATER, 05 SLEEP, 07 PSYCHE | Körperpflege sichert Gesundheit & Würde. | Ohne Hygiene: Epidemien, Marginalisierung. |
+| **07 PSYCHE** | 05 SLEEP, 06 BODY, 30 TRUTH | Mentale Gesundheit braucht Ruhe, Körperpflege, Wahrhaftigkeit. | Ohne Psyche: Traumatisierung, Suizidalität. |
+| **08 DEVICE** | 20 ENERGY, 32 LICENCE, 01 RESETBOX | Geräte = Überlebens- & Kommunikations-Tools. | Ohne Geräte: Isolation, Wissensverlust. |
+| **09 DEBT** | 10 WORK, 25 FINANCE, 01 RESETBOX | Schulden regulieren Existenz, Arbeit & Gemeingüter. | Ohne Debt-Regeln: Schuldknechtschaft, Armut. |
+
+---
+
+## 10.3 Societal Ring (10–24)
+
+**Zugehörigkeit, Bildung, Konflikt, Umwelt.**
+
+| Modul | Kern-Verknüpfungen | Begründung | Negativszenario |
+|-------|--------------------|------------|-----------------|
+| **10 WORK** | 09 DEBT, 11 SCHOOL, 25 FINANCE | Arbeit verknüpft Bildung, Schulden & Ressourcen. | Ohne Arbeit: Ausschluss, Armut. |
+| **11 SCHOOL** | 10 WORK, 30 TRUTH, 07 PSYCHE | Bildung = Basis für Arbeit, Wahrhaftigkeit & Resilienz. | Ohne Schule: Analphabetismus, Manipulierbarkeit. |
+| **12 BORDER** | 01 RESETBOX, 13 NATURE, 36 CONFLICT | Grenzen regulieren Schutz & Konfliktlinien. | Ohne Grenzen: Chaos oder Gewaltregime. |
+| **13 NATURE** | 02 WATER, 04 FOOD, 20 ENERGY | Natur ist Ressourcengrundlage. | Ohne Natur: Ökosystem-Kollaps. |
+| **14 HEALTH** | 02 WATER, 06 BODY, 07 PSYCHE | Gesundheit integriert Körper, Wasser, Psyche. | Ohne Gesundheit: Pandemien, Sterblichkeit. |
+| **15 CARE** | 14 HEALTH, 07 PSYCHE, 01 RESETBOX | Pflege sichert Würde in Abhängigkeit. | Ohne Care: Verwahrlosung, Sterben ohne Hilfe. |
+| **16 FAMILY** | 05 SLEEP, 11 SCHOOL, 14 HEALTH | Familie stützt Bildung & Gesundheit. | Ohne Family: Vereinsamung, Bindungsstörungen. |
+| **17 ANIMAL** | 04 FOOD, 13 NATURE, 14 HEALTH | Tiere sind Teil des Ökosystems & Überlebens. | Ohne Tiere: Biodiversitätsverlust, Hunger. |
+| **18 CULTURE** | 11 SCHOOL, 30 TRUTH, 29 SYMBOL | Kultur = Wissen, Symbole & Wahrhaftigkeit. | Ohne Kultur: Identitätsverlust, Fanatismus. |
+| **19 MEDIA** | 30 TRUTH, 32 LICENCE, 11 SCHOOL | Medien verbinden Information, Recht, Bildung. | Ohne Medienfreiheit: Propaganda, Fake News. |
+| **20 ENERGY** | 08 DEVICE, 13 NATURE, 25 FINANCE | Energie = Schlüssel für Technik & Infrastruktur. | Ohne Energie: Blackouts, Versorgungskollaps. |
+| **21 CLIMATE** | 13 NATURE, 20 ENERGY, 14 HEALTH | Klima beeinflusst alle Lebensbereiche. | Ohne Klimaschutz: Katastrophen, Flucht. |
+| **22 MIGRATION** | 12 BORDER, 13 NATURE, 36 CONFLICT | Migration = Reaktion auf Grenzen & Krisen. | Ohne Regelung: humanitäre Katastrophen. |
+| **23 JUSTICE** | 09 DEBT, 10 WORK, 32 LICENCE | Gerechtigkeit balanciert Rechte & Pflichten. | Ohne Justice: Rechtslosigkeit, Willkür. |
+| **24 COMMUNITY** | 11 SCHOOL, 18 CULTURE, 23 JUSTICE | Gemeinschaft = Bildung + Kultur + Recht. | Ohne Community: Isolation, Fragmentierung. |
+
+---
+
+## 10.4 Structural Ring (25–42)
+
+**Recht, Ökonomie, Technologie, Wahrheit, Governance.**
+
+| Modul | Kern-Verknüpfungen | Begründung | Negativszenario |
+|-------|--------------------|------------|-----------------|
+| **25 FINANCE** | 09 DEBT, 10 WORK, 20 ENERGY | Geld reguliert Existenz & Energie. | Ohne Finance: Parallelwährungen, Chaos. |
+| **26 HOUSING** | 03 SHELTER, 05 SLEEP, 25 FINANCE | Wohnen = Schutz + Ruhe + Finanzierung. | Ohne Housing: Obdachlosigkeit, Ghettobildung. |
+| **27 TRANSPORT** | 02 WATER, 20 ENERGY, 22 MIGRATION | Transport verbindet Ressourcen & Menschen. | Ohne Transport: Isolation, Hungerkrisen. |
+| **28 NETWORK** | 08 DEVICE, 20 ENERGY, 19 MEDIA | Netzwerke sichern Information & Teilhabe. | Ohne Netzwerke: Blackout der Kommunikation. |
+| **29 SYMBOL** | 18 CULTURE, 24 COMMUNITY, 30 TRUTH | Symbole strukturieren Sinn & Wahrheit. | Ohne Symbole: Orientierungslosigkeit. |
+| **30 TRUTH** | 11 SCHOOL, 19 MEDIA, 32 LICENCE | Wahrheit = Recht + Medien + Bildung. | Ohne Truth: Fake News, Totalitarismus. |
+| **31 MEMORY** | 11 SCHOOL, 29 SYMBOL, 30 TRUTH | Erinnerung = Bildung + Symbolik + Wahrheit. | Ohne Memory: Geschichtsvergessenheit. |
+| **32 LICENCE** | 19 MEDIA, 30 TRUTH, 08 DEVICE | Recht schützt Wahrheit & Technik. | Ohne Licence: Missbrauch, Überwachung. |
+| **33 PRIVACY** | 08 DEVICE, 19 MEDIA, 32 LICENCE | Privatsphäre = Recht + Technik. | Ohne Privacy: Überwachung, Diktatur. |
+| **34 SECURITY** | 01 RESETBOX, 12 BORDER, 36 CONFLICT | Sicherheit = Basisschutz + Grenzen. | Ohne Security: Gewalt, Terror. |
+| **35 DATA** | 08 DEVICE, 28 NETWORK, 32 LICENCE | Daten = Technik + Netzwerke + Recht. | Ohne Data: Kontrollverlust, Manipulation. |
+| **36 CONFLICT** | 12 BORDER, 22 MIGRATION, 34 SECURITY | Konflikte strukturieren Macht & Bewegung. | Ohne Regelung: Krieg, Flucht. |
+| **37 DEMOCRACY** | 23 JUSTICE, 24 COMMUNITY, 25 FINANCE | Demokratie = Recht + Gemeinschaft + Ressourcen. | Ohne Demokratie: Autoritarismus. |
+| **38 GOVERNANCE** | 23 JUSTICE, 37 DEMOCRACY, 25 FINANCE | Governance = Regeln + Demokratie + Wirtschaft. | Ohne Governance: Machtmissbrauch. |
+| **39 KNOWLEDGE** | 11 SCHOOL, 30 TRUTH, 31 MEMORY | Wissen = Bildung + Wahrheit + Erinnerung. | Ohne Knowledge: Stillstand, Manipulation. |
+| **40 ART** | 18 CULTURE, 29 SYMBOL, 39 KNOWLEDGE | Kunst = Kultur + Symbole + Wissen. | Ohne Art: Verlust von Kritik & Inspiration. |
+| **41 FUTURE** | 21 CLIMATE, 39 KNOWLEDGE, 40 ART | Zukunft = Klima + Wissen + Kunst. | Ohne Future: Perspektivlosigkeit. |
+| **42 DEATH** | 14 HEALTH, 15 CARE, 41 FUTURE | Tod = Gesundheit + Pflege + Ethik. | Ohne Death-Kultur: Verdrängung, Entwürdigung. |

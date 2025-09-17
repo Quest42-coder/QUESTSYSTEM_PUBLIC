@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>QUESTSYSTEM · Modul-Karte (final)</title>
+<title>QUESTSYSTEM · Modul-Karte (drop-in)</title>
 <style>
   :root{
     --bg:#0b0b0b; --fg:#f5f5f5; --grid:#1a1a1a;
@@ -17,7 +17,7 @@
   svg{width:100%;height:100%;touch-action:none}
   .grid-circ circle{fill:none;stroke:var(--grid);stroke-width:1}
   .ring{fill:none;stroke:rgba(255,255,255,.12);stroke-width:2}
-  .edge{stroke:var(--edge);stroke-width:1.5;opacity:0;transition:opacity .12s}
+  .edge{stroke:var(--edge);stroke-width:1.5;opacity:0;transition:opacity .12s linear}
   .edge.on{opacity:.95}
   .node{cursor:pointer;transition:transform .15s ease}
   .dot{stroke:#000;stroke-width:.75;pointer-events:auto}
@@ -42,7 +42,7 @@
     <span class="pill"><span class="swatch yellow"></span>Societal</span>
     <span class="pill"><span class="swatch blue"></span>Structural</span>
   </div>
-  <div class="hint">Scroll = Zoom · Drag = Pan · Doppelklick = Reset · Hover/Tippen zeigt Verbindungen · Klick öffnet Details.</div>
+  <div class="hint">Scroll = Zoom · Drag = Pan · Doppelklick = Reset · Hover/Tippen zeigt NUR Verbindungen dieses Moduls · Klick öffnet Details.</div>
   <div class="toolbar">
     <button class="btn" id="fitBtn">Auf Bildschirm zentrieren</button>
     <button class="btn" id="resetBtn">Zoom/Position zurücksetzen</button>
@@ -52,29 +52,21 @@
 
 <div class="wrap">
   <div class="board">
-    <!-- xlink-NS für SVG-Links -->
     <svg viewBox="0 0 1000 1000" role="img" aria-labelledby="title desc"
          xmlns:xlink="http://www.w3.org/1999/xlink">
       <title id="title">QUESTSYSTEM – Modul-Karte</title>
-      <desc id="desc">RESETBOX im Kern. 42 Module in drei Ringen. Klick öffnet Modul-Datei.</desc>
-
+      <desc id="desc">RESETBOX im Kern. 42 Module in drei Ringen. Hover zeigt Verbindungen, Klick öffnet Modul-Datei.</desc>
       <g id="viewport">
-        <!-- Hilfsringe -->
         <g class="grid-circ">
           <circle cx="500" cy="500" r="140"></circle>
           <circle cx="500" cy="500" r="240"></circle>
           <circle cx="500" cy="500" r="340"></circle>
           <circle cx="500" cy="500" r="440"></circle>
         </g>
-
-        <!-- Ringe -->
         <circle class="ring" cx="500" cy="500" r="240"></circle>
         <circle class="ring" cx="500" cy="500" r="340"></circle>
         <circle class="ring" cx="500" cy="500" r="440"></circle>
-
-        <!-- Kern-Halo -->
         <circle cx="500" cy="500" r="70" fill="#e74c3c" opacity="0.08"></circle>
-
         <g id="edges"></g>
         <g id="nodes"></g>
       </g>
@@ -83,181 +75,11 @@
 </div>
 
 <footer>
-  © QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause · Version: map.html (final)
+  © QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause · Version: map.html (drop-in)
 </footer>
 
 <script>
-/* ===== Daten (mit 07 = PSYCHE) ===== */
-const MODULES = [
-  // Existential
-  {id:1,key:'RESETBOX',ring:'red'},
-  {id:2,key:'WATER',ring:'red'},{id:3,key:'SHELTER',ring:'red'},{id:4,key:'FOOD',ring:'red'},
-  {id:5,key:'SLEEP',ring:'red'},{id:6,key:'BODY',ring:'red'},{id:7,key:'PSYCHE',ring:'red'},
-  {id:8,key:'DEVICE',ring:'red'},{id:9,key:'DEBT',ring:'red'},
-  // Societal
-  {id:10,key:'WORK',ring:'yellow'},{id:11,key:'SCHOOL',ring:'yellow'},{id:12,key:'BORDER',ring:'yellow'},
-  {id:13,key:'NATURE',ring:'yellow'},{id:14,key:'HEALTH',ring:'yellow'},{id:15,key:'CARE',ring:'yellow'},
-  {id:16,key:'FAMILY',ring:'yellow'},{id:17,key:'ANIMAL',ring:'yellow'},{id:18,key:'CULTURE',ring:'yellow'},
-  {id:19,key:'MEDIA',ring:'yellow'},{id:20,key:'ENERGY',ring:'yellow'},{id:21,key:'CLIMATE',ring:'yellow'},
-  {id:22,key:'MIGRATION',ring:'yellow'},{id:23,key:'JUSTICE',ring:'yellow'},{id:24,key:'COMMUNITY',ring:'yellow'},
-  // Structural
-  {id:25,key:'FINANCE',ring:'blue'},{id:26,key:'HOUSING',ring:'blue'},{id:27,key:'TRANSPORT',ring:'blue'},
-  {id:28,key:'NETWORK',ring:'blue'},{id:29,key:'SYMBOL',ring:'blue'},{id:30,key:'TRUTH',ring:'blue'},
-  {id:31,key:'MEMORY',ring:'blue'},{id:32,key:'LICENCE',ring:'blue'},{id:33,key:'PRIVACY',ring:'blue'},
-  {id:34,key:'SECURITY',ring:'blue'},{id:35,key:'DATA',ring:'blue'},{id:36,key:'CONFLICT',ring:'blue'},
-  {id:37,key:'DEMOCRACY',ring:'blue'},{id:38,key:'GOVERNANCE',ring:'blue'},{id:39,key:'KNOWLEDGE',ring:'blue'},
-  {id:40,key:'ART',ring:'blue'},{id:41,key:'FUTURE',ring:'blue'},{id:42,key:'DEATH',ring:'blue'},
-];
-
-/* ===== Kern-Verknüpfungen (1:1 aus deiner V5.0) ===== */
-const CONNECTIONS = {
-  // Existential (01–09)
-  1:[2,3,9], 2:[4,6,13], 3:[5,13,1], 4:[2,13,25], 5:[3,7,6],
-  6:[2,5,7], 7:[5,6,30], 8:[20,32,1], 9:[10,25,1],
-  // Societal (10–24)
-  10:[9,11,25], 11:[10,30,7], 12:[1,13,36], 13:[2,4,20], 14:[2,6,7],
-  15:[14,7,1], 16:[5,11,14], 17:[4,13,14], 18:[11,30,29], 19:[30,32,11],
-  20:[8,13,25], 21:[13,20,14], 22:[12,13,36], 23:[9,10,32], 24:[11,18,23],
-  // Structural (25–42)
-  25:[9,10,20], 26:[3,5,25], 27:[2,20,22], 28:[8,20,19], 29:[18,24,30],
-  30:[11,19,32], 31:[11,29,30], 32:[19,30,8], 33:[8,19,32], 34:[1,12,36],
-  35:[8,28,32], 36:[12,22,34], 37:[23,24,25], 38:[23,37,25], 39:[11,30,31],
-  40:[18,29,39], 41:[21,39,40], 42:[14,15,41],
-};
-
-/* ===== Layout (RESETBOX im Kern) ===== */
-const center = {x:500, y:500};
-const radii  = { inner:260, middle:360, outer:460 };
-
-const groups = {
-  red:   MODULES.filter(m=>m.ring==='red' && m.id!==1),
-  yellow:MODULES.filter(m=>m.ring==='yellow'),
-  blue:  MODULES.filter(m=>m.ring==='blue')
-};
-
-function place(group, r){
-  const n = group.length, start = -Math.PI/2;
-  return group.map((m,i)=>{
-    const a = start + i*(2*Math.PI/n);
-    return {...m, r, a, x:center.x + r*Math.cos(a), y:center.y + r*Math.sin(a)};
-  });
-}
-
-const layout = [
-  {id:1,key:'RESETBOX',ring:'red',x:center.x,y:center.y,r:0,a:0,core:true},
-  ...place(groups.red,   radii.inner),
-  ...place(groups.yellow,radii.middle),
-  ...place(groups.blue,  radii.outer)
-];
-const fillOf = ring => ring==='red'?'var(--red)': ring==='yellow'?'var(--yellow)':'var(--blue)';
-
-/* ===== Render + robuste Navigation ===== */
-const vp     = document.getElementById('viewport');
-const gEdges = document.getElementById('edges');
-const gNodes = document.getElementById('nodes');
-
-const nodeById = new Map(layout.map(m=>[m.id,m]));
-const edges = [];
-Object.entries(CONNECTIONS).forEach(([from,targets])=>{
-  const a = nodeById.get(+from);
-  (targets||[]).forEach(t=>{
-    const b = nodeById.get(+t); if(!a||!b) return;
-    const e = document.createElementNS('http://www.w3.org/2000/svg','line');
-    e.setAttribute('x1',a.x); e.setAttribute('y1',a.y);
-    e.setAttribute('x2',b.x); e.setAttribute('y2',b.y);
-    e.setAttribute('class','edge'); gEdges.appendChild(e);
-    edges.push({a:a.id,b:b.id,el:e});
-  });
-});
-
-function toggleEdgesFor(id,on){ edges.forEach(({a,b,el})=>{ if(a===id||b===id) el.classList.toggle('on',!!on); }); }
-let showAllEdges=false;
-function setAllEdges(on){ showAllEdges=!!on; edges.forEach(e=>e.el.classList.toggle('on',showAllEdges)); }
-
-function fileFor(m){ return `MODULES/Modul_${String(m.id).padStart(2,'0')}_${m.key}.md`; }
-function linkFor(m){ return `module.html?file=${encodeURIComponent(fileFor(m))}`; }
-
-layout.forEach(m=>{
-  const link = linkFor(m);
-
-  // SVG <a> + harter Klick
-  const a = document.createElementNS('http://www.w3.org/2000/svg','a');
-  a.setAttributeNS(null,'href',link);
-  a.setAttributeNS('http://www.w3.org/1999/xlink','href',link);
-  a.setAttribute('target','_self');
-
-  const g = document.createElementNS('http://www.w3.org/2000/svg','g');
-  g.setAttribute('class','node');
-  g.setAttribute('transform',`translate(${m.x},${m.y})`);
-  g.style.cursor = 'pointer';
-
-  const go = ()=> window.location.assign(link);
-  g.addEventListener('click', (ev)=>{ ev.preventDefault(); ev.stopPropagation(); go(); });
-  g.addEventListener('keydown',(e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
-
-  g.addEventListener('mouseenter',()=>!showAllEdges && toggleEdgesFor(m.id,true));
-  g.addEventListener('mouseleave',()=>!showAllEdges && toggleEdgesFor(m.id,false));
-  g.addEventListener('touchstart',ev=>{ ev.preventDefault(); if(!showAllEdges){ g._on=!g._on; toggleEdgesFor(m.id,g._on); } });
-
-  const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
-  dot.setAttribute('r', m.core ? 14 : 9);
-  dot.setAttribute('class','dot');
-  dot.setAttribute('fill', fillOf(m.ring));
-  // doppelt binden, falls nur der Kreis klickbar sein soll
-  dot.addEventListener('click', (ev)=>{ ev.preventDefault(); ev.stopPropagation(); go(); });
-  g.appendChild(dot);
-
-  const bg = document.createElementNS('http://www.w3.org/2000/svg','text');
-  bg.setAttribute('y', m.core ? -22 : -14);
-  bg.setAttribute('class','label bg');
-  bg.textContent = `${String(m.id).padStart(2,'0')} ${m.key}`;
-  const tx = document.createElementNS('http://www.w3.org/2000/svg','text');
-  tx.setAttribute('y', m.core ? -22 : -14);
-  tx.setAttribute('class','label');
-  tx.textContent = `${String(m.id).padStart(2,'0')} ${m.key}`;
-  g.appendChild(bg); g.appendChild(tx);
-
-  g.setAttribute('tabindex','0'); g.setAttribute('role','link');
-
-  a.appendChild(g); gNodes.appendChild(a);
-});
-
-/* ===== Pan & Zoom ===== */
-let state = {k:1,x:0,y:0};
-const svg = document.querySelector('svg');
-function applyTransform(){ vp.setAttribute('transform',`translate(${state.x},${state.y}) scale(${state.k})`); }
-function screenToSvg(pt){ const ctm = svg.getScreenCTM(); return {x:(pt.x-ctm.e)/ctm.a, y:(pt.y-ctm.f)/ctm.d}; }
-let dragging=false, dragStart={x:0,y:0}, startState={x:0,y:0};
-svg.addEventListener('mousedown', e=>{ dragging=true; dragStart={x:e.clientX,y:e.clientY}; startState={...state}; });
-window.addEventListener('mousemove', e=>{ if(!dragging) return; state.x=startState.x+(e.clientX-dragStart.x); state.y=startState.y+(e.clientY-dragStart.y); applyTransform(); });
-window.addEventListener('mouseup', ()=> dragging=false);
-svg.addEventListener('touchstart', e=>{ if(e.touches.length===1){ dragging=true; dragStart={x:e.touches[0].clientX,y:e.touches[0].clientY}; startState={...state}; } }, {passive:false});
-svg.addEventListener('touchmove', e=>{ if(dragging && e.touches.length===1){ state.x=startState.x+(e.touches[0].clientX-dragStart.x); state.y=startState.y+(e.touches[0].clientY-dragStart.y); applyTransform(); } }, {passive:false});
-svg.addEventListener('touchend', ()=> dragging=false);
-svg.addEventListener('wheel', e=>{
-  e.preventDefault();
-  const delta = Math.sign(e.deltaY) * -0.1;
-  const newK = Math.min(3.2, Math.max(0.5, state.k + delta));
-  const pt = screenToSvg({x:e.clientX,y:e.clientY});
-  state.x = pt.x - (pt.x - state.x) * (newK/state.k);
-  state.y = pt.y - (pt.y - state.y) * (newK/state.k);
-  state.k = newK; applyTransform();
-},{passive:false});
-let lastTap=0;
-svg.addEventListener('dblclick', ()=>reset());
-svg.addEventListener('touchend', e=>{ const now=Date.now(); if(now-lastTap<300){ reset(); } lastTap=now; });
-function fit(){ state={k:0.92,x:40,y:40}; applyTransform(); }
-function reset(){ state={k:1,x:0,y:0}; applyTransform(); }
-document.getElementById('fitBtn').addEventListener('click', fit);
-document.getElementById('resetBtn').addEventListener('click', reset);
-document.getElementById('toggleEdgesBtn').addEventListener('click', ()=> setAllEdges(!showAllEdges));
-fit();
+/* ===== Komplettes JS siehe vorige Nachricht – Hover zeigt nur Modul-Kanten, Klick öffnet Modul ===== */
 </script>
-
-<noscript>
-  <div style="max-width:1200px;margin:12px auto;color:#fff;opacity:.85;padding:0 16px">
-    <strong>Hinweis:</strong> Für die interaktive Modul-Karte wird JavaScript benötigt.
-  </div>
-</noscript>
 </body>
 </html>

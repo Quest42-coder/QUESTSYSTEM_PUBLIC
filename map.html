@@ -24,12 +24,13 @@
 
 <div class="wrap">
   <div class="board">
-    <svg viewBox="0 0 1000 1000" role="img" aria-labelledby="title desc">
+    <!-- WICHTIG: xmlns:xlink ergänzt -->
+    <svg viewBox="0 0 1000 1000" role="img" aria-labelledby="title desc"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
       <title id="title">QUESTSYSTEM – Modul-Karte</title>
       <desc id="desc">42 Module in drei Ringen. Hover/Tippen zeigt Verbindungen. Klick öffnet die Modul-Datei.</desc>
 
       <g id="viewport">
-        <!-- Hilfsringe -->
         <g class="grid-circ">
           <circle cx="500" cy="500" r="160"></circle>
           <circle cx="500" cy="500" r="260"></circle>
@@ -37,7 +38,6 @@
           <circle cx="500" cy="500" r="460"></circle>
         </g>
 
-        <!-- Ringe -->
         <circle class="ring" cx="500" cy="500" r="220"></circle>
         <circle class="ring" cx="500" cy="500" r="320"></circle>
         <circle class="ring" cx="500" cy="500" r="420"></circle>
@@ -50,7 +50,7 @@
 </div>
 
 <footer>
-  © QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause · Version: map.html v2
+  © QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause · Version: map.html v2 (link-fix)
 </footer>
 
 <script>
@@ -133,8 +133,10 @@ function linkFor(m){
 }
 
 layout.forEach(m=>{
+  // <a> im SVG: beide href-Varianten setzen (SVG2 & xlink)
   const a = document.createElementNS('http://www.w3.org/2000/svg','a');
-  a.setAttributeNS('http://www.w3.org/1999/xlink','href', linkFor(m));
+  a.setAttributeNS(null, 'href', linkFor(m)); // SVG2
+  a.setAttributeNS('http://www.w3.org/1999/xlink', 'href', linkFor(m)); // xlink Fallback
   a.setAttribute('target','_self');
 
   const g = document.createElementNS('http://www.w3.org/2000/svg','g');

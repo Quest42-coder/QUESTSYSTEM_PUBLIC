@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>QUESTSYSTEM · Modul-Karte (v2)</title>
+  <title>QUESTSYSTEM · Modul-Karte (v2 – core+linkfix)</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,7 +14,7 @@
     <span class="pill"><span class="swatch yellow"></span>Societal</span>
     <span class="pill"><span class="swatch blue"></span>Structural</span>
   </div>
-  <div class="hint">Maus/Trackpad: scrollen = Zoom, ziehen = Pan, <kbd>Doppelklick</kbd> = Reset. Mobile: Pinch-Zoom & Drag, Doppeltipp = Reset. Hover/Tippen zeigt Verknüpfungen. Klick öffnet Details.</div>
+  <div class="hint">Scroll = Zoom, Drag = Pan, Doppelklick = Reset. Hover/Tippen zeigt Verknüpfungen. Klick öffnet Details.</div>
   <div class="toolbar">
     <button class="btn" id="fitBtn">Auf Bildschirm zentrieren</button>
     <button class="btn" id="resetBtn">Zoom/Position zurücksetzen</button>
@@ -24,23 +24,28 @@
 
 <div class="wrap">
   <div class="board">
-    <!-- WICHTIG: xmlns:xlink ergänzt -->
+    <!-- Wichtig: xlink-Namespace setzen -->
     <svg viewBox="0 0 1000 1000" role="img" aria-labelledby="title desc"
          xmlns:xlink="http://www.w3.org/1999/xlink">
       <title id="title">QUESTSYSTEM – Modul-Karte</title>
-      <desc id="desc">42 Module in drei Ringen. Hover/Tippen zeigt Verbindungen. Klick öffnet die Modul-Datei.</desc>
+      <desc id="desc">RESETBOX im Kern. 42 Module in drei Ringen. Klick öffnet die Modul-Datei.</desc>
 
       <g id="viewport">
+        <!-- Hilfsringe -->
         <g class="grid-circ">
-          <circle cx="500" cy="500" r="160"></circle>
-          <circle cx="500" cy="500" r="260"></circle>
-          <circle cx="500" cy="500" r="360"></circle>
-          <circle cx="500" cy="500" r="460"></circle>
+          <circle cx="500" cy="500" r="140"></circle>
+          <circle cx="500" cy="500" r="240"></circle>
+          <circle cx="500" cy="500" r="340"></circle>
+          <circle cx="500" cy="500" r="440"></circle>
         </g>
 
-        <circle class="ring" cx="500" cy="500" r="220"></circle>
-        <circle class="ring" cx="500" cy="500" r="320"></circle>
-        <circle class="ring" cx="500" cy="500" r="420"></circle>
+        <!-- Ringe -->
+        <circle class="ring" cx="500" cy="500" r="240"></circle>
+        <circle class="ring" cx="500" cy="500" r="340"></circle>
+        <circle class="ring" cx="500" cy="500" r="440"></circle>
+
+        <!-- Kern-Halo für RESETBOX -->
+        <circle cx="500" cy="500" r="70" class="fill-red" opacity="0.08"></circle>
 
         <g id="edges"></g>
         <g id="nodes"></g>
@@ -50,20 +55,24 @@
 </div>
 
 <footer>
-  © QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause · Version: map.html v2 (link-fix)
+  © QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause · Version: map.html v2 core+linkfix
 </footer>
 
 <script>
 /* ===== Daten ===== */
 const MODULES = [
-  {id:1,key:'RESETBOX',ring:'red'},{id:2,key:'WATER',ring:'red'},{id:3,key:'SHELTER',ring:'red'},
-  {id:4,key:'FOOD',ring:'red'},{id:5,key:'SLEEP',ring:'red'},{id:6,key:'BODY',ring:'red'},
-  {id:7,key:'PSYCH',ring:'red'},{id:8,key:'DEVICE',ring:'red'},{id:9,key:'DEBT',ring:'red'},
+  // Existential
+  {id:1,key:'RESETBOX',ring:'red'},
+  {id:2,key:'WATER',ring:'red'},{id:3,key:'SHELTER',ring:'red'},{id:4,key:'FOOD',ring:'red'},
+  {id:5,key:'SLEEP',ring:'red'},{id:6,key:'BODY',ring:'red'},{id:7,key:'PSYCH',ring:'red'},
+  {id:8,key:'DEVICE',ring:'red'},{id:9,key:'DEBT',ring:'red'},
+  // Societal
   {id:10,key:'WORK',ring:'yellow'},{id:11,key:'SCHOOL',ring:'yellow'},{id:12,key:'BORDER',ring:'yellow'},
   {id:13,key:'NATURE',ring:'yellow'},{id:14,key:'HEALTH',ring:'yellow'},{id:15,key:'CARE',ring:'yellow'},
   {id:16,key:'FAMILY',ring:'yellow'},{id:17,key:'ANIMAL',ring:'yellow'},{id:18,key:'CULTURE',ring:'yellow'},
   {id:19,key:'MEDIA',ring:'yellow'},{id:20,key:'ENERGY',ring:'yellow'},{id:21,key:'CLIMATE',ring:'yellow'},
   {id:22,key:'MIGRATION',ring:'yellow'},{id:23,key:'JUSTICE',ring:'yellow'},{id:24,key:'COMMUNITY',ring:'yellow'},
+  // Structural
   {id:25,key:'FINANCE',ring:'blue'},{id:26,key:'HOUSING',ring:'blue'},{id:27,key:'TRANSPORT',ring:'blue'},
   {id:28,key:'NETWORK',ring:'blue'},{id:29,key:'SYMBOL',ring:'blue'},{id:30,key:'TRUTH',ring:'blue'},
   {id:31,key:'MEMORY',ring:'blue'},{id:32,key:'LICENCE',ring:'blue'},{id:33,key:'PRIVACY',ring:'blue'},
@@ -71,8 +80,15 @@ const MODULES = [
   {id:37,key:'DEMOCRACY',ring:'blue'},{id:38,key:'GOVERNANCE',ring:'blue'},{id:39,key:'KNOWLEDGE',ring:'blue'},
   {id:40,key:'ART',ring:'blue'},{id:41,key:'FUTURE',ring:'blue'},{id:42,key:'DEATH',ring:'blue'},
 ];
-const FILE_NAME_OVERRIDES = { 7:'MODULES/Modul_07_PSYCH.md' };
 
+/* Dateinamen, die vom Standard abweichen */
+const FILE_NAME_OVERRIDES = {
+  1: 'MODULES/Modul_01_RESETBOX.md', // falls nötig; ggf. löschen, wenn dein Name passt
+  7: 'MODULES/Modul_07_PSYCH.md'
+  // Beispiel: 20: 'MODULES/Modul_20_ENERGIE.md'
+};
+
+/* Verbindungen */
 const CONNECTIONS = {
   1:[2,3,9,20,28,30], 2:[4,6,13,1,20], 3:[5,13,1,26], 4:[2,13,25,1], 5:[3,7,6,14],
   6:[2,5,14,33], 7:[5,6,31,33,14], 8:[20,28,35,33,1], 9:[25,23,32,1],
@@ -85,14 +101,16 @@ const CONNECTIONS = {
   40:[18,29,30,24], 41:[21,30,39,24], 42:[30,23,31,39],
 };
 
-/* ===== Layout ===== */
+/* ===== Layout (RESETBOX im Kern) ===== */
 const center = {x:500, y:500};
-const radii = { red:220, yellow:320, blue:420 };
+const radii  = { inner:260, middle:360, outer:460 }; // Ringe weiter außen, weil Kern belegt
+
 const groups = {
-  red:MODULES.filter(m=>m.ring==='red'),
+  red:   MODULES.filter(m=>m.ring==='red' && m.id!==1),   // alle roten außer RESETBOX
   yellow:MODULES.filter(m=>m.ring==='yellow'),
-  blue:MODULES.filter(m=>m.ring==='blue')
+  blue:  MODULES.filter(m=>m.ring==='blue')
 };
+
 function place(group, r){
   const n = group.length, start = -Math.PI/2;
   return group.map((m,i)=>{
@@ -100,15 +118,24 @@ function place(group, r){
     return {...m, r, a, x:center.x + r*Math.cos(a), y:center.y + r*Math.sin(a)};
   });
 }
-const layout = [...place(groups.red,radii.red), ...place(groups.yellow,radii.yellow), ...place(groups.blue,radii.blue)];
-const fillOf = ring => ring==='red'?'var(--red)':ring==='yellow'?'var(--yellow)':'var(--blue)';
+const layout = [
+  // RESETBOX im Zentrum (größer)
+  {id:1,key:'RESETBOX',ring:'red',x:center.x,y:center.y,r:0,a:0,core:true},
+  ...place(groups.red,   radii.inner),
+  ...place(groups.yellow,radii.middle),
+  ...place(groups.blue,  radii.outer)
+];
+
+const fillOf = ring => ring==='red'?'var(--red)': ring==='yellow'?'var(--yellow)':'var(--blue)';
 
 /* ===== Render ===== */
-const vp = document.getElementById('viewport');
+const vp     = document.getElementById('viewport');
 const gEdges = document.getElementById('edges');
 const gNodes = document.getElementById('nodes');
 
 const nodeById = new Map(layout.map(m=>[m.id,m]));
+
+// Kanten
 const edges = [];
 Object.entries(CONNECTIONS).forEach(([from,targets])=>{
   const a = nodeById.get(+from);
@@ -126,37 +153,55 @@ function toggleEdgesFor(id,on){ edges.forEach(({a,b,el})=>{ if(a===id||b===id) e
 let showAllEdges=false;
 function setAllEdges(on){ showAllEdges=!!on; edges.forEach(e=>e.el.classList.toggle('on',showAllEdges)); }
 
-function linkFor(m){
+function fileFor(m){
   const ov = FILE_NAME_OVERRIDES[m.id];
-  const file = ov ?? `MODULES/Modul_${String(m.id).padStart(2,'0')}_${m.key}.md`;
-  return `module.html?file=${encodeURIComponent(file)}`;
+  return ov ?? `MODULES/Modul_${String(m.id).padStart(2,'0')}_${m.key}.md`;
 }
+function linkFor(m){ return `module.html?file=${encodeURIComponent(fileFor(m))}`; }
 
+// Nodes + Labels + robuste Klick-Navigation
 layout.forEach(m=>{
-  // <a> im SVG: beide href-Varianten setzen (SVG2 & xlink)
+  const link = linkFor(m);
+
+  // SVG <a> (Fallback)
   const a = document.createElementNS('http://www.w3.org/2000/svg','a');
-  a.setAttributeNS(null, 'href', linkFor(m)); // SVG2
-  a.setAttributeNS('http://www.w3.org/1999/xlink', 'href', linkFor(m)); // xlink Fallback
+  a.setAttributeNS(null,'href', link); // SVG2
+  a.setAttributeNS('http://www.w3.org/1999/xlink','href', link); // xlink-Fallback
   a.setAttribute('target','_self');
 
   const g = document.createElementNS('http://www.w3.org/2000/svg','g');
   g.setAttribute('class','node');
   g.setAttribute('transform',`translate(${m.x},${m.y})`);
+  g.style.cursor = 'pointer';
+
+  // **robuster Click-Handler** (um Browser-Inkompatibilitäten zu umgehen)
+  g.addEventListener('click', (ev)=>{ ev.preventDefault(); window.location.assign(link); });
+
   g.addEventListener('mouseenter',()=>!showAllEdges && toggleEdgesFor(m.id,true));
   g.addEventListener('mouseleave',()=>!showAllEdges && toggleEdgesFor(m.id,false));
   g.addEventListener('touchstart',ev=>{ ev.preventDefault(); if(!showAllEdges){ g._on=!g._on; toggleEdgesFor(m.id,g._on); } });
 
   const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
-  dot.setAttribute('r',9); dot.setAttribute('class','dot'); dot.setAttribute('fill', fillOf(m.ring));
+  dot.setAttribute('r', m.core ? 14 : 9);           // RESETBOX größer
+  dot.setAttribute('class','dot');
+  dot.setAttribute('fill', fillOf(m.ring));
   g.appendChild(dot);
 
   const bg = document.createElementNS('http://www.w3.org/2000/svg','text');
-  bg.setAttribute('y',-14); bg.setAttribute('class','label bg'); bg.textContent = `${String(m.id).padStart(2,'0')} ${m.key}`;
+  bg.setAttribute('y', m.core ? -22 : -14);
+  bg.setAttribute('class','label bg');
+  bg.textContent = `${String(m.id).padStart(2,'0')} ${m.key}`;
+
   const tx = document.createElementNS('http://www.w3.org/2000/svg','text');
-  tx.setAttribute('y',-14); tx.setAttribute('class','label'); tx.textContent = `${String(m.id).padStart(2,'0')} ${m.key}`;
+  tx.setAttribute('y', m.core ? -22 : -14);
+  tx.setAttribute('class','label');
+  tx.textContent = `${String(m.id).padStart(2,'0')} ${m.key}`;
+
   g.appendChild(bg); g.appendChild(tx);
 
   g.setAttribute('tabindex','0');
+  g.setAttribute('role','link');
+  g.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); window.location.assign(link); } });
   g.addEventListener('focus', ()=>!showAllEdges && toggleEdgesFor(m.id,true));
   g.addEventListener('blur',  ()=>!showAllEdges && toggleEdgesFor(m.id,false));
 

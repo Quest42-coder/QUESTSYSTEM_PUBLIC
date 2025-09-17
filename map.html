@@ -61,132 +61,239 @@
   </footer>
 
   <script>
-  (async function () {
-    const svg = document.getElementById('map');
-    const tip = document.getElementById('tooltip');
+ <script>
+document.addEventListener('DOMContentLoaded', function(){
+  // harte Radien – unabhängig von CSS-Variablen
+  const RS={inner:56, mid:56, outer:56, center:96};
+  const R ={inner:220, mid:380, outer:540, center:0};
+  const SVG_NS="http://www.w3.org/2000/svg", XLINK_NS="http://www.w3.org/1999/xlink";
 
-    // ---- Daten laden mit robusten Fallbacks ----
-    const candidates = ['./MODULES/modules.json','./modules/modules.json','./modules.json'];
-    let data=null;
-    for (const p of candidates) {
-      try { const r=await fetch(p,{cache:'no-cache'}); if(!r.ok) throw 0; data=await r.json(); break; } catch {}
-    }
-    if (!data || !Array.isArray(data.modules)) { return fatal('Konnte Daten nicht laden. Prüfe MODULES/modules.json (Case!).'); }
+  const svg=document.getElementById('map');
+  const nodesLayer=document.getElementById('nodes-layer');
+  const labelsLayer=document.getElementById('labels-layer');
+  const linksLayer=document.getElementById('links-layer');
+  const tip=document.getElementById('tip');
 
-    const modules = data.modules;
-    const links = data.links || {};
+  if(!svg||!nodesLayer||!labelsLayer||!linksLayer){ console.warn('QS: Layer fehlen'); return; }
 
-    // ---- Geometrie ----
-    const cx=600, cy=450;
-    const R={Existential:180, Societal:310, Structural:440};
-    const nodeR=18;
+  // Module – komplette Liste
+  const MODS = [
+    {no:"01",id:"RESETBOX", ring:"center", file:"MODULES/Modul_01_RESETBOX.md"},
+    {no:"02",id:"WATER",    ring:"inner",  file:"MODULES/Modul_02_WATER.md"},
+    {no:"03",id:"SHELTER",  ring:"inner",  file:"MODULES/Modul_03_SHELTER.md"},
+    {no:"04",id:"FOOD",     ring:"inner",  file:"MODULES/Modul_04_FOOD.md"},
+    {no:"05",id:"SLEEP",    ring:"inner",  file:"MODULES/Modul_05_SLEEP.md"},
+    {no:"06",id:"BODY",     ring:"inner",  file:"MODULES/Modul_06_BODY.md"},
+    {no:"07",id:"PSYCHE",   ring:"inner",  file:"MODULES/Modul_07_PSYCHE.md"},
+    {no:"08",id:"DEVICE",   ring:"inner",  file:"MODULES/Modul_08_DEVICE.md"},
+    {no:"09",id:"DEBT",     ring:"inner",  file:"MODULES/Modul_09_DEBT.md"},
+    {no:"10",id:"WORK",     ring:"mid",    file:"MODULES/Modul_10_WORK.md"},
+    {no:"11",id:"SCHOOL",   ring:"mid",    file:"MODULES/Modul_11_SCHOOL.md"},
+    {no:"12",id:"BORDER",   ring:"mid",    file:"MODULES/Modul_12_BORDER.md"},
+    {no:"13",id:"NATURE",   ring:"mid",    file:"MODULES/Modul_13_NATURE.md"},
+    {no:"14",id:"HEALTH",   ring:"mid",    file:"MODULES/Modul_14_HEALTH.md"},
+    {no:"15",id:"CARE",     ring:"mid",    file:"MODULES/Modul_15_CARE.md"},
+    {no:"16",id:"FAMILY",   ring:"mid",    file:"MODULES/Modul_16_FAMILY.md"},
+    {no:"17",id:"ANIMAL",   ring:"mid",    file:"MODULES/Modul_17_ANIMAL.md"},
+    {no:"18",id:"CULTURE",  ring:"mid",    file:"MODULES/Modul_18_CULTURE.md"},
+    {no:"19",id:"MEDIA",    ring:"mid",    file:"MODULES/Modul_19_MEDIA.md"},
+    {no:"20",id:"ENERGY",   ring:"mid",    file:"MODULES/Modul_20_ENERGY.md"},
+    {no:"21",id:"CLIMATE",  ring:"mid",    file:"MODULES/Modul_21_CLIMATE.md"},
+    {no:"22",id:"MIGRATION",ring:"mid",    file:"MODULES/Modul_22_MIGRATION.md"},
+    {no:"23",id:"JUSTICE",  ring:"mid",    file:"MODULES/Modul_23_JUSTICE.md"},
+    {no:"24",id:"COMMUNITY",ring:"mid",    file:"MODULES/Modul_24_COMMUNITY.md"},
+    {no:"25",id:"FINANCE",  ring:"outer",  file:"MODULES/Modul_25_FINANCE.md"},
+    {no:"26",id:"HOUSING",  ring:"outer",  file:"MODULES/Modul_26_HOUSING.md"},
+    {no:"27",id:"TRANSPORT",ring:"outer",  file:"MODULES/Modul_27_TRANSPORT.md"},
+    {no:"28",id:"NETWORK",  ring:"outer",  file:"MODULES/Modul_28_NETWORK.md"},
+    {no:"29",id:"SYMBOL",   ring:"outer",  file:"MODULES/Modul_29_SYMBOL.md"},
+    {no:"30",id:"TRUTH",    ring:"outer",  file:"MODULES/Modul_30_TRUTH.md"},
+    {no:"31",id:"MEMORY",   ring:"outer",  file:"MODULES/Modul_31_MEMORY.md"},
+    {no:"32",id:"LICENCE",  ring:"outer",  file:"MODULES/Modul_32_LICENCE.md"},
+    {no:"33",id:"PRIVACY",  ring:"outer",  file:"MODULES/Modul_33_PRIVACY.md"},
+    {no:"34",id:"SECURITY", ring:"outer",  file:"MODULES/Modul_34_SECURITY.md"},
+    {no:"35",id:"DATA",     ring:"outer",  file:"MODULES/Modul_35_DATA.md"},
+    {no:"36",id:"CONFLICT", ring:"outer",  file:"MODULES/Modul_36_CONFLICT.md"},
+    {no:"37",id:"DEMOCRACY",ring:"outer",  file:"MODULES/Modul_37_DEMOCRACY.md"},
+    {no:"38",id:"GOVERNANCE",ring:"outer", file:"MODULES/Modul_38_GOVERNANCE.md"},
+    {no:"39",id:"KNOWLEDGE", ring:"outer", file:"MODULES/Modul_39_KNOWLEDGE.md"},
+    {no:"40",id:"ART",       ring:"outer", file:"MODULES/Modul_40_ART.md"},
+    {no:"41",id:"FUTURE",    ring:"outer", file:"MODULES/Modul_41_FUTURE.md"},
+    {no:"42",id:"DEATH",     ring:"outer", file:"MODULES/Modul_42_DEATH.md"}
+  ];
 
-    // Ebenen
-    const ringLayer = el('g', { class:'rings' });
-    // WICHTIG: Ringe explizit ohne Füllung zeichnen (kein schwarzer Kreis!)
-    ringLayer.appendChild(el('circle', { cx, cy, r:R.Existential, fill:'none', stroke:'#ffffff18', 'stroke-dasharray':'6 6' }));
-    ringLayer.appendChild(el('circle', { cx, cy, r:R.Societal,    fill:'none', stroke:'#ffffff12', 'stroke-dasharray':'6 6' }));
-    ringLayer.appendChild(el('circle', { cx, cy, r:R.Structural,  fill:'none', stroke:'#ffffff0e', 'stroke-dasharray':'6 6' }));
-    svg.appendChild(ringLayer);
+  // CORE-Verknüpfungen
+  const CORE = {
+    "01:RESETBOX":["02:WATER","03:SHELTER","09:DEBT"],
+    "02:WATER":["04:FOOD","06:BODY","13:NATURE"],
+    "03:SHELTER":["05:SLEEP","13:NATURE","01:RESETBOX"],
+    "04:FOOD":["02:WATER","13:NATURE","25:FINANCE"],
+    "05:SLEEP":["03:SHELTER","07:PSYCHE","06:BODY"],
+    "06:BODY":["02:WATER","05:SLEEP","07:PSYCHE"],
+    "07:PSYCHE":["05:SLEEP","06:BODY","30:TRUTH"],
+    "08:DEVICE":["20:ENERGY","32:LICENCE","01:RESETBOX"],
+    "09:DEBT":["10:WORK","25:FINANCE","01:RESETBOX"],
+    "10:WORK":["09:DEBT","11:SCHOOL","25:FINANCE"],
+    "11:SCHOOL":["10:WORK","30:TRUTH","07:PSYCHE"],
+    "12:BORDER":["01:RESETBOX","13:NATURE","36:CONFLICT"],
+    "13:NATURE":["02:WATER","04:FOOD","20:ENERGY"],
+    "14:HEALTH":["02:WATER","06:BODY","07:PSYCHE"],
+    "15:CARE":["14:HEALTH","07:PSYCHE","01:RESETBOX"],
+    "16:FAMILY":["05:SLEEP","11:SCHOOL","14:HEALTH"],
+    "17:ANIMAL":["04:FOOD","13:NATURE","14:HEALTH"],
+    "18:CULTURE":["11:SCHOOL","30:TRUTH","29:SYMBOL"],
+    "19:MEDIA":["30:TRUTH","32:LICENCE","11:SCHOOL"],
+    "20:ENERGY":["08:DEVICE","13:NATURE","25:FINANCE"],
+    "21:CLIMATE":["13:NATURE","20:ENERGY","14:HEALTH"],
+    "22:MIGRATION":["12:BORDER","13:NATURE","36:CONFLICT"],
+    "23:JUSTICE":["09:DEBT","10:WORK","32:LICENCE"],
+    "24:COMMUNITY":["11:SCHOOL","18:CULTURE","23:JUSTICE"],
+    "25:FINANCE":["09:DEBT","10:WORK","20:ENERGY"],
+    "26:HOUSING":["03:SHELTER","05:SLEEP","25:FINANCE"],
+    "27:TRANSPORT":["02:WATER","20:ENERGY","22:MIGRATION"],
+    "28:NETWORK":["08:DEVICE","20:ENERGY","19:MEDIA"],
+    "29:SYMBOL":["18:CULTURE","24:COMMUNITY","30:TRUTH"],
+    "30:TRUTH":["11:SCHOOL","19:MEDIA","32:LICENCE"],
+    "31:MEMORY":["11:SCHOOL","29:SYMBOL","30:TRUTH"],
+    "32:LICENCE":["19:MEDIA","30:TRUTH","08:DEVICE"],
+    "33:PRIVACY":["08:DEVICE","19:MEDIA","32:LICENCE"],
+    "34:SECURITY":["01:RESETBOX","12:BORDER","36:CONFLICT"],
+    "35:DATA":["08:DEVICE","28:NETWORK","32:LICENCE"],
+    "36:CONFLICT":["12:BORDER","22:MIGRATION","34:SECURITY"],
+    "37:DEMOCRACY":["23:JUSTICE","24:COMMUNITY","25:FINANCE"],
+    "38:GOVERNANCE":["23:JUSTICE","37:DEMOCRACY","25:FINANCE"],
+    "39:KNOWLEDGE":["11:SCHOOL","30:TRUTH","31:MEMORY"],
+    "40:ART":["18:CULTURE","29:SYMBOL","39:KNOWLEDGE"],
+    "41:FUTURE":["21:CLIMATE","39:KNOWLEDGE","40:ART"],
+    "42:DEATH":["14:HEALTH","15:CARE","41:FUTURE"]
+  };
 
-    const edgeLayer = el('g', { class:'edges' }); svg.appendChild(edgeLayer);
-    const nodeLayer = el('g', { class:'nodes' }); svg.appendChild(nodeLayer);
-
-    // Positionen
-    const perRing={Existential:[],Societal:[],Structural:[]};
-    modules.forEach(m=>{ if(perRing[m.ring]) perRing[m.ring].push(m); });
-
-    const pos={};
-    Object.entries(perRing).forEach(([rk, arr])=>{
-      const n=arr.length||1;
-      arr.forEach((m,i)=>{
-        const a=(i/n)*Math.PI*2 - Math.PI/2;
-        pos[m.id]={ x: cx + R[rk]*Math.cos(a), y: cy + R[rk]*Math.sin(a) };
-      });
+  // bidirektionaler Link-Index
+  const LINKS = new Map();
+  Object.keys(CORE).forEach(k=>{
+    const a = k.split(':')[1];
+    if(!LINKS.has(a)) LINKS.set(a,new Set());
+    CORE[k].forEach(bk=>{
+      const b=bk.split(':')[1];
+      if(!LINKS.has(b)) LINKS.set(b,new Set());
+      LINKS.get(a).add(b); LINKS.get(b).add(a);
     });
+  });
 
-    let activeId=null;
+  // Helpers
+  const polar = (r,a)=>[Math.cos(a)*r, Math.sin(a)*r];
+  const distributeAngles = n => Array.from({length:n},(_,i)=> -Math.PI/2 + i*(2*Math.PI/n));
+  const nodeCenterPos = el => {
+    const m=(el.getAttribute('transform')||'').match(/translate\(([-\d.]+),([-\d.]+)\)/);
+    return m?{x:+m[1],y:+m[2]}:{x:0,y:0};
+  };
+  const curve = (pA,pB)=>{
+    const mid={x:(pA.x+pB.x)/2, y:(pA.y+pB.y)/2};
+    const c  ={x:mid.x+mid.x*0.08, y:mid.y+mid.y*0.08};
+    return `M ${pA.x} ${pA.y} Q ${c.x} ${c.y} ${pB.x} ${pB.y}`;
+  };
+  const urlFor = (file)=>{
+    const u=new URL(location.href);
+    if(u.pathname.endsWith('map.html')) u.pathname = u.pathname.replace(/map\.html$/,'');
+    if(!u.pathname.endsWith('/')) u.pathname+='/';
+    return u.origin + u.pathname + 'module.html?file=' + encodeURIComponent(file);
+  };
 
-    // Nodes
-    modules.forEach(m=>{
-      const {x,y}=pos[m.id]||{x:cx,y:cy};
-      const g=el('g',{class:'node',tabindex:0,'data-id':m.id}); g.setAttribute('role','button');
+  function addNodeEvents(a, mod){
+    const show=(e)=>{ tip.innerHTML=`${mod.no} ${mod.id}<br><small>Öffnen</small>`; tip.style.left=e.clientX+'px'; tip.style.top=e.clientY+'px'; tip.classList.add('show'); highlight(mod.id); };
+    const move=(e)=>{ tip.style.left=e.clientX+'px'; tip.style.top=e.clientY+'px'; };
+    const hide=()=>{ tip.classList.remove('show'); clearHighlight(); };
+    a.addEventListener('mouseenter', show);
+    a.addEventListener('mousemove', move);
+    a.addEventListener('mouseleave', hide);
+  }
 
-      const label=(m.name?(`${pad(m.id)} ${m.name}`):(`Modul ${pad(m.id)}`));
-      g.setAttribute('aria-label', `${label}${m.ring?` – ${m.ring} Ring`:''}`);
+  function addLabel(mod, ring, angle, r){
+    const offset = ring==='inner'? 86 : ring==='mid'? 96 : 104;
+    const [lx,ly] = polar(r+offset, angle);
+    const g=document.createElementNS(SVG_NS,'g');
+    g.setAttribute('transform',`translate(${lx},${ly})`);
+    g.setAttribute('class','label'); g.dataset.id=mod.id;
 
-      const color = (m.ring==='Existential')?'var(--red)' : (m.ring==='Societal')?'var(--yellow)' : 'var(--blue)';
+    const rect=document.createElementNS(SVG_NS,'rect');
+    const text=document.createElementNS(SVG_NS,'text');
+    text.textContent=`${mod.no} ${mod.id}`;
+    text.setAttribute('dominant-baseline','middle');
+    const deg=angle*180/Math.PI;
+    if(ring==='center'){ text.setAttribute('text-anchor','middle'); text.setAttribute('x',0); }
+    else if(deg>-90 && deg<=90){ text.setAttribute('text-anchor','start'); text.setAttribute('x',14); }
+    else{ text.setAttribute('text-anchor','end'); text.setAttribute('x',-14); }
+    text.setAttribute('y',0);
 
-      g.appendChild(el('circle',{cx:x,cy:y,r:nodeR,fill:color,'fill-opacity':0.9,stroke:'#000','stroke-opacity':.35}));
+    g.appendChild(rect); g.appendChild(text); labelsLayer.appendChild(g);
+    requestAnimationFrame(()=>{ const bb=text.getBBox(); rect.setAttribute('x',bb.x-10); rect.setAttribute('y',bb.y-8); rect.setAttribute('width',bb.width+20); rect.setAttribute('height',bb.height+16); });
+  }
 
-      const boxW=(label.length*7)+16;
-      g.appendChild(el('rect',{x:x-boxW/2,y:y+nodeR+8,width:boxW,height:18,class:'label-bg'}));
-      g.appendChild(el('text',{x,y:y+nodeR+18,class:'label'},label));
+  function addNode(mod, ring, angle, r){
+    const [x,y]=polar(r,angle);
+    const a=document.createElementNS(SVG_NS,'a');
+    a.classList.add('node',ring);
+    const href=urlFor(mod.file);
+    a.setAttribute('href',href);
+    a.setAttributeNS(XLINK_NS,'xlink:href',href);
+    a.setAttribute('transform',`translate(${x},${y})`);
+    a.dataset.id=mod.id;
 
-      g.addEventListener('mouseenter', ()=>{ activeId=m.id; tipShow(m); edges(m.id,true); });
-      g.addEventListener('mouseleave', ()=>{ if(activeId===m.id){ activeId=null; tipHide(); edges(m.id,false); }});
-      g.addEventListener('focus',      ()=>{ activeId=m.id; tipShow(m); edges(m.id,true); });
-      g.addEventListener('blur',       ()=>{ if(activeId===m.id){ activeId=null; tipHide(); edges(m.id,false); }});
-      g.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(m);} });
-      g.addEventListener('touchstart',(e)=>{ e.preventDefault(); const on=activeId!==m.id; activeId=on?m.id:null; on?(tipShow(m),edges(m.id,true)):(tipHide(),edges(m.id,false)); },{passive:false});
-      g.addEventListener('click', ()=>open(m));
+    const glow=document.createElementNS(SVG_NS,'circle'); glow.setAttribute('class','glow'); glow.setAttribute('r',RS[ring]); a.appendChild(glow);
+    const c=document.createElementNS(SVG_NS,'circle'); c.setAttribute('r',RS[ring]); a.appendChild(c);
 
-      nodeLayer.appendChild(g);
+    addNodeEvents(a,mod);
+    nodesLayer.appendChild(a);
+    addLabel(mod, ring, angle, r);
+  }
+
+  function dimAll(on){
+    document.querySelectorAll('a.node').forEach(n=>n.style.opacity=on?.25:1);
+    labelsLayer.querySelectorAll('.label').forEach(l=>l.style.opacity=on?.28:1);
+  }
+  function clearPaths(){ while(linksLayer.firstChild) linksLayer.removeChild(linksLayer.firstChild); }
+
+  function highlight(id){
+    clearPaths();
+    const nodesAll=[...document.querySelectorAll('a.node')];
+    const active=nodesAll.find(n=>n.dataset.id===id);
+    const targets = LINKS.get(id)? Array.from(LINKS.get(id)) : [];
+    if(!active || !targets.length){ dimAll(false); return; }
+
+    dimAll(true); active.style.opacity=1;
+    targets.forEach(t=>{ const el=nodesAll.find(n=>n.dataset.id===t); if(el) el.style.opacity=1; });
+
+    const pA=nodeCenterPos(active);
+    targets.forEach(t=>{
+      const el=nodesAll.find(n=>n.dataset.id===t); if(!el) return;
+      const pB=nodeCenterPos(el);
+      const path=document.createElementNS(SVG_NS,'path');
+      path.setAttribute('d', curve(pA,pB));
+      linksLayer.appendChild(path);
     });
+    linksLayer.classList.add('visible');
+  }
+  function clearHighlight(){
+    clearPaths();
+    linksLayer.classList.remove('visible');
+    dimAll(false);
+  }
 
-    function edges(id,on){
-      while(edgeLayer.firstChild) edgeLayer.removeChild(edgeLayer.firstChild);
-      if(!on) return;
-      const peers=links[String(id)]||[];
-      peers.forEach(pid=>{
-        const p1=pos[id], p2=pos[pid]; if(!p1||!p2) return;
-        edgeLayer.appendChild(el('line',{x1:p1.x,y1:p1.y,x2:p2.x,y2:p2.y,class:'edge edge--hi'}));
-      });
-    }
-
-    function tipShow(m){
-      const t = m.name ? `${pad(m.id)} — ${m.name}` : `Modul ${pad(m.id)}`;
-      const d = m.desc || (m.ring? `${m.ring} Ring` : '');
-      tip.replaceChildren();
-      const h3=document.createElement('h3'); h3.textContent=t;
-      const p=document.createElement('p'); p.textContent=d;
-      tip.append(h3,p); tip.hidden=false;
-      const {x,y}=pos[m.id]; const r=svg.getBoundingClientRect();
-      tip.style.left=(x - r.left + 16)+'px';
-      tip.style.top =(y - r.top  + 16)+'px';
-      clamp();
-    }
-    function tipHide(){ tip.hidden=true; }
-    function clamp(){
-      const r=svg.getBoundingClientRect(), tw=tip.offsetWidth||240, th=tip.offsetHeight||80;
-      let L=parseInt(tip.style.left,10)||r.left+8, T=parseInt(tip.style.top,10)||r.top+8;
-      L=Math.min(Math.max(L, r.left+8), r.right - tw - 8);
-      T=Math.min(Math.max(T, r.top +8), r.bottom - th - 8);
-      tip.style.left=L+'px'; tip.style.top=T+'px';
-    }
-    function open(m){
-      const id=pad(m.id);
-      const href = (m.href && m.href.startsWith('./module.html')) ? m.href : `./module.html?id=${id}${m.name?'_'+slug(m.name):''}`;
-      location.href=href;
-    }
-
-    // Helper
-    function el(tag, attrs={}, text){
-      const n=document.createElementNS('http://www.w3.org/2000/svg',tag);
-      for(const k in attrs) n.setAttribute(k,attrs[k]);
-      if(text!=null) n.textContent=text;
-      return n;
-    }
-    function pad(n){ return String(n).padStart(2,'0'); }
-    function slug(s){ return String(s).toUpperCase().replace(/\s+/g,'_').replace(/[^A-Z0-9_]/g,''); }
-
-    function fatal(msg){
-      const t=document.createElementNS('http://www.w3.org/2000/svg','text');
-      t.setAttribute('x','600'); t.setAttribute('y','450'); t.setAttribute('text-anchor','middle');
-      t.setAttribute('class','label'); t.textContent=msg; svg.appendChild(t);
-      tip.hidden=true;
-    }
+  // Build
+  (function build(){
+    const center=MODS.find(m=>m.ring==='center'); if(center) addNode(center,'center',0,0);
+    ['inner','mid','outer'].forEach(r=>{
+      const list=MODS.filter(m=>m.ring===r);
+      const ang = distributeAngles(list.length);
+      list.forEach((m,i)=>addNode(m, r, ang[i], R[r]));
+    });
+    // kleines Diagnose-Badge
+    const b=document.createElement('div');
+    b.style.cssText='position:fixed;left:10px;bottom:10px;background:#222;color:#fff;border-radius:8px;padding:6px 8px;font:12px ui-monospace,monospace;z-index:9';
+    b.textContent='nodes='+document.querySelectorAll("a.node").length+' | labels='+document.querySelectorAll(".label").length;
+    document.body.appendChild(b);
   })();
-  </script>
+});
+</script> 
 </body>
 </html>

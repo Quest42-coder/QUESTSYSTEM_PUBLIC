@@ -37,30 +37,27 @@
 </footer>
 
 <script>
-// --- Parameter aus Query ODER Hash holen ---
 function getFileParam(){
-  var search = new URLSearchParams(window.location.search);
-  if (search.has('file')) return search.get('file');
-  if (window.location.hash.indexOf('file=')>=0){
-    var h = window.location.hash.replace(/^#/, '');
+  try{
+    var qs = new URLSearchParams(location.search);
+    if (qs.has('file')) return qs.get('file');
+  }catch(e){}
+  if (location.hash && location.hash.indexOf('file=')>=0){
+    var h = location.hash.replace(/^#/, '');
     var params = new URLSearchParams(h);
     if (params.has('file')) return params.get('file');
   }
   return null;
 }
-
-// --- Pfad säubern ---
 function cleanPath(p){
   try{ p = decodeURIComponent(p); }catch(e){}
-  p = p.trim();
+  p = (p||'').trim();
   if (!/^MODULES\//i.test(p)) {
     if (!p.includes('/')) p = 'MODULES/' + p;
     else p = 'MODULES/' + p.split('/').pop();
   }
-  return p.replace(/\.\./g,''); // Sicherheit
+  return p.replace(/\.\./g,'');
 }
-
-// --- ganz einfache Markdown -> HTML ---
 function md2html(md){
   md = md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   md = md.replace(/^###### (.*)$/gm,'<h6>$1</h6>')
@@ -77,7 +74,6 @@ function md2html(md){
   md = md.replace(/\n{2,}/g,'</p><p>');
   return '<p>'+md+'</p>';
 }
-
 (function(){
   var status = document.getElementById('status');
   var content = document.getElementById('content');
@@ -92,7 +88,7 @@ function md2html(md){
   status.textContent = 'Lade: ' + path;
 
   fetch(path,{cache:'no-store'})
-    .then(function(res){ if(!res.ok) throw new Error('HTTP '+res.status); return res.text(); })
+    .then(function(res){ if(!res.ok) throw new Error('HTTP '+res.status+' – '+res.statusText); return res.text(); })
     .then(function(md){
       content.innerHTML = md2html(md);
       content.hidden = false;
@@ -104,7 +100,7 @@ function md2html(md){
     .catch(function(err){
       content.hidden = true;
       raw.hidden = false;
-      raw.textContent = 'Fehler beim Laden von '+path+'\n\n'+err.message;
+      raw.textContent = 'Fehler beim Laden von '+path+'\n\n'+err.message+'\n\nTipp: Prüfe Groß-/Kleinschreibung & Pfad.';
       status.innerHTML = '<span class="err">Fehler</span> · '+path;
     });
 })();

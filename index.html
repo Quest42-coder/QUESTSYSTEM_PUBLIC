@@ -1,97 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>QUESTSYSTEM – 42 Module in drei Ringen</title>
-  <meta name="description" content="Das QUESTSYSTEM: 42 Module in drei Ringen (Existential, Societal, Structural). Offenes Gesellschaftsmodell für Resilienz, Würde und Zusammenarbeit.">
-  <meta property="og:title" content="QUESTSYSTEM – 42 Module in drei Ringen">
-  <meta property="og:description" content="Resetbox, Module, Ringe – ein offenes Commons-System für Resilienz und Würde.">
-  <meta property="og:type" content="website">
-  <link rel="stylesheet" href="./styles.css">
-  <link rel="manifest" href="./manifest.webmanifest">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>QUESTSYSTEM · Start</title>
+<style>
+  body{margin:0;font:16px/1.45 system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0b0b;color:#f5f5f5}
+  header,footer{max-width:1200px;margin:0 auto;padding:20px 16px}
+  h1{font-size:1.8rem;margin:0 0 8px}
+  p{max-width:760px}
+  a{color:#4aa3ff;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:1200px;margin:0 auto;padding:20px 16px}
+  .card{background:#111;border-radius:12px;padding:18px;box-shadow:0 0 0 1px #1a1a1a}
+  .card h2{margin:0 0 10px;font-size:1.2rem}
+  .btn{display:inline-block;margin-top:10px;padding:8px 12px;background:#1a1a1a;border-radius:8px;color:#fff;font-size:.92rem}
+  .btn:hover{background:#222}
+</style>
 </head>
 <body>
-  <a href="#main" class="visually-hidden-focusable">Skip to content</a>
+<header>
+  <h1>QUESTSYSTEM 🍄</h1>
+  <p>Das QUESTSYSTEM besteht aus <strong>42 Modulen</strong>, verteilt auf drei Ringe: Existential (rot), Societal (gelb) und Structural (blau). 
+  Die Module sichern Überleben, Würde und Autonomie – verknüpft durch <a href="map.html">eine interaktive Karte</a>.</p>
+</header>
 
-  <header class="site-header">
-    <h1>QUESTSYSTEM – 42 Module in drei Ringen</h1>
-  </header>
+<div class="grid">
+  <div class="card">
+    <h2>🔗 Interaktive Karte</h2>
+    <p>Die <a href="map.html">Map</a> zeigt alle 42 Module im Ring-System. Hover oder Klick macht die Verbindungen sichtbar.</p>
+    <a class="btn" href="map.html">Zur Karte</a>
+  </div>
+  <div class="card">
+    <h2>📑 Modulliste</h2>
+    <p>Alle Module in alphabetischer und nummerischer Übersicht, mit Filter-Suche.</p>
+    <a class="btn" href="modules.html">Zur Liste</a>
+  </div>
+</div>
 
-  <div id="global-nav"></div>
-
-  <main id="main" class="container">
-    <section class="card">
-      <h2>Was ist das QUESTSYSTEM?</h2>
-      <p>
-        Das <strong>QUESTSYSTEM</strong> ist ein offenes, modulares Gesellschaftsmodell mit 
-        <strong>42 Modulen</strong>, verteilt auf drei Ringe: 
-        <span style="color:var(--red)">Existential</span>, 
-        <span style="color:var(--yellow)">Societal</span>, 
-        <span style="color:var(--blue)">Structural</span>.
-      </p>
-      <p>
-        Es verbindet Überleben, Zusammenleben und Strukturen. 
-        Startpunkt ist die <a href="./module.html?id=01_RESETBOX">RESETBOX</a> – 
-        von dort öffnen sich alle weiteren Module.
-      </p>
-    </section>
-
-    <section class="grid grid-2">
-      <div class="card">
-        <h3>Zur Modul-Karte</h3>
-        <p>
-          Die interaktive Karte zeigt alle 42 Module im Ringmodell. 
-          Hover oder Tippen enthüllt ihre Verknüpfungen.
-        </p>
-        <p><a class="button" href="./map.html">→ Modul-Karte öffnen</a></p>
-      </div>
-
-      <div class="card">
-        <h3>Alle Module durchsuchen</h3>
-        <p>
-          Durchsuche und filtere alle Module in einer Liste. 
-          Perfekt für gezielten Einstieg.
-        </p>
-        <p><a class="button" href="./modules.html">→ Alle Module anzeigen</a></p>
-      </div>
-    </section>
-
-    <section class="grid grid-2">
-      <div class="card">
-        <h3>Lizenz</h3>
-        <p>
-          Alle Inhalte stehen unter <strong>CC BY-SA 4.0</strong> mit 
-          <strong>Dignity Clause</strong>. Nutzung, Weitergabe und Anpassung sind 
-          erlaubt – solange Würde und Commons-Prinzipien gewahrt bleiben.
-        </p>
-        <p><a class="button" href="./licence.html">→ Lizenz anzeigen</a></p>
-      </div>
-
-      <div class="card">
-        <h3>Mitmachen</h3>
-        <p>
-          Das QUESTSYSTEM ist offen. 
-          Beiträge, Verbesserungen und neue Ressourcen sind willkommen.
-        </p>
-        <p><a class="button" href="./contribute.html">→ Mitmachen</a></p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <small>
-      © QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause ·
-      Ringe: 🔴 Existential · 🟡 Societal · 🔵 Structural ·
-      Seite auch offline nutzbar
-    </small>
-  </footer>
-
-  <script src="./nav.js"></script>
-  <script>
-    if('serviceWorker' in navigator){
-      navigator.serviceWorker.register('./sw.js').catch(()=>{});
-    }
-  </script>
+<footer>
+  © QUESTSYSTEM · Lizenz: CC BY-SA 4.0 + Dignity Clause
+</footer>
 </body>
 </html>
